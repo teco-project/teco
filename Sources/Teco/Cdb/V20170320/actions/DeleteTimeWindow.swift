@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cdb {
     ///
     /// 本接口(DeleteTimeWindow)用于删除云数据库实例的维护时间窗口。删除实例维护时间窗口之后，默认的维护时间窗为 03:00-04:00，即当选择在维护时间窗口内切换访问新实例时，默认会在 03:00-04:00 点进行切换访问新实例。
     @inlinable
-    public func deleteTimeWindow(_ input: DeleteTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeWindowResponse> {
-        self.client.execute(action: "DeleteTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTimeWindow(_ input: DeleteTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeWindowResponse> {
+        self.client.execute(action: "DeleteTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除维护时间窗口
     ///
     /// 本接口(DeleteTimeWindow)用于删除云数据库实例的维护时间窗口。删除实例维护时间窗口之后，默认的维护时间窗为 03:00-04:00，即当选择在维护时间窗口内切换访问新实例时，默认会在 03:00-04:00 点进行切换访问新实例。
     @inlinable
-    public func deleteTimeWindow(_ input: DeleteTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeWindowResponse {
-        try await self.client.execute(action: "DeleteTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTimeWindow(_ input: DeleteTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeWindowResponse {
+        try await self.client.execute(action: "DeleteTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除维护时间窗口
     ///
     /// 本接口(DeleteTimeWindow)用于删除云数据库实例的维护时间窗口。删除实例维护时间窗口之后，默认的维护时间窗为 03:00-04:00，即当选择在维护时间窗口内切换访问新实例时，默认会在 03:00-04:00 点进行切换访问新实例。
     @inlinable
-    public func deleteTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeWindowResponse> {
-        self.deleteTimeWindow(DeleteTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimeWindowResponse> {
+        self.deleteTimeWindow(DeleteTimeWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除维护时间窗口
     ///
     /// 本接口(DeleteTimeWindow)用于删除云数据库实例的维护时间窗口。删除实例维护时间窗口之后，默认的维护时间窗为 03:00-04:00，即当选择在维护时间窗口内切换访问新实例时，默认会在 03:00-04:00 点进行切换访问新实例。
     @inlinable
-    public func deleteTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeWindowResponse {
-        try await self.deleteTimeWindow(DeleteTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimeWindowResponse {
+        try await self.deleteTimeWindow(DeleteTimeWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

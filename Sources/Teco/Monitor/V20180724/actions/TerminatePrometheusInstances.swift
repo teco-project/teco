@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Monitor {
 
     /// 销毁按量 Prometheus 实例
     @inlinable
-    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
-        self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
+        self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量 Prometheus 实例
     @inlinable
-    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
-        try await self.client.execute(action: "TerminatePrometheusInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
+        try await self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁按量 Prometheus 实例
     @inlinable
-    public func terminatePrometheusInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
-        self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
+        self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量 Prometheus 实例
     @inlinable
-    public func terminatePrometheusInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
-        try await self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
+        try await self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

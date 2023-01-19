@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
-        self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
+        self.client.execute(action: "DeleteAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
-        try await self.client.execute(action: "DeleteAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAddressTemplateGroup(_ input: DeleteAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
+        try await self.client.execute(action: "DeleteAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
-        self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), logger: logger, on: eventLoop)
+    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateGroupResponse> {
+        self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除IP地址模板集合
     ///
     /// 本接口（DeleteAddressTemplateGroup）用于删除IP地址模板集合
     @inlinable
-    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
-        try await self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), logger: logger, on: eventLoop)
+    public func deleteAddressTemplateGroup(addressTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateGroupResponse {
+        try await self.deleteAddressTemplateGroup(DeleteAddressTemplateGroupRequest(addressTemplateGroupId: addressTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

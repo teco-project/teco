@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension As {
     ///
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
-    public func modifyLoadBalancerTargetAttributes(_ input: ModifyLoadBalancerTargetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerTargetAttributesResponse> {
-        self.client.execute(action: "ModifyLoadBalancerTargetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoadBalancerTargetAttributes(_ input: ModifyLoadBalancerTargetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerTargetAttributesResponse> {
+        self.client.execute(action: "ModifyLoadBalancerTargetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡器目标规则属性
     ///
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
-    public func modifyLoadBalancerTargetAttributes(_ input: ModifyLoadBalancerTargetAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerTargetAttributesResponse {
-        try await self.client.execute(action: "ModifyLoadBalancerTargetAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoadBalancerTargetAttributes(_ input: ModifyLoadBalancerTargetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerTargetAttributesResponse {
+        try await self.client.execute(action: "ModifyLoadBalancerTargetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡器目标规则属性
     ///
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
-    public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerTargetAttributesResponse> {
-        self.modifyLoadBalancerTargetAttributes(ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerTargetAttributesResponse> {
+        self.modifyLoadBalancerTargetAttributes(ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡器目标规则属性
     ///
     /// 本接口（ModifyLoadBalancerTargetAttributes）用于修改伸缩组内负载均衡器的目标规则属性。
     @inlinable
-    public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerTargetAttributesResponse {
-        try await self.modifyLoadBalancerTargetAttributes(ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerTargetAttributes(autoScalingGroupId: String, forwardLoadBalancers: [ForwardLoadBalancer], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerTargetAttributesResponse {
+        try await self.modifyLoadBalancerTargetAttributes(ModifyLoadBalancerTargetAttributesRequest(autoScalingGroupId: autoScalingGroupId, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 }

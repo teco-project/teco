@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Essbasic {
     ///
     /// 此接口用于确认验证码是否正确
     @inlinable
-    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVerifyCodeMatchFlowIdResponse> {
-        self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVerifyCodeMatchFlowIdResponse> {
+        self.client.execute(action: "CheckVerifyCodeMatchFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 确认验证码
     ///
     /// 此接口用于确认验证码是否正确
     @inlinable
-    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
-        try await self.client.execute(action: "CheckVerifyCodeMatchFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkVerifyCodeMatchFlowId(_ input: CheckVerifyCodeMatchFlowIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
+        try await self.client.execute(action: "CheckVerifyCodeMatchFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 确认验证码
     ///
     /// 此接口用于确认验证码是否正确
     @inlinable
-    public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVerifyCodeMatchFlowIdResponse> {
-        self.checkVerifyCodeMatchFlowId(CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), logger: logger, on: eventLoop)
+    public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVerifyCodeMatchFlowIdResponse> {
+        self.checkVerifyCodeMatchFlowId(CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 确认验证码
     ///
     /// 此接口用于确认验证码是否正确
     @inlinable
-    public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
-        try await self.checkVerifyCodeMatchFlowId(CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), logger: logger, on: eventLoop)
+    public func checkVerifyCodeMatchFlowId(caller: Caller, mobile: String, verifyCode: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVerifyCodeMatchFlowIdResponse {
+        try await self.checkVerifyCodeMatchFlowId(CheckVerifyCodeMatchFlowIdRequest(caller: caller, mobile: mobile, verifyCode: verifyCode, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

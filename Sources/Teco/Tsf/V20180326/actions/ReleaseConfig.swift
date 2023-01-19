@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tsf {
 
     /// 发布配置
     @inlinable
-    public func releaseConfig(_ input: ReleaseConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseConfigResponse> {
-        self.client.execute(action: "ReleaseConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseConfig(_ input: ReleaseConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseConfigResponse> {
+        self.client.execute(action: "ReleaseConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布配置
     @inlinable
-    public func releaseConfig(_ input: ReleaseConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
-        try await self.client.execute(action: "ReleaseConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseConfig(_ input: ReleaseConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
+        try await self.client.execute(action: "ReleaseConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布配置
     @inlinable
-    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseConfigResponse> {
-        self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseConfigResponse> {
+        self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布配置
     @inlinable
-    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
-        try await self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func releaseConfig(configId: String, groupId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseConfigResponse {
+        try await self.releaseConfig(ReleaseConfigRequest(configId: configId, groupId: groupId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 }

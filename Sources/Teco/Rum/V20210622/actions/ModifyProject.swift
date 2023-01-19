@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Rum {
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
+        self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改项目
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), logger: logger, on: eventLoop)
+    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
+        self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     ///
     /// 修改 rum 项目信息
     @inlinable
-    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), logger: logger, on: eventLoop)
+    public func modifyProject(id: UInt64, name: String? = nil, url: String? = nil, repo: String? = nil, instanceID: String? = nil, rate: String? = nil, enableURLGroup: UInt64? = nil, type: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(id: id, name: name, url: url, repo: repo, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 }

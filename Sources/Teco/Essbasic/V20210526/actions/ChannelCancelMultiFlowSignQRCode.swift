@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Essbasic {
     ///
     /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
     @inlinable
-    public func channelCancelMultiFlowSignQRCode(_ input: ChannelCancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelMultiFlowSignQRCodeResponse> {
-        self.client.execute(action: "ChannelCancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCancelMultiFlowSignQRCode(_ input: ChannelCancelMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelMultiFlowSignQRCodeResponse> {
+        self.client.execute(action: "ChannelCancelMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消一码多扫二维码
     ///
     /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
     @inlinable
-    public func channelCancelMultiFlowSignQRCode(_ input: ChannelCancelMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
-        try await self.client.execute(action: "ChannelCancelMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCancelMultiFlowSignQRCode(_ input: ChannelCancelMultiFlowSignQRCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
+        try await self.client.execute(action: "ChannelCancelMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消一码多扫二维码
     ///
     /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
     @inlinable
-    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelMultiFlowSignQRCodeResponse> {
-        self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelMultiFlowSignQRCodeResponse> {
+        self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消一码多扫二维码
     ///
     /// 此接口（ChannelCancelMultiFlowSignQRCode）用于取消一码多扫二维码。该接口对传入的二维码ID，若还在有效期内，可以提前失效。
     @inlinable
-    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
-        try await self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCancelMultiFlowSignQRCode(agent: Agent, qrCodeId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelMultiFlowSignQRCodeResponse {
+        try await self.channelCancelMultiFlowSignQRCode(ChannelCancelMultiFlowSignQRCodeRequest(agent: agent, qrCodeId: qrCodeId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

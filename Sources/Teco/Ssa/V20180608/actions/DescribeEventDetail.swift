@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Ssa {
 
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
-        self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEventDetail(_ input: DescribeEventDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
+        self.client.execute(action: "DescribeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(_ input: DescribeEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
-        try await self.client.execute(action: "DescribeEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEventDetail(_ input: DescribeEventDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
+        try await self.client.execute(action: "DescribeEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
-        self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), logger: logger, on: eventLoop)
+    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventDetailResponse> {
+        self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件详情
     @inlinable
-    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
-        try await self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), logger: logger, on: eventLoop)
+    public func describeEventDetail(index: String? = nil, id: String? = nil, source: String? = nil, subEventType: UInt64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventDetailResponse {
+        try await self.describeEventDetail(DescribeEventDetailRequest(index: index, id: id, source: source, subEventType: subEventType, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

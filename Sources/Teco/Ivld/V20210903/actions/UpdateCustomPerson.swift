@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ivld {
     ///
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
-    public func updateCustomPerson(_ input: UpdateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCustomPersonResponse> {
-        self.client.execute(action: "UpdateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCustomPerson(_ input: UpdateCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCustomPersonResponse> {
+        self.client.execute(action: "UpdateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新自定义人物信息
     ///
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
-    public func updateCustomPerson(_ input: UpdateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomPersonResponse {
-        try await self.client.execute(action: "UpdateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCustomPerson(_ input: UpdateCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomPersonResponse {
+        try await self.client.execute(action: "UpdateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新自定义人物信息
     ///
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
-    public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCustomPersonResponse> {
-        self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), logger: logger, on: eventLoop)
+    public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCustomPersonResponse> {
+        self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新自定义人物信息
     ///
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
-    public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomPersonResponse {
-        try await self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), logger: logger, on: eventLoop)
+    public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomPersonResponse {
+        try await self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
     }
 }

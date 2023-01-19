@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension As {
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
+        self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable
-    public func deleteScalingPolicy(autoScalingPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
+        self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable
-    public func deleteScalingPolicy(autoScalingPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
     }
 }

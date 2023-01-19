@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDatasource(_ input: DescribeDatasourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasourceResponse> {
-        self.client.execute(action: "DescribeDatasource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatasource(_ input: DescribeDatasourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasourceResponse> {
+        self.client.execute(action: "DescribeDatasource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-数据源详情【Beta版本】
@@ -58,8 +58,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDatasource(_ input: DescribeDatasourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
-        try await self.client.execute(action: "DescribeDatasource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatasource(_ input: DescribeDatasourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
+        try await self.client.execute(action: "DescribeDatasource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据源管理-数据源详情【Beta版本】
@@ -67,8 +67,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDatasource(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasourceResponse> {
-        self.describeDatasource(DescribeDatasourceRequest(id: id), logger: logger, on: eventLoop)
+    public func describeDatasource(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasourceResponse> {
+        self.describeDatasource(DescribeDatasourceRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-数据源详情【Beta版本】
@@ -76,7 +76,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDatasource(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
-        try await self.describeDatasource(DescribeDatasourceRequest(id: id), logger: logger, on: eventLoop)
+    public func describeDatasource(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasourceResponse {
+        try await self.describeDatasource(DescribeDatasourceRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

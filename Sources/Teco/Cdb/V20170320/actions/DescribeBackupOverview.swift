@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
-        self.client.execute(action: "DescribeBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
+        self.client.execute(action: "DescribeBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
-        try await self.client.execute(action: "DescribeBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupOverview(_ input: DescribeBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
+        try await self.client.execute(action: "DescribeBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
-        self.describeBackupOverview(DescribeBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupOverviewResponse> {
+        self.describeBackupOverview(DescribeBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份概览
     ///
     /// 本接口(DescribeBackupOverview)用于查询用户的备份概览。返回用户当前备份总个数、备份总的占用容量、赠送的免费容量、计费容量（容量单位为字节）。
     @inlinable
-    public func describeBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
-        try await self.describeBackupOverview(DescribeBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupOverviewResponse {
+        try await self.describeBackupOverview(DescribeBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

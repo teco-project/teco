@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Gaap {
     ///
     /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
     @inlinable
-    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenerRealServersResponse> {
-        self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenerRealServersResponse> {
+        self.client.execute(action: "DescribeListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询监听器源站列表
     ///
     /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
     @inlinable
-    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
-        try await self.client.execute(action: "DescribeListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListenerRealServers(_ input: DescribeListenerRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
+        try await self.client.execute(action: "DescribeListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询监听器源站列表
     ///
     /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
     @inlinable
-    public func describeListenerRealServers(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenerRealServersResponse> {
-        self.describeListenerRealServers(DescribeListenerRealServersRequest(listenerId: listenerId), logger: logger, on: eventLoop)
+    public func describeListenerRealServers(listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenerRealServersResponse> {
+        self.describeListenerRealServers(DescribeListenerRealServersRequest(listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询监听器源站列表
     ///
     /// 该接口（DescribeListenerRealServers）用于查询TCP/UDP监听器源站列表，包括该监听器已经绑定的源站列表以及可以绑定的源站列表。
     @inlinable
-    public func describeListenerRealServers(listenerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
-        try await self.describeListenerRealServers(DescribeListenerRealServersRequest(listenerId: listenerId), logger: logger, on: eventLoop)
+    public func describeListenerRealServers(listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenerRealServersResponse {
+        try await self.describeListenerRealServers(DescribeListenerRealServersRequest(listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 }

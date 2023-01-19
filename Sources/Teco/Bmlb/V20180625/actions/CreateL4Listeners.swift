@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 创建黑石四层负载均衡监听器功能。黑石负载均衡四层监听器提供了转发用户请求的具体规则，包括端口、协议、会话保持、健康检查等参数。
     @inlinable
-    public func createL4Listeners(_ input: CreateL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL4ListenersResponse> {
-        self.client.execute(action: "CreateL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createL4Listeners(_ input: CreateL4ListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL4ListenersResponse> {
+        self.client.execute(action: "CreateL4Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石四层负载均衡监听器
     ///
     /// 创建黑石四层负载均衡监听器功能。黑石负载均衡四层监听器提供了转发用户请求的具体规则，包括端口、协议、会话保持、健康检查等参数。
     @inlinable
-    public func createL4Listeners(_ input: CreateL4ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4ListenersResponse {
-        try await self.client.execute(action: "CreateL4Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createL4Listeners(_ input: CreateL4ListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4ListenersResponse {
+        try await self.client.execute(action: "CreateL4Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石四层负载均衡监听器
     ///
     /// 创建黑石四层负载均衡监听器功能。黑石负载均衡四层监听器提供了转发用户请求的具体规则，包括端口、协议、会话保持、健康检查等参数。
     @inlinable
-    public func createL4Listeners(loadBalancerId: String, listenerSet: [CreateL4Listener], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL4ListenersResponse> {
-        self.createL4Listeners(CreateL4ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    public func createL4Listeners(loadBalancerId: String, listenerSet: [CreateL4Listener], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL4ListenersResponse> {
+        self.createL4Listeners(CreateL4ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石四层负载均衡监听器
     ///
     /// 创建黑石四层负载均衡监听器功能。黑石负载均衡四层监听器提供了转发用户请求的具体规则，包括端口、协议、会话保持、健康检查等参数。
     @inlinable
-    public func createL4Listeners(loadBalancerId: String, listenerSet: [CreateL4Listener], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4ListenersResponse {
-        try await self.createL4Listeners(CreateL4ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), logger: logger, on: eventLoop)
+    public func createL4Listeners(loadBalancerId: String, listenerSet: [CreateL4Listener], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL4ListenersResponse {
+        try await self.createL4Listeners(CreateL4ListenersRequest(loadBalancerId: loadBalancerId, listenerSet: listenerSet), region: region, logger: logger, on: eventLoop)
     }
 }

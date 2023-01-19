@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
-    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordDatesByDevResponse> {
-        self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordDatesByDevResponse> {
+        self.client.execute(action: "GetRecordDatesByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备录像日期列表（旧）
@@ -78,8 +78,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
-    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
-        try await self.client.execute(action: "GetRecordDatesByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRecordDatesByDev(_ input: GetRecordDatesByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
+        try await self.client.execute(action: "GetRecordDatesByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备录像日期列表（旧）
@@ -87,8 +87,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
-    public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordDatesByDevResponse> {
-        self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), logger: logger, on: eventLoop)
+    public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordDatesByDevResponse> {
+        self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备录像日期列表（旧）
@@ -96,7 +96,7 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
-    public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
-        try await self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), logger: logger, on: eventLoop)
+    public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
+        try await self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,8 +65,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除工作流
     @inlinable
-    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
-        self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
+        self.client.execute(action: "DeleteWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除工作流【Beta版本】
@@ -74,8 +74,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除工作流
     @inlinable
-    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
-        try await self.client.execute(action: "DeleteWorkflowNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWorkflowNew(_ input: DeleteWorkflowNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
+        try await self.client.execute(action: "DeleteWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除工作流【Beta版本】
@@ -83,8 +83,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除工作流
     @inlinable
-    public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
-        self.deleteWorkflowNew(DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowNewResponse> {
+        self.deleteWorkflowNew(DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除工作流【Beta版本】
@@ -92,7 +92,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除工作流
     @inlinable
-    public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
-        try await self.deleteWorkflowNew(DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteWorkflowNew(workFlowId: String, deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowNewResponse {
+        try await self.deleteWorkflowNew(DeleteWorkflowNewRequest(workFlowId: workFlowId, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

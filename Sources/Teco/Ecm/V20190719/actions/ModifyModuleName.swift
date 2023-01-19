@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Ecm {
 
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
-        self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyModuleName(_ input: ModifyModuleNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
+        self.client.execute(action: "ModifyModuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(_ input: ModifyModuleNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
-        try await self.client.execute(action: "ModifyModuleName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyModuleName(_ input: ModifyModuleNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
+        try await self.client.execute(action: "ModifyModuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(moduleId: String, moduleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
-        self.modifyModuleName(ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName), logger: logger, on: eventLoop)
+    public func modifyModuleName(moduleId: String, moduleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleNameResponse> {
+        self.modifyModuleName(ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块名称
     @inlinable
-    public func modifyModuleName(moduleId: String, moduleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
-        try await self.modifyModuleName(ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName), logger: logger, on: eventLoop)
+    public func modifyModuleName(moduleId: String, moduleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleNameResponse {
+        try await self.modifyModuleName(ModifyModuleNameRequest(moduleId: moduleId, moduleName: moduleName), region: region, logger: logger, on: eventLoop)
     }
 }

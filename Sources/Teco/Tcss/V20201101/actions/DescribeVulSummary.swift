@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Tcss {
 
     /// 查询漏洞风险统计概览
     @inlinable
-    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulSummaryResponse> {
-        self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulSummary(_ input: DescribeVulSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulSummaryResponse> {
+        self.client.execute(action: "DescribeVulSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险统计概览
     @inlinable
-    public func describeVulSummary(_ input: DescribeVulSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
-        try await self.client.execute(action: "DescribeVulSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulSummary(_ input: DescribeVulSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
+        try await self.client.execute(action: "DescribeVulSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞风险统计概览
     @inlinable
-    public func describeVulSummary(filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulSummaryResponse> {
-        self.describeVulSummary(DescribeVulSummaryRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeVulSummary(filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulSummaryResponse> {
+        self.describeVulSummary(DescribeVulSummaryRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险统计概览
     @inlinable
-    public func describeVulSummary(filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
-        try await self.describeVulSummary(DescribeVulSummaryRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeVulSummary(filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulSummaryResponse {
+        try await self.describeVulSummary(DescribeVulSummaryRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Tbaas {
 
     /// 获取区块内的交易列表
     @inlinable
-    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockTransactionListForUserResponse> {
-        self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockTransactionListForUserResponse> {
+        self.client.execute(action: "GetBlockTransactionListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区块内的交易列表
     @inlinable
-    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
-        try await self.client.execute(action: "GetBlockTransactionListForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBlockTransactionListForUser(_ input: GetBlockTransactionListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
+        try await self.client.execute(action: "GetBlockTransactionListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取区块内的交易列表
     @inlinable
-    public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockTransactionListForUserResponse> {
-        self.getBlockTransactionListForUser(GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockTransactionListForUserResponse> {
+        self.getBlockTransactionListForUser(GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区块内的交易列表
     @inlinable
-    public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
-        try await self.getBlockTransactionListForUser(GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBlockTransactionListForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockTransactionListForUserResponse {
+        try await self.getBlockTransactionListForUser(GetBlockTransactionListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Ssm {
     ///
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
-    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSSHKeyPairValueResponse> {
-        self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSSHKeyPairValueResponse> {
+        self.client.execute(action: "GetSSHKeyPairValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SSH密钥对凭据明文
     ///
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
-    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
-        try await self.client.execute(action: "GetSSHKeyPairValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getSSHKeyPairValue(_ input: GetSSHKeyPairValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
+        try await self.client.execute(action: "GetSSHKeyPairValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取SSH密钥对凭据明文
     ///
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
-    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSSHKeyPairValueResponse> {
-        self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), logger: logger, on: eventLoop)
+    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSSHKeyPairValueResponse> {
+        self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SSH密钥对凭据明文
     ///
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
-    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
-        try await self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), logger: logger, on: eventLoop)
+    public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
+        try await self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), region: region, logger: logger, on: eventLoop)
     }
 }

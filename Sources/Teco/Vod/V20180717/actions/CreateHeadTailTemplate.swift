@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Vod {
     ///
     /// 创建片头片尾模板。
     @inlinable
-    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHeadTailTemplateResponse> {
-        self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHeadTailTemplateResponse> {
+        self.client.execute(action: "CreateHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建片头片尾模板
     ///
     /// 创建片头片尾模板。
     @inlinable
-    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
-        try await self.client.execute(action: "CreateHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHeadTailTemplate(_ input: CreateHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
+        try await self.client.execute(action: "CreateHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建片头片尾模板
     ///
     /// 创建片头片尾模板。
     @inlinable
-    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHeadTailTemplateResponse> {
-        self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHeadTailTemplateResponse> {
+        self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建片头片尾模板
     ///
     /// 创建片头片尾模板。
     @inlinable
-    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
-        try await self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    public func createHeadTailTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHeadTailTemplateResponse {
+        try await self.createHeadTailTemplate(CreateHeadTailTemplateRequest(name: name, subAppId: subAppId, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

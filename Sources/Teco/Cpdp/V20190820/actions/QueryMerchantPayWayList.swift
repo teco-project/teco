@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cpdp {
     ///
     /// 商户查询已开通的支付方式列表
     @inlinable
-    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantPayWayListResponse> {
-        self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantPayWayListResponse> {
+        self.client.execute(action: "QueryMerchantPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询商户支付方式列表
     ///
     /// 商户查询已开通的支付方式列表
     @inlinable
-    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
-        try await self.client.execute(action: "QueryMerchantPayWayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMerchantPayWayList(_ input: QueryMerchantPayWayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
+        try await self.client.execute(action: "QueryMerchantPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-查询商户支付方式列表
     ///
     /// 商户查询已开通的支付方式列表
     @inlinable
-    public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantPayWayListResponse> {
-        self.queryMerchantPayWayList(QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantPayWayListResponse> {
+        self.queryMerchantPayWayList(QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询商户支付方式列表
     ///
     /// 商户查询已开通的支付方式列表
     @inlinable
-    public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
-        try await self.queryMerchantPayWayList(QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantPayWayList(openId: String, openKey: String, payType: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantPayWayListResponse {
+        try await self.queryMerchantPayWayList(QueryMerchantPayWayListRequest(openId: openId, openKey: openKey, payType: payType, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

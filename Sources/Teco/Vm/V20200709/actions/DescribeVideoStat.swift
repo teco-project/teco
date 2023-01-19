@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Vm {
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoStatResponse> {
-        self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVideoStat(_ input: DescribeVideoStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoStatResponse> {
+        self.client.execute(action: "DescribeVideoStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeVideoStat(_ input: DescribeVideoStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
-        try await self.client.execute(action: "DescribeVideoStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVideoStat(_ input: DescribeVideoStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
+        try await self.client.execute(action: "DescribeVideoStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeVideoStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoStatResponse> {
-        self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeVideoStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoStatResponse> {
+        self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeVideoStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
-        try await self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeVideoStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
+        try await self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

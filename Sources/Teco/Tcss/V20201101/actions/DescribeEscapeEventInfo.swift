@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tcss {
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
-    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventInfoResponse> {
-        self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventInfoResponse> {
+        self.client.execute(action: "DescribeEscapeEventInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸事件列表
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
-    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
-        try await self.client.execute(action: "DescribeEscapeEventInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEscapeEventInfo(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
+        try await self.client.execute(action: "DescribeEscapeEventInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器逃逸事件列表
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
-    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventInfoResponse> {
-        self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventInfoResponse> {
+        self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸事件列表
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
-    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
-        try await self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeEventInfo(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventInfoResponse {
+        try await self.describeEscapeEventInfo(DescribeEscapeEventInfoRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

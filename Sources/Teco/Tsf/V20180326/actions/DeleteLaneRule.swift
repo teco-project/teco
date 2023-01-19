@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 删除泳道规则
     @inlinable
-    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneRuleResponse> {
-        self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneRuleResponse> {
+        self.client.execute(action: "DeleteLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除泳道规则
     @inlinable
-    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
-        try await self.client.execute(action: "DeleteLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLaneRule(_ input: DeleteLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
+        try await self.client.execute(action: "DeleteLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除泳道规则
     @inlinable
-    public func deleteLaneRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneRuleResponse> {
-        self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteLaneRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneRuleResponse> {
+        self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除泳道规则
     @inlinable
-    public func deleteLaneRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
-        try await self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteLaneRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
+        try await self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

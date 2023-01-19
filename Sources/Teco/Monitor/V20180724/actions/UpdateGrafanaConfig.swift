@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 更新 Grafana 配置
     @inlinable
-    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaConfigResponse> {
-        self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaConfigResponse> {
+        self.client.execute(action: "UpdateGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 配置
     @inlinable
-    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
-        try await self.client.execute(action: "UpdateGrafanaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateGrafanaConfig(_ input: UpdateGrafanaConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
+        try await self.client.execute(action: "UpdateGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新 Grafana 配置
     @inlinable
-    public func updateGrafanaConfig(instanceId: String, config: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaConfigResponse> {
-        self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), logger: logger, on: eventLoop)
+    public func updateGrafanaConfig(instanceId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaConfigResponse> {
+        self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 配置
     @inlinable
-    public func updateGrafanaConfig(instanceId: String, config: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
-        try await self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), logger: logger, on: eventLoop)
+    public func updateGrafanaConfig(instanceId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
+        try await self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

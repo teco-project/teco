@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Cdb {
     /// 本接口(OpenWanService)用于开通实例外网访问。
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
-    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
-        self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openWanService(_ input: OpenWanServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
+        self.client.execute(action: "OpenWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通实例外网访问
@@ -57,8 +57,8 @@ extension Cdb {
     /// 本接口(OpenWanService)用于开通实例外网访问。
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
-    public func openWanService(_ input: OpenWanServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
-        try await self.client.execute(action: "OpenWanService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openWanService(_ input: OpenWanServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
+        try await self.client.execute(action: "OpenWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通实例外网访问
@@ -66,8 +66,8 @@ extension Cdb {
     /// 本接口(OpenWanService)用于开通实例外网访问。
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
-    public func openWanService(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
-        self.openWanService(OpenWanServiceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
+        self.openWanService(OpenWanServiceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通实例外网访问
@@ -75,7 +75,7 @@ extension Cdb {
     /// 本接口(OpenWanService)用于开通实例外网访问。
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
-    public func openWanService(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
-        try await self.openWanService(OpenWanServiceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
+        try await self.openWanService(OpenWanServiceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

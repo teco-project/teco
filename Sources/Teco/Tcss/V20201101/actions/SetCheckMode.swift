@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tcss {
 
     /// 设置检测模式和自动检查
     @inlinable
-    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCheckModeResponse> {
-        self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setCheckMode(_ input: SetCheckModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCheckModeResponse> {
+        self.client.execute(action: "SetCheckMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置检测模式和自动检查
     @inlinable
-    public func setCheckMode(_ input: SetCheckModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
-        try await self.client.execute(action: "SetCheckMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setCheckMode(_ input: SetCheckModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
+        try await self.client.execute(action: "SetCheckMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置检测模式和自动检查
     @inlinable
-    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCheckModeResponse> {
-        self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), logger: logger, on: eventLoop)
+    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCheckModeResponse> {
+        self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置检测模式和自动检查
     @inlinable
-    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
-        try await self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), logger: logger, on: eventLoop)
+    public func setCheckMode(clusterIds: [String], clusterCheckMode: String? = nil, clusterAutoCheck: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCheckModeResponse {
+        try await self.setCheckMode(SetCheckModeRequest(clusterIds: clusterIds, clusterCheckMode: clusterCheckMode, clusterAutoCheck: clusterAutoCheck), region: region, logger: logger, on: eventLoop)
     }
 }

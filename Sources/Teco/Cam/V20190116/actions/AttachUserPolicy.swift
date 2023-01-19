@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
-        self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
+        self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户
     ///
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable
-    public func attachUserPolicy(_ input: AttachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
-        try await self.client.execute(action: "AttachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachUserPolicy(_ input: AttachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
+        try await self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定策略到用户
     ///
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable
-    public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
-        self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), logger: logger, on: eventLoop)
+    public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
+        self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户
     ///
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable
-    public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
-        try await self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), logger: logger, on: eventLoop)
+    public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
+        try await self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), region: region, logger: logger, on: eventLoop)
     }
 }

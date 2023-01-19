@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
     @inlinable
-    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
-        self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
+        self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改独享实例
     ///
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
     @inlinable
-    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
-        try await self.client.execute(action: "ModifyExclusiveInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
+        try await self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改独享实例
     ///
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
     @inlinable
-    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
-        self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), logger: logger, on: eventLoop)
+    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
+        self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改独享实例
     ///
     /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
     @inlinable
-    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
-        try await self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), logger: logger, on: eventLoop)
+    public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
+        try await self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)
     }
 }

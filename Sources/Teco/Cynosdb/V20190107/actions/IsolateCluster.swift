@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cynosdb {
 
     /// 隔离集群
     @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
-        self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateCluster(_ input: IsolateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
+        self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离集群
     @inlinable
-    public func isolateCluster(_ input: IsolateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
-        try await self.client.execute(action: "IsolateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateCluster(_ input: IsolateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
+        try await self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离集群
     @inlinable
-    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
-        self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), logger: logger, on: eventLoop)
+    public func isolateCluster(clusterId: String, dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
+        self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离集群
     @inlinable
-    public func isolateCluster(clusterId: String, dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
-        try await self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), logger: logger, on: eventLoop)
+    public func isolateCluster(clusterId: String, dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
+        try await self.isolateCluster(IsolateClusterRequest(clusterId: clusterId, dbType: dbType), region: region, logger: logger, on: eventLoop)
     }
 }

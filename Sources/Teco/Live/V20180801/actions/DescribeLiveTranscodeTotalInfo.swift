@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,8 +72,8 @@ extension Live {
     /// 如果是查询某一天内，则返回5分钟粒度数据；
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
-    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTotalInfoResponse> {
-        self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTotalInfoResponse> {
+        self.client.execute(action: "DescribeLiveTranscodeTotalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转码总量数据
@@ -83,8 +83,8 @@ extension Live {
     /// 如果是查询某一天内，则返回5分钟粒度数据；
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
-    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeTotalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveTranscodeTotalInfo(_ input: DescribeLiveTranscodeTotalInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeTotalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询转码总量数据
@@ -94,8 +94,8 @@ extension Live {
     /// 如果是查询某一天内，则返回5分钟粒度数据；
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
-    public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTotalInfoResponse> {
-        self.describeLiveTranscodeTotalInfo(DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTotalInfoResponse> {
+        self.describeLiveTranscodeTotalInfo(DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转码总量数据
@@ -105,7 +105,7 @@ extension Live {
     /// 如果是查询某一天内，则返回5分钟粒度数据；
     /// 如果是查询跨天或指定域名， 则返回1小时粒度数据。
     @inlinable
-    public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
-        try await self.describeLiveTranscodeTotalInfo(DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTotalInfo(startTime: String, endTime: String, pushDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTotalInfoResponse {
+        try await self.describeLiveTranscodeTotalInfo(DescribeLiveTranscodeTotalInfoRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 }

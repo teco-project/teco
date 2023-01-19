@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dayu {
     ///
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
-    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNameResponse> {
-        self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstanceName(_ input: CreateInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNameResponse> {
+        self.client.execute(action: "CreateInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源实例重命名
     ///
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
-    public func createInstanceName(_ input: CreateInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
-        try await self.client.execute(action: "CreateInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstanceName(_ input: CreateInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
+        try await self.client.execute(action: "CreateInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资源实例重命名
     ///
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
-    public func createInstanceName(business: String, id: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNameResponse> {
-        self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), logger: logger, on: eventLoop)
+    public func createInstanceName(business: String, id: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNameResponse> {
+        self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资源实例重命名
     ///
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
-    public func createInstanceName(business: String, id: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
-        try await self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), logger: logger, on: eventLoop)
+    public func createInstanceName(business: String, id: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
+        try await self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

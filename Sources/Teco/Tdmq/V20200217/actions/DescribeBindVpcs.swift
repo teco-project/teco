@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdmq {
 
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
-        self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
+        self.client.execute(action: "DescribeBindVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
-        try await self.client.execute(action: "DescribeBindVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBindVpcs(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
+        try await self.client.execute(action: "DescribeBindVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
-        self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
+        self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
-        try await self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
+        try await self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

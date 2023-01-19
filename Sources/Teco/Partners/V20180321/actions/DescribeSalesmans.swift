@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Partners {
     ///
     /// 代理商查询名下业务员列表信息
     @inlinable
-    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSalesmansResponse> {
-        self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSalesmans(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSalesmansResponse> {
+        self.client.execute(action: "DescribeSalesmans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 代理商业务员查询接口
     ///
     /// 代理商查询名下业务员列表信息
     @inlinable
-    public func describeSalesmans(_ input: DescribeSalesmansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
-        try await self.client.execute(action: "DescribeSalesmans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSalesmans(_ input: DescribeSalesmansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
+        try await self.client.execute(action: "DescribeSalesmans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 代理商业务员查询接口
     ///
     /// 代理商查询名下业务员列表信息
     @inlinable
-    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSalesmansResponse> {
-        self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSalesmansResponse> {
+        self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商业务员查询接口
     ///
     /// 代理商查询名下业务员列表信息
     @inlinable
-    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
-        try await self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeSalesmans(offset: UInt64, limit: UInt64, salesName: String? = nil, salesUin: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSalesmansResponse {
+        try await self.describeSalesmans(DescribeSalesmansRequest(offset: offset, limit: limit, salesName: salesName, salesUin: salesUin, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

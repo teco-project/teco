@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Tdid {
 
     /// 披露策略Policy查看
     @inlinable
-    public func queryPolicy(_ input: QueryPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
-        self.client.execute(action: "QueryPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryPolicy(_ input: QueryPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
+        self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy查看
     @inlinable
-    public func queryPolicy(_ input: QueryPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
-        try await self.client.execute(action: "QueryPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryPolicy(_ input: QueryPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
+        try await self.client.execute(action: "QueryPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 披露策略Policy查看
     @inlinable
-    public func queryPolicy(policyIndex: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
-        self.queryPolicy(QueryPolicyRequest(policyIndex: policyIndex), logger: logger, on: eventLoop)
+    public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPolicyResponse> {
+        self.queryPolicy(QueryPolicyRequest(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy查看
     @inlinable
-    public func queryPolicy(policyIndex: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
-        try await self.queryPolicy(QueryPolicyRequest(policyIndex: policyIndex), logger: logger, on: eventLoop)
+    public func queryPolicy(policyIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPolicyResponse {
+        try await self.queryPolicy(QueryPolicyRequest(policyIndex: policyIndex), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
-    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsOfInstanceIdsResponse> {
-        self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsOfInstanceIdsResponse> {
+        self.client.execute(action: "DescribeTagsOfInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例绑定的标签
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
-    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
-        try await self.client.execute(action: "DescribeTagsOfInstanceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagsOfInstanceIds(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
+        try await self.client.execute(action: "DescribeTagsOfInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例绑定的标签
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
-    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsOfInstanceIdsResponse> {
-        self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsOfInstanceIdsResponse> {
+        self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例绑定的标签
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
-    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
-        try await self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
+        try await self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

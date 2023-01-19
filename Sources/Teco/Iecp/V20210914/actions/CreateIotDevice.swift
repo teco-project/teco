@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 创建子设备
     @inlinable
-    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
-        self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIotDevice(_ input: CreateIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
+        self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子设备
     @inlinable
-    public func createIotDevice(_ input: CreateIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
-        try await self.client.execute(action: "CreateIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIotDevice(_ input: CreateIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
+        try await self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建子设备
     @inlinable
-    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
-        self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), logger: logger, on: eventLoop)
+    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
+        self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子设备
     @inlinable
-    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
-        try await self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), logger: logger, on: eventLoop)
+    public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
+        try await self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ape {
     ///
     /// 购买一张图片并且支付
     @inlinable
-    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndPayResponse> {
-        self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndPayResponse> {
+        self.client.execute(action: "CreateOrderAndPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建订单并支付
     ///
     /// 购买一张图片并且支付
     @inlinable
-    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
-        try await self.client.execute(action: "CreateOrderAndPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOrderAndPay(_ input: CreateOrderAndPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
+        try await self.client.execute(action: "CreateOrderAndPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建订单并支付
     ///
     /// 购买一张图片并且支付
     @inlinable
-    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndPayResponse> {
-        self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), logger: logger, on: eventLoop)
+    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndPayResponse> {
+        self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建订单并支付
     ///
     /// 购买一张图片并且支付
     @inlinable
-    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
-        try await self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), logger: logger, on: eventLoop)
+    public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
+        try await self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), region: region, logger: logger, on: eventLoop)
     }
 }

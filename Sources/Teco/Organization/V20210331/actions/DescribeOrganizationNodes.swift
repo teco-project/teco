@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Organization {
 
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
-        self.client.execute(action: "DescribeOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
+        self.client.execute(action: "DescribeOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
-        try await self.client.execute(action: "DescribeOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrganizationNodes(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
+        try await self.client.execute(action: "DescribeOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
-        self.describeOrganizationNodes(DescribeOrganizationNodesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeOrganizationNodes(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationNodesResponse> {
+        self.describeOrganizationNodes(DescribeOrganizationNodesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodes(limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
-        try await self.describeOrganizationNodes(DescribeOrganizationNodesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeOrganizationNodes(limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationNodesResponse {
+        try await self.describeOrganizationNodes(DescribeOrganizationNodesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

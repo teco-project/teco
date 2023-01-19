@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Iotcloud {
 
     /// 获取日志内容列表
     @inlinable
-    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogPayloadResponse> {
-        self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listLogPayload(_ input: ListLogPayloadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogPayloadResponse> {
+        self.client.execute(action: "ListLogPayload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志内容列表
     @inlinable
-    public func listLogPayload(_ input: ListLogPayloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
-        try await self.client.execute(action: "ListLogPayload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listLogPayload(_ input: ListLogPayloadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
+        try await self.client.execute(action: "ListLogPayload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志内容列表
     @inlinable
-    public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogPayloadResponse> {
-        self.listLogPayload(ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogPayloadResponse> {
+        self.listLogPayload(ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志内容列表
     @inlinable
-    public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
-        try await self.listLogPayload(ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func listLogPayload(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogPayloadResponse {
+        try await self.listLogPayload(ListLogPayloadRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

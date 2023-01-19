@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Iotvideo {
 
     /// 创建COS上传密钥
     @inlinable
-    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCOSCredentialsResponse> {
-        self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCOSCredentialsResponse> {
+        self.client.execute(action: "CreateCOSCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建COS上传密钥
     @inlinable
-    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
-        try await self.client.execute(action: "CreateCOSCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCOSCredentials(_ input: CreateCOSCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
+        try await self.client.execute(action: "CreateCOSCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建COS上传密钥
     @inlinable
-    public func createCOSCredentials(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCOSCredentialsResponse> {
-        self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func createCOSCredentials(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCOSCredentialsResponse> {
+        self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建COS上传密钥
     @inlinable
-    public func createCOSCredentials(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
-        try await self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func createCOSCredentials(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCOSCredentialsResponse {
+        try await self.createCOSCredentials(CreateCOSCredentialsRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

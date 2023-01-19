@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Ivld {
     /// 请注意：本接口指定的COS桶仅用于**备份存储自定义人物图片**，CreateCustomPerson和AddCustomPersonImage接口入参URL可使用任意COS存储桶下的任意图片。
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable
-    public func createCustomGroup(_ input: CreateCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomGroupResponse> {
-        self.client.execute(action: "CreateCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomGroup(_ input: CreateCustomGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomGroupResponse> {
+        self.client.execute(action: "CreateCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物库
@@ -61,8 +61,8 @@ extension Ivld {
     /// 请注意：本接口指定的COS桶仅用于**备份存储自定义人物图片**，CreateCustomPerson和AddCustomPersonImage接口入参URL可使用任意COS存储桶下的任意图片。
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable
-    public func createCustomGroup(_ input: CreateCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
-        try await self.client.execute(action: "CreateCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomGroup(_ input: CreateCustomGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
+        try await self.client.execute(action: "CreateCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义人物库
@@ -74,8 +74,8 @@ extension Ivld {
     /// 请注意：本接口指定的COS桶仅用于**备份存储自定义人物图片**，CreateCustomPerson和AddCustomPersonImage接口入参URL可使用任意COS存储桶下的任意图片。
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable
-    public func createCustomGroup(bucket: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomGroupResponse> {
-        self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), logger: logger, on: eventLoop)
+    public func createCustomGroup(bucket: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomGroupResponse> {
+        self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物库
@@ -87,7 +87,7 @@ extension Ivld {
     /// 请注意：本接口指定的COS桶仅用于**备份存储自定义人物图片**，CreateCustomPerson和AddCustomPersonImage接口入参URL可使用任意COS存储桶下的任意图片。
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable
-    public func createCustomGroup(bucket: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
-        try await self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), logger: logger, on: eventLoop)
+    public func createCustomGroup(bucket: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
+        try await self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), region: region, logger: logger, on: eventLoop)
     }
 }

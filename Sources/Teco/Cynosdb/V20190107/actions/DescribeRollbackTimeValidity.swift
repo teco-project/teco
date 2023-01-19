@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cynosdb {
     ///
     /// 指定时间和集群查询是否可回滚
     @inlinable
-    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeValidityResponse> {
-        self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeValidityResponse> {
+        self.client.execute(action: "DescribeRollbackTimeValidity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定时间是否可回滚
     ///
     /// 指定时间和集群查询是否可回滚
     @inlinable
-    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
-        try await self.client.execute(action: "DescribeRollbackTimeValidity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRollbackTimeValidity(_ input: DescribeRollbackTimeValidityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
+        try await self.client.execute(action: "DescribeRollbackTimeValidity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定时间是否可回滚
     ///
     /// 指定时间和集群查询是否可回滚
     @inlinable
-    public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeValidityResponse> {
-        self.describeRollbackTimeValidity(DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), logger: logger, on: eventLoop)
+    public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTimeValidityResponse> {
+        self.describeRollbackTimeValidity(DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定时间是否可回滚
     ///
     /// 指定时间和集群查询是否可回滚
     @inlinable
-    public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
-        try await self.describeRollbackTimeValidity(DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), logger: logger, on: eventLoop)
+    public func describeRollbackTimeValidity(clusterId: String, expectTime: String, expectTimeThresh: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTimeValidityResponse {
+        try await self.describeRollbackTimeValidity(DescribeRollbackTimeValidityRequest(clusterId: clusterId, expectTime: expectTime, expectTimeThresh: expectTimeThresh), region: region, logger: logger, on: eventLoop)
     }
 }

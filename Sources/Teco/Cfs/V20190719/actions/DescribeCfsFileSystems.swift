@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cfs {
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
-        self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
+        self.client.execute(action: "DescribeCfsFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
-        try await self.client.execute(action: "DescribeCfsFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCfsFileSystems(_ input: DescribeCfsFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
+        try await self.client.execute(action: "DescribeCfsFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件系统
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
-        self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
+        self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统
     ///
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
-    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
-        try await self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
+        try await self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

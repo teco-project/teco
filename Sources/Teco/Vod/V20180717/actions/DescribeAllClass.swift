@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vod {
     ///
     /// * 获得用户的所有分类信息。
     @inlinable
-    public func describeAllClass(_ input: DescribeAllClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllClassResponse> {
-        self.client.execute(action: "DescribeAllClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllClass(_ input: DescribeAllClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllClassResponse> {
+        self.client.execute(action: "DescribeAllClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有分类
     ///
     /// * 获得用户的所有分类信息。
     @inlinable
-    public func describeAllClass(_ input: DescribeAllClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
-        try await self.client.execute(action: "DescribeAllClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllClass(_ input: DescribeAllClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
+        try await self.client.execute(action: "DescribeAllClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取所有分类
     ///
     /// * 获得用户的所有分类信息。
     @inlinable
-    public func describeAllClass(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllClassResponse> {
-        self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeAllClass(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllClassResponse> {
+        self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有分类
     ///
     /// * 获得用户的所有分类信息。
     @inlinable
-    public func describeAllClass(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
-        try await self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeAllClass(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllClassResponse {
+        try await self.describeAllClass(DescribeAllClassRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

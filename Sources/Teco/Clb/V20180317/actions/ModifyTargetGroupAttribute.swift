@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Clb {
     ///
     /// 修改目标组的名称或者默认端口属性
     @inlinable
-    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
-        self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
+        self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
     @inlinable
-    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
-        try await self.client.execute(action: "ModifyTargetGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
+        try await self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
     @inlinable
-    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
-        self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), logger: logger, on: eventLoop)
+    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
+        self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
     @inlinable
-    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
-        try await self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), logger: logger, on: eventLoop)
+    public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
+        try await self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
     }
 }

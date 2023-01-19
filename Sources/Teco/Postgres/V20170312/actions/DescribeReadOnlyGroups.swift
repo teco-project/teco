@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Postgres {
     ///
     /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
     @inlinable
-    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
-        self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
+        self.client.execute(action: "DescribeReadOnlyGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询只读组信息
     ///
     /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
     @inlinable
-    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReadOnlyGroups(_ input: DescribeReadOnlyGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询只读组信息
     ///
     /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
     @inlinable
-    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
-        self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupsResponse> {
+        self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询只读组信息
     ///
     /// 本接口(DescribeReadOnlyGroups)用于查询用户输入指定实例的只读组
     @inlinable
-    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
-        try await self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeReadOnlyGroups(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupsResponse {
+        try await self.describeReadOnlyGroups(DescribeReadOnlyGroupsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

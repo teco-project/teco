@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Dbbrain {
     ///
     /// 查询redis实例大key列表。
     @inlinable
-    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopBigKeysResponse> {
-        self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopBigKeysResponse> {
+        self.client.execute(action: "DescribeRedisTopBigKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询redis实例大key列表
     ///
     /// 查询redis实例大key列表。
     @inlinable
-    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
-        try await self.client.execute(action: "DescribeRedisTopBigKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRedisTopBigKeys(_ input: DescribeRedisTopBigKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
+        try await self.client.execute(action: "DescribeRedisTopBigKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询redis实例大key列表
     ///
     /// 查询redis实例大key列表。
     @inlinable
-    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopBigKeysResponse> {
-        self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), logger: logger, on: eventLoop)
+    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopBigKeysResponse> {
+        self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询redis实例大key列表
     ///
     /// 查询redis实例大key列表。
     @inlinable
-    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
-        try await self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), logger: logger, on: eventLoop)
+    public func describeRedisTopBigKeys(instanceId: String, date: Date, product: String, sortBy: String? = nil, keyType: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopBigKeysResponse {
+        try await self.describeRedisTopBigKeys(DescribeRedisTopBigKeysRequest(instanceId: instanceId, date: date, product: product, sortBy: sortBy, keyType: keyType, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

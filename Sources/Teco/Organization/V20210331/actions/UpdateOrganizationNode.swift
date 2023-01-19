@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Organization {
 
     /// 更新企业组织节点
     @inlinable
-    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
-        self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
+        self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新企业组织节点
     @inlinable
-    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
-        try await self.client.execute(action: "UpdateOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
+        try await self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新企业组织节点
     @inlinable
-    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
-        self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
+        self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新企业组织节点
     @inlinable
-    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
-        try await self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
+        try await self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

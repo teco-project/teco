@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
-    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrationResponse> {
-        self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopMigration(_ input: StopMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrationResponse> {
+        self.client.execute(action: "StopMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 中止迁移任务
     ///
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
-    public func stopMigration(_ input: StopMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
-        try await self.client.execute(action: "StopMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopMigration(_ input: StopMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
+        try await self.client.execute(action: "StopMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 中止迁移任务
     ///
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
-    public func stopMigration(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrationResponse> {
-        self.stopMigration(StopMigrationRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func stopMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrationResponse> {
+        self.stopMigration(StopMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 中止迁移任务
     ///
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
-    public func stopMigration(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
-        try await self.stopMigration(StopMigrationRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func stopMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
+        try await self.stopMigration(StopMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

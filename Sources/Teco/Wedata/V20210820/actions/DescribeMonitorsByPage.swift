@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 分页查询质量监控组
     @inlinable
-    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsByPageResponse> {
-        self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsByPageResponse> {
+        self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量监控组
     @inlinable
-    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
-        try await self.client.execute(action: "DescribeMonitorsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMonitorsByPage(_ input: DescribeMonitorsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
+        try await self.client.execute(action: "DescribeMonitorsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询质量监控组
     @inlinable
-    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsByPageResponse> {
-        self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorsByPageResponse> {
+        self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询质量监控组
     @inlinable
-    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
-        try await self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeMonitorsByPage(projectId: String? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorsByPageResponse {
+        try await self.describeMonitorsByPage(DescribeMonitorsByPageRequest(projectId: projectId, pageSize: pageSize, filters: filters, orderFields: orderFields, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

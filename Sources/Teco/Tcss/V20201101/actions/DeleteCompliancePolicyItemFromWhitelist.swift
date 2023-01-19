@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// 从白名单中删除将指定的检测项。
     @inlinable
-    public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
-        self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
+        self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
     @inlinable
-    public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
-        try await self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
+        try await self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
     @inlinable
-    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
-        self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), logger: logger, on: eventLoop)
+    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
+        self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
     @inlinable
-    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
-        try await self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), logger: logger, on: eventLoop)
+    public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
+        try await self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Sslpod {
 
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
-        self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
+        self.client.execute(action: "ModifyDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
-        try await self.client.execute(action: "ModifyDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomainTags(_ input: ModifyDomainTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
+        try await self.client.execute(action: "ModifyDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
-        self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyDomainTags(accountDomainId: Int64, tags: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainTagsResponse> {
+        self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名tag
     @inlinable
-    public func modifyDomainTags(accountDomainId: Int64, tags: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
-        try await self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyDomainTags(accountDomainId: Int64, tags: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainTagsResponse {
+        try await self.modifyDomainTags(ModifyDomainTagsRequest(accountDomainId: accountDomainId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

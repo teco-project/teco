@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Tcb {
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
-        self.client.execute(action: "DescribeCloudBaseProjectVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
+        self.client.execute(action: "DescribeCloudBaseProjectVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
-        try await self.client.execute(action: "DescribeCloudBaseProjectVersionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseProjectVersionList(_ input: DescribeCloudBaseProjectVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
+        try await self.client.execute(action: "DescribeCloudBaseProjectVersionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
-        self.describeCloudBaseProjectVersionList(DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseProjectVersionListResponse> {
+        self.describeCloudBaseProjectVersionList(DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云项目部署版本列表
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
-        try await self.describeCloudBaseProjectVersionList(DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeCloudBaseProjectVersionList(envId: String, projectName: String, pageSize: UInt64? = nil, pageNum: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseProjectVersionListResponse {
+        try await self.describeCloudBaseProjectVersionList(DescribeCloudBaseProjectVersionListRequest(envId: envId, projectName: projectName, pageSize: pageSize, pageNum: pageNum, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

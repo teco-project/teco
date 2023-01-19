@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdb {
     ///
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
-    public func stopRollback(_ input: StopRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRollbackResponse> {
-        self.client.execute(action: "StopRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopRollback(_ input: StopRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRollbackResponse> {
+        self.client.execute(action: "StopRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销回档任务
     ///
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
-    public func stopRollback(_ input: StopRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRollbackResponse {
-        try await self.client.execute(action: "StopRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopRollback(_ input: StopRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRollbackResponse {
+        try await self.client.execute(action: "StopRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤销回档任务
     ///
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
-    public func stopRollback(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRollbackResponse> {
-        self.stopRollback(StopRollbackRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopRollback(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopRollbackResponse> {
+        self.stopRollback(StopRollbackRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销回档任务
     ///
     /// 本接口(StopRollback) 用于撤销实例正在进行的回档任务，该接口返回一个异步任务id。 撤销结果可以通过 DescribeAsyncRequestInfo 查询任务的执行情况。
     @inlinable
-    public func stopRollback(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRollbackResponse {
-        try await self.stopRollback(StopRollbackRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopRollback(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopRollbackResponse {
+        try await self.stopRollback(StopRollbackRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

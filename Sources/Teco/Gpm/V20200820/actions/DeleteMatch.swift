@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
-        self.client.execute(action: "DeleteMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
+        self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除匹配
@@ -53,8 +53,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(_ input: DeleteMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
-        try await self.client.execute(action: "DeleteMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
+        try await self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除匹配
@@ -62,8 +62,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
-        self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
+        self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除匹配
@@ -71,7 +71,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除匹配
     @inlinable
-    public func deleteMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
-        try await self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
+        try await self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
     }
 }

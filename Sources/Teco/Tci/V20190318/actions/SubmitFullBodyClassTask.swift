@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitFullBodyClassTask(_ input: SubmitFullBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitFullBodyClassTaskResponse> {
-        self.client.execute(action: "SubmitFullBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitFullBodyClassTask(_ input: SubmitFullBodyClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitFullBodyClassTaskResponse> {
+        self.client.execute(action: "SubmitFullBodyClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交传统课堂授课任务
@@ -106,8 +106,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitFullBodyClassTask(_ input: SubmitFullBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
-        try await self.client.execute(action: "SubmitFullBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitFullBodyClassTask(_ input: SubmitFullBodyClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
+        try await self.client.execute(action: "SubmitFullBodyClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交传统课堂授课任务
@@ -120,8 +120,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitFullBodyClassTaskResponse> {
-        self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitFullBodyClassTaskResponse> {
+        self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交传统课堂授课任务
@@ -134,7 +134,7 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
-        try await self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func submitFullBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitFullBodyClassTaskResponse {
+        try await self.submitFullBodyClassTask(SubmitFullBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 }

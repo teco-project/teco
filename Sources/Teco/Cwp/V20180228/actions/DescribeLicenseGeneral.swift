@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Cwp {
     ///
     /// 授权管理-授权概览信息
     @inlinable
-    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseGeneralResponse> {
-        self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseGeneralResponse> {
+        self.client.execute(action: "DescribeLicenseGeneral", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 授权概览信息
     ///
     /// 授权管理-授权概览信息
     @inlinable
-    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
-        try await self.client.execute(action: "DescribeLicenseGeneral", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLicenseGeneral(_ input: DescribeLicenseGeneralRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
+        try await self.client.execute(action: "DescribeLicenseGeneral", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 授权概览信息
     ///
     /// 授权管理-授权概览信息
     @inlinable
-    public func describeLicenseGeneral(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseGeneralResponse> {
-        self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), logger: logger, on: eventLoop)
+    public func describeLicenseGeneral(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseGeneralResponse> {
+        self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 授权概览信息
     ///
     /// 授权管理-授权概览信息
     @inlinable
-    public func describeLicenseGeneral(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
-        try await self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), logger: logger, on: eventLoop)
+    public func describeLicenseGeneral(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseGeneralResponse {
+        try await self.describeLicenseGeneral(DescribeLicenseGeneralRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

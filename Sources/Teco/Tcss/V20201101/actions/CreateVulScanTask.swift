@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Tcss {
 
     /// 创建漏洞扫描任务
     @inlinable
-    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulScanTaskResponse> {
-        self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVulScanTask(_ input: CreateVulScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulScanTaskResponse> {
+        self.client.execute(action: "CreateVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞扫描任务
     @inlinable
-    public func createVulScanTask(_ input: CreateVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
-        try await self.client.execute(action: "CreateVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVulScanTask(_ input: CreateVulScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
+        try await self.client.execute(action: "CreateVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建漏洞扫描任务
     @inlinable
-    public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulScanTaskResponse> {
-        self.createVulScanTask(CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), logger: logger, on: eventLoop)
+    public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulScanTaskResponse> {
+        self.createVulScanTask(CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞扫描任务
     @inlinable
-    public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
-        try await self.createVulScanTask(CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), logger: logger, on: eventLoop)
+    public func createVulScanTask(localImageScanType: String? = nil, localImageIDs: [String]? = nil, registryImageScanType: String? = nil, registryImageIDs: [UInt64]? = nil, localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulScanTaskResponse {
+        try await self.createVulScanTask(CreateVulScanTaskRequest(localImageScanType: localImageScanType, localImageIDs: localImageIDs, registryImageScanType: registryImageScanType, registryImageIDs: registryImageIDs, localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 }

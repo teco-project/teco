@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Iotvideoindustry {
 
     /// 创建消息转发配置
     @inlinable
-    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageForwardResponse> {
-        self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMessageForward(_ input: CreateMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageForwardResponse> {
+        self.client.execute(action: "CreateMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建消息转发配置
     @inlinable
-    public func createMessageForward(_ input: CreateMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
-        try await self.client.execute(action: "CreateMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMessageForward(_ input: CreateMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
+        try await self.client.execute(action: "CreateMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建消息转发配置
     @inlinable
-    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageForwardResponse> {
-        self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), logger: logger, on: eventLoop)
+    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageForwardResponse> {
+        self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建消息转发配置
     @inlinable
-    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
-        try await self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), logger: logger, on: eventLoop)
+    public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
+        try await self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

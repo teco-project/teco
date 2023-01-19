@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Cwp {
     ///
     /// 根据基线id查询下属检测项信息
     @inlinable
-    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineRuleResponse> {
-        self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineRuleResponse> {
+        self.client.execute(action: "DescribeBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线检测项信息
     ///
     /// 根据基线id查询下属检测项信息
     @inlinable
-    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
-        try await self.client.execute(action: "DescribeBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineRule(_ input: DescribeBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
+        try await self.client.execute(action: "DescribeBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询基线检测项信息
     ///
     /// 根据基线id查询下属检测项信息
     @inlinable
-    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineRuleResponse> {
-        self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), logger: logger, on: eventLoop)
+    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineRuleResponse> {
+        self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线检测项信息
     ///
     /// 根据基线id查询下属检测项信息
     @inlinable
-    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
-        try await self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), logger: logger, on: eventLoop)
+    public func describeBaselineRule(baselineId: UInt64, limit: UInt64, offset: UInt64, level: [UInt64]? = nil, status: UInt64? = nil, quuid: String? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineRuleResponse {
+        try await self.describeBaselineRule(DescribeBaselineRuleRequest(baselineId: baselineId, limit: limit, offset: offset, level: level, status: status, quuid: quuid, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

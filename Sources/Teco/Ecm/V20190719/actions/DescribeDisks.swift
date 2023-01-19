@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,8 +83,8 @@ extension Ecm {
     /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
-    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
-        self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDisks(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
+        self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘列表
@@ -93,8 +93,8 @@ extension Ecm {
     /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
-    public func describeDisks(_ input: DescribeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
-        try await self.client.execute(action: "DescribeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDisks(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
+        try await self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云硬盘列表
@@ -103,8 +103,8 @@ extension Ecm {
     /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
-    public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
-        self.describeDisks(DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), logger: logger, on: eventLoop)
+    public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
+        self.describeDisks(DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘列表
@@ -113,7 +113,7 @@ extension Ecm {
     /// * 可以根据云硬盘ID、云硬盘类型或者云硬盘状态等信息来查询云硬盘的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的云硬盘列表。
     @inlinable
-    public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
-        try await self.describeDisks(DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), logger: logger, on: eventLoop)
+    public func describeDisks(filters: [Filter]? = nil, limit: UInt64? = nil, orderField: String? = nil, offset: UInt64? = nil, returnBindAutoSnapshotPolicy: Bool? = nil, diskIds: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
+        try await self.describeDisks(DescribeDisksRequest(filters: filters, limit: limit, orderField: orderField, offset: offset, returnBindAutoSnapshotPolicy: returnBindAutoSnapshotPolicy, diskIds: diskIds, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

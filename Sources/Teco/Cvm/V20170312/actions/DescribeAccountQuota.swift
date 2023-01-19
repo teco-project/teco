@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Cvm {
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
-        self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
+        self.client.execute(action: "DescribeAccountQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
-        try await self.client.execute(action: "DescribeAccountQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountQuota(_ input: DescribeAccountQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
+        try await self.client.execute(action: "DescribeAccountQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
-        self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAccountQuota(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountQuotaResponse> {
+        self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户配额详情
     ///
     /// 本接口(DescribeAccountQuota)用于查询用户配额详情。
     @inlinable
-    public func describeAccountQuota(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
-        try await self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAccountQuota(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountQuotaResponse {
+        try await self.describeAccountQuota(DescribeAccountQuotaRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

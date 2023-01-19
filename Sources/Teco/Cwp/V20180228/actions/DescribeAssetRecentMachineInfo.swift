@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cwp {
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
-        self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
+        self.client.execute(action: "DescribeAssetRecentMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
-        try await self.client.execute(action: "DescribeAssetRecentMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetRecentMachineInfo(_ input: DescribeAssetRecentMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
+        try await self.client.execute(action: "DescribeAssetRecentMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
-        self.describeAssetRecentMachineInfo(DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetRecentMachineInfoResponse> {
+        self.describeAssetRecentMachineInfo(DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机概况趋势
     ///
     /// 获取主机最近趋势情况
     @inlinable
-    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
-        try await self.describeAssetRecentMachineInfo(DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeAssetRecentMachineInfo(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetRecentMachineInfoResponse {
+        try await self.describeAssetRecentMachineInfo(DescribeAssetRecentMachineInfoRequest(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

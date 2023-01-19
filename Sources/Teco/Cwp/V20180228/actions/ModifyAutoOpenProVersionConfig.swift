@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Cwp {
     ///
     ///  用于设置新增主机自动开通专业防护配置。
     @inlinable
-    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
-        self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
+        self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动开通配置
     ///
     ///  用于设置新增主机自动开通专业防护配置。
     @inlinable
-    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAutoOpenProVersionConfig(_ input: ModifyAutoOpenProVersionConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
+        try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置自动开通配置
     ///
     ///  用于设置新增主机自动开通专业防护配置。
     @inlinable
-    public func modifyAutoOpenProVersionConfig(status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
-        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), logger: logger, on: eventLoop)
+    public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
+        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动开通配置
     ///
     ///  用于设置新增主机自动开通专业防护配置。
     @inlinable
-    public func modifyAutoOpenProVersionConfig(status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), logger: logger, on: eventLoop)
+    public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
+        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), region: region, logger: logger, on: eventLoop)
     }
 }

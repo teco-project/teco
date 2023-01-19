@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Iotvideo {
 
     /// 获取产品动态注册详情
     @inlinable
-    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductDynamicRegisterResponse> {
-        self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductDynamicRegisterResponse> {
+        self.client.execute(action: "DescribeProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品动态注册详情
     @inlinable
-    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
-        try await self.client.execute(action: "DescribeProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductDynamicRegister(_ input: DescribeProductDynamicRegisterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
+        try await self.client.execute(action: "DescribeProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品动态注册详情
     @inlinable
-    public func describeProductDynamicRegister(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductDynamicRegisterResponse> {
-        self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProductDynamicRegister(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductDynamicRegisterResponse> {
+        self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品动态注册详情
     @inlinable
-    public func describeProductDynamicRegister(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
-        try await self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProductDynamicRegister(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
+        try await self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cdn {
     ///
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
-    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
-        self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
+        self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断报告
     ///
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
-    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
-        try await self.client.execute(action: "DescribeDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiagnoseReport(_ input: DescribeDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
+        try await self.client.execute(action: "DescribeDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取诊断报告
     ///
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
-    public func describeDiagnoseReport(reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
-        self.describeDiagnoseReport(DescribeDiagnoseReportRequest(reportId: reportId), logger: logger, on: eventLoop)
+    public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagnoseReportResponse> {
+        self.describeDiagnoseReport(DescribeDiagnoseReportRequest(reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断报告
     ///
     /// DescribeDiagnoseReport 用于获取指定报告id的内容
     @inlinable
-    public func describeDiagnoseReport(reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
-        try await self.describeDiagnoseReport(DescribeDiagnoseReportRequest(reportId: reportId), logger: logger, on: eventLoop)
+    public func describeDiagnoseReport(reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagnoseReportResponse {
+        try await self.describeDiagnoseReport(DescribeDiagnoseReportRequest(reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 }

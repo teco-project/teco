@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Bmvpc {
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
-        self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
+        self.client.execute(action: "ModifyVpnConnectionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable
-    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnConnectionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnConnectionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable
-    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
-        self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), logger: logger, on: eventLoop)
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
+        self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
     @inlinable
-    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
-        try await self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), logger: logger, on: eventLoop)
+    public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpcId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
+        try await self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpcId: vpcId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

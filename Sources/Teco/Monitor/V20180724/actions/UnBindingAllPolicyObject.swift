@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Monitor {
 
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
-        self.client.execute(action: "UnBindingAllPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
+        self.client.execute(action: "UnBindingAllPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
-        try await self.client.execute(action: "UnBindingAllPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unBindingAllPolicyObject(_ input: UnBindingAllPolicyObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
+        try await self.client.execute(action: "UnBindingAllPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
-        self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), logger: logger, on: eventLoop)
+    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
+        self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除全部的关联对象
     @inlinable
-    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
-        try await self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), logger: logger, on: eventLoop)
+    public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
+        try await self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

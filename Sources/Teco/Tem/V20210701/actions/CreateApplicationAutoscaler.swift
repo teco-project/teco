@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 创建弹性伸缩策略组合
     @inlinable
-    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationAutoscalerResponse> {
-        self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationAutoscalerResponse> {
+        self.client.execute(action: "CreateApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性伸缩策略组合
     @inlinable
-    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
-        try await self.client.execute(action: "CreateApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplicationAutoscaler(_ input: CreateApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
+        try await self.client.execute(action: "CreateApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建弹性伸缩策略组合
     @inlinable
-    public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationAutoscalerResponse> {
-        self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationAutoscalerResponse> {
+        self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性伸缩策略组合
     @inlinable
-    public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
-        try await self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
+        try await self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
     }
 }

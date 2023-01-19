@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tcss {
 
     /// 查询本地镜像组件列表导出
     @inlinable
-    public func createComponentExportJob(_ input: CreateComponentExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComponentExportJobResponse> {
-        self.client.execute(action: "CreateComponentExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createComponentExportJob(_ input: CreateComponentExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComponentExportJobResponse> {
+        self.client.execute(action: "CreateComponentExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像组件列表导出
     @inlinable
-    public func createComponentExportJob(_ input: CreateComponentExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
-        try await self.client.execute(action: "CreateComponentExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createComponentExportJob(_ input: CreateComponentExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
+        try await self.client.execute(action: "CreateComponentExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询本地镜像组件列表导出
     @inlinable
-    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComponentExportJobResponse> {
-        self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComponentExportJobResponse> {
+        self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像组件列表导出
     @inlinable
-    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
-        try await self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func createComponentExportJob(imageID: String, exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComponentExportJobResponse {
+        try await self.createComponentExportJob(CreateComponentExportJobRequest(imageID: imageID, exportField: exportField, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

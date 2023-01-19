@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,31 +44,31 @@ extension Yunjing {
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
     @inlinable
-    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
-        self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeProVersion(_ input: CloseProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
+        self.client.execute(action: "CloseProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
     @inlinable
-    public func closeProVersion(_ input: CloseProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
-        try await self.client.execute(action: "CloseProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeProVersion(_ input: CloseProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
+        try await self.client.execute(action: "CloseProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
     @inlinable
-    public func closeProVersion(quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
-        self.closeProVersion(CloseProVersionRequest(quuid: quuid), logger: logger, on: eventLoop)
+    public func closeProVersion(quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
+        self.closeProVersion(CloseProVersionRequest(quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
     @inlinable
-    public func closeProVersion(quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
-        try await self.closeProVersion(CloseProVersionRequest(quuid: quuid), logger: logger, on: eventLoop)
+    public func closeProVersion(quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
+        try await self.closeProVersion(CloseProVersionRequest(quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

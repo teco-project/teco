@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tdid {
 
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
-        self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
+        self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(_ input: RegisterIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
-        try await self.client.execute(action: "RegisterIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
+        try await self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(did: String, name: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
-        self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), logger: logger, on: eventLoop)
+    public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
+        self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册为权威机构
     @inlinable
-    public func registerIssuer(did: String, name: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
-        try await self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), logger: logger, on: eventLoop)
+    public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
+        try await self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -143,25 +143,25 @@ extension Dayu {
 
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
-        self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceList(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
+        self.client.execute(action: "DescribeResourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(_ input: DescribeResourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
-        try await self.client.execute(action: "DescribeResourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceList(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
+        try await self.client.execute(action: "DescribeResourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
-        self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), logger: logger, on: eventLoop)
+    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
+        self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源列表
     @inlinable
-    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
-        try await self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), logger: logger, on: eventLoop)
+    public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
+        try await self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

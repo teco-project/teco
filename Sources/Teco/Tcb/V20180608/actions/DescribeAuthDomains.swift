@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcb {
 
     /// 获取安全域名列表
     @inlinable
-    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthDomainsResponse> {
-        self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthDomainsResponse> {
+        self.client.execute(action: "DescribeAuthDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全域名列表
     @inlinable
-    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
-        try await self.client.execute(action: "DescribeAuthDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAuthDomains(_ input: DescribeAuthDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
+        try await self.client.execute(action: "DescribeAuthDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全域名列表
     @inlinable
-    public func describeAuthDomains(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthDomainsResponse> {
-        self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeAuthDomains(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthDomainsResponse> {
+        self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全域名列表
     @inlinable
-    public func describeAuthDomains(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
-        try await self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeAuthDomains(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthDomainsResponse {
+        try await self.describeAuthDomains(DescribeAuthDomainsRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

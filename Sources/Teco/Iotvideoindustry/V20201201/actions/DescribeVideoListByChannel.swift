@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
-        self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
+        self.client.execute(action: "DescribeVideoListByChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
-        try await self.client.execute(action: "DescribeVideoListByChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVideoListByChannel(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
+        try await self.client.execute(action: "DescribeVideoListByChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
-        self.describeVideoListByChannel(DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListByChannelResponse> {
+        self.describeVideoListByChannel(DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道录制文件列表
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
-        try await self.describeVideoListByChannel(DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeVideoListByChannel(deviceId: String, channelId: String, type: Int64, date: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListByChannelResponse {
+        try await self.describeVideoListByChannel(DescribeVideoListByChannelRequest(deviceId: deviceId, channelId: channelId, type: type, date: date, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

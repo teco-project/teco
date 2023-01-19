@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
-        self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
+        self.client.execute(action: "DescribeStatisticSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
-        try await self.client.execute(action: "DescribeStatisticSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStatisticSummary(_ input: DescribeStatisticSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
+        try await self.client.execute(action: "DescribeStatisticSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
-        self.describeStatisticSummary(DescribeStatisticSummaryRequest(date: date), logger: logger, on: eventLoop)
+    public func describeStatisticSummary(date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticSummaryResponse> {
+        self.describeStatisticSummary(DescribeStatisticSummaryRequest(date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询统计指标概览数据
     ///
     /// 本接口(DescribeStatisticSummary)用于查询用户昨日的概览数据。
     @inlinable
-    public func describeStatisticSummary(date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
-        try await self.describeStatisticSummary(DescribeStatisticSummaryRequest(date: date), logger: logger, on: eventLoop)
+    public func describeStatisticSummary(date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticSummaryResponse {
+        try await self.describeStatisticSummary(DescribeStatisticSummaryRequest(date: date), region: region, logger: logger, on: eventLoop)
     }
 }

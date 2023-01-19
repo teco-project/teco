@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Zj {
     ///
     /// 获取人群包列表接口
     @inlinable
-    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdPackListResponse> {
-        self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCrowdPackList(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdPackListResponse> {
+        self.client.execute(action: "GetCrowdPackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人群包列表
     ///
     /// 获取人群包列表接口
     @inlinable
-    public func getCrowdPackList(_ input: GetCrowdPackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
-        try await self.client.execute(action: "GetCrowdPackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCrowdPackList(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
+        try await self.client.execute(action: "GetCrowdPackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人群包列表
     ///
     /// 获取人群包列表接口
     @inlinable
-    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdPackListResponse> {
-        self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), logger: logger, on: eventLoop)
+    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdPackListResponse> {
+        self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人群包列表
     ///
     /// 获取人群包列表接口
     @inlinable
-    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
-        try await self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), logger: logger, on: eventLoop)
+    public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
+        try await self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

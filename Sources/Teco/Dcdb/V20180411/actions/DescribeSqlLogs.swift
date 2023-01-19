@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
-    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
-        self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
+        self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
-    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.client.execute(action: "DescribeSqlLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSqlLogs(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
+        try await self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
-    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
-        self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
+        self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL日志
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
-    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
+        try await self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

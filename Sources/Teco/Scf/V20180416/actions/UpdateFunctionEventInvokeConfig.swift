@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Scf {
     ///
     /// 更新函数的异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func updateFunctionEventInvokeConfig(_ input: UpdateFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionEventInvokeConfigResponse> {
-        self.client.execute(action: "UpdateFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateFunctionEventInvokeConfig(_ input: UpdateFunctionEventInvokeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionEventInvokeConfigResponse> {
+        self.client.execute(action: "UpdateFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新函数异步重试配置
     ///
     /// 更新函数的异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func updateFunctionEventInvokeConfig(_ input: UpdateFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
-        try await self.client.execute(action: "UpdateFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateFunctionEventInvokeConfig(_ input: UpdateFunctionEventInvokeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
+        try await self.client.execute(action: "UpdateFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新函数异步重试配置
     ///
     /// 更新函数的异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionEventInvokeConfigResponse> {
-        self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionEventInvokeConfigResponse> {
+        self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新函数异步重试配置
     ///
     /// 更新函数的异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
-        try await self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    public func updateFunctionEventInvokeConfig(asyncTriggerConfig: AsyncTriggerConfig, functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionEventInvokeConfigResponse {
+        try await self.updateFunctionEventInvokeConfig(UpdateFunctionEventInvokeConfigRequest(asyncTriggerConfig: asyncTriggerConfig, functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

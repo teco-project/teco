@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tke {
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
-        self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
+        self.client.execute(action: "EnableVpcCniNetworkType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
-        try await self.client.execute(action: "EnableVpcCniNetworkType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableVpcCniNetworkType(_ input: EnableVpcCniNetworkTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
+        try await self.client.execute(action: "EnableVpcCniNetworkType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
-        self.enableVpcCniNetworkType(EnableVpcCniNetworkTypeRequest(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), logger: logger, on: eventLoop)
+    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcCniNetworkTypeResponse> {
+        self.enableVpcCniNetworkType(EnableVpcCniNetworkTypeRequest(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启vpc-cni容器网络能力
     ///
     /// GR集群可以通过本接口附加vpc-cni容器网络插件，开启vpc-cni容器网络能力
     @inlinable
-    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
-        try await self.enableVpcCniNetworkType(EnableVpcCniNetworkTypeRequest(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), logger: logger, on: eventLoop)
+    public func enableVpcCniNetworkType(clusterId: String, vpcCniType: String, enableStaticIp: Bool, subnets: [String], expiredSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcCniNetworkTypeResponse {
+        try await self.enableVpcCniNetworkType(EnableVpcCniNetworkTypeRequest(clusterId: clusterId, vpcCniType: vpcCniType, enableStaticIp: enableStaticIp, subnets: subnets, expiredSeconds: expiredSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

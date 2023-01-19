@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Cpdp {
 
     /// 智慧零售-发票查询
     @inlinable
-    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInvoiceResponse> {
-        self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryInvoice(_ input: QueryInvoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInvoiceResponse> {
+        self.client.execute(action: "QueryInvoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票查询
     @inlinable
-    public func queryInvoice(_ input: QueryInvoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
-        try await self.client.execute(action: "QueryInvoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryInvoice(_ input: QueryInvoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
+        try await self.client.execute(action: "QueryInvoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智慧零售-发票查询
     @inlinable
-    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInvoiceResponse> {
-        self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), logger: logger, on: eventLoop)
+    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInvoiceResponse> {
+        self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票查询
     @inlinable
-    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
-        try await self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), logger: logger, on: eventLoop)
+    public func queryInvoice(invoicePlatformId: Int64, orderId: String, orderSn: String? = nil, isRed: Int64? = nil, profile: String? = nil, invoiceChannel: Int64? = nil, sellerTaxpayerNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInvoiceResponse {
+        try await self.queryInvoice(QueryInvoiceRequest(invoicePlatformId: invoicePlatformId, orderId: orderId, orderSn: orderSn, isRed: isRed, profile: profile, invoiceChannel: invoiceChannel, sellerTaxpayerNum: sellerTaxpayerNum), region: region, logger: logger, on: eventLoop)
     }
 }

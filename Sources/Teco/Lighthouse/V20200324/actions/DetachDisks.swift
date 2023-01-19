@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Lighthouse {
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
     @inlinable
-    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
-        self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachDisks(_ input: DetachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
+        self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
     @inlinable
-    public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
-        try await self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachDisks(_ input: DetachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
+        try await self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
     @inlinable
-    public func detachDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
-        self.detachDisks(DetachDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func detachDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
+        self.detachDisks(DetachDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
     @inlinable
-    public func detachDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
-        try await self.detachDisks(DetachDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func detachDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
+        try await self.detachDisks(DetachDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

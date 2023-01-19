@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tsf {
     ///
     /// TSF基本资源信息概览接口
     @inlinable
-    public func describeBasicResourceUsage(_ input: DescribeBasicResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicResourceUsageResponse> {
-        self.client.execute(action: "DescribeBasicResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBasicResourceUsage(_ input: DescribeBasicResourceUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicResourceUsageResponse> {
+        self.client.execute(action: "DescribeBasicResourceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// TSF基本资源信息概览
     ///
     /// TSF基本资源信息概览接口
     @inlinable
-    public func describeBasicResourceUsage(_ input: DescribeBasicResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
-        try await self.client.execute(action: "DescribeBasicResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBasicResourceUsage(_ input: DescribeBasicResourceUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
+        try await self.client.execute(action: "DescribeBasicResourceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// TSF基本资源信息概览
     ///
     /// TSF基本资源信息概览接口
     @inlinable
-    public func describeBasicResourceUsage(all: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicResourceUsageResponse> {
-        self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), logger: logger, on: eventLoop)
+    public func describeBasicResourceUsage(all: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicResourceUsageResponse> {
+        self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), region: region, logger: logger, on: eventLoop)
     }
 
     /// TSF基本资源信息概览
     ///
     /// TSF基本资源信息概览接口
     @inlinable
-    public func describeBasicResourceUsage(all: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
-        try await self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), logger: logger, on: eventLoop)
+    public func describeBasicResourceUsage(all: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicResourceUsageResponse {
+        try await self.describeBasicResourceUsage(DescribeBasicResourceUsageRequest(all: all), region: region, logger: logger, on: eventLoop)
     }
 }

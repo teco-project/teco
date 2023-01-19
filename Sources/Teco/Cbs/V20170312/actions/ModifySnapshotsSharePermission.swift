@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable
-    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
-        self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
+        self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改快照分享信息
@@ -71,8 +71,8 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable
-    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
-        try await self.client.execute(action: "ModifySnapshotsSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
+        try await self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改快照分享信息
@@ -84,8 +84,8 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable
-    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
-        self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
+        self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照分享信息
@@ -97,7 +97,7 @@ extension Cbs {
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
     @inlinable
-    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
-        try await self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
+        try await self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

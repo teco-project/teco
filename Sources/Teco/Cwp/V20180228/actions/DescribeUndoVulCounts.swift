@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cwp {
     ///
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
-    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUndoVulCountsResponse> {
-        self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUndoVulCountsResponse> {
+        self.client.execute(action: "DescribeUndoVulCounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定漏洞分类统计数
     ///
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
-    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
-        try await self.client.execute(action: "DescribeUndoVulCounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUndoVulCounts(_ input: DescribeUndoVulCountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
+        try await self.client.execute(action: "DescribeUndoVulCounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定漏洞分类统计数
     ///
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
-    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUndoVulCountsResponse> {
-        self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUndoVulCountsResponse> {
+        self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定漏洞分类统计数
     ///
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
-    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
-        try await self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
+        try await self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
     }
 }

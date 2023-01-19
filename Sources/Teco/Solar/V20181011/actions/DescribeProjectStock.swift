@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Solar {
 
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
-        self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProjectStock(_ input: DescribeProjectStockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
+        self.client.execute(action: "DescribeProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(_ input: DescribeProjectStockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
-        try await self.client.execute(action: "DescribeProjectStock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProjectStock(_ input: DescribeProjectStockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
+        try await self.client.execute(action: "DescribeProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
-        self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeProjectStock(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
+        self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 项目库存详情
     @inlinable
-    public func describeProjectStock(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
-        try await self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeProjectStock(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
+        try await self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 }

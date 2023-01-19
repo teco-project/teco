@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Postgres {
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
     @inlinable
-    public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
-        self.client.execute(action: "ModifyBackupPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
+        self.client.execute(action: "ModifyBackupPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
     @inlinable
-    public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
-        try await self.client.execute(action: "ModifyBackupPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
+        try await self.client.execute(action: "ModifyBackupPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
     @inlinable
-    public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
-        self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), logger: logger, on: eventLoop)
+    public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
+        self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
     @inlinable
-    public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
-        try await self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), logger: logger, on: eventLoop)
+    public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
+        try await self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

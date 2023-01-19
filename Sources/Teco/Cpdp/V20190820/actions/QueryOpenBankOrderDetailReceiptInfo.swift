@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Cpdp {
 
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
-        self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
+        self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
-        try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankOrderDetailReceiptInfo(_ input: QueryOpenBankOrderDetailReceiptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
+        try await self.client.execute(action: "QueryOpenBankOrderDetailReceiptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
-        self.queryOpenBankOrderDetailReceiptInfo(QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankOrderDetailReceiptInfoResponse> {
+        self.queryOpenBankOrderDetailReceiptInfo(QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-单笔交易回单申请结果查询
     @inlinable
-    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
-        try await self.queryOpenBankOrderDetailReceiptInfo(QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankOrderDetailReceiptInfo(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankOrderDetailReceiptInfoResponse {
+        try await self.queryOpenBankOrderDetailReceiptInfo(QueryOpenBankOrderDetailReceiptInfoRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

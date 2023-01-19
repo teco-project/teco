@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 删除 Grafana 集成配置
     @inlinable
-    public func deleteGrafanaIntegration(_ input: DeleteGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaIntegrationResponse> {
-        self.client.execute(action: "DeleteGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteGrafanaIntegration(_ input: DeleteGrafanaIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaIntegrationResponse> {
+        self.client.execute(action: "DeleteGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 集成配置
     @inlinable
-    public func deleteGrafanaIntegration(_ input: DeleteGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaIntegrationResponse {
-        try await self.client.execute(action: "DeleteGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteGrafanaIntegration(_ input: DeleteGrafanaIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaIntegrationResponse {
+        try await self.client.execute(action: "DeleteGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Grafana 集成配置
     @inlinable
-    public func deleteGrafanaIntegration(instanceId: String, integrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaIntegrationResponse> {
-        self.deleteGrafanaIntegration(DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId), logger: logger, on: eventLoop)
+    public func deleteGrafanaIntegration(instanceId: String, integrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaIntegrationResponse> {
+        self.deleteGrafanaIntegration(DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 集成配置
     @inlinable
-    public func deleteGrafanaIntegration(instanceId: String, integrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaIntegrationResponse {
-        try await self.deleteGrafanaIntegration(DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId), logger: logger, on: eventLoop)
+    public func deleteGrafanaIntegration(instanceId: String, integrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaIntegrationResponse {
+        try await self.deleteGrafanaIntegration(DeleteGrafanaIntegrationRequest(instanceId: instanceId, integrationId: integrationId), region: region, logger: logger, on: eventLoop)
     }
 }

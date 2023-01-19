@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -180,31 +180,31 @@ extension Cpdp {
     ///
     /// 子商户入驻聚鑫平台
     @inlinable
-    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcctResponse> {
-        self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAcct(_ input: CreateAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcctResponse> {
+        self.client.execute(action: "CreateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-商户入驻
     ///
     /// 子商户入驻聚鑫平台
     @inlinable
-    public func createAcct(_ input: CreateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
-        try await self.client.execute(action: "CreateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAcct(_ input: CreateAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
+        try await self.client.execute(action: "CreateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-商户入驻
     ///
     /// 子商户入驻聚鑫平台
     @inlinable
-    public func createAcct(midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcctResponse> {
-        self.createAcct(CreateAcctRequest(midasAppId: midasAppId, subMchId: subMchId, subMchName: subMchName, address: address, contact: contact, mobile: mobile, email: email, midasSecretId: midasSecretId, midasSignature: midasSignature, subMchType: subMchType, shortName: shortName, subMerchantMemberType: subMerchantMemberType, subMerchantKey: subMerchantKey, subMerchantPrivateKey: subMerchantPrivateKey, encryptType: encryptType, subAcctNo: subAcctNo, midasEnvironment: midasEnvironment, subMerchantStoreName: subMerchantStoreName, organizationInfo: organizationInfo, subMerchantIdType: subMerchantIdType, subMerchantIdCode: subMerchantIdCode), logger: logger, on: eventLoop)
+    public func createAcct(midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAcctResponse> {
+        self.createAcct(CreateAcctRequest(midasAppId: midasAppId, subMchId: subMchId, subMchName: subMchName, address: address, contact: contact, mobile: mobile, email: email, midasSecretId: midasSecretId, midasSignature: midasSignature, subMchType: subMchType, shortName: shortName, subMerchantMemberType: subMerchantMemberType, subMerchantKey: subMerchantKey, subMerchantPrivateKey: subMerchantPrivateKey, encryptType: encryptType, subAcctNo: subAcctNo, midasEnvironment: midasEnvironment, subMerchantStoreName: subMerchantStoreName, organizationInfo: organizationInfo, subMerchantIdType: subMerchantIdType, subMerchantIdCode: subMerchantIdCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-商户入驻
     ///
     /// 子商户入驻聚鑫平台
     @inlinable
-    public func createAcct(midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
-        try await self.createAcct(CreateAcctRequest(midasAppId: midasAppId, subMchId: subMchId, subMchName: subMchName, address: address, contact: contact, mobile: mobile, email: email, midasSecretId: midasSecretId, midasSignature: midasSignature, subMchType: subMchType, shortName: shortName, subMerchantMemberType: subMerchantMemberType, subMerchantKey: subMerchantKey, subMerchantPrivateKey: subMerchantPrivateKey, encryptType: encryptType, subAcctNo: subAcctNo, midasEnvironment: midasEnvironment, subMerchantStoreName: subMerchantStoreName, organizationInfo: organizationInfo, subMerchantIdType: subMerchantIdType, subMerchantIdCode: subMerchantIdCode), logger: logger, on: eventLoop)
+    public func createAcct(midasAppId: String, subMchId: String, subMchName: String, address: String, contact: String, mobile: String, email: String, midasSecretId: String, midasSignature: String, subMchType: String? = nil, shortName: String? = nil, subMerchantMemberType: String? = nil, subMerchantKey: String? = nil, subMerchantPrivateKey: String? = nil, encryptType: String? = nil, subAcctNo: String? = nil, midasEnvironment: String? = nil, subMerchantStoreName: String? = nil, organizationInfo: OrganizationInfo? = nil, subMerchantIdType: String? = nil, subMerchantIdCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAcctResponse {
+        try await self.createAcct(CreateAcctRequest(midasAppId: midasAppId, subMchId: subMchId, subMchName: subMchName, address: address, contact: contact, mobile: mobile, email: email, midasSecretId: midasSecretId, midasSignature: midasSignature, subMchType: subMchType, shortName: shortName, subMerchantMemberType: subMerchantMemberType, subMerchantKey: subMerchantKey, subMerchantPrivateKey: subMerchantPrivateKey, encryptType: encryptType, subAcctNo: subAcctNo, midasEnvironment: midasEnvironment, subMerchantStoreName: subMerchantStoreName, organizationInfo: organizationInfo, subMerchantIdType: subMerchantIdType, subMerchantIdCode: subMerchantIdCode), region: region, logger: logger, on: eventLoop)
     }
 }

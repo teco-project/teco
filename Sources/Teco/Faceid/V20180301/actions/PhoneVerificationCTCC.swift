@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Faceid {
     ///
     /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCTCCResponse> {
-        self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCTCCResponse> {
+        self.client.execute(action: "PhoneVerificationCTCC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验（电信）
     ///
     /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
-        try await self.client.execute(action: "PhoneVerificationCTCC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func phoneVerificationCTCC(_ input: PhoneVerificationCTCCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
+        try await self.client.execute(action: "PhoneVerificationCTCC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号三要素核验（电信）
     ///
     /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCTCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCTCCResponse> {
-        self.phoneVerificationCTCC(PhoneVerificationCTCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), logger: logger, on: eventLoop)
+    public func phoneVerificationCTCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationCTCCResponse> {
+        self.phoneVerificationCTCC(PhoneVerificationCTCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验（电信）
     ///
     /// 本接口用于校验中国电信手机号、姓名和身份证号的真实性和一致性。中国电信支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerificationCTCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
-        try await self.phoneVerificationCTCC(PhoneVerificationCTCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), logger: logger, on: eventLoop)
+    public func phoneVerificationCTCC(idCard: String, name: String, phone: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationCTCCResponse {
+        try await self.phoneVerificationCTCC(PhoneVerificationCTCCRequest(idCard: idCard, name: name, phone: phone, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vod {
     ///
     /// 删除用户自定义的任务流模板。
     @inlinable
-    public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
-        self.client.execute(action: "DeleteProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
+        self.client.execute(action: "DeleteProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
     @inlinable
-    public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
-        try await self.client.execute(action: "DeleteProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
+        try await self.client.execute(action: "DeleteProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
     @inlinable
-    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
-        self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
+        self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
     @inlinable
-    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
-        try await self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
+        try await self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

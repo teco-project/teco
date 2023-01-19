@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tem {
 
     /// 编辑配置
     @inlinable
-    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigDataResponse> {
-        self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyConfigData(_ input: ModifyConfigDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigDataResponse> {
+        self.client.execute(action: "ModifyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑配置
     @inlinable
-    public func modifyConfigData(_ input: ModifyConfigDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
-        try await self.client.execute(action: "ModifyConfigData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyConfigData(_ input: ModifyConfigDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
+        try await self.client.execute(action: "ModifyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑配置
     @inlinable
-    public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigDataResponse> {
-        self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), logger: logger, on: eventLoop)
+    public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigDataResponse> {
+        self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑配置
     @inlinable
-    public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
-        try await self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), logger: logger, on: eventLoop)
+    public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
+        try await self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

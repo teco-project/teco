@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Dlc {
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
-        self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScripts(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
+        self.client.execute(action: "DescribeScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(_ input: DescribeScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
-        try await self.client.execute(action: "DescribeScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScripts(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
+        try await self.client.execute(action: "DescribeScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
-        self.describeScripts(DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), logger: logger, on: eventLoop)
+    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScriptsResponse> {
+        self.describeScripts(DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
-        try await self.describeScripts(DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), logger: logger, on: eventLoop)
+    public func describeScripts(limit: Int64? = nil, offset: Int64? = nil, sortBy: String? = nil, sorting: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScriptsResponse {
+        try await self.describeScripts(DescribeScriptsRequest(limit: limit, offset: offset, sortBy: sortBy, sorting: sorting, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

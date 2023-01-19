@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Gme {
     ///
     /// 更新自定义送检用户号
     @inlinable
-    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanUsersResponse> {
-        self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateScanUsers(_ input: UpdateScanUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanUsersResponse> {
+        self.client.execute(action: "UpdateScanUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新送检用户号
     ///
     /// 更新自定义送检用户号
     @inlinable
-    public func updateScanUsers(_ input: UpdateScanUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
-        try await self.client.execute(action: "UpdateScanUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateScanUsers(_ input: UpdateScanUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
+        try await self.client.execute(action: "UpdateScanUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新送检用户号
     ///
     /// 更新自定义送检用户号
     @inlinable
-    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanUsersResponse> {
-        self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), logger: logger, on: eventLoop)
+    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanUsersResponse> {
+        self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新送检用户号
     ///
     /// 更新自定义送检用户号
     @inlinable
-    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
-        try await self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), logger: logger, on: eventLoop)
+    public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
+        try await self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), region: region, logger: logger, on: eventLoop)
     }
 }

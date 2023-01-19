@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Antiddos {
     ///
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
-    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertsResponse> {
-        self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertsResponse> {
+        self.client.execute(action: "CreateL7RuleCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量配置L7转发规则的证书
     ///
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
-    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
-        try await self.client.execute(action: "CreateL7RuleCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createL7RuleCerts(_ input: CreateL7RuleCertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
+        try await self.client.execute(action: "CreateL7RuleCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量配置L7转发规则的证书
     ///
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
-    public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertsResponse> {
-        self.createL7RuleCerts(CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules), logger: logger, on: eventLoop)
+    public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RuleCertsResponse> {
+        self.createL7RuleCerts(CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量配置L7转发规则的证书
     ///
     /// 批量配置L7转发规则的证书供SSL测调用
     @inlinable
-    public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
-        try await self.createL7RuleCerts(CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules), logger: logger, on: eventLoop)
+    public func createL7RuleCerts(certId: String, l7Rules: [InsL7Rules], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RuleCertsResponse {
+        try await self.createL7RuleCerts(CreateL7RuleCertsRequest(certId: certId, l7Rules: l7Rules), region: region, logger: logger, on: eventLoop)
     }
 }

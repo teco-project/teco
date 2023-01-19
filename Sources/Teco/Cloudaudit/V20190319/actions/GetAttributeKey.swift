@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cloudaudit {
 
     /// 查询AttributeKey的有效取值范围
     @inlinable
-    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttributeKeyResponse> {
-        self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAttributeKey(_ input: GetAttributeKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttributeKeyResponse> {
+        self.client.execute(action: "GetAttributeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询AttributeKey的有效取值范围
     @inlinable
-    public func getAttributeKey(_ input: GetAttributeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
-        try await self.client.execute(action: "GetAttributeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAttributeKey(_ input: GetAttributeKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
+        try await self.client.execute(action: "GetAttributeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询AttributeKey的有效取值范围
     @inlinable
-    public func getAttributeKey(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttributeKeyResponse> {
-        self.getAttributeKey(GetAttributeKeyRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    public func getAttributeKey(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttributeKeyResponse> {
+        self.getAttributeKey(GetAttributeKeyRequest(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询AttributeKey的有效取值范围
     @inlinable
-    public func getAttributeKey(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
-        try await self.getAttributeKey(GetAttributeKeyRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    public func getAttributeKey(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttributeKeyResponse {
+        try await self.getAttributeKey(GetAttributeKeyRequest(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 }

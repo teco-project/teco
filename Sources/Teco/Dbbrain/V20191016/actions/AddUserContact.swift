@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dbbrain {
     ///
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
-    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserContactResponse> {
-        self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addUserContact(_ input: AddUserContactRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserContactResponse> {
+        self.client.execute(action: "AddUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加联系人信息
     ///
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
-    public func addUserContact(_ input: AddUserContactRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
-        try await self.client.execute(action: "AddUserContact", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addUserContact(_ input: AddUserContactRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
+        try await self.client.execute(action: "AddUserContact", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加联系人信息
     ///
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
-    public func addUserContact(name: String, contactInfo: String, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserContactResponse> {
-        self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), logger: logger, on: eventLoop)
+    public func addUserContact(name: String, contactInfo: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserContactResponse> {
+        self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加联系人信息
     ///
     /// 添加邮件接收联系人的姓名， 邮件地址，返回值为添加成功的联系人id。Region统一选择广州。
     @inlinable
-    public func addUserContact(name: String, contactInfo: String, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
-        try await self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), logger: logger, on: eventLoop)
+    public func addUserContact(name: String, contactInfo: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserContactResponse {
+        try await self.addUserContact(AddUserContactRequest(name: name, contactInfo: contactInfo, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

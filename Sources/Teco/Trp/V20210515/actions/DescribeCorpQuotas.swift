@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Trp {
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
-    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCorpQuotasResponse> {
-        self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCorpQuotasResponse> {
+        self.client.execute(action: "DescribeCorpQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
-    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
-        try await self.client.execute(action: "DescribeCorpQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCorpQuotas(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
+        try await self.client.execute(action: "DescribeCorpQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
-    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCorpQuotasResponse> {
-        self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), logger: logger, on: eventLoop)
+    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCorpQuotasResponse> {
+        self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
-    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
-        try await self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), logger: logger, on: eventLoop)
+    public func describeCorpQuotas(agentId: UInt64? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCorpQuotasResponse {
+        try await self.describeCorpQuotas(DescribeCorpQuotasRequest(agentId: agentId, pageNumber: pageNumber, pageSize: pageSize, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 }

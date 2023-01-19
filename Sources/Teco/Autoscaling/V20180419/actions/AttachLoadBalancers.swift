@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension As {
     ///
     /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
     @inlinable
-    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachLoadBalancersResponse> {
-        self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachLoadBalancersResponse> {
+        self.client.execute(action: "AttachLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加负载均衡器
     ///
     /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
     @inlinable
-    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
-        try await self.client.execute(action: "AttachLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachLoadBalancers(_ input: AttachLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
+        try await self.client.execute(action: "AttachLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加负载均衡器
     ///
     /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
     @inlinable
-    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachLoadBalancersResponse> {
-        self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachLoadBalancersResponse> {
+        self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加负载均衡器
     ///
     /// 此接口（AttachLoadBalancers）用于将负载均衡器添加到伸缩组。
     @inlinable
-    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
-        try await self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), logger: logger, on: eventLoop)
+    public func attachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachLoadBalancersResponse {
+        try await self.attachLoadBalancers(AttachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancers: forwardLoadBalancers), region: region, logger: logger, on: eventLoop)
     }
 }

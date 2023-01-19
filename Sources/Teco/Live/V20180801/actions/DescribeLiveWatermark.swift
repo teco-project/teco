@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Live {
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
-        self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
+        self.client.execute(action: "DescribeLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
-        try await self.client.execute(action: "DescribeLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveWatermark(_ input: DescribeLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
+        try await self.client.execute(action: "DescribeLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(watermarkId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
-        self.describeLiveWatermark(DescribeLiveWatermarkRequest(watermarkId: watermarkId), logger: logger, on: eventLoop)
+    public func describeLiveWatermark(watermarkId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarkResponse> {
+        self.describeLiveWatermark(DescribeLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个水印
     ///
     /// 获取单个水印信息。
     @inlinable
-    public func describeLiveWatermark(watermarkId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
-        try await self.describeLiveWatermark(DescribeLiveWatermarkRequest(watermarkId: watermarkId), logger: logger, on: eventLoop)
+    public func describeLiveWatermark(watermarkId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarkResponse {
+        try await self.describeLiveWatermark(DescribeLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 }

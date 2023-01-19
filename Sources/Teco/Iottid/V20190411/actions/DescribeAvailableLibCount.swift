@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Iottid {
     ///
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
-    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableLibCountResponse> {
-        self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableLibCountResponse> {
+        self.client.execute(action: "DescribeAvailableLibCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可空发的白盒密钥数量
     ///
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
-    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
-        try await self.client.execute(action: "DescribeAvailableLibCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableLibCount(_ input: DescribeAvailableLibCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
+        try await self.client.execute(action: "DescribeAvailableLibCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询可空发的白盒密钥数量
     ///
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
-    public func describeAvailableLibCount(orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableLibCountResponse> {
-        self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), logger: logger, on: eventLoop)
+    public func describeAvailableLibCount(orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableLibCountResponse> {
+        self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可空发的白盒密钥数量
     ///
     /// 查询指定订单的可空发的白盒密钥数量
     @inlinable
-    public func describeAvailableLibCount(orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
-        try await self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), logger: logger, on: eventLoop)
+    public func describeAvailableLibCount(orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableLibCountResponse {
+        try await self.describeAvailableLibCount(DescribeAvailableLibCountRequest(orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

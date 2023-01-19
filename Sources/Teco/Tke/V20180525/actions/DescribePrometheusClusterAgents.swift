@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tke {
 
     /// 获取TMP实例关联集群列表
     @inlinable
-    public func describePrometheusClusterAgents(_ input: DescribePrometheusClusterAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusClusterAgentsResponse> {
-        self.client.execute(action: "DescribePrometheusClusterAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusClusterAgents(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusClusterAgentsResponse> {
+        self.client.execute(action: "DescribePrometheusClusterAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取TMP实例关联集群列表
     @inlinable
-    public func describePrometheusClusterAgents(_ input: DescribePrometheusClusterAgentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusClusterAgentsResponse {
-        try await self.client.execute(action: "DescribePrometheusClusterAgents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusClusterAgents(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusClusterAgentsResponse {
+        try await self.client.execute(action: "DescribePrometheusClusterAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取TMP实例关联集群列表
     @inlinable
-    public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusClusterAgentsResponse> {
-        self.describePrometheusClusterAgents(DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusClusterAgentsResponse> {
+        self.describePrometheusClusterAgents(DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取TMP实例关联集群列表
     @inlinable
-    public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusClusterAgentsResponse {
-        try await self.describePrometheusClusterAgents(DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusClusterAgents(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusClusterAgentsResponse {
+        try await self.describePrometheusClusterAgents(DescribePrometheusClusterAgentsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

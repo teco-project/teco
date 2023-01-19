@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 终端节点解绑安全组。
     @inlinable
-    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
-        self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
+        self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端节点解绑安全组
     ///
     /// 终端节点解绑安全组。
     @inlinable
-    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
-        try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateVpcEndPointSecurityGroups(_ input: DisassociateVpcEndPointSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
+        try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终端节点解绑安全组
     ///
     /// 终端节点解绑安全组。
     @inlinable
-    public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
-        self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), logger: logger, on: eventLoop)
+    public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
+        self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终端节点解绑安全组
     ///
     /// 终端节点解绑安全组。
     @inlinable
-    public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
-        try await self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), logger: logger, on: eventLoop)
+    public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
+        try await self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
     }
 }

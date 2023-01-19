@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Ccc {
 
     /// 绑定坐席所属技能组
     @inlinable
-    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
-        self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
+        self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定坐席所属技能组
     @inlinable
-    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
-        try await self.client.execute(action: "BindStaffSkillGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindStaffSkillGroupList(_ input: BindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定坐席所属技能组
     @inlinable
-    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
-        self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), logger: logger, on: eventLoop)
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
+        self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定坐席所属技能组
     @inlinable
-    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
-        try await self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), logger: logger, on: eventLoop)
+    public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
+        try await self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
     }
 }

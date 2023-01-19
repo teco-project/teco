@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Live {
     ///
     /// 更新水印。
     @inlinable
-    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
-        self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
+        self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新水印
     ///
     /// 更新水印。
     @inlinable
-    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
-        try await self.client.execute(action: "UpdateLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
+        try await self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新水印
     ///
     /// 更新水印。
     @inlinable
-    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
-        self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), logger: logger, on: eventLoop)
+    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
+        self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新水印
     ///
     /// 更新水印。
     @inlinable
-    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
-        try await self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), logger: logger, on: eventLoop)
+    public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
+        try await self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 }

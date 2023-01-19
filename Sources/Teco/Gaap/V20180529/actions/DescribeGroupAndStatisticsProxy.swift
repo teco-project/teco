@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
     @inlinable
-    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAndStatisticsProxyResponse> {
-        self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAndStatisticsProxyResponse> {
+        self.client.execute(action: "DescribeGroupAndStatisticsProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询统计通道组和通道信息
     ///
     /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
     @inlinable
-    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
-        try await self.client.execute(action: "DescribeGroupAndStatisticsProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupAndStatisticsProxy(_ input: DescribeGroupAndStatisticsProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
+        try await self.client.execute(action: "DescribeGroupAndStatisticsProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询统计通道组和通道信息
     ///
     /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
     @inlinable
-    public func describeGroupAndStatisticsProxy(projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAndStatisticsProxyResponse> {
-        self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func describeGroupAndStatisticsProxy(projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAndStatisticsProxyResponse> {
+        self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询统计通道组和通道信息
     ///
     /// 该接口为内部接口，用于查询可以获取统计数据的通道组和通道信息
     @inlinable
-    public func describeGroupAndStatisticsProxy(projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
-        try await self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func describeGroupAndStatisticsProxy(projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAndStatisticsProxyResponse {
+        try await self.describeGroupAndStatisticsProxy(DescribeGroupAndStatisticsProxyRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

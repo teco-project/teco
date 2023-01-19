@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcss {
 
     /// 隔离容器网络状态
     @inlinable
-    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
-        self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
+        self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离容器网络状态
     @inlinable
-    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
-        try await self.client.execute(action: "ModifyContainerNetStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
+        try await self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离容器网络状态
     @inlinable
-    public func modifyContainerNetStatus(containerID: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
-        self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), logger: logger, on: eventLoop)
+    public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
+        self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离容器网络状态
     @inlinable
-    public func modifyContainerNetStatus(containerID: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
-        try await self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), logger: logger, on: eventLoop)
+    public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
+        try await self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

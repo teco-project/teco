@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdid {
 
     /// 凭证模版列表
     @inlinable
-    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
-        self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCptList(_ input: GetCptListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
+        self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版列表
     @inlinable
-    public func getCptList(_ input: GetCptListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        try await self.client.execute(action: "GetCptList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCptList(_ input: GetCptListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
+        try await self.client.execute(action: "GetCptList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证模版列表
     @inlinable
-    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
-        self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), logger: logger, on: eventLoop)
+    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptListResponse> {
+        self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版列表
     @inlinable
-    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
-        try await self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), logger: logger, on: eventLoop)
+    public func getCptList(displayStart: UInt64, displayLength: UInt64, cptType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptListResponse {
+        try await self.getCptList(GetCptListRequest(displayStart: displayStart, displayLength: displayLength, cptType: cptType), region: region, logger: logger, on: eventLoop)
     }
 }

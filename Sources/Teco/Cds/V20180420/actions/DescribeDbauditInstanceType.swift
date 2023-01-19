@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cds {
     ///
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
-    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditInstanceTypeResponse> {
-        self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditInstanceTypeResponse> {
+        self.client.execute(action: "DescribeDbauditInstanceType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品规格信息列表
     ///
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
-    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
-        try await self.client.execute(action: "DescribeDbauditInstanceType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDbauditInstanceType(_ input: DescribeDbauditInstanceTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
+        try await self.client.execute(action: "DescribeDbauditInstanceType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品规格信息列表
     ///
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
-    public func describeDbauditInstanceType(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditInstanceTypeResponse> {
-        self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), logger: logger, on: eventLoop)
+    public func describeDbauditInstanceType(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditInstanceTypeResponse> {
+        self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品规格信息列表
     ///
     /// 本接口 (DescribeDbauditInstanceType) 用于查询可售卖的产品规格列表。
     @inlinable
-    public func describeDbauditInstanceType(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
-        try await self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), logger: logger, on: eventLoop)
+    public func describeDbauditInstanceType(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditInstanceTypeResponse {
+        try await self.describeDbauditInstanceType(DescribeDbauditInstanceTypeRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

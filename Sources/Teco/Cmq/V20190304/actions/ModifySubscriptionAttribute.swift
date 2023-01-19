@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Cmq {
 
     /// 修改订阅属性
     @inlinable
-    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionAttributeResponse> {
-        self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionAttributeResponse> {
+        self.client.execute(action: "ModifySubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅属性
     @inlinable
-    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
-        try await self.client.execute(action: "ModifySubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubscriptionAttribute(_ input: ModifySubscriptionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
+        try await self.client.execute(action: "ModifySubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改订阅属性
     @inlinable
-    public func modifySubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionAttributeResponse> {
-        self.modifySubscriptionAttribute(ModifySubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    public func modifySubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionAttributeResponse> {
+        self.modifySubscriptionAttribute(ModifySubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅属性
     @inlinable
-    public func modifySubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
-        try await self.modifySubscriptionAttribute(ModifySubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    public func modifySubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionAttributeResponse {
+        try await self.modifySubscriptionAttribute(ModifySubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 }

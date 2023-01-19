@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Clb {
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
-        self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
+        self.client.execute(action: "DeregisterTargetGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑目标组服务器
@@ -58,8 +58,8 @@ extension Clb {
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
-        try await self.client.execute(action: "DeregisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deregisterTargetGroupInstances(_ input: DeregisterTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
+        try await self.client.execute(action: "DeregisterTargetGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑目标组服务器
@@ -67,8 +67,8 @@ extension Clb {
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
-        self.deregisterTargetGroupInstances(DeregisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
+    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetGroupInstancesResponse> {
+        self.deregisterTargetGroupInstances(DeregisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑目标组服务器
@@ -76,7 +76,7 @@ extension Clb {
     /// 从目标组中解绑服务器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
-        try await self.deregisterTargetGroupInstances(DeregisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
+    public func deregisterTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetGroupInstancesResponse {
+        try await self.deregisterTargetGroupInstances(DeregisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Dayu {
     ///
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
-    public func describeDDoSUsedStatis(_ input: DescribeDDoSUsedStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSUsedStatisResponse> {
-        self.client.execute(action: "DescribeDDoSUsedStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSUsedStatis(_ input: DescribeDDoSUsedStatisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSUsedStatisResponse> {
+        self.client.execute(action: "DescribeDDoSUsedStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护使用统计
     ///
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
-    public func describeDDoSUsedStatis(_ input: DescribeDDoSUsedStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
-        try await self.client.execute(action: "DescribeDDoSUsedStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSUsedStatis(_ input: DescribeDDoSUsedStatisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
+        try await self.client.execute(action: "DescribeDDoSUsedStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护使用统计
     ///
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
-    public func describeDDoSUsedStatis(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSUsedStatisResponse> {
-        self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), logger: logger, on: eventLoop)
+    public func describeDDoSUsedStatis(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSUsedStatisResponse> {
+        self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护使用统计
     ///
     /// 统计用户的高防资源的使用天数和DDoS攻击防护次数
     @inlinable
-    public func describeDDoSUsedStatis(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
-        try await self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), logger: logger, on: eventLoop)
+    public func describeDDoSUsedStatis(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSUsedStatisResponse {
+        try await self.describeDDoSUsedStatis(DescribeDDoSUsedStatisRequest(business: business), region: region, logger: logger, on: eventLoop)
     }
 }

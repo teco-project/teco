@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension Essbasic {
     /// 此接口（SyncProxyOrganizationOperators）用于同步渠道子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于渠道平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
-    public func syncProxyOrganizationOperators(_ input: SyncProxyOrganizationOperatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
-        self.client.execute(action: "SyncProxyOrganizationOperators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncProxyOrganizationOperators(_ input: SyncProxyOrganizationOperatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
+        self.client.execute(action: "SyncProxyOrganizationOperators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步企业经办人列表
@@ -80,8 +80,8 @@ extension Essbasic {
     /// 此接口（SyncProxyOrganizationOperators）用于同步渠道子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于渠道平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
-    public func syncProxyOrganizationOperators(_ input: SyncProxyOrganizationOperatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
-        try await self.client.execute(action: "SyncProxyOrganizationOperators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncProxyOrganizationOperators(_ input: SyncProxyOrganizationOperatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
+        try await self.client.execute(action: "SyncProxyOrganizationOperators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步企业经办人列表
@@ -89,8 +89,8 @@ extension Essbasic {
     /// 此接口（SyncProxyOrganizationOperators）用于同步渠道子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于渠道平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
-    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
-        self.syncProxyOrganizationOperators(SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), logger: logger, on: eventLoop)
+    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncProxyOrganizationOperatorsResponse> {
+        self.syncProxyOrganizationOperators(SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步企业经办人列表
@@ -98,7 +98,7 @@ extension Essbasic {
     /// 此接口（SyncProxyOrganizationOperators）用于同步渠道子客企业经办人列表，主要是同步经办人的离职状态。子客Web控制台的组织架构管理，是依赖于渠道平台的，无法针对员工做新增/更新/离职等操作。
     /// 若经办人信息有误，或者需要修改，也可以先将之前的经办人做离职操作，然后重新使用控制台链接CreateConsoleLoginUrl让经办人重新实名。
     @inlinable
-    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
-        try await self.syncProxyOrganizationOperators(SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), logger: logger, on: eventLoop)
+    public func syncProxyOrganizationOperators(agent: Agent, operatorType: String, proxyOrganizationOperators: [ProxyOrganizationOperator], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncProxyOrganizationOperatorsResponse {
+        try await self.syncProxyOrganizationOperators(SyncProxyOrganizationOperatorsRequest(agent: agent, operatorType: operatorType, proxyOrganizationOperators: proxyOrganizationOperators, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

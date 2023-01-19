@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Cwp {
 
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
-        self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClientException(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
+        self.client.execute(action: "DescribeClientException", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(_ input: DescribeClientExceptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
-        try await self.client.execute(action: "DescribeClientException", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClientException(_ input: DescribeClientExceptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
+        try await self.client.execute(action: "DescribeClientException", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
-        self.describeClientException(DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientExceptionResponse> {
+        self.describeClientException(DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取客户端异常事件
     @inlinable
-    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
-        try await self.describeClientException(DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeClientException(exceptionType: Int64, offset: UInt64, limit: UInt64, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientExceptionResponse {
+        try await self.describeClientException(DescribeClientExceptionRequest(exceptionType: exceptionType, offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

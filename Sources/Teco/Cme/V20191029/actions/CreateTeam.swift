@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cme {
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
-        self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTeam(_ input: CreateTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
+        self.client.execute(action: "CreateTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建团队
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(_ input: CreateTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
-        try await self.client.execute(action: "CreateTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTeam(_ input: CreateTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
+        try await self.client.execute(action: "CreateTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建团队
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
-        self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), logger: logger, on: eventLoop)
+    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
+        self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建团队
     ///
     /// 创建一个团队。
     @inlinable
-    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
-        try await self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), logger: logger, on: eventLoop)
+    public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
+        try await self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), region: region, logger: logger, on: eventLoop)
     }
 }

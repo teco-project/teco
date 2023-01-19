@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Iai {
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
     @inlinable
-    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
+        self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级
@@ -64,8 +64,8 @@ extension Iai {
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
     @inlinable
-    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "UpgradeGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeGroupFaceModelVersion(_ input: UpgradeGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
+        try await self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人员库升级
@@ -74,8 +74,8 @@ extension Iai {
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
     @inlinable
-    public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
+        self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级
@@ -84,7 +84,7 @@ extension Iai {
     /// 单个人员库有且仅支持一次回滚操作。
     /// 注：此处QPS限制为10。
     @inlinable
-    public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
+        try await self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

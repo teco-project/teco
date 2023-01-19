@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Mariadb {
     ///
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
-    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDBInstanceResponse> {
-        self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDBInstanceResponse> {
+        self.client.execute(action: "DestroyHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量计费实例
     ///
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
-    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
-        try await self.client.execute(action: "DestroyHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyHourDBInstance(_ input: DestroyHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
+        try await self.client.execute(action: "DestroyHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁按量计费实例
     ///
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
-    public func destroyHourDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDBInstanceResponse> {
-        self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyHourDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyHourDBInstanceResponse> {
+        self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量计费实例
     ///
     /// 本接口（DestroyHourDBInstance）用于销毁按量计费实例。
     @inlinable
-    public func destroyHourDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
-        try await self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyHourDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyHourDBInstanceResponse {
+        try await self.destroyHourDBInstance(DestroyHourDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

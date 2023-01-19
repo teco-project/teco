@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
-    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunMigrationResponse> {
-        self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runMigration(_ input: RunMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunMigrationResponse> {
+        self.client.execute(action: "RunMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
-    public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
-        try await self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runMigration(_ input: RunMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
+        try await self.client.execute(action: "RunMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
-    public func runMigration(migrateId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunMigrationResponse> {
-        self.runMigration(RunMigrationRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func runMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunMigrationResponse> {
+        self.runMigration(RunMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
     @inlinable
-    public func runMigration(migrateId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
-        try await self.runMigration(RunMigrationRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func runMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
+        try await self.runMigration(RunMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

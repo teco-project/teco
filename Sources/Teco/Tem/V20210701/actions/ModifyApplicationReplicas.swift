@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 修改应用实例数量
     @inlinable
-    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationReplicasResponse> {
-        self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationReplicasResponse> {
+        self.client.execute(action: "ModifyApplicationReplicas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用实例数量
     @inlinable
-    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
-        try await self.client.execute(action: "ModifyApplicationReplicas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationReplicas(_ input: ModifyApplicationReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
+        try await self.client.execute(action: "ModifyApplicationReplicas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用实例数量
     @inlinable
-    public func modifyApplicationReplicas(applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationReplicasResponse> {
-        self.modifyApplicationReplicas(ModifyApplicationReplicasRequest(applicationId: applicationId, environmentId: environmentId, replicas: replicas, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyApplicationReplicas(applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationReplicasResponse> {
+        self.modifyApplicationReplicas(ModifyApplicationReplicasRequest(applicationId: applicationId, environmentId: environmentId, replicas: replicas, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用实例数量
     @inlinable
-    public func modifyApplicationReplicas(applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
-        try await self.modifyApplicationReplicas(ModifyApplicationReplicasRequest(applicationId: applicationId, environmentId: environmentId, replicas: replicas, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyApplicationReplicas(applicationId: String, environmentId: String, replicas: Int64, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationReplicasResponse {
+        try await self.modifyApplicationReplicas(ModifyApplicationReplicasRequest(applicationId: applicationId, environmentId: environmentId, replicas: replicas, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

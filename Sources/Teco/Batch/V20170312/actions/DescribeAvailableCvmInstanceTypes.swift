@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Batch {
     ///
     /// 查看可用的CVM机型配置信息
     @inlinable
-    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableCvmInstanceTypesResponse> {
-        self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableCvmInstanceTypesResponse> {
+        self.client.execute(action: "DescribeAvailableCvmInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取批量计算可用的CVM机型配置信息
     ///
     /// 查看可用的CVM机型配置信息
     @inlinable
-    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableCvmInstanceTypes(_ input: DescribeAvailableCvmInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
+        try await self.client.execute(action: "DescribeAvailableCvmInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取批量计算可用的CVM机型配置信息
     ///
     /// 查看可用的CVM机型配置信息
     @inlinable
-    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableCvmInstanceTypesResponse> {
-        self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableCvmInstanceTypesResponse> {
+        self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取批量计算可用的CVM机型配置信息
     ///
     /// 查看可用的CVM机型配置信息
     @inlinable
-    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
-        try await self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAvailableCvmInstanceTypes(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableCvmInstanceTypesResponse {
+        try await self.describeAvailableCvmInstanceTypes(DescribeAvailableCvmInstanceTypesRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

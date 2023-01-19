@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cdb {
     ///
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable
-    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopDBImportJobResponse> {
-        self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopDBImportJob(_ input: StopDBImportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopDBImportJobResponse> {
+        self.client.execute(action: "StopDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止数据导入任务
     ///
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable
-    public func stopDBImportJob(_ input: StopDBImportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
-        try await self.client.execute(action: "StopDBImportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopDBImportJob(_ input: StopDBImportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
+        try await self.client.execute(action: "StopDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终止数据导入任务
     ///
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable
-    public func stopDBImportJob(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopDBImportJobResponse> {
-        self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    public func stopDBImportJob(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopDBImportJobResponse> {
+        self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止数据导入任务
     ///
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable
-    public func stopDBImportJob(asyncRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
-        try await self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), logger: logger, on: eventLoop)
+    public func stopDBImportJob(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
+        try await self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
     }
 }

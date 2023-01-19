@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mongodb {
     ///
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
-    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignProjectResponse> {
-        self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func assignProject(_ input: AssignProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignProjectResponse> {
+        self.client.execute(action: "AssignProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定云数据库实例的所属项目
     ///
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
-    public func assignProject(_ input: AssignProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
-        try await self.client.execute(action: "AssignProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func assignProject(_ input: AssignProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
+        try await self.client.execute(action: "AssignProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 指定云数据库实例的所属项目
     ///
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
-    public func assignProject(instanceIds: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignProjectResponse> {
-        self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    public func assignProject(instanceIds: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignProjectResponse> {
+        self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 指定云数据库实例的所属项目
     ///
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
-    public func assignProject(instanceIds: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
-        try await self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
+    public func assignProject(instanceIds: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
+        try await self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

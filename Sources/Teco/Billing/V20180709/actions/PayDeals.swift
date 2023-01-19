@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Billing {
 
     /// 支付订单
     @inlinable
-    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayDealsResponse> {
-        self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func payDeals(_ input: PayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayDealsResponse> {
+        self.client.execute(action: "PayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 支付订单
     @inlinable
-    public func payDeals(_ input: PayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
-        try await self.client.execute(action: "PayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func payDeals(_ input: PayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
+        try await self.client.execute(action: "PayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 支付订单
     @inlinable
-    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayDealsResponse> {
-        self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), logger: logger, on: eventLoop)
+    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayDealsResponse> {
+        self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 支付订单
     @inlinable
-    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
-        try await self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), logger: logger, on: eventLoop)
+    public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
+        try await self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
     }
 }

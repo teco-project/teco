@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Drm {
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
     @inlinable
-    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
-        self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
+        self.client.execute(action: "DeleteFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Fairplay方案的私钥、ask
@@ -61,8 +61,8 @@ extension Drm {
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
     @inlinable
-    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
-        try await self.client.execute(action: "DeleteFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
+        try await self.client.execute(action: "DeleteFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Fairplay方案的私钥、ask
@@ -71,8 +71,8 @@ extension Drm {
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
     @inlinable
-    public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
-        self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
+        self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Fairplay方案的私钥、ask
@@ -81,7 +81,7 @@ extension Drm {
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
     @inlinable
-    public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
-        try await self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
+        try await self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }
 }

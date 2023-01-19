@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Cpdp {
 
     /// 灵云-单笔转账结果查询
     @inlinable
-    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySinglePaymentResultResponse> {
-        self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySinglePaymentResultResponse> {
+        self.client.execute(action: "QuerySinglePaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-单笔转账结果查询
     @inlinable
-    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
-        try await self.client.execute(action: "QuerySinglePaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func querySinglePaymentResult(_ input: QuerySinglePaymentResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
+        try await self.client.execute(action: "QuerySinglePaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-单笔转账结果查询
     @inlinable
-    public func querySinglePaymentResult(transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySinglePaymentResultResponse> {
-        self.querySinglePaymentResult(QuerySinglePaymentResultRequest(transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId), logger: logger, on: eventLoop)
+    public func querySinglePaymentResult(transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySinglePaymentResultResponse> {
+        self.querySinglePaymentResult(QuerySinglePaymentResultRequest(transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-单笔转账结果查询
     @inlinable
-    public func querySinglePaymentResult(transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
-        try await self.querySinglePaymentResult(QuerySinglePaymentResultRequest(transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId), logger: logger, on: eventLoop)
+    public func querySinglePaymentResult(transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySinglePaymentResultResponse {
+        try await self.querySinglePaymentResult(QuerySinglePaymentResultRequest(transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

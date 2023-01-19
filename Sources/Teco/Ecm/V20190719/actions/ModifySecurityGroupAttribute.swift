@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Ecm {
 
     /// 修改安全组属性
     @inlinable
-    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
-        self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
+        self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组属性
     @inlinable
-    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
-        try await self.client.execute(action: "ModifySecurityGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
+        try await self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全组属性
     @inlinable
-    public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
-        self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), logger: logger, on: eventLoop)
+    public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
+        self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组属性
     @inlinable
-    public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
-        try await self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), logger: logger, on: eventLoop)
+    public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
+        try await self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }
 }

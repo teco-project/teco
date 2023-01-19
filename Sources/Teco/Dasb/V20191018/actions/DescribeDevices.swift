@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,25 +104,25 @@ extension Dasb {
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevices(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
+        self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevices(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.describeDevices(DescribeDevicesRequest(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
+        self.describeDevices(DescribeDevicesRequest(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产列表
     @inlinable
-    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.describeDevices(DescribeDevicesRequest(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeDevices(idSet: [UInt64]? = nil, name: String? = nil, ip: String? = nil, apCodeSet: [String]? = nil, kind: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, authorizedUserIdSet: [UInt64]? = nil, resourceIdSet: [String]? = nil, kindSet: [UInt64]? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.describeDevices(DescribeDevicesRequest(idSet: idSet, name: name, ip: ip, apCodeSet: apCodeSet, kind: kind, offset: offset, limit: limit, authorizedUserIdSet: authorizedUserIdSet, resourceIdSet: resourceIdSet, kindSet: kindSet, departmentId: departmentId, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 }

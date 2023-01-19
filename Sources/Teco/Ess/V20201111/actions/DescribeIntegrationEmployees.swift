@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Ess {
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
-        self.client.execute(action: "DescribeIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
+        self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
-        try await self.client.execute(action: "DescribeIntegrationEmployees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIntegrationEmployees(_ input: DescribeIntegrationEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
+        try await self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
-        self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), logger: logger, on: eventLoop)
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
+        self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询员工信息
     ///
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
-    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
-        try await self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), logger: logger, on: eventLoop)
+    public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
+        try await self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

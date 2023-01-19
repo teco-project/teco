@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Es {
 
     /// 删除索引
     @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
-        self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
+        self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除索引
     @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除索引
     @inlinable
-    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
-        self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), logger: logger, on: eventLoop)
+    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
+        self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除索引
     @inlinable
-    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        try await self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), logger: logger, on: eventLoop)
+    public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }
 }

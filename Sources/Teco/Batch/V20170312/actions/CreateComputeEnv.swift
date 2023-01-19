@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Batch {
     ///
     /// 用于创建计算环境
     @inlinable
-    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComputeEnvResponse> {
-        self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createComputeEnv(_ input: CreateComputeEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComputeEnvResponse> {
+        self.client.execute(action: "CreateComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建计算环境
     ///
     /// 用于创建计算环境
     @inlinable
-    public func createComputeEnv(_ input: CreateComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
-        try await self.client.execute(action: "CreateComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createComputeEnv(_ input: CreateComputeEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
+        try await self.client.execute(action: "CreateComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建计算环境
     ///
     /// 用于创建计算环境
     @inlinable
-    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComputeEnvResponse> {
-        self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), logger: logger, on: eventLoop)
+    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComputeEnvResponse> {
+        self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建计算环境
     ///
     /// 用于创建计算环境
     @inlinable
-    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
-        try await self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), logger: logger, on: eventLoop)
+    public func createComputeEnv(computeEnv: NamedComputeEnv, placement: Placement, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComputeEnvResponse {
+        try await self.createComputeEnv(CreateComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

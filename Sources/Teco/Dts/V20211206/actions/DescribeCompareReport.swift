@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Dts {
 
     /// 查询一致性校验任务详情
     @inlinable
-    public func describeCompareReport(_ input: DescribeCompareReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareReportResponse> {
-        self.client.execute(action: "DescribeCompareReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCompareReport(_ input: DescribeCompareReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareReportResponse> {
+        self.client.execute(action: "DescribeCompareReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务详情
     @inlinable
-    public func describeCompareReport(_ input: DescribeCompareReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareReportResponse {
-        try await self.client.execute(action: "DescribeCompareReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCompareReport(_ input: DescribeCompareReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareReportResponse {
+        try await self.client.execute(action: "DescribeCompareReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询一致性校验任务详情
     @inlinable
-    public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareReportResponse> {
-        self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), logger: logger, on: eventLoop)
+    public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareReportResponse> {
+        self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务详情
     @inlinable
-    public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareReportResponse {
-        try await self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), logger: logger, on: eventLoop)
+    public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareReportResponse {
+        try await self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), region: region, logger: logger, on: eventLoop)
     }
 }

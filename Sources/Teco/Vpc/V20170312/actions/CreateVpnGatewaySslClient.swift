@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Vpc {
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
-        self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
+        self.client.execute(action: "CreateVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
-        try await self.client.execute(action: "CreateVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVpnGatewaySslClient(_ input: CreateVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
+        try await self.client.execute(action: "CreateVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
-        self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), logger: logger, on: eventLoop)
+    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
+        self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
-    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
-        try await self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), logger: logger, on: eventLoop)
+    public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
+        try await self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
     }
 }

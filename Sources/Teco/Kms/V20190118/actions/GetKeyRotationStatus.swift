@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Kms {
     ///
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
-    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetKeyRotationStatusResponse> {
-        self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetKeyRotationStatusResponse> {
+        self.client.execute(action: "GetKeyRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询密钥轮换状态
     ///
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
-    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
-        try await self.client.execute(action: "GetKeyRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getKeyRotationStatus(_ input: GetKeyRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
+        try await self.client.execute(action: "GetKeyRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询密钥轮换状态
     ///
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
-    public func getKeyRotationStatus(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetKeyRotationStatusResponse> {
-        self.getKeyRotationStatus(GetKeyRotationStatusRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func getKeyRotationStatus(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetKeyRotationStatusResponse> {
+        self.getKeyRotationStatus(GetKeyRotationStatusRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询密钥轮换状态
     ///
     /// 查询指定的CMK是否开启了密钥轮换功能。
     @inlinable
-    public func getKeyRotationStatus(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
-        try await self.getKeyRotationStatus(GetKeyRotationStatusRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func getKeyRotationStatus(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetKeyRotationStatusResponse {
+        try await self.getKeyRotationStatus(GetKeyRotationStatusRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

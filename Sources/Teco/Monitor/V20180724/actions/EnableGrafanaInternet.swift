@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 设置 Grafana 公网访问
     @inlinable
-    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaInternetResponse> {
-        self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaInternetResponse> {
+        self.client.execute(action: "EnableGrafanaInternet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置 Grafana 公网访问
     @inlinable
-    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
-        try await self.client.execute(action: "EnableGrafanaInternet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableGrafanaInternet(_ input: EnableGrafanaInternetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
+        try await self.client.execute(action: "EnableGrafanaInternet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置 Grafana 公网访问
     @inlinable
-    public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaInternetResponse> {
-        self.enableGrafanaInternet(EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet), logger: logger, on: eventLoop)
+    public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaInternetResponse> {
+        self.enableGrafanaInternet(EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置 Grafana 公网访问
     @inlinable
-    public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
-        try await self.enableGrafanaInternet(EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet), logger: logger, on: eventLoop)
+    public func enableGrafanaInternet(instanceID: String, enableInternet: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaInternetResponse {
+        try await self.enableGrafanaInternet(EnableGrafanaInternetRequest(instanceID: instanceID, enableInternet: enableInternet), region: region, logger: logger, on: eventLoop)
     }
 }

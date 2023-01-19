@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,31 +115,31 @@ extension Vod {
     ///
     /// 修改用户自定义采样截图模板。
     @inlinable
-    public func modifySampleSnapshotTemplate(_ input: ModifySampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySampleSnapshotTemplateResponse> {
-        self.client.execute(action: "ModifySampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySampleSnapshotTemplate(_ input: ModifySampleSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySampleSnapshotTemplateResponse> {
+        self.client.execute(action: "ModifySampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改采样截图模板
     ///
     /// 修改用户自定义采样截图模板。
     @inlinable
-    public func modifySampleSnapshotTemplate(_ input: ModifySampleSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySampleSnapshotTemplateResponse {
-        try await self.client.execute(action: "ModifySampleSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySampleSnapshotTemplate(_ input: ModifySampleSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySampleSnapshotTemplateResponse {
+        try await self.client.execute(action: "ModifySampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改采样截图模板
     ///
     /// 修改用户自定义采样截图模板。
     @inlinable
-    public func modifySampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySampleSnapshotTemplateResponse> {
-        self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifySampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySampleSnapshotTemplateResponse> {
+        self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改采样截图模板
     ///
     /// 修改用户自定义采样截图模板。
     @inlinable
-    public func modifySampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySampleSnapshotTemplateResponse {
-        try await self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifySampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySampleSnapshotTemplateResponse {
+        try await self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

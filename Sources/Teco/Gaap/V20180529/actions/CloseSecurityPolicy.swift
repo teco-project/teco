@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Gaap {
 
     /// 关闭安全策略
     @inlinable
-    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSecurityPolicyResponse> {
-        self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSecurityPolicyResponse> {
+        self.client.execute(action: "CloseSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭安全策略
     @inlinable
-    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
-        try await self.client.execute(action: "CloseSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeSecurityPolicy(_ input: CloseSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
+        try await self.client.execute(action: "CloseSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭安全策略
     @inlinable
-    public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSecurityPolicyResponse> {
-        self.closeSecurityPolicy(CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), logger: logger, on: eventLoop)
+    public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSecurityPolicyResponse> {
+        self.closeSecurityPolicy(CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭安全策略
     @inlinable
-    public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
-        try await self.closeSecurityPolicy(CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), logger: logger, on: eventLoop)
+    public func closeSecurityPolicy(proxyId: String? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSecurityPolicyResponse {
+        try await self.closeSecurityPolicy(CloseSecurityPolicyRequest(proxyId: proxyId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

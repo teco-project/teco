@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,8 +95,8 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
-    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
-        self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsage(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
+        self.client.execute(action: "DescribeUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道用量查询
@@ -104,8 +104,8 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
-    public func describeUsage(_ input: DescribeUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
-        try await self.client.execute(action: "DescribeUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsage(_ input: DescribeUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
+        try await self.client.execute(action: "DescribeUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 渠道用量查询
@@ -113,8 +113,8 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
-    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
-        self.describeUsage(DescribeUsageRequest(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsageResponse> {
+        self.describeUsage(DescribeUsageRequest(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道用量查询
@@ -122,7 +122,7 @@ extension Essbasic {
     /// 此接口（DescribeUsage）用于获取渠道所有合作企业流量消耗情况。
     ///  注: 此接口每日限频2次，若要扩大限制次数,请提前与客服经理或邮件至e-contract@tencent.com进行联系。
     @inlinable
-    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
-        try await self.describeUsage(DescribeUsageRequest(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeUsage(agent: Agent, startDate: Date, endDate: Date, needAggregate: Bool? = nil, limit: UInt64? = nil, offset: UInt64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsageResponse {
+        try await self.describeUsage(DescribeUsageRequest(agent: agent, startDate: startDate, endDate: endDate, needAggregate: needAggregate, limit: limit, offset: offset, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

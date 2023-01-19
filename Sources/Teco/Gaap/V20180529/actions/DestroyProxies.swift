@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Gaap {
     ///
     /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
     @inlinable
-    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyProxiesResponse> {
-        self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyProxies(_ input: DestroyProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyProxiesResponse> {
+        self.client.execute(action: "DestroyProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁通道
     ///
     /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
     @inlinable
-    public func destroyProxies(_ input: DestroyProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
-        try await self.client.execute(action: "DestroyProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyProxies(_ input: DestroyProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
+        try await self.client.execute(action: "DestroyProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁通道
     ///
     /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
     @inlinable
-    public func destroyProxies(force: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyProxiesResponse> {
-        self.destroyProxies(DestroyProxiesRequest(force: force, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func destroyProxies(force: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyProxiesResponse> {
+        self.destroyProxies(DestroyProxiesRequest(force: force, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁通道
     ///
     /// 本接口（DestroyProxies）用于销毁。通道销毁后，不再产生任何费用。
     @inlinable
-    public func destroyProxies(force: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
-        try await self.destroyProxies(DestroyProxiesRequest(force: force, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func destroyProxies(force: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyProxiesResponse {
+        try await self.destroyProxies(DestroyProxiesRequest(force: force, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

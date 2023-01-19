@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotvideo {
 
     /// 发起AI推理请求
     @inlinable
-    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIDetectionResponse> {
-        self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAIDetection(_ input: CreateAIDetectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIDetectionResponse> {
+        self.client.execute(action: "CreateAIDetection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起AI推理请求
     @inlinable
-    public func createAIDetection(_ input: CreateAIDetectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
-        try await self.client.execute(action: "CreateAIDetection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAIDetection(_ input: CreateAIDetectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
+        try await self.client.execute(action: "CreateAIDetection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起AI推理请求
     @inlinable
-    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIDetectionResponse> {
-        self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIDetectionResponse> {
+        self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起AI推理请求
     @inlinable
-    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
-        try await self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func createAIDetection(productId: String, deviceName: String, modelId: String, startTime: UInt64, endTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIDetectionResponse {
+        try await self.createAIDetection(CreateAIDetectionRequest(productId: productId, deviceName: deviceName, modelId: modelId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

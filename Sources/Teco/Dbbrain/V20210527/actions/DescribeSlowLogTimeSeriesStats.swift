@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Dbbrain {
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
-        self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
+        self.client.execute(action: "DescribeSlowLogTimeSeriesStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
-        try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSlowLogTimeSeriesStats(_ input: DescribeSlowLogTimeSeriesStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
+        try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
-        self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), logger: logger, on: eventLoop)
+    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
+        self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志统计柱状图
     ///
     /// 获取慢日志统计柱状图。
     @inlinable
-    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
-        try await self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), logger: logger, on: eventLoop)
+    public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
+        try await self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

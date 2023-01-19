@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Apigateway {
     ///
     /// 绑定插件到API上。
     @inlinable
-    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachPluginResponse> {
-        self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachPlugin(_ input: AttachPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachPluginResponse> {
+        self.client.execute(action: "AttachPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 插件绑定API
     ///
     /// 绑定插件到API上。
     @inlinable
-    public func attachPlugin(_ input: AttachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
-        try await self.client.execute(action: "AttachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachPlugin(_ input: AttachPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
+        try await self.client.execute(action: "AttachPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 插件绑定API
     ///
     /// 绑定插件到API上。
     @inlinable
-    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachPluginResponse> {
-        self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachPluginResponse> {
+        self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 插件绑定API
     ///
     /// 绑定插件到API上。
     @inlinable
-    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
-        try await self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func attachPlugin(pluginId: String, serviceId: String, environmentName: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachPluginResponse {
+        try await self.attachPlugin(AttachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

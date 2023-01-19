@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
     @inlinable
-    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlanByIdResponse> {
-        self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlanByIdResponse> {
+        self.client.execute(action: "DescribeRecordingPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取录制计划
     ///
     /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
     @inlinable
-    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
-        try await self.client.execute(action: "DescribeRecordingPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordingPlanById(_ input: DescribeRecordingPlanByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
+        try await self.client.execute(action: "DescribeRecordingPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取录制计划
     ///
     /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
     @inlinable
-    public func describeRecordingPlanById(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlanByIdResponse> {
-        self.describeRecordingPlanById(DescribeRecordingPlanByIdRequest(planId: planId), logger: logger, on: eventLoop)
+    public func describeRecordingPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlanByIdResponse> {
+        self.describeRecordingPlanById(DescribeRecordingPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取录制计划
     ///
     /// 本接口(DescribeRecordingPlanById)用于根据录制计划ID获取录制计划。
     @inlinable
-    public func describeRecordingPlanById(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
-        try await self.describeRecordingPlanById(DescribeRecordingPlanByIdRequest(planId: planId), logger: logger, on: eventLoop)
+    public func describeRecordingPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlanByIdResponse {
+        try await self.describeRecordingPlanById(DescribeRecordingPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

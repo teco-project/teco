@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -138,25 +138,25 @@ extension Billing {
 
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
-        self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBillDetail(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
+        self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(_ input: DescribeBillDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
-        try await self.client.execute(action: "DescribeBillDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBillDetail(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
+        try await self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
-        self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), logger: logger, on: eventLoop)
+    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
+        self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
-        try await self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), logger: logger, on: eventLoop)
+    public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
+        try await self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
     }
 }

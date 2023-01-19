@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Taf {
 
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
-        self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
+        self.client.execute(action: "RecognizePreciseTargetAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
-        try await self.client.execute(action: "RecognizePreciseTargetAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizePreciseTargetAudience(_ input: RecognizePreciseTargetAudienceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
+        try await self.client.execute(action: "RecognizePreciseTargetAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
-        self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePreciseTargetAudienceResponse> {
+        self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流量反欺诈-流量验准高级版
     @inlinable
-    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
-        try await self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    public func recognizePreciseTargetAudience(bspData: InputRecognizeTargetAudience, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePreciseTargetAudienceResponse {
+        try await self.recognizePreciseTargetAudience(RecognizePreciseTargetAudienceRequest(bspData: bspData), region: region, logger: logger, on: eventLoop)
     }
 }

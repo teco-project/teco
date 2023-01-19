@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Teo {
     ///
     /// 创建自定义拦截页面。
     @inlinable
-    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityDropPageResponse> {
-        self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityDropPageResponse> {
+        self.client.execute(action: "CreateSecurityDropPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义拦截页面
     ///
     /// 创建自定义拦截页面。
     @inlinable
-    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
-        try await self.client.execute(action: "CreateSecurityDropPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityDropPage(_ input: CreateSecurityDropPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
+        try await self.client.execute(action: "CreateSecurityDropPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义拦截页面
     ///
     /// 创建自定义拦截页面。
     @inlinable
-    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityDropPageResponse> {
-        self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), logger: logger, on: eventLoop)
+    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityDropPageResponse> {
+        self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义拦截页面
     ///
     /// 创建自定义拦截页面。
     @inlinable
-    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
-        try await self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), logger: logger, on: eventLoop)
+    public func createSecurityDropPage(zoneId: String, entity: String, name: String, content: String, type: String, module: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityDropPageResponse {
+        try await self.createSecurityDropPage(CreateSecurityDropPageRequest(zoneId: zoneId, entity: entity, name: name, content: content, type: type, module: module, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

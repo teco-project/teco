@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Dayu {
     ///
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
-    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackIPRegionMapResponse> {
-        self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackIPRegionMapResponse> {
+        self.client.execute(action: "DescribeDDoSAttackIPRegionMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DDoS攻击源IP地域分布图
     ///
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
-    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackIPRegionMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSAttackIPRegionMap(_ input: DescribeDDoSAttackIPRegionMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackIPRegionMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DDoS攻击源IP地域分布图
     ///
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
-    public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackIPRegionMapResponse> {
-        self.describeDDoSAttackIPRegionMap(DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), logger: logger, on: eventLoop)
+    public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackIPRegionMapResponse> {
+        self.describeDDoSAttackIPRegionMap(DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// DDoS攻击源IP地域分布图
     ///
     /// 获取DDoS攻击源IP地域分布图，支持全球攻击分布和国内省份攻击分布；
     @inlinable
-    public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
-        try await self.describeDDoSAttackIPRegionMap(DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), logger: logger, on: eventLoop)
+    public func describeDDoSAttackIPRegionMap(business: String, id: String, startTime: Date, endTime: Date, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackIPRegionMapResponse {
+        try await self.describeDDoSAttackIPRegionMap(DescribeDDoSAttackIPRegionMapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

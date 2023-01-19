@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
-        self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
+        self.client.execute(action: "DescribeAuditLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
-        try await self.client.execute(action: "DescribeAuditLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAuditLogFiles(_ input: DescribeAuditLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
+        try await self.client.execute(action: "DescribeAuditLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
-        self.describeAuditLogFiles(DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), logger: logger, on: eventLoop)
+    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogFilesResponse> {
+        self.describeAuditLogFiles(DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询审计日志文件
     ///
     /// 本接口(DescribeAuditLogFiles)用于查询云数据库实例的审计日志文件。
     @inlinable
-    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
-        try await self.describeAuditLogFiles(DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), logger: logger, on: eventLoop)
+    public func describeAuditLogFiles(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogFilesResponse {
+        try await self.describeAuditLogFiles(DescribeAuditLogFilesRequest(instanceId: instanceId, limit: limit, offset: offset, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 }

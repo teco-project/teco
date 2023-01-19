@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tcss {
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
-        self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
+        self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
-        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCompliancePolicyItemAffectedAssetList(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
+        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
-        self.describeCompliancePolicyItemAffectedAssetList(DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedAssetListResponse> {
+        self.describeCompliancePolicyItemAffectedAssetList(DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询检测项影响的资产列表
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
-        try await self.describeCompliancePolicyItemAffectedAssetList(DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedAssetList(customerPolicyItemId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedAssetListResponse {
+        try await self.describeCompliancePolicyItemAffectedAssetList(DescribeCompliancePolicyItemAffectedAssetListRequest(customerPolicyItemId: customerPolicyItemId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

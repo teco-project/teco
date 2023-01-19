@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Tke {
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
-    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempResponse> {
-        self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempResponse> {
+        self.client.execute(action: "DescribePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取模板列表
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
-    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
-        try await self.client.execute(action: "DescribePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusTemp(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
+        try await self.client.execute(action: "DescribePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取模板列表
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
-    public func describePrometheusTemp(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempResponse> {
-        self.describePrometheusTemp(DescribePrometheusTempRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusTemp(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempResponse> {
+        self.describePrometheusTemp(DescribePrometheusTempRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取模板列表
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
-    public func describePrometheusTemp(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
-        try await self.describePrometheusTemp(DescribePrometheusTempRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusTemp(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempResponse {
+        try await self.describePrometheusTemp(DescribePrometheusTempRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

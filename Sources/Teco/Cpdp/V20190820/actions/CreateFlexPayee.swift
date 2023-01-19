@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,25 +105,25 @@ extension Cpdp {
 
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(_ input: CreateFlexPayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
-        self.client.execute(action: "CreateFlexPayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlexPayee(_ input: CreateFlexPayeeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
+        self.client.execute(action: "CreateFlexPayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(_ input: CreateFlexPayeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
-        try await self.client.execute(action: "CreateFlexPayee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlexPayee(_ input: CreateFlexPayeeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
+        try await self.client.execute(action: "CreateFlexPayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
-        self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), logger: logger, on: eventLoop)
+    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
+        self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户开立
     @inlinable
-    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
-        try await self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), logger: logger, on: eventLoop)
+    public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
+        try await self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

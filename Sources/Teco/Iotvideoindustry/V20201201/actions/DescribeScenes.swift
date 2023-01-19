@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotvideoindustry {
 
     /// 获取场景列表
     @inlinable
-    public func describeScenes(_ input: DescribeScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenesResponse> {
-        self.client.execute(action: "DescribeScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScenes(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenesResponse> {
+        self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取场景列表
     @inlinable
-    public func describeScenes(_ input: DescribeScenesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
-        try await self.client.execute(action: "DescribeScenes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScenes(_ input: DescribeScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
+        try await self.client.execute(action: "DescribeScenes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取场景列表
     @inlinable
-    public func describeScenes(limit: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenesResponse> {
-        self.describeScenes(DescribeScenesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeScenes(limit: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScenesResponse> {
+        self.describeScenes(DescribeScenesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景列表
     @inlinable
-    public func describeScenes(limit: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
-        try await self.describeScenes(DescribeScenesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeScenes(limit: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScenesResponse {
+        try await self.describeScenes(DescribeScenesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

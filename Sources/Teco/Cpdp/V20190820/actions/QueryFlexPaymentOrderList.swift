@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Cpdp {
 
     /// 灵云V2-查询付款订单列表
     @inlinable
-    public func queryFlexPaymentOrderList(_ input: QueryFlexPaymentOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderListResponse> {
-        self.client.execute(action: "QueryFlexPaymentOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderList(_ input: QueryFlexPaymentOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderListResponse> {
+        self.client.execute(action: "QueryFlexPaymentOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询付款订单列表
     @inlinable
-    public func queryFlexPaymentOrderList(_ input: QueryFlexPaymentOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
-        try await self.client.execute(action: "QueryFlexPaymentOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexPaymentOrderList(_ input: QueryFlexPaymentOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
+        try await self.client.execute(action: "QueryFlexPaymentOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-查询付款订单列表
     @inlinable
-    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderListResponse> {
-        self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderListResponse> {
+        self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询付款订单列表
     @inlinable
-    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
-        try await self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderList(startTime: String, endTime: String, pageNumber: Paging, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderListResponse {
+        try await self.queryFlexPaymentOrderList(QueryFlexPaymentOrderListRequest(startTime: startTime, endTime: endTime, pageNumber: pageNumber, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

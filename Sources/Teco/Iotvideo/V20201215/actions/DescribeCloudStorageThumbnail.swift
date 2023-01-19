@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iotvideo {
 
     /// 拉取云存事件缩略图
     @inlinable
-    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageThumbnailResponse> {
-        self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageThumbnailResponse> {
+        self.client.execute(action: "DescribeCloudStorageThumbnail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件缩略图
     @inlinable
-    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
-        try await self.client.execute(action: "DescribeCloudStorageThumbnail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageThumbnail(_ input: DescribeCloudStorageThumbnailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
+        try await self.client.execute(action: "DescribeCloudStorageThumbnail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取云存事件缩略图
     @inlinable
-    public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageThumbnailResponse> {
-        self.describeCloudStorageThumbnail(DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail), logger: logger, on: eventLoop)
+    public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageThumbnailResponse> {
+        self.describeCloudStorageThumbnail(DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件缩略图
     @inlinable
-    public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
-        try await self.describeCloudStorageThumbnail(DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail), logger: logger, on: eventLoop)
+    public func describeCloudStorageThumbnail(productId: String, deviceName: String, thumbnail: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageThumbnailResponse {
+        try await self.describeCloudStorageThumbnail(DescribeCloudStorageThumbnailRequest(productId: productId, deviceName: deviceName, thumbnail: thumbnail), region: region, logger: logger, on: eventLoop)
     }
 }

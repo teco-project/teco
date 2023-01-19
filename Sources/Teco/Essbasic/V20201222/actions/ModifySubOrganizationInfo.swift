@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,8 +112,8 @@ extension Essbasic {
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
-        self.client.execute(action: "ModifySubOrganizationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
+        self.client.execute(action: "ModifySubOrganizationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新子机构信息
@@ -121,8 +121,8 @@ extension Essbasic {
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubOrganizationInfoResponse {
-        try await self.client.execute(action: "ModifySubOrganizationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubOrganizationInfo(_ input: ModifySubOrganizationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubOrganizationInfoResponse {
+        try await self.client.execute(action: "ModifySubOrganizationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新子机构信息
@@ -130,8 +130,8 @@ extension Essbasic {
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
-        self.modifySubOrganizationInfo(ModifySubOrganizationInfoRequest(caller: caller, openId: openId, name: name, organizationType: organizationType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, legalMobile: legalMobile, contactName: contactName, contactAddress: contactAddress, email: email), logger: logger, on: eventLoop)
+    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubOrganizationInfoResponse> {
+        self.modifySubOrganizationInfo(ModifySubOrganizationInfoRequest(caller: caller, openId: openId, name: name, organizationType: organizationType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, legalMobile: legalMobile, contactName: contactName, contactAddress: contactAddress, email: email), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新子机构信息
@@ -139,7 +139,7 @@ extension Essbasic {
     /// 此接口（ModifySubOrganizationInfo）用于更新子机构信息。
     /// 注：若修改子机构名称或更新机构证件照片，需要重新通过子机构实名接口（VerifySubOrganization）进行重新实名。
     @inlinable
-    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubOrganizationInfoResponse {
-        try await self.modifySubOrganizationInfo(ModifySubOrganizationInfoRequest(caller: caller, openId: openId, name: name, organizationType: organizationType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, legalMobile: legalMobile, contactName: contactName, contactAddress: contactAddress, email: email), logger: logger, on: eventLoop)
+    public func modifySubOrganizationInfo(caller: Caller, openId: String? = nil, name: String? = nil, organizationType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalName: String? = nil, legalIdCardType: String? = nil, legalIdCardNumber: String? = nil, legalMobile: String? = nil, contactName: String? = nil, contactAddress: Address? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubOrganizationInfoResponse {
+        try await self.modifySubOrganizationInfo(ModifySubOrganizationInfoRequest(caller: caller, openId: openId, name: name, organizationType: organizationType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, legalMobile: legalMobile, contactName: contactName, contactAddress: contactAddress, email: email), region: region, logger: logger, on: eventLoop)
     }
 }

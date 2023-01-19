@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,31 +50,31 @@ extension Teo {
     ///
     /// 设置站点DNSSEC状态
     @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDnssecResponse> {
-        self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDnssec(_ input: ModifyDnssecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDnssecResponse> {
+        self.client.execute(action: "ModifyDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 DNSSEC 状态
     ///
     /// 设置站点DNSSEC状态
     @inlinable
-    public func modifyDnssec(_ input: ModifyDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
-        try await self.client.execute(action: "ModifyDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDnssec(_ input: ModifyDnssecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
+        try await self.client.execute(action: "ModifyDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改 DNSSEC 状态
     ///
     /// 设置站点DNSSEC状态
     @inlinable
-    public func modifyDnssec(zoneId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDnssecResponse> {
-        self.modifyDnssec(ModifyDnssecRequest(zoneId: zoneId, status: status), logger: logger, on: eventLoop)
+    public func modifyDnssec(zoneId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDnssecResponse> {
+        self.modifyDnssec(ModifyDnssecRequest(zoneId: zoneId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 DNSSEC 状态
     ///
     /// 设置站点DNSSEC状态
     @inlinable
-    public func modifyDnssec(zoneId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
-        try await self.modifyDnssec(ModifyDnssecRequest(zoneId: zoneId, status: status), logger: logger, on: eventLoop)
+    public func modifyDnssec(zoneId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDnssecResponse {
+        try await self.modifyDnssec(ModifyDnssecRequest(zoneId: zoneId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

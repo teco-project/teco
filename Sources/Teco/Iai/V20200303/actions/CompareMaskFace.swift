@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,8 +107,8 @@ extension Iai {
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
-    public func compareMaskFace(_ input: CompareMaskFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
-        self.client.execute(action: "CompareMaskFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func compareMaskFace(_ input: CompareMaskFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
+        self.client.execute(action: "CompareMaskFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 防疫场景人脸比对
@@ -117,8 +117,8 @@ extension Iai {
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
-    public func compareMaskFace(_ input: CompareMaskFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
-        try await self.client.execute(action: "CompareMaskFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func compareMaskFace(_ input: CompareMaskFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
+        try await self.client.execute(action: "CompareMaskFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 防疫场景人脸比对
@@ -127,8 +127,8 @@ extension Iai {
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
-    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
-        self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), logger: logger, on: eventLoop)
+    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
+        self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 防疫场景人脸比对
@@ -137,7 +137,7 @@ extension Iai {
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
-    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
-        try await self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), logger: logger, on: eventLoop)
+    public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
+        try await self.compareMaskFace(CompareMaskFaceRequest(imageA: imageA, imageB: imageB, urlA: urlA, urlB: urlB, faceModelVersion: faceModelVersion, qualityControl: qualityControl), region: region, logger: logger, on: eventLoop)
     }
 }

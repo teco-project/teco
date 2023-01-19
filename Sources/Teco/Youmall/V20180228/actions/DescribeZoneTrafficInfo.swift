@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Youmall {
     ///
     /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeZoneTrafficInfo(_ input: DescribeZoneTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneTrafficInfoResponse> {
-        self.client.execute(action: "DescribeZoneTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneTrafficInfo(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneTrafficInfoResponse> {
+        self.client.execute(action: "DescribeZoneTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区域客流人次及停留时间
     ///
     /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeZoneTrafficInfo(_ input: DescribeZoneTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
-        try await self.client.execute(action: "DescribeZoneTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneTrafficInfo(_ input: DescribeZoneTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
+        try await self.client.execute(action: "DescribeZoneTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取区域客流人次及停留时间
     ///
     /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneTrafficInfoResponse> {
-        self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneTrafficInfoResponse> {
+        self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区域客流人次及停留时间
     ///
     /// 按天提供查询日期范围内，客户指定门店下的所有区域（优Mall部署时已配置区域）的累计客流人次和平均停留时间。支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
-        try await self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeZoneTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneTrafficInfoResponse {
+        try await self.describeZoneTrafficInfo(DescribeZoneTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

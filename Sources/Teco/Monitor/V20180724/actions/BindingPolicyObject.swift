@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Monitor {
     ///
     /// 将告警策略绑定到特定对象
     @inlinable
-    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
-        self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
+        self.client.execute(action: "BindingPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略对象
     ///
     /// 将告警策略绑定到特定对象
     @inlinable
-    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
-        try await self.client.execute(action: "BindingPolicyObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindingPolicyObject(_ input: BindingPolicyObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
+        try await self.client.execute(action: "BindingPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定策略对象
     ///
     /// 将告警策略绑定到特定对象
     @inlinable
-    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
-        self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
+        self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略对象
     ///
     /// 将告警策略绑定到特定对象
     @inlinable
-    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
-        try await self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
+        try await self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 }

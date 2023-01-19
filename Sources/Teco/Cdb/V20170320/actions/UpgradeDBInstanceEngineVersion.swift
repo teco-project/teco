@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cdb {
     ///
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceEngineVersionResponse> {
-        self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceEngineVersionResponse> {
+        self.client.execute(action: "UpgradeDBInstanceEngineVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本
     ///
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
-        try await self.client.execute(action: "UpgradeDBInstanceEngineVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeDBInstanceEngineVersion(_ input: UpgradeDBInstanceEngineVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
+        try await self.client.execute(action: "UpgradeDBInstanceEngineVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级实例版本
     ///
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceEngineVersionResponse> {
-        self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), logger: logger, on: eventLoop)
+    public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceEngineVersionResponse> {
+        self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本
     ///
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
-        try await self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), logger: logger, on: eventLoop)
+    public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
+        try await self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }
 }

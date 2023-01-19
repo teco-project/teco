@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cdb {
     ///
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
-    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
-        self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAccounts(_ input: DeleteAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
+        self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库的账号
     ///
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
-    public func deleteAccounts(_ input: DeleteAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
-        try await self.client.execute(action: "DeleteAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAccounts(_ input: DeleteAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
+        try await self.client.execute(action: "DeleteAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除云数据库的账号
     ///
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
-    public func deleteAccounts(instanceId: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
-        self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func deleteAccounts(instanceId: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountsResponse> {
+        self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库的账号
     ///
     /// 本接口(DeleteAccounts)用于删除云数据库的账户。
     @inlinable
-    public func deleteAccounts(instanceId: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
-        try await self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func deleteAccounts(instanceId: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountsResponse {
+        try await self.deleteAccounts(DeleteAccountsRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Ckafka {
 
     /// 设置Groups 消费分组offset
     @inlinable
-    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupOffsetsResponse> {
-        self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupOffsetsResponse> {
+        self.client.execute(action: "ModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置Groups 消费分组offset
     @inlinable
-    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
-        try await self.client.execute(action: "ModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGroupOffsets(_ input: ModifyGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
+        try await self.client.execute(action: "ModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置Groups 消费分组offset
     @inlinable
-    public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupOffsetsResponse> {
-        self.modifyGroupOffsets(ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), logger: logger, on: eventLoop)
+    public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupOffsetsResponse> {
+        self.modifyGroupOffsets(ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置Groups 消费分组offset
     @inlinable
-    public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
-        try await self.modifyGroupOffsets(ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), logger: logger, on: eventLoop)
+    public func modifyGroupOffsets(instanceId: String, group: String, strategy: Int64, topics: [String]? = nil, shift: Int64? = nil, shiftTimestamp: Int64? = nil, offset: Int64? = nil, partitions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupOffsetsResponse {
+        try await self.modifyGroupOffsets(ModifyGroupOffsetsRequest(instanceId: instanceId, group: group, strategy: strategy, topics: topics, shift: shift, shiftTimestamp: shiftTimestamp, offset: offset, partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 }

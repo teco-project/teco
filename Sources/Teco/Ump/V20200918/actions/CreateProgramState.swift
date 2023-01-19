@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ump {
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(_ input: CreateProgramStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
-        self.client.execute(action: "CreateProgramState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProgramState(_ input: CreateProgramStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
+        self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(_ input: CreateProgramStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
-        try await self.client.execute(action: "CreateProgramState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProgramState(_ input: CreateProgramStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
+        try await self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
-        self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), logger: logger, on: eventLoop)
+    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
+        self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
     @inlinable
-    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
-        try await self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), logger: logger, on: eventLoop)
+    public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
+        try await self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }
 }

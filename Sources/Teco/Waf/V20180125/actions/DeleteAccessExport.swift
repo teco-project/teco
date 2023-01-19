@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Waf {
     ///
     /// 本接口用于删除访问日志导出
     @inlinable
-    public func deleteAccessExport(_ input: DeleteAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessExportResponse> {
-        self.client.execute(action: "DeleteAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAccessExport(_ input: DeleteAccessExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessExportResponse> {
+        self.client.execute(action: "DeleteAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除访问日志导出
     ///
     /// 本接口用于删除访问日志导出
     @inlinable
-    public func deleteAccessExport(_ input: DeleteAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
-        try await self.client.execute(action: "DeleteAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAccessExport(_ input: DeleteAccessExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
+        try await self.client.execute(action: "DeleteAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除访问日志导出
     ///
     /// 本接口用于删除访问日志导出
     @inlinable
-    public func deleteAccessExport(exportId: String, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessExportResponse> {
-        self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteAccessExport(exportId: String, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessExportResponse> {
+        self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除访问日志导出
     ///
     /// 本接口用于删除访问日志导出
     @inlinable
-    public func deleteAccessExport(exportId: String, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
-        try await self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteAccessExport(exportId: String, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessExportResponse {
+        try await self.deleteAccessExport(DeleteAccessExportRequest(exportId: exportId, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

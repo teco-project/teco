@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcaplusdb {
 
     /// 删除表格组
     @inlinable
-    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableGroupResponse> {
-        self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTableGroup(_ input: DeleteTableGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableGroupResponse> {
+        self.client.execute(action: "DeleteTableGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除表格组
     @inlinable
-    public func deleteTableGroup(_ input: DeleteTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
-        try await self.client.execute(action: "DeleteTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTableGroup(_ input: DeleteTableGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
+        try await self.client.execute(action: "DeleteTableGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除表格组
     @inlinable
-    public func deleteTableGroup(clusterId: String, tableGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableGroupResponse> {
-        self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), logger: logger, on: eventLoop)
+    public func deleteTableGroup(clusterId: String, tableGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableGroupResponse> {
+        self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除表格组
     @inlinable
-    public func deleteTableGroup(clusterId: String, tableGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
-        try await self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), logger: logger, on: eventLoop)
+    public func deleteTableGroup(clusterId: String, tableGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableGroupResponse {
+        try await self.deleteTableGroup(DeleteTableGroupRequest(clusterId: clusterId, tableGroupId: tableGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

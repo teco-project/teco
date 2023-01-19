@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cwp {
     ///
     /// 根据任务id查询基线检测进度
     @inlinable
-    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineScanScheduleResponse> {
-        self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineScanScheduleResponse> {
+        self.client.execute(action: "DescribeBaselineScanSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基线检测进度查询
     ///
     /// 根据任务id查询基线检测进度
     @inlinable
-    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
-        try await self.client.execute(action: "DescribeBaselineScanSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineScanSchedule(_ input: DescribeBaselineScanScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
+        try await self.client.execute(action: "DescribeBaselineScanSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 基线检测进度查询
     ///
     /// 根据任务id查询基线检测进度
     @inlinable
-    public func describeBaselineScanSchedule(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineScanScheduleResponse> {
-        self.describeBaselineScanSchedule(DescribeBaselineScanScheduleRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeBaselineScanSchedule(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineScanScheduleResponse> {
+        self.describeBaselineScanSchedule(DescribeBaselineScanScheduleRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 基线检测进度查询
     ///
     /// 根据任务id查询基线检测进度
     @inlinable
-    public func describeBaselineScanSchedule(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
-        try await self.describeBaselineScanSchedule(DescribeBaselineScanScheduleRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeBaselineScanSchedule(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineScanScheduleResponse {
+        try await self.describeBaselineScanSchedule(DescribeBaselineScanScheduleRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

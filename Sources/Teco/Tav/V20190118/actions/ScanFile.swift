@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Tav {
     ///
     /// tav文件上传扫描
     @inlinable
-    public func scanFile(_ input: ScanFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileResponse> {
-        self.client.execute(action: "ScanFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanFile(_ input: ScanFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileResponse> {
+        self.client.execute(action: "ScanFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件上传扫描
     ///
     /// tav文件上传扫描
     @inlinable
-    public func scanFile(_ input: ScanFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
-        try await self.client.execute(action: "ScanFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanFile(_ input: ScanFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
+        try await self.client.execute(action: "ScanFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文件上传扫描
     ///
     /// tav文件上传扫描
     @inlinable
-    public func scanFile(key: String, sample: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileResponse> {
-        self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), logger: logger, on: eventLoop)
+    public func scanFile(key: String, sample: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileResponse> {
+        self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件上传扫描
     ///
     /// tav文件上传扫描
     @inlinable
-    public func scanFile(key: String, sample: String, md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
-        try await self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), logger: logger, on: eventLoop)
+    public func scanFile(key: String, sample: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileResponse {
+        try await self.scanFile(ScanFileRequest(key: key, sample: sample, md5: md5), region: region, logger: logger, on: eventLoop)
     }
 }

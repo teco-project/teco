@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Cvm {
     ///
     /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
     @inlinable
-    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupsResponse> {
-        self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupsResponse> {
+        self.client.execute(action: "DescribeDisasterRecoverGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分散置放群组信息
     ///
     /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
     @inlinable
-    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
-        try await self.client.execute(action: "DescribeDisasterRecoverGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDisasterRecoverGroups(_ input: DescribeDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
+        try await self.client.execute(action: "DescribeDisasterRecoverGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询分散置放群组信息
     ///
     /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
     @inlinable
-    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupsResponse> {
-        self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupsResponse> {
+        self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分散置放群组信息
     ///
     /// 本接口 (DescribeDisasterRecoverGroups)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)信息。
     @inlinable
-    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
-        try await self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroups(disasterRecoverGroupIds: [String]? = nil, name: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupsResponse {
+        try await self.describeDisasterRecoverGroups(DescribeDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds, name: name, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

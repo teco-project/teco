@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ms {
     ///
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShieldInstancesResponse> {
-        self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShieldInstancesResponse> {
+        self.client.execute(action: "DeleteShieldInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app信息
     ///
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
-        try await self.client.execute(action: "DeleteShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteShieldInstances(_ input: DeleteShieldInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
+        try await self.client.execute(action: "DeleteShieldInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除提交过的app信息
     ///
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func deleteShieldInstances(itemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShieldInstancesResponse> {
-        self.deleteShieldInstances(DeleteShieldInstancesRequest(itemIds: itemIds), logger: logger, on: eventLoop)
+    public func deleteShieldInstances(itemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShieldInstancesResponse> {
+        self.deleteShieldInstances(DeleteShieldInstancesRequest(itemIds: itemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app信息
     ///
     /// 删除一个或者多个app加固信息。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func deleteShieldInstances(itemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
-        try await self.deleteShieldInstances(DeleteShieldInstancesRequest(itemIds: itemIds), logger: logger, on: eventLoop)
+    public func deleteShieldInstances(itemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShieldInstancesResponse {
+        try await self.deleteShieldInstances(DeleteShieldInstancesRequest(itemIds: itemIds), region: region, logger: logger, on: eventLoop)
     }
 }

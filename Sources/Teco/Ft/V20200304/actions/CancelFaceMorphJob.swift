@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ft {
     ///
     /// 撤销人像渐变任务请求
     @inlinable
-    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFaceMorphJobResponse> {
-        self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFaceMorphJobResponse> {
+        self.client.execute(action: "CancelFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销人像渐变任务
     ///
     /// 撤销人像渐变任务请求
     @inlinable
-    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
-        try await self.client.execute(action: "CancelFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelFaceMorphJob(_ input: CancelFaceMorphJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
+        try await self.client.execute(action: "CancelFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤销人像渐变任务
     ///
     /// 撤销人像渐变任务请求
     @inlinable
-    public func cancelFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFaceMorphJobResponse> {
-        self.cancelFaceMorphJob(CancelFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func cancelFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFaceMorphJobResponse> {
+        self.cancelFaceMorphJob(CancelFaceMorphJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销人像渐变任务
     ///
     /// 撤销人像渐变任务请求
     @inlinable
-    public func cancelFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
-        try await self.cancelFaceMorphJob(CancelFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func cancelFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFaceMorphJobResponse {
+        try await self.cancelFaceMorphJob(CancelFaceMorphJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

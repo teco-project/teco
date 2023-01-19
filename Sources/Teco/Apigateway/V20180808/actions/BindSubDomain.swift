@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,8 +89,8 @@ extension Apigateway {
     /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
-    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSubDomainResponse> {
-        self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindSubDomain(_ input: BindSubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSubDomainResponse> {
+        self.client.execute(action: "BindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务绑定自定义域名
@@ -98,8 +98,8 @@ extension Apigateway {
     /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
-    public func bindSubDomain(_ input: BindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
-        try await self.client.execute(action: "BindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindSubDomain(_ input: BindSubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
+        try await self.client.execute(action: "BindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务绑定自定义域名
@@ -107,8 +107,8 @@ extension Apigateway {
     /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
-    public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSubDomainResponse> {
-        self.bindSubDomain(BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
+    public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSubDomainResponse> {
+        self.bindSubDomain(BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务绑定自定义域名
@@ -116,7 +116,7 @@ extension Apigateway {
     /// 本接口（BindSubDomain）用于绑定自定义域名到服务。
     /// API 网关中每个服务都会提供一个默认的域名供用户调用，但当用户想使用自己的已有域名时，也可以将自定义域名绑定到此服务，在做好备案、与默认域名的 CNAME 后，可直接调用自定义域名。
     @inlinable
-    public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
-        try await self.bindSubDomain(BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
+    public func bindSubDomain(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSubDomainResponse {
+        try await self.bindSubDomain(BindSubDomainRequest(serviceId: serviceId, subDomain: subDomain, protocol: `protocol`, netType: netType, isDefaultMapping: isDefaultMapping, netSubDomain: netSubDomain, certificateId: certificateId, pathMappingSet: pathMappingSet, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 }

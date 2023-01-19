@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ciam {
 
     /// 重置用户密码
     @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetPasswordResponse> {
-        self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetPassword(_ input: ResetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetPasswordResponse> {
+        self.client.execute(action: "ResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置用户密码
     @inlinable
-    public func resetPassword(_ input: ResetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
-        try await self.client.execute(action: "ResetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetPassword(_ input: ResetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
+        try await self.client.execute(action: "ResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置用户密码
     @inlinable
-    public func resetPassword(userId: String, userStoreId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetPasswordResponse> {
-        self.resetPassword(ResetPasswordRequest(userId: userId, userStoreId: userStoreId), logger: logger, on: eventLoop)
+    public func resetPassword(userId: String, userStoreId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetPasswordResponse> {
+        self.resetPassword(ResetPasswordRequest(userId: userId, userStoreId: userStoreId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置用户密码
     @inlinable
-    public func resetPassword(userId: String, userStoreId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
-        try await self.resetPassword(ResetPasswordRequest(userId: userId, userStoreId: userStoreId), logger: logger, on: eventLoop)
+    public func resetPassword(userId: String, userStoreId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetPasswordResponse {
+        try await self.resetPassword(ResetPasswordRequest(userId: userId, userStoreId: userStoreId), region: region, logger: logger, on: eventLoop)
     }
 }

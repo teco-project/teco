@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Smpn {
 
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
-        self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
+        self.client.execute(action: "DescribeSmpnMhm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
-        try await self.client.execute(action: "DescribeSmpnMhm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmpnMhm(_ input: DescribeSmpnMhmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
+        try await self.client.execute(action: "DescribeSmpnMhm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
-        self.describeSmpnMhm(DescribeSmpnMhmRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMhmResponse> {
+        self.describeSmpnMhm(DescribeSmpnMhmRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 号码营销监控
     @inlinable
-    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
-        try await self.describeSmpnMhm(DescribeSmpnMhmRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeSmpnMhm(requestData: MHMRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMhmResponse {
+        try await self.describeSmpnMhm(DescribeSmpnMhmRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -165,8 +165,8 @@ extension Asr {
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(_ input: CreateRecTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
-        self.client.execute(action: "CreateRecTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecTask(_ input: CreateRecTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
+        self.client.execute(action: "CreateRecTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 录音文件识别请求
@@ -184,8 +184,8 @@ extension Asr {
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(_ input: CreateRecTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
-        try await self.client.execute(action: "CreateRecTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecTask(_ input: CreateRecTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
+        try await self.client.execute(action: "CreateRecTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 录音文件识别请求
@@ -203,8 +203,8 @@ extension Asr {
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
-        self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), logger: logger, on: eventLoop)
+    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
+        self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 录音文件识别请求
@@ -222,7 +222,7 @@ extension Asr {
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
-        try await self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), logger: logger, on: eventLoop)
+    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
+        try await self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), region: region, logger: logger, on: eventLoop)
     }
 }

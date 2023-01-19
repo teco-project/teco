@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
-        self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
+        self.client.execute(action: "CommitRuleGroupTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
-        try await self.client.execute(action: "CommitRuleGroupTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func commitRuleGroupTask(_ input: CommitRuleGroupTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
+        try await self.client.execute(action: "CommitRuleGroupTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
-        self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), logger: logger, on: eventLoop)
+    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
+        self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交规则组运行任务接口
     @inlinable
-    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
-        try await self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), logger: logger, on: eventLoop)
+    public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
+        try await self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

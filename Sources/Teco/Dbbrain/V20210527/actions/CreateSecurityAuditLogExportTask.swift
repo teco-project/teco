@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Dbbrain {
     ///
     /// 创建安全审计日志导出任务。
     @inlinable
-    public func createSecurityAuditLogExportTask(_ input: CreateSecurityAuditLogExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityAuditLogExportTaskResponse> {
-        self.client.execute(action: "CreateSecurityAuditLogExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityAuditLogExportTask(_ input: CreateSecurityAuditLogExportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityAuditLogExportTaskResponse> {
+        self.client.execute(action: "CreateSecurityAuditLogExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建安全审计日志导出任务
     ///
     /// 创建安全审计日志导出任务。
     @inlinable
-    public func createSecurityAuditLogExportTask(_ input: CreateSecurityAuditLogExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
-        try await self.client.execute(action: "CreateSecurityAuditLogExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityAuditLogExportTask(_ input: CreateSecurityAuditLogExportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
+        try await self.client.execute(action: "CreateSecurityAuditLogExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建安全审计日志导出任务
     ///
     /// 创建安全审计日志导出任务。
     @inlinable
-    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityAuditLogExportTaskResponse> {
-        self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), logger: logger, on: eventLoop)
+    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityAuditLogExportTaskResponse> {
+        self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建安全审计日志导出任务
     ///
     /// 创建安全审计日志导出任务。
     @inlinable
-    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
-        try await self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), logger: logger, on: eventLoop)
+    public func createSecurityAuditLogExportTask(secAuditGroupId: String, startTime: Date, endTime: Date, product: String, dangerLevels: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityAuditLogExportTaskResponse {
+        try await self.createSecurityAuditLogExportTask(CreateSecurityAuditLogExportTaskRequest(secAuditGroupId: secAuditGroupId, startTime: startTime, endTime: endTime, product: product, dangerLevels: dangerLevels), region: region, logger: logger, on: eventLoop)
     }
 }

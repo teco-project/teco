@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Dayu {
 
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
-        self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
+        self.client.execute(action: "DescribeDDoSAttackSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSAttackSource(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
-        self.describeDDoSAttackSource(DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList), logger: logger, on: eventLoop)
+    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackSourceResponse> {
+        self.describeDDoSAttackSource(DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
-        try await self.describeDDoSAttackSource(DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList), logger: logger, on: eventLoop)
+    public func describeDDoSAttackSource(business: String, id: String, startTime: Date, endTime: Date, limit: UInt64, offset: UInt64, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackSourceResponse {
+        try await self.describeDDoSAttackSource(DescribeDDoSAttackSourceRequest(business: business, id: id, startTime: startTime, endTime: endTime, limit: limit, offset: offset, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

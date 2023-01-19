@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Iotexplorer {
 
     /// 修改LoRa自定义频点
     @inlinable
-    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoRaFrequencyResponse> {
-        self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoRaFrequencyResponse> {
+        self.client.execute(action: "ModifyLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改LoRa自定义频点
     @inlinable
-    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
-        try await self.client.execute(action: "ModifyLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoRaFrequency(_ input: ModifyLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
+        try await self.client.execute(action: "ModifyLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改LoRa自定义频点
     @inlinable
-    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoRaFrequencyResponse> {
-        self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), logger: logger, on: eventLoop)
+    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoRaFrequencyResponse> {
+        self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改LoRa自定义频点
     @inlinable
-    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
-        try await self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), logger: logger, on: eventLoop)
+    public func modifyLoRaFrequency(freqId: String? = nil, freqName: String? = nil, description: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoRaFrequencyResponse {
+        try await self.modifyLoRaFrequency(ModifyLoRaFrequencyRequest(freqId: freqId, freqName: freqName, description: description, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2), region: region, logger: logger, on: eventLoop)
     }
 }

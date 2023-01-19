@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,25 +47,25 @@ extension Tsf {
 
     /// 删除容器部署组
     @inlinable
-    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerGroupResponse> {
-        self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerGroupResponse> {
+        self.client.execute(action: "DeleteContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除容器部署组
     @inlinable
-    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
-        try await self.client.execute(action: "DeleteContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteContainerGroup(_ input: DeleteContainerGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
+        try await self.client.execute(action: "DeleteContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除容器部署组
     @inlinable
-    public func deleteContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerGroupResponse> {
-        self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerGroupResponse> {
+        self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除容器部署组
     @inlinable
-    public func deleteContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
-        try await self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
+        try await self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Kms {
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getServiceStatus(_ input: GetServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
+        self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getServiceStatus(_ input: GetServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
+        self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务状态
     ///
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
-    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

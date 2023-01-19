@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iottid {
     ///
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
-        self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deliverTids(_ input: DeliverTidsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
+        self.client.execute(action: "DeliverTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 请求空发TID信息
     ///
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(_ input: DeliverTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
-        try await self.client.execute(action: "DeliverTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deliverTids(_ input: DeliverTidsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
+        try await self.client.execute(action: "DeliverTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 请求空发TID信息
     ///
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
-        self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    public func deliverTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidsResponse> {
+        self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 请求空发TID信息
     ///
     /// 设备服务商请求空发产品订单的TID信息
     @inlinable
-    public func deliverTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
-        try await self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    public func deliverTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidsResponse {
+        try await self.deliverTids(DeliverTidsRequest(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Cdn {
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
-        self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
+        self.client.execute(action: "ListClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
-        try await self.client.execute(action: "ListClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listClsTopicDomains(_ input: ListClsTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
+        try await self.client.execute(action: "ListClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
-        self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListClsTopicDomainsResponse> {
+        self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题下绑定的域名
     ///
     /// ListClsTopicDomains 用于获取某日志主题下绑定的域名列表。
     @inlinable
-    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
-        try await self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func listClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListClsTopicDomainsResponse {
+        try await self.listClsTopicDomains(ListClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

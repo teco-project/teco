@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension As {
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
-    public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
-        self.client.execute(action: "CreateAutoScalingGroupFromInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
+        self.client.execute(action: "CreateAutoScalingGroupFromInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据实例创建启动配置及伸缩组
@@ -82,8 +82,8 @@ extension As {
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
-    public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
-        try await self.client.execute(action: "CreateAutoScalingGroupFromInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
+        try await self.client.execute(action: "CreateAutoScalingGroupFromInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据实例创建启动配置及伸缩组
@@ -91,8 +91,8 @@ extension As {
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
-    public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
-        self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), logger: logger, on: eventLoop)
+    public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
+        self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据实例创建启动配置及伸缩组
@@ -100,7 +100,7 @@ extension As {
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
-    public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
-        try await self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), logger: logger, on: eventLoop)
+    public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
+        try await self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), region: region, logger: logger, on: eventLoop)
     }
 }

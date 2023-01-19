@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Scf {
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
-        self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFunction(_ input: DeleteFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
+        self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(_ input: DeleteFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
-        try await self.client.execute(action: "DeleteFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFunction(_ input: DeleteFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
+        try await self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
-        self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
+        self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
     @inlinable
-    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
-        try await self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
+        try await self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

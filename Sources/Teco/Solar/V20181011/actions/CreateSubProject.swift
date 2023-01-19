@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Solar {
 
     /// 创建子项目
     @inlinable
-    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubProjectResponse> {
-        self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubProject(_ input: CreateSubProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubProjectResponse> {
+        self.client.execute(action: "CreateSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子项目
     @inlinable
-    public func createSubProject(_ input: CreateSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
-        try await self.client.execute(action: "CreateSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubProject(_ input: CreateSubProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
+        try await self.client.execute(action: "CreateSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建子项目
     @inlinable
-    public func createSubProject(projectId: String, subProjectName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubProjectResponse> {
-        self.createSubProject(CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName), logger: logger, on: eventLoop)
+    public func createSubProject(projectId: String, subProjectName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubProjectResponse> {
+        self.createSubProject(CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子项目
     @inlinable
-    public func createSubProject(projectId: String, subProjectName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
-        try await self.createSubProject(CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName), logger: logger, on: eventLoop)
+    public func createSubProject(projectId: String, subProjectName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubProjectResponse {
+        try await self.createSubProject(CreateSubProjectRequest(projectId: projectId, subProjectName: subProjectName), region: region, logger: logger, on: eventLoop)
     }
 }

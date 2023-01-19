@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tcss {
 
     /// 查询集群网络pod标签
     @inlinable
-    public func describeNetworkFirewallPodLabelsList(_ input: DescribeNetworkFirewallPodLabelsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPodLabelsListResponse> {
-        self.client.execute(action: "DescribeNetworkFirewallPodLabelsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPodLabelsList(_ input: DescribeNetworkFirewallPodLabelsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPodLabelsListResponse> {
+        self.client.execute(action: "DescribeNetworkFirewallPodLabelsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群网络pod标签
     @inlinable
-    public func describeNetworkFirewallPodLabelsList(_ input: DescribeNetworkFirewallPodLabelsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPodLabelsListResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPodLabelsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNetworkFirewallPodLabelsList(_ input: DescribeNetworkFirewallPodLabelsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPodLabelsListResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPodLabelsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群网络pod标签
     @inlinable
-    public func describeNetworkFirewallPodLabelsList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPodLabelsListResponse> {
-        self.describeNetworkFirewallPodLabelsList(DescribeNetworkFirewallPodLabelsListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPodLabelsList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPodLabelsListResponse> {
+        self.describeNetworkFirewallPodLabelsList(DescribeNetworkFirewallPodLabelsListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群网络pod标签
     @inlinable
-    public func describeNetworkFirewallPodLabelsList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPodLabelsListResponse {
-        try await self.describeNetworkFirewallPodLabelsList(DescribeNetworkFirewallPodLabelsListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPodLabelsList(clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPodLabelsListResponse {
+        try await self.describeNetworkFirewallPodLabelsList(DescribeNetworkFirewallPodLabelsListRequest(clusterId: clusterId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

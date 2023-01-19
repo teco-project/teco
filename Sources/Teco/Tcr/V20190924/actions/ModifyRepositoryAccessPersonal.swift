@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcr {
     ///
     /// 用于更新个人版镜像仓库的访问属性
     @inlinable
-    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
-        self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
+        self.client.execute(action: "ModifyRepositoryAccessPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
     @inlinable
-    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
-        try await self.client.execute(action: "ModifyRepositoryAccessPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
+        try await self.client.execute(action: "ModifyRepositoryAccessPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
     @inlinable
-    public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
-        self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), logger: logger, on: eventLoop)
+    public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
+        self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
     @inlinable
-    public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
-        try await self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), logger: logger, on: eventLoop)
+    public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
+        try await self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), region: region, logger: logger, on: eventLoop)
     }
 }

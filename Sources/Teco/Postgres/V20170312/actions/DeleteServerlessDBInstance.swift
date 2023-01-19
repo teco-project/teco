@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Postgres {
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
-        self.client.execute(action: "DeleteServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
+        self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
-        try await self.client.execute(action: "DeleteServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
+        try await self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
-        self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
+        self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
     @inlinable
-    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
-        try await self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
+        try await self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

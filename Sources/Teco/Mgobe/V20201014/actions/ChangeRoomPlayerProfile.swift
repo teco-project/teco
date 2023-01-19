@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改房间玩家自定义属性
     @inlinable
-    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
-        self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
+        self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改房间玩家自定义属性
@@ -67,8 +67,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改房间玩家自定义属性
     @inlinable
-    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
-        try await self.client.execute(action: "ChangeRoomPlayerProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeRoomPlayerProfile(_ input: ChangeRoomPlayerProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
+        try await self.client.execute(action: "ChangeRoomPlayerProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改房间玩家自定义属性
@@ -76,8 +76,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改房间玩家自定义属性
     @inlinable
-    public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
-        self.changeRoomPlayerProfile(ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile), logger: logger, on: eventLoop)
+    public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerProfileResponse> {
+        self.changeRoomPlayerProfile(ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改房间玩家自定义属性
@@ -85,7 +85,7 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改房间玩家自定义属性
     @inlinable
-    public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
-        try await self.changeRoomPlayerProfile(ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile), logger: logger, on: eventLoop)
+    public func changeRoomPlayerProfile(gameId: String, playerId: String, customProfile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerProfileResponse {
+        try await self.changeRoomPlayerProfile(ChangeRoomPlayerProfileRequest(gameId: gameId, playerId: playerId, customProfile: customProfile), region: region, logger: logger, on: eventLoop)
     }
 }

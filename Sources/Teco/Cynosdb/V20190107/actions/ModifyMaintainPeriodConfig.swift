@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cynosdb {
 
     /// 修改维护时间配置
     @inlinable
-    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintainPeriodConfigResponse> {
-        self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintainPeriodConfigResponse> {
+        self.client.execute(action: "ModifyMaintainPeriodConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改维护时间配置
     @inlinable
-    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
-        try await self.client.execute(action: "ModifyMaintainPeriodConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMaintainPeriodConfig(_ input: ModifyMaintainPeriodConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
+        try await self.client.execute(action: "ModifyMaintainPeriodConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改维护时间配置
     @inlinable
-    public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintainPeriodConfigResponse> {
-        self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), logger: logger, on: eventLoop)
+    public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintainPeriodConfigResponse> {
+        self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改维护时间配置
     @inlinable
-    public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
-        try await self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), logger: logger, on: eventLoop)
+    public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
+        try await self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 本接口（DeleteMigrationJob）用于删除数据迁移任务。当通过DescribeMigrateJobs接口查询到任务的状态为：检验中（status=3）、运行中（status=7）、准备完成（status=8）、撤销中（status=11）或者完成中（status=12）时，不允许删除任务。
     @inlinable
-    public func deleteMigrateJob(_ input: DeleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrateJobResponse> {
-        self.client.execute(action: "DeleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMigrateJob(_ input: DeleteMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrateJobResponse> {
+        self.client.execute(action: "DeleteMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除数据迁移任务
     ///
     /// 本接口（DeleteMigrationJob）用于删除数据迁移任务。当通过DescribeMigrateJobs接口查询到任务的状态为：检验中（status=3）、运行中（status=7）、准备完成（status=8）、撤销中（status=11）或者完成中（status=12）时，不允许删除任务。
     @inlinable
-    public func deleteMigrateJob(_ input: DeleteMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrateJobResponse {
-        try await self.client.execute(action: "DeleteMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMigrateJob(_ input: DeleteMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrateJobResponse {
+        try await self.client.execute(action: "DeleteMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除数据迁移任务
     ///
     /// 本接口（DeleteMigrationJob）用于删除数据迁移任务。当通过DescribeMigrateJobs接口查询到任务的状态为：检验中（status=3）、运行中（status=7）、准备完成（status=8）、撤销中（status=11）或者完成中（status=12）时，不允许删除任务。
     @inlinable
-    public func deleteMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrateJobResponse> {
-        self.deleteMigrateJob(DeleteMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func deleteMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrateJobResponse> {
+        self.deleteMigrateJob(DeleteMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除数据迁移任务
     ///
     /// 本接口（DeleteMigrationJob）用于删除数据迁移任务。当通过DescribeMigrateJobs接口查询到任务的状态为：检验中（status=3）、运行中（status=7）、准备完成（status=8）、撤销中（status=11）或者完成中（status=12）时，不允许删除任务。
     @inlinable
-    public func deleteMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrateJobResponse {
-        try await self.deleteMigrateJob(DeleteMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func deleteMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrateJobResponse {
+        try await self.deleteMigrateJob(DeleteMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

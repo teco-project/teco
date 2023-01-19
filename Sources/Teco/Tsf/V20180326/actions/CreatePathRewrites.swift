@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 创建路径重写
     @inlinable
-    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePathRewritesResponse> {
-        self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPathRewrites(_ input: CreatePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePathRewritesResponse> {
+        self.client.execute(action: "CreatePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建路径重写
     @inlinable
-    public func createPathRewrites(_ input: CreatePathRewritesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
-        try await self.client.execute(action: "CreatePathRewrites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPathRewrites(_ input: CreatePathRewritesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
+        try await self.client.execute(action: "CreatePathRewrites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建路径重写
     @inlinable
-    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePathRewritesResponse> {
-        self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), logger: logger, on: eventLoop)
+    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePathRewritesResponse> {
+        self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建路径重写
     @inlinable
-    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
-        try await self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), logger: logger, on: eventLoop)
+    public func createPathRewrites(pathRewrites: PathRewriteCreateObject, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePathRewritesResponse {
+        try await self.createPathRewrites(CreatePathRewritesRequest(pathRewrites: pathRewrites), region: region, logger: logger, on: eventLoop)
     }
 }

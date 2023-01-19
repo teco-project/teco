@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,31 +110,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
-        self.client.execute(action: "DescribeWeeklyReportInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
+        self.client.execute(action: "DescribeWeeklyReportInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
-        try await self.client.execute(action: "DescribeWeeklyReportInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWeeklyReportInfo(_ input: DescribeWeeklyReportInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
+        try await self.client.execute(action: "DescribeWeeklyReportInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
-        self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), logger: logger, on: eventLoop)
+    public func describeWeeklyReportInfo(beginDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportInfoResponse> {
+        self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业周报详情
     ///
     /// 本接口 (DescribeWeeklyReportInfo) 用于获取专业周报详情数据。
     @inlinable
-    public func describeWeeklyReportInfo(beginDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
-        try await self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), logger: logger, on: eventLoop)
+    public func describeWeeklyReportInfo(beginDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportInfoResponse {
+        try await self.describeWeeklyReportInfo(DescribeWeeklyReportInfoRequest(beginDate: beginDate), region: region, logger: logger, on: eventLoop)
     }
 }

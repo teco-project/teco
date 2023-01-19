@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,25 +106,25 @@ extension Ocr {
 
     /// 菲律宾驾驶证识别
     @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesDrivingLicenseOCRResponse> {
-        self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesDrivingLicenseOCRResponse> {
+        self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾驾驶证识别
     @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
-        try await self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizePhilippinesDrivingLicenseOCR(_ input: RecognizePhilippinesDrivingLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
+        try await self.client.execute(action: "RecognizePhilippinesDrivingLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 菲律宾驾驶证识别
     @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesDrivingLicenseOCRResponse> {
-        self.recognizePhilippinesDrivingLicenseOCR(RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), logger: logger, on: eventLoop)
+    public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesDrivingLicenseOCRResponse> {
+        self.recognizePhilippinesDrivingLicenseOCR(RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾驾驶证识别
     @inlinable
-    public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
-        try await self.recognizePhilippinesDrivingLicenseOCR(RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), logger: logger, on: eventLoop)
+    public func recognizePhilippinesDrivingLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesDrivingLicenseOCRResponse {
+        try await self.recognizePhilippinesDrivingLicenseOCR(RecognizePhilippinesDrivingLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage), region: region, logger: logger, on: eventLoop)
     }
 }

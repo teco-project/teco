@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Mps {
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
-        self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
+        self.client.execute(action: "CreateStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输流
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
-        try await self.client.execute(action: "CreateStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStreamLinkFlow(_ input: CreateStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
+        try await self.client.execute(action: "CreateStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建媒体传输流
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
-        self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), logger: logger, on: eventLoop)
+    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
+        self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输流
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
-        try await self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), logger: logger, on: eventLoop)
+    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
+        try await self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), region: region, logger: logger, on: eventLoop)
     }
 }

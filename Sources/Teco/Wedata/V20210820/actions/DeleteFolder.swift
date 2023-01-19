@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除文件夹
     @inlinable
-    public func deleteFolder(_ input: DeleteFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
-        self.client.execute(action: "DeleteFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFolder(_ input: DeleteFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
+        self.client.execute(action: "DeleteFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文件夹【Beta版本】
@@ -62,8 +62,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除文件夹
     @inlinable
-    public func deleteFolder(_ input: DeleteFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {
-        try await self.client.execute(action: "DeleteFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFolder(_ input: DeleteFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {
+        try await self.client.execute(action: "DeleteFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除文件夹【Beta版本】
@@ -71,8 +71,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除文件夹
     @inlinable
-    public func deleteFolder(projectId: String, folderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
-        self.deleteFolder(DeleteFolderRequest(projectId: projectId, folderId: folderId), logger: logger, on: eventLoop)
+    public func deleteFolder(projectId: String, folderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFolderResponse> {
+        self.deleteFolder(DeleteFolderRequest(projectId: projectId, folderId: folderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件夹【Beta版本】
@@ -80,7 +80,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除文件夹
     @inlinable
-    public func deleteFolder(projectId: String, folderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {
-        try await self.deleteFolder(DeleteFolderRequest(projectId: projectId, folderId: folderId), logger: logger, on: eventLoop)
+    public func deleteFolder(projectId: String, folderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFolderResponse {
+        try await self.deleteFolder(DeleteFolderRequest(projectId: projectId, folderId: folderId), region: region, logger: logger, on: eventLoop)
     }
 }

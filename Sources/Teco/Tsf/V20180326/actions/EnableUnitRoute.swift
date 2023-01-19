@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
-        self.client.execute(action: "EnableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableUnitRoute(_ input: EnableUnitRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
+        self.client.execute(action: "EnableUnitRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(_ input: EnableUnitRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
-        try await self.client.execute(action: "EnableUnitRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableUnitRoute(_ input: EnableUnitRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
+        try await self.client.execute(action: "EnableUnitRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
-        self.enableUnitRoute(EnableUnitRouteRequest(id: id), logger: logger, on: eventLoop)
+    public func enableUnitRoute(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRouteResponse> {
+        self.enableUnitRoute(EnableUnitRouteRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用单元化路由
     @inlinable
-    public func enableUnitRoute(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
-        try await self.enableUnitRoute(EnableUnitRouteRequest(id: id), logger: logger, on: eventLoop)
+    public func enableUnitRoute(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRouteResponse {
+        try await self.enableUnitRoute(EnableUnitRouteRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

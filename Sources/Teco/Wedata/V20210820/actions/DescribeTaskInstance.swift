@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Wedata {
 
     /// 离线任务实例详情
     @inlinable
-    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceResponse> {
-        self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceResponse> {
+        self.client.execute(action: "DescribeTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 离线任务实例详情
     @inlinable
-    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
-        try await self.client.execute(action: "DescribeTaskInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskInstance(_ input: DescribeTaskInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
+        try await self.client.execute(action: "DescribeTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 离线任务实例详情
     @inlinable
-    public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceResponse> {
-        self.describeTaskInstance(DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), logger: logger, on: eventLoop)
+    public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceResponse> {
+        self.describeTaskInstance(DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 离线任务实例详情
     @inlinable
-    public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
-        try await self.describeTaskInstance(DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), logger: logger, on: eventLoop)
+    public func describeTaskInstance(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceResponse {
+        try await self.describeTaskInstance(DescribeTaskInstanceRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Antiddos {
 
     /// 获取CC精准防护列表
     @inlinable
-    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCPrecisionPlyListResponse> {
-        self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCPrecisionPlyListResponse> {
+        self.client.execute(action: "DescribeCCPrecisionPlyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC精准防护列表
     @inlinable
-    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
-        try await self.client.execute(action: "DescribeCCPrecisionPlyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCPrecisionPlyList(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
+        try await self.client.execute(action: "DescribeCCPrecisionPlyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC精准防护列表
     @inlinable
-    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCPrecisionPlyListResponse> {
-        self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCPrecisionPlyListResponse> {
+        self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC精准防护列表
     @inlinable
-    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
-        try await self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCPrecisionPlyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCPrecisionPlyListResponse {
+        try await self.describeCCPrecisionPlyList(DescribeCCPrecisionPlyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

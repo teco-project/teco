@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -123,8 +123,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func searchPersonsReturnsByGroup(_ input: SearchPersonsReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchPersonsReturnsByGroupResponse> {
-        self.client.execute(action: "SearchPersonsReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchPersonsReturnsByGroup(_ input: SearchPersonsReturnsByGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchPersonsReturnsByGroupResponse> {
+        self.client.execute(action: "SearchPersonsReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员搜索按库返回
@@ -137,8 +137,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func searchPersonsReturnsByGroup(_ input: SearchPersonsReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsReturnsByGroupResponse {
-        try await self.client.execute(action: "SearchPersonsReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchPersonsReturnsByGroup(_ input: SearchPersonsReturnsByGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsReturnsByGroupResponse {
+        try await self.client.execute(action: "SearchPersonsReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人员搜索按库返回
@@ -151,8 +151,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func searchPersonsReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchPersonsReturnsByGroupResponse> {
-        self.searchPersonsReturnsByGroup(SearchPersonsReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchPersonsReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchPersonsReturnsByGroupResponse> {
+        self.searchPersonsReturnsByGroup(SearchPersonsReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员搜索按库返回
@@ -165,7 +165,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func searchPersonsReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsReturnsByGroupResponse {
-        try await self.searchPersonsReturnsByGroup(SearchPersonsReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchPersonsReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needPersonInfo: Int64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchPersonsReturnsByGroupResponse {
+        try await self.searchPersonsReturnsByGroup(SearchPersonsReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needPersonInfo: needPersonInfo, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

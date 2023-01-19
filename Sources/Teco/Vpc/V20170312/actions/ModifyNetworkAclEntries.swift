@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
-        self.client.execute(action: "ModifyNetworkAclEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
+        self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改网络ACL规则
@@ -65,8 +65,8 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
-        try await self.client.execute(action: "ModifyNetworkAclEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
+        try await self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改网络ACL规则
@@ -75,8 +75,8 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
-        self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), logger: logger, on: eventLoop)
+    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
+        self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网络ACL规则
@@ -85,7 +85,7 @@ extension Vpc {
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
     @inlinable
-    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
-        try await self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), logger: logger, on: eventLoop)
+    public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
+        try await self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

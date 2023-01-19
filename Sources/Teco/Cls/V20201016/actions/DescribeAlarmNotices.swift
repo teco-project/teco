@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Cls {
     ///
     /// 该接口用于获取通知渠道组列表
     @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
-        self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
+        self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通知渠道组列表
     ///
     /// 该接口用于获取通知渠道组列表
     @inlinable
-    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.client.execute(action: "DescribeAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmNotices(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取通知渠道组列表
     ///
     /// 该接口用于获取通知渠道组列表
     @inlinable
-    public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
-        self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
+        self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通知渠道组列表
     ///
     /// 该接口用于获取通知渠道组列表
     @inlinable
-    public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
+        try await self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

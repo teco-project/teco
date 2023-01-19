@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Dts {
     ///
     /// 创建一个同步任务
     @inlinable
-    public func createSyncJob(_ input: CreateSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSyncJobResponse> {
-        self.client.execute(action: "CreateSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSyncJob(_ input: CreateSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSyncJobResponse> {
+        self.client.execute(action: "CreateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建同步任务
     ///
     /// 创建一个同步任务
     @inlinable
-    public func createSyncJob(_ input: CreateSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSyncJobResponse {
-        try await self.client.execute(action: "CreateSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSyncJob(_ input: CreateSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSyncJobResponse {
+        try await self.client.execute(action: "CreateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建同步任务
     ///
     /// 创建一个同步任务
     @inlinable
-    public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSyncJobResponse> {
-        self.createSyncJob(CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), logger: logger, on: eventLoop)
+    public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSyncJobResponse> {
+        self.createSyncJob(CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建同步任务
     ///
     /// 创建一个同步任务
     @inlinable
-    public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSyncJobResponse {
-        try await self.createSyncJob(CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), logger: logger, on: eventLoop)
+    public func createSyncJob(payMode: String, srcDatabaseType: String, srcRegion: String, dstDatabaseType: String, dstRegion: String, specification: String? = nil, tags: [TagItem]? = nil, count: UInt64? = nil, autoRenew: UInt64? = nil, instanceClass: String? = nil, jobName: String? = nil, existedJobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSyncJobResponse {
+        try await self.createSyncJob(CreateSyncJobRequest(payMode: payMode, srcDatabaseType: srcDatabaseType, srcRegion: srcRegion, dstDatabaseType: dstDatabaseType, dstRegion: dstRegion, specification: specification, tags: tags, count: count, autoRenew: autoRenew, instanceClass: instanceClass, jobName: jobName, existedJobId: existedJobId), region: region, logger: logger, on: eventLoop)
     }
 }

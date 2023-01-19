@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewaySourceIpTranslationNatRuleResponse> {
-        self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewaySourceIpTranslationNatRuleResponse> {
+        self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关SNAT规则
     ///
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
-        try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNatGatewaySourceIpTranslationNatRule(_ input: CreateNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
+        try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建NAT网关SNAT规则
     ///
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewaySourceIpTranslationNatRuleResponse> {
-        self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), logger: logger, on: eventLoop)
+    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewaySourceIpTranslationNatRuleResponse> {
+        self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关SNAT规则
     ///
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable
-    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
-        try await self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), logger: logger, on: eventLoop)
+    public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
+        try await self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), region: region, logger: logger, on: eventLoop)
     }
 }

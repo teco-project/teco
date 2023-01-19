@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Iotvideo {
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
-    public func createDevices(_ input: CreateDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevicesResponse> {
-        self.client.execute(action: "CreateDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDevices(_ input: CreateDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevicesResponse> {
+        self.client.execute(action: "CreateDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
@@ -72,8 +72,8 @@ extension Iotvideo {
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
-    public func createDevices(_ input: CreateDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
-        try await self.client.execute(action: "CreateDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDevices(_ input: CreateDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
+        try await self.client.execute(action: "CreateDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建设备
@@ -81,8 +81,8 @@ extension Iotvideo {
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
-    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevicesResponse> {
-        self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), logger: logger, on: eventLoop)
+    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevicesResponse> {
+        self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
@@ -90,7 +90,7 @@ extension Iotvideo {
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
     /// 注意：腾讯云不会对设备私钥进行保存，请自行保管好您的设备私钥。
     @inlinable
-    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
-        try await self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), logger: logger, on: eventLoop)
+    public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
+        try await self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

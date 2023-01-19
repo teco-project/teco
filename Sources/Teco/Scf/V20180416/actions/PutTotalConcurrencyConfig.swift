@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Scf {
 
     /// 修改账号并发限制配额
     @inlinable
-    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
-        self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
+        self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账号并发限制配额
     @inlinable
-    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
-        try await self.client.execute(action: "PutTotalConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
+        try await self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改账号并发限制配额
     @inlinable
-    public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
-        self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
+        self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号并发限制配额
     @inlinable
-    public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
-        try await self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
+        try await self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

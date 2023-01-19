@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Kms {
 
     /// 获取白盒密钥服务状态
     @inlinable
-    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxServiceStatusResponse> {
-        self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxServiceStatusResponse> {
+        self.client.execute(action: "DescribeWhiteBoxServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒密钥服务状态
     @inlinable
-    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWhiteBoxServiceStatus(_ input: DescribeWhiteBoxServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取白盒密钥服务状态
     @inlinable
-    public func describeWhiteBoxServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxServiceStatusResponse> {
-        self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func describeWhiteBoxServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxServiceStatusResponse> {
+        self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒密钥服务状态
     @inlinable
-    public func describeWhiteBoxServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
-        try await self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func describeWhiteBoxServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxServiceStatusResponse {
+        try await self.describeWhiteBoxServiceStatus(DescribeWhiteBoxServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

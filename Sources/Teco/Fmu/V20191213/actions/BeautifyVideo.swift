@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Fmu {
 
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
-        self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func beautifyVideo(_ input: BeautifyVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
+        self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(_ input: BeautifyVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
-        try await self.client.execute(action: "BeautifyVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func beautifyVideo(_ input: BeautifyVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
+        try await self.client.execute(action: "BeautifyVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
-        self.beautifyVideo(BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), logger: logger, on: eventLoop)
+    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyVideoResponse> {
+        self.beautifyVideo(BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频美颜
     @inlinable
-    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
-        try await self.beautifyVideo(BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), logger: logger, on: eventLoop)
+    public func beautifyVideo(url: String, beautyParam: [BeautyParam]? = nil, outputVideoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyVideoResponse {
+        try await self.beautifyVideo(BeautifyVideoRequest(url: url, beautyParam: beautyParam, outputVideoType: outputVideoType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Lighthouse {
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
-        self.client.execute(action: "InquirePriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
+        self.client.execute(action: "InquirePriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
-        try await self.client.execute(action: "InquirePriceRenewDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceRenewDisks(_ input: InquirePriceRenewDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
+        try await self.client.execute(action: "InquirePriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
-        self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), logger: logger, on: eventLoop)
+    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
+        self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘询价
     ///
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
-    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
-        try await self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), logger: logger, on: eventLoop)
+    public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
+        try await self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

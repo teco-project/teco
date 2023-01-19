@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Teo {
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
-        self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
+        self.client.execute(action: "DescribeDDoSBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
-        try await self.client.execute(action: "DescribeDDoSBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSBlockList(_ input: DescribeDDoSBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
+        try await self.client.execute(action: "DescribeDDoSBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
-        self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlockListResponse> {
+        self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS封禁解封列表
     ///
     /// 本接口（DescribeDDoSBlockList）用于查询DDoS封禁解封列表。
     @inlinable
-    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
-        try await self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeDDoSBlockList(startTime: Date, eventIds: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlockListResponse {
+        try await self.describeDDoSBlockList(DescribeDDoSBlockListRequest(startTime: startTime, eventIds: eventIds, zoneIds: zoneIds, policyIds: policyIds, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

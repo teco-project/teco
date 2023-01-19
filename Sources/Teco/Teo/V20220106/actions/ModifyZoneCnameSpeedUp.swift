@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Teo {
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
-        self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
+        self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
-        try await self.client.execute(action: "ModifyZoneCnameSpeedUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
+        try await self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(id: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
-        self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(id: id, status: status), logger: logger, on: eventLoop)
+    public func modifyZoneCnameSpeedUp(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
+        self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速
     @inlinable
-    public func modifyZoneCnameSpeedUp(id: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
-        try await self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(id: id, status: status), logger: logger, on: eventLoop)
+    public func modifyZoneCnameSpeedUp(id: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
+        try await self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(id: id, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

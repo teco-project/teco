@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Cws {
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
     @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesResponse> {
-        self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSites(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesResponse> {
+        self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看站点列表
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
     @inlinable
-    public func describeSites(_ input: DescribeSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
-        try await self.client.execute(action: "DescribeSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSites(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
+        try await self.client.execute(action: "DescribeSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看站点列表
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
     @inlinable
-    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesResponse> {
-        self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesResponse> {
+        self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看站点列表
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
     @inlinable
-    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
-        try await self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSites(siteIds: [UInt64]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesResponse {
+        try await self.describeSites(DescribeSitesRequest(siteIds: siteIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

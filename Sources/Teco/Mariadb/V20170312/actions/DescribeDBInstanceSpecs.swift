@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Mariadb {
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
-        self.client.execute(action: "DescribeDBInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
+        self.client.execute(action: "DescribeDBInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
-        try await self.client.execute(action: "DescribeDBInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBInstanceSpecs(_ input: DescribeDBInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
+        try await self.client.execute(action: "DescribeDBInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
-        self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), logger: logger, on: eventLoop)
+    public func describeDBInstanceSpecs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
+        self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖规格
     ///
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
-    public func describeDBInstanceSpecs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
-        try await self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), logger: logger, on: eventLoop)
+    public func describeDBInstanceSpecs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
+        try await self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

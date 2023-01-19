@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cwp {
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
-        self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
+        self.client.execute(action: "DescribeVersionStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
-        try await self.client.execute(action: "DescribeVersionStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVersionStatistics(_ input: DescribeVersionStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
+        try await self.client.execute(action: "DescribeVersionStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
-        self.describeVersionStatistics(DescribeVersionStatisticsRequest(), logger: logger, on: eventLoop)
+    public func describeVersionStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionStatisticsResponse> {
+        self.describeVersionStatistics(DescribeVersionStatisticsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版和基础版机器数
     ///
     /// 用于统计专业版和基础版机器数。
     @inlinable
-    public func describeVersionStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
-        try await self.describeVersionStatistics(DescribeVersionStatisticsRequest(), logger: logger, on: eventLoop)
+    public func describeVersionStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionStatisticsResponse {
+        try await self.describeVersionStatistics(DescribeVersionStatisticsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

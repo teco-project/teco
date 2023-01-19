@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Scf {
 
     /// 获取账户信息
     @inlinable
-    public func getAccount(_ input: GetAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountResponse> {
-        self.client.execute(action: "GetAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAccount(_ input: GetAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountResponse> {
+        self.client.execute(action: "GetAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账户信息
     @inlinable
-    public func getAccount(_ input: GetAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
-        try await self.client.execute(action: "GetAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAccount(_ input: GetAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
+        try await self.client.execute(action: "GetAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取账户信息
     @inlinable
-    public func getAccount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountResponse> {
-        self.getAccount(GetAccountRequest(), logger: logger, on: eventLoop)
+    public func getAccount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountResponse> {
+        self.getAccount(GetAccountRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账户信息
     @inlinable
-    public func getAccount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
-        try await self.getAccount(GetAccountRequest(), logger: logger, on: eventLoop)
+    public func getAccount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
+        try await self.getAccount(GetAccountRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

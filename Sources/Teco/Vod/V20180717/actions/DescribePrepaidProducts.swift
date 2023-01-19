@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,8 +41,8 @@ extension Vod {
     ///     1. 商品的类型、生效和失效日期。
     ///     2. 商品中每种资源的额度和剩余额度。
     @inlinable
-    public func describePrepaidProducts(_ input: DescribePrepaidProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrepaidProductsResponse> {
-        self.client.execute(action: "DescribePrepaidProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrepaidProducts(_ input: DescribePrepaidProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrepaidProductsResponse> {
+        self.client.execute(action: "DescribePrepaidProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询购买的预付费商品列表
@@ -51,8 +51,8 @@ extension Vod {
     ///     1. 商品的类型、生效和失效日期。
     ///     2. 商品中每种资源的额度和剩余额度。
     @inlinable
-    public func describePrepaidProducts(_ input: DescribePrepaidProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
-        try await self.client.execute(action: "DescribePrepaidProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrepaidProducts(_ input: DescribePrepaidProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
+        try await self.client.execute(action: "DescribePrepaidProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询购买的预付费商品列表
@@ -61,8 +61,8 @@ extension Vod {
     ///     1. 商品的类型、生效和失效日期。
     ///     2. 商品中每种资源的额度和剩余额度。
     @inlinable
-    public func describePrepaidProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrepaidProductsResponse> {
-        self.describePrepaidProducts(DescribePrepaidProductsRequest(), logger: logger, on: eventLoop)
+    public func describePrepaidProducts(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrepaidProductsResponse> {
+        self.describePrepaidProducts(DescribePrepaidProductsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询购买的预付费商品列表
@@ -71,7 +71,7 @@ extension Vod {
     ///     1. 商品的类型、生效和失效日期。
     ///     2. 商品中每种资源的额度和剩余额度。
     @inlinable
-    public func describePrepaidProducts(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
-        try await self.describePrepaidProducts(DescribePrepaidProductsRequest(), logger: logger, on: eventLoop)
+    public func describePrepaidProducts(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrepaidProductsResponse {
+        try await self.describePrepaidProducts(DescribePrepaidProductsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

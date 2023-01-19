@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Cii {
     ///
     /// 依据任务ID获取结构化结果接口。
     @inlinable
-    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureTaskResultResponse> {
-        self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureTaskResultResponse> {
+        self.client.execute(action: "DescribeStructureTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取结构化结果接口
     ///
     /// 依据任务ID获取结构化结果接口。
     @inlinable
-    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
-        try await self.client.execute(action: "DescribeStructureTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStructureTaskResult(_ input: DescribeStructureTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
+        try await self.client.execute(action: "DescribeStructureTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取结构化结果接口
     ///
     /// 依据任务ID获取结构化结果接口。
     @inlinable
-    public func describeStructureTaskResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureTaskResultResponse> {
-        self.describeStructureTaskResult(DescribeStructureTaskResultRequest(mainTaskId: mainTaskId), logger: logger, on: eventLoop)
+    public func describeStructureTaskResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureTaskResultResponse> {
+        self.describeStructureTaskResult(DescribeStructureTaskResultRequest(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取结构化结果接口
     ///
     /// 依据任务ID获取结构化结果接口。
     @inlinable
-    public func describeStructureTaskResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
-        try await self.describeStructureTaskResult(DescribeStructureTaskResultRequest(mainTaskId: mainTaskId), logger: logger, on: eventLoop)
+    public func describeStructureTaskResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureTaskResultResponse {
+        try await self.describeStructureTaskResult(DescribeStructureTaskResultRequest(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

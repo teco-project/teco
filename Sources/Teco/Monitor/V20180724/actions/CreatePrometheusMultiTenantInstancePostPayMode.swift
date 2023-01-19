@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Monitor {
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
-        self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
+        self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
-        try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusMultiTenantInstancePostPayMode(_ input: CreatePrometheusMultiTenantInstancePostPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
+        try await self.client.execute(action: "CreatePrometheusMultiTenantInstancePostPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
-        self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), logger: logger, on: eventLoop)
+    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusMultiTenantInstancePostPayModeResponse> {
+        self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建按量 Prometheus 实例
     ///
     /// 创建按量 Prometheus 实例，根据用量收费实例
     @inlinable
-    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
-        try await self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), logger: logger, on: eventLoop)
+    public func createPrometheusMultiTenantInstancePostPayMode(instanceName: String, vpcId: String, subnetId: String, dataRetentionTime: Int64, zone: String, tagSpecification: [PrometheusTag]? = nil, grafanaInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusMultiTenantInstancePostPayModeResponse {
+        try await self.createPrometheusMultiTenantInstancePostPayMode(CreatePrometheusMultiTenantInstancePostPayModeRequest(instanceName: instanceName, vpcId: vpcId, subnetId: subnetId, dataRetentionTime: dataRetentionTime, zone: zone, tagSpecification: tagSpecification, grafanaInstanceId: grafanaInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

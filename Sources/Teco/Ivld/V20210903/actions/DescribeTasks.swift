@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Ivld {
     /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTasks(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
+        self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量描述任务
@@ -77,8 +77,8 @@ extension Ivld {
     /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTasks(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量描述任务
@@ -86,8 +86,8 @@ extension Ivld {
     /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
-    public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
+        self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述任务
@@ -95,7 +95,7 @@ extension Ivld {
     /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
-    public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 }

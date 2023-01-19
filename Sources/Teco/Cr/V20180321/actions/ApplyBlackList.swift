@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cr {
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
     @inlinable
-    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
-        self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyBlackList(_ input: ApplyBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
+        self.client.execute(action: "ApplyBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
     @inlinable
-    public func applyBlackList(_ input: ApplyBlackListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
-        try await self.client.execute(action: "ApplyBlackList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyBlackList(_ input: ApplyBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
+        try await self.client.execute(action: "ApplyBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
     @inlinable
-    public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
-        self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), logger: logger, on: eventLoop)
+    public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
+        self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
     @inlinable
-    public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
-        try await self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), logger: logger, on: eventLoop)
+    public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
+        try await self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 }

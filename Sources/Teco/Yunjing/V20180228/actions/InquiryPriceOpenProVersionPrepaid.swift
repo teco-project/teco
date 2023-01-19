@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Yunjing {
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
-        self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
+        self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
-        try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceOpenProVersionPrepaid(_ input: InquiryPriceOpenProVersionPrepaidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
+        try await self.client.execute(action: "InquiryPriceOpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
-        self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceOpenProVersionPrepaidResponse> {
+        self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版询价(预付费)
     ///
     /// 本接口 (InquiryPriceOpenProVersionPrepaid) 用于开通专业版询价(预付费)。
     @inlinable
-    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
-        try await self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    public func inquiryPriceOpenProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceOpenProVersionPrepaidResponse {
+        try await self.inquiryPriceOpenProVersionPrepaid(InquiryPriceOpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 }

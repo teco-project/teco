@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
-    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsDeniedActionsResponse> {
-        self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsDeniedActionsResponse> {
+        self.client.execute(action: "DescribeSnapshotsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看快照操作限制列表
     ///
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
-    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeSnapshotsDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSnapshotsDeniedActions(_ input: DescribeSnapshotsDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeSnapshotsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看快照操作限制列表
     ///
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
-    public func describeSnapshotsDeniedActions(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsDeniedActionsResponse> {
-        self.describeSnapshotsDeniedActions(DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func describeSnapshotsDeniedActions(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsDeniedActionsResponse> {
+        self.describeSnapshotsDeniedActions(DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照操作限制列表
     ///
     /// 本接口（DescribeSnapshotsDeniedActions）用于查询一个或多个快照的操作限制列表信息。
     @inlinable
-    public func describeSnapshotsDeniedActions(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
-        try await self.describeSnapshotsDeniedActions(DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func describeSnapshotsDeniedActions(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsDeniedActionsResponse {
+        try await self.describeSnapshotsDeniedActions(DescribeSnapshotsDeniedActionsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

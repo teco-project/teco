@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Es {
     ///
     /// 用于批量停止Logstash管道
     @inlinable
-    public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
-        self.client.execute(action: "StopLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
+        self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
     @inlinable
-    public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
-        try await self.client.execute(action: "StopLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
+        try await self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
     @inlinable
-    public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
-        self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
+        self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
     @inlinable
-    public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
-        try await self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
+        try await self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }
 }

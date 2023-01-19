@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,8 +61,8 @@ extension Vod {
     /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
-    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventConfigResponse> {
-        self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEventConfig(_ input: DescribeEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventConfigResponse> {
+        self.client.execute(action: "DescribeEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询事件通知配置
@@ -71,8 +71,8 @@ extension Vod {
     /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
-    public func describeEventConfig(_ input: DescribeEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
-        try await self.client.execute(action: "DescribeEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEventConfig(_ input: DescribeEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
+        try await self.client.execute(action: "DescribeEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询事件通知配置
@@ -81,8 +81,8 @@ extension Vod {
     /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
-    public func describeEventConfig(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventConfigResponse> {
-        self.describeEventConfig(DescribeEventConfigRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeEventConfig(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventConfigResponse> {
+        self.describeEventConfig(DescribeEventConfigRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件通知配置
@@ -91,7 +91,7 @@ extension Vod {
     /// 开发者可以通过本接口来查询当前配置事件通知的接收方式、接收地址以及哪些事件开启了接收回调通知。
     /// 默认接口请求频率限制：100次/秒。
     @inlinable
-    public func describeEventConfig(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
-        try await self.describeEventConfig(DescribeEventConfigRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeEventConfig(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventConfigResponse {
+        try await self.describeEventConfig(DescribeEventConfigRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

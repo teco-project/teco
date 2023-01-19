@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Vm {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到图片截帧/音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -91,8 +91,8 @@ extension Vm {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到图片截帧/音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建视频审核任务
@@ -104,8 +104,8 @@ extension Vm {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到图片截帧/音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -117,7 +117,7 @@ extension Vm {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到图片截帧/音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

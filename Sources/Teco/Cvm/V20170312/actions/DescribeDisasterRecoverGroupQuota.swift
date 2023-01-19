@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Cvm {
     ///
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
-    public func describeDisasterRecoverGroupQuota(_ input: DescribeDisasterRecoverGroupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupQuotaResponse> {
-        self.client.execute(action: "DescribeDisasterRecoverGroupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroupQuota(_ input: DescribeDisasterRecoverGroupQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupQuotaResponse> {
+        self.client.execute(action: "DescribeDisasterRecoverGroupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询置放群组配额
     ///
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
-    public func describeDisasterRecoverGroupQuota(_ input: DescribeDisasterRecoverGroupQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
-        try await self.client.execute(action: "DescribeDisasterRecoverGroupQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDisasterRecoverGroupQuota(_ input: DescribeDisasterRecoverGroupQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
+        try await self.client.execute(action: "DescribeDisasterRecoverGroupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询置放群组配额
     ///
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
-    public func describeDisasterRecoverGroupQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupQuotaResponse> {
-        self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroupQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisasterRecoverGroupQuotaResponse> {
+        self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询置放群组配额
     ///
     /// 本接口 (DescribeDisasterRecoverGroupQuota)用于查询[分散置放群组](https://cloud.tencent.com/document/product/213/15486)配额。
     @inlinable
-    public func describeDisasterRecoverGroupQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
-        try await self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeDisasterRecoverGroupQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisasterRecoverGroupQuotaResponse {
+        try await self.describeDisasterRecoverGroupQuota(DescribeDisasterRecoverGroupQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

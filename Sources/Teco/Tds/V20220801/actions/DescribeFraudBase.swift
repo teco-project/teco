@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Tds {
 
     /// 查询设备风险
     @inlinable
-    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudBaseResponse> {
-        self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFraudBase(_ input: DescribeFraudBaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudBaseResponse> {
+        self.client.execute(action: "DescribeFraudBase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备风险
     @inlinable
-    public func describeFraudBase(_ input: DescribeFraudBaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
-        try await self.client.execute(action: "DescribeFraudBase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFraudBase(_ input: DescribeFraudBaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
+        try await self.client.execute(action: "DescribeFraudBase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备风险
     @inlinable
-    public func describeFraudBase(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudBaseResponse> {
-        self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeFraudBase(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudBaseResponse> {
+        self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备风险
     @inlinable
-    public func describeFraudBase(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
-        try await self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeFraudBase(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudBaseResponse {
+        try await self.describeFraudBase(DescribeFraudBaseRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 }

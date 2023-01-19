@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Bmlb {
     ///
     /// 创建黑石负载均衡证书。
     @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadCert(_ input: UploadCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
+        self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石负载均衡证书
     ///
     /// 创建黑石负载均衡证书。
     @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadCert(_ input: UploadCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石负载均衡证书
     ///
     /// 创建黑石负载均衡证书。
     @inlinable
-    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), logger: logger, on: eventLoop)
+    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
+        self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石负载均衡证书
     ///
     /// 创建黑石负载均衡证书。
     @inlinable
-    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), logger: logger, on: eventLoop)
+    public func uploadCert(certType: String, cert: String, alias: String? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.uploadCert(UploadCertRequest(certType: certType, cert: cert, alias: alias, key: key), region: region, logger: logger, on: eventLoop)
     }
 }

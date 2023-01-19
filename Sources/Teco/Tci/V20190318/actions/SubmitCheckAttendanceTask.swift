@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,8 +106,8 @@ extension Tci {
     ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms |
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
-    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskResponse> {
-        self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskResponse> {
+        self.client.execute(action: "SubmitCheckAttendanceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交人员考勤任务
@@ -127,8 +127,8 @@ extension Tci {
     ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms |
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
-    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
-        try await self.client.execute(action: "SubmitCheckAttendanceTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitCheckAttendanceTask(_ input: SubmitCheckAttendanceTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
+        try await self.client.execute(action: "SubmitCheckAttendanceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交人员考勤任务
@@ -148,8 +148,8 @@ extension Tci {
     ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms |
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
-    public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskResponse> {
-        self.submitCheckAttendanceTask(SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), logger: logger, on: eventLoop)
+    public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCheckAttendanceTaskResponse> {
+        self.submitCheckAttendanceTask(SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交人员考勤任务
@@ -169,7 +169,7 @@ extension Tci {
     ///  | timestamp | uint64 | 识别到人脸的绝对时间戳，单位ms |
     ///  | image_url | string | 识别到人脸的事件抓图的下载地址，不长期保存，需要请及时下载 |
     @inlinable
-    public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
-        try await self.submitCheckAttendanceTask(SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), logger: logger, on: eventLoop)
+    public func submitCheckAttendanceTask(fileContent: String, fileType: String, libraryIds: [String], attendanceThreshold: Float? = nil, enableStranger: Bool? = nil, endTime: Int64? = nil, noticeUrl: String? = nil, startTime: Int64? = nil, threshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCheckAttendanceTaskResponse {
+        try await self.submitCheckAttendanceTask(SubmitCheckAttendanceTaskRequest(fileContent: fileContent, fileType: fileType, libraryIds: libraryIds, attendanceThreshold: attendanceThreshold, enableStranger: enableStranger, endTime: endTime, noticeUrl: noticeUrl, startTime: startTime, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 }

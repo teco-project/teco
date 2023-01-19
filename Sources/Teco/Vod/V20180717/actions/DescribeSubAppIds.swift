@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Vod {
     ///
     /// 该接口用于获取当前账号的子应用列表，包含主应用。
     @inlinable
-    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAppIdsResponse> {
-        self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAppIdsResponse> {
+        self.client.execute(action: "DescribeSubAppIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询子应用列表
     ///
     /// 该接口用于获取当前账号的子应用列表，包含主应用。
     @inlinable
-    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
-        try await self.client.execute(action: "DescribeSubAppIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubAppIds(_ input: DescribeSubAppIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
+        try await self.client.execute(action: "DescribeSubAppIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询子应用列表
     ///
     /// 该接口用于获取当前账号的子应用列表，包含主应用。
     @inlinable
-    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAppIdsResponse> {
-        self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAppIdsResponse> {
+        self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询子应用列表
     ///
     /// 该接口用于获取当前账号的子应用列表，包含主应用。
     @inlinable
-    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
-        try await self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSubAppIds(name: String? = nil, tags: [ResourceTag]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAppIdsResponse {
+        try await self.describeSubAppIds(DescribeSubAppIdsRequest(name: name, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

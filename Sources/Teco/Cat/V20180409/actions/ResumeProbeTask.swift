@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cat {
 
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
-        self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
+        self.client.execute(action: "ResumeProbeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
-        try await self.client.execute(action: "ResumeProbeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeProbeTask(_ input: ResumeProbeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
+        try await self.client.execute(action: "ResumeProbeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
-        self.resumeProbeTask(ResumeProbeTaskRequest(taskIds: taskIds), logger: logger, on: eventLoop)
+    public func resumeProbeTask(taskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeProbeTaskResponse> {
+        self.resumeProbeTask(ResumeProbeTaskRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复拨测任务
     @inlinable
-    public func resumeProbeTask(taskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
-        try await self.resumeProbeTask(ResumeProbeTaskRequest(taskIds: taskIds), logger: logger, on: eventLoop)
+    public func resumeProbeTask(taskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeProbeTaskResponse {
+        try await self.resumeProbeTask(ResumeProbeTaskRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }
 }

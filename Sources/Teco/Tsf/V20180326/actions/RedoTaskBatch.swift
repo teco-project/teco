@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tsf {
 
     /// 重新执行任务批次
     @inlinable
-    public func redoTaskBatch(_ input: RedoTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskBatchResponse> {
-        self.client.execute(action: "RedoTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func redoTaskBatch(_ input: RedoTaskBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskBatchResponse> {
+        self.client.execute(action: "RedoTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务批次
     @inlinable
-    public func redoTaskBatch(_ input: RedoTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
-        try await self.client.execute(action: "RedoTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func redoTaskBatch(_ input: RedoTaskBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
+        try await self.client.execute(action: "RedoTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新执行任务批次
     @inlinable
-    public func redoTaskBatch(taskId: String, batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskBatchResponse> {
-        self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), logger: logger, on: eventLoop)
+    public func redoTaskBatch(taskId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskBatchResponse> {
+        self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务批次
     @inlinable
-    public func redoTaskBatch(taskId: String, batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
-        try await self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), logger: logger, on: eventLoop)
+    public func redoTaskBatch(taskId: String, batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskBatchResponse {
+        try await self.redoTaskBatch(RedoTaskBatchRequest(taskId: taskId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

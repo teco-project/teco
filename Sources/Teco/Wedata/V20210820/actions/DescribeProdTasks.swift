@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Wedata {
     ///
     /// 数据质量获取生产调度任务列表
     @inlinable
-    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProdTasksResponse> {
-        self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProdTasks(_ input: DescribeProdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProdTasksResponse> {
+        self.client.execute(action: "DescribeProdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取生产调度任务列表
     ///
     /// 数据质量获取生产调度任务列表
     @inlinable
-    public func describeProdTasks(_ input: DescribeProdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
-        try await self.client.execute(action: "DescribeProdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProdTasks(_ input: DescribeProdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
+        try await self.client.execute(action: "DescribeProdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取生产调度任务列表
     ///
     /// 数据质量获取生产调度任务列表
     @inlinable
-    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProdTasksResponse> {
-        self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProdTasksResponse> {
+        self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取生产调度任务列表
     ///
     /// 数据质量获取生产调度任务列表
     @inlinable
-    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
-        try await self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
+        try await self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

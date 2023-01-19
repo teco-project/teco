@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Mps {
     ///
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
-    public func describeStreamLinkFlowStatistics(_ input: DescribeStreamLinkFlowStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowStatisticsResponse> {
-        self.client.execute(action: "DescribeStreamLinkFlowStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamLinkFlowStatistics(_ input: DescribeStreamLinkFlowStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowStatisticsResponse> {
+        self.client.execute(action: "DescribeStreamLinkFlowStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流的媒体质量数据
     ///
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
-    public func describeStreamLinkFlowStatistics(_ input: DescribeStreamLinkFlowStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlowStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamLinkFlowStatistics(_ input: DescribeStreamLinkFlowStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlowStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流的媒体质量数据
     ///
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
-    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowStatisticsResponse> {
-        self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowStatisticsResponse> {
+        self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流的媒体质量数据
     ///
     /// 查询媒体传输流的媒体质量数据。
     @inlinable
-    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
-        try await self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeStreamLinkFlowStatistics(flowId: String, type: String, inputOutputId: String, pipeline: String, period: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowStatisticsResponse {
+        try await self.describeStreamLinkFlowStatistics(DescribeStreamLinkFlowStatisticsRequest(flowId: flowId, type: type, inputOutputId: inputOutputId, pipeline: pipeline, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

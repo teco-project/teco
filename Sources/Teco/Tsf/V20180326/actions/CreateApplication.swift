@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Tsf {
 
     /// 创建应用
     @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
-        self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplication(_ input: CreateApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
+        self.client.execute(action: "CreateApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用
     @inlinable
-    public func createApplication(_ input: CreateApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
-        try await self.client.execute(action: "CreateApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplication(_ input: CreateApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
+        try await self.client.execute(action: "CreateApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建应用
     @inlinable
-    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
-        self.createApplication(CreateApplicationRequest(applicationName: applicationName, applicationType: applicationType, microserviceType: microserviceType, applicationDesc: applicationDesc, applicationLogConfig: applicationLogConfig, applicationResourceType: applicationResourceType, applicationRuntimeType: applicationRuntimeType, programId: programId, serviceConfigList: serviceConfigList, ignoreCreateImageRepository: ignoreCreateImageRepository, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationResponse> {
+        self.createApplication(CreateApplicationRequest(applicationName: applicationName, applicationType: applicationType, microserviceType: microserviceType, applicationDesc: applicationDesc, applicationLogConfig: applicationLogConfig, applicationResourceType: applicationResourceType, applicationRuntimeType: applicationRuntimeType, programId: programId, serviceConfigList: serviceConfigList, ignoreCreateImageRepository: ignoreCreateImageRepository, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用
     @inlinable
-    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
-        try await self.createApplication(CreateApplicationRequest(applicationName: applicationName, applicationType: applicationType, microserviceType: microserviceType, applicationDesc: applicationDesc, applicationLogConfig: applicationLogConfig, applicationResourceType: applicationResourceType, applicationRuntimeType: applicationRuntimeType, programId: programId, serviceConfigList: serviceConfigList, ignoreCreateImageRepository: ignoreCreateImageRepository, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createApplication(applicationName: String, applicationType: String, microserviceType: String, applicationDesc: String? = nil, applicationLogConfig: String? = nil, applicationResourceType: String? = nil, applicationRuntimeType: String? = nil, programId: String? = nil, serviceConfigList: [ServiceConfig]? = nil, ignoreCreateImageRepository: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationResponse {
+        try await self.createApplication(CreateApplicationRequest(applicationName: applicationName, applicationType: applicationType, microserviceType: microserviceType, applicationDesc: applicationDesc, applicationLogConfig: applicationLogConfig, applicationResourceType: applicationResourceType, applicationRuntimeType: applicationRuntimeType, programId: programId, serviceConfigList: serviceConfigList, ignoreCreateImageRepository: ignoreCreateImageRepository, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

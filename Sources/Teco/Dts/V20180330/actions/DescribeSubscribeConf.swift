@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -158,31 +158,31 @@ extension Dts {
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
-        self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
+        self.client.execute(action: "DescribeSubscribeConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
-        try await self.client.execute(action: "DescribeSubscribeConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubscribeConf(_ input: DescribeSubscribeConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
+        try await self.client.execute(action: "DescribeSubscribeConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
-        self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    public func describeSubscribeConf(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribeConfResponse> {
+        self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅实例配置
     ///
     /// 本接口（DescribeSubscribeConf）用于查询订阅实例配置
     @inlinable
-    public func describeSubscribeConf(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
-        try await self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    public func describeSubscribeConf(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribeConfResponse {
+        try await self.describeSubscribeConf(DescribeSubscribeConfRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 }

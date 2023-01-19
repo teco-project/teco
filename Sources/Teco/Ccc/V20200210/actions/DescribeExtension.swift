@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Ccc {
 
     /// 获取话机信息
     @inlinable
-    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
-        self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExtension(_ input: DescribeExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
+        self.client.execute(action: "DescribeExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取话机信息
     @inlinable
-    public func describeExtension(_ input: DescribeExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
-        try await self.client.execute(action: "DescribeExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExtension(_ input: DescribeExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
+        try await self.client.execute(action: "DescribeExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取话机信息
     @inlinable
-    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
-        self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    public func describeExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
+        self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取话机信息
     @inlinable
-    public func describeExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
-        try await self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    public func describeExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
+        try await self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 }

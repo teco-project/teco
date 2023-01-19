@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 修改全局告警通知渠道
     @inlinable
-    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusGlobalNotificationResponse> {
-        self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusGlobalNotificationResponse> {
+        self.client.execute(action: "ModifyPrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改全局告警通知渠道
     @inlinable
-    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
-        try await self.client.execute(action: "ModifyPrometheusGlobalNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrometheusGlobalNotification(_ input: ModifyPrometheusGlobalNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
+        try await self.client.execute(action: "ModifyPrometheusGlobalNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改全局告警通知渠道
     @inlinable
-    public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusGlobalNotificationResponse> {
-        self.modifyPrometheusGlobalNotification(ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification), logger: logger, on: eventLoop)
+    public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusGlobalNotificationResponse> {
+        self.modifyPrometheusGlobalNotification(ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改全局告警通知渠道
     @inlinable
-    public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
-        try await self.modifyPrometheusGlobalNotification(ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification), logger: logger, on: eventLoop)
+    public func modifyPrometheusGlobalNotification(instanceId: String, notification: PrometheusNotificationItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusGlobalNotificationResponse {
+        try await self.modifyPrometheusGlobalNotification(ModifyPrometheusGlobalNotificationRequest(instanceId: instanceId, notification: notification), region: region, logger: logger, on: eventLoop)
     }
 }

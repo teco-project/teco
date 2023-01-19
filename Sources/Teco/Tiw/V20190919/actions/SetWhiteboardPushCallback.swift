@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tiw {
     ///
     /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
     @inlinable
-    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetWhiteboardPushCallbackResponse> {
-        self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetWhiteboardPushCallbackResponse> {
+        self.client.execute(action: "SetWhiteboardPushCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置白板推流回调地址
     ///
     /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
     @inlinable
-    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
-        try await self.client.execute(action: "SetWhiteboardPushCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setWhiteboardPushCallback(_ input: SetWhiteboardPushCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
+        try await self.client.execute(action: "SetWhiteboardPushCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置白板推流回调地址
     ///
     /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
     @inlinable
-    public func setWhiteboardPushCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetWhiteboardPushCallbackResponse> {
-        self.setWhiteboardPushCallback(SetWhiteboardPushCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setWhiteboardPushCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetWhiteboardPushCallbackResponse> {
+        self.setWhiteboardPushCallback(SetWhiteboardPushCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置白板推流回调地址
     ///
     /// 设置白板推流回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40257
     @inlinable
-    public func setWhiteboardPushCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
-        try await self.setWhiteboardPushCallback(SetWhiteboardPushCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setWhiteboardPushCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetWhiteboardPushCallbackResponse {
+        try await self.setWhiteboardPushCallback(SetWhiteboardPushCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

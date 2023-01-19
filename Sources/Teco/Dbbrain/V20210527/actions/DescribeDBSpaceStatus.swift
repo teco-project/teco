@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Dbbrain {
     ///
     /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
     @inlinable
-    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSpaceStatusResponse> {
-        self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSpaceStatusResponse> {
+        self.client.execute(action: "DescribeDBSpaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定时间段内的实例空间使用概览
     ///
     /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
     @inlinable
-    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
-        try await self.client.execute(action: "DescribeDBSpaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBSpaceStatus(_ input: DescribeDBSpaceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
+        try await self.client.execute(action: "DescribeDBSpaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定时间段内的实例空间使用概览
     ///
     /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
     @inlinable
-    public func describeDBSpaceStatus(instanceId: String, rangeDays: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSpaceStatusResponse> {
-        self.describeDBSpaceStatus(DescribeDBSpaceStatusRequest(instanceId: instanceId, rangeDays: rangeDays, product: product), logger: logger, on: eventLoop)
+    public func describeDBSpaceStatus(instanceId: String, rangeDays: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSpaceStatusResponse> {
+        self.describeDBSpaceStatus(DescribeDBSpaceStatusRequest(instanceId: instanceId, rangeDays: rangeDays, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定时间段内的实例空间使用概览
     ///
     /// 获取指定时间段内的实例空间使用概览，包括磁盘增长量(MB)、磁盘剩余(MB)、磁盘总量(MB)及预计可用天数。
     @inlinable
-    public func describeDBSpaceStatus(instanceId: String, rangeDays: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
-        try await self.describeDBSpaceStatus(DescribeDBSpaceStatusRequest(instanceId: instanceId, rangeDays: rangeDays, product: product), logger: logger, on: eventLoop)
+    public func describeDBSpaceStatus(instanceId: String, rangeDays: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSpaceStatusResponse {
+        try await self.describeDBSpaceStatus(DescribeDBSpaceStatusRequest(instanceId: instanceId, rangeDays: rangeDays, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

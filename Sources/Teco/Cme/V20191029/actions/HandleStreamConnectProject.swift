@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,8 +104,8 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
-        self.client.execute(action: "HandleStreamConnectProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
+        self.client.execute(action: "HandleStreamConnectProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 操作云转推项目
@@ -127,8 +127,8 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
-        try await self.client.execute(action: "HandleStreamConnectProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func handleStreamConnectProject(_ input: HandleStreamConnectProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
+        try await self.client.execute(action: "HandleStreamConnectProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 操作云转推项目
@@ -150,8 +150,8 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
-        self.handleStreamConnectProject(HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), logger: logger, on: eventLoop)
+    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HandleStreamConnectProjectResponse> {
+        self.handleStreamConnectProject(HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 操作云转推项目
@@ -173,7 +173,7 @@ extension Cme {
     /// - `ModifyCurrentStopTime`（修改当前计划结束时间），参见 [示例13](#.E7.A4.BA.E4.BE.8B13-.E4.BF.AE.E6.94.B9.E8.BD.AC.E6.8E.A8.E7.BB.93.E6.9D.9F.E6.97.B6.E9.97.B4);
     /// - `DescribeInputPlayInfo`（查询播放进度），参见 [示例14](#.E7.A4.BA.E4.BE.8B14-.E6.9F.A5.E8.AF.A2.E7.82.B9.E6.92.AD.E8.BE.93.E5.85.A5.E6.BA.90.E6.92.AD.E6.94.BE.E8.BF.9B.E5.BA.A6)。
     @inlinable
-    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
-        try await self.handleStreamConnectProject(HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), logger: logger, on: eventLoop)
+    public func handleStreamConnectProject(platform: String, projectId: String, operation: String, inputInfo: StreamInputInfo? = nil, inputEndpoint: String? = nil, outputInfo: StreamConnectOutput? = nil, currentStopTime: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HandleStreamConnectProjectResponse {
+        try await self.handleStreamConnectProject(HandleStreamConnectProjectRequest(platform: platform, projectId: projectId, operation: operation, inputInfo: inputInfo, inputEndpoint: inputEndpoint, outputInfo: outputInfo, currentStopTime: currentStopTime, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

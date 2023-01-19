@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,8 +61,8 @@ extension Cbs {
     /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
     @inlinable
-    public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
-        self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachDisks(_ input: AttachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
+        self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 挂载云硬盘
@@ -72,8 +72,8 @@ extension Cbs {
     /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
     @inlinable
-    public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
-        try await self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachDisks(_ input: AttachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 挂载云硬盘
@@ -83,8 +83,8 @@ extension Cbs {
     /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
     @inlinable
-    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
-        self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), logger: logger, on: eventLoop)
+    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
+        self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 挂载云硬盘
@@ -94,7 +94,7 @@ extension Cbs {
     /// * 支持批量操作，将多块云盘挂载到同一云主机。如果多个云盘中存在不允许挂载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当挂载云盘的请求成功返回时，表示后台已发起挂载云盘的操作，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHING”变为“ATTACHED”，则为挂载成功。
     @inlinable
-    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
-        try await self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), logger: logger, on: eventLoop)
+    public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), region: region, logger: logger, on: eventLoop)
     }
 }

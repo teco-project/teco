@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable
-    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
-        self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
+        self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable
-    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
-        try await self.client.execute(action: "ModifyInstanceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
+        try await self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable
-    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
-        self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
+        self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
     @inlinable
-    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
-        try await self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
+        try await self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 }

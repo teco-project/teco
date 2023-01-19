@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,8 +45,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 描述服务运行环境
     @inlinable
-    public func describeRuntimes(_ input: DescribeRuntimesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuntimesResponse> {
-        self.client.execute(action: "DescribeRuntimes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuntimes(_ input: DescribeRuntimesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuntimesResponse> {
+        self.client.execute(action: "DescribeRuntimes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述服务运行环境
@@ -54,8 +54,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 描述服务运行环境
     @inlinable
-    public func describeRuntimes(_ input: DescribeRuntimesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
-        try await self.client.execute(action: "DescribeRuntimes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuntimes(_ input: DescribeRuntimesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
+        try await self.client.execute(action: "DescribeRuntimes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 描述服务运行环境
@@ -63,8 +63,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 描述服务运行环境
     @inlinable
-    public func describeRuntimes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuntimesResponse> {
-        self.describeRuntimes(DescribeRuntimesRequest(), logger: logger, on: eventLoop)
+    public func describeRuntimes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuntimesResponse> {
+        self.describeRuntimes(DescribeRuntimesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述服务运行环境
@@ -72,7 +72,7 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 描述服务运行环境
     @inlinable
-    public func describeRuntimes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
-        try await self.describeRuntimes(DescribeRuntimesRequest(), logger: logger, on: eventLoop)
+    public func describeRuntimes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
+        try await self.describeRuntimes(DescribeRuntimesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

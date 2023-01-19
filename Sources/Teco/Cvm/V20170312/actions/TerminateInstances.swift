@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateInstances(_ input: TerminateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
+        self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还实例
@@ -61,8 +61,8 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateInstances(_ input: TerminateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退还实例
@@ -74,8 +74,8 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable
-    public func terminateInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
+        self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退还实例
@@ -87,7 +87,7 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable
-    public func terminateInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

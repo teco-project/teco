@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tke {
 
     /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
-    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckEdgeClusterCIDRResponse> {
-        self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckEdgeClusterCIDRResponse> {
+        self.client.execute(action: "CheckEdgeClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
-    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
-        try await self.client.execute(action: "CheckEdgeClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkEdgeClusterCIDR(_ input: CheckEdgeClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
+        try await self.client.execute(action: "CheckEdgeClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
-    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckEdgeClusterCIDRResponse> {
-        self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), logger: logger, on: eventLoop)
+    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckEdgeClusterCIDRResponse> {
+        self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查边缘计算集群的CIDR是否冲突
     @inlinable
-    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
-        try await self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), logger: logger, on: eventLoop)
+    public func checkEdgeClusterCIDR(vpcId: String, podCIDR: String, serviceCIDR: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEdgeClusterCIDRResponse {
+        try await self.checkEdgeClusterCIDR(CheckEdgeClusterCIDRRequest(vpcId: vpcId, podCIDR: podCIDR, serviceCIDR: serviceCIDR), region: region, logger: logger, on: eventLoop)
     }
 }

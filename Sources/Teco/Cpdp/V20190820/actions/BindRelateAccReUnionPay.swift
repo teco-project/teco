@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Cpdp {
     ///
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
-    public func bindRelateAccReUnionPay(_ input: BindRelateAccReUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAccReUnionPayResponse> {
-        self.client.execute(action: "BindRelateAccReUnionPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindRelateAccReUnionPay(_ input: BindRelateAccReUnionPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAccReUnionPayResponse> {
+        self.client.execute(action: "BindRelateAccReUnionPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员绑定提现账户-回填银联鉴权短信码
     ///
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
-    public func bindRelateAccReUnionPay(_ input: BindRelateAccReUnionPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAccReUnionPayResponse {
-        try await self.client.execute(action: "BindRelateAccReUnionPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindRelateAccReUnionPay(_ input: BindRelateAccReUnionPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAccReUnionPayResponse {
+        try await self.client.execute(action: "BindRelateAccReUnionPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-会员绑定提现账户-回填银联鉴权短信码
     ///
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
-    public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAccReUnionPayResponse> {
-        self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAccReUnionPayResponse> {
+        self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员绑定提现账户-回填银联鉴权短信码
     ///
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
-    public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAccReUnionPayResponse {
-        try await self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAccReUnionPayResponse {
+        try await self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

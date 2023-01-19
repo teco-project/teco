@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,8 +88,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
-    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioDepositResponse> {
-        self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAudioDeposit(_ input: CreateAudioDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioDepositResponse> {
+        self.client.execute(action: "CreateAudioDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频文件存证
@@ -97,8 +97,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
-    public func createAudioDeposit(_ input: CreateAudioDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
-        try await self.client.execute(action: "CreateAudioDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAudioDeposit(_ input: CreateAudioDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
+        try await self.client.execute(action: "CreateAudioDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 音频文件存证
@@ -106,8 +106,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
-    public func createAudioDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioDepositResponse> {
-        self.createAudioDeposit(CreateAudioDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createAudioDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioDepositResponse> {
+        self.createAudioDeposit(CreateAudioDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音频文件存证
@@ -115,7 +115,7 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的音频原文件或下载URL，BTOE对音频原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。音频类型支持格式：mp3、wav、wma、midi、flac；原文件上传大小不超过5 MB，下载URL文件大小不超过25 MB。
     @inlinable
-    public func createAudioDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
-        try await self.createAudioDeposit(CreateAudioDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createAudioDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioDepositResponse {
+        try await self.createAudioDeposit(CreateAudioDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

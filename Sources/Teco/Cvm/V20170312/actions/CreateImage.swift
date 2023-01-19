@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Cvm {
     ///
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
-        self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
+        self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
     ///
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
-    public func createImage(_ input: CreateImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        try await self.client.execute(action: "CreateImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImage(_ input: CreateImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.client.execute(action: "CreateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像
     ///
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
-    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
-        self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageResponse> {
+        self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
     ///
     /// 本接口(CreateImage)用于将实例的系统盘制作为新镜像，创建后的镜像可以用于创建实例。
     @inlinable
-    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
-        try await self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createImage(imageName: String, instanceId: String? = nil, imageDescription: String? = nil, forcePoweroff: String? = nil, sysprep: String? = nil, dataDiskIds: [String]? = nil, snapshotIds: [String]? = nil, dryRun: Bool? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageResponse {
+        try await self.createImage(CreateImageRequest(imageName: imageName, instanceId: instanceId, imageDescription: imageDescription, forcePoweroff: forcePoweroff, sysprep: sysprep, dataDiskIds: dataDiskIds, snapshotIds: snapshotIds, dryRun: dryRun, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

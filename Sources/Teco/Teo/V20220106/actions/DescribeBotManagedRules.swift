@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,25 +73,25 @@ extension Teo {
 
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
-        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
+        self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
-        self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), logger: logger, on: eventLoop)
+    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
+        self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), logger: logger, on: eventLoop)
+    public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), region: region, logger: logger, on: eventLoop)
     }
 }

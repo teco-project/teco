@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Es {
 
     /// 获取接收客户端请求的节点类型
     @inlinable
-    public func getRequestTargetNodeTypes(_ input: GetRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestTargetNodeTypesResponse> {
-        self.client.execute(action: "GetRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRequestTargetNodeTypes(_ input: GetRequestTargetNodeTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestTargetNodeTypesResponse> {
+        self.client.execute(action: "GetRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取接收客户端请求的节点类型
     @inlinable
-    public func getRequestTargetNodeTypes(_ input: GetRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestTargetNodeTypesResponse {
-        try await self.client.execute(action: "GetRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRequestTargetNodeTypes(_ input: GetRequestTargetNodeTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestTargetNodeTypesResponse {
+        try await self.client.execute(action: "GetRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取接收客户端请求的节点类型
     @inlinable
-    public func getRequestTargetNodeTypes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestTargetNodeTypesResponse> {
-        self.getRequestTargetNodeTypes(GetRequestTargetNodeTypesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func getRequestTargetNodeTypes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestTargetNodeTypesResponse> {
+        self.getRequestTargetNodeTypes(GetRequestTargetNodeTypesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取接收客户端请求的节点类型
     @inlinable
-    public func getRequestTargetNodeTypes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestTargetNodeTypesResponse {
-        try await self.getRequestTargetNodeTypes(GetRequestTargetNodeTypesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func getRequestTargetNodeTypes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestTargetNodeTypesResponse {
+        try await self.getRequestTargetNodeTypes(GetRequestTargetNodeTypesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

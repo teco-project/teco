@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Nlp {
     /// 目前已提供：
     /// - 通用领域分类体系，二级分类，包括14个分类类目，分别是汽车、科技、健康、体育、旅行、教育、职业、文化、房产、娱乐、女性、奥运、财经以及其他，适用于通用的场景。
     @inlinable
-    public func textClassification(_ input: TextClassificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextClassificationResponse> {
-        self.client.execute(action: "TextClassification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textClassification(_ input: TextClassificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextClassificationResponse> {
+        self.client.execute(action: "TextClassification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本分类
@@ -68,8 +68,8 @@ extension Nlp {
     /// 目前已提供：
     /// - 通用领域分类体系，二级分类，包括14个分类类目，分别是汽车、科技、健康、体育、旅行、教育、职业、文化、房产、娱乐、女性、奥运、财经以及其他，适用于通用的场景。
     @inlinable
-    public func textClassification(_ input: TextClassificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextClassificationResponse {
-        try await self.client.execute(action: "TextClassification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textClassification(_ input: TextClassificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextClassificationResponse {
+        try await self.client.execute(action: "TextClassification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文本分类
@@ -79,8 +79,8 @@ extension Nlp {
     /// 目前已提供：
     /// - 通用领域分类体系，二级分类，包括14个分类类目，分别是汽车、科技、健康、体育、旅行、教育、职业、文化、房产、娱乐、女性、奥运、财经以及其他，适用于通用的场景。
     @inlinable
-    public func textClassification(text: String, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextClassificationResponse> {
-        self.textClassification(TextClassificationRequest(text: text, flag: flag), logger: logger, on: eventLoop)
+    public func textClassification(text: String, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextClassificationResponse> {
+        self.textClassification(TextClassificationRequest(text: text, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本分类
@@ -90,7 +90,7 @@ extension Nlp {
     /// 目前已提供：
     /// - 通用领域分类体系，二级分类，包括14个分类类目，分别是汽车、科技、健康、体育、旅行、教育、职业、文化、房产、娱乐、女性、奥运、财经以及其他，适用于通用的场景。
     @inlinable
-    public func textClassification(text: String, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextClassificationResponse {
-        try await self.textClassification(TextClassificationRequest(text: text, flag: flag), logger: logger, on: eventLoop)
+    public func textClassification(text: String, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextClassificationResponse {
+        try await self.textClassification(TextClassificationRequest(text: text, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

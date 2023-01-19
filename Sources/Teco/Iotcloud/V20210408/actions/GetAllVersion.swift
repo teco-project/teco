@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Iotcloud {
     ///
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllVersionResponse> {
-        self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAllVersion(_ input: GetAllVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllVersionResponse> {
+        self.client.execute(action: "GetAllVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有版本列表
     ///
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllVersion(_ input: GetAllVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
-        try await self.client.execute(action: "GetAllVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAllVersion(_ input: GetAllVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
+        try await self.client.execute(action: "GetAllVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取所有版本列表
     ///
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllVersion(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllVersionResponse> {
-        self.getAllVersion(GetAllVersionRequest(productId: productId), logger: logger, on: eventLoop)
+    public func getAllVersion(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAllVersionResponse> {
+        self.getAllVersion(GetAllVersionRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有版本列表
     ///
     /// 本接口（GetAllVersion）用于获取所有的版本列表
     @inlinable
-    public func getAllVersion(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
-        try await self.getAllVersion(GetAllVersionRequest(productId: productId), logger: logger, on: eventLoop)
+    public func getAllVersion(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAllVersionResponse {
+        try await self.getAllVersion(GetAllVersionRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
-        self.client.execute(action: "DeleteFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
+        self.client.execute(action: "DeleteFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除防火墙规则
@@ -75,8 +75,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
-        try await self.client.execute(action: "DeleteFirewallRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFirewallRules(_ input: DeleteFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
+        try await self.client.execute(action: "DeleteFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除防火墙规则
@@ -90,8 +90,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
-        self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
+        self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除防火墙规则
@@ -105,7 +105,7 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
-        try await self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
+        try await self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }
 }

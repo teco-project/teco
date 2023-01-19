@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Iotvideo {
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(_ input: CreateIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
-        self.client.execute(action: "CreateIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIotModel(_ input: CreateIotModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
+        self.client.execute(action: "CreateIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 定义的物模型提交
@@ -58,8 +58,8 @@ extension Iotvideo {
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(_ input: CreateIotModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
-        try await self.client.execute(action: "CreateIotModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIotModel(_ input: CreateIotModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
+        try await self.client.execute(action: "CreateIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 定义的物模型提交
@@ -67,8 +67,8 @@ extension Iotvideo {
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(productId: String, iotModel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
-        self.createIotModel(CreateIotModelRequest(productId: productId, iotModel: iotModel), logger: logger, on: eventLoop)
+    public func createIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotModelResponse> {
+        self.createIotModel(CreateIotModelRequest(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 定义的物模型提交
@@ -76,7 +76,7 @@ extension Iotvideo {
     /// 本接口（CreateIotModel）用于定义的物模型提交。
     /// 该接口实现了物模型草稿箱的功能，保存用户最后一次编辑的物模型数据。
     @inlinable
-    public func createIotModel(productId: String, iotModel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
-        try await self.createIotModel(CreateIotModelRequest(productId: productId, iotModel: iotModel), logger: logger, on: eventLoop)
+    public func createIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotModelResponse {
+        try await self.createIotModel(CreateIotModelRequest(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
 }

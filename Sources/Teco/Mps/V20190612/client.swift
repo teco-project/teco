@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -30,7 +30,7 @@ public struct Mps: TCService {
     ///
     /// - Parameters:
     ///    - client: ``TCClient`` used to perform actions.
-    ///    - region: Region of the service you want to operate on.
+    ///    - region: Default region of the service you want to operate on.
     ///    - language: Preferred language for API response.
     ///    - endpoint: Custom endpoint URL for API request.
     ///    - timeout: Timeout value for HTTP requests.
@@ -44,9 +44,9 @@ public struct Mps: TCService {
     ) {
         self.client = client
         self.config = TCServiceConfig(
-            region: region,
             service: "mps",
-            apiVersion: "2019-06-12",
+            version: "2019-06-12",
+            region: region,
             language: language,
             endpoint: endpoint,
             errorType: TCMpsError.self,

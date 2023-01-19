@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Irp {
 
     /// 上报用户画像
     @inlinable
-    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
-        self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reportPortrait(_ input: ReportPortraitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
+        self.client.execute(action: "ReportPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报用户画像
     @inlinable
-    public func reportPortrait(_ input: ReportPortraitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
-        try await self.client.execute(action: "ReportPortrait", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reportPortrait(_ input: ReportPortraitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
+        try await self.client.execute(action: "ReportPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报用户画像
     @inlinable
-    public func reportPortrait(bid: String, portraitList: [PortraitInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
-        self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), logger: logger, on: eventLoop)
+    public func reportPortrait(bid: String, portraitList: [PortraitInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
+        self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报用户画像
     @inlinable
-    public func reportPortrait(bid: String, portraitList: [PortraitInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
-        try await self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), logger: logger, on: eventLoop)
+    public func reportPortrait(bid: String, portraitList: [PortraitInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
+        try await self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), region: region, logger: logger, on: eventLoop)
     }
 }

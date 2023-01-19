@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Monitor {
 
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
-        self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
+        self.client.execute(action: "ModifyPolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
-        try await self.client.execute(action: "ModifyPolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPolicyGroup(_ input: ModifyPolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
+        try await self.client.execute(action: "ModifyPolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
-        self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), logger: logger, on: eventLoop)
+    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
+        self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新策略组
     @inlinable
-    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
-        try await self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), logger: logger, on: eventLoop)
+    public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
+        try await self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Eb {
     ///
     /// 用于创建转换器
     @inlinable
-    public func createTransformation(_ input: CreateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransformationResponse> {
-        self.client.execute(action: "CreateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTransformation(_ input: CreateTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransformationResponse> {
+        self.client.execute(action: "CreateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转换器
     ///
     /// 用于创建转换器
     @inlinable
-    public func createTransformation(_ input: CreateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
-        try await self.client.execute(action: "CreateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTransformation(_ input: CreateTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
+        try await self.client.execute(action: "CreateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建转换器
     ///
     /// 用于创建转换器
     @inlinable
-    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransformationResponse> {
-        self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), logger: logger, on: eventLoop)
+    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTransformationResponse> {
+        self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转换器
     ///
     /// 用于创建转换器
     @inlinable
-    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
-        try await self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), logger: logger, on: eventLoop)
+    public func createTransformation(eventBusId: String, ruleId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTransformationResponse {
+        try await self.createTransformation(CreateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 }

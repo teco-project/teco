@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Vpc {
     ///
     ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
-    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcInstancesResponse> {
-        self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcInstancesResponse> {
+        self.client.execute(action: "DescribeVpcInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC下的云主机实例列表
     ///
     ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
-    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
-        try await self.client.execute(action: "DescribeVpcInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcInstances(_ input: DescribeVpcInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
+        try await self.client.execute(action: "DescribeVpcInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询VPC下的云主机实例列表
     ///
     ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
-    public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcInstancesResponse> {
-        self.describeVpcInstances(DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcInstancesResponse> {
+        self.describeVpcInstances(DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC下的云主机实例列表
     ///
     ///  本接口（DescribeVpcInstances）用于查询VPC下的云主机实例列表。
     @inlinable
-    public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
-        try await self.describeVpcInstances(DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVpcInstances(filters: [Filter], offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcInstancesResponse {
+        try await self.describeVpcInstances(DescribeVpcInstancesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

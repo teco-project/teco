@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Ame {
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemsResponse> {
-        self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeItems(_ input: DescribeItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemsResponse> {
+        self.client.execute(action: "DescribeItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容下歌曲列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeItems(_ input: DescribeItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
-        try await self.client.execute(action: "DescribeItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeItems(_ input: DescribeItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
+        try await self.client.execute(action: "DescribeItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取分类内容下歌曲列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemsResponse> {
-        self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), logger: logger, on: eventLoop)
+    public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemsResponse> {
+        self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容下歌曲列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
-        try await self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), logger: logger, on: eventLoop)
+    public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
+        try await self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), region: region, logger: logger, on: eventLoop)
     }
 }

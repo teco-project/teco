@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcaplusdb {
     ///
     /// 构造表格过去时间点的快照
     @inlinable
-    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotsResponse> {
-        self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSnapshots(_ input: CreateSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotsResponse> {
+        self.client.execute(action: "CreateSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建表格快照
     ///
     /// 构造表格过去时间点的快照
     @inlinable
-    public func createSnapshots(_ input: CreateSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
-        try await self.client.execute(action: "CreateSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSnapshots(_ input: CreateSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
+        try await self.client.execute(action: "CreateSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建表格快照
     ///
     /// 构造表格过去时间点的快照
     @inlinable
-    public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotsResponse> {
-        self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotsResponse> {
+        self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建表格快照
     ///
     /// 构造表格过去时间点的快照
     @inlinable
-    public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
-        try await self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
+        try await self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tsf {
 
     /// 查询网关API监控明细数据
     @inlinable
-    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUseDetailResponse> {
-        self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUseDetailResponse> {
+        self.client.execute(action: "DescribeApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关API监控明细数据
     @inlinable
-    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
-        try await self.client.execute(action: "DescribeApiUseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiUseDetail(_ input: DescribeApiUseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
+        try await self.client.execute(action: "DescribeApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网关API监控明细数据
     @inlinable
-    public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUseDetailResponse> {
-        self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUseDetailResponse> {
+        self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关API监控明细数据
     @inlinable
-    public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
-        try await self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
+        try await self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

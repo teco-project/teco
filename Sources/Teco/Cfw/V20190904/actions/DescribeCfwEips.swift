@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cfw {
 
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
-        self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCfwEips(_ input: DescribeCfwEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
+        self.client.execute(action: "DescribeCfwEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(_ input: DescribeCfwEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
-        try await self.client.execute(action: "DescribeCfwEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCfwEips(_ input: DescribeCfwEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
+        try await self.client.execute(action: "DescribeCfwEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
-        self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfwEipsResponse> {
+        self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询防火墙弹性公网IP
     @inlinable
-    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
-        try await self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    public func describeCfwEips(mode: UInt64, natGatewayId: String, cfwInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfwEipsResponse {
+        try await self.describeCfwEips(DescribeCfwEipsRequest(mode: mode, natGatewayId: natGatewayId, cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 }

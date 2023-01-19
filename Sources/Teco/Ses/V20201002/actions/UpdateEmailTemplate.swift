@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ses {
     ///
     /// 更新邮件模板，更新后需再次审核
     @inlinable
-    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
-        self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
+        self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
     @inlinable
-    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
-        try await self.client.execute(action: "UpdateEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
+        try await self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
     @inlinable
-    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
-        self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), logger: logger, on: eventLoop)
+    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
+        self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
     @inlinable
-    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
-        try await self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), logger: logger, on: eventLoop)
+    public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
+        try await self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }
 }

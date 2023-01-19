@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dnspod {
 
     /// 设置域名备注
     @inlinable
-    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainRemarkResponse> {
-        self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainRemarkResponse> {
+        self.client.execute(action: "ModifyDomainRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置域名备注
     @inlinable
-    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
-        try await self.client.execute(action: "ModifyDomainRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomainRemark(_ input: ModifyDomainRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
+        try await self.client.execute(action: "ModifyDomainRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置域名备注
     @inlinable
-    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainRemarkResponse> {
-        self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainRemarkResponse> {
+        self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置域名备注
     @inlinable
-    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
-        try await self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
+        try await self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Vpc {
     /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignPrivateIpAddressesResponse> {
-        self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignPrivateIpAddressesResponse> {
+        self.client.execute(action: "UnassignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡退还内网 IP
@@ -65,8 +65,8 @@ extension Vpc {
     /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
-        try await self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
+        try await self.client.execute(action: "UnassignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 弹性网卡退还内网 IP
@@ -75,8 +75,8 @@ extension Vpc {
     /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignPrivateIpAddressesResponse> {
-        self.unassignPrivateIpAddresses(UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignPrivateIpAddressesResponse> {
+        self.unassignPrivateIpAddresses(UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡退还内网 IP
@@ -85,7 +85,7 @@ extension Vpc {
     /// * 退还弹性网卡上的辅助内网IP，接口自动解关联弹性公网 IP。不能退还弹性网卡的主内网IP。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
-        try await self.unassignPrivateIpAddresses(UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
+        try await self.unassignPrivateIpAddresses(UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

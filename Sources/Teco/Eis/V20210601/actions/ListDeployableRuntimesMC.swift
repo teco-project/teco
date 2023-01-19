@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Eis {
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(_ input: ListDeployableRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
-        self.client.execute(action: "ListDeployableRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listDeployableRuntimesMC(_ input: ListDeployableRuntimesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
+        self.client.execute(action: "ListDeployableRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取可部署运行时列表
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(_ input: ListDeployableRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
-        try await self.client.execute(action: "ListDeployableRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listDeployableRuntimesMC(_ input: ListDeployableRuntimesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
+        try await self.client.execute(action: "ListDeployableRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取可部署运行时列表
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
-        self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), logger: logger, on: eventLoop)
+    public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
+        self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可部署运行时列表
     ///
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
-    public func listDeployableRuntimesMC(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
-        try await self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), logger: logger, on: eventLoop)
+    public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
+        try await self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

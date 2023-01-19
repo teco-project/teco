@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,25 +62,25 @@ extension Tcss {
 
     /// 创建文件篡改规则导出任务
     @inlinable
-    public func createAccessControlsRuleExportJob(_ input: CreateAccessControlsRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessControlsRuleExportJobResponse> {
-        self.client.execute(action: "CreateAccessControlsRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccessControlsRuleExportJob(_ input: CreateAccessControlsRuleExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessControlsRuleExportJobResponse> {
+        self.client.execute(action: "CreateAccessControlsRuleExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件篡改规则导出任务
     @inlinable
-    public func createAccessControlsRuleExportJob(_ input: CreateAccessControlsRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
-        try await self.client.execute(action: "CreateAccessControlsRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccessControlsRuleExportJob(_ input: CreateAccessControlsRuleExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
+        try await self.client.execute(action: "CreateAccessControlsRuleExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建文件篡改规则导出任务
     @inlinable
-    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessControlsRuleExportJobResponse> {
-        self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessControlsRuleExportJobResponse> {
+        self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件篡改规则导出任务
     @inlinable
-    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
-        try await self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createAccessControlsRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessControlsRuleExportJobResponse {
+        try await self.createAccessControlsRuleExportJob(CreateAccessControlsRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

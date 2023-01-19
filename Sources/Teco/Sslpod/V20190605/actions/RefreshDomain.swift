@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Sslpod {
     ///
     /// 强制重新检测域名
     @inlinable
-    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
-        self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refreshDomain(_ input: RefreshDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
+        self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新检测域名
     ///
     /// 强制重新检测域名
     @inlinable
-    public func refreshDomain(_ input: RefreshDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
-        try await self.client.execute(action: "RefreshDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refreshDomain(_ input: RefreshDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
+        try await self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新检测域名
     ///
     /// 强制重新检测域名
     @inlinable
-    public func refreshDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
-        self.refreshDomain(RefreshDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
+        self.refreshDomain(RefreshDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新检测域名
     ///
     /// 强制重新检测域名
     @inlinable
-    public func refreshDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
-        try await self.refreshDomain(RefreshDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
+        try await self.refreshDomain(RefreshDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

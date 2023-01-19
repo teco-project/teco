@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iotcloud {
 
     /// 查询产品绑定的CA证书
     @inlinable
-    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductCAResponse> {
-        self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductCA(_ input: DescribeProductCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductCAResponse> {
+        self.client.execute(action: "DescribeProductCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品绑定的CA证书
     @inlinable
-    public func describeProductCA(_ input: DescribeProductCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
-        try await self.client.execute(action: "DescribeProductCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductCA(_ input: DescribeProductCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
+        try await self.client.execute(action: "DescribeProductCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询产品绑定的CA证书
     @inlinable
-    public func describeProductCA(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductCAResponse> {
-        self.describeProductCA(DescribeProductCARequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProductCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductCAResponse> {
+        self.describeProductCA(DescribeProductCARequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品绑定的CA证书
     @inlinable
-    public func describeProductCA(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
-        try await self.describeProductCA(DescribeProductCARequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProductCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductCAResponse {
+        try await self.describeProductCA(DescribeProductCARequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

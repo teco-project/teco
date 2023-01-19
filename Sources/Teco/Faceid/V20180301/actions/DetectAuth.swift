@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,31 +104,31 @@ extension Faceid {
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
-        self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectAuth(_ input: DetectAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
+        self.client.execute(action: "DetectAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实名核身鉴权
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(_ input: DetectAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
-        try await self.client.execute(action: "DetectAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectAuth(_ input: DetectAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
+        try await self.client.execute(action: "DetectAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实名核身鉴权
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
-        self.detectAuth(DetectAuthRequest(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), logger: logger, on: eventLoop)
+    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectAuthResponse> {
+        self.detectAuth(DetectAuthRequest(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实名核身鉴权
     ///
     /// 每次调用人脸核身SaaS化服务前，需先调用本接口获取BizToken，用来串联核身流程，在验证完成后，用于获取验证结果信息。
     @inlinable
-    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
-        try await self.detectAuth(DetectAuthRequest(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), logger: logger, on: eventLoop)
+    public func detectAuth(ruleId: String, terminalType: String? = nil, idCard: String? = nil, name: String? = nil, redirectUrl: String? = nil, extra: String? = nil, imageBase64: String? = nil, encryption: Encryption? = nil, intentionVerifyText: String? = nil, intentionQuestions: [IntentionQuestion]? = nil, config: RuleIdConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectAuthResponse {
+        try await self.detectAuth(DetectAuthRequest(ruleId: ruleId, terminalType: terminalType, idCard: idCard, name: name, redirectUrl: redirectUrl, extra: extra, imageBase64: imageBase64, encryption: encryption, intentionVerifyText: intentionVerifyText, intentionQuestions: intentionQuestions, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

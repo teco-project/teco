@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Solar {
     ///
     /// 素材查询服务号模板的列表（样例）
     @inlinable
-    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTemplateHeadersResponse> {
-        self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTemplateHeadersResponse> {
+        self.client.execute(action: "DescribeResourceTemplateHeaders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 素材查询服务号模板标题的列表
     ///
     /// 素材查询服务号模板的列表（样例）
     @inlinable
-    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
-        try await self.client.execute(action: "DescribeResourceTemplateHeaders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceTemplateHeaders(_ input: DescribeResourceTemplateHeadersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
+        try await self.client.execute(action: "DescribeResourceTemplateHeaders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 素材查询服务号模板标题的列表
     ///
     /// 素材查询服务号模板的列表（样例）
     @inlinable
-    public func describeResourceTemplateHeaders(wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTemplateHeadersResponse> {
-        self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), logger: logger, on: eventLoop)
+    public func describeResourceTemplateHeaders(wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTemplateHeadersResponse> {
+        self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 素材查询服务号模板标题的列表
     ///
     /// 素材查询服务号模板的列表（样例）
     @inlinable
-    public func describeResourceTemplateHeaders(wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
-        try await self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), logger: logger, on: eventLoop)
+    public func describeResourceTemplateHeaders(wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTemplateHeadersResponse {
+        try await self.describeResourceTemplateHeaders(DescribeResourceTemplateHeadersRequest(wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 }

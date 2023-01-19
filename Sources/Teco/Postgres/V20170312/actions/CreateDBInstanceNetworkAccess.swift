@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Postgres {
     ///
     /// 可对实例进行网络的添加操作。
     @inlinable
-    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
-        self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
+        self.client.execute(action: "CreateDBInstanceNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加实例网络
     ///
     /// 可对实例进行网络的添加操作。
     @inlinable
-    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
-        try await self.client.execute(action: "CreateDBInstanceNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDBInstanceNetworkAccess(_ input: CreateDBInstanceNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
+        try await self.client.execute(action: "CreateDBInstanceNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加实例网络
     ///
     /// 可对实例进行网络的添加操作。
     @inlinable
-    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
-        self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceNetworkAccessResponse> {
+        self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加实例网络
     ///
     /// 可对实例进行网络的添加操作。
     @inlinable
-    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
-        try await self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    public func createDBInstanceNetworkAccess(dbInstanceId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceNetworkAccessResponse {
+        try await self.createDBInstanceNetworkAccess(CreateDBInstanceNetworkAccessRequest(dbInstanceId: dbInstanceId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 }

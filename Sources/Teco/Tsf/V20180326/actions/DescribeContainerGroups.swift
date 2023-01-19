@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Tsf {
 
     /// 容器部署组列表
     @inlinable
-    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupsResponse> {
-        self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupsResponse> {
+        self.client.execute(action: "DescribeContainerGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器部署组列表
     @inlinable
-    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
-        try await self.client.execute(action: "DescribeContainerGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContainerGroups(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
+        try await self.client.execute(action: "DescribeContainerGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器部署组列表
     @inlinable
-    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupsResponse> {
-        self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupsResponse> {
+        self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器部署组列表
     @inlinable
-    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
-        try await self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    public func describeContainerGroups(searchWord: String? = nil, applicationId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, namespaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupsResponse {
+        try await self.describeContainerGroups(DescribeContainerGroupsRequest(searchWord: searchWord, applicationId: applicationId, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 }

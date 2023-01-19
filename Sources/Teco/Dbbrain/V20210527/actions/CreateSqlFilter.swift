@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Dbbrain {
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
-        self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSqlFilter(_ input: CreateSqlFilterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
+        self.client.execute(action: "CreateSqlFilter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例SQL限流任务
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(_ input: CreateSqlFilterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
-        try await self.client.execute(action: "CreateSqlFilter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSqlFilter(_ input: CreateSqlFilterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
+        try await self.client.execute(action: "CreateSqlFilter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例SQL限流任务
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
-        self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), logger: logger, on: eventLoop)
+    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
+        self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例SQL限流任务
     ///
     /// 创建实例SQL限流任务。
     @inlinable
-    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
-        try await self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), logger: logger, on: eventLoop)
+    public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
+        try await self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询本地镜像风险概览
     @inlinable
-    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskSummaryResponse> {
-        self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskSummaryResponse> {
+        self.client.execute(action: "DescribeImageRiskSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像风险概览
     @inlinable
-    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
-        try await self.client.execute(action: "DescribeImageRiskSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageRiskSummary(_ input: DescribeImageRiskSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
+        try await self.client.execute(action: "DescribeImageRiskSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询本地镜像风险概览
     @inlinable
-    public func describeImageRiskSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskSummaryResponse> {
-        self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeImageRiskSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskSummaryResponse> {
+        self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询本地镜像风险概览
     @inlinable
-    public func describeImageRiskSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
-        try await self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeImageRiskSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskSummaryResponse {
+        try await self.describeImageRiskSummary(DescribeImageRiskSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -155,25 +155,25 @@ extension Cpdp {
 
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
-        self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addShop(_ input: AddShopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
+        self.client.execute(action: "AddShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(_ input: AddShopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
-        try await self.client.execute(action: "AddShop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addShop(_ input: AddShopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
+        try await self.client.execute(action: "AddShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
-        self.addShop(AddShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopName: shopName, shopFullName: shopFullName, merchantNo: merchantNo, telephone: telephone, openHours: openHours, cityId: cityId, address: address, pictureOne: pictureOne, pictureTwo: pictureTwo, pictureThree: pictureThree, financialTelephone: financialTelephone, contact: contact, latitude: latitude, latitudeTwo: latitudeTwo, longitude: longitude, longitudeTwo: longitudeTwo, otherPicture: otherPicture, profile: profile), logger: logger, on: eventLoop)
+    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddShopResponse> {
+        self.addShop(AddShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopName: shopName, shopFullName: shopFullName, merchantNo: merchantNo, telephone: telephone, openHours: openHours, cityId: cityId, address: address, pictureOne: pictureOne, pictureTwo: pictureTwo, pictureThree: pictureThree, financialTelephone: financialTelephone, contact: contact, latitude: latitude, latitudeTwo: latitudeTwo, longitude: longitude, longitudeTwo: longitudeTwo, otherPicture: otherPicture, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-添加门店接口
     @inlinable
-    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
-        try await self.addShop(AddShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopName: shopName, shopFullName: shopFullName, merchantNo: merchantNo, telephone: telephone, openHours: openHours, cityId: cityId, address: address, pictureOne: pictureOne, pictureTwo: pictureTwo, pictureThree: pictureThree, financialTelephone: financialTelephone, contact: contact, latitude: latitude, latitudeTwo: latitudeTwo, longitude: longitude, longitudeTwo: longitudeTwo, otherPicture: otherPicture, profile: profile), logger: logger, on: eventLoop)
+    public func addShop(openId: String, openKey: String, outShopId: String, shopName: String, shopFullName: String, merchantNo: String, telephone: String, openHours: String, cityId: String, address: String, pictureOne: String, pictureTwo: String, pictureThree: String, financialTelephone: String? = nil, contact: String? = nil, latitude: String? = nil, latitudeTwo: String? = nil, longitude: String? = nil, longitudeTwo: String? = nil, otherPicture: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddShopResponse {
+        try await self.addShop(AddShopRequest(openId: openId, openKey: openKey, outShopId: outShopId, shopName: shopName, shopFullName: shopFullName, merchantNo: merchantNo, telephone: telephone, openHours: openHours, cityId: cityId, address: address, pictureOne: pictureOne, pictureTwo: pictureTwo, pictureThree: pictureThree, financialTelephone: financialTelephone, contact: contact, latitude: latitude, latitudeTwo: latitudeTwo, longitude: longitude, longitudeTwo: longitudeTwo, otherPicture: otherPicture, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

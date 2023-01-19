@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,25 +73,25 @@ extension Bma {
 
     /// 查询企业信息
     @inlinable
-    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPCompanyInfoResponse> {
-        self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPCompanyInfoResponse> {
+        self.client.execute(action: "DescribeBPCompanyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询企业信息
     @inlinable
-    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
-        try await self.client.execute(action: "DescribeBPCompanyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBPCompanyInfo(_ input: DescribeBPCompanyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
+        try await self.client.execute(action: "DescribeBPCompanyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询企业信息
     @inlinable
-    public func describeBPCompanyInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPCompanyInfoResponse> {
-        self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), logger: logger, on: eventLoop)
+    public func describeBPCompanyInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPCompanyInfoResponse> {
+        self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询企业信息
     @inlinable
-    public func describeBPCompanyInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
-        try await self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), logger: logger, on: eventLoop)
+    public func describeBPCompanyInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPCompanyInfoResponse {
+        try await self.describeBPCompanyInfo(DescribeBPCompanyInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

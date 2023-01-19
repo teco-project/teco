@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
     /// 请使用CreateRecordingPlan代替
     @inlinable
-    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordPlanResponse> {
-        self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecordPlan(_ input: CreateRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordPlanResponse> {
+        self.client.execute(action: "CreateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划（旧）
@@ -77,8 +77,8 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
     /// 请使用CreateRecordingPlan代替
     @inlinable
-    public func createRecordPlan(_ input: CreateRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
-        try await self.client.execute(action: "CreateRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecordPlan(_ input: CreateRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
+        try await self.client.execute(action: "CreateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建录制计划（旧）
@@ -86,8 +86,8 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
     /// 请使用CreateRecordingPlan代替
     @inlinable
-    public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordPlanResponse> {
-        self.createRecordPlan(CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), logger: logger, on: eventLoop)
+    public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordPlanResponse> {
+        self.createRecordPlan(CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划（旧）
@@ -95,7 +95,7 @@ extension Iotvideoindustry {
     /// 本接口(CreateRecordPlan) 用于创建录制计划，使设备与时间模板绑定，以便及时启动录制
     /// 请使用CreateRecordingPlan代替
     @inlinable
-    public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
-        try await self.createRecordPlan(CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), logger: logger, on: eventLoop)
+    public func createRecordPlan(name: String, timeTemplateId: String, eventId: Int64, devices: [DeviceItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordPlanResponse {
+        try await self.createRecordPlan(CreateRecordPlanRequest(name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 }

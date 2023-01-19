@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ssl {
 
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
-        self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitAuditManager(_ input: SubmitAuditManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
+        self.client.execute(action: "SubmitAuditManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(_ input: SubmitAuditManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
-        try await self.client.execute(action: "SubmitAuditManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitAuditManager(_ input: SubmitAuditManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
+        try await self.client.execute(action: "SubmitAuditManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
-        self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    public func submitAuditManager(managerId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAuditManagerResponse> {
+        self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新提交审核管理人
     @inlinable
-    public func submitAuditManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
-        try await self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    public func submitAuditManager(managerId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAuditManagerResponse {
+        try await self.submitAuditManager(SubmitAuditManagerRequest(managerId: managerId), region: region, logger: logger, on: eventLoop)
     }
 }

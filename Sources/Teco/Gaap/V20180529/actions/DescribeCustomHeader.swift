@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
-        self.client.execute(action: "DescribeCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
+        self.client.execute(action: "DescribeCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
-        try await self.client.execute(action: "DescribeCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomHeader(_ input: DescribeCustomHeaderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
+        try await self.client.execute(action: "DescribeCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
-        self.describeCustomHeader(DescribeCustomHeaderRequest(), logger: logger, on: eventLoop)
+    public func describeCustomHeader(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomHeaderResponse> {
+        self.describeCustomHeader(DescribeCustomHeaderRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义header列表
     ///
     /// 本接口（DescribeCustomHeader）用于自定义header列表
     @inlinable
-    public func describeCustomHeader(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
-        try await self.describeCustomHeader(DescribeCustomHeaderRequest(), logger: logger, on: eventLoop)
+    public func describeCustomHeader(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomHeaderResponse {
+        try await self.describeCustomHeader(DescribeCustomHeaderRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

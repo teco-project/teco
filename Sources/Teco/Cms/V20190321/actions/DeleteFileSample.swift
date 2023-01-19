@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Cms {
     /// <br>
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
-    public func deleteFileSample(_ input: DeleteFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSampleResponse> {
-        self.client.execute(action: "DeleteFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFileSample(_ input: DeleteFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSampleResponse> {
+        self.client.execute(action: "DeleteFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除图片样本库
@@ -61,8 +61,8 @@ extension Cms {
     /// <br>
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
-    public func deleteFileSample(_ input: DeleteFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
-        try await self.client.execute(action: "DeleteFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFileSample(_ input: DeleteFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
+        try await self.client.execute(action: "DeleteFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除图片样本库
@@ -71,8 +71,8 @@ extension Cms {
     /// <br>
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
-    public func deleteFileSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSampleResponse> {
-        self.deleteFileSample(DeleteFileSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteFileSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSampleResponse> {
+        self.deleteFileSample(DeleteFileSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除图片样本库
@@ -81,7 +81,7 @@ extension Cms {
     /// <br>
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
-    public func deleteFileSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
-        try await self.deleteFileSample(DeleteFileSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteFileSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
+        try await self.deleteFileSample(DeleteFileSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

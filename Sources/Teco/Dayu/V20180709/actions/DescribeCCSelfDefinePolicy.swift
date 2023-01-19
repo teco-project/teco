@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Dayu {
 
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
-        self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
+        self.client.execute(action: "DescribeCCSelfDefinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
-        try await self.client.execute(action: "DescribeCCSelfDefinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCSelfDefinePolicy(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
+        try await self.client.execute(action: "DescribeCCSelfDefinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
-        self.describeCCSelfDefinePolicy(DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCSelfDefinePolicyResponse> {
+        self.describeCCSelfDefinePolicy(DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
-        try await self.describeCCSelfDefinePolicy(DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCCSelfDefinePolicy(business: String, id: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCSelfDefinePolicyResponse {
+        try await self.describeCCSelfDefinePolicy(DescribeCCSelfDefinePolicyRequest(business: business, id: id, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

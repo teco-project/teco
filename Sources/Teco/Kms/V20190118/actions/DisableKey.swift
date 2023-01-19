@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Kms {
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
-        self.client.execute(action: "DisableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableKey(_ input: DisableKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
+        self.client.execute(action: "DisableKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(_ input: DisableKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
-        try await self.client.execute(action: "DisableKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableKey(_ input: DisableKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
+        try await self.client.execute(action: "DisableKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
-        self.disableKey(DisableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func disableKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyResponse> {
+        self.disableKey(DisableKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用主密钥
     ///
     /// 本接口用于禁用一个主密钥，处于禁用状态的Key无法用于加密、解密操作。
     @inlinable
-    public func disableKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
-        try await self.disableKey(DisableKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func disableKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyResponse {
+        try await self.disableKey(DisableKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

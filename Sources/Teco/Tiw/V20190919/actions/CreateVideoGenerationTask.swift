@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Tiw {
     ///
     /// 创建视频生成任务
     @inlinable
-    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoGenerationTaskResponse> {
-        self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoGenerationTaskResponse> {
+        self.client.execute(action: "CreateVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制视频生成任务
     ///
     /// 创建视频生成任务
     @inlinable
-    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVideoGenerationTask(_ input: CreateVideoGenerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建录制视频生成任务
     ///
     /// 创建视频生成任务
     @inlinable
-    public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoGenerationTaskResponse> {
-        self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), logger: logger, on: eventLoop)
+    public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoGenerationTaskResponse> {
+        self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制视频生成任务
     ///
     /// 创建视频生成任务
     @inlinable
-    public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
-        try await self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), logger: logger, on: eventLoop)
+    public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
+        try await self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), region: region, logger: logger, on: eventLoop)
     }
 }

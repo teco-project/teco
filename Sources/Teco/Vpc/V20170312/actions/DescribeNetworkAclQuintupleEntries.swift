@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     @inlinable
-    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkAclQuintupleEntriesResponse> {
-        self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkAclQuintupleEntriesResponse> {
+        self.client.execute(action: "DescribeNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询网络ACL五元组条目列表
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     @inlinable
-    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
-        try await self.client.execute(action: "DescribeNetworkAclQuintupleEntries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNetworkAclQuintupleEntries(_ input: DescribeNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
+        try await self.client.execute(action: "DescribeNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询网络ACL五元组条目列表
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     @inlinable
-    public func describeNetworkAclQuintupleEntries(networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkAclQuintupleEntriesResponse> {
-        self.describeNetworkAclQuintupleEntries(DescribeNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeNetworkAclQuintupleEntries(networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkAclQuintupleEntriesResponse> {
+        self.describeNetworkAclQuintupleEntries(DescribeNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询网络ACL五元组条目列表
     ///
     /// 本接口（DescribeNetworkAclQuintupleEntries）查询入方向或出方向网络ACL五元组条目列表。
     @inlinable
-    public func describeNetworkAclQuintupleEntries(networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
-        try await self.describeNetworkAclQuintupleEntries(DescribeNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeNetworkAclQuintupleEntries(networkAclId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkAclQuintupleEntriesResponse {
+        try await self.describeNetworkAclQuintupleEntries(DescribeNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

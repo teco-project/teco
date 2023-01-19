@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Wedata {
 
     /// 更新规则组订阅信息
     @inlinable
-    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleGroupSubscriptionResponse> {
-        self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleGroupSubscriptionResponse> {
+        self.client.execute(action: "ModifyRuleGroupSubscription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新规则组订阅信息
     @inlinable
-    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
-        try await self.client.execute(action: "ModifyRuleGroupSubscription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRuleGroupSubscription(_ input: ModifyRuleGroupSubscriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
+        try await self.client.execute(action: "ModifyRuleGroupSubscription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新规则组订阅信息
     @inlinable
-    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleGroupSubscriptionResponse> {
-        self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), logger: logger, on: eventLoop)
+    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleGroupSubscriptionResponse> {
+        self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新规则组订阅信息
     @inlinable
-    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
-        try await self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), logger: logger, on: eventLoop)
+    public func modifyRuleGroupSubscription(ruleGroupId: UInt64? = nil, receivers: [SubscribeReceiver]? = nil, subscribeType: [UInt64]? = nil, projectId: String? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, webHooks: [SubscribeWebHook]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleGroupSubscriptionResponse {
+        try await self.modifyRuleGroupSubscription(ModifyRuleGroupSubscriptionRequest(ruleGroupId: ruleGroupId, receivers: receivers, subscribeType: subscribeType, projectId: projectId, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId, webHooks: webHooks), region: region, logger: logger, on: eventLoop)
     }
 }

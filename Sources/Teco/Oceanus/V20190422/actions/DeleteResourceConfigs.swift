@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Oceanus {
 
     /// 删除资源版本
     @inlinable
-    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
-        self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
+        self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资源版本
     @inlinable
-    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
-        try await self.client.execute(action: "DeleteResourceConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
+        try await self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资源版本
     @inlinable
-    public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
-        self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
+        self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源版本
     @inlinable
-    public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
-        try await self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
+        try await self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

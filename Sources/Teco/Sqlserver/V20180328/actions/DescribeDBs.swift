@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
-        self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBs(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
+        self.client.execute(action: "DescribeDBs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(_ input: DescribeDBsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
-        try await self.client.execute(action: "DescribeDBs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBs(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
+        try await self.client.execute(action: "DescribeDBs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
-        self.describeDBs(DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsResponse> {
+        self.describeDBs(DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
-        try await self.describeDBs(DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeDBs(instanceIdSet: [String], limit: UInt64? = nil, offset: UInt64? = nil, name: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsResponse {
+        try await self.describeDBs(DescribeDBsRequest(instanceIdSet: instanceIdSet, limit: limit, offset: offset, name: name, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

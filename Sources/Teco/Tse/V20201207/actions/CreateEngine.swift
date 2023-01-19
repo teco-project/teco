@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -164,25 +164,25 @@ extension Tse {
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
-        self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEngine(_ input: CreateEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
+        self.client.execute(action: "CreateEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(_ input: CreateEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
-        try await self.client.execute(action: "CreateEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEngine(_ input: CreateEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
+        try await self.client.execute(action: "CreateEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
-        self.createEngine(CreateEngineRequest(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), logger: logger, on: eventLoop)
+    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEngineResponse> {
+        self.createEngine(CreateEngineRequest(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建引擎实例
     @inlinable
-    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
-        try await self.createEngine(CreateEngineRequest(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), logger: logger, on: eventLoop)
+    public func createEngine(engineType: String, engineVersion: String, engineProductVersion: String, engineRegion: String, engineName: String, tradeType: Int64, engineResourceSpec: String? = nil, engineNodeNum: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, apolloEnvParams: [ApolloEnvParam]? = nil, engineTags: [InstanceTagInfo]? = nil, engineAdmin: EngineAdmin? = nil, prepaidPeriod: Int64? = nil, prepaidRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEngineResponse {
+        try await self.createEngine(CreateEngineRequest(engineType: engineType, engineVersion: engineVersion, engineProductVersion: engineProductVersion, engineRegion: engineRegion, engineName: engineName, tradeType: tradeType, engineResourceSpec: engineResourceSpec, engineNodeNum: engineNodeNum, vpcId: vpcId, subnetId: subnetId, apolloEnvParams: apolloEnvParams, engineTags: engineTags, engineAdmin: engineAdmin, prepaidPeriod: prepaidPeriod, prepaidRenewFlag: prepaidRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

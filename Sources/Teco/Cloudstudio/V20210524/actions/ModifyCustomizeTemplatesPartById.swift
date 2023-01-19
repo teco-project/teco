@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cloudstudio {
 
     /// 全量修改自定义模板，忽略空
     @inlinable
-    public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesPartByIdResponse> {
-        self.client.execute(action: "ModifyCustomizeTemplatesPartById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesPartByIdResponse> {
+        self.client.execute(action: "ModifyCustomizeTemplatesPartById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，忽略空
     @inlinable
-    public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {
-        try await self.client.execute(action: "ModifyCustomizeTemplatesPartById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomizeTemplatesPartById(_ input: ModifyCustomizeTemplatesPartByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {
+        try await self.client.execute(action: "ModifyCustomizeTemplatesPartById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 全量修改自定义模板，忽略空
     @inlinable
-    public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesPartByIdResponse> {
-        self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesPartByIdResponse> {
+        self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，忽略空
     @inlinable
-    public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {
-        try await self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {
+        try await self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), region: region, logger: logger, on: eventLoop)
     }
 }

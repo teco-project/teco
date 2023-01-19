@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Aai {
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
-        self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func chat(_ input: ChatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
+        self.client.execute(action: "Chat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能闲聊
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(_ input: ChatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
-        try await self.client.execute(action: "Chat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func chat(_ input: ChatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
+        try await self.client.execute(action: "Chat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能闲聊
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
-        self.chat(ChatRequest(text: text, projectId: projectId, user: user), logger: logger, on: eventLoop)
+    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatResponse> {
+        self.chat(ChatRequest(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能闲聊
     ///
     /// 提供基于文本的基础聊天能力，可以让您的应用快速拥有具备深度语义理解的机器聊天功能。
     @inlinable
-    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
-        try await self.chat(ChatRequest(text: text, projectId: projectId, user: user), logger: logger, on: eventLoop)
+    public func chat(text: String, projectId: Int64 = 0, user: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatResponse {
+        try await self.chat(ChatRequest(text: text, projectId: projectId, user: user), region: region, logger: logger, on: eventLoop)
     }
 }

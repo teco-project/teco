@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,31 +127,31 @@ extension Monitor {
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
-        self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductEventList(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
+        self.client.execute(action: "DescribeProductEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(_ input: DescribeProductEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
-        try await self.client.execute(action: "DescribeProductEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductEventList(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
+        try await self.client.execute(action: "DescribeProductEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
-        self.describeProductEventList(DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductEventListResponse> {
+        self.describeProductEventList(DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品事件列表
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
-        try await self.describeProductEventList(DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProductEventList(module: String, productName: [String]? = nil, eventName: [String]? = nil, instanceId: [String]? = nil, dimensions: [DescribeProductEventListDimensions]? = nil, regionList: [String]? = nil, type: [String]? = nil, status: [String]? = nil, project: [String]? = nil, isAlarmConfig: Int64? = nil, timeOrder: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductEventListResponse {
+        try await self.describeProductEventList(DescribeProductEventListRequest(module: module, productName: productName, eventName: eventName, instanceId: instanceId, dimensions: dimensions, regionList: regionList, type: type, status: status, project: project, isAlarmConfig: isAlarmConfig, timeOrder: timeOrder, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

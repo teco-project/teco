@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ie {
     ///
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
-    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaQualityRestorationTaskRusultResponse> {
-        self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaQualityRestorationTaskRusultResponse> {
+        self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取画质重生任务结果
     ///
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
-    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
-        try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaQualityRestorationTaskRusult(_ input: DescribeMediaQualityRestorationTaskRusultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
+        try await self.client.execute(action: "DescribeMediaQualityRestorationTaskRusult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取画质重生任务结果
     ///
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
-    public func describeMediaQualityRestorationTaskRusult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaQualityRestorationTaskRusultResponse> {
-        self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeMediaQualityRestorationTaskRusult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaQualityRestorationTaskRusultResponse> {
+        self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取画质重生任务结果
     ///
     /// 获取画质重生任务结果，查看结束后的文件信息
     @inlinable
-    public func describeMediaQualityRestorationTaskRusult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
-        try await self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeMediaQualityRestorationTaskRusult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaQualityRestorationTaskRusultResponse {
+        try await self.describeMediaQualityRestorationTaskRusult(DescribeMediaQualityRestorationTaskRusultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

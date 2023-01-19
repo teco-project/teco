@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -124,25 +124,25 @@ extension Cpdp {
 
     /// 云企付-子商户进件
     @inlinable
-    public func createOpenBankExternalSubMerchantRegistration(_ input: CreateOpenBankExternalSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantRegistrationResponse> {
-        self.client.execute(action: "CreateOpenBankExternalSubMerchantRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantRegistration(_ input: CreateOpenBankExternalSubMerchantRegistrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantRegistrationResponse> {
+        self.client.execute(action: "CreateOpenBankExternalSubMerchantRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户进件
     @inlinable
-    public func createOpenBankExternalSubMerchantRegistration(_ input: CreateOpenBankExternalSubMerchantRegistrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantRegistrationResponse {
-        try await self.client.execute(action: "CreateOpenBankExternalSubMerchantRegistration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOpenBankExternalSubMerchantRegistration(_ input: CreateOpenBankExternalSubMerchantRegistrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantRegistrationResponse {
+        try await self.client.execute(action: "CreateOpenBankExternalSubMerchantRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户进件
     @inlinable
-    public func createOpenBankExternalSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, paymentMethod: String, businessLicenseNumber: String, outSubMerchantName: String, legalName: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, externalSubMerchantRegistrationData: String? = nil, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantRegistrationResponse> {
-        self.createOpenBankExternalSubMerchantRegistration(CreateOpenBankExternalSubMerchantRegistrationRequest(outRegistrationNo: outRegistrationNo, channelMerchantId: channelMerchantId, outSubMerchantId: outSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, businessLicenseNumber: businessLicenseNumber, outSubMerchantName: outSubMerchantName, legalName: legalName, outSubMerchantShortName: outSubMerchantShortName, outSubMerchantDescription: outSubMerchantDescription, externalSubMerchantRegistrationData: externalSubMerchantRegistrationData, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, paymentMethod: String, businessLicenseNumber: String, outSubMerchantName: String, legalName: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, externalSubMerchantRegistrationData: String? = nil, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantRegistrationResponse> {
+        self.createOpenBankExternalSubMerchantRegistration(CreateOpenBankExternalSubMerchantRegistrationRequest(outRegistrationNo: outRegistrationNo, channelMerchantId: channelMerchantId, outSubMerchantId: outSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, businessLicenseNumber: businessLicenseNumber, outSubMerchantName: outSubMerchantName, legalName: legalName, outSubMerchantShortName: outSubMerchantShortName, outSubMerchantDescription: outSubMerchantDescription, externalSubMerchantRegistrationData: externalSubMerchantRegistrationData, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户进件
     @inlinable
-    public func createOpenBankExternalSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, paymentMethod: String, businessLicenseNumber: String, outSubMerchantName: String, legalName: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, externalSubMerchantRegistrationData: String? = nil, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantRegistrationResponse {
-        try await self.createOpenBankExternalSubMerchantRegistration(CreateOpenBankExternalSubMerchantRegistrationRequest(outRegistrationNo: outRegistrationNo, channelMerchantId: channelMerchantId, outSubMerchantId: outSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, businessLicenseNumber: businessLicenseNumber, outSubMerchantName: outSubMerchantName, legalName: legalName, outSubMerchantShortName: outSubMerchantShortName, outSubMerchantDescription: outSubMerchantDescription, externalSubMerchantRegistrationData: externalSubMerchantRegistrationData, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantRegistration(outRegistrationNo: String, channelMerchantId: String, outSubMerchantId: String, channelName: String, paymentMethod: String, businessLicenseNumber: String, outSubMerchantName: String, legalName: String? = nil, outSubMerchantShortName: String? = nil, outSubMerchantDescription: String? = nil, externalSubMerchantRegistrationData: String? = nil, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantRegistrationResponse {
+        try await self.createOpenBankExternalSubMerchantRegistration(CreateOpenBankExternalSubMerchantRegistrationRequest(outRegistrationNo: outRegistrationNo, channelMerchantId: channelMerchantId, outSubMerchantId: outSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, businessLicenseNumber: businessLicenseNumber, outSubMerchantName: outSubMerchantName, legalName: legalName, outSubMerchantShortName: outSubMerchantShortName, outSubMerchantDescription: outSubMerchantDescription, externalSubMerchantRegistrationData: externalSubMerchantRegistrationData, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

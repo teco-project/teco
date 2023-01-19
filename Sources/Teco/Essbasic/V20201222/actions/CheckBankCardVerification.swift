@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,8 +100,8 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
-        self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
+        self.client.execute(action: "CheckBankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡二三四要素检测
@@ -111,8 +111,8 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
-        try await self.client.execute(action: "CheckBankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkBankCardVerification(_ input: CheckBankCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
+        try await self.client.execute(action: "CheckBankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 银行卡二三四要素检测
@@ -122,8 +122,8 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
-        self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
+        self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 银行卡二三四要素检测
@@ -133,7 +133,7 @@ extension Essbasic {
     /// 银行卡三要素(同CheckBankCard3EVerification): bank_card + name + id_card_number
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
-    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
-        try await self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
+        try await self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 }

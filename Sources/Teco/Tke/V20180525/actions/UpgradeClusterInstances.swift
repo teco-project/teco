@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Tke {
     ///
     /// 给集群的一批work节点进行升级
     @inlinable
-    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
-        self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
+        self.client.execute(action: "UpgradeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群节点升级
     ///
     /// 给集群的一批work节点进行升级
     @inlinable
-    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
-        try await self.client.execute(action: "UpgradeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeClusterInstances(_ input: UpgradeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
+        try await self.client.execute(action: "UpgradeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群节点升级
     ///
     /// 给集群的一批work节点进行升级
     @inlinable
-    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
-        self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), logger: logger, on: eventLoop)
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
+        self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群节点升级
     ///
     /// 给集群的一批work节点进行升级
     @inlinable
-    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
-        try await self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), logger: logger, on: eventLoop)
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
+        try await self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), region: region, logger: logger, on: eventLoop)
     }
 }

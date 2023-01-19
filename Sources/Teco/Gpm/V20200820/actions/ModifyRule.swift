@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改规则（描述、标签）
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改规则
@@ -72,8 +72,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改规则（描述、标签）
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改规则
@@ -81,8 +81,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改规则（描述、标签）
     @inlinable
-    public func modifyRule(ruleCode: String, ruleName: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.modifyRule(ModifyRuleRequest(ruleCode: ruleCode, ruleName: ruleName, ruleDesc: ruleDesc, tags: tags), logger: logger, on: eventLoop)
+    public func modifyRule(ruleCode: String, ruleName: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.modifyRule(ModifyRuleRequest(ruleCode: ruleCode, ruleName: ruleName, ruleDesc: ruleDesc, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则
@@ -90,7 +90,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改规则（描述、标签）
     @inlinable
-    public func modifyRule(ruleCode: String, ruleName: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.modifyRule(ModifyRuleRequest(ruleCode: ruleCode, ruleName: ruleName, ruleDesc: ruleDesc, tags: tags), logger: logger, on: eventLoop)
+    public func modifyRule(ruleCode: String, ruleName: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.modifyRule(ModifyRuleRequest(ruleCode: ruleCode, ruleName: ruleName, ruleDesc: ruleDesc, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

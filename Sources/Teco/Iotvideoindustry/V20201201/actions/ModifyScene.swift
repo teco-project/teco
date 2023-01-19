@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotvideoindustry {
 
     /// 修改场景
     @inlinable
-    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
-        self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyScene(_ input: ModifySceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
+        self.client.execute(action: "ModifyScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改场景
     @inlinable
-    public func modifyScene(_ input: ModifySceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
-        try await self.client.execute(action: "ModifyScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyScene(_ input: ModifySceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
+        try await self.client.execute(action: "ModifyScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改场景
     @inlinable
-    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
-        self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), logger: logger, on: eventLoop)
+    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySceneResponse> {
+        self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改场景
     @inlinable
-    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
-        try await self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), logger: logger, on: eventLoop)
+    public func modifyScene(intId: Int64, sceneName: String? = nil, sceneTrigger: String? = nil, recordDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySceneResponse {
+        try await self.modifyScene(ModifySceneRequest(intId: intId, sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration), region: region, logger: logger, on: eventLoop)
     }
 }

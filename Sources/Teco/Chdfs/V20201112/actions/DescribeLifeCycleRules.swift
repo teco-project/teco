@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Chdfs {
     ///
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
-        self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
+        self.client.execute(action: "DescribeLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看生命周期规则列表
     ///
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
-        try await self.client.execute(action: "DescribeLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLifeCycleRules(_ input: DescribeLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
+        try await self.client.execute(action: "DescribeLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看生命周期规则列表
     ///
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
-        self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeLifeCycleRules(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
+        self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看生命周期规则列表
     ///
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
-    public func describeLifeCycleRules(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
-        try await self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeLifeCycleRules(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
+        try await self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

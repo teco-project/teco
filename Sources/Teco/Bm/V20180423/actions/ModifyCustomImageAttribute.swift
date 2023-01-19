@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Bm {
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
-        self.client.execute(action: "ModifyCustomImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
+        self.client.execute(action: "ModifyCustomImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
-        try await self.client.execute(action: "ModifyCustomImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
+        try await self.client.execute(action: "ModifyCustomImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
-        self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
+        self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
     @inlinable
-    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
-        try await self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
+        try await self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 }

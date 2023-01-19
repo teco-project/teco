@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Bma {
 
     /// 查询仿冒链接
     @inlinable
-    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPFakeURLsResponse> {
-        self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPFakeURLsResponse> {
+        self.client.execute(action: "DescribeBPFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询仿冒链接
     @inlinable
-    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
-        try await self.client.execute(action: "DescribeBPFakeURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBPFakeURLs(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
+        try await self.client.execute(action: "DescribeBPFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询仿冒链接
     @inlinable
-    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPFakeURLsResponse> {
-        self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPFakeURLsResponse> {
+        self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询仿冒链接
     @inlinable
-    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
-        try await self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeBPFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPFakeURLsResponse {
+        try await self.describeBPFakeURLs(DescribeBPFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

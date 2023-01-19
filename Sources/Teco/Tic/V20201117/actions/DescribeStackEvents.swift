@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,8 +80,8 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
-        self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStackEvents(_ input: DescribeStackEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
+        self.client.execute(action: "DescribeStackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询事件列表
@@ -91,8 +91,8 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(_ input: DescribeStackEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
-        try await self.client.execute(action: "DescribeStackEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStackEvents(_ input: DescribeStackEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
+        try await self.client.execute(action: "DescribeStackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询事件列表
@@ -102,8 +102,8 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
-        self.describeStackEvents(DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventsResponse> {
+        self.describeStackEvents(DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件列表
@@ -113,7 +113,7 @@ extension Tic {
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
     @inlinable
-    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
-        try await self.describeStackEvents(DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeStackEvents(eventIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventsResponse {
+        try await self.describeStackEvents(DescribeStackEventsRequest(eventIds: eventIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

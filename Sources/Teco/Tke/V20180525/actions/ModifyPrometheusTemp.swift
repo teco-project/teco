@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTempResponse> {
-        self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTempResponse> {
+        self.client.execute(action: "ModifyPrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模板实例
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
-        try await self.client.execute(action: "ModifyPrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrometheusTemp(_ input: ModifyPrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
+        try await self.client.execute(action: "ModifyPrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改模板实例
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemp(templateId: String, template: PrometheusTempModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTempResponse> {
-        self.modifyPrometheusTemp(ModifyPrometheusTempRequest(templateId: templateId, template: template), logger: logger, on: eventLoop)
+    public func modifyPrometheusTemp(templateId: String, template: PrometheusTempModify, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusTempResponse> {
+        self.modifyPrometheusTemp(ModifyPrometheusTempRequest(templateId: templateId, template: template), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模板实例
     ///
     /// 修改模板内容
     @inlinable
-    public func modifyPrometheusTemp(templateId: String, template: PrometheusTempModify, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
-        try await self.modifyPrometheusTemp(ModifyPrometheusTempRequest(templateId: templateId, template: template), logger: logger, on: eventLoop)
+    public func modifyPrometheusTemp(templateId: String, template: PrometheusTempModify, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusTempResponse {
+        try await self.modifyPrometheusTemp(ModifyPrometheusTempRequest(templateId: templateId, template: template), region: region, logger: logger, on: eventLoop)
     }
 }

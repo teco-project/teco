@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
     @inlinable
-    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountStatisticsResponse> {
-        self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountStatisticsResponse> {
+        self.client.execute(action: "DescribeAccountStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取帐号统计列表数据
     ///
     /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
     @inlinable
-    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
-        try await self.client.execute(action: "DescribeAccountStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountStatistics(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
+        try await self.client.execute(action: "DescribeAccountStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取帐号统计列表数据
     ///
     /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
     @inlinable
-    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountStatisticsResponse> {
-        self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountStatisticsResponse> {
+        self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取帐号统计列表数据
     ///
     /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
     @inlinable
-    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
-        try await self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAccountStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountStatisticsResponse {
+        try await self.describeAccountStatistics(DescribeAccountStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

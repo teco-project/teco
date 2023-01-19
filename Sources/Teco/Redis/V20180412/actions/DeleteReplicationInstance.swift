@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Redis {
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
+        self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        self.deleteReplicationInstance(DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType), logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
+        self.deleteReplicationInstance(DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除复制组成员
     ///
     /// 移除复制组成员 注：接口下线中，请使用 RemoveReplicationInstance
     @inlinable
-    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.deleteReplicationInstance(DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType), logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(groupId: String, instanceId: String, syncType: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.deleteReplicationInstance(DeleteReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, syncType: syncType), region: region, logger: logger, on: eventLoop)
     }
 }

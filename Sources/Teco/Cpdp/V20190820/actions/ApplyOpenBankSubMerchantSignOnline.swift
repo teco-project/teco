@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cpdp {
     ///
     /// 子商户在线签约
     @inlinable
-    public func applyOpenBankSubMerchantSignOnline(_ input: ApplyOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOpenBankSubMerchantSignOnlineResponse> {
-        self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyOpenBankSubMerchantSignOnline(_ input: ApplyOpenBankSubMerchantSignOnlineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOpenBankSubMerchantSignOnlineResponse> {
+        self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户在线签约
     ///
     /// 子商户在线签约
     @inlinable
-    public func applyOpenBankSubMerchantSignOnline(_ input: ApplyOpenBankSubMerchantSignOnlineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
-        try await self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyOpenBankSubMerchantSignOnline(_ input: ApplyOpenBankSubMerchantSignOnlineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
+        try await self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户在线签约
     ///
     /// 子商户在线签约
     @inlinable
-    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOpenBankSubMerchantSignOnlineResponse> {
-        self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOpenBankSubMerchantSignOnlineResponse> {
+        self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户在线签约
     ///
     /// 子商户在线签约
     @inlinable
-    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
-        try await self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
+        try await self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

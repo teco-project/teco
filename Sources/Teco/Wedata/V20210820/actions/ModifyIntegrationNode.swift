@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Wedata {
 
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
-        self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
+        self.client.execute(action: "ModifyIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
-        try await self.client.execute(action: "ModifyIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyIntegrationNode(_ input: ModifyIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
+        try await self.client.execute(action: "ModifyIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
-        self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), logger: logger, on: eventLoop)
+    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationNodeResponse> {
+        self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新集成节点
     @inlinable
-    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
-        try await self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), logger: logger, on: eventLoop)
+    public func modifyIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, taskMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationNodeResponse {
+        try await self.modifyIntegrationNode(ModifyIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 }

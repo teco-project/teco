@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Wav {
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     @inlinable
-    public func queryDealerInfoList(_ input: QueryDealerInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDealerInfoListResponse> {
-        self.client.execute(action: "QueryDealerInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryDealerInfoList(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDealerInfoListResponse> {
+        self.client.execute(action: "QueryDealerInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询经销商信息列表接口
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     @inlinable
-    public func queryDealerInfoList(_ input: QueryDealerInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDealerInfoListResponse {
-        try await self.client.execute(action: "QueryDealerInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryDealerInfoList(_ input: QueryDealerInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDealerInfoListResponse {
+        try await self.client.execute(action: "QueryDealerInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询经销商信息列表接口
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     @inlinable
-    public func queryDealerInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDealerInfoListResponse> {
-        self.queryDealerInfoList(QueryDealerInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryDealerInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDealerInfoListResponse> {
+        self.queryDealerInfoList(QueryDealerInfoListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经销商信息列表接口
     ///
     /// 企业可通过此接口获取录入在企微SaaS平台上的经销商信息。
     @inlinable
-    public func queryDealerInfoList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDealerInfoListResponse {
-        try await self.queryDealerInfoList(QueryDealerInfoListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryDealerInfoList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDealerInfoListResponse {
+        try await self.queryDealerInfoList(QueryDealerInfoListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

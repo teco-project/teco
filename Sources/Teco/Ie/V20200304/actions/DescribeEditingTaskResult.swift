@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ie {
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
-        self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
+        self.client.execute(action: "DescribeEditingTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
-        try await self.client.execute(action: "DescribeEditingTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEditingTaskResult(_ input: DescribeEditingTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
+        try await self.client.execute(action: "DescribeEditingTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
-        self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeEditingTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEditingTaskResultResponse> {
+        self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑理解任务结果
     ///
     /// 获取编辑理解任务结果。
     @inlinable
-    public func describeEditingTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
-        try await self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeEditingTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEditingTaskResultResponse {
+        try await self.describeEditingTaskResult(DescribeEditingTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

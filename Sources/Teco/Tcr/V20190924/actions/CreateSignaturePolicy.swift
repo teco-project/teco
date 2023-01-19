@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tcr {
     ///
     /// 创建镜像签名策略
     @inlinable
-    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
-        self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
+        self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
     @inlinable
-    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
-        try await self.client.execute(action: "CreateSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
+        try await self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
     @inlinable
-    public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
-        self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), logger: logger, on: eventLoop)
+    public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
+        self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
     @inlinable
-    public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
-        try await self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), logger: logger, on: eventLoop)
+    public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
+        try await self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 }

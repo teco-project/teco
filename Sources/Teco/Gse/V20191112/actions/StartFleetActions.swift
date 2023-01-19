@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
-    public func startFleetActions(_ input: StartFleetActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
-        self.client.execute(action: "StartFleetActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
+        self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -63,8 +63,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
-    public func startFleetActions(_ input: StartFleetActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
-        try await self.client.execute(action: "StartFleetActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
+        try await self.client.execute(action: "StartFleetActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -72,8 +72,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
-    public func startFleetActions(fleetId: String, actions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
-        self.startFleetActions(StartFleetActionsRequest(fleetId: fleetId, actions: actions), logger: logger, on: eventLoop)
+    public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
+        self.startFleetActions(StartFleetActionsRequest(fleetId: fleetId, actions: actions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用服务器舰队自动扩缩容
@@ -81,7 +81,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
-    public func startFleetActions(fleetId: String, actions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
-        try await self.startFleetActions(StartFleetActionsRequest(fleetId: fleetId, actions: actions), logger: logger, on: eventLoop)
+    public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
+        try await self.startFleetActions(StartFleetActionsRequest(fleetId: fleetId, actions: actions), region: region, logger: logger, on: eventLoop)
     }
 }

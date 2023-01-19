@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -117,31 +117,31 @@ extension Teo {
     ///
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
-    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewL7DataResponse> {
-        self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewL7DataResponse> {
+        self.client.execute(action: "DescribeOverviewL7Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询七层监控类时序流量数据
     ///
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
-    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
-        try await self.client.execute(action: "DescribeOverviewL7Data", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewL7Data(_ input: DescribeOverviewL7DataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
+        try await self.client.execute(action: "DescribeOverviewL7Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询七层监控类时序流量数据
     ///
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
-    public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, interval: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewL7DataResponse> {
-        self.describeOverviewL7Data(DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocol: `protocol`, interval: interval, area: area, filters: filters), logger: logger, on: eventLoop)
+    public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, interval: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewL7DataResponse> {
+        self.describeOverviewL7Data(DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocol: `protocol`, interval: interval, area: area, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询七层监控类时序流量数据
     ///
     /// 本接口（DescribeOverviewL7Data）用于查询七层监控类时序流量数据。
     @inlinable
-    public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, interval: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
-        try await self.describeOverviewL7Data(DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocol: `protocol`, interval: interval, area: area, filters: filters), logger: logger, on: eventLoop)
+    public func describeOverviewL7Data(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocol: String? = nil, interval: String? = nil, area: String? = nil, filters: [QueryCondition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewL7DataResponse {
+        try await self.describeOverviewL7Data(DescribeOverviewL7DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocol: `protocol`, interval: interval, area: area, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tsf {
     ///
     /// 查询API 版本
     @inlinable
-    public func describeApiVersions(_ input: DescribeApiVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiVersionsResponse> {
-        self.client.execute(action: "DescribeApiVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiVersions(_ input: DescribeApiVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiVersionsResponse> {
+        self.client.execute(action: "DescribeApiVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询API版本
     ///
     /// 查询API 版本
     @inlinable
-    public func describeApiVersions(_ input: DescribeApiVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
-        try await self.client.execute(action: "DescribeApiVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiVersions(_ input: DescribeApiVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
+        try await self.client.execute(action: "DescribeApiVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询API版本
     ///
     /// 查询API 版本
     @inlinable
-    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiVersionsResponse> {
-        self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), logger: logger, on: eventLoop)
+    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiVersionsResponse> {
+        self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API版本
     ///
     /// 查询API 版本
     @inlinable
-    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
-        try await self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), logger: logger, on: eventLoop)
+    public func describeApiVersions(microserviceId: String, path: String? = nil, method: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiVersionsResponse {
+        try await self.describeApiVersions(DescribeApiVersionsRequest(microserviceId: microserviceId, path: path, method: method), region: region, logger: logger, on: eventLoop)
     }
 }

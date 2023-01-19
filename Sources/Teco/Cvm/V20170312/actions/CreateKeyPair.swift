@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Cvm {
     /// * 私钥的内容可以保存到文件中作为 `SSH` 的一种认证方式。
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createKeyPair(_ input: CreateKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
+        self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
@@ -76,8 +76,8 @@ extension Cvm {
     /// * 私钥的内容可以保存到文件中作为 `SSH` 的一种认证方式。
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        try await self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createKeyPair(_ input: CreateKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
+        try await self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建密钥对
@@ -88,8 +88,8 @@ extension Cvm {
     /// * 私钥的内容可以保存到文件中作为 `SSH` 的一种认证方式。
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
-    public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        self.createKeyPair(CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
+        self.createKeyPair(CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
@@ -100,7 +100,7 @@ extension Cvm {
     /// * 私钥的内容可以保存到文件中作为 `SSH` 的一种认证方式。
     /// * 腾讯云不会保存用户的私钥，请妥善保管。
     @inlinable
-    public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        try await self.createKeyPair(CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createKeyPair(keyName: String, projectId: Int64, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
+        try await self.createKeyPair(CreateKeyPairRequest(keyName: keyName, projectId: projectId, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcss {
 
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
-        self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
+        self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {
-        try await self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyK8sApiAbnormalRuleStatus(_ input: ModifyK8sApiAbnormalRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {
+        try await self.client.execute(action: "ModifyK8sApiAbnormalRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
-        self.modifyK8sApiAbnormalRuleStatus(ModifyK8sApiAbnormalRuleStatusRequest(ruleID: ruleID, status: status), logger: logger, on: eventLoop)
+    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleStatusResponse> {
+        self.modifyK8sApiAbnormalRuleStatus(ModifyK8sApiAbnormalRuleStatusRequest(ruleID: ruleID, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常事件规则状态
     @inlinable
-    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {
-        try await self.modifyK8sApiAbnormalRuleStatus(ModifyK8sApiAbnormalRuleStatusRequest(ruleID: ruleID, status: status), logger: logger, on: eventLoop)
+    public func modifyK8sApiAbnormalRuleStatus(ruleID: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleStatusResponse {
+        try await self.modifyK8sApiAbnormalRuleStatus(ModifyK8sApiAbnormalRuleStatusRequest(ruleID: ruleID, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

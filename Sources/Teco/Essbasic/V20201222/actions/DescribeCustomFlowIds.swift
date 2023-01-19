@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Essbasic {
     ///
     /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
     @inlinable
-    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomFlowIdsResponse> {
-        self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomFlowIdsResponse> {
+        self.client.execute(action: "DescribeCustomFlowIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据用户自定义id查询流程id
     ///
     /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
     @inlinable
-    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
-        try await self.client.execute(action: "DescribeCustomFlowIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomFlowIds(_ input: DescribeCustomFlowIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
+        try await self.client.execute(action: "DescribeCustomFlowIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据用户自定义id查询流程id
     ///
     /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
     @inlinable
-    public func describeCustomFlowIds(caller: Caller, customIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomFlowIdsResponse> {
-        self.describeCustomFlowIds(DescribeCustomFlowIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    public func describeCustomFlowIds(caller: Caller, customIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomFlowIdsResponse> {
+        self.describeCustomFlowIds(DescribeCustomFlowIdsRequest(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据用户自定义id查询流程id
     ///
     /// 此接口（DescribeCustomFlowIds）用于通过自定义流程id来查询对应的电子签流程id
     @inlinable
-    public func describeCustomFlowIds(caller: Caller, customIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
-        try await self.describeCustomFlowIds(DescribeCustomFlowIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    public func describeCustomFlowIds(caller: Caller, customIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomFlowIdsResponse {
+        try await self.describeCustomFlowIds(DescribeCustomFlowIdsRequest(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 }

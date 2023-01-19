@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Bmvpc {
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
-        self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deregisterIps(_ input: DeregisterIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
+        self.client.execute(action: "DeregisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(_ input: DeregisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
-        try await self.client.execute(action: "DeregisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deregisterIps(_ input: DeregisterIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
+        try await self.client.execute(action: "DeregisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
-        self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
+        self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注销私有网络IP
     ///
     /// 注销私有网络IP为空闲
     @inlinable
-    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
-        try await self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
+        try await self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

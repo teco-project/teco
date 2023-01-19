@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Tbaas {
 
     /// 申请用户证书
     @inlinable
-    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUserCertResponse> {
-        self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyUserCert(_ input: ApplyUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUserCertResponse> {
+        self.client.execute(action: "ApplyUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请用户证书
     @inlinable
-    public func applyUserCert(_ input: ApplyUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
-        try await self.client.execute(action: "ApplyUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyUserCert(_ input: ApplyUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
+        try await self.client.execute(action: "ApplyUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请用户证书
     @inlinable
-    public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUserCertResponse> {
-        self.applyUserCert(ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), logger: logger, on: eventLoop)
+    public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUserCertResponse> {
+        self.applyUserCert(ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请用户证书
     @inlinable
-    public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
-        try await self.applyUserCert(ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), logger: logger, on: eventLoop)
+    public func applyUserCert(module: String, operation: String, clusterId: String, groupName: String, userIdentity: String, applicant: String, identityNum: String, csrData: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUserCertResponse {
+        try await self.applyUserCert(ApplyUserCertRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, userIdentity: userIdentity, applicant: applicant, identityNum: identityNum, csrData: csrData, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 }

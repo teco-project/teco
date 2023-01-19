@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Dayu {
 
     /// 添加CC防护的访问频率控制规则
     @inlinable
-    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCFrequencyRulesResponse> {
-        self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCFrequencyRulesResponse> {
+        self.client.execute(action: "CreateCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加CC防护的访问频率控制规则
     @inlinable
-    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
-        try await self.client.execute(action: "CreateCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCCFrequencyRules(_ input: CreateCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
+        try await self.client.execute(action: "CreateCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加CC防护的访问频率控制规则
     @inlinable
-    public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCFrequencyRulesResponse> {
-        self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), logger: logger, on: eventLoop)
+    public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCFrequencyRulesResponse> {
+        self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加CC防护的访问频率控制规则
     @inlinable
-    public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
-        try await self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), logger: logger, on: eventLoop)
+    public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
+        try await self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 }

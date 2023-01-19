@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cam {
 
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
-        self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
+        self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
-        try await self.client.execute(action: "DescribeSafeAuthFlagColl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSafeAuthFlagColl(_ input: DescribeSafeAuthFlagCollRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
+        try await self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(subUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
-        self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), logger: logger, on: eventLoop)
+    public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
+        self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全设置
     @inlinable
-    public func describeSafeAuthFlagColl(subUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
-        try await self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), logger: logger, on: eventLoop)
+    public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
+        try await self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), region: region, logger: logger, on: eventLoop)
     }
 }

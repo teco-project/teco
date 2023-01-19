@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dasb {
 
     /// 新建资产组
     @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
-        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
+        self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建资产组
     @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建资产组
     @inlinable
-    public func createDeviceGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
-        self.createDeviceGroup(CreateDeviceGroupRequest(name: name, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func createDeviceGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
+        self.createDeviceGroup(CreateDeviceGroupRequest(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建资产组
     @inlinable
-    public func createDeviceGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.createDeviceGroup(CreateDeviceGroupRequest(name: name, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func createDeviceGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.createDeviceGroup(CreateDeviceGroupRequest(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

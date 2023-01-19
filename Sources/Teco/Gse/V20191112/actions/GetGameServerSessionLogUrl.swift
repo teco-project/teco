@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
-        self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
+        self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -58,8 +58,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
-        try await self.client.execute(action: "GetGameServerSessionLogUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getGameServerSessionLogUrl(_ input: GetGameServerSessionLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
+        try await self.client.execute(action: "GetGameServerSessionLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -67,8 +67,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(gameServerSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
-        self.getGameServerSessionLogUrl(GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId), logger: logger, on: eventLoop)
+    public func getGameServerSessionLogUrl(gameServerSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerSessionLogUrlResponse> {
+        self.getGameServerSessionLogUrl(GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取游戏服务器会话的日志URL
@@ -76,7 +76,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（GetGameServerSessionLogUrl）用于获取游戏服务器会话的日志URL。
     @inlinable
-    public func getGameServerSessionLogUrl(gameServerSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
-        try await self.getGameServerSessionLogUrl(GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId), logger: logger, on: eventLoop)
+    public func getGameServerSessionLogUrl(gameServerSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerSessionLogUrlResponse {
+        try await self.getGameServerSessionLogUrl(GetGameServerSessionLogUrlRequest(gameServerSessionId: gameServerSessionId), region: region, logger: logger, on: eventLoop)
     }
 }

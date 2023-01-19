@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,8 +94,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
-        self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
+        self.client.execute(action: "CreateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡
@@ -109,8 +109,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.client.execute(action: "CreateNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetworkInterface(_ input: CreateNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
+        try await self.client.execute(action: "CreateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建弹性网卡
@@ -124,8 +124,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
-        self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
+        self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡
@@ -139,7 +139,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), logger: logger, on: eventLoop)
+    public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, trunkingFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
+        try await self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags, trunkingFlag: trunkingFlag), region: region, logger: logger, on: eventLoop)
     }
 }

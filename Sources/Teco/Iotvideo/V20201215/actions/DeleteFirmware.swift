@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
-        self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFirmware(_ input: DeleteFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
+        self.client.execute(action: "DeleteFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(_ input: DeleteFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
-        try await self.client.execute(action: "DeleteFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFirmware(_ input: DeleteFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
+        try await self.client.execute(action: "DeleteFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
-        self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    public func deleteFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
+        self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
     @inlinable
-    public func deleteFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
-        try await self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    public func deleteFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
+        try await self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 }

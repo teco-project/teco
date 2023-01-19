@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdid {
 
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
-        self.client.execute(action: "GetDidServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidServiceList(_ input: GetDidServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
+        self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(_ input: GetDidServiceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
-        try await self.client.execute(action: "GetDidServiceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidServiceList(_ input: GetDidServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
+        try await self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
-        self.getDidServiceList(GetDidServiceListRequest(type: type), logger: logger, on: eventLoop)
+    public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
+        self.getDidServiceList(GetDidServiceListRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DID服务列表
     @inlinable
-    public func getDidServiceList(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
-        try await self.getDidServiceList(GetDidServiceListRequest(type: type), logger: logger, on: eventLoop)
+    public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
+        try await self.getDidServiceList(GetDidServiceListRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 }

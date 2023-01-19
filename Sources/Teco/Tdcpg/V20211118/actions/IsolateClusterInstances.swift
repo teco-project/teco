@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Tdcpg {
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable
-    public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
-        self.client.execute(action: "IsolateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
+        self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -62,8 +62,8 @@ extension Tdcpg {
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable
-    public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
-        try await self.client.execute(action: "IsolateClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
+        try await self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离实例
@@ -73,8 +73,8 @@ extension Tdcpg {
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable
-    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
-        self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
+        self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -84,7 +84,7 @@ extension Tdcpg {
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
     @inlinable
-    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
-        try await self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
+        try await self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

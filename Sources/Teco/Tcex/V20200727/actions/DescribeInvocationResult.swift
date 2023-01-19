@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Tcex {
     /// 产品控制台已经下线
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
     @inlinable
-    public func describeInvocationResult(_ input: DescribeInvocationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
-        self.client.execute(action: "DescribeInvocationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInvocationResult(_ input: DescribeInvocationResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
+        self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务调用结果
@@ -63,8 +63,8 @@ extension Tcex {
     /// 产品控制台已经下线
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
     @inlinable
-    public func describeInvocationResult(_ input: DescribeInvocationResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
-        try await self.client.execute(action: "DescribeInvocationResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInvocationResult(_ input: DescribeInvocationResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
+        try await self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询服务调用结果
@@ -72,8 +72,8 @@ extension Tcex {
     /// 产品控制台已经下线
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
     @inlinable
-    public func describeInvocationResult(invokeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
-        self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), logger: logger, on: eventLoop)
+    public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
+        self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务调用结果
@@ -81,7 +81,7 @@ extension Tcex {
     /// 产品控制台已经下线
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
     @inlinable
-    public func describeInvocationResult(invokeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
-        try await self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), logger: logger, on: eventLoop)
+    public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
+        try await self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), region: region, logger: logger, on: eventLoop)
     }
 }

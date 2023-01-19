@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sslpod {
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
-        self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
+        self.client.execute(action: "DescribeDomainCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名证书
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
-        try await self.client.execute(action: "DescribeDomainCerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainCerts(_ input: DescribeDomainCertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
+        try await self.client.execute(action: "DescribeDomainCerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名证书
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
-        self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainCerts(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainCertsResponse> {
+        self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名证书
     ///
     /// 获取域名关联证书
     @inlinable
-    public func describeDomainCerts(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
-        try await self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainCerts(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainCertsResponse {
+        try await self.describeDomainCerts(DescribeDomainCertsRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

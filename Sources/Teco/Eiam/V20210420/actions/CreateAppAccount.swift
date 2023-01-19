@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Eiam {
 
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
-        self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAppAccount(_ input: CreateAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
+        self.client.execute(action: "CreateAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(_ input: CreateAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
-        try await self.client.execute(action: "CreateAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAppAccount(_ input: CreateAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
+        try await self.client.execute(action: "CreateAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
-        self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), logger: logger, on: eventLoop)
+    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
+        self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用账号
     @inlinable
-    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
-        try await self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), logger: logger, on: eventLoop)
+    public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
+        try await self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

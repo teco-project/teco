@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension As {
     /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
+        self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加 CVM 实例到伸缩组
@@ -64,8 +64,8 @@ extension As {
     /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加 CVM 实例到伸缩组
@@ -74,8 +74,8 @@ extension As {
     /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
-    public func attachInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        self.attachInstances(AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func attachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
+        self.attachInstances(AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加 CVM 实例到伸缩组
@@ -84,7 +84,7 @@ extension As {
     /// * 仅支持添加处于`RUNNING`（运行中）或`STOPPED`（已关机）状态的 CVM 实例
     /// * 添加的 CVM 实例需要和伸缩组 VPC 网络一致
     @inlinable
-    public func attachInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        try await self.attachInstances(AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func attachInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.attachInstances(AttachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

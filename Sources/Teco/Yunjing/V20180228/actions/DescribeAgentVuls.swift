@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
     @inlinable
-    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentVulsResponse> {
-        self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentVulsResponse> {
+        self.client.execute(action: "DescribeAgentVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单台主机的漏洞列表
     ///
     /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
     @inlinable
-    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
-        try await self.client.execute(action: "DescribeAgentVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentVuls(_ input: DescribeAgentVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
+        try await self.client.execute(action: "DescribeAgentVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单台主机的漏洞列表
     ///
     /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
     @inlinable
-    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentVulsResponse> {
-        self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentVulsResponse> {
+        self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单台主机的漏洞列表
     ///
     /// 本接口 (DescribeAgentVuls) 用于获取单台主机的漏洞列表。
     @inlinable
-    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
-        try await self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAgentVuls(vulType: String, uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentVulsResponse {
+        try await self.describeAgentVuls(DescribeAgentVulsRequest(vulType: vulType, uuid: uuid, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

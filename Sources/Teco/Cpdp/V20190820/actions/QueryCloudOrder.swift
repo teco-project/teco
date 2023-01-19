@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cpdp {
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
-        self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCloudOrder(_ input: QueryCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
+        self.client.execute(action: "QueryCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(_ input: QueryCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
-        try await self.client.execute(action: "QueryCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCloudOrder(_ input: QueryCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
+        try await self.client.execute(action: "QueryCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
-        self.queryCloudOrder(QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), logger: logger, on: eventLoop)
+    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudOrderResponse> {
+        self.queryCloudOrder(QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询订单
     ///
     /// 根据订单号或用户ID，查询支付订单状态。
     @inlinable
-    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
-        try await self.queryCloudOrder(QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), logger: logger, on: eventLoop)
+    public func queryCloudOrder(midasAppId: String, userId: String, type: String, midasEnvironment: String? = nil, outTradeNo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudOrderResponse {
+        try await self.queryCloudOrder(QueryCloudOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasEnvironment: midasEnvironment, outTradeNo: outTradeNo), region: region, logger: logger, on: eventLoop)
     }
 }

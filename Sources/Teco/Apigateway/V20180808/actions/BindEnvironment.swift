@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Apigateway {
     /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
-    public func bindEnvironment(_ input: BindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvironmentResponse> {
-        self.client.execute(action: "BindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindEnvironment(_ input: BindEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvironmentResponse> {
+        self.client.execute(action: "BindEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定使用计划到服务或API
@@ -80,8 +80,8 @@ extension Apigateway {
     /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
-    public func bindEnvironment(_ input: BindEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
-        try await self.client.execute(action: "BindEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindEnvironment(_ input: BindEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
+        try await self.client.execute(action: "BindEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定使用计划到服务或API
@@ -90,8 +90,8 @@ extension Apigateway {
     /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
-    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvironmentResponse> {
-        self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvironmentResponse> {
+        self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定使用计划到服务或API
@@ -100,7 +100,7 @@ extension Apigateway {
     /// 用户在发布服务到某个环境中后，如果 API 需要鉴权，还需要绑定使用计划才能进行调用，此接口用户将使用计划绑定到特定环境。
     /// 目前支持绑定使用计划到API，但是同一个服务不能同时存在绑定到服务的使用计划和绑定到API的使用计划，所以对已经绑定过服务级别使用计划的环境，请先使用 服务级别使用计划降级 接口进行降级操作。
     @inlinable
-    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
-        try await self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func bindEnvironment(usagePlanIds: [String], bindType: String, environment: String, serviceId: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvironmentResponse {
+        try await self.bindEnvironment(BindEnvironmentRequest(usagePlanIds: usagePlanIds, bindType: bindType, environment: environment, serviceId: serviceId, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

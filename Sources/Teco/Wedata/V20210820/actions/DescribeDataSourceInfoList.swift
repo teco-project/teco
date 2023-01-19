@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Wedata {
     ///
     /// 获取数据源信息-数据源分页列表
     @inlinable
-    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceInfoListResponse> {
-        self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceInfoListResponse> {
+        self.client.execute(action: "DescribeDataSourceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据源信息
     ///
     /// 获取数据源信息-数据源分页列表
     @inlinable
-    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
-        try await self.client.execute(action: "DescribeDataSourceInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataSourceInfoList(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
+        try await self.client.execute(action: "DescribeDataSourceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据源信息
     ///
     /// 获取数据源信息-数据源分页列表
     @inlinable
-    public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceInfoListResponse> {
-        self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), logger: logger, on: eventLoop)
+    public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceInfoListResponse> {
+        self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据源信息
     ///
     /// 获取数据源信息-数据源分页列表
     @inlinable
-    public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
-        try await self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), logger: logger, on: eventLoop)
+    public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
+        try await self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), region: region, logger: logger, on: eventLoop)
     }
 }

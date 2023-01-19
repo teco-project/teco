@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Dlc {
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
+        self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
-    public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.describeDatabases(DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), logger: logger, on: eventLoop)
+    public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
+        self.describeDatabases(DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
-    public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.describeDatabases(DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), logger: logger, on: eventLoop)
+    public func describeDatabases(limit: UInt64? = nil, offset: Int64? = nil, keyWord: String? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.describeDatabases(DescribeDatabasesRequest(limit: limit, offset: offset, keyWord: keyWord, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 }

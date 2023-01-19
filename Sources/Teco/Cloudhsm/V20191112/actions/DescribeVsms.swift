@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cloudhsm {
 
     /// 获取用户VSM列表
     @inlinable
-    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmsResponse> {
-        self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVsms(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmsResponse> {
+        self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户VSM列表
     @inlinable
-    public func describeVsms(_ input: DescribeVsmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
-        try await self.client.execute(action: "DescribeVsms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVsms(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
+        try await self.client.execute(action: "DescribeVsms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户VSM列表
     @inlinable
-    public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmsResponse> {
-        self.describeVsms(DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), logger: logger, on: eventLoop)
+    public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmsResponse> {
+        self.describeVsms(DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户VSM列表
     @inlinable
-    public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
-        try await self.describeVsms(DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), logger: logger, on: eventLoop)
+    public func describeVsms(offset: Int64, limit: Int64, searchWord: String? = nil, tagFilters: [TagFilter]? = nil, manufacturer: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmsResponse {
+        try await self.describeVsms(DescribeVsmsRequest(offset: offset, limit: limit, searchWord: searchWord, tagFilters: tagFilters, manufacturer: manufacturer, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 }

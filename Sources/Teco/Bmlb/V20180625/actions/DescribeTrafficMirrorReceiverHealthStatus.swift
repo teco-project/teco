@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
-        self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
+        self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
-        try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrafficMirrorReceiverHealthStatus(_ input: DescribeTrafficMirrorReceiverHealthStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
+        try await self.client.execute(action: "DescribeTrafficMirrorReceiverHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
-        self.describeTrafficMirrorReceiverHealthStatus(DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), logger: logger, on: eventLoop)
+    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorReceiverHealthStatusResponse> {
+        self.describeTrafficMirrorReceiverHealthStatus(DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像接收机健康状态
     ///
     /// 获取流量镜像接收机健康状态。
     @inlinable
-    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
-        try await self.describeTrafficMirrorReceiverHealthStatus(DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), logger: logger, on: eventLoop)
+    public func describeTrafficMirrorReceiverHealthStatus(trafficMirrorId: String, receiverSet: [DescribeTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorReceiverHealthStatusResponse {
+        try await self.describeTrafficMirrorReceiverHealthStatus(DescribeTrafficMirrorReceiverHealthStatusRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 }

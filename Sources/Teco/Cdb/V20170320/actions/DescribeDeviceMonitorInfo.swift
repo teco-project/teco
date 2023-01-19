@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Cdb {
     ///
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
-    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorInfoResponse> {
-        self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorInfoResponse> {
+        self.client.execute(action: "DescribeDeviceMonitorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 物理机监控信息
     ///
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
-    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
-        try await self.client.execute(action: "DescribeDeviceMonitorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceMonitorInfo(_ input: DescribeDeviceMonitorInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
+        try await self.client.execute(action: "DescribeDeviceMonitorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 物理机监控信息
     ///
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
-    public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorInfoResponse> {
-        self.describeDeviceMonitorInfo(DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count), logger: logger, on: eventLoop)
+    public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorInfoResponse> {
+        self.describeDeviceMonitorInfo(DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count), region: region, logger: logger, on: eventLoop)
     }
 
     /// 物理机监控信息
     ///
     /// 本接口（DescribeDeviceMonitorInfo）用于查询云数据库物理机当天的监控信息，暂只支持内存488G、硬盘6T的实例查询。
     @inlinable
-    public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
-        try await self.describeDeviceMonitorInfo(DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count), logger: logger, on: eventLoop)
+    public func describeDeviceMonitorInfo(instanceId: String, count: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorInfoResponse {
+        try await self.describeDeviceMonitorInfo(DescribeDeviceMonitorInfoRequest(instanceId: instanceId, count: count), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cpdp {
 
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
-        self.client.execute(action: "QueryReconciliationFileApplyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
+        self.client.execute(action: "QueryReconciliationFileApplyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
-        try await self.client.execute(action: "QueryReconciliationFileApplyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryReconciliationFileApplyInfo(_ input: QueryReconciliationFileApplyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
+        try await self.client.execute(action: "QueryReconciliationFileApplyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
-        self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
+        self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询对账文件申请结果
     @inlinable
-    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
-        try await self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
+        try await self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

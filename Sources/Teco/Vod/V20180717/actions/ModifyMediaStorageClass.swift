@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Vod {
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
     @inlinable
-    public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
-        self.client.execute(action: "ModifyMediaStorageClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
+        self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体文件存储类型
@@ -101,8 +101,8 @@ extension Vod {
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
     @inlinable
-    public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
-        try await self.client.execute(action: "ModifyMediaStorageClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
+        try await self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改媒体文件存储类型
@@ -121,8 +121,8 @@ extension Vod {
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
     @inlinable
-    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
-        self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), logger: logger, on: eventLoop)
+    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
+        self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体文件存储类型
@@ -141,7 +141,7 @@ extension Vod {
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
     @inlinable
-    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
-        try await self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), logger: logger, on: eventLoop)
+    public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
+        try await self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
 }

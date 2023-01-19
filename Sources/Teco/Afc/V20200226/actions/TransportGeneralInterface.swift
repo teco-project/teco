@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Afc {
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
-        self.client.execute(action: "TransportGeneralInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
+        self.client.execute(action: "TransportGeneralInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
-        try await self.client.execute(action: "TransportGeneralInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transportGeneralInterface(_ input: TransportGeneralInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
+        try await self.client.execute(action: "TransportGeneralInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
-        self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
+        self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 信鸽取数平台接口
     ///
     /// 天御信鸽取数平台接口
     @inlinable
-    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
-        try await self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
+        try await self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 }

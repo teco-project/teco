@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Dbbrain {
     ///
     /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceSchemas(_ input: DescribeTopSpaceSchemasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceSchemasResponse> {
-        self.client.execute(action: "DescribeTopSpaceSchemas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopSpaceSchemas(_ input: DescribeTopSpaceSchemasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceSchemasResponse> {
+        self.client.execute(action: "DescribeTopSpaceSchemas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Top库的空间统计信息
     ///
     /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceSchemas(_ input: DescribeTopSpaceSchemasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
-        try await self.client.execute(action: "DescribeTopSpaceSchemas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopSpaceSchemas(_ input: DescribeTopSpaceSchemasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
+        try await self.client.execute(action: "DescribeTopSpaceSchemas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Top库的空间统计信息
     ///
     /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceSchemasResponse> {
-        self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopSpaceSchemasResponse> {
+        self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Top库的空间统计信息
     ///
     /// 获取实例Top库的实时空间统计信息，默认返回按大小排序。
     @inlinable
-    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
-        try await self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), logger: logger, on: eventLoop)
+    public func describeTopSpaceSchemas(instanceId: String, limit: Int64? = nil, sortBy: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopSpaceSchemasResponse {
+        try await self.describeTopSpaceSchemas(DescribeTopSpaceSchemasRequest(instanceId: instanceId, limit: limit, sortBy: sortBy, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Ssm {
     ///
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
-        self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSecret(_ input: DeleteSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
+        self.client.execute(action: "DeleteSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除凭据信息
     ///
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
-    public func deleteSecret(_ input: DeleteSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
-        try await self.client.execute(action: "DeleteSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSecret(_ input: DeleteSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
+        try await self.client.execute(action: "DeleteSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除凭据信息
     ///
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
-    public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
-        self.deleteSecret(DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), logger: logger, on: eventLoop)
+    public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecretResponse> {
+        self.deleteSecret(DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除凭据信息
     ///
     /// 删除指定的凭据信息，可以通过RecoveryWindowInDays参数设置立即删除或者计划删除。对于计划删除的凭据，在删除日期到达之前状态为 PendingDelete，并可以通过RestoreSecret 进行恢复，超出指定删除日期之后会被彻底删除。您必须先通过 DisableSecret 停用凭据后才可以进行（计划）删除操作。
     @inlinable
-    public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
-        try await self.deleteSecret(DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), logger: logger, on: eventLoop)
+    public func deleteSecret(secretName: String, recoveryWindowInDays: UInt64? = nil, cleanSSHKey: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecretResponse {
+        try await self.deleteSecret(DeleteSecretRequest(secretName: secretName, recoveryWindowInDays: recoveryWindowInDays, cleanSSHKey: cleanSSHKey), region: region, logger: logger, on: eventLoop)
     }
 }

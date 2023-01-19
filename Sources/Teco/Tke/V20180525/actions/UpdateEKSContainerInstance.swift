@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tke {
 
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
-        self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
+        self.client.execute(action: "UpdateEKSContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
-        try await self.client.execute(action: "UpdateEKSContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateEKSContainerInstance(_ input: UpdateEKSContainerInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
+        try await self.client.execute(action: "UpdateEKSContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
-        self.updateEKSContainerInstance(UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), logger: logger, on: eventLoop)
+    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSContainerInstanceResponse> {
+        self.updateEKSContainerInstance(UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新容器实例
     @inlinable
-    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
-        try await self.updateEKSContainerInstance(UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), logger: logger, on: eventLoop)
+    public func updateEKSContainerInstance(eksCiId: String, restartPolicy: String? = nil, eksCiVolume: EksCiVolume? = nil, containers: [Container]? = nil, initContainers: [Container]? = nil, name: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSContainerInstanceResponse {
+        try await self.updateEKSContainerInstance(UpdateEKSContainerInstanceRequest(eksCiId: eksCiId, restartPolicy: restartPolicy, eksCiVolume: eksCiVolume, containers: containers, initContainers: initContainers, name: name, imageRegistryCredentials: imageRegistryCredentials), region: region, logger: logger, on: eventLoop)
     }
 }

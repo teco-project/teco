@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
-        self.client.execute(action: "CheckDuplicateTemplateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
+        self.client.execute(action: "CheckDuplicateTemplateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
-        try await self.client.execute(action: "CheckDuplicateTemplateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkDuplicateTemplateName(_ input: CheckDuplicateTemplateNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
+        try await self.client.execute(action: "CheckDuplicateTemplateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
-        self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), logger: logger, on: eventLoop)
+    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateTemplateNameResponse> {
+        self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查规则模板名称是否重复
     @inlinable
-    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
-        try await self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), logger: logger, on: eventLoop)
+    public func checkDuplicateTemplateName(templateId: UInt64? = nil, name: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateTemplateNameResponse {
+        try await self.checkDuplicateTemplateName(CheckDuplicateTemplateNameRequest(templateId: templateId, name: name, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

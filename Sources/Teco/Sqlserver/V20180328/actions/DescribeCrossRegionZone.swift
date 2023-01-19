@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
     @inlinable
-    public func describeCrossRegionZone(_ input: DescribeCrossRegionZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossRegionZoneResponse> {
-        self.client.execute(action: "DescribeCrossRegionZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCrossRegionZone(_ input: DescribeCrossRegionZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossRegionZoneResponse> {
+        self.client.execute(action: "DescribeCrossRegionZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备机的容灾地域和可用区
     ///
     /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
     @inlinable
-    public func describeCrossRegionZone(_ input: DescribeCrossRegionZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
-        try await self.client.execute(action: "DescribeCrossRegionZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCrossRegionZone(_ input: DescribeCrossRegionZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
+        try await self.client.execute(action: "DescribeCrossRegionZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备机的容灾地域和可用区
     ///
     /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
     @inlinable
-    public func describeCrossRegionZone(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossRegionZoneResponse> {
-        self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCrossRegionZone(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCrossRegionZoneResponse> {
+        self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备机的容灾地域和可用区
     ///
     /// 本接口(DescribeCrossRegionZone)根据主实例查询备机的容灾地域和可用区。
     @inlinable
-    public func describeCrossRegionZone(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
-        try await self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCrossRegionZone(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCrossRegionZoneResponse {
+        try await self.describeCrossRegionZone(DescribeCrossRegionZoneRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

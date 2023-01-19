@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -158,25 +158,25 @@ extension Cpdp {
 
     /// 查询充值明细接口
     @inlinable
-    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChargeDetailResponse> {
-        self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChargeDetailResponse> {
+        self.client.execute(action: "DescribeChargeDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询充值明细接口
     @inlinable
-    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
-        try await self.client.execute(action: "DescribeChargeDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeChargeDetail(_ input: DescribeChargeDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
+        try await self.client.execute(action: "DescribeChargeDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询充值明细接口
     @inlinable
-    public func describeChargeDetail(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChargeDetailResponse> {
-        self.describeChargeDetail(DescribeChargeDetailRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, acquiringChannelType: acquiringChannelType, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage), logger: logger, on: eventLoop)
+    public func describeChargeDetail(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChargeDetailResponse> {
+        self.describeChargeDetail(DescribeChargeDetailRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, acquiringChannelType: acquiringChannelType, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询充值明细接口
     @inlinable
-    public func describeChargeDetail(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
-        try await self.describeChargeDetail(DescribeChargeDetailRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, acquiringChannelType: acquiringChannelType, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage), logger: logger, on: eventLoop)
+    public func describeChargeDetail(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, acquiringChannelType: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, midasEnvironment: String, reservedMessage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChargeDetailResponse {
+        try await self.describeChargeDetail(DescribeChargeDetailRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, acquiringChannelType: acquiringChannelType, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage), region: region, logger: logger, on: eventLoop)
     }
 }

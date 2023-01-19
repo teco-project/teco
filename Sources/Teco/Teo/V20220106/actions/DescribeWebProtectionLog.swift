@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -122,25 +122,25 @@ extension Teo {
 
     /// 查询CC防护日志
     @inlinable
-    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionLogResponse> {
-        self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionLogResponse> {
+        self.client.execute(action: "DescribeWebProtectionLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护日志
     @inlinable
-    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
-        try await self.client.execute(action: "DescribeWebProtectionLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebProtectionLog(_ input: DescribeWebProtectionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
+        try await self.client.execute(action: "DescribeWebProtectionLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询CC防护日志
     @inlinable
-    public func describeWebProtectionLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, entityType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionLogResponse> {
-        self.describeWebProtectionLog(DescribeWebProtectionLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, entityType: entityType, area: area), logger: logger, on: eventLoop)
+    public func describeWebProtectionLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, entityType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionLogResponse> {
+        self.describeWebProtectionLog(DescribeWebProtectionLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, entityType: entityType, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护日志
     @inlinable
-    public func describeWebProtectionLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, entityType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
-        try await self.describeWebProtectionLog(DescribeWebProtectionLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, entityType: entityType, area: area), logger: logger, on: eventLoop)
+    public func describeWebProtectionLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, entityType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionLogResponse {
+        try await self.describeWebProtectionLog(DescribeWebProtectionLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, entityType: entityType, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

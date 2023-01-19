@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -118,8 +118,8 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
-        self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
+        self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务信息获取
@@ -134,8 +134,8 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        try await self.client.execute(action: "DescribeTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskInfo(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
+        try await self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 维修任务信息获取
@@ -150,8 +150,8 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
-        self.describeTaskInfo(DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), logger: logger, on: eventLoop)
+    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
+        self.describeTaskInfo(DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务信息获取
@@ -166,7 +166,7 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        try await self.describeTaskInfo(DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), logger: logger, on: eventLoop)
+    public func describeTaskInfo(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
+        try await self.describeTaskInfo(DescribeTaskInfoRequest(offset: offset, limit: limit, startDate: startDate, endDate: endDate, taskStatus: taskStatus, orderField: orderField, order: order, taskIds: taskIds, instanceIds: instanceIds, aliases: aliases, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
     }
 }

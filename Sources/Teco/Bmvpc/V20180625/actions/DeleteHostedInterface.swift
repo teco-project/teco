@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Bmvpc {
     /// 1) 不能从vlanId 为5的子网中移除。
     /// 2) 每次调用最多能支持传入10台物理机。
     @inlinable
-    public func deleteHostedInterface(_ input: DeleteHostedInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfaceResponse> {
-        self.client.execute(action: "DeleteHostedInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteHostedInterface(_ input: DeleteHostedInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfaceResponse> {
+        self.client.execute(action: "DeleteHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器移除子网
@@ -73,8 +73,8 @@ extension Bmvpc {
     /// 1) 不能从vlanId 为5的子网中移除。
     /// 2) 每次调用最多能支持传入10台物理机。
     @inlinable
-    public func deleteHostedInterface(_ input: DeleteHostedInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfaceResponse {
-        try await self.client.execute(action: "DeleteHostedInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteHostedInterface(_ input: DeleteHostedInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfaceResponse {
+        try await self.client.execute(action: "DeleteHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石托管机器移除子网
@@ -83,8 +83,8 @@ extension Bmvpc {
     /// 1) 不能从vlanId 为5的子网中移除。
     /// 2) 每次调用最多能支持传入10台物理机。
     @inlinable
-    public func deleteHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfaceResponse> {
-        self.deleteHostedInterface(DeleteHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deleteHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfaceResponse> {
+        self.deleteHostedInterface(DeleteHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器移除子网
@@ -93,7 +93,7 @@ extension Bmvpc {
     /// 1) 不能从vlanId 为5的子网中移除。
     /// 2) 每次调用最多能支持传入10台物理机。
     @inlinable
-    public func deleteHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfaceResponse {
-        try await self.deleteHostedInterface(DeleteHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deleteHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfaceResponse {
+        try await self.deleteHostedInterface(DeleteHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

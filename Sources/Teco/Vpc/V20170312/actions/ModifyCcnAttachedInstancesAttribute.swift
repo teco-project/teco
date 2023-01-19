@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
     @inlinable
-    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
-        self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
+        self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
     @inlinable
-    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
-        try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
+        try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
     @inlinable
-    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
-        self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
+        self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
     @inlinable
-    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
-        try await self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
+        try await self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

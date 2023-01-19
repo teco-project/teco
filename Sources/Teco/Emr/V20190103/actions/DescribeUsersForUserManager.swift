@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     @inlinable
-    public func describeUsersForUserManager(_ input: DescribeUsersForUserManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersForUserManagerResponse> {
-        self.client.execute(action: "DescribeUsersForUserManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsersForUserManager(_ input: DescribeUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersForUserManagerResponse> {
+        self.client.execute(action: "DescribeUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
@@ -82,8 +82,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     @inlinable
-    public func describeUsersForUserManager(_ input: DescribeUsersForUserManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersForUserManagerResponse {
-        try await self.client.execute(action: "DescribeUsersForUserManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsersForUserManager(_ input: DescribeUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersForUserManagerResponse {
+        try await self.client.execute(action: "DescribeUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户列表
@@ -91,8 +91,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     @inlinable
-    public func describeUsersForUserManager(instanceId: String, pageNo: Int64, pageSize: Int64, userManagerFilter: UserManagerFilter? = nil, needKeytabInfo: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersForUserManagerResponse> {
-        self.describeUsersForUserManager(DescribeUsersForUserManagerRequest(instanceId: instanceId, pageNo: pageNo, pageSize: pageSize, userManagerFilter: userManagerFilter, needKeytabInfo: needKeytabInfo), logger: logger, on: eventLoop)
+    public func describeUsersForUserManager(instanceId: String, pageNo: Int64, pageSize: Int64, userManagerFilter: UserManagerFilter? = nil, needKeytabInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersForUserManagerResponse> {
+        self.describeUsersForUserManager(DescribeUsersForUserManagerRequest(instanceId: instanceId, pageNo: pageNo, pageSize: pageSize, userManagerFilter: userManagerFilter, needKeytabInfo: needKeytabInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
@@ -100,7 +100,7 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 批量导出用户。对于kerberos集群，如果需要kertab文件下载地址，可以将NeedKeytabInfo设置为true；注意SupportDownLoadKeyTab为true，但是DownLoadKeyTabUrl为空字符串，表示keytab文件在后台没有准备好（正在生成）。
     @inlinable
-    public func describeUsersForUserManager(instanceId: String, pageNo: Int64, pageSize: Int64, userManagerFilter: UserManagerFilter? = nil, needKeytabInfo: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersForUserManagerResponse {
-        try await self.describeUsersForUserManager(DescribeUsersForUserManagerRequest(instanceId: instanceId, pageNo: pageNo, pageSize: pageSize, userManagerFilter: userManagerFilter, needKeytabInfo: needKeytabInfo), logger: logger, on: eventLoop)
+    public func describeUsersForUserManager(instanceId: String, pageNo: Int64, pageSize: Int64, userManagerFilter: UserManagerFilter? = nil, needKeytabInfo: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersForUserManagerResponse {
+        try await self.describeUsersForUserManager(DescribeUsersForUserManagerRequest(instanceId: instanceId, pageNo: pageNo, pageSize: pageSize, userManagerFilter: userManagerFilter, needKeytabInfo: needKeytabInfo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Redis {
 
     /// 启用读写分离
     @inlinable
-    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableReplicaReadonlyResponse> {
-        self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableReplicaReadonlyResponse> {
+        self.client.execute(action: "EnableReplicaReadonly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用读写分离
     @inlinable
-    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
-        try await self.client.execute(action: "EnableReplicaReadonly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableReplicaReadonly(_ input: EnableReplicaReadonlyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
+        try await self.client.execute(action: "EnableReplicaReadonly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用读写分离
     @inlinable
-    public func enableReplicaReadonly(instanceId: String, readonlyPolicy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableReplicaReadonlyResponse> {
-        self.enableReplicaReadonly(EnableReplicaReadonlyRequest(instanceId: instanceId, readonlyPolicy: readonlyPolicy), logger: logger, on: eventLoop)
+    public func enableReplicaReadonly(instanceId: String, readonlyPolicy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableReplicaReadonlyResponse> {
+        self.enableReplicaReadonly(EnableReplicaReadonlyRequest(instanceId: instanceId, readonlyPolicy: readonlyPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用读写分离
     @inlinable
-    public func enableReplicaReadonly(instanceId: String, readonlyPolicy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
-        try await self.enableReplicaReadonly(EnableReplicaReadonlyRequest(instanceId: instanceId, readonlyPolicy: readonlyPolicy), logger: logger, on: eventLoop)
+    public func enableReplicaReadonly(instanceId: String, readonlyPolicy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableReplicaReadonlyResponse {
+        try await self.enableReplicaReadonly(EnableReplicaReadonlyRequest(instanceId: instanceId, readonlyPolicy: readonlyPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

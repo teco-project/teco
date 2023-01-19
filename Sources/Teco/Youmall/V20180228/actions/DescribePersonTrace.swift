@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Youmall {
     ///
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
-    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceResponse> {
-        self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePersonTrace(_ input: DescribePersonTraceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceResponse> {
+        self.client.execute(action: "DescribePersonTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户单次到场轨迹
     ///
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
-    public func describePersonTrace(_ input: DescribePersonTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
-        try await self.client.execute(action: "DescribePersonTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePersonTrace(_ input: DescribePersonTraceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
+        try await self.client.execute(action: "DescribePersonTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户单次到场轨迹
     ///
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
-    public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceResponse> {
-        self.describePersonTrace(DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceResponse> {
+        self.describePersonTrace(DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户单次到场轨迹
     ///
     /// 输出开始时间到结束时间段内的进出场数据。
     @inlinable
-    public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
-        try await self.describePersonTrace(DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describePersonTrace(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceResponse {
+        try await self.describePersonTrace(DescribePersonTraceRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

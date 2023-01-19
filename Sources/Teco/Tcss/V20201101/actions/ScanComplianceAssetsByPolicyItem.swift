@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcss {
     ///
     /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceAssetsByPolicyItemResponse> {
-        self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceAssetsByPolicyItemResponse> {
+        self.client.execute(action: "ScanComplianceAssetsByPolicyItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规用指定的检测项重新检测选定的资产
     ///
     /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
-        try await self.client.execute(action: "ScanComplianceAssetsByPolicyItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanComplianceAssetsByPolicyItem(_ input: ScanComplianceAssetsByPolicyItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
+        try await self.client.execute(action: "ScanComplianceAssetsByPolicyItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规用指定的检测项重新检测选定的资产
     ///
     /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceAssetsByPolicyItem(customerPolicyItemId: UInt64, customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceAssetsByPolicyItemResponse> {
-        self.scanComplianceAssetsByPolicyItem(ScanComplianceAssetsByPolicyItemRequest(customerPolicyItemId: customerPolicyItemId, customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    public func scanComplianceAssetsByPolicyItem(customerPolicyItemId: UInt64, customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceAssetsByPolicyItemResponse> {
+        self.scanComplianceAssetsByPolicyItem(ScanComplianceAssetsByPolicyItemRequest(customerPolicyItemId: customerPolicyItemId, customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规用指定的检测项重新检测选定的资产
     ///
     /// 用指定的检测项重新检测选定的资产，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceAssetsByPolicyItem(customerPolicyItemId: UInt64, customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
-        try await self.scanComplianceAssetsByPolicyItem(ScanComplianceAssetsByPolicyItemRequest(customerPolicyItemId: customerPolicyItemId, customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    public func scanComplianceAssetsByPolicyItem(customerPolicyItemId: UInt64, customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsByPolicyItemResponse {
+        try await self.scanComplianceAssetsByPolicyItem(ScanComplianceAssetsByPolicyItemRequest(customerPolicyItemId: customerPolicyItemId, customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

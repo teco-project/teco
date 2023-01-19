@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iotcloud {
     ///
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
-    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDeviceResponse> {
-        self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMultiDevice(_ input: CreateMultiDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDeviceResponse> {
+        self.client.execute(action: "CreateMultiDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建多个设备
     ///
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
-    public func createMultiDevice(_ input: CreateMultiDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
-        try await self.client.execute(action: "CreateMultiDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMultiDevice(_ input: CreateMultiDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
+        try await self.client.execute(action: "CreateMultiDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建多个设备
     ///
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
-    public func createMultiDevice(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDeviceResponse> {
-        self.createMultiDevice(CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func createMultiDevice(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiDeviceResponse> {
+        self.createMultiDevice(CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建多个设备
     ///
     /// 本接口（CreateMultiDevice）用于批量创建物联云设备。
     @inlinable
-    public func createMultiDevice(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
-        try await self.createMultiDevice(CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func createMultiDevice(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiDeviceResponse {
+        try await self.createMultiDevice(CreateMultiDeviceRequest(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

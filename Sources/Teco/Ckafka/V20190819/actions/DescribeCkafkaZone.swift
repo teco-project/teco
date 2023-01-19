@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ckafka {
     ///
     /// 用于查看ckafka的可用区列表
     @inlinable
-    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkafkaZoneResponse> {
-        self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkafkaZoneResponse> {
+        self.client.execute(action: "DescribeCkafkaZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看可用区列表
     ///
     /// 用于查看ckafka的可用区列表
     @inlinable
-    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
-        try await self.client.execute(action: "DescribeCkafkaZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCkafkaZone(_ input: DescribeCkafkaZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
+        try await self.client.execute(action: "DescribeCkafkaZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看可用区列表
     ///
     /// 用于查看ckafka的可用区列表
     @inlinable
-    public func describeCkafkaZone(cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkafkaZoneResponse> {
-        self.describeCkafkaZone(DescribeCkafkaZoneRequest(cdcId: cdcId), logger: logger, on: eventLoop)
+    public func describeCkafkaZone(cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkafkaZoneResponse> {
+        self.describeCkafkaZone(DescribeCkafkaZoneRequest(cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看可用区列表
     ///
     /// 用于查看ckafka的可用区列表
     @inlinable
-    public func describeCkafkaZone(cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
-        try await self.describeCkafkaZone(DescribeCkafkaZoneRequest(cdcId: cdcId), logger: logger, on: eventLoop)
+    public func describeCkafkaZone(cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkafkaZoneResponse {
+        try await self.describeCkafkaZone(DescribeCkafkaZoneRequest(cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 }

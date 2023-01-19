@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Antiddos {
     ///
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
-    public func describePendingRiskInfo(_ input: DescribePendingRiskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePendingRiskInfoResponse> {
-        self.client.execute(action: "DescribePendingRiskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePendingRiskInfo(_ input: DescribePendingRiskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePendingRiskInfoResponse> {
+        self.client.execute(action: "DescribePendingRiskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号维度待处理风险信息
     ///
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
-    public func describePendingRiskInfo(_ input: DescribePendingRiskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePendingRiskInfoResponse {
-        try await self.client.execute(action: "DescribePendingRiskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePendingRiskInfo(_ input: DescribePendingRiskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePendingRiskInfoResponse {
+        try await self.client.execute(action: "DescribePendingRiskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账号维度待处理风险信息
     ///
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
-    public func describePendingRiskInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePendingRiskInfoResponse> {
-        self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), logger: logger, on: eventLoop)
+    public func describePendingRiskInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePendingRiskInfoResponse> {
+        self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账号维度待处理风险信息
     ///
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
-    public func describePendingRiskInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePendingRiskInfoResponse {
-        try await self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), logger: logger, on: eventLoop)
+    public func describePendingRiskInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePendingRiskInfoResponse {
+        try await self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
-        self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
+        self.client.execute(action: "DescribePrometheusZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
-        try await self.client.execute(action: "DescribePrometheusZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusZones(_ input: DescribePrometheusZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
+        try await self.client.execute(action: "DescribePrometheusZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(regionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
-        self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), logger: logger, on: eventLoop)
+    public func describePrometheusZones(regionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
+        self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 服务可用区
     @inlinable
-    public func describePrometheusZones(regionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
-        try await self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), logger: logger, on: eventLoop)
+    public func describePrometheusZones(regionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
+        try await self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), region: region, logger: logger, on: eventLoop)
     }
 }

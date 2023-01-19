@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,8 +127,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFaces(_ input: SearchFacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
-        self.client.execute(action: "SearchFaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchFaces(_ input: SearchFacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
+        self.client.execute(action: "SearchFaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索
@@ -143,8 +143,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFaces(_ input: SearchFacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
-        try await self.client.execute(action: "SearchFaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchFaces(_ input: SearchFacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
+        try await self.client.execute(action: "SearchFaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸搜索
@@ -159,8 +159,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
-        self.searchFaces(SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesResponse> {
+        self.searchFaces(SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索
@@ -175,7 +175,7 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
-        try await self.searchFaces(SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchFaces(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNum: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesResponse {
+        try await self.searchFaces(SearchFacesRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNum: maxPersonNum, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

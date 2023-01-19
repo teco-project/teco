@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cloudaudit {
     ///
     /// 创建跟踪集
     @inlinable
-    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditTrackResponse> {
-        self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAuditTrack(_ input: CreateAuditTrackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditTrackResponse> {
+        self.client.execute(action: "CreateAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云审计跟踪集
     ///
     /// 创建跟踪集
     @inlinable
-    public func createAuditTrack(_ input: CreateAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
-        try await self.client.execute(action: "CreateAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAuditTrack(_ input: CreateAuditTrackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
+        try await self.client.execute(action: "CreateAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云审计跟踪集
     ///
     /// 创建跟踪集
     @inlinable
-    public func createAuditTrack(name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditTrackResponse> {
-        self.createAuditTrack(CreateAuditTrackRequest(name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), logger: logger, on: eventLoop)
+    public func createAuditTrack(name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditTrackResponse> {
+        self.createAuditTrack(CreateAuditTrackRequest(name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云审计跟踪集
     ///
     /// 创建跟踪集
     @inlinable
-    public func createAuditTrack(name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
-        try await self.createAuditTrack(CreateAuditTrackRequest(name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), logger: logger, on: eventLoop)
+    public func createAuditTrack(name: String, actionType: String, resourceType: String, status: UInt64, eventNames: [String], storage: Storage, trackForAllMembers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditTrackResponse {
+        try await self.createAuditTrack(CreateAuditTrackRequest(name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), region: region, logger: logger, on: eventLoop)
     }
 }

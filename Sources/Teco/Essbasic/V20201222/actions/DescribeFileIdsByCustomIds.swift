@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Essbasic {
 
     /// 根据用户自定义id查询文件id
     @inlinable
-    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileIdsByCustomIdsResponse> {
-        self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileIdsByCustomIdsResponse> {
+        self.client.execute(action: "DescribeFileIdsByCustomIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据用户自定义id查询文件id
     @inlinable
-    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
-        try await self.client.execute(action: "DescribeFileIdsByCustomIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFileIdsByCustomIds(_ input: DescribeFileIdsByCustomIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
+        try await self.client.execute(action: "DescribeFileIdsByCustomIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据用户自定义id查询文件id
     @inlinable
-    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileIdsByCustomIdsResponse> {
-        self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileIdsByCustomIdsResponse> {
+        self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据用户自定义id查询文件id
     @inlinable
-    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
-        try await self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), logger: logger, on: eventLoop)
+    public func describeFileIdsByCustomIds(caller: Caller, customIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileIdsByCustomIdsResponse {
+        try await self.describeFileIdsByCustomIds(DescribeFileIdsByCustomIdsRequest(caller: caller, customIds: customIds), region: region, logger: logger, on: eventLoop)
     }
 }

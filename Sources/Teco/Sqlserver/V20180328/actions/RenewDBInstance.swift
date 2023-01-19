@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Sqlserver {
     /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
-        self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
+        self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -77,8 +77,8 @@ extension Sqlserver {
     /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
-    public func renewDBInstance(_ input: RenewDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.client.execute(action: "RenewDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewDBInstance(_ input: RenewDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例
@@ -86,8 +86,8 @@ extension Sqlserver {
     /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
-    public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
-        self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
+        self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -95,7 +95,7 @@ extension Sqlserver {
     /// 本接口（RenewDBInstance）用于续费实例。当被续费实例是按量计费实例时，则按量计费实例转为包年包月计费方式。
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
-    public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
+        try await self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Youmall {
     ///
     /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
     @inlinable
-    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdByTempIdResponse> {
-        self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdByTempIdResponse> {
+        self.client.execute(action: "DescribeFaceIdByTempId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取已绑定收银台顾客FaceID
     ///
     /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
     @inlinable
-    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
-        try await self.client.execute(action: "DescribeFaceIdByTempId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFaceIdByTempId(_ input: DescribeFaceIdByTempIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
+        try await self.client.execute(action: "DescribeFaceIdByTempId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取已绑定收银台顾客FaceID
     ///
     /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
     @inlinable
-    public func describeFaceIdByTempId(companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String? = nil, pictureExpires: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdByTempIdResponse> {
-        self.describeFaceIdByTempId(DescribeFaceIdByTempIdRequest(companyId: companyId, shopId: shopId, tempId: tempId, cameraId: cameraId, posId: posId, pictureExpires: pictureExpires), logger: logger, on: eventLoop)
+    public func describeFaceIdByTempId(companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String? = nil, pictureExpires: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdByTempIdResponse> {
+        self.describeFaceIdByTempId(DescribeFaceIdByTempIdRequest(companyId: companyId, shopId: shopId, tempId: tempId, cameraId: cameraId, posId: posId, pictureExpires: pictureExpires), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取已绑定收银台顾客FaceID
     ///
     /// 通过DescribeCameraPerson接口上报的收银台身份ID查询顾客的FaceID。查询最佳时间为收银台上报的次日1点后。
     @inlinable
-    public func describeFaceIdByTempId(companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String? = nil, pictureExpires: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
-        try await self.describeFaceIdByTempId(DescribeFaceIdByTempIdRequest(companyId: companyId, shopId: shopId, tempId: tempId, cameraId: cameraId, posId: posId, pictureExpires: pictureExpires), logger: logger, on: eventLoop)
+    public func describeFaceIdByTempId(companyId: String, shopId: Int64, tempId: String, cameraId: Int64, posId: String? = nil, pictureExpires: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdByTempIdResponse {
+        try await self.describeFaceIdByTempId(DescribeFaceIdByTempIdRequest(companyId: companyId, shopId: shopId, tempId: tempId, cameraId: cameraId, posId: posId, pictureExpires: pictureExpires), region: region, logger: logger, on: eventLoop)
     }
 }

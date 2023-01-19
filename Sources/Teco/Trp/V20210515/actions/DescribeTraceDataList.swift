@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Trp {
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
-        self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
+        self.client.execute(action: "DescribeTraceDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
-        try await self.client.execute(action: "DescribeTraceDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTraceDataList(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
+        try await self.client.execute(action: "DescribeTraceDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
-        self.describeTraceDataList(DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceDataListResponse> {
+        self.describeTraceDataList(DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询溯源信息
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
-        try await self.describeTraceDataList(DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeTraceDataList(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, pageNumber: UInt64? = nil, code: String? = nil, phase: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceDataListResponse {
+        try await self.describeTraceDataList(DescribeTraceDataListRequest(corpId: corpId, batchId: batchId, taskId: taskId, pageNumber: pageNumber, code: code, phase: phase, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Bma {
     ///
     /// 版权保护-查询作品监测详情接口
     @inlinable
-    public func describeCRMonitorDetail(_ input: DescribeCRMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCRMonitorDetailResponse> {
-        self.client.execute(action: "DescribeCRMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCRMonitorDetail(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCRMonitorDetailResponse> {
+        self.client.execute(action: "DescribeCRMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询作品监测详情
     ///
     /// 版权保护-查询作品监测详情接口
     @inlinable
-    public func describeCRMonitorDetail(_ input: DescribeCRMonitorDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
-        try await self.client.execute(action: "DescribeCRMonitorDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCRMonitorDetail(_ input: DescribeCRMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
+        try await self.client.execute(action: "DescribeCRMonitorDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询作品监测详情
     ///
     /// 版权保护-查询作品监测详情接口
     @inlinable
-    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCRMonitorDetailResponse> {
-        self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCRMonitorDetailResponse> {
+        self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询作品监测详情
     ///
     /// 版权保护-查询作品监测详情接口
     @inlinable
-    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
-        try await self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), logger: logger, on: eventLoop)
+    public func describeCRMonitorDetail(workId: Int64, pageSize: Int64? = nil, pageNumber: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorDetailResponse {
+        try await self.describeCRMonitorDetail(DescribeCRMonitorDetailRequest(workId: workId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

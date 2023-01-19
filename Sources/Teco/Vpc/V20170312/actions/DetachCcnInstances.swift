@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Vpc {
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable
-    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
-        self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
+        self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云联网解关联实例
@@ -58,8 +58,8 @@ extension Vpc {
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable
-    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
-        try await self.client.execute(action: "DetachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
+        try await self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云联网解关联实例
@@ -67,8 +67,8 @@ extension Vpc {
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable
-    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
-        self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
+        self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云联网解关联实例
@@ -76,7 +76,7 @@ extension Vpc {
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
     @inlinable
-    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
-        try await self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
+        try await self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

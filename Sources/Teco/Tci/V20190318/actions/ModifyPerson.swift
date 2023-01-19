@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,25 +92,25 @@ extension Tci {
 
     /// 修改人员信息
     @inlinable
-    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonResponse> {
-        self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPerson(_ input: ModifyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonResponse> {
+        self.client.execute(action: "ModifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改人员信息
     @inlinable
-    public func modifyPerson(_ input: ModifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
-        try await self.client.execute(action: "ModifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPerson(_ input: ModifyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
+        try await self.client.execute(action: "ModifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改人员信息
     @inlinable
-    public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonResponse> {
-        self.modifyPerson(ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), logger: logger, on: eventLoop)
+    public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonResponse> {
+        self.modifyPerson(ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人员信息
     @inlinable
-    public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
-        try await self.modifyPerson(ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), logger: logger, on: eventLoop)
+    public func modifyPerson(libraryId: String, personId: String, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personName: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonResponse {
+        try await self.modifyPerson(ModifyPersonRequest(libraryId: libraryId, personId: personId, jobNumber: jobNumber, mail: mail, male: male, personName: personName, phoneNumber: phoneNumber, studentNumber: studentNumber), region: region, logger: logger, on: eventLoop)
     }
 }

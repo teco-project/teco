@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Lighthouse {
     ///
     /// 本接口 (AttachCcn) 用于解除与云联网的关联。
     @inlinable
-    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnResponse> {
-        self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachCcn(_ input: DetachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnResponse> {
+        self.client.execute(action: "DetachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解关联云联网
     ///
     /// 本接口 (AttachCcn) 用于解除与云联网的关联。
     @inlinable
-    public func detachCcn(_ input: DetachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
-        try await self.client.execute(action: "DetachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachCcn(_ input: DetachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
+        try await self.client.execute(action: "DetachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解关联云联网
     ///
     /// 本接口 (AttachCcn) 用于解除与云联网的关联。
     @inlinable
-    public func detachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnResponse> {
-        self.detachCcn(DetachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func detachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnResponse> {
+        self.detachCcn(DetachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解关联云联网
     ///
     /// 本接口 (AttachCcn) 用于解除与云联网的关联。
     @inlinable
-    public func detachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
-        try await self.detachCcn(DetachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func detachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnResponse {
+        try await self.detachCcn(DetachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

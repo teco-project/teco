@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dayu {
 
     /// 获取资源的IP列表
     @inlinable
-    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResIpListResponse> {
-        self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResIpList(_ input: DescribeResIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResIpListResponse> {
+        self.client.execute(action: "DescribeResIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的IP列表
     @inlinable
-    public func describeResIpList(_ input: DescribeResIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
-        try await self.client.execute(action: "DescribeResIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResIpList(_ input: DescribeResIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
+        try await self.client.execute(action: "DescribeResIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资源的IP列表
     @inlinable
-    public func describeResIpList(business: String, idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResIpListResponse> {
-        self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    public func describeResIpList(business: String, idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResIpListResponse> {
+        self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的IP列表
     @inlinable
-    public func describeResIpList(business: String, idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
-        try await self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    public func describeResIpList(business: String, idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResIpListResponse {
+        try await self.describeResIpList(DescribeResIpListRequest(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
-    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDevicesResponse> {
-        self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDevicesResponse> {
+        self.client.execute(action: "DescribeGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分组下的设备
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
-    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
-        try await self.client.execute(action: "DescribeGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupDevices(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
+        try await self.client.execute(action: "DescribeGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询分组下的设备
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
-    public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDevicesResponse> {
-        self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDevicesResponse> {
+        self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分组下的设备
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
-    public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
-        try await self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
+        try await self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 }

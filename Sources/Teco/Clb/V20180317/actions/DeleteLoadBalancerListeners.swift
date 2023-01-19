@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Clb {
     /// 该接口支持删除负载均衡的多个监听器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerListenersResponse> {
-        self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerListenersResponse> {
+        self.client.execute(action: "DeleteLoadBalancerListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡多个监听器
@@ -58,8 +58,8 @@ extension Clb {
     /// 该接口支持删除负载均衡的多个监听器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
-        try await self.client.execute(action: "DeleteLoadBalancerListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLoadBalancerListeners(_ input: DeleteLoadBalancerListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
+        try await self.client.execute(action: "DeleteLoadBalancerListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除负载均衡多个监听器
@@ -67,8 +67,8 @@ extension Clb {
     /// 该接口支持删除负载均衡的多个监听器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerListenersResponse> {
-        self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerListenersResponse> {
+        self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡多个监听器
@@ -76,7 +76,7 @@ extension Clb {
     /// 该接口支持删除负载均衡的多个监听器。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
-        try await self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
+        try await self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 }

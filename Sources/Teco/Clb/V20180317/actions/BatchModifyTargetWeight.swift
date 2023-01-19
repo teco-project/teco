@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Clb {
     ///
     /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
     @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
-        self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
+        self.client.execute(action: "BatchModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
     @inlinable
-    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
-        try await self.client.execute(action: "BatchModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchModifyTargetWeight(_ input: BatchModifyTargetWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
+        try await self.client.execute(action: "BatchModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
     @inlinable
-    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [RsWeightRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
-        self.batchModifyTargetWeight(BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList), logger: logger, on: eventLoop)
+    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [RsWeightRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTargetWeightResponse> {
+        self.batchModifyTargetWeight(BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改监听器绑定的后端机器的转发权重
     ///
     /// BatchModifyTargetWeight 接口用于批量修改负载均衡监听器绑定的后端机器的转发权重。批量修改的资源数量上限为500。本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。<br/>负载均衡的4层和7层监听器支持此接口，传统型负载均衡不支持。
     @inlinable
-    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [RsWeightRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
-        try await self.batchModifyTargetWeight(BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList), logger: logger, on: eventLoop)
+    public func batchModifyTargetWeight(loadBalancerId: String, modifyList: [RsWeightRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTargetWeightResponse {
+        try await self.batchModifyTargetWeight(BatchModifyTargetWeightRequest(loadBalancerId: loadBalancerId, modifyList: modifyList), region: region, logger: logger, on: eventLoop)
     }
 }

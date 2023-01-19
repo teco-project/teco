@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Faceid {
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
-    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardVerificationResponse> {
-        self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func idCardVerification(_ input: IdCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardVerificationResponse> {
+        self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份信息认证
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
-    public func idCardVerification(_ input: IdCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
-        try await self.client.execute(action: "IdCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func idCardVerification(_ input: IdCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
+        try await self.client.execute(action: "IdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 身份信息认证
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
-    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardVerificationResponse> {
-        self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardVerificationResponse> {
+        self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份信息认证
     ///
     /// 传入姓名和身份证号，校验两者的真实性和一致性。
     @inlinable
-    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
-        try await self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    public func idCardVerification(idCard: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardVerificationResponse {
+        try await self.idCardVerification(IdCardVerificationRequest(idCard: idCard, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

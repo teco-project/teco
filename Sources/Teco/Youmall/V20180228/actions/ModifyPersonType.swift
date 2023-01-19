@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Youmall {
 
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
-        self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPersonType(_ input: ModifyPersonTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
+        self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(_ input: ModifyPersonTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
-        try await self.client.execute(action: "ModifyPersonType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPersonType(_ input: ModifyPersonTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
+        try await self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
-        self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), logger: logger, on: eventLoop)
+    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
+        self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客身份类型接口
     @inlinable
-    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
-        try await self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), logger: logger, on: eventLoop)
+    public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
+        try await self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }
 }

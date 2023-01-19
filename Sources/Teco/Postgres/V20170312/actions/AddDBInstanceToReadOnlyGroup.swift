@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Postgres {
     ///
     /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
     @inlinable
-    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDBInstanceToReadOnlyGroupResponse> {
-        self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDBInstanceToReadOnlyGroupResponse> {
+        self.client.execute(action: "AddDBInstanceToReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加只读实例到只读组
     ///
     /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
     @inlinable
-    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
-        try await self.client.execute(action: "AddDBInstanceToReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addDBInstanceToReadOnlyGroup(_ input: AddDBInstanceToReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
+        try await self.client.execute(action: "AddDBInstanceToReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加只读实例到只读组
     ///
     /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
     @inlinable
-    public func addDBInstanceToReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDBInstanceToReadOnlyGroupResponse> {
-        self.addDBInstanceToReadOnlyGroup(AddDBInstanceToReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    public func addDBInstanceToReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDBInstanceToReadOnlyGroupResponse> {
+        self.addDBInstanceToReadOnlyGroup(AddDBInstanceToReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加只读实例到只读组
     ///
     /// 本接口（AddDBInstanceToReadOnlyGroup）用于添加只读实例到只读组
     @inlinable
-    public func addDBInstanceToReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
-        try await self.addDBInstanceToReadOnlyGroup(AddDBInstanceToReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    public func addDBInstanceToReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDBInstanceToReadOnlyGroupResponse {
+        try await self.addDBInstanceToReadOnlyGroup(AddDBInstanceToReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

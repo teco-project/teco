@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tcss {
 
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
-        self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
+        self.client.execute(action: "DescribeAbnormalProcessEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAbnormalProcessEventTendency(_ input: DescribeAbnormalProcessEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
-        self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessEventTendencyResponse> {
+        self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待处理异常进程事件趋势
     @inlinable
-    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
-        try await self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessEventTendency(startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessEventTendencyResponse {
+        try await self.describeAbnormalProcessEventTendency(DescribeAbnormalProcessEventTendencyRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

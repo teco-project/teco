@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Cam {
 
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
-    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserAllPoliciesResponse> {
-        self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserAllPoliciesResponse> {
+        self.client.execute(action: "ListAttachedUserAllPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
-    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
-        try await self.client.execute(action: "ListAttachedUserAllPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAttachedUserAllPolicies(_ input: ListAttachedUserAllPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
+        try await self.client.execute(action: "ListAttachedUserAllPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
-    public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserAllPoliciesResponse> {
-        self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), logger: logger, on: eventLoop)
+    public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserAllPoliciesResponse> {
+        self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
-    public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
-        try await self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), logger: logger, on: eventLoop)
+    public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
+        try await self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 }

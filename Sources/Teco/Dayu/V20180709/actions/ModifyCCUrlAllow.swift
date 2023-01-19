@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,25 +83,25 @@ extension Dayu {
 
     /// 添加或删除CC的URL白名单
     @inlinable
-    public func modifyCCUrlAllow(_ input: ModifyCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCUrlAllowResponse> {
-        self.client.execute(action: "ModifyCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCUrlAllow(_ input: ModifyCCUrlAllowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCUrlAllowResponse> {
+        self.client.execute(action: "ModifyCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的URL白名单
     @inlinable
-    public func modifyCCUrlAllow(_ input: ModifyCCUrlAllowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
-        try await self.client.execute(action: "ModifyCCUrlAllow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCUrlAllow(_ input: ModifyCCUrlAllowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
+        try await self.client.execute(action: "ModifyCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加或删除CC的URL白名单
     @inlinable
-    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCUrlAllowResponse> {
-        self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCUrlAllowResponse> {
+        self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的URL白名单
     @inlinable
-    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
-        try await self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
+        try await self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

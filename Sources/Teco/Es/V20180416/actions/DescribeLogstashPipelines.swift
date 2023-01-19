@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Es {
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
-        self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
+        self.client.execute(action: "DescribeLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
-        try await self.client.execute(action: "DescribeLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogstashPipelines(_ input: DescribeLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
+        try await self.client.execute(action: "DescribeLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
-        self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeLogstashPipelines(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashPipelinesResponse> {
+        self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Logstash实例管道列表
     ///
     /// 用于获取Logstash实例管道列表
     @inlinable
-    public func describeLogstashPipelines(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
-        try await self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeLogstashPipelines(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashPipelinesResponse {
+        try await self.describeLogstashPipelines(DescribeLogstashPipelinesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

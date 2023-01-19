@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dayu {
 
     /// 修改资源自动续费标记
     @inlinable
-    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceRenewFlagResponse> {
-        self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceRenewFlagResponse> {
+        self.client.execute(action: "ModifyResourceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改资源自动续费标记
     @inlinable
-    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
-        try await self.client.execute(action: "ModifyResourceRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourceRenewFlag(_ input: ModifyResourceRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
+        try await self.client.execute(action: "ModifyResourceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改资源自动续费标记
     @inlinable
-    public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceRenewFlagResponse> {
-        self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceRenewFlagResponse> {
+        self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改资源自动续费标记
     @inlinable
-    public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
-        try await self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
+        try await self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

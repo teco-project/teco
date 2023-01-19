@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Domain {
     ///
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
-    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateResponse> {
-        self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTemplate(_ input: DescribeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateResponse> {
+        self.client.execute(action: "DescribeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取模板信息
     ///
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
-    public func describeTemplate(_ input: DescribeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
-        try await self.client.execute(action: "DescribeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTemplate(_ input: DescribeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
+        try await self.client.execute(action: "DescribeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取模板信息
     ///
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
-    public func describeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateResponse> {
-        self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateResponse> {
+        self.describeTemplate(DescribeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模板信息
     ///
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
-    public func describeTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
-        try await self.describeTemplate(DescribeTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
+        try await self.describeTemplate(DescribeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 查询路径重写
     @inlinable
-    public func describePathRewrite(_ input: DescribePathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePathRewriteResponse> {
-        self.client.execute(action: "DescribePathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePathRewrite(_ input: DescribePathRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePathRewriteResponse> {
+        self.client.execute(action: "DescribePathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询路径重写
     @inlinable
-    public func describePathRewrite(_ input: DescribePathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewriteResponse {
-        try await self.client.execute(action: "DescribePathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePathRewrite(_ input: DescribePathRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewriteResponse {
+        try await self.client.execute(action: "DescribePathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询路径重写
     @inlinable
-    public func describePathRewrite(pathRewriteId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePathRewriteResponse> {
-        self.describePathRewrite(DescribePathRewriteRequest(pathRewriteId: pathRewriteId), logger: logger, on: eventLoop)
+    public func describePathRewrite(pathRewriteId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePathRewriteResponse> {
+        self.describePathRewrite(DescribePathRewriteRequest(pathRewriteId: pathRewriteId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询路径重写
     @inlinable
-    public func describePathRewrite(pathRewriteId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewriteResponse {
-        try await self.describePathRewrite(DescribePathRewriteRequest(pathRewriteId: pathRewriteId), logger: logger, on: eventLoop)
+    public func describePathRewrite(pathRewriteId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePathRewriteResponse {
+        try await self.describePathRewrite(DescribePathRewriteRequest(pathRewriteId: pathRewriteId), region: region, logger: logger, on: eventLoop)
     }
 }

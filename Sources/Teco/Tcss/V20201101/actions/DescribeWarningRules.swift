@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Tcss {
 
     /// 获取告警策略列表
     @inlinable
-    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningRulesResponse> {
-        self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWarningRules(_ input: DescribeWarningRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningRulesResponse> {
+        self.client.execute(action: "DescribeWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警策略列表
     @inlinable
-    public func describeWarningRules(_ input: DescribeWarningRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
-        try await self.client.execute(action: "DescribeWarningRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWarningRules(_ input: DescribeWarningRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
+        try await self.client.execute(action: "DescribeWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取告警策略列表
     @inlinable
-    public func describeWarningRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningRulesResponse> {
-        self.describeWarningRules(DescribeWarningRulesRequest(), logger: logger, on: eventLoop)
+    public func describeWarningRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningRulesResponse> {
+        self.describeWarningRules(DescribeWarningRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警策略列表
     @inlinable
-    public func describeWarningRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
-        try await self.describeWarningRules(DescribeWarningRulesRequest(), logger: logger, on: eventLoop)
+    public func describeWarningRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningRulesResponse {
+        try await self.describeWarningRules(DescribeWarningRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

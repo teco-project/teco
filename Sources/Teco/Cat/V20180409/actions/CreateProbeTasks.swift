@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,25 +97,25 @@ extension Cat {
 
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
-        self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProbeTasks(_ input: CreateProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
+        self.client.execute(action: "CreateProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(_ input: CreateProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
-        try await self.client.execute(action: "CreateProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProbeTasks(_ input: CreateProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
+        try await self.client.execute(action: "CreateProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
-        self.createProbeTasks(CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), logger: logger, on: eventLoop)
+    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProbeTasksResponse> {
+        self.createProbeTasks(CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建拨测任务
     @inlinable
-    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
-        try await self.createProbeTasks(CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), logger: logger, on: eventLoop)
+    public func createProbeTasks(batchTasks: [ProbeTaskBasicConfiguration], taskType: Int64, nodes: [String], interval: Int64, parameters: String, taskCategory: Int64, cron: String? = nil, tag: [Tag]? = nil, probeType: UInt64? = nil, pluginSource: String? = nil, clientNum: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProbeTasksResponse {
+        try await self.createProbeTasks(CreateProbeTasksRequest(batchTasks: batchTasks, taskType: taskType, nodes: nodes, interval: interval, parameters: parameters, taskCategory: taskCategory, cron: cron, tag: tag, probeType: probeType, pluginSource: pluginSource, clientNum: clientNum), region: region, logger: logger, on: eventLoop)
     }
 }

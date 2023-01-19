@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcr {
     ///
     /// 用于在个人版中创建清理策略
     @inlinable
-    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
-        self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
+        self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
     @inlinable
-    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
-        try await self.client.execute(action: "CreateImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
+        try await self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
     @inlinable
-    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
-        self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), logger: logger, on: eventLoop)
+    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
+        self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
     @inlinable
-    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
-        try await self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), logger: logger, on: eventLoop)
+    public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
+        try await self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
     }
 }

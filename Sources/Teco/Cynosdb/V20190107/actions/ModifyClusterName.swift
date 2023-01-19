@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cynosdb {
 
     /// 修改集群名称
     @inlinable
-    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
-        self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterName(_ input: ModifyClusterNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
+        self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群名称
     @inlinable
-    public func modifyClusterName(_ input: ModifyClusterNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
-        try await self.client.execute(action: "ModifyClusterName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterName(_ input: ModifyClusterNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
+        try await self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群名称
     @inlinable
-    public func modifyClusterName(clusterId: String, clusterName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
-        self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), logger: logger, on: eventLoop)
+    public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
+        self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群名称
     @inlinable
-    public func modifyClusterName(clusterId: String, clusterName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
-        try await self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), logger: logger, on: eventLoop)
+    public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
+        try await self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Ecdn {
     /// 本接口（StartEcdnDomain）用于启用加速域名，待启用域名必须处于已下线状态。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func startEcdnDomain(_ input: StartEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEcdnDomainResponse> {
-        self.client.execute(action: "StartEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startEcdnDomain(_ input: StartEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEcdnDomainResponse> {
+        self.client.execute(action: "StartEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
@@ -53,8 +53,8 @@ extension Ecdn {
     /// 本接口（StartEcdnDomain）用于启用加速域名，待启用域名必须处于已下线状态。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func startEcdnDomain(_ input: StartEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEcdnDomainResponse {
-        try await self.client.execute(action: "StartEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startEcdnDomain(_ input: StartEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEcdnDomainResponse {
+        try await self.client.execute(action: "StartEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用加速域名
@@ -62,8 +62,8 @@ extension Ecdn {
     /// 本接口（StartEcdnDomain）用于启用加速域名，待启用域名必须处于已下线状态。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func startEcdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEcdnDomainResponse> {
-        self.startEcdnDomain(StartEcdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEcdnDomainResponse> {
+        self.startEcdnDomain(StartEcdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
@@ -71,7 +71,7 @@ extension Ecdn {
     /// 本接口（StartEcdnDomain）用于启用加速域名，待启用域名必须处于已下线状态。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/product/228/41121"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func startEcdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEcdnDomainResponse {
-        try await self.startEcdnDomain(StartEcdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startEcdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEcdnDomainResponse {
+        try await self.startEcdnDomain(StartEcdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

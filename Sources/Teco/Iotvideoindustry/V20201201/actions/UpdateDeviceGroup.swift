@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable
-    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
-        self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
+        self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable
-    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
-        try await self.client.execute(action: "UpdateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
+        try await self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable
-    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
-        self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), logger: logger, on: eventLoop)
+    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
+        self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable
-    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
-        try await self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), logger: logger, on: eventLoop)
+    public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
+        try await self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
     }
 }

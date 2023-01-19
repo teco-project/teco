@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Live {
     ///
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable
-    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamConfigResponse> {
-        self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamConfigResponse> {
+        self.client.execute(action: "ModifyPullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
     ///
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable
-    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
-        try await self.client.execute(action: "ModifyPullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPullStreamConfig(_ input: ModifyPullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
+        try await self.client.execute(action: "ModifyPullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
     ///
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable
-    public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamConfigResponse> {
-        self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamConfigResponse> {
+        self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
     ///
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable
-    public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
-        try await self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
+        try await self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

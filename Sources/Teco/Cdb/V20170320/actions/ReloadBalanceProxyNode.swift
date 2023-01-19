@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
-        self.client.execute(action: "ReloadBalanceProxyNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
+        self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
-        try await self.client.execute(action: "ReloadBalanceProxyNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
+        try await self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
-        self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), logger: logger, on: eventLoop)
+    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
+        self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
     @inlinable
-    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
-        try await self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), logger: logger, on: eventLoop)
+    public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
+        try await self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
     }
 }

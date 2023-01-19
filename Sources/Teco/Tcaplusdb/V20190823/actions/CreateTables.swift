@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Tcaplusdb {
     ///
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
-    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTablesResponse> {
-        self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTables(_ input: CreateTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTablesResponse> {
+        self.client.execute(action: "CreateTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建表
     ///
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
-    public func createTables(_ input: CreateTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
-        try await self.client.execute(action: "CreateTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTables(_ input: CreateTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
+        try await self.client.execute(action: "CreateTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量创建表
     ///
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
-    public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTablesResponse> {
-        self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTablesResponse> {
+        self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建表
     ///
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
-    public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
-        try await self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
+        try await self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
-    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountHostResponse> {
-        self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountHost(_ input: ModifyAccountHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountHostResponse> {
+        self.client.execute(action: "ModifyAccountHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的主机
     ///
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
-    public func modifyAccountHost(_ input: ModifyAccountHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
-        try await self.client.execute(action: "ModifyAccountHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountHost(_ input: ModifyAccountHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
+        try await self.client.execute(action: "ModifyAccountHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例账号的主机
     ///
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
-    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountHostResponse> {
-        self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), logger: logger, on: eventLoop)
+    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountHostResponse> {
+        self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的主机
     ///
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
-    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
-        try await self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), logger: logger, on: eventLoop)
+    public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
+        try await self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), region: region, logger: logger, on: eventLoop)
     }
 }

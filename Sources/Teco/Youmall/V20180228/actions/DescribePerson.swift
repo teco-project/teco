@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Youmall {
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePerson(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
+        self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePerson(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
+        self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户信息
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePerson(mallId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.describePerson(DescribePersonRequest(mallId: mallId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

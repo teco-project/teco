@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Ecm {
 
     /// 查询实例价格
     @inlinable
-    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceRunInstanceResponse> {
-        self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceRunInstanceResponse> {
+        self.client.execute(action: "DescribePriceRunInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例价格
     @inlinable
-    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
-        try await self.client.execute(action: "DescribePriceRunInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePriceRunInstance(_ input: DescribePriceRunInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
+        try await self.client.execute(action: "DescribePriceRunInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例价格
     @inlinable
-    public func describePriceRunInstance(instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceRunInstanceResponse> {
-        self.describePriceRunInstance(DescribePriceRunInstanceRequest(instanceType: instanceType, systemDisk: systemDisk, instanceCount: instanceCount, dataDisk: dataDisk, instanceChargeType: instanceChargeType), logger: logger, on: eventLoop)
+    public func describePriceRunInstance(instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceRunInstanceResponse> {
+        self.describePriceRunInstance(DescribePriceRunInstanceRequest(instanceType: instanceType, systemDisk: systemDisk, instanceCount: instanceCount, dataDisk: dataDisk, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例价格
     @inlinable
-    public func describePriceRunInstance(instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]? = nil, instanceChargeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
-        try await self.describePriceRunInstance(DescribePriceRunInstanceRequest(instanceType: instanceType, systemDisk: systemDisk, instanceCount: instanceCount, dataDisk: dataDisk, instanceChargeType: instanceChargeType), logger: logger, on: eventLoop)
+    public func describePriceRunInstance(instanceType: String, systemDisk: SystemDisk, instanceCount: UInt64, dataDisk: [DataDisk]? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceRunInstanceResponse {
+        try await self.describePriceRunInstance(DescribePriceRunInstanceRequest(instanceType: instanceType, systemDisk: systemDisk, instanceCount: instanceCount, dataDisk: dataDisk, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
     }
 }

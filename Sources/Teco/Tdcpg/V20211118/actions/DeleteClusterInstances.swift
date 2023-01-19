@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tdcpg {
     ///
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
-        self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
+        self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
     ///
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable
-    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        try await self.client.execute(action: "DeleteClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteClusterInstances(_ input: DeleteClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
+        try await self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例
     ///
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable
-    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
-        self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
+        self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
     ///
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable
-    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        try await self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
+        try await self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

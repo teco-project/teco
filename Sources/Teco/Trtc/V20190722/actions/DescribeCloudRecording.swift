@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,8 +65,8 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
-    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRecordingResponse> {
-        self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRecordingResponse> {
+        self.client.execute(action: "DescribeCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云端录制状态
@@ -74,8 +74,8 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
-    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
-        try await self.client.execute(action: "DescribeCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudRecording(_ input: DescribeCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
+        try await self.client.execute(action: "DescribeCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云端录制状态
@@ -83,8 +83,8 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
-    public func describeCloudRecording(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRecordingResponse> {
-        self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRecordingResponse> {
+        self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云端录制状态
@@ -92,7 +92,7 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来查询录制状态。仅在录制任务进行时有效，录制退出后查询将会返回错误。
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
-    public func describeCloudRecording(sdkAppId: UInt64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
-        try await self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
+        try await self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

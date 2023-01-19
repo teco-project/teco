@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Tcss {
 
     /// 修改逃逸白名单
     @inlinable
-    public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeWhiteListResponse> {
-        self.client.execute(action: "ModifyEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeWhiteListResponse> {
+        self.client.execute(action: "ModifyEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改逃逸白名单
     @inlinable
-    public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeWhiteListResponse {
-        try await self.client.execute(action: "ModifyEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEscapeWhiteList(_ input: ModifyEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeWhiteListResponse {
+        try await self.client.execute(action: "ModifyEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改逃逸白名单
     @inlinable
-    public func modifyEscapeWhiteList(eventType: [String], idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeWhiteListResponse> {
-        self.modifyEscapeWhiteList(ModifyEscapeWhiteListRequest(eventType: eventType, idSet: idSet), logger: logger, on: eventLoop)
+    public func modifyEscapeWhiteList(eventType: [String], idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeWhiteListResponse> {
+        self.modifyEscapeWhiteList(ModifyEscapeWhiteListRequest(eventType: eventType, idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改逃逸白名单
     @inlinable
-    public func modifyEscapeWhiteList(eventType: [String], idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeWhiteListResponse {
-        try await self.modifyEscapeWhiteList(ModifyEscapeWhiteListRequest(eventType: eventType, idSet: idSet), logger: logger, on: eventLoop)
+    public func modifyEscapeWhiteList(eventType: [String], idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeWhiteListResponse {
+        try await self.modifyEscapeWhiteList(ModifyEscapeWhiteListRequest(eventType: eventType, idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Solar {
     ///
     /// 发送企业微信触达任务
     @inlinable
-    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendWxTouchTaskResponse> {
-        self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendWxTouchTaskResponse> {
+        self.client.execute(action: "SendWxTouchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送微信触达任务
     ///
     /// 发送企业微信触达任务
     @inlinable
-    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
-        try await self.client.execute(action: "SendWxTouchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendWxTouchTask(_ input: SendWxTouchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
+        try await self.client.execute(action: "SendWxTouchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送微信触达任务
     ///
     /// 发送企业微信触达任务
     @inlinable
-    public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendWxTouchTaskResponse> {
-        self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), logger: logger, on: eventLoop)
+    public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendWxTouchTaskResponse> {
+        self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送微信触达任务
     ///
     /// 发送企业微信触达任务
     @inlinable
-    public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
-        try await self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), logger: logger, on: eventLoop)
+    public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
+        try await self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
     }
 }

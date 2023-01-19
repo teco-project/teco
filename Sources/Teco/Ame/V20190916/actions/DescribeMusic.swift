@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Ame {
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
-        self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMusic(_ input: DescribeMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
+        self.client.execute(action: "DescribeMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(_ input: DescribeMusicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
-        try await self.client.execute(action: "DescribeMusic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMusic(_ input: DescribeMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
+        try await self.client.execute(action: "DescribeMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
-        self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), logger: logger, on: eventLoop)
+    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
+        self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包歌曲播放信息
     ///
     /// 获取曲库包歌曲播放信息接口
     @inlinable
-    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
-        try await self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), logger: logger, on: eventLoop)
+    public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
+        try await self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), region: region, logger: logger, on: eventLoop)
     }
 }

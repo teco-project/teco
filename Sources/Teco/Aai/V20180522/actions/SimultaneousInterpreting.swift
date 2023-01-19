@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,31 +106,31 @@ extension Aai {
     ///
     /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
     @inlinable
-    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimultaneousInterpretingResponse> {
-        self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimultaneousInterpretingResponse> {
+        self.client.execute(action: "SimultaneousInterpreting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同传
     ///
     /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
     @inlinable
-    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
-        try await self.client.execute(action: "SimultaneousInterpreting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func simultaneousInterpreting(_ input: SimultaneousInterpretingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
+        try await self.client.execute(action: "SimultaneousInterpreting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同传
     ///
     /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
     @inlinable
-    public func simultaneousInterpreting(projectId: UInt64 = 0, subServiceType: UInt64 = 3, recEngineModelType: String = "16k_zh", data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String = "zh", targetLanguage: String = "en", seq: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimultaneousInterpretingResponse> {
-        self.simultaneousInterpreting(SimultaneousInterpretingRequest(projectId: projectId, subServiceType: subServiceType, recEngineModelType: recEngineModelType, data: data, dataLen: dataLen, voiceId: voiceId, isEnd: isEnd, voiceFormat: voiceFormat, openTranslate: openTranslate, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, seq: seq), logger: logger, on: eventLoop)
+    public func simultaneousInterpreting(projectId: UInt64 = 0, subServiceType: UInt64 = 3, recEngineModelType: String = "16k_zh", data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String = "zh", targetLanguage: String = "en", seq: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimultaneousInterpretingResponse> {
+        self.simultaneousInterpreting(SimultaneousInterpretingRequest(projectId: projectId, subServiceType: subServiceType, recEngineModelType: recEngineModelType, data: data, dataLen: dataLen, voiceId: voiceId, isEnd: isEnd, voiceFormat: voiceFormat, openTranslate: openTranslate, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, seq: seq), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同传
     ///
     /// 该接口是实时流式识别，可同时返回语音识别文本及翻译文本，当前仅支持中文和英文。该接口可配合同传windows客户端，提供会议现场同传服务。
     @inlinable
-    public func simultaneousInterpreting(projectId: UInt64 = 0, subServiceType: UInt64 = 3, recEngineModelType: String = "16k_zh", data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String = "zh", targetLanguage: String = "en", seq: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
-        try await self.simultaneousInterpreting(SimultaneousInterpretingRequest(projectId: projectId, subServiceType: subServiceType, recEngineModelType: recEngineModelType, data: data, dataLen: dataLen, voiceId: voiceId, isEnd: isEnd, voiceFormat: voiceFormat, openTranslate: openTranslate, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, seq: seq), logger: logger, on: eventLoop)
+    public func simultaneousInterpreting(projectId: UInt64 = 0, subServiceType: UInt64 = 3, recEngineModelType: String = "16k_zh", data: String, dataLen: UInt64, voiceId: String, isEnd: UInt64, voiceFormat: UInt64, openTranslate: UInt64, sourceLanguage: String = "zh", targetLanguage: String = "en", seq: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimultaneousInterpretingResponse {
+        try await self.simultaneousInterpreting(SimultaneousInterpretingRequest(projectId: projectId, subServiceType: subServiceType, recEngineModelType: recEngineModelType, data: data, dataLen: dataLen, voiceId: voiceId, isEnd: isEnd, voiceFormat: voiceFormat, openTranslate: openTranslate, sourceLanguage: sourceLanguage, targetLanguage: targetLanguage, seq: seq), region: region, logger: logger, on: eventLoop)
     }
 }

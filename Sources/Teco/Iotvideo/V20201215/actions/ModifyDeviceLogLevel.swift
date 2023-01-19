@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 更新设备日志级别
     @inlinable
-    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
-        self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
+        self.client.execute(action: "ModifyDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
     @inlinable
-    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
-        try await self.client.execute(action: "ModifyDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
+        try await self.client.execute(action: "ModifyDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备日志级别
     @inlinable
-    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
-        self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
+        self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
     @inlinable
-    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
-        try await self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
+        try await self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 }

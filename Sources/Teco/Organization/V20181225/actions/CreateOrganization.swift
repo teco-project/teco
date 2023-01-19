@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Organization {
 
     /// 创建企业组织
     @inlinable
-    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationResponse> {
-        self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOrganization(_ input: CreateOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationResponse> {
+        self.client.execute(action: "CreateOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建企业组织
     @inlinable
-    public func createOrganization(_ input: CreateOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
-        try await self.client.execute(action: "CreateOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOrganization(_ input: CreateOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
+        try await self.client.execute(action: "CreateOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建企业组织
     @inlinable
-    public func createOrganization(orgType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationResponse> {
-        self.createOrganization(CreateOrganizationRequest(orgType: orgType), logger: logger, on: eventLoop)
+    public func createOrganization(orgType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationResponse> {
+        self.createOrganization(CreateOrganizationRequest(orgType: orgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建企业组织
     @inlinable
-    public func createOrganization(orgType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
-        try await self.createOrganization(CreateOrganizationRequest(orgType: orgType), logger: logger, on: eventLoop)
+    public func createOrganization(orgType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationResponse {
+        try await self.createOrganization(CreateOrganizationRequest(orgType: orgType), region: region, logger: logger, on: eventLoop)
     }
 }

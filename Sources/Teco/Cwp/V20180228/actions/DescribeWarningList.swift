@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Cwp {
 
     /// 获取当前用户告警列表
     @inlinable
-    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningListResponse> {
-        self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWarningList(_ input: DescribeWarningListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningListResponse> {
+        self.client.execute(action: "DescribeWarningList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户告警列表
     @inlinable
-    public func describeWarningList(_ input: DescribeWarningListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
-        try await self.client.execute(action: "DescribeWarningList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWarningList(_ input: DescribeWarningListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
+        try await self.client.execute(action: "DescribeWarningList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取当前用户告警列表
     @inlinable
-    public func describeWarningList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningListResponse> {
-        self.describeWarningList(DescribeWarningListRequest(), logger: logger, on: eventLoop)
+    public func describeWarningList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningListResponse> {
+        self.describeWarningList(DescribeWarningListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户告警列表
     @inlinable
-    public func describeWarningList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
-        try await self.describeWarningList(DescribeWarningListRequest(), logger: logger, on: eventLoop)
+    public func describeWarningList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
+        try await self.describeWarningList(DescribeWarningListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Cdn {
     ///
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
-    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventLogDataResponse> {
-        self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEventLogData(_ input: DescribeEventLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventLogDataResponse> {
+        self.client.execute(action: "DescribeEventLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询事件日志统计曲线
     ///
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
-    public func describeEventLogData(_ input: DescribeEventLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
-        try await self.client.execute(action: "DescribeEventLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEventLogData(_ input: DescribeEventLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
+        try await self.client.execute(action: "DescribeEventLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询事件日志统计曲线
     ///
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
-    public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventLogDataResponse> {
-        self.describeEventLogData(DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), logger: logger, on: eventLoop)
+    public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventLogDataResponse> {
+        self.describeEventLogData(DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询事件日志统计曲线
     ///
     /// DescribeEventLogData 用于查询事件日志统计曲线
     @inlinable
-    public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
-        try await self.describeEventLogData(DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), logger: logger, on: eventLoop)
+    public func describeEventLogData(mode: String, startTime: String, endTime: String, domain: String, actionName: String, url: String, area: String? = nil, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventLogDataResponse {
+        try await self.describeEventLogData(DescribeEventLogDataRequest(mode: mode, startTime: startTime, endTime: endTime, domain: domain, actionName: actionName, url: url, area: area, source: source), region: region, logger: logger, on: eventLoop)
     }
 }

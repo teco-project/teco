@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Postgres {
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
-        self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
+        self.client.execute(action: "DeleteReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
-        try await self.client.execute(action: "DeleteReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReadOnlyGroup(_ input: DeleteReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
+        try await self.client.execute(action: "DeleteReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
-        self.deleteReadOnlyGroup(DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupResponse> {
+        self.deleteReadOnlyGroup(DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除只读组
     ///
     /// 本接口(DeleteReadOnlyGroup)用于删除指定的只读组
     @inlinable
-    public func deleteReadOnlyGroup(readOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
-        try await self.deleteReadOnlyGroup(DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId), logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroup(readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupResponse {
+        try await self.deleteReadOnlyGroup(DeleteReadOnlyGroupRequest(readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

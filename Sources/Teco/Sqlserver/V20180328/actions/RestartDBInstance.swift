@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
-    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
-        self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartDBInstance(_ input: RestartDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
+        self.client.execute(action: "RestartDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
-    public func restartDBInstance(_ input: RestartDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
-        try await self.client.execute(action: "RestartDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartDBInstance(_ input: RestartDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
+        try await self.client.execute(action: "RestartDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
-    public func restartDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
-        self.restartDBInstance(RestartDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func restartDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstanceResponse> {
+        self.restartDBInstance(RestartDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     ///
     /// 本接口（RestartDBInstance）用于重启数据库实例。
     @inlinable
-    public func restartDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
-        try await self.restartDBInstance(RestartDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func restartDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstanceResponse {
+        try await self.restartDBInstance(RestartDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

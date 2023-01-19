@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cam {
 
     /// 从用户组删除用户
     @inlinable
-    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
-        self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
+        self.client.execute(action: "RemoveUserFromGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从用户组删除用户
     @inlinable
-    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
-        try await self.client.execute(action: "RemoveUserFromGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
+        try await self.client.execute(action: "RemoveUserFromGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从用户组删除用户
     @inlinable
-    public func removeUserFromGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
-        self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), logger: logger, on: eventLoop)
+    public func removeUserFromGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
+        self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从用户组删除用户
     @inlinable
-    public func removeUserFromGroup(info: [GroupIdOfUidInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
-        try await self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), logger: logger, on: eventLoop)
+    public func removeUserFromGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
+        try await self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
     }
 }

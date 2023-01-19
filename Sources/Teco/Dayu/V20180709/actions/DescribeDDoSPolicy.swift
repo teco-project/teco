@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dayu {
 
     /// 获取DDoS高级策略
     @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
-        self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
+        self.client.execute(action: "DescribeDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS高级策略
     @inlinable
-    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
-        try await self.client.execute(action: "DescribeDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSPolicy(_ input: DescribeDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
+        try await self.client.execute(action: "DescribeDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS高级策略
     @inlinable
-    public func describeDDoSPolicy(business: String, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
-        self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeDDoSPolicy(business: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSPolicyResponse> {
+        self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS高级策略
     @inlinable
-    public func describeDDoSPolicy(business: String, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
-        try await self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeDDoSPolicy(business: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSPolicyResponse {
+        try await self.describeDDoSPolicy(DescribeDDoSPolicyRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

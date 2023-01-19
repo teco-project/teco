@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cws {
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
-        self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVuls(_ input: DescribeVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
+        self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
-    public func describeVuls(_ input: DescribeVulsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        try await self.client.execute(action: "DescribeVuls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVuls(_ input: DescribeVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
+        try await self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
-    public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
-        self.describeVuls(DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
+        self.describeVuls(DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于查询一个或多个漏洞的详细信息。
     @inlinable
-    public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        try await self.describeVuls(DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVuls(siteId: UInt64? = nil, monitorId: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
+        try await self.describeVuls(DescribeVulsRequest(siteId: siteId, monitorId: monitorId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

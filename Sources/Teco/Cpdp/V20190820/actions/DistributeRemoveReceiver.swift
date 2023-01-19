@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
-        self.client.execute(action: "DistributeRemoveReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
+        self.client.execute(action: "DistributeRemoveReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
-        try await self.client.execute(action: "DistributeRemoveReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func distributeRemoveReceiver(_ input: DistributeRemoveReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
+        try await self.client.execute(action: "DistributeRemoveReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
-        self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
+        self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账解除分账接收方接口
     @inlinable
-    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
-        try await self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
+        try await self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

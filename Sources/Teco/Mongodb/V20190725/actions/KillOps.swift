@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Mongodb {
     ///
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable
-    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillOpsResponse> {
-        self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func killOps(_ input: KillOpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillOpsResponse> {
+        self.client.execute(action: "KillOps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止数据库实例特定操作
     ///
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable
-    public func killOps(_ input: KillOpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
-        try await self.client.execute(action: "KillOps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func killOps(_ input: KillOpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
+        try await self.client.execute(action: "KillOps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终止数据库实例特定操作
     ///
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable
-    public func killOps(instanceId: String, operations: [Operation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillOpsResponse> {
-        self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), logger: logger, on: eventLoop)
+    public func killOps(instanceId: String, operations: [Operation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillOpsResponse> {
+        self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止数据库实例特定操作
     ///
     /// 本接口(KillOps)用于终止MongoDB云数据库实例上执行的特定操作。
     @inlinable
-    public func killOps(instanceId: String, operations: [Operation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
-        try await self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), logger: logger, on: eventLoop)
+    public func killOps(instanceId: String, operations: [Operation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillOpsResponse {
+        try await self.killOps(KillOpsRequest(instanceId: instanceId, operations: operations), region: region, logger: logger, on: eventLoop)
     }
 }

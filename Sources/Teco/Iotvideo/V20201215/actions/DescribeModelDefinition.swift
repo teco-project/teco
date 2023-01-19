@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Iotvideo {
     ///
     /// 查询产品配置的数据模板信息
     @inlinable
-    public func describeModelDefinition(_ input: DescribeModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDefinitionResponse> {
-        self.client.execute(action: "DescribeModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModelDefinition(_ input: DescribeModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDefinitionResponse> {
+        self.client.execute(action: "DescribeModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品数据模板
     ///
     /// 查询产品配置的数据模板信息
     @inlinable
-    public func describeModelDefinition(_ input: DescribeModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDefinitionResponse {
-        try await self.client.execute(action: "DescribeModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModelDefinition(_ input: DescribeModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDefinitionResponse {
+        try await self.client.execute(action: "DescribeModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询产品数据模板
     ///
     /// 查询产品配置的数据模板信息
     @inlinable
-    public func describeModelDefinition(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDefinitionResponse> {
-        self.describeModelDefinition(DescribeModelDefinitionRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeModelDefinition(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDefinitionResponse> {
+        self.describeModelDefinition(DescribeModelDefinitionRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品数据模板
     ///
     /// 查询产品配置的数据模板信息
     @inlinable
-    public func describeModelDefinition(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDefinitionResponse {
-        try await self.describeModelDefinition(DescribeModelDefinitionRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeModelDefinition(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDefinitionResponse {
+        try await self.describeModelDefinition(DescribeModelDefinitionRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

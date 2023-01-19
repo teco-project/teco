@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Mariadb {
     ///
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaleInfoResponse> {
-        self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaleInfoResponse> {
+        self.client.execute(action: "DescribeSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
-        try await self.client.execute(action: "DescribeSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSaleInfo(_ input: DescribeSaleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
+        try await self.client.execute(action: "DescribeSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeSaleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaleInfoResponse> {
-        self.describeSaleInfo(DescribeSaleInfoRequest(), logger: logger, on: eventLoop)
+    public func describeSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaleInfoResponse> {
+        self.describeSaleInfo(DescribeSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeSaleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
-        try await self.describeSaleInfo(DescribeSaleInfoRequest(), logger: logger, on: eventLoop)
+    public func describeSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
+        try await self.describeSaleInfo(DescribeSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

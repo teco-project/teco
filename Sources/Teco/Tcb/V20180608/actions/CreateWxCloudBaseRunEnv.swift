@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Tcb {
 
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
-        self.client.execute(action: "CreateWxCloudBaseRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
+        self.client.execute(action: "CreateWxCloudBaseRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
-        try await self.client.execute(action: "CreateWxCloudBaseRunEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWxCloudBaseRunEnv(_ input: CreateWxCloudBaseRunEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
+        try await self.client.execute(action: "CreateWxCloudBaseRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
-        self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
+        self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建微信云托管
     @inlinable
-    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
-        try await self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
+        try await self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,31 +100,31 @@ extension Essbasic {
     ///
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
-    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
-        self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlow(_ input: DescribeFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
+        self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程信息
     ///
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
-    public func describeFlow(_ input: DescribeFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
-        try await self.client.execute(action: "DescribeFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlow(_ input: DescribeFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
+        try await self.client.execute(action: "DescribeFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流程信息
     ///
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
-    public func describeFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
-        self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowResponse> {
+        self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程信息
     ///
     /// 通过此接口（DescribeFlow）可查询签署流程的详细信息。
     @inlinable
-    public func describeFlow(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
-        try await self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowResponse {
+        try await self.describeFlow(DescribeFlowRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

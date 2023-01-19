@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
-    public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
-        self.client.execute(action: "StopGameServerSessionPlacement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
+        self.client.execute(action: "StopGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止放置游戏服务器会话
@@ -57,8 +57,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
-    public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
-        try await self.client.execute(action: "StopGameServerSessionPlacement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
+        try await self.client.execute(action: "StopGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止放置游戏服务器会话
@@ -66,8 +66,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
-    public func stopGameServerSessionPlacement(placementId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
-        self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), logger: logger, on: eventLoop)
+    public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
+        self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止放置游戏服务器会话
@@ -75,7 +75,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
-    public func stopGameServerSessionPlacement(placementId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
-        try await self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), logger: logger, on: eventLoop)
+    public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
+        try await self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)
     }
 }

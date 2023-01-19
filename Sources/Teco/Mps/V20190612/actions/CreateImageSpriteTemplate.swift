@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -117,31 +117,31 @@ extension Mps {
     ///
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
-    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageSpriteTemplateResponse> {
-        self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageSpriteTemplateResponse> {
+        self.client.execute(action: "CreateImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建雪碧图模板
     ///
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
-    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
-        try await self.client.execute(action: "CreateImageSpriteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageSpriteTemplate(_ input: CreateImageSpriteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
+        try await self.client.execute(action: "CreateImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建雪碧图模板
     ///
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
-    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageSpriteTemplateResponse> {
-        self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), logger: logger, on: eventLoop)
+    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageSpriteTemplateResponse> {
+        self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建雪碧图模板
     ///
     /// 创建用户自定义雪碧图模板，数量上限：16。
     @inlinable
-    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
-        try await self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), logger: logger, on: eventLoop)
+    public func createImageSpriteTemplate(sampleType: String, sampleInterval: UInt64, rowCount: UInt64, columnCount: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, fillType: String? = nil, comment: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageSpriteTemplateResponse {
+        try await self.createImageSpriteTemplate(CreateImageSpriteTemplateRequest(sampleType: sampleType, sampleInterval: sampleInterval, rowCount: rowCount, columnCount: columnCount, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, fillType: fillType, comment: comment, format: format), region: region, logger: logger, on: eventLoop)
     }
 }

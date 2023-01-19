@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ssl {
     ///
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
-    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadConfirmLetterResponse> {
-        self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadConfirmLetterResponse> {
+        self.client.execute(action: "UploadConfirmLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传证书确认函
     ///
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
-    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
-        try await self.client.execute(action: "UploadConfirmLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadConfirmLetter(_ input: UploadConfirmLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
+        try await self.client.execute(action: "UploadConfirmLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传证书确认函
     ///
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
-    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadConfirmLetterResponse> {
-        self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), logger: logger, on: eventLoop)
+    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadConfirmLetterResponse> {
+        self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书确认函
     ///
     /// 本接口（UploadConfirmLetter）用于上传证书确认函。
     @inlinable
-    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
-        try await self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), logger: logger, on: eventLoop)
+    public func uploadConfirmLetter(certificateId: String, confirmLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadConfirmLetterResponse {
+        try await self.uploadConfirmLetter(UploadConfirmLetterRequest(certificateId: certificateId, confirmLetter: confirmLetter), region: region, logger: logger, on: eventLoop)
     }
 }

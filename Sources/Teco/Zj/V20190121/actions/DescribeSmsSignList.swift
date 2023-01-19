@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Zj {
     ///
     /// 获取普通短信签名信息
     @inlinable
-    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsSignListResponse> {
-        self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsSignListResponse> {
+        self.client.execute(action: "DescribeSmsSignList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信签名查询接口
     ///
     /// 获取普通短信签名信息
     @inlinable
-    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
-        try await self.client.execute(action: "DescribeSmsSignList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmsSignList(_ input: DescribeSmsSignListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
+        try await self.client.execute(action: "DescribeSmsSignList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 短信签名查询接口
     ///
     /// 获取普通短信签名信息
     @inlinable
-    public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsSignListResponse> {
-        self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), logger: logger, on: eventLoop)
+    public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsSignListResponse> {
+        self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短信签名查询接口
     ///
     /// 获取普通短信签名信息
     @inlinable
-    public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
-        try await self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), logger: logger, on: eventLoop)
+    public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
+        try await self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcMcuTranscodeTimeResponse> {
-        self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcMcuTranscodeTimeResponse> {
+        self.client.execute(action: "DescribeTrtcMcuTranscodeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询旁路转码计费时长(旧)
@@ -83,8 +83,8 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
-        try await self.client.execute(action: "DescribeTrtcMcuTranscodeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrtcMcuTranscodeTime(_ input: DescribeTrtcMcuTranscodeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
+        try await self.client.execute(action: "DescribeTrtcMcuTranscodeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询旁路转码计费时长(旧)
@@ -95,8 +95,8 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcMcuTranscodeTimeResponse> {
-        self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcMcuTranscodeTimeResponse> {
+        self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询旁路转码计费时长(旧)
@@ -107,7 +107,7 @@ extension Trtc {
     /// - 若查询当天用量，由于统计延迟等原因，返回数据可能不够准确。
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
-    public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
-        try await self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
+        try await self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

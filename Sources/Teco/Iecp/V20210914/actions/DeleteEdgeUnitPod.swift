@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 删除指定pod
     @inlinable
-    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
-        self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
+        self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除指定pod
     @inlinable
-    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
-        try await self.client.execute(action: "DeleteEdgeUnitPod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
+        try await self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除指定pod
     @inlinable
-    public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
-        self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
+        self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除指定pod
     @inlinable
-    public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
-        try await self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
+        try await self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

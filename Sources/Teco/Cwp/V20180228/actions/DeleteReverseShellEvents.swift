@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 根据Ids删除反弹Shell事件
     @inlinable
-    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
-        self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
+        self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除反弹Shell事件
     ///
     /// 根据Ids删除反弹Shell事件
     @inlinable
-    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
-        try await self.client.execute(action: "DeleteReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReverseShellEvents(_ input: DeleteReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
+        try await self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除反弹Shell事件
     ///
     /// 根据Ids删除反弹Shell事件
     @inlinable
-    public func deleteReverseShellEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
-        self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteReverseShellEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
+        self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除反弹Shell事件
     ///
     /// 根据Ids删除反弹Shell事件
     @inlinable
-    public func deleteReverseShellEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
-        try await self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteReverseShellEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
+        try await self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

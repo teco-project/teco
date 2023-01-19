@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Redis {
 
     /// 升级实例支持多AZ
     @inlinable
-    public func upgradeVersionToMultiAvailabilityZones(_ input: UpgradeVersionToMultiAvailabilityZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeVersionToMultiAvailabilityZonesResponse> {
-        self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeVersionToMultiAvailabilityZones(_ input: UpgradeVersionToMultiAvailabilityZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeVersionToMultiAvailabilityZonesResponse> {
+        self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例支持多AZ
     @inlinable
-    public func upgradeVersionToMultiAvailabilityZones(_ input: UpgradeVersionToMultiAvailabilityZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
-        try await self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeVersionToMultiAvailabilityZones(_ input: UpgradeVersionToMultiAvailabilityZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
+        try await self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级实例支持多AZ
     @inlinable
-    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeVersionToMultiAvailabilityZonesResponse> {
-        self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), logger: logger, on: eventLoop)
+    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeVersionToMultiAvailabilityZonesResponse> {
+        self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例支持多AZ
     @inlinable
-    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
-        try await self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), logger: logger, on: eventLoop)
+    public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
+        try await self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), region: region, logger: logger, on: eventLoop)
     }
 }

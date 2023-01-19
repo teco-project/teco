@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Ssl {
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
-        self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadCertificate(_ input: UploadCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
+        self.client.execute(action: "UploadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(_ input: UploadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        try await self.client.execute(action: "UploadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadCertificate(_ input: UploadCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
+        try await self.client.execute(action: "UploadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
-        self.uploadCertificate(UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertificateResponse> {
+        self.uploadCertificate(UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCertificate）用于上传证书。
     @inlinable
-    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
-        try await self.uploadCertificate(UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), logger: logger, on: eventLoop)
+    public func uploadCertificate(certificatePublicKey: String, certificatePrivateKey: String? = nil, certificateType: String? = nil, alias: String? = nil, projectId: UInt64? = nil, certificateUse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertificateResponse {
+        try await self.uploadCertificate(UploadCertificateRequest(certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateType: certificateType, alias: alias, projectId: projectId, certificateUse: certificateUse), region: region, logger: logger, on: eventLoop)
     }
 }

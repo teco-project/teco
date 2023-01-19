@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Mna {
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
-        self.client.execute(action: "CreateEncryptedKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
+        self.client.execute(action: "CreateEncryptedKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
-        try await self.client.execute(action: "CreateEncryptedKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEncryptedKey(_ input: CreateEncryptedKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
+        try await self.client.execute(action: "CreateEncryptedKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
-        self.createEncryptedKey(CreateEncryptedKeyRequest(), logger: logger, on: eventLoop)
+    public func createEncryptedKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptedKeyResponse> {
+        self.createEncryptedKey(CreateEncryptedKeyRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置或更新密钥
     ///
     /// 通过此接口设置和更新预置密钥
     @inlinable
-    public func createEncryptedKey(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
-        try await self.createEncryptedKey(CreateEncryptedKeyRequest(), logger: logger, on: eventLoop)
+    public func createEncryptedKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptedKeyResponse {
+        try await self.createEncryptedKey(CreateEncryptedKeyRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

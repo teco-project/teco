@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Rum {
     ///
     /// 将对应 sourcemap 文件删除
     @inlinable
-    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReleaseFileResponse> {
-        self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReleaseFileResponse> {
+        self.client.execute(action: "DeleteReleaseFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
     @inlinable
-    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
-        try await self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
+        try await self.client.execute(action: "DeleteReleaseFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
     @inlinable
-    public func deleteReleaseFile(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReleaseFileResponse> {
-        self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteReleaseFile(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReleaseFileResponse> {
+        self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
     @inlinable
-    public func deleteReleaseFile(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
-        try await self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteReleaseFile(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
+        try await self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

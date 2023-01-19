@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Iir {
     /// 目前“商品识别”为公测服务，需要申请、开通后方可使用。请在[服务开通申请表](https://cloud.tencent.com/apply/p/y1q2mnf0vdl) 中填写详细信息和需求，如果通过审核，我们将会在2个工作日内与您联系，并开通服务。 公测期间，本服务免费提供最高2QPS，收费模式和标准会在正式版上线前通过站内信、短信通知客户。如果需要提升并发，请与我们联系洽谈。
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
-    public func recognizeProduct(_ input: RecognizeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeProductResponse> {
-        self.client.execute(action: "RecognizeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeProduct(_ input: RecognizeProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeProductResponse> {
+        self.client.execute(action: "RecognizeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 商品识别
@@ -74,8 +74,8 @@ extension Iir {
     /// 目前“商品识别”为公测服务，需要申请、开通后方可使用。请在[服务开通申请表](https://cloud.tencent.com/apply/p/y1q2mnf0vdl) 中填写详细信息和需求，如果通过审核，我们将会在2个工作日内与您联系，并开通服务。 公测期间，本服务免费提供最高2QPS，收费模式和标准会在正式版上线前通过站内信、短信通知客户。如果需要提升并发，请与我们联系洽谈。
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
-    public func recognizeProduct(_ input: RecognizeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeProductResponse {
-        try await self.client.execute(action: "RecognizeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeProduct(_ input: RecognizeProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeProductResponse {
+        try await self.client.execute(action: "RecognizeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 商品识别
@@ -84,8 +84,8 @@ extension Iir {
     /// 目前“商品识别”为公测服务，需要申请、开通后方可使用。请在[服务开通申请表](https://cloud.tencent.com/apply/p/y1q2mnf0vdl) 中填写详细信息和需求，如果通过审核，我们将会在2个工作日内与您联系，并开通服务。 公测期间，本服务免费提供最高2QPS，收费模式和标准会在正式版上线前通过站内信、短信通知客户。如果需要提升并发，请与我们联系洽谈。
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
-    public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeProductResponse> {
-        self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeProductResponse> {
+        self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 
     /// 商品识别
@@ -94,7 +94,7 @@ extension Iir {
     /// 目前“商品识别”为公测服务，需要申请、开通后方可使用。请在[服务开通申请表](https://cloud.tencent.com/apply/p/y1q2mnf0vdl) 中填写详细信息和需求，如果通过审核，我们将会在2个工作日内与您联系，并开通服务。 公测期间，本服务免费提供最高2QPS，收费模式和标准会在正式版上线前通过站内信、短信通知客户。如果需要提升并发，请与我们联系洽谈。
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
-    public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeProductResponse {
-        try await self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeProductResponse {
+        try await self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 }

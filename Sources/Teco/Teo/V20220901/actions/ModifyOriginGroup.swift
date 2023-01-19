@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Teo {
 
     /// 修改源站组
     @inlinable
-    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOriginGroupResponse> {
-        self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOriginGroupResponse> {
+        self.client.execute(action: "ModifyOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改源站组
     @inlinable
-    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
-        try await self.client.execute(action: "ModifyOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyOriginGroup(_ input: ModifyOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
+        try await self.client.execute(action: "ModifyOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改源站组
     @inlinable
-    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOriginGroupResponse> {
-        self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOriginGroupResponse> {
+        self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改源站组
     @inlinable
-    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
-        try await self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), logger: logger, on: eventLoop)
+    public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
+        try await self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), region: region, logger: logger, on: eventLoop)
     }
 }

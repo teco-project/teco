@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,31 +105,31 @@ extension Cdn {
     ///
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
-    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushTasksResponse> {
-        self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePushTasks(_ input: DescribePushTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushTasksResponse> {
+        self.client.execute(action: "DescribePushTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预热历史查询
     ///
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
-    public func describePushTasks(_ input: DescribePushTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
-        try await self.client.execute(action: "DescribePushTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePushTasks(_ input: DescribePushTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
+        try await self.client.execute(action: "DescribePushTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 预热历史查询
     ///
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
-    public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushTasksResponse> {
-        self.describePushTasks(DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), logger: logger, on: eventLoop)
+    public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushTasksResponse> {
+        self.describePushTasks(DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预热历史查询
     ///
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
     @inlinable
-    public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
-        try await self.describePushTasks(DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), logger: logger, on: eventLoop)
+    public func describePushTasks(startTime: Date? = nil, endTime: Date? = nil, taskId: String? = nil, keyword: String? = nil, offset: Int64? = nil, limit: Int64? = nil, area: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushTasksResponse {
+        try await self.describePushTasks(DescribePushTasksRequest(startTime: startTime, endTime: endTime, taskId: taskId, keyword: keyword, offset: offset, limit: limit, area: area, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

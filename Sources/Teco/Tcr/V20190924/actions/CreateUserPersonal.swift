@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcr {
 
     /// 创建个人用户
     @inlinable
-    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserPersonalResponse> {
-        self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUserPersonal(_ input: CreateUserPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserPersonalResponse> {
+        self.client.execute(action: "CreateUserPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人用户
     @inlinable
-    public func createUserPersonal(_ input: CreateUserPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
-        try await self.client.execute(action: "CreateUserPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUserPersonal(_ input: CreateUserPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
+        try await self.client.execute(action: "CreateUserPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建个人用户
     @inlinable
-    public func createUserPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserPersonalResponse> {
-        self.createUserPersonal(CreateUserPersonalRequest(password: password), logger: logger, on: eventLoop)
+    public func createUserPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserPersonalResponse> {
+        self.createUserPersonal(CreateUserPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建个人用户
     @inlinable
-    public func createUserPersonal(password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
-        try await self.createUserPersonal(CreateUserPersonalRequest(password: password), logger: logger, on: eventLoop)
+    public func createUserPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
+        try await self.createUserPersonal(CreateUserPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
     }
 }

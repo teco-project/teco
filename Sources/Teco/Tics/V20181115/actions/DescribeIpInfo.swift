@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Tics {
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
-        self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpInfo(_ input: DescribeIpInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
+        self.client.execute(action: "DescribeIpInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(_ input: DescribeIpInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
-        try await self.client.execute(action: "DescribeIpInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpInfo(_ input: DescribeIpInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
+        try await self.client.execute(action: "DescribeIpInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
-        self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    public func describeIpInfo(key: String, option: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpInfoResponse> {
+        self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IP信誉
     ///
     /// 提供IP相关的基础信息以及与攻击事件（团伙、家族）、恶意文件等相关联信息。
     @inlinable
-    public func describeIpInfo(key: String, option: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
-        try await self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), logger: logger, on: eventLoop)
+    public func describeIpInfo(key: String, option: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpInfoResponse {
+        try await self.describeIpInfo(DescribeIpInfoRequest(key: key, option: option), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 创建Notebook授权Url
     @inlinable
-    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePresignedNotebookInstanceUrlResponse> {
-        self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePresignedNotebookInstanceUrlResponse> {
+        self.client.execute(action: "CreatePresignedNotebookInstanceUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook授权Url
     @inlinable
-    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
-        try await self.client.execute(action: "CreatePresignedNotebookInstanceUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPresignedNotebookInstanceUrl(_ input: CreatePresignedNotebookInstanceUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
+        try await self.client.execute(action: "CreatePresignedNotebookInstanceUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Notebook授权Url
     @inlinable
-    public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePresignedNotebookInstanceUrlResponse> {
-        self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), logger: logger, on: eventLoop)
+    public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePresignedNotebookInstanceUrlResponse> {
+        self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook授权Url
     @inlinable
-    public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
-        try await self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), logger: logger, on: eventLoop)
+    public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
+        try await self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

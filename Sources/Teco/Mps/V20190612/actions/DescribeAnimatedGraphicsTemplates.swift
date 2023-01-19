@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Mps {
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
     @inlinable
-    public func describeAnimatedGraphicsTemplates(_ input: DescribeAnimatedGraphicsTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAnimatedGraphicsTemplatesResponse> {
-        self.client.execute(action: "DescribeAnimatedGraphicsTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAnimatedGraphicsTemplates(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAnimatedGraphicsTemplatesResponse> {
+        self.client.execute(action: "DescribeAnimatedGraphicsTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转动图模板列表
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
     @inlinable
-    public func describeAnimatedGraphicsTemplates(_ input: DescribeAnimatedGraphicsTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
-        try await self.client.execute(action: "DescribeAnimatedGraphicsTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAnimatedGraphicsTemplates(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
+        try await self.client.execute(action: "DescribeAnimatedGraphicsTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转动图模板列表
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
     @inlinable
-    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAnimatedGraphicsTemplatesResponse> {
-        self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAnimatedGraphicsTemplatesResponse> {
+        self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转动图模板列表
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
     @inlinable
-    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
-        try await self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAnimatedGraphicsTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAnimatedGraphicsTemplatesResponse {
+        try await self.describeAnimatedGraphicsTemplates(DescribeAnimatedGraphicsTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

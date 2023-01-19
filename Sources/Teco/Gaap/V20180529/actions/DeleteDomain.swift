@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Gaap {
     ///
     /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
     @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
-        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDomain(_ input: DeleteDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
+        self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据域名删除转发规则
     ///
     /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
     @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDomain(_ input: DeleteDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据域名删除转发规则
     ///
     /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
     @inlinable
-    public func deleteDomain(listenerId: String, domain: String, force: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
-        self.deleteDomain(DeleteDomainRequest(listenerId: listenerId, domain: domain, force: force), logger: logger, on: eventLoop)
+    public func deleteDomain(listenerId: String, domain: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
+        self.deleteDomain(DeleteDomainRequest(listenerId: listenerId, domain: domain, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据域名删除转发规则
     ///
     /// 本接口（DeleteDomain）仅适用于7层监听器，用于删除该监听器下对应域名及域名下的所有规则，所有已绑定源站的规则将自动解绑。
     @inlinable
-    public func deleteDomain(listenerId: String, domain: String, force: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.deleteDomain(DeleteDomainRequest(listenerId: listenerId, domain: domain, force: force), logger: logger, on: eventLoop)
+    public func deleteDomain(listenerId: String, domain: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.deleteDomain(DeleteDomainRequest(listenerId: listenerId, domain: domain, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

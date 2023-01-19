@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Gme {
 
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
-        self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScanUser(_ input: CreateScanUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
+        self.client.execute(action: "CreateScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(_ input: CreateScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
-        try await self.client.execute(action: "CreateScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScanUser(_ input: CreateScanUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
+        try await self.client.execute(action: "CreateScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
-        self.createScanUser(CreateScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanUserResponse> {
+        self.createScanUser(CreateScanUserRequest(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义送检用户
     @inlinable
-    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
-        try await self.createScanUser(CreateScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    public func createScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanUserResponse {
+        try await self.createScanUser(CreateScanUserRequest(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tdid {
 
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
+        self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(_ input: RegisterCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.client.execute(action: "RegisterCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerCpt(_ input: RegisterCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
+        try await self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), logger: logger, on: eventLoop)
+    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
+        self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版新建
     @inlinable
-    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), logger: logger, on: eventLoop)
+    public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
+        try await self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
     }
 }

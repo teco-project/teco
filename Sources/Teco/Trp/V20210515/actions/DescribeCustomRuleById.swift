@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Trp {
 
     /// 查自定义码规则
     @inlinable
-    public func describeCustomRuleById(_ input: DescribeCustomRuleByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRuleByIdResponse> {
-        self.client.execute(action: "DescribeCustomRuleById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomRuleById(_ input: DescribeCustomRuleByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRuleByIdResponse> {
+        self.client.execute(action: "DescribeCustomRuleById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查自定义码规则
     @inlinable
-    public func describeCustomRuleById(_ input: DescribeCustomRuleByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRuleByIdResponse {
-        try await self.client.execute(action: "DescribeCustomRuleById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomRuleById(_ input: DescribeCustomRuleByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRuleByIdResponse {
+        try await self.client.execute(action: "DescribeCustomRuleById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查自定义码规则
     @inlinable
-    public func describeCustomRuleById(customId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRuleByIdResponse> {
-        self.describeCustomRuleById(DescribeCustomRuleByIdRequest(customId: customId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeCustomRuleById(customId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRuleByIdResponse> {
+        self.describeCustomRuleById(DescribeCustomRuleByIdRequest(customId: customId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查自定义码规则
     @inlinable
-    public func describeCustomRuleById(customId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRuleByIdResponse {
-        try await self.describeCustomRuleById(DescribeCustomRuleByIdRequest(customId: customId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeCustomRuleById(customId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRuleByIdResponse {
+        try await self.describeCustomRuleById(DescribeCustomRuleByIdRequest(customId: customId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

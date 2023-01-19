@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Dayu {
     ///
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4KeepTimeResponse> {
-        self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4KeepTimeResponse> {
+        self.client.execute(action: "ModifyL4KeepTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改L4转发规则的会话保持
     ///
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
-        try await self.client.execute(action: "ModifyL4KeepTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyL4KeepTime(_ input: ModifyL4KeepTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
+        try await self.client.execute(action: "ModifyL4KeepTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改L4转发规则的会话保持
     ///
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4KeepTimeResponse> {
-        self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), logger: logger, on: eventLoop)
+    public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4KeepTimeResponse> {
+        self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改L4转发规则的会话保持
     ///
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
-    public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
-        try await self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), logger: logger, on: eventLoop)
+    public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
+        try await self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), region: region, logger: logger, on: eventLoop)
     }
 }

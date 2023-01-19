@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Trtc {
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁删除自定义背景图或水印，可通过此接口删除已上传的图片。无需频繁删除图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func deletePicture(_ input: DeletePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePictureResponse> {
-        self.client.execute(action: "DeletePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePicture(_ input: DeletePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePictureResponse> {
+        self.client.execute(action: "DeletePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁删除自定义背景图或水印，可通过此接口删除已上传的图片。无需频繁删除图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func deletePicture(_ input: DeletePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePictureResponse {
-        try await self.client.execute(action: "DeletePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePicture(_ input: DeletePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePictureResponse {
+        try await self.client.execute(action: "DeletePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁删除自定义背景图或水印，可通过此接口删除已上传的图片。无需频繁删除图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func deletePicture(pictureId: UInt64, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePictureResponse> {
-        self.deletePicture(DeletePictureRequest(pictureId: pictureId, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func deletePicture(pictureId: UInt64, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePictureResponse> {
+        self.deletePicture(DeletePictureRequest(pictureId: pictureId, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁删除自定义背景图或水印，可通过此接口删除已上传的图片。无需频繁删除图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
-    public func deletePicture(pictureId: UInt64, sdkAppId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePictureResponse {
-        try await self.deletePicture(DeletePictureRequest(pictureId: pictureId, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func deletePicture(pictureId: UInt64, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePictureResponse {
+        try await self.deletePicture(DeletePictureRequest(pictureId: pictureId, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

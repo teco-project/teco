@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tsf {
 
     /// 发布公共配置
     @inlinable
-    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleasePublicConfigResponse> {
-        self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleasePublicConfigResponse> {
+        self.client.execute(action: "ReleasePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布公共配置
     @inlinable
-    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
-        try await self.client.execute(action: "ReleasePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releasePublicConfig(_ input: ReleasePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
+        try await self.client.execute(action: "ReleasePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布公共配置
     @inlinable
-    public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleasePublicConfigResponse> {
-        self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleasePublicConfigResponse> {
+        self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布公共配置
     @inlinable
-    public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
-        try await self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
+        try await self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 }

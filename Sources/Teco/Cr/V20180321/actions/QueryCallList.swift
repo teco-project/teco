@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Cr {
 
     /// 机器人任务查询
     @inlinable
-    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallListResponse> {
-        self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCallList(_ input: QueryCallListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallListResponse> {
+        self.client.execute(action: "QueryCallList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 机器人任务查询
     @inlinable
-    public func queryCallList(_ input: QueryCallListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
-        try await self.client.execute(action: "QueryCallList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCallList(_ input: QueryCallListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
+        try await self.client.execute(action: "QueryCallList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 机器人任务查询
     @inlinable
-    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallListResponse> {
-        self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), logger: logger, on: eventLoop)
+    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallListResponse> {
+        self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 机器人任务查询
     @inlinable
-    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
-        try await self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), logger: logger, on: eventLoop)
+    public func queryCallList(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil, fileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallListResponse {
+        try await self.queryCallList(QueryCallListRequest(module: module, operation: operation, bizDate: bizDate, botId: botId, botName: botName, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 }

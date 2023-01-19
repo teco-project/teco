@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Kms {
     /// 非对称密钥签名。
     /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
     @inlinable
-    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignByAsymmetricKeyResponse> {
-        self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignByAsymmetricKeyResponse> {
+        self.client.execute(action: "SignByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 签名
@@ -72,8 +72,8 @@ extension Kms {
     /// 非对称密钥签名。
     /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
     @inlinable
-    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
-        try await self.client.execute(action: "SignByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func signByAsymmetricKey(_ input: SignByAsymmetricKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
+        try await self.client.execute(action: "SignByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 签名
@@ -81,8 +81,8 @@ extension Kms {
     /// 非对称密钥签名。
     /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
     @inlinable
-    public func signByAsymmetricKey(algorithm: String, message: String, keyId: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignByAsymmetricKeyResponse> {
-        self.signByAsymmetricKey(SignByAsymmetricKeyRequest(algorithm: algorithm, message: message, keyId: keyId, messageType: messageType), logger: logger, on: eventLoop)
+    public func signByAsymmetricKey(algorithm: String, message: String, keyId: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignByAsymmetricKeyResponse> {
+        self.signByAsymmetricKey(SignByAsymmetricKeyRequest(algorithm: algorithm, message: message, keyId: keyId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 签名
@@ -90,7 +90,7 @@ extension Kms {
     /// 非对称密钥签名。
     /// 注意：只有 KeyUsage 为 ASYMMETRIC_SIGN_VERIFY_SM2、ASYMMETRIC_SIGN_VERIFY_ECC 或其他支持的 ASYMMETRIC_SIGN_VERIFY_${ALGORITHM} 的密钥才可以使用签名功能。
     @inlinable
-    public func signByAsymmetricKey(algorithm: String, message: String, keyId: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
-        try await self.signByAsymmetricKey(SignByAsymmetricKeyRequest(algorithm: algorithm, message: message, keyId: keyId, messageType: messageType), logger: logger, on: eventLoop)
+    public func signByAsymmetricKey(algorithm: String, message: String, keyId: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignByAsymmetricKeyResponse {
+        try await self.signByAsymmetricKey(SignByAsymmetricKeyRequest(algorithm: algorithm, message: message, keyId: keyId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 }

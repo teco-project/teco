@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Gs {
 
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
-        self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchGameArchive(_ input: SwitchGameArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
+        self.client.execute(action: "SwitchGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(_ input: SwitchGameArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
-        try await self.client.execute(action: "SwitchGameArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchGameArchive(_ input: SwitchGameArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
+        try await self.client.execute(action: "SwitchGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
-        self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), logger: logger, on: eventLoop)
+    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
+        self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换游戏存档
     @inlinable
-    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
-        try await self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), logger: logger, on: eventLoop)
+    public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
+        try await self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), region: region, logger: logger, on: eventLoop)
     }
 }

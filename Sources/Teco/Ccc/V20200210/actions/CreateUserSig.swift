@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ccc {
 
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
-        self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUserSig(_ input: CreateUserSigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
+        self.client.execute(action: "CreateUserSig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(_ input: CreateUserSigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
-        try await self.client.execute(action: "CreateUserSig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUserSig(_ input: CreateUserSigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
+        try await self.client.execute(action: "CreateUserSig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
-        self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), logger: logger, on: eventLoop)
+    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
+        self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户数据签名
     @inlinable
-    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
-        try await self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), logger: logger, on: eventLoop)
+    public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
+        try await self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Postgres {
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
-        self.client.execute(action: "DescribeDBErrlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
+        self.client.execute(action: "DescribeDBErrlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
-        try await self.client.execute(action: "DescribeDBErrlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBErrlogs(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
+        try await self.client.execute(action: "DescribeDBErrlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
-        self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBErrlogsResponse> {
+        self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
-        try await self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBErrlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, searchKeys: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBErrlogsResponse {
+        try await self.describeDBErrlogs(DescribeDBErrlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, searchKeys: searchKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

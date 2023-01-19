@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Essbasic {
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡三要素
     @inlinable
-    public func checkBankCard3EVerification(_ input: CheckBankCard3EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard3EVerificationResponse> {
-        self.client.execute(action: "CheckBankCard3EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkBankCard3EVerification(_ input: CheckBankCard3EVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard3EVerificationResponse> {
+        self.client.execute(action: "CheckBankCard3EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡三要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡三要素
     @inlinable
-    public func checkBankCard3EVerification(_ input: CheckBankCard3EVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard3EVerificationResponse {
-        try await self.client.execute(action: "CheckBankCard3EVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkBankCard3EVerification(_ input: CheckBankCard3EVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard3EVerificationResponse {
+        try await self.client.execute(action: "CheckBankCard3EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 银行卡三要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡三要素
     @inlinable
-    public func checkBankCard3EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard3EVerificationResponse> {
-        self.checkBankCard3EVerification(CheckBankCard3EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkBankCard3EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard3EVerificationResponse> {
+        self.checkBankCard3EVerification(CheckBankCard3EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 银行卡三要素检测
     ///
     /// 该接口为第三方平台向电子签平台验证银行卡三要素
     @inlinable
-    public func checkBankCard3EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard3EVerificationResponse {
-        try await self.checkBankCard3EVerification(CheckBankCard3EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkBankCard3EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard3EVerificationResponse {
+        try await self.checkBankCard3EVerification(CheckBankCard3EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 }

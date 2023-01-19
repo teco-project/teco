@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Iecp {
 
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
-        self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
+        self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitNodeUnitTemplates(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitNodeUnitTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
-        self.describeEdgeUnitNodeUnitTemplates(DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeUnitTemplatesResponse> {
+        self.describeEdgeUnitNodeUnitTemplates(DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
-        try await self.describeEdgeUnitNodeUnitTemplates(DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeUnitTemplates(edgeUnitId: UInt64, namespace: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeUnitTemplatesResponse {
+        try await self.describeEdgeUnitNodeUnitTemplates(DescribeEdgeUnitNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

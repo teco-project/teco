@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,25 +99,25 @@ extension Tci {
 
     /// 获取人员详情
     @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePerson(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
+        self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员详情
     @inlinable
-    public func describePerson(_ input: DescribePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.client.execute(action: "DescribePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePerson(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.client.execute(action: "DescribePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人员详情
     @inlinable
-    public func describePerson(libraryId: String, personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
-        self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), logger: logger, on: eventLoop)
+    public func describePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonResponse> {
+        self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员详情
     @inlinable
-    public func describePerson(libraryId: String, personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
-        try await self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), logger: logger, on: eventLoop)
+    public func describePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonResponse {
+        try await self.describePerson(DescribePersonRequest(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cpdp {
 
     /// 跨境-对接方账户余额查询
     @inlinable
-    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantBalanceResponse> {
-        self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantBalanceResponse> {
+        self.client.execute(action: "QueryMerchantBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-对接方账户余额查询
     @inlinable
-    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
-        try await self.client.execute(action: "QueryMerchantBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMerchantBalance(_ input: QueryMerchantBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
+        try await self.client.execute(action: "QueryMerchantBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-对接方账户余额查询
     @inlinable
-    public func queryMerchantBalance(currency: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantBalanceResponse> {
-        self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantBalance(currency: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantBalanceResponse> {
+        self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-对接方账户余额查询
     @inlinable
-    public func queryMerchantBalance(currency: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
-        try await self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantBalance(currency: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantBalanceResponse {
+        try await self.queryMerchantBalance(QueryMerchantBalanceRequest(currency: currency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

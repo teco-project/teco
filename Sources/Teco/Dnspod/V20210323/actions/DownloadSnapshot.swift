@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dnspod {
 
     /// 下载快照
     @inlinable
-    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadSnapshotResponse> {
-        self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadSnapshot(_ input: DownloadSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadSnapshotResponse> {
+        self.client.execute(action: "DownloadSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载快照
     @inlinable
-    public func downloadSnapshot(_ input: DownloadSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
-        try await self.client.execute(action: "DownloadSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadSnapshot(_ input: DownloadSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
+        try await self.client.execute(action: "DownloadSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载快照
     @inlinable
-    public func downloadSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadSnapshotResponse> {
-        self.downloadSnapshot(DownloadSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), logger: logger, on: eventLoop)
+    public func downloadSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadSnapshotResponse> {
+        self.downloadSnapshot(DownloadSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载快照
     @inlinable
-    public func downloadSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
-        try await self.downloadSnapshot(DownloadSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), logger: logger, on: eventLoop)
+    public func downloadSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadSnapshotResponse {
+        try await self.downloadSnapshot(DownloadSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

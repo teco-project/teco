@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Postgres {
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
-        self.client.execute(action: "ModifySwitchTimePeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
+        self.client.execute(action: "ModifySwitchTimePeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
-        try await self.client.execute(action: "ModifySwitchTimePeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySwitchTimePeriod(_ input: ModifySwitchTimePeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
+        try await self.client.execute(action: "ModifySwitchTimePeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
-        self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), logger: logger, on: eventLoop)
+    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySwitchTimePeriodResponse> {
+        self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改变更配置切换时间
     ///
     /// 当升级完成后，对处于等待切换状态下的实例，强制实例立即切换。
     @inlinable
-    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
-        try await self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), logger: logger, on: eventLoop)
+    public func modifySwitchTimePeriod(dbInstanceId: String, switchTag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySwitchTimePeriodResponse {
+        try await self.modifySwitchTimePeriod(ModifySwitchTimePeriodRequest(dbInstanceId: dbInstanceId, switchTag: switchTag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -150,31 +150,31 @@ extension Cpdp {
     ///
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
-    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionResponse> {
-        self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionResponse> {
+        self.client.execute(action: "QueryMemberTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员间交易-不验证
     ///
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
-    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
-        try await self.client.execute(action: "QueryMemberTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMemberTransaction(_ input: QueryMemberTransactionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
+        try await self.client.execute(action: "QueryMemberTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-会员间交易-不验证
     ///
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
-    public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionResponse> {
-        self.queryMemberTransaction(QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), logger: logger, on: eventLoop)
+    public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionResponse> {
+        self.queryMemberTransaction(QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员间交易-不验证
     ///
     /// 会员间交易-不验证。此接口可以实现会员间的余额的交易，实现资金在会员之间流动。
     @inlinable
-    public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
-        try await self.queryMemberTransaction(QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), logger: logger, on: eventLoop)
+    public func queryMemberTransaction(mrchCode: String, functionFlag: String, outSubAcctNo: String, outMemberCode: String, outSubAcctName: String, inSubAcctNo: String, inMemberCode: String, inSubAcctName: String, tranAmt: String, tranFee: String, tranType: String, ccy: String, orderNo: String? = nil, orderContent: String? = nil, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionResponse {
+        try await self.queryMemberTransaction(QueryMemberTransactionRequest(mrchCode: mrchCode, functionFlag: functionFlag, outSubAcctNo: outSubAcctNo, outMemberCode: outMemberCode, outSubAcctName: outSubAcctName, inSubAcctNo: inSubAcctNo, inMemberCode: inMemberCode, inSubAcctName: inSubAcctName, tranAmt: tranAmt, tranFee: tranFee, tranType: tranType, ccy: ccy, orderNo: orderNo, orderContent: orderContent, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

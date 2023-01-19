@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdb {
     ///
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
-    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDrInstanceToMasterResponse> {
-        self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDrInstanceToMasterResponse> {
+        self.client.execute(action: "SwitchDrInstanceToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云数据库灾备实例切换为主实例
     ///
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
-    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
-        try await self.client.execute(action: "SwitchDrInstanceToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchDrInstanceToMaster(_ input: SwitchDrInstanceToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
+        try await self.client.execute(action: "SwitchDrInstanceToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云数据库灾备实例切换为主实例
     ///
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
-    public func switchDrInstanceToMaster(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDrInstanceToMasterResponse> {
-        self.switchDrInstanceToMaster(SwitchDrInstanceToMasterRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func switchDrInstanceToMaster(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDrInstanceToMasterResponse> {
+        self.switchDrInstanceToMaster(SwitchDrInstanceToMasterRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云数据库灾备实例切换为主实例
     ///
     /// 本接口(SwitchDrInstanceToMaster)用于将云数据库灾备实例切换为主实例，注意请求必须发到灾备实例所在的地域。
     @inlinable
-    public func switchDrInstanceToMaster(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
-        try await self.switchDrInstanceToMaster(SwitchDrInstanceToMasterRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func switchDrInstanceToMaster(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDrInstanceToMasterResponse {
+        try await self.switchDrInstanceToMaster(SwitchDrInstanceToMasterRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Partners {
     ///
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
-    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientGradeResponse> {
-        self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientGradeResponse> {
+        self.client.execute(action: "DescribeAgentClientGrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户级别
     ///
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
-    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
-        try await self.client.execute(action: "DescribeAgentClientGrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentClientGrade(_ input: DescribeAgentClientGradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
+        try await self.client.execute(action: "DescribeAgentClientGrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户级别
     ///
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
-    public func describeAgentClientGrade(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientGradeResponse> {
-        self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func describeAgentClientGrade(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientGradeResponse> {
+        self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户级别
     ///
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
-    public func describeAgentClientGrade(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
-        try await self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func describeAgentClientGrade(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
+        try await self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

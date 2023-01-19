@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cls {
 
     /// 删除采集规则配置
     @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
-        self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteConfig(_ input: DeleteConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
+        self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除采集规则配置
     @inlinable
-    public func deleteConfig(_ input: DeleteConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        try await self.client.execute(action: "DeleteConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteConfig(_ input: DeleteConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
+        try await self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除采集规则配置
     @inlinable
-    public func deleteConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
-        self.deleteConfig(DeleteConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
+        self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除采集规则配置
     @inlinable
-    public func deleteConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        try await self.deleteConfig(DeleteConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
+        try await self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

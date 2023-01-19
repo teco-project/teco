@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
-        self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
+        self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
-        try await self.client.execute(action: "DeleteTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
+        try await self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
-        self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
+        self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
-        try await self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), logger: logger, on: eventLoop)
+    public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
+        try await self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 }

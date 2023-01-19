@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Gaap {
 
     /// 删除域名的定制错误
     @inlinable
-    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
-        self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
+        self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名的定制错误
     @inlinable
-    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
-        try await self.client.execute(action: "DeleteDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
+        try await self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除域名的定制错误
     @inlinable
-    public func deleteDomainErrorPageInfo(errorPageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
-        self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), logger: logger, on: eventLoop)
+    public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
+        self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名的定制错误
     @inlinable
-    public func deleteDomainErrorPageInfo(errorPageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
-        try await self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), logger: logger, on: eventLoop)
+    public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
+        try await self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }
 }

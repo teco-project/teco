@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,25 +62,25 @@ extension Tcss {
 
     /// 创建k8sApi异常规则导出任务
     @inlinable
-    public func createK8sApiAbnormalRuleExportJob(_ input: CreateK8sApiAbnormalRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalRuleExportJobResponse> {
-        self.client.execute(action: "CreateK8sApiAbnormalRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalRuleExportJob(_ input: CreateK8sApiAbnormalRuleExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalRuleExportJobResponse> {
+        self.client.execute(action: "CreateK8sApiAbnormalRuleExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建k8sApi异常规则导出任务
     @inlinable
-    public func createK8sApiAbnormalRuleExportJob(_ input: CreateK8sApiAbnormalRuleExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
-        try await self.client.execute(action: "CreateK8sApiAbnormalRuleExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createK8sApiAbnormalRuleExportJob(_ input: CreateK8sApiAbnormalRuleExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
+        try await self.client.execute(action: "CreateK8sApiAbnormalRuleExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建k8sApi异常规则导出任务
     @inlinable
-    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalRuleExportJobResponse> {
-        self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalRuleExportJobResponse> {
+        self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建k8sApi异常规则导出任务
     @inlinable
-    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
-        try await self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalRuleExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: [String]? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleExportJobResponse {
+        try await self.createK8sApiAbnormalRuleExportJob(CreateK8sApiAbnormalRuleExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

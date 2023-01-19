@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cls {
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(_ input: CreateExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
-        self.client.execute(action: "CreateExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createExport(_ input: CreateExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
+        self.client.execute(action: "CreateExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建日志下载任务
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(_ input: CreateExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
-        try await self.client.execute(action: "CreateExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createExport(_ input: CreateExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
+        try await self.client.execute(action: "CreateExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建日志下载任务
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
-        self.createExport(CreateExportRequest(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), logger: logger, on: eventLoop)
+    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportResponse> {
+        self.createExport(CreateExportRequest(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志下载任务
     ///
     /// 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
     @inlinable
-    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
-        try await self.createExport(CreateExportRequest(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), logger: logger, on: eventLoop)
+    public func createExport(topicId: String, count: UInt64, query: String, from: Int64, to: Int64, order: String? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportResponse {
+        try await self.createExport(CreateExportRequest(topicId: topicId, count: count, query: query, from: from, to: to, order: order, format: format), region: region, logger: logger, on: eventLoop)
     }
 }

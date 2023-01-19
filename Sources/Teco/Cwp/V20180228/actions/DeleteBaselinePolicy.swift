@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 删除基线策略配置
     @inlinable
-    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselinePolicyResponse> {
-        self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselinePolicyResponse> {
+        self.client.execute(action: "DeleteBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略配置
     @inlinable
-    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
-        try await self.client.execute(action: "DeleteBaselinePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBaselinePolicy(_ input: DeleteBaselinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
+        try await self.client.execute(action: "DeleteBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除基线策略配置
     @inlinable
-    public func deleteBaselinePolicy(policyIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselinePolicyResponse> {
-        self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), logger: logger, on: eventLoop)
+    public func deleteBaselinePolicy(policyIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselinePolicyResponse> {
+        self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略配置
     @inlinable
-    public func deleteBaselinePolicy(policyIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
-        try await self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), logger: logger, on: eventLoop)
+    public func deleteBaselinePolicy(policyIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
+        try await self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), region: region, logger: logger, on: eventLoop)
     }
 }

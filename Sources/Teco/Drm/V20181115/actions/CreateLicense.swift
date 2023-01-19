@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Drm {
     /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
-    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseResponse> {
-        self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLicense(_ input: CreateLicenseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseResponse> {
+        self.client.execute(action: "CreateLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成DRM的播放许可证
@@ -82,8 +82,8 @@ extension Drm {
     /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
-    public func createLicense(_ input: CreateLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
-        try await self.client.execute(action: "CreateLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLicense(_ input: CreateLicenseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
+        try await self.client.execute(action: "CreateLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成DRM的播放许可证
@@ -91,8 +91,8 @@ extension Drm {
     /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
-    public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseResponse> {
-        self.createLicense(CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), logger: logger, on: eventLoop)
+    public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseResponse> {
+        self.createLicense(CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成DRM的播放许可证
@@ -100,7 +100,7 @@ extension Drm {
     /// 本接口用来生成DRM方案对应的播放许可证，开发者需提供DRM方案类型、内容类型参数，后台将生成许可证后返回许可证数据
     /// 开发者需要转发终端设备发出的许可证请求信息。
     @inlinable
-    public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
-        try await self.createLicense(CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), logger: logger, on: eventLoop)
+    public func createLicense(drmType: String, licenseRequest: String, contentType: String, tracks: [String]? = nil, playbackPolicy: PlaybackPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseResponse {
+        try await self.createLicense(CreateLicenseRequest(drmType: drmType, licenseRequest: licenseRequest, contentType: contentType, tracks: tracks, playbackPolicy: playbackPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

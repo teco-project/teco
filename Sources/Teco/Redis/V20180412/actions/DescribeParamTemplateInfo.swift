@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Redis {
     ///
     /// 查询参数模板详情。
     @inlinable
-    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplateInfoResponse> {
-        self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplateInfoResponse> {
+        self.client.execute(action: "DescribeParamTemplateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板详情
     ///
     /// 查询参数模板详情。
     @inlinable
-    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
-        try await self.client.execute(action: "DescribeParamTemplateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeParamTemplateInfo(_ input: DescribeParamTemplateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
+        try await self.client.execute(action: "DescribeParamTemplateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询参数模板详情
     ///
     /// 查询参数模板详情。
     @inlinable
-    public func describeParamTemplateInfo(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplateInfoResponse> {
-        self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describeParamTemplateInfo(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeParamTemplateInfoResponse> {
+        self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板详情
     ///
     /// 查询参数模板详情。
     @inlinable
-    public func describeParamTemplateInfo(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
-        try await self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describeParamTemplateInfo(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeParamTemplateInfoResponse {
+        try await self.describeParamTemplateInfo(DescribeParamTemplateInfoRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

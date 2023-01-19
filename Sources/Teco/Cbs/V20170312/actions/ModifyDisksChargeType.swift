@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
-        self.client.execute(action: "ModifyDisksChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
+        self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性云盘计费模式
@@ -69,8 +69,8 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
-        try await self.client.execute(action: "ModifyDisksChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
+        try await self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性云盘计费模式
@@ -81,8 +81,8 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
-        self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), logger: logger, on: eventLoop)
+    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
+        self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性云盘计费模式
@@ -93,7 +93,7 @@ extension Cbs {
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
-        try await self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), logger: logger, on: eventLoop)
+    public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
+        try await self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
     }
 }

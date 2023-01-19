@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Bma {
 
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
-        self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
+        self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
-        try await self.client.execute(action: "DescribeBPProtectURLs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBPProtectURLs(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
+        try await self.client.execute(action: "DescribeBPProtectURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
-        self.describeBPProtectURLs(DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPProtectURLsResponse> {
+        self.describeBPProtectURLs(DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
-        try await self.describeBPProtectURLs(DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeBPProtectURLs(pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPProtectURLsResponse {
+        try await self.describeBPProtectURLs(DescribeBPProtectURLsRequest(pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

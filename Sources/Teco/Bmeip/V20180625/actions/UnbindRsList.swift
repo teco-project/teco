@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bmeip {
     ///
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
-    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsListResponse> {
-        self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindRsList(_ input: UnbindRsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsListResponse> {
+        self.client.execute(action: "UnbindRsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑物理机弹性公网IP
     ///
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
-    public func unbindRsList(_ input: UnbindRsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
-        try await self.client.execute(action: "UnbindRsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindRsList(_ input: UnbindRsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
+        try await self.client.execute(action: "UnbindRsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量解绑物理机弹性公网IP
     ///
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
-    public func unbindRsList(eipRsList: [EipRsMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsListResponse> {
-        self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), logger: logger, on: eventLoop)
+    public func unbindRsList(eipRsList: [EipRsMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsListResponse> {
+        self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑物理机弹性公网IP
     ///
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
-    public func unbindRsList(eipRsList: [EipRsMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
-        try await self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), logger: logger, on: eventLoop)
+    public func unbindRsList(eipRsList: [EipRsMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
+        try await self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 以Yaml的方式创建聚合规则
     @inlinable
-    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
-        self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
+        self.client.execute(action: "CreatePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 以Yaml的方式创建聚合规则
     @inlinable
-    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
-        try await self.client.execute(action: "CreatePrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusRecordRuleYaml(_ input: CreatePrometheusRecordRuleYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
+        try await self.client.execute(action: "CreatePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 以Yaml的方式创建聚合规则
     @inlinable
-    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
-        self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), logger: logger, on: eventLoop)
+    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
+        self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 以Yaml的方式创建聚合规则
     @inlinable
-    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
-        try await self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), logger: logger, on: eventLoop)
+    public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
+        try await self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Ds {
     ///
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
-    public func createPersonalAccount(_ input: CreatePersonalAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonalAccountResponse> {
-        self.client.execute(action: "CreatePersonalAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPersonalAccount(_ input: CreatePersonalAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonalAccountResponse> {
+        self.client.execute(action: "CreatePersonalAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 个人开户
     ///
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
-    public func createPersonalAccount(_ input: CreatePersonalAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonalAccountResponse {
-        try await self.client.execute(action: "CreatePersonalAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPersonalAccount(_ input: CreatePersonalAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonalAccountResponse {
+        try await self.client.execute(action: "CreatePersonalAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 个人开户
     ///
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
-    public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonalAccountResponse> {
-        self.createPersonalAccount(CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), logger: logger, on: eventLoop)
+    public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonalAccountResponse> {
+        self.createPersonalAccount(CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人开户
     ///
     /// 为企业电子合同平台的最终个人用户进行开户。在企业电子合同平台进行操作的个人用户，企业电子合同平台向腾讯云发送个人用户的信息，提交开户命令。腾讯云接到请求后，自动为企业电子合同平台的个人用户生成一张数字证书。
     @inlinable
-    public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonalAccountResponse {
-        try await self.createPersonalAccount(CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), logger: logger, on: eventLoop)
+    public func createPersonalAccount(module: String, operation: String, name: String, identType: Int64, identNo: String, mobilePhone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonalAccountResponse {
+        try await self.createPersonalAccount(CreatePersonalAccountRequest(module: module, operation: operation, name: name, identType: identType, identNo: identNo, mobilePhone: mobilePhone), region: region, logger: logger, on: eventLoop)
     }
 }

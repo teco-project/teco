@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tcb {
     ///
     /// 查看容器托管的集群状态
     @inlinable
-    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看容器托管的资源状态
     ///
     /// 查看容器托管的集群状态
     @inlinable
-    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunResource(_ input: DescribeCloudBaseRunResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看容器托管的资源状态
     ///
     /// 查看容器托管的集群状态
     @inlinable
-    public func describeCloudBaseRunResource(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceResponse> {
-        self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResource(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceResponse> {
+        self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看容器托管的资源状态
     ///
     /// 查看容器托管的集群状态
     @inlinable
-    public func describeCloudBaseRunResource(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
-        try await self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResource(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
+        try await self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

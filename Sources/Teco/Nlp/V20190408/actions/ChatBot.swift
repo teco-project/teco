@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Nlp {
     ///
     /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
     @inlinable
-    public func chatBot(_ input: ChatBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatBotResponse> {
-        self.client.execute(action: "ChatBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func chatBot(_ input: ChatBotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatBotResponse> {
+        self.client.execute(action: "ChatBot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 闲聊
     ///
     /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
     @inlinable
-    public func chatBot(_ input: ChatBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
-        try await self.client.execute(action: "ChatBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func chatBot(_ input: ChatBotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
+        try await self.client.execute(action: "ChatBot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 闲聊
     ///
     /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
     @inlinable
-    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatBotResponse> {
-        self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), logger: logger, on: eventLoop)
+    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChatBotResponse> {
+        self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 闲聊
     ///
     /// 闲聊服务基于腾讯领先的NLP引擎能力、数据运算能力和千亿级互联网语料数据的支持，同时集成了广泛的知识问答能力，可实现上百种自定义属性配置，以及儿童语言风格及说话方式，从而让聊天变得更睿智、简单和有趣。
     @inlinable
-    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
-        try await self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), logger: logger, on: eventLoop)
+    public func chatBot(query: String, openId: String? = nil, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChatBotResponse {
+        try await self.chatBot(ChatBotRequest(query: query, openId: openId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

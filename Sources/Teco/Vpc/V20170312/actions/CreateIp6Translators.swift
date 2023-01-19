@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Vpc {
     /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
     /// 2. 同一个账户在一个地域最多允许创建10个转换实例
     @inlinable
-    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIp6TranslatorsResponse> {
-        self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIp6TranslatorsResponse> {
+        self.client.execute(action: "CreateIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建IPV6转换IPV4实例
@@ -67,8 +67,8 @@ extension Vpc {
     /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
     /// 2. 同一个账户在一个地域最多允许创建10个转换实例
     @inlinable
-    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
-        try await self.client.execute(action: "CreateIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIp6Translators(_ input: CreateIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
+        try await self.client.execute(action: "CreateIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建IPV6转换IPV4实例
@@ -76,8 +76,8 @@ extension Vpc {
     /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
     /// 2. 同一个账户在一个地域最多允许创建10个转换实例
     @inlinable
-    public func createIp6Translators(ip6TranslatorName: String? = nil, ip6TranslatorCount: Int64? = nil, ip6InternetServiceProvider: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIp6TranslatorsResponse> {
-        self.createIp6Translators(CreateIp6TranslatorsRequest(ip6TranslatorName: ip6TranslatorName, ip6TranslatorCount: ip6TranslatorCount, ip6InternetServiceProvider: ip6InternetServiceProvider), logger: logger, on: eventLoop)
+    public func createIp6Translators(ip6TranslatorName: String? = nil, ip6TranslatorCount: Int64? = nil, ip6InternetServiceProvider: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIp6TranslatorsResponse> {
+        self.createIp6Translators(CreateIp6TranslatorsRequest(ip6TranslatorName: ip6TranslatorName, ip6TranslatorCount: ip6TranslatorCount, ip6InternetServiceProvider: ip6InternetServiceProvider), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建IPV6转换IPV4实例
@@ -85,7 +85,7 @@ extension Vpc {
     /// 1. 该接口用于创建IPV6转换IPV4实例，支持批量
     /// 2. 同一个账户在一个地域最多允许创建10个转换实例
     @inlinable
-    public func createIp6Translators(ip6TranslatorName: String? = nil, ip6TranslatorCount: Int64? = nil, ip6InternetServiceProvider: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
-        try await self.createIp6Translators(CreateIp6TranslatorsRequest(ip6TranslatorName: ip6TranslatorName, ip6TranslatorCount: ip6TranslatorCount, ip6InternetServiceProvider: ip6InternetServiceProvider), logger: logger, on: eventLoop)
+    public func createIp6Translators(ip6TranslatorName: String? = nil, ip6TranslatorCount: Int64? = nil, ip6InternetServiceProvider: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIp6TranslatorsResponse {
+        try await self.createIp6Translators(CreateIp6TranslatorsRequest(ip6TranslatorName: ip6TranslatorName, ip6TranslatorCount: ip6TranslatorCount, ip6InternetServiceProvider: ip6InternetServiceProvider), region: region, logger: logger, on: eventLoop)
     }
 }

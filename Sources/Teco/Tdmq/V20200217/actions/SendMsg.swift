@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tdmq {
     ///
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable
-    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMsgResponse> {
-        self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendMsg(_ input: SendMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMsgResponse> {
+        self.client.execute(action: "SendMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送消息
     ///
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable
-    public func sendMsg(_ input: SendMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
-        try await self.client.execute(action: "SendMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendMsg(_ input: SendMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
+        try await self.client.execute(action: "SendMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送消息
     ///
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable
-    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMsgResponse> {
-        self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMsgResponse> {
+        self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送消息
     ///
     /// 此接口仅用于测试发生消息，不能作为现网正式生产使用
     @inlinable
-    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
-        try await self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func sendMsg(environmentId: String, topicName: String, msgContent: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMsgResponse {
+        try await self.sendMsg(SendMsgRequest(environmentId: environmentId, topicName: topicName, msgContent: msgContent, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

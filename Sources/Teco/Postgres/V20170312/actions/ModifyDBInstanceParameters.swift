@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Postgres {
 
     /// 批量修改参数
     @inlinable
-    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
-        self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
+        self.client.execute(action: "ModifyDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改参数
     @inlinable
-    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
-        try await self.client.execute(action: "ModifyDBInstanceParameters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceParameters(_ input: ModifyDBInstanceParametersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
+        try await self.client.execute(action: "ModifyDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改参数
     @inlinable
-    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
-        self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), logger: logger, on: eventLoop)
+    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceParametersResponse> {
+        self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改参数
     @inlinable
-    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
-        try await self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), logger: logger, on: eventLoop)
+    public func modifyDBInstanceParameters(dbInstanceId: String, paramList: [ParamEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceParametersResponse {
+        try await self.modifyDBInstanceParameters(ModifyDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }
 }

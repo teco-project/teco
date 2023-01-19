@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Smh {
     ///
     /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
     @inlinable
-    public func verifySmsCode(_ input: VerifySmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySmsCodeResponse> {
-        self.client.execute(action: "VerifySmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifySmsCode(_ input: VerifySmsCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySmsCodeResponse> {
+        self.client.execute(action: "VerifySmsCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证短信验证码
     ///
     /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
     @inlinable
-    public func verifySmsCode(_ input: VerifySmsCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
-        try await self.client.execute(action: "VerifySmsCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifySmsCode(_ input: VerifySmsCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
+        try await self.client.execute(action: "VerifySmsCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证短信验证码
     ///
     /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
     @inlinable
-    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySmsCodeResponse> {
-        self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySmsCodeResponse> {
+        self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证短信验证码
     ///
     /// 验证短信验证码以换绑官方云盘实例的超级管理员账号
     @inlinable
-    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
-        try await self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), logger: logger, on: eventLoop)
+    public func verifySmsCode(purpose: String, phoneNumber: String, code: String, instanceId: String? = nil, countryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySmsCodeResponse {
+        try await self.verifySmsCode(VerifySmsCodeRequest(purpose: purpose, phoneNumber: phoneNumber, code: code, instanceId: instanceId, countryCode: countryCode), region: region, logger: logger, on: eventLoop)
     }
 }

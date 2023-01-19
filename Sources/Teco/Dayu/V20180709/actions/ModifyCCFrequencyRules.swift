@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Dayu {
 
     /// 修改CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesResponse> {
-        self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesResponse> {
+        self.client.execute(action: "ModifyCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
-        try await self.client.execute(action: "ModifyCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCFrequencyRules(_ input: ModifyCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
+        try await self.client.execute(action: "ModifyCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesResponse> {
-        self.modifyCCFrequencyRules(ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesResponse> {
+        self.modifyCCFrequencyRules(ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
-        try await self.modifyCCFrequencyRules(ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRules(business: String, ccFrequencyRuleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesResponse {
+        try await self.modifyCCFrequencyRules(ModifyCCFrequencyRulesRequest(business: business, ccFrequencyRuleId: ccFrequencyRuleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
     }
 }

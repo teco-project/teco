@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Mmps {
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
-        self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
+        self.client.execute(action: "DescribeScanTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
-        try await self.client.execute(action: "DescribeScanTaskReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScanTaskReportUrl(_ input: DescribeScanTaskReportUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
+        try await self.client.execute(action: "DescribeScanTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
-        self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskReportUrlResponse> {
+        self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取合规诊断任务报告url
     ///
     /// 获取小程序合规诊断任务报告url
     @inlinable
-    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
-        try await self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeScanTaskReportUrl(source: Int64, taskID: String, platform: Int64, reportType: Int64, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskReportUrlResponse {
+        try await self.describeScanTaskReportUrl(DescribeScanTaskReportUrlRequest(source: source, taskID: taskID, platform: platform, reportType: reportType, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

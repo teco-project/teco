@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Dbbrain {
     ///
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
-    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHealthScoreResponse> {
-        self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHealthScore(_ input: DescribeHealthScoreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHealthScoreResponse> {
+        self.client.execute(action: "DescribeHealthScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取健康得分
     ///
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
-    public func describeHealthScore(_ input: DescribeHealthScoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
-        try await self.client.execute(action: "DescribeHealthScore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHealthScore(_ input: DescribeHealthScoreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
+        try await self.client.execute(action: "DescribeHealthScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取健康得分
     ///
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
-    public func describeHealthScore(instanceId: String, time: Date, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHealthScoreResponse> {
-        self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), logger: logger, on: eventLoop)
+    public func describeHealthScore(instanceId: String, time: Date, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHealthScoreResponse> {
+        self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取健康得分
     ///
     /// 根据实例ID获取指定时间段（30分钟）的健康得分，以及异常扣分项。
     @inlinable
-    public func describeHealthScore(instanceId: String, time: Date, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
-        try await self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), logger: logger, on: eventLoop)
+    public func describeHealthScore(instanceId: String, time: Date, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHealthScoreResponse {
+        try await self.describeHealthScore(DescribeHealthScoreRequest(instanceId: instanceId, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

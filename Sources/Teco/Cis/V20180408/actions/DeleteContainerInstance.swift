@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cis {
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
-        self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
+        self.client.execute(action: "DeleteContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
-        try await self.client.execute(action: "DeleteContainerInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteContainerInstance(_ input: DeleteContainerInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
+        try await self.client.execute(action: "DeleteContainerInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
-        self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), logger: logger, on: eventLoop)
+    public func deleteContainerInstance(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerInstanceResponse> {
+        self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除容器实例
     ///
     /// 此接口（DeleteContainerInstance）用于删除容器实例
     @inlinable
-    public func deleteContainerInstance(instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
-        try await self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), logger: logger, on: eventLoop)
+    public func deleteContainerInstance(instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerInstanceResponse {
+        try await self.deleteContainerInstance(DeleteContainerInstanceRequest(instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

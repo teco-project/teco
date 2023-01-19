@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
-    public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyPlayStatFileListResponse> {
-        self.client.execute(action: "DescribeDailyPlayStatFileList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyPlayStatFileListResponse> {
+        self.client.execute(action: "DescribeDailyPlayStatFileList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询播放统计文件下载列表
@@ -79,8 +79,8 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
-    public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
-        try await self.client.execute(action: "DescribeDailyPlayStatFileList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDailyPlayStatFileList(_ input: DescribeDailyPlayStatFileListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
+        try await self.client.execute(action: "DescribeDailyPlayStatFileList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询播放统计文件下载列表
@@ -94,8 +94,8 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
-    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyPlayStatFileListResponse> {
-        self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyPlayStatFileListResponse> {
+        self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放统计文件下载列表
@@ -109,7 +109,7 @@ extension Vod {
     ///     2. 其它文件（如 MP4 文件）：播放请求带有 range 参数且 range 的 start 参数不等于0时不统计播放次数，其它情况统计播放次数。
     /// * 播放设备的统计：播放请求带了 UserAgent 参数，并且 UserAgent 包含 Android 或者 iPhone 等标识，会统计为移动端播放次数，否则统计为 PC 端播放次数。
     @inlinable
-    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
-        try await self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeDailyPlayStatFileList(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyPlayStatFileListResponse {
+        try await self.describeDailyPlayStatFileList(DescribeDailyPlayStatFileListRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

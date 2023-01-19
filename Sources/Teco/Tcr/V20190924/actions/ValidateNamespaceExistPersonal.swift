@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcr {
     ///
     /// 查询个人版用户命名空间是否存在
     @inlinable
-    public func validateNamespaceExistPersonal(_ input: ValidateNamespaceExistPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateNamespaceExistPersonalResponse> {
-        self.client.execute(action: "ValidateNamespaceExistPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func validateNamespaceExistPersonal(_ input: ValidateNamespaceExistPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateNamespaceExistPersonalResponse> {
+        self.client.execute(action: "ValidateNamespaceExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证个人版命名空间是否存在
     ///
     /// 查询个人版用户命名空间是否存在
     @inlinable
-    public func validateNamespaceExistPersonal(_ input: ValidateNamespaceExistPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
-        try await self.client.execute(action: "ValidateNamespaceExistPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func validateNamespaceExistPersonal(_ input: ValidateNamespaceExistPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
+        try await self.client.execute(action: "ValidateNamespaceExistPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证个人版命名空间是否存在
     ///
     /// 查询个人版用户命名空间是否存在
     @inlinable
-    public func validateNamespaceExistPersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateNamespaceExistPersonalResponse> {
-        self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func validateNamespaceExistPersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ValidateNamespaceExistPersonalResponse> {
+        self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证个人版命名空间是否存在
     ///
     /// 查询个人版用户命名空间是否存在
     @inlinable
-    public func validateNamespaceExistPersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
-        try await self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func validateNamespaceExistPersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ValidateNamespaceExistPersonalResponse {
+        try await self.validateNamespaceExistPersonal(ValidateNamespaceExistPersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

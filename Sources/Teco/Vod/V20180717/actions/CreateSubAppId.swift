@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Vod {
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
-        self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubAppId(_ input: CreateSubAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
+        self.client.execute(action: "CreateSubAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(_ input: CreateSubAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
-        try await self.client.execute(action: "CreateSubAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubAppId(_ input: CreateSubAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
+        try await self.client.execute(action: "CreateSubAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
-        self.createSubAppId(CreateSubAppIdRequest(name: name, description: description), logger: logger, on: eventLoop)
+    public func createSubAppId(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubAppIdResponse> {
+        self.createSubAppId(CreateSubAppIdRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子应用
     ///
     /// 该接口用于创建点播子应用。
     @inlinable
-    public func createSubAppId(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
-        try await self.createSubAppId(CreateSubAppIdRequest(name: name, description: description), logger: logger, on: eventLoop)
+    public func createSubAppId(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubAppIdResponse {
+        try await self.createSubAppId(CreateSubAppIdRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

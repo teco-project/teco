@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iotvideoindustry {
 
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
-        self.client.execute(action: "DeleteLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
+        self.client.execute(action: "DeleteLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
-        try await self.client.execute(action: "DeleteLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveRecordPlan(_ input: DeleteLiveRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
+        try await self.client.execute(action: "DeleteLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
-        self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    public func deleteLiveRecordPlan(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordPlanResponse> {
+        self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除直播录制计划
     @inlinable
-    public func deleteLiveRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
-        try await self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    public func deleteLiveRecordPlan(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordPlanResponse {
+        try await self.deleteLiveRecordPlan(DeleteLiveRecordPlanRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

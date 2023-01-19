@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -235,31 +235,31 @@ extension Rp {
     ///
     /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。
     @inlinable
-    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRegisterProtectionResponse> {
-        self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRegisterProtectionResponse> {
+        self.client.execute(action: "QueryRegisterProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册保护
     ///
     /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。
     @inlinable
-    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
-        try await self.client.execute(action: "QueryRegisterProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryRegisterProtection(_ input: QueryRegisterProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
+        try await self.client.execute(action: "QueryRegisterProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册保护
     ///
     /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。
     @inlinable
-    public func queryRegisterProtection(registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, address: String? = nil, cookieHash: String? = nil, registerSource: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, registerSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRegisterProtectionResponse> {
-        self.queryRegisterProtection(QueryRegisterProtectionRequest(registerIp: registerIp, uid: uid, registerTime: registerTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, address: address, cookieHash: cookieHash, registerSource: registerSource, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, registerSpend: registerSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), logger: logger, on: eventLoop)
+    public func queryRegisterProtection(registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, address: String? = nil, cookieHash: String? = nil, registerSource: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, registerSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRegisterProtectionResponse> {
+        self.queryRegisterProtection(QueryRegisterProtectionRequest(registerIp: registerIp, uid: uid, registerTime: registerTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, address: address, cookieHash: cookieHash, registerSource: registerSource, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, registerSpend: registerSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册保护
     ///
     /// 注册保护服务（RegisterProtection，RP）针对网站、APP 的线上注册场景，遇到 “恶意注册” 、“小号注册” 、“注册器注册” 等恶意行为，提供基于天御 DNA 算法的恶意防护引擎，从账号、设备、行为三个维度有效识别 “恶意注册”，从“源头”上防范业务风险。
     @inlinable
-    public func queryRegisterProtection(registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, address: String? = nil, cookieHash: String? = nil, registerSource: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, registerSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
-        try await self.queryRegisterProtection(QueryRegisterProtectionRequest(registerIp: registerIp, uid: uid, registerTime: registerTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, address: address, cookieHash: cookieHash, registerSource: registerSource, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, registerSpend: registerSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), logger: logger, on: eventLoop)
+    public func queryRegisterProtection(registerIp: String, uid: String, registerTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, address: String? = nil, cookieHash: String? = nil, registerSource: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, registerSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRegisterProtectionResponse {
+        try await self.queryRegisterProtection(QueryRegisterProtectionRequest(registerIp: registerIp, uid: uid, registerTime: registerTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, address: address, cookieHash: cookieHash, registerSource: registerSource, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, registerSpend: registerSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), region: region, logger: logger, on: eventLoop)
     }
 }

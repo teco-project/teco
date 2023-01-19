@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Tione {
 
     /// 查询非结构化数据集详情
     @inlinable
-    public func describeDatasetDetailUnstructured(_ input: DescribeDatasetDetailUnstructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasetDetailUnstructuredResponse> {
-        self.client.execute(action: "DescribeDatasetDetailUnstructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatasetDetailUnstructured(_ input: DescribeDatasetDetailUnstructuredRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasetDetailUnstructuredResponse> {
+        self.client.execute(action: "DescribeDatasetDetailUnstructured", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询非结构化数据集详情
     @inlinable
-    public func describeDatasetDetailUnstructured(_ input: DescribeDatasetDetailUnstructuredRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
-        try await self.client.execute(action: "DescribeDatasetDetailUnstructured", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatasetDetailUnstructured(_ input: DescribeDatasetDetailUnstructuredRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
+        try await self.client.execute(action: "DescribeDatasetDetailUnstructured", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询非结构化数据集详情
     @inlinable
-    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasetDetailUnstructuredResponse> {
-        self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), logger: logger, on: eventLoop)
+    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasetDetailUnstructuredResponse> {
+        self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询非结构化数据集详情
     @inlinable
-    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
-        try await self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), logger: logger, on: eventLoop)
+    public func describeDatasetDetailUnstructured(datasetId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, labelList: [String]? = nil, annotationStatus: String? = nil, datasetIds: [String]? = nil, textClassificationLabels: [TextLabelDistributionInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetDetailUnstructuredResponse {
+        try await self.describeDatasetDetailUnstructured(DescribeDatasetDetailUnstructuredRequest(datasetId: datasetId, offset: offset, limit: limit, labelList: labelList, annotationStatus: annotationStatus, datasetIds: datasetIds, textClassificationLabels: textClassificationLabels), region: region, logger: logger, on: eventLoop)
     }
 }

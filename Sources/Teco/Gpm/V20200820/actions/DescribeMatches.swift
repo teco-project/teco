@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,8 +89,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 分页查询匹配列表
     @inlinable
-    public func describeMatches(_ input: DescribeMatchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
-        self.client.execute(action: "DescribeMatches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMatches(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
+        self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询匹配列表
@@ -98,8 +98,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 分页查询匹配列表
     @inlinable
-    public func describeMatches(_ input: DescribeMatchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
-        try await self.client.execute(action: "DescribeMatches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMatches(_ input: DescribeMatchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
+        try await self.client.execute(action: "DescribeMatches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询匹配列表
@@ -107,8 +107,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 分页查询匹配列表
     @inlinable
-    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
-        self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), logger: logger, on: eventLoop)
+    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchesResponse> {
+        self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询匹配列表
@@ -116,7 +116,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 分页查询匹配列表
     @inlinable
-    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
-        try await self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), logger: logger, on: eventLoop)
+    public func describeMatches(pageNumber: Int64? = nil, pageSize: Int64? = nil, searchType: String? = nil, keyword: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchesResponse {
+        try await self.describeMatches(DescribeMatchesRequest(pageNumber: pageNumber, pageSize: pageSize, searchType: searchType, keyword: keyword, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

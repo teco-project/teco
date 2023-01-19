@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Tbaas {
 
     /// 实例化结果查询
     @inlinable
-    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeInitializeResultForUserResponse> {
-        self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeInitializeResultForUserResponse> {
+        self.client.execute(action: "GetChaincodeInitializeResultForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例化结果查询
     @inlinable
-    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
-        try await self.client.execute(action: "GetChaincodeInitializeResultForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getChaincodeInitializeResultForUser(_ input: GetChaincodeInitializeResultForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
+        try await self.client.execute(action: "GetChaincodeInitializeResultForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例化结果查询
     @inlinable
-    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeInitializeResultForUserResponse> {
-        self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeInitializeResultForUserResponse> {
+        self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例化结果查询
     @inlinable
-    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
-        try await self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
+        try await self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

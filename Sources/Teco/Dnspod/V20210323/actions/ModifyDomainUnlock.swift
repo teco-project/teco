@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dnspod {
 
     /// 域名锁定解锁
     @inlinable
-    public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
-        self.client.execute(action: "ModifyDomainUnlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
+        self.client.execute(action: "ModifyDomainUnlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名锁定解锁
     @inlinable
-    public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
-        try await self.client.execute(action: "ModifyDomainUnlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
+        try await self.client.execute(action: "ModifyDomainUnlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名锁定解锁
     @inlinable
-    public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
-        self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
+        self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名锁定解锁
     @inlinable
-    public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
-        try await self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
+        try await self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

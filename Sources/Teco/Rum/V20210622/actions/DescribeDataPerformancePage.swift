@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -155,25 +155,25 @@ extension Rum {
 
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
-        self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
+        self.client.execute(action: "DescribeDataPerformancePage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
-        try await self.client.execute(action: "DescribeDataPerformancePage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataPerformancePage(_ input: DescribeDataPerformancePageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
+        try await self.client.execute(action: "DescribeDataPerformancePage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
-        self.describeDataPerformancePage(DescribeDataPerformancePageRequest(id: id, startTime: startTime, endTime: endTime, type: type, level: level, isp: isp, area: area, netType: netType, platform: platform, device: device, versionNum: versionNum, extFirst: extFirst, extSecond: extSecond, extThird: extThird, isAbroad: isAbroad, browser: browser, os: os, engine: engine, brand: brand, from: from, costType: costType, env: env, netStatus: netStatus), logger: logger, on: eventLoop)
+    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataPerformancePageResponse> {
+        self.describeDataPerformancePage(DescribeDataPerformancePageRequest(id: id, startTime: startTime, endTime: endTime, type: type, level: level, isp: isp, area: area, netType: netType, platform: platform, device: device, versionNum: versionNum, extFirst: extFirst, extSecond: extSecond, extThird: extThird, isAbroad: isAbroad, browser: browser, os: os, engine: engine, brand: brand, from: from, costType: costType, env: env, netStatus: netStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取PerformancePage信息
     @inlinable
-    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
-        try await self.describeDataPerformancePage(DescribeDataPerformancePageRequest(id: id, startTime: startTime, endTime: endTime, type: type, level: level, isp: isp, area: area, netType: netType, platform: platform, device: device, versionNum: versionNum, extFirst: extFirst, extSecond: extSecond, extThird: extThird, isAbroad: isAbroad, browser: browser, os: os, engine: engine, brand: brand, from: from, costType: costType, env: env, netStatus: netStatus), logger: logger, on: eventLoop)
+    public func describeDataPerformancePage(id: Int64, startTime: Int64, endTime: Int64, type: String, level: String? = nil, isp: String? = nil, area: String? = nil, netType: String? = nil, platform: String? = nil, device: String? = nil, versionNum: String? = nil, extFirst: String? = nil, extSecond: String? = nil, extThird: String? = nil, isAbroad: String? = nil, browser: String? = nil, os: String? = nil, engine: String? = nil, brand: String? = nil, from: String? = nil, costType: String? = nil, env: String? = nil, netStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataPerformancePageResponse {
+        try await self.describeDataPerformancePage(DescribeDataPerformancePageRequest(id: id, startTime: startTime, endTime: endTime, type: type, level: level, isp: isp, area: area, netType: netType, platform: platform, device: device, versionNum: versionNum, extFirst: extFirst, extSecond: extSecond, extThird: extThird, isAbroad: isAbroad, browser: browser, os: os, engine: engine, brand: brand, from: from, costType: costType, env: env, netStatus: netStatus), region: region, logger: logger, on: eventLoop)
     }
 }

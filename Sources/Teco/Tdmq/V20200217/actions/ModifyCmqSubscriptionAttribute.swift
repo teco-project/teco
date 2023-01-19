@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Tdmq {
 
     /// 修改cmq订阅属性
     @inlinable
-    public func modifyCmqSubscriptionAttribute(_ input: ModifyCmqSubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqSubscriptionAttributeResponse> {
-        self.client.execute(action: "ModifyCmqSubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCmqSubscriptionAttribute(_ input: ModifyCmqSubscriptionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqSubscriptionAttributeResponse> {
+        self.client.execute(action: "ModifyCmqSubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq订阅属性
     @inlinable
-    public func modifyCmqSubscriptionAttribute(_ input: ModifyCmqSubscriptionAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
-        try await self.client.execute(action: "ModifyCmqSubscriptionAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCmqSubscriptionAttribute(_ input: ModifyCmqSubscriptionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
+        try await self.client.execute(action: "ModifyCmqSubscriptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改cmq订阅属性
     @inlinable
-    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqSubscriptionAttributeResponse> {
-        self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqSubscriptionAttributeResponse> {
+        self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq订阅属性
     @inlinable
-    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
-        try await self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), logger: logger, on: eventLoop)
+    public func modifyCmqSubscriptionAttribute(topicName: String, subscriptionName: String, notifyStrategy: String? = nil, notifyContentFormat: String? = nil, filterTags: [String]? = nil, bindingKey: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqSubscriptionAttributeResponse {
+        try await self.modifyCmqSubscriptionAttribute(ModifyCmqSubscriptionAttributeRequest(topicName: topicName, subscriptionName: subscriptionName, notifyStrategy: notifyStrategy, notifyContentFormat: notifyContentFormat, filterTags: filterTags, bindingKey: bindingKey), region: region, logger: logger, on: eventLoop)
     }
 }

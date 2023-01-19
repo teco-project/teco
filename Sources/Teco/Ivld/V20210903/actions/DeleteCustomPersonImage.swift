@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ivld {
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
-        self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
+        self.client.execute(action: "DeleteCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
-        try await self.client.execute(action: "DeleteCustomPersonImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomPersonImage(_ input: DeleteCustomPersonImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
+        try await self.client.execute(action: "DeleteCustomPersonImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(personId: String, imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
-        self.deleteCustomPersonImage(DeleteCustomPersonImageRequest(personId: personId, imageId: imageId), logger: logger, on: eventLoop)
+    public func deleteCustomPersonImage(personId: String, imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonImageResponse> {
+        self.deleteCustomPersonImage(DeleteCustomPersonImageRequest(personId: personId, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人脸
     ///
     /// 删除自定义人脸数据
     @inlinable
-    public func deleteCustomPersonImage(personId: String, imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
-        try await self.deleteCustomPersonImage(DeleteCustomPersonImageRequest(personId: personId, imageId: imageId), logger: logger, on: eventLoop)
+    public func deleteCustomPersonImage(personId: String, imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonImageResponse {
+        try await self.deleteCustomPersonImage(DeleteCustomPersonImageRequest(personId: personId, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

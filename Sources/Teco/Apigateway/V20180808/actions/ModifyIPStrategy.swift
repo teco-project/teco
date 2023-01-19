@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
     @inlinable
-    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIPStrategyResponse> {
-        self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIPStrategyResponse> {
+        self.client.execute(action: "ModifyIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务IP策略
     ///
     /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
     @inlinable
-    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
-        try await self.client.execute(action: "ModifyIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyIPStrategy(_ input: ModifyIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
+        try await self.client.execute(action: "ModifyIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改服务IP策略
     ///
     /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
     @inlinable
-    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIPStrategyResponse> {
-        self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), logger: logger, on: eventLoop)
+    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIPStrategyResponse> {
+        self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务IP策略
     ///
     /// 本接口（ModifyIPStrategy）用于修改服务IP策略。
     @inlinable
-    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
-        try await self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), logger: logger, on: eventLoop)
+    public func modifyIPStrategy(serviceId: String, strategyId: String, strategyData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIPStrategyResponse {
+        try await self.modifyIPStrategy(ModifyIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, strategyData: strategyData), region: region, logger: logger, on: eventLoop)
     }
 }

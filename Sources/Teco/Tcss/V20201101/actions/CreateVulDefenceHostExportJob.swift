@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Tcss {
 
     /// 创建漏洞防御主机导出任务
     @inlinable
-    public func createVulDefenceHostExportJob(_ input: CreateVulDefenceHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulDefenceHostExportJobResponse> {
-        self.client.execute(action: "CreateVulDefenceHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVulDefenceHostExportJob(_ input: CreateVulDefenceHostExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulDefenceHostExportJobResponse> {
+        self.client.execute(action: "CreateVulDefenceHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞防御主机导出任务
     @inlinable
-    public func createVulDefenceHostExportJob(_ input: CreateVulDefenceHostExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceHostExportJobResponse {
-        try await self.client.execute(action: "CreateVulDefenceHostExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVulDefenceHostExportJob(_ input: CreateVulDefenceHostExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceHostExportJobResponse {
+        try await self.client.execute(action: "CreateVulDefenceHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建漏洞防御主机导出任务
     @inlinable
-    public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulDefenceHostExportJobResponse> {
-        self.createVulDefenceHostExportJob(CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulDefenceHostExportJobResponse> {
+        self.createVulDefenceHostExportJob(CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建漏洞防御主机导出任务
     @inlinable
-    public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceHostExportJobResponse {
-        try await self.createVulDefenceHostExportJob(CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func createVulDefenceHostExportJob(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulDefenceHostExportJobResponse {
+        try await self.createVulDefenceHostExportJob(CreateVulDefenceHostExportJobRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

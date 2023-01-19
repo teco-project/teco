@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,31 +115,31 @@ extension Cwp {
     ///
     /// 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
     @inlinable
-    public func describeAssetInfo(_ input: DescribeAssetInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInfoResponse> {
-        self.client.execute(action: "DescribeAssetInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetInfo(_ input: DescribeAssetInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInfoResponse> {
+        self.client.execute(action: "DescribeAssetInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资产数量概况
     ///
     /// 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
     @inlinable
-    public func describeAssetInfo(_ input: DescribeAssetInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInfoResponse {
-        try await self.client.execute(action: "DescribeAssetInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetInfo(_ input: DescribeAssetInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInfoResponse {
+        try await self.client.execute(action: "DescribeAssetInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资产数量概况
     ///
     /// 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
     @inlinable
-    public func describeAssetInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInfoResponse> {
-        self.describeAssetInfo(DescribeAssetInfoRequest(), logger: logger, on: eventLoop)
+    public func describeAssetInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetInfoResponse> {
+        self.describeAssetInfo(DescribeAssetInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资产数量概况
     ///
     /// 获取资产数量： 主机数、账号数、端口数、进程数、软件数、数据库数、Web应用数、Web框架数、Web服务数、Web站点数
     @inlinable
-    public func describeAssetInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInfoResponse {
-        try await self.describeAssetInfo(DescribeAssetInfoRequest(), logger: logger, on: eventLoop)
+    public func describeAssetInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetInfoResponse {
+        try await self.describeAssetInfo(DescribeAssetInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

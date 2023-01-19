@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tem {
 
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
-        self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
+        self.client.execute(action: "DescribeApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
-        try await self.client.execute(action: "DescribeApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationInfo(_ input: DescribeApplicationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
+        try await self.client.execute(action: "DescribeApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
-        self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
+    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
+        self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务基本信息查看
     @inlinable
-    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
-        try await self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), logger: logger, on: eventLoop)
+    public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
+        try await self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 }

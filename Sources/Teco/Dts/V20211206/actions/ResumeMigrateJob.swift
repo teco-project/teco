@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dts {
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
-        self.client.execute(action: "ResumeMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
+        self.client.execute(action: "ResumeMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
-        try await self.client.execute(action: "ResumeMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
+        try await self.client.execute(action: "ResumeMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func resumeMigrateJob(jobId: String, resumeOption: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
-        self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), logger: logger, on: eventLoop)
+    public func resumeMigrateJob(jobId: String, resumeOption: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
+        self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func resumeMigrateJob(jobId: String, resumeOption: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
-        try await self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), logger: logger, on: eventLoop)
+    public func resumeMigrateJob(jobId: String, resumeOption: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
+        try await self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), region: region, logger: logger, on: eventLoop)
     }
 }

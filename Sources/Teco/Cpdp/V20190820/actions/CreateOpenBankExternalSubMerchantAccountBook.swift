@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Cpdp {
     ///
     /// 第三方子商户电子记账本创建接口
     @inlinable
-    public func createOpenBankExternalSubMerchantAccountBook(_ input: CreateOpenBankExternalSubMerchantAccountBookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantAccountBookResponse> {
-        self.client.execute(action: "CreateOpenBankExternalSubMerchantAccountBook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantAccountBook(_ input: CreateOpenBankExternalSubMerchantAccountBookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantAccountBookResponse> {
+        self.client.execute(action: "CreateOpenBankExternalSubMerchantAccountBook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户电子记账本创建接口
     ///
     /// 第三方子商户电子记账本创建接口
     @inlinable
-    public func createOpenBankExternalSubMerchantAccountBook(_ input: CreateOpenBankExternalSubMerchantAccountBookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
-        try await self.client.execute(action: "CreateOpenBankExternalSubMerchantAccountBook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOpenBankExternalSubMerchantAccountBook(_ input: CreateOpenBankExternalSubMerchantAccountBookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
+        try await self.client.execute(action: "CreateOpenBankExternalSubMerchantAccountBook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户电子记账本创建接口
     ///
     /// 第三方子商户电子记账本创建接口
     @inlinable
-    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantAccountBookResponse> {
-        self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankExternalSubMerchantAccountBookResponse> {
+        self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户电子记账本创建接口
     ///
     /// 第三方子商户电子记账本创建接口
     @inlinable
-    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
-        try await self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankExternalSubMerchantAccountBook(outAccountBookId: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankExternalSubMerchantAccountBookResponse {
+        try await self.createOpenBankExternalSubMerchantAccountBook(CreateOpenBankExternalSubMerchantAccountBookRequest(outAccountBookId: outAccountBookId, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

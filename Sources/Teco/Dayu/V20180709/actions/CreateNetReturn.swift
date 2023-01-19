@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dayu {
     ///
     /// 高防IP专业版一键切回源站
     @inlinable
-    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetReturnResponse> {
-        self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetReturn(_ input: CreateNetReturnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetReturnResponse> {
+        self.client.execute(action: "CreateNetReturn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 一键切回
     ///
     /// 高防IP专业版一键切回源站
     @inlinable
-    public func createNetReturn(_ input: CreateNetReturnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
-        try await self.client.execute(action: "CreateNetReturn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetReturn(_ input: CreateNetReturnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
+        try await self.client.execute(action: "CreateNetReturn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 一键切回
     ///
     /// 高防IP专业版一键切回源站
     @inlinable
-    public func createNetReturn(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetReturnResponse> {
-        self.createNetReturn(CreateNetReturnRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func createNetReturn(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetReturnResponse> {
+        self.createNetReturn(CreateNetReturnRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 一键切回
     ///
     /// 高防IP专业版一键切回源站
     @inlinable
-    public func createNetReturn(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
-        try await self.createNetReturn(CreateNetReturnRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func createNetReturn(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetReturnResponse {
+        try await self.createNetReturn(CreateNetReturnRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

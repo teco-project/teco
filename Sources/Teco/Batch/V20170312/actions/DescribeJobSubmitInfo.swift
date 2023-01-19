@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Batch {
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
-        self.client.execute(action: "DescribeJobSubmitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
+        self.client.execute(action: "DescribeJobSubmitInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
-        try await self.client.execute(action: "DescribeJobSubmitInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeJobSubmitInfo(_ input: DescribeJobSubmitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
+        try await self.client.execute(action: "DescribeJobSubmitInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
-        self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeJobSubmitInfo(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobSubmitInfoResponse> {
+        self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取作业的提交信息
     ///
     /// 用于查询指定作业的提交信息，其返回内容包括 JobId 和 SubmitJob 接口中作为输入参数的作业提交信息
     @inlinable
-    public func describeJobSubmitInfo(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
-        try await self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeJobSubmitInfo(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobSubmitInfoResponse {
+        try await self.describeJobSubmitInfo(DescribeJobSubmitInfoRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

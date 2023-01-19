@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Cwp {
 
     /// 获取Web服务关联进程列表
     @inlinable
-    public func describeAssetWebServiceProcessList(_ input: DescribeAssetWebServiceProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceProcessListResponse> {
-        self.client.execute(action: "DescribeAssetWebServiceProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetWebServiceProcessList(_ input: DescribeAssetWebServiceProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceProcessListResponse> {
+        self.client.execute(action: "DescribeAssetWebServiceProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Web服务关联进程列表
     @inlinable
-    public func describeAssetWebServiceProcessList(_ input: DescribeAssetWebServiceProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceProcessListResponse {
-        try await self.client.execute(action: "DescribeAssetWebServiceProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetWebServiceProcessList(_ input: DescribeAssetWebServiceProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceProcessListResponse {
+        try await self.client.execute(action: "DescribeAssetWebServiceProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Web服务关联进程列表
     @inlinable
-    public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceProcessListResponse> {
-        self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceProcessListResponse> {
+        self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Web服务关联进程列表
     @inlinable
-    public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceProcessListResponse {
-        try await self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceProcessListResponse {
+        try await self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

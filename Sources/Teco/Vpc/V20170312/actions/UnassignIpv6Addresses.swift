@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
-        self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
+        self.client.execute(action: "UnassignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
@@ -58,8 +58,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
-        try await self.client.execute(action: "UnassignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unassignIpv6Addresses(_ input: UnassignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
+        try await self.client.execute(action: "UnassignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放IPv6地址
@@ -67,8 +67,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
-        self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), logger: logger, on: eventLoop)
+    public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
+        self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
@@ -76,7 +76,7 @@ extension Vpc {
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡`IPv6`地址。<br />
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
-        try await self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), logger: logger, on: eventLoop)
+    public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
+        try await self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 }

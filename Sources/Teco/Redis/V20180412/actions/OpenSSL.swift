@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 开启SSL
     @inlinable
-    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSSLResponse> {
-        self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openSSL(_ input: OpenSSLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSSLResponse> {
+        self.client.execute(action: "OpenSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启SSL
     @inlinable
-    public func openSSL(_ input: OpenSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
-        try await self.client.execute(action: "OpenSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openSSL(_ input: OpenSSLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
+        try await self.client.execute(action: "OpenSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启SSL
     @inlinable
-    public func openSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSSLResponse> {
-        self.openSSL(OpenSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenSSLResponse> {
+        self.openSSL(OpenSSLRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启SSL
     @inlinable
-    public func openSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
-        try await self.openSSL(OpenSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenSSLResponse {
+        try await self.openSSL(OpenSSLRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

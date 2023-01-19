@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ape {
 
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
-        self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
+        self.client.execute(action: "BatchDescribeOrderCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
-        try await self.client.execute(action: "BatchDescribeOrderCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDescribeOrderCertificate(_ input: BatchDescribeOrderCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
+        try await self.client.execute(action: "BatchDescribeOrderCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
-        self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    public func batchDescribeOrderCertificate(orderIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
+        self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取授权书下载地址
     @inlinable
-    public func batchDescribeOrderCertificate(orderIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
-        try await self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), logger: logger, on: eventLoop)
+    public func batchDescribeOrderCertificate(orderIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
+        try await self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), region: region, logger: logger, on: eventLoop)
     }
 }

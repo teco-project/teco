@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cam {
     ///
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
-    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedRolePoliciesResponse> {
-        self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedRolePoliciesResponse> {
+        self.client.execute(action: "ListAttachedRolePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色绑定的策略列表
     ///
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
-    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
-        try await self.client.execute(action: "ListAttachedRolePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAttachedRolePolicies(_ input: ListAttachedRolePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
+        try await self.client.execute(action: "ListAttachedRolePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取角色绑定的策略列表
     ///
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
-    public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedRolePoliciesResponse> {
-        self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), logger: logger, on: eventLoop)
+    public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedRolePoliciesResponse> {
+        self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色绑定的策略列表
     ///
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
-    public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
-        try await self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), logger: logger, on: eventLoop)
+    public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
+        try await self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 }

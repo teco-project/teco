@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Apigateway {
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
-        self.client.execute(action: "EnableApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableApiKey(_ input: EnableApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
+        self.client.execute(action: "EnableApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(_ input: EnableApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
-        try await self.client.execute(action: "EnableApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableApiKey(_ input: EnableApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
+        try await self.client.execute(action: "EnableApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
-        self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    public func enableApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApiKeyResponse> {
+        self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用密钥
     ///
     /// 本接口（EnableApiKey）用于启动一对被禁用的 API 密钥。
     @inlinable
-    public func enableApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
-        try await self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    public func enableApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApiKeyResponse {
+        try await self.enableApiKey(EnableApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 }

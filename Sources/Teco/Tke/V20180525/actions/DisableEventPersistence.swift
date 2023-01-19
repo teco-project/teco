@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 关闭事件持久化功能
     @inlinable
-    public func disableEventPersistence(_ input: DisableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableEventPersistenceResponse> {
-        self.client.execute(action: "DisableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableEventPersistence(_ input: DisableEventPersistenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableEventPersistenceResponse> {
+        self.client.execute(action: "DisableEventPersistence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭事件持久化功能
     @inlinable
-    public func disableEventPersistence(_ input: DisableEventPersistenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
-        try await self.client.execute(action: "DisableEventPersistence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableEventPersistence(_ input: DisableEventPersistenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
+        try await self.client.execute(action: "DisableEventPersistence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭事件持久化功能
     @inlinable
-    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableEventPersistenceResponse> {
-        self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), logger: logger, on: eventLoop)
+    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableEventPersistenceResponse> {
+        self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭事件持久化功能
     @inlinable
-    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
-        try await self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), logger: logger, on: eventLoop)
+    public func disableEventPersistence(clusterId: String, deleteLogSetAndTopic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableEventPersistenceResponse {
+        try await self.disableEventPersistence(DisableEventPersistenceRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Iecp {
 
     /// 获取Secrets列表
     @inlinable
-    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretsResponse> {
-        self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecrets(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretsResponse> {
+        self.client.execute(action: "DescribeSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Secrets列表
     @inlinable
-    public func describeSecrets(_ input: DescribeSecretsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
-        try await self.client.execute(action: "DescribeSecrets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecrets(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
+        try await self.client.execute(action: "DescribeSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Secrets列表
     @inlinable
-    public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretsResponse> {
-        self.describeSecrets(DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), logger: logger, on: eventLoop)
+    public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretsResponse> {
+        self.describeSecrets(DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Secrets列表
     @inlinable
-    public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
-        try await self.describeSecrets(DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), logger: logger, on: eventLoop)
+    public func describeSecrets(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, secretNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, secretType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretsResponse {
+        try await self.describeSecrets(DescribeSecretsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, secretNamespace: secretNamespace, namePattern: namePattern, sort: sort, secretType: secretType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Teo {
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
     @inlinable
-    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
-        self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
+        self.client.execute(action: "DeleteLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
     @inlinable
-    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
-        try await self.client.execute(action: "DeleteLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
+        try await self.client.execute(action: "DeleteLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
     @inlinable
-    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
-        self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
+        self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
     @inlinable
-    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
-        try await self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
+        try await self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }
 }

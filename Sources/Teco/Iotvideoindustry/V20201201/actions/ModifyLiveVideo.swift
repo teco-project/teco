@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideoindustry {
 
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
-        self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
+        self.client.execute(action: "ModifyLiveVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
-        try await self.client.execute(action: "ModifyLiveVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLiveVideo(_ input: ModifyLiveVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
+        try await self.client.execute(action: "ModifyLiveVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
-        self.modifyLiveVideo(ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveVideoResponse> {
+        self.modifyLiveVideo(ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录像编辑
     @inlinable
-    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
-        try await self.modifyLiveVideo(ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func modifyLiveVideo(intIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveVideoResponse {
+        try await self.modifyLiveVideo(ModifyLiveVideoRequest(intIDs: intIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 }

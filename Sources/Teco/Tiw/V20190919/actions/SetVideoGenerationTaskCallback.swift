@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tiw {
 
     /// 设置录制视频生成回调地址
     @inlinable
-    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackResponse> {
-        self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackResponse> {
+        self.client.execute(action: "SetVideoGenerationTaskCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置录制视频生成回调地址
     @inlinable
-    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
-        try await self.client.execute(action: "SetVideoGenerationTaskCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setVideoGenerationTaskCallback(_ input: SetVideoGenerationTaskCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
+        try await self.client.execute(action: "SetVideoGenerationTaskCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置录制视频生成回调地址
     @inlinable
-    public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackResponse> {
-        self.setVideoGenerationTaskCallback(SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackResponse> {
+        self.setVideoGenerationTaskCallback(SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置录制视频生成回调地址
     @inlinable
-    public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
-        try await self.setVideoGenerationTaskCallback(SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setVideoGenerationTaskCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackResponse {
+        try await self.setVideoGenerationTaskCallback(SetVideoGenerationTaskCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

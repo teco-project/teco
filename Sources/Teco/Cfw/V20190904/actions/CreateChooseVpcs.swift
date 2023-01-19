@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cfw {
 
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
-        self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
+        self.client.execute(action: "CreateChooseVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
-        try await self.client.execute(action: "CreateChooseVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createChooseVpcs(_ input: CreateChooseVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
+        try await self.client.execute(action: "CreateChooseVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
-        self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), logger: logger, on: eventLoop)
+    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
+        self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建、选择vpc
     @inlinable
-    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
-        try await self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), logger: logger, on: eventLoop)
+    public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
+        try await self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), region: region, logger: logger, on: eventLoop)
     }
 }

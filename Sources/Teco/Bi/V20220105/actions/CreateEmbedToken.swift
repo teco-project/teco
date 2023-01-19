@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Bi {
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
-        self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEmbedToken(_ input: CreateEmbedTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
+        self.client.execute(action: "CreateEmbedToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建嵌出报表Token
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(_ input: CreateEmbedTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
-        try await self.client.execute(action: "CreateEmbedToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEmbedToken(_ input: CreateEmbedTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
+        try await self.client.execute(action: "CreateEmbedToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建嵌出报表Token
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
-        self.createEmbedToken(CreateEmbedTokenRequest(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), logger: logger, on: eventLoop)
+    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmbedTokenResponse> {
+        self.createEmbedToken(CreateEmbedTokenRequest(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建嵌出报表Token
     ///
     /// 创建嵌出报表-强鉴权
     @inlinable
-    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
-        try await self.createEmbedToken(CreateEmbedTokenRequest(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), logger: logger, on: eventLoop)
+    public func createEmbedToken(projectId: UInt64? = nil, pageId: UInt64? = nil, scope: String? = nil, expireTime: String? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmbedTokenResponse {
+        try await self.createEmbedToken(CreateEmbedTokenRequest(projectId: projectId, pageId: pageId, scope: scope, expireTime: expireTime, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
     }
 }

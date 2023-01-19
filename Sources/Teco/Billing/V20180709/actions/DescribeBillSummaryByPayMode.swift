@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Billing {
 
     /// 获取按付费模式汇总费用分布
     @inlinable
-    public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
-        self.client.execute(action: "DescribeBillSummaryByPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
+        self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按付费模式汇总费用分布
     @inlinable
-    public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
-        try await self.client.execute(action: "DescribeBillSummaryByPayMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBillSummaryByPayMode(_ input: DescribeBillSummaryByPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
+        try await self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按付费模式汇总费用分布
     @inlinable
-    public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
-        self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
+        self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按付费模式汇总费用分布
     @inlinable
-    public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
-        try await self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
+        try await self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 }

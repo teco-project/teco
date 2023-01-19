@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cfw {
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
-        self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
+        self.client.execute(action: "CreateNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
-        try await self.client.execute(action: "CreateNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNatFwInstance(_ input: CreateNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
+        try await self.client.execute(action: "CreateNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
-        self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), logger: logger, on: eventLoop)
+    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
+        self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
-        try await self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), logger: logger, on: eventLoop)
+    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
+        try await self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), region: region, logger: logger, on: eventLoop)
     }
 }

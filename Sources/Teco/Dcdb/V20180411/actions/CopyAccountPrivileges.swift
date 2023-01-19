@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Dcdb {
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
-        self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
+        self.client.execute(action: "CopyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制账号权限
@@ -83,8 +83,8 @@ extension Dcdb {
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
-        try await self.client.execute(action: "CopyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyAccountPrivileges(_ input: CopyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
+        try await self.client.execute(action: "CopyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制账号权限
@@ -92,8 +92,8 @@ extension Dcdb {
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
-        self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), logger: logger, on: eventLoop)
+    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyAccountPrivilegesResponse> {
+        self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制账号权限
@@ -101,7 +101,7 @@ extension Dcdb {
     /// 本接口（CopyAccountPrivileges）用于复制云数据库账号的权限。
     /// 注意：相同用户名，不同Host是不同的账号，Readonly属性相同的账号之间才能复制权限。
     @inlinable
-    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
-        try await self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), logger: logger, on: eventLoop)
+    public func copyAccountPrivileges(instanceId: String, srcUserName: String, srcHost: String, dstUserName: String, dstHost: String, srcReadOnly: String? = nil, dstReadOnly: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyAccountPrivilegesResponse {
+        try await self.copyAccountPrivileges(CopyAccountPrivilegesRequest(instanceId: instanceId, srcUserName: srcUserName, srcHost: srcHost, dstUserName: dstUserName, dstHost: dstHost, srcReadOnly: srcReadOnly, dstReadOnly: dstReadOnly), region: region, logger: logger, on: eventLoop)
     }
 }

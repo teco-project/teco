@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Antiddos {
 
     /// 修改DDoS黑白名单列表
     @inlinable
-    public func modifyDDoSBlackWhiteIpList(_ input: ModifyDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSBlackWhiteIpListResponse> {
-        self.client.execute(action: "ModifyDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSBlackWhiteIpList(_ input: ModifyDDoSBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSBlackWhiteIpListResponse> {
+        self.client.execute(action: "ModifyDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS黑白名单列表
     @inlinable
-    public func modifyDDoSBlackWhiteIpList(_ input: ModifyDDoSBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSBlackWhiteIpListResponse {
-        try await self.client.execute(action: "ModifyDDoSBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSBlackWhiteIpList(_ input: ModifyDDoSBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSBlackWhiteIpListResponse {
+        try await self.client.execute(action: "ModifyDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS黑白名单列表
     @inlinable
-    public func modifyDDoSBlackWhiteIpList(instanceId: String, oldIpType: String, oldIp: IpSegment, newIpType: String, newIp: IpSegment, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSBlackWhiteIpListResponse> {
-        self.modifyDDoSBlackWhiteIpList(ModifyDDoSBlackWhiteIpListRequest(instanceId: instanceId, oldIpType: oldIpType, oldIp: oldIp, newIpType: newIpType, newIp: newIp), logger: logger, on: eventLoop)
+    public func modifyDDoSBlackWhiteIpList(instanceId: String, oldIpType: String, oldIp: IpSegment, newIpType: String, newIp: IpSegment, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSBlackWhiteIpListResponse> {
+        self.modifyDDoSBlackWhiteIpList(ModifyDDoSBlackWhiteIpListRequest(instanceId: instanceId, oldIpType: oldIpType, oldIp: oldIp, newIpType: newIpType, newIp: newIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS黑白名单列表
     @inlinable
-    public func modifyDDoSBlackWhiteIpList(instanceId: String, oldIpType: String, oldIp: IpSegment, newIpType: String, newIp: IpSegment, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSBlackWhiteIpListResponse {
-        try await self.modifyDDoSBlackWhiteIpList(ModifyDDoSBlackWhiteIpListRequest(instanceId: instanceId, oldIpType: oldIpType, oldIp: oldIp, newIpType: newIpType, newIp: newIp), logger: logger, on: eventLoop)
+    public func modifyDDoSBlackWhiteIpList(instanceId: String, oldIpType: String, oldIp: IpSegment, newIpType: String, newIp: IpSegment, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSBlackWhiteIpListResponse {
+        try await self.modifyDDoSBlackWhiteIpList(ModifyDDoSBlackWhiteIpListRequest(instanceId: instanceId, oldIpType: oldIpType, oldIp: oldIp, newIpType: newIpType, newIp: newIp), region: region, logger: logger, on: eventLoop)
     }
 }

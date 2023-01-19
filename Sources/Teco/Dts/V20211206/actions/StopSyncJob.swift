@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable
-    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSyncJobResponse> {
-        self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopSyncJob(_ input: StopSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSyncJobResponse> {
+        self.client.execute(action: "StopSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 结束同步任务
     ///
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable
-    public func stopSyncJob(_ input: StopSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
-        try await self.client.execute(action: "StopSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopSyncJob(_ input: StopSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
+        try await self.client.execute(action: "StopSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 结束同步任务
     ///
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable
-    public func stopSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSyncJobResponse> {
-        self.stopSyncJob(StopSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func stopSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSyncJobResponse> {
+        self.stopSyncJob(StopSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结束同步任务
     ///
     /// 结束同步任务，操作后可通过查询同步任务信息接口DescribeSyncJobs，获取操作后的状态。
     @inlinable
-    public func stopSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
-        try await self.stopSyncJob(StopSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func stopSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSyncJobResponse {
+        try await self.stopSyncJob(StopSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
-        self.client.execute(action: "DeleteClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
+        self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
-        try await self.client.execute(action: "DeleteClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
+        try await self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
-        self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
+        self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群访问端口
     @inlinable
-    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
-        try await self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
+        try await self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 }

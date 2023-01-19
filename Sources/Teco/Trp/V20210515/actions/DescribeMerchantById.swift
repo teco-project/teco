@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Trp {
 
     /// 查询商户信息
     @inlinable
-    public func describeMerchantById(_ input: DescribeMerchantByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantByIdResponse> {
-        self.client.execute(action: "DescribeMerchantById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMerchantById(_ input: DescribeMerchantByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantByIdResponse> {
+        self.client.execute(action: "DescribeMerchantById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询商户信息
     @inlinable
-    public func describeMerchantById(_ input: DescribeMerchantByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantByIdResponse {
-        try await self.client.execute(action: "DescribeMerchantById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMerchantById(_ input: DescribeMerchantByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantByIdResponse {
+        try await self.client.execute(action: "DescribeMerchantById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询商户信息
     @inlinable
-    public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantByIdResponse> {
-        self.describeMerchantById(DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMerchantByIdResponse> {
+        self.describeMerchantById(DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商户信息
     @inlinable
-    public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantByIdResponse {
-        try await self.describeMerchantById(DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeMerchantById(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMerchantByIdResponse {
+        try await self.describeMerchantById(DescribeMerchantByIdRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

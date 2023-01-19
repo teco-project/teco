@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Cbs {
     /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
-        self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
+        self.client.execute(action: "DescribeAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询定期快照策略
@@ -88,8 +88,8 @@ extension Cbs {
     /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
-    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
-        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAutoSnapshotPolicies(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
+        try await self.client.execute(action: "DescribeAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询定期快照策略
@@ -98,8 +98,8 @@ extension Cbs {
     /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
-    public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
-        self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoSnapshotPoliciesResponse> {
+        self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询定期快照策略
@@ -108,7 +108,7 @@ extension Cbs {
     /// * 可以根据定期快照策略ID、名称或者状态等信息来查询定期快照策略的详细信息，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的定期快照策略表。
     @inlinable
-    public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
-        try await self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeAutoSnapshotPolicies(autoSnapshotPolicyIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoSnapshotPoliciesResponse {
+        try await self.describeAutoSnapshotPolicies(DescribeAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds, filters: filters, limit: limit, offset: offset, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 }

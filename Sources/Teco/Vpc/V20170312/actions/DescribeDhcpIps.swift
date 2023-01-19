@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     @inlinable
-    public func describeDhcpIps(_ input: DescribeDhcpIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDhcpIpsResponse> {
-        self.client.execute(action: "DescribeDhcpIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDhcpIps(_ input: DescribeDhcpIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDhcpIpsResponse> {
+        self.client.execute(action: "DescribeDhcpIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询DhcpIp列表
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     @inlinable
-    public func describeDhcpIps(_ input: DescribeDhcpIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
-        try await self.client.execute(action: "DescribeDhcpIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDhcpIps(_ input: DescribeDhcpIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
+        try await self.client.execute(action: "DescribeDhcpIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询DhcpIp列表
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     @inlinable
-    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDhcpIpsResponse> {
-        self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDhcpIpsResponse> {
+        self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DhcpIp列表
     ///
     /// 本接口（DescribeDhcpIps）用于查询DhcpIp列表
     @inlinable
-    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
-        try await self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDhcpIps(dhcpIpIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDhcpIpsResponse {
+        try await self.describeDhcpIps(DescribeDhcpIpsRequest(dhcpIpIds: dhcpIpIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

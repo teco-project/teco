@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Habo {
     ///
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
-    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAnalyseResponse> {
-        self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startAnalyse(_ input: StartAnalyseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAnalyseResponse> {
+        self.client.execute(action: "StartAnalyse", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分析样本
     ///
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
-    public func startAnalyse(_ input: StartAnalyseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
-        try await self.client.execute(action: "StartAnalyse", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startAnalyse(_ input: StartAnalyseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
+        try await self.client.execute(action: "StartAnalyse", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分析样本
     ///
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
-    public func startAnalyse(pk: String, md5: String, dlUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAnalyseResponse> {
-        self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), logger: logger, on: eventLoop)
+    public func startAnalyse(pk: String, md5: String, dlUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAnalyseResponse> {
+        self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分析样本
     ///
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
-    public func startAnalyse(pk: String, md5: String, dlUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
-        try await self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), logger: logger, on: eventLoop)
+    public func startAnalyse(pk: String, md5: String, dlUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
+        try await self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iotexplorer {
     ///
     /// 列出量产数据列表信息。
     @inlinable
-    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBatchProductionsListResponse> {
-        self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBatchProductionsListResponse> {
+        self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出量产数据列表
     ///
     /// 列出量产数据列表信息。
     @inlinable
-    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
-        try await self.client.execute(action: "GetBatchProductionsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBatchProductionsList(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
+        try await self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出量产数据列表
     ///
     /// 列出量产数据列表信息。
     @inlinable
-    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBatchProductionsListResponse> {
-        self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBatchProductionsListResponse> {
+        self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出量产数据列表
     ///
     /// 列出量产数据列表信息。
     @inlinable
-    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
-        try await self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
+        try await self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

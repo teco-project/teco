@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdid {
 
     /// 凭证模版下载
     @inlinable
-    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
-        self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downCpt(_ input: DownCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
+        self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版下载
     @inlinable
-    public func downCpt(_ input: DownCptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        try await self.client.execute(action: "DownCpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downCpt(_ input: DownCptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
+        try await self.client.execute(action: "DownCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证模版下载
     @inlinable
-    public func downCpt(cptIndex: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
-        self.downCpt(DownCptRequest(cptIndex: cptIndex), logger: logger, on: eventLoop)
+    public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownCptResponse> {
+        self.downCpt(DownCptRequest(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版下载
     @inlinable
-    public func downCpt(cptIndex: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
-        try await self.downCpt(DownCptRequest(cptIndex: cptIndex), logger: logger, on: eventLoop)
+    public func downCpt(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownCptResponse {
+        try await self.downCpt(DownCptRequest(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 }

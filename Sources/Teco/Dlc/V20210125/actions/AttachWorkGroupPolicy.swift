@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dlc {
 
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
-        self.client.execute(action: "AttachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
+        self.client.execute(action: "AttachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
-        try await self.client.execute(action: "AttachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachWorkGroupPolicy(_ input: AttachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
+        try await self.client.execute(action: "AttachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
-        self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachWorkGroupPolicyResponse> {
+        self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定鉴权策略到工作组
     @inlinable
-    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
-        try await self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    public func attachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachWorkGroupPolicyResponse {
+        try await self.attachWorkGroupPolicy(AttachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 }

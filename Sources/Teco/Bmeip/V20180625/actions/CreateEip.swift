@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Bmeip {
     ///
     /// 创建黑石弹性公网IP
     @inlinable
-    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipResponse> {
-        self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEip(_ input: CreateEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipResponse> {
+        self.client.execute(action: "CreateEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石EIP
     ///
     /// 创建黑石弹性公网IP
     @inlinable
-    public func createEip(_ input: CreateEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
-        try await self.client.execute(action: "CreateEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEip(_ input: CreateEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
+        try await self.client.execute(action: "CreateEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石EIP
     ///
     /// 创建黑石弹性公网IP
     @inlinable
-    public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipResponse> {
-        self.createEip(CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), logger: logger, on: eventLoop)
+    public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEipResponse> {
+        self.createEip(CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石EIP
     ///
     /// 创建黑石弹性公网IP
     @inlinable
-    public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
-        try await self.createEip(CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), logger: logger, on: eventLoop)
+    public func createEip(goodsNum: UInt64? = nil, payMode: String? = nil, bandwidth: UInt64? = nil, setType: String? = nil, exclusive: UInt64? = nil, vpcId: String? = nil, ipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEipResponse {
+        try await self.createEip(CreateEipRequest(goodsNum: goodsNum, payMode: payMode, bandwidth: bandwidth, setType: setType, exclusive: exclusive, vpcId: vpcId, ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

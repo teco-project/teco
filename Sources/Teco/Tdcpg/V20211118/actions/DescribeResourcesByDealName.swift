@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdcpg {
 
     /// 根据订单号获取资源信息
     @inlinable
-    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
-        self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
+        self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据订单号获取资源信息
     @inlinable
-    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
-        try await self.client.execute(action: "DescribeResourcesByDealName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourcesByDealName(_ input: DescribeResourcesByDealNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
+        try await self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据订单号获取资源信息
     @inlinable
-    public func describeResourcesByDealName(dealName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
-        self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), logger: logger, on: eventLoop)
+    public func describeResourcesByDealName(dealName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
+        self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据订单号获取资源信息
     @inlinable
-    public func describeResourcesByDealName(dealName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
-        try await self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), logger: logger, on: eventLoop)
+    public func describeResourcesByDealName(dealName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
+        try await self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName), region: region, logger: logger, on: eventLoop)
     }
 }

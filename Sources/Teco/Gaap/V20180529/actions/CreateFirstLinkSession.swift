@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Gaap {
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
-        self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
+        self.client.execute(action: "CreateFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
-        try await self.client.execute(action: "CreateFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFirstLinkSession(_ input: CreateFirstLinkSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
+        try await self.client.execute(action: "CreateFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
-        self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), logger: logger, on: eventLoop)
+    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
+        self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建接入段加速会话
     ///
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
-    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
-        try await self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), logger: logger, on: eventLoop)
+    public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
+        try await self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), region: region, logger: logger, on: eventLoop)
     }
 }

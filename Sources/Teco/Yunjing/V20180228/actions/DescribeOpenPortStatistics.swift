@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     @inlinable
-    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortStatisticsResponse> {
-        self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortStatisticsResponse> {
+        self.client.execute(action: "DescribeOpenPortStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取端口统计列表
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     @inlinable
-    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
-        try await self.client.execute(action: "DescribeOpenPortStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOpenPortStatistics(_ input: DescribeOpenPortStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
+        try await self.client.execute(action: "DescribeOpenPortStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取端口统计列表
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     @inlinable
-    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortStatisticsResponse> {
-        self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortStatisticsResponse> {
+        self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取端口统计列表
     ///
     /// 本接口 (DescribeOpenPortStatistics) 用于获取端口统计列表。
     @inlinable
-    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
-        try await self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeOpenPortStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortStatisticsResponse {
+        try await self.describeOpenPortStatistics(DescribeOpenPortStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

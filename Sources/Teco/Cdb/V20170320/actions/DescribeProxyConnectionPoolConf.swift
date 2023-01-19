@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cdb {
     ///
     /// 获取数据库代理连接池相关规格配置
     @inlinable
-    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyConnectionPoolConfResponse> {
-        self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyConnectionPoolConfResponse> {
+        self.client.execute(action: "DescribeProxyConnectionPoolConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询代理连接池规格配置
     ///
     /// 获取数据库代理连接池相关规格配置
     @inlinable
-    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
-        try await self.client.execute(action: "DescribeProxyConnectionPoolConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxyConnectionPoolConf(_ input: DescribeProxyConnectionPoolConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
+        try await self.client.execute(action: "DescribeProxyConnectionPoolConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询代理连接池规格配置
     ///
     /// 获取数据库代理连接池相关规格配置
     @inlinable
-    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyConnectionPoolConfResponse> {
-        self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyConnectionPoolConfResponse> {
+        self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询代理连接池规格配置
     ///
     /// 获取数据库代理连接池相关规格配置
     @inlinable
-    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
-        try await self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProxyConnectionPoolConf(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyConnectionPoolConfResponse {
+        try await self.describeProxyConnectionPoolConf(DescribeProxyConnectionPoolConfRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

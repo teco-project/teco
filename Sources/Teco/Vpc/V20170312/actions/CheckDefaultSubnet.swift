@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Vpc {
     ///
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
-    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDefaultSubnetResponse> {
-        self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDefaultSubnetResponse> {
+        self.client.execute(action: "CheckDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预判是否可建默认子网
     ///
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
-    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
-        try await self.client.execute(action: "CheckDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkDefaultSubnet(_ input: CheckDefaultSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
+        try await self.client.execute(action: "CheckDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 预判是否可建默认子网
     ///
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
-    public func checkDefaultSubnet(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDefaultSubnetResponse> {
-        self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), logger: logger, on: eventLoop)
+    public func checkDefaultSubnet(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDefaultSubnetResponse> {
+        self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预判是否可建默认子网
     ///
     /// 本接口（CheckDefaultSubnet）用于预判是否可建默认子网。
     @inlinable
-    public func checkDefaultSubnet(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
-        try await self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), logger: logger, on: eventLoop)
+    public func checkDefaultSubnet(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDefaultSubnetResponse {
+        try await self.checkDefaultSubnet(CheckDefaultSubnetRequest(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

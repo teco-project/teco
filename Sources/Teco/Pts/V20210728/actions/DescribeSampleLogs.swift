@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -139,25 +139,25 @@ extension Pts {
 
     /// 查询采样日志
     @inlinable
-    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleLogsResponse> {
-        self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleLogsResponse> {
+        self.client.execute(action: "DescribeSampleLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询采样日志
     @inlinable
-    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
-        try await self.client.execute(action: "DescribeSampleLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSampleLogs(_ input: DescribeSampleLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
+        try await self.client.execute(action: "DescribeSampleLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询采样日志
     @inlinable
-    public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleLogsResponse> {
-        self.describeSampleLogs(DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), logger: logger, on: eventLoop)
+    public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleLogsResponse> {
+        self.describeSampleLogs(DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询采样日志
     @inlinable
-    public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
-        try await self.describeSampleLogs(DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), logger: logger, on: eventLoop)
+    public func describeSampleLogs(projectId: String, scenarioId: String, jobId: String, context: String? = nil, from: Date? = nil, to: Date? = nil, severityText: String? = nil, instanceRegion: String? = nil, instance: String? = nil, logType: String? = nil, limit: Int64? = nil, reactionTimeRange: ReactionTimeRange? = nil, status: String? = nil, result: String? = nil, method: String? = nil, service: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleLogsResponse {
+        try await self.describeSampleLogs(DescribeSampleLogsRequest(projectId: projectId, scenarioId: scenarioId, jobId: jobId, context: context, from: from, to: to, severityText: severityText, instanceRegion: instanceRegion, instance: instance, logType: logType, limit: limit, reactionTimeRange: reactionTimeRange, status: status, result: result, method: method, service: service), region: region, logger: logger, on: eventLoop)
     }
 }

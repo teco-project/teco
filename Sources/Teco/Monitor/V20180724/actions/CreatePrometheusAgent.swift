@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Monitor {
 
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
-        self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
+        self.client.execute(action: "CreatePrometheusAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
-        try await self.client.execute(action: "CreatePrometheusAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusAgent(_ input: CreatePrometheusAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
+        try await self.client.execute(action: "CreatePrometheusAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(instanceId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
-        self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), logger: logger, on: eventLoop)
+    public func createPrometheusAgent(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
+        self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Prometheus CVM Agent
     @inlinable
-    public func createPrometheusAgent(instanceId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
-        try await self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), logger: logger, on: eventLoop)
+    public func createPrometheusAgent(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
+        try await self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

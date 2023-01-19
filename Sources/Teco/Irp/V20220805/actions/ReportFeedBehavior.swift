@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Irp {
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
     @inlinable
-    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
-        self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
+        self.client.execute(action: "ReportFeedBehavior", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
     @inlinable
-    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
-        try await self.client.execute(action: "ReportFeedBehavior", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
+        try await self.client.execute(action: "ReportFeedBehavior", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
     @inlinable
-    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
-        self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), logger: logger, on: eventLoop)
+    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
+        self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
     @inlinable
-    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
-        try await self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), logger: logger, on: eventLoop)
+    public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
+        try await self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), region: region, logger: logger, on: eventLoop)
     }
 }

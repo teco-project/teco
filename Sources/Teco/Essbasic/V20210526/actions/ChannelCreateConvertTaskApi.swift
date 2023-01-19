@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Essbasic {
 
     /// 渠道创建文件转换任务
     @inlinable
-    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateConvertTaskApiResponse> {
-        self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateConvertTaskApiResponse> {
+        self.client.execute(action: "ChannelCreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道创建文件转换任务
     @inlinable
-    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
-        try await self.client.execute(action: "ChannelCreateConvertTaskApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateConvertTaskApi(_ input: ChannelCreateConvertTaskApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
+        try await self.client.execute(action: "ChannelCreateConvertTaskApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 渠道创建文件转换任务
     @inlinable
-    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateConvertTaskApiResponse> {
-        self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
+    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateConvertTaskApiResponse> {
+        self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道创建文件转换任务
     @inlinable
-    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
-        try await self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), logger: logger, on: eventLoop)
+    public func channelCreateConvertTaskApi(agent: Agent, resourceType: String, resourceName: String, resourceId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateConvertTaskApiResponse {
+        try await self.channelCreateConvertTaskApi(ChannelCreateConvertTaskApiRequest(agent: agent, resourceType: resourceType, resourceName: resourceName, resourceId: resourceId, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

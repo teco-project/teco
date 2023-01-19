@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tione {
 
     /// 上报训练自定义指标
     @inlinable
-    public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
-        self.client.execute(action: "PushTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
+        self.client.execute(action: "PushTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报训练自定义指标
     @inlinable
-    public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
-        try await self.client.execute(action: "PushTrainingMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
+        try await self.client.execute(action: "PushTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报训练自定义指标
     @inlinable
-    public func pushTrainingMetrics(data: [MetricData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
-        self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), logger: logger, on: eventLoop)
+    public func pushTrainingMetrics(data: [MetricData]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
+        self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报训练自定义指标
     @inlinable
-    public func pushTrainingMetrics(data: [MetricData]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
-        try await self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), logger: logger, on: eventLoop)
+    public func pushTrainingMetrics(data: [MetricData]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
+        try await self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 }

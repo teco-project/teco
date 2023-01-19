@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
-    public func modifyDBInstanceNetwork(_ input: ModifyDBInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkResponse> {
-        self.client.execute(action: "ModifyDBInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceNetwork(_ input: ModifyDBInstanceNetworkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkResponse> {
+        self.client.execute(action: "ModifyDBInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络
     ///
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
-    public func modifyDBInstanceNetwork(_ input: ModifyDBInstanceNetworkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkResponse {
-        try await self.client.execute(action: "ModifyDBInstanceNetwork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceNetwork(_ input: ModifyDBInstanceNetworkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkResponse {
+        try await self.client.execute(action: "ModifyDBInstanceNetwork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例网络
     ///
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
-    public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkResponse> {
-        self.modifyDBInstanceNetwork(ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), logger: logger, on: eventLoop)
+    public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkResponse> {
+        self.modifyDBInstanceNetwork(ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络
     ///
     /// 本接口（ModifyDBInstanceNetwork）用于修改运行中实例的网络，仅支持从VPC网络到VPC网络的转换
     @inlinable
-    public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkResponse {
-        try await self.modifyDBInstanceNetwork(ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), logger: logger, on: eventLoop)
+    public func modifyDBInstanceNetwork(instanceId: String, newVpcId: String, newSubnetId: String, oldIpRetainTime: Int64? = nil, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkResponse {
+        try await self.modifyDBInstanceNetwork(ModifyDBInstanceNetworkRequest(instanceId: instanceId, newVpcId: newVpcId, newSubnetId: newSubnetId, oldIpRetainTime: oldIpRetainTime, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 }

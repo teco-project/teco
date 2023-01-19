@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Mmps {
     ///
     /// 获取翼扬安全诊断任务列表
     @inlinable
-    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanTaskListResponse> {
-        self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanTaskListResponse> {
+        self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务列表
     ///
     /// 获取翼扬安全诊断任务列表
     @inlinable
-    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlySecMiniAppScanTaskList(_ input: DescribeFlySecMiniAppScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取诊断任务列表
     ///
     /// 获取翼扬安全诊断任务列表
     @inlinable
-    public func describeFlySecMiniAppScanTaskList(mode: Int64, status: Int64, size: Int64, miniAppID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanTaskListResponse> {
-        self.describeFlySecMiniAppScanTaskList(DescribeFlySecMiniAppScanTaskListRequest(mode: mode, status: status, size: size, miniAppID: miniAppID), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanTaskList(mode: Int64, status: Int64, size: Int64, miniAppID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanTaskListResponse> {
+        self.describeFlySecMiniAppScanTaskList(DescribeFlySecMiniAppScanTaskListRequest(mode: mode, status: status, size: size, miniAppID: miniAppID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务列表
     ///
     /// 获取翼扬安全诊断任务列表
     @inlinable
-    public func describeFlySecMiniAppScanTaskList(mode: Int64, status: Int64, size: Int64, miniAppID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
-        try await self.describeFlySecMiniAppScanTaskList(DescribeFlySecMiniAppScanTaskListRequest(mode: mode, status: status, size: size, miniAppID: miniAppID), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanTaskList(mode: Int64, status: Int64, size: Int64, miniAppID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskListResponse {
+        try await self.describeFlySecMiniAppScanTaskList(DescribeFlySecMiniAppScanTaskListRequest(mode: mode, status: status, size: size, miniAppID: miniAppID), region: region, logger: logger, on: eventLoop)
     }
 }

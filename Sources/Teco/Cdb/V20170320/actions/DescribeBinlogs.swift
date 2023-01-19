@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
-        self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBinlogs(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
+        self.client.execute(action: "DescribeBinlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询二进制日志备份文件列表
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(_ input: DescribeBinlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
-        try await self.client.execute(action: "DescribeBinlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBinlogs(_ input: DescribeBinlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
+        try await self.client.execute(action: "DescribeBinlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询二进制日志备份文件列表
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
-        self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogsResponse> {
+        self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询二进制日志备份文件列表
     ///
     /// 本接口(DescribeBinlogs)用于查询云数据库实例的 binlog 文件列表。
     @inlinable
-    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
-        try await self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBinlogs(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogsResponse {
+        try await self.describeBinlogs(DescribeBinlogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

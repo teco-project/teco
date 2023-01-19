@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Zj {
 
     /// 删除人群包
     @inlinable
-    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelCrowdPackResponse> {
-        self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func delCrowdPack(_ input: DelCrowdPackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelCrowdPackResponse> {
+        self.client.execute(action: "DelCrowdPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人群包
     @inlinable
-    public func delCrowdPack(_ input: DelCrowdPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
-        try await self.client.execute(action: "DelCrowdPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func delCrowdPack(_ input: DelCrowdPackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
+        try await self.client.execute(action: "DelCrowdPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除人群包
     @inlinable
-    public func delCrowdPack(license: String, id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelCrowdPackResponse> {
-        self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), logger: logger, on: eventLoop)
+    public func delCrowdPack(license: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelCrowdPackResponse> {
+        self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除人群包
     @inlinable
-    public func delCrowdPack(license: String, id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
-        try await self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), logger: logger, on: eventLoop)
+    public func delCrowdPack(license: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
+        try await self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

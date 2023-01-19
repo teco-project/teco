@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Eiam {
 
     /// 查询指定用户下的资源授权列表
     @inlinable
-    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResourcesAuthorizationResponse> {
-        self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResourcesAuthorizationResponse> {
+        self.client.execute(action: "DescribeUserResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定用户下的资源授权列表
     @inlinable
-    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
-        try await self.client.execute(action: "DescribeUserResourcesAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserResourcesAuthorization(_ input: DescribeUserResourcesAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
+        try await self.client.execute(action: "DescribeUserResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定用户下的资源授权列表
     @inlinable
-    public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResourcesAuthorizationResponse> {
-        self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResourcesAuthorizationResponse> {
+        self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定用户下的资源授权列表
     @inlinable
-    public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
-        try await self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
+        try await self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 }

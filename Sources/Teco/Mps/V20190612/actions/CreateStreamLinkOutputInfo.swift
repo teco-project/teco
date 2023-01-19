@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mps {
     ///
     /// 创建媒体传输流的输出信息。
     @inlinable
-    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkOutputInfoResponse> {
-        self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkOutputInfoResponse> {
+        self.client.execute(action: "CreateStreamLinkOutputInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输的输出信息
     ///
     /// 创建媒体传输流的输出信息。
     @inlinable
-    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
-        try await self.client.execute(action: "CreateStreamLinkOutputInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStreamLinkOutputInfo(_ input: CreateStreamLinkOutputInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
+        try await self.client.execute(action: "CreateStreamLinkOutputInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建媒体传输的输出信息
     ///
     /// 创建媒体传输流的输出信息。
     @inlinable
-    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkOutputInfoResponse> {
-        self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), logger: logger, on: eventLoop)
+    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkOutputInfoResponse> {
+        self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输的输出信息
     ///
     /// 创建媒体传输流的输出信息。
     @inlinable
-    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
-        try await self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), logger: logger, on: eventLoop)
+    public func createStreamLinkOutputInfo(flowId: String, output: CreateOutputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkOutputInfoResponse {
+        try await self.createStreamLinkOutputInfo(CreateStreamLinkOutputInfoRequest(flowId: flowId, output: output), region: region, logger: logger, on: eventLoop)
     }
 }

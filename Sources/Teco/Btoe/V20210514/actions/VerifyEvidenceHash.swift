@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Btoe {
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
-        self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
+        self.client.execute(action: "VerifyEvidenceHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
-        try await self.client.execute(action: "VerifyEvidenceHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyEvidenceHash(_ input: VerifyEvidenceHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
+        try await self.client.execute(action: "VerifyEvidenceHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(evidenceHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
-        self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), logger: logger, on: eventLoop)
+    public func verifyEvidenceHash(evidenceHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
+        self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 核验存证内容hash
     ///
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
-    public func verifyEvidenceHash(evidenceHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
-        try await self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), logger: logger, on: eventLoop)
+    public func verifyEvidenceHash(evidenceHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
+        try await self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), region: region, logger: logger, on: eventLoop)
     }
 }

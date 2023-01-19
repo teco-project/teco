@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Tcss {
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
-        self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
+        self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageRegistryScanStatusOneKey(_ input: DescribeAssetImageRegistryScanStatusOneKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryScanStatusOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
-        self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryScanStatusOneKeyResponse> {
+        self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询一键镜像扫描状态
     @inlinable
-    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
-        try await self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryScanStatusOneKey(images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryScanStatusOneKeyResponse {
+        try await self.describeAssetImageRegistryScanStatusOneKey(DescribeAssetImageRegistryScanStatusOneKeyRequest(images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

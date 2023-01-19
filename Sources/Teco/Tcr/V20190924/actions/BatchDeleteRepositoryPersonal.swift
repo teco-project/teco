@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcr {
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
-        self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
+        self.client.execute(action: "BatchDeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
-        try await self.client.execute(action: "BatchDeleteRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDeleteRepositoryPersonal(_ input: BatchDeleteRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
+        try await self.client.execute(action: "BatchDeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(repoNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
-        self.batchDeleteRepositoryPersonal(BatchDeleteRepositoryPersonalRequest(repoNames: repoNames), logger: logger, on: eventLoop)
+    public func batchDeleteRepositoryPersonal(repoNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteRepositoryPersonalResponse> {
+        self.batchDeleteRepositoryPersonal(BatchDeleteRepositoryPersonalRequest(repoNames: repoNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除个人版仓库
     ///
     /// 用于个人版镜像仓库中批量删除镜像仓库
     @inlinable
-    public func batchDeleteRepositoryPersonal(repoNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
-        try await self.batchDeleteRepositoryPersonal(BatchDeleteRepositoryPersonalRequest(repoNames: repoNames), logger: logger, on: eventLoop)
+    public func batchDeleteRepositoryPersonal(repoNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteRepositoryPersonalResponse {
+        try await self.batchDeleteRepositoryPersonal(BatchDeleteRepositoryPersonalRequest(repoNames: repoNames), region: region, logger: logger, on: eventLoop)
     }
 }

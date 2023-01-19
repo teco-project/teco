@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iotexplorer {
 
     /// 获取网关产品已经绑定的子产品
     @inlinable
-    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindedProductsResponse> {
-        self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindedProductsResponse> {
+        self.client.execute(action: "DescribeBindedProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取网关产品已经绑定的子产品
     @inlinable
-    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
-        try await self.client.execute(action: "DescribeBindedProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBindedProducts(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
+        try await self.client.execute(action: "DescribeBindedProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取网关产品已经绑定的子产品
     @inlinable
-    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindedProductsResponse> {
-        self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), logger: logger, on: eventLoop)
+    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindedProductsResponse> {
+        self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关产品已经绑定的子产品
     @inlinable
-    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
-        try await self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), logger: logger, on: eventLoop)
+    public func describeBindedProducts(gatewayProductId: String, offset: Int64, limit: Int64, productSource: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindedProductsResponse {
+        try await self.describeBindedProducts(DescribeBindedProductsRequest(gatewayProductId: gatewayProductId, offset: offset, limit: limit, productSource: productSource), region: region, logger: logger, on: eventLoop)
     }
 }

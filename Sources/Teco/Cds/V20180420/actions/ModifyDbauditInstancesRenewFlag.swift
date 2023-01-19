@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cds {
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
     @inlinable
-    public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
-        self.client.execute(action: "ModifyDbauditInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
+        self.client.execute(action: "ModifyDbauditInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
     @inlinable
-    public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDbauditInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDbauditInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
     @inlinable
-    public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
-        self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
+        self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
     @inlinable
-    public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
-        try await self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
+        try await self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

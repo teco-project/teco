@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,8 +109,8 @@ extension Vod {
     /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
     /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
     @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
-        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
+        self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑视频
@@ -127,8 +127,8 @@ extension Vod {
     /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
     /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
     @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑视频
@@ -145,8 +145,8 @@ extension Vod {
     /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
     /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
     @inlinable
-    public func editMedia(inputType: String, subAppId: UInt64? = nil, fileInfos: [EditMediaFileInfo]? = nil, streamInfos: [EditMediaStreamInfo]? = nil, definition: UInt64? = nil, procedureName: String? = nil, outputConfig: EditMediaOutputConfig? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
-        self.editMedia(EditMediaRequest(inputType: inputType, subAppId: subAppId, fileInfos: fileInfos, streamInfos: streamInfos, definition: definition, procedureName: procedureName, outputConfig: outputConfig, sessionContext: sessionContext, tasksPriority: tasksPriority, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func editMedia(inputType: String, subAppId: UInt64? = nil, fileInfos: [EditMediaFileInfo]? = nil, streamInfos: [EditMediaStreamInfo]? = nil, definition: UInt64? = nil, procedureName: String? = nil, outputConfig: EditMediaOutputConfig? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
+        self.editMedia(EditMediaRequest(inputType: inputType, subAppId: subAppId, fileInfos: fileInfos, streamInfos: streamInfos, definition: definition, procedureName: procedureName, outputConfig: outputConfig, sessionContext: sessionContext, tasksPriority: tasksPriority, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑视频
@@ -163,7 +163,7 @@ extension Vod {
     /// >当对直播流做剪辑、拼接等操作时，请确保流结束后再操作。否则生成的视频可能不完整。
     /// 如使用事件通知，事件通知的类型为 [视频编辑完成](https://cloud.tencent.com/document/product/266/33794)。
     @inlinable
-    public func editMedia(inputType: String, subAppId: UInt64? = nil, fileInfos: [EditMediaFileInfo]? = nil, streamInfos: [EditMediaStreamInfo]? = nil, definition: UInt64? = nil, procedureName: String? = nil, outputConfig: EditMediaOutputConfig? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.editMedia(EditMediaRequest(inputType: inputType, subAppId: subAppId, fileInfos: fileInfos, streamInfos: streamInfos, definition: definition, procedureName: procedureName, outputConfig: outputConfig, sessionContext: sessionContext, tasksPriority: tasksPriority, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func editMedia(inputType: String, subAppId: UInt64? = nil, fileInfos: [EditMediaFileInfo]? = nil, streamInfos: [EditMediaStreamInfo]? = nil, definition: UInt64? = nil, procedureName: String? = nil, outputConfig: EditMediaOutputConfig? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.editMedia(EditMediaRequest(inputType: inputType, subAppId: subAppId, fileInfos: fileInfos, streamInfos: streamInfos, definition: definition, procedureName: procedureName, outputConfig: outputConfig, sessionContext: sessionContext, tasksPriority: tasksPriority, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

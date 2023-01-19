@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tcss {
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
-        self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
+        self.client.execute(action: "DescribeAffectedClusterCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
-        try await self.client.execute(action: "DescribeAffectedClusterCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAffectedClusterCount(_ input: DescribeAffectedClusterCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
+        try await self.client.execute(action: "DescribeAffectedClusterCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
-        self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), logger: logger, on: eventLoop)
+    public func describeAffectedClusterCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedClusterCountResponse> {
+        self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取受影响的集群数量
     ///
     /// 获取受影响的集群数量，返回数量
     @inlinable
-    public func describeAffectedClusterCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
-        try await self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), logger: logger, on: eventLoop)
+    public func describeAffectedClusterCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedClusterCountResponse {
+        try await self.describeAffectedClusterCount(DescribeAffectedClusterCountRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

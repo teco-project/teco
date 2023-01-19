@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Gme {
     /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
-    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultListResponse> {
-        self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScanResultList(_ input: DescribeScanResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultListResponse> {
+        self.client.execute(action: "DescribeScanResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询语音检测结果
@@ -68,8 +68,8 @@ extension Gme {
     /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
-    public func describeScanResultList(_ input: DescribeScanResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
-        try await self.client.execute(action: "DescribeScanResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScanResultList(_ input: DescribeScanResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
+        try await self.client.execute(action: "DescribeScanResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询语音检测结果
@@ -77,8 +77,8 @@ extension Gme {
     /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
-    public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultListResponse> {
-        self.describeScanResultList(DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit), logger: logger, on: eventLoop)
+    public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanResultListResponse> {
+        self.describeScanResultList(DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询语音检测结果
@@ -86,7 +86,7 @@ extension Gme {
     /// 本接口(DescribeScanResultList)用于查询语音检测结果，查询任务列表最多支持100个。
     /// <p style="color:red">如果在提交语音检测任务时未设置 Callback 字段，则需要通过本接口获取检测结果</p>
     @inlinable
-    public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
-        try await self.describeScanResultList(DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit), logger: logger, on: eventLoop)
+    public func describeScanResultList(bizId: UInt64, taskIdList: [String], limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanResultListResponse {
+        try await self.describeScanResultList(DescribeScanResultListRequest(bizId: bizId, taskIdList: taskIdList, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

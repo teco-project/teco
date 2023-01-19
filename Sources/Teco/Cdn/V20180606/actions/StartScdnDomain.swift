@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdn {
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
-        self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startScdnDomain(_ input: StartScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
+        self.client.execute(action: "StartScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(_ input: StartScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
-        try await self.client.execute(action: "StartScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startScdnDomain(_ input: StartScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
+        try await self.client.execute(action: "StartScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
-        self.startScdnDomain(StartScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartScdnDomainResponse> {
+        self.startScdnDomain(StartScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动SCDN域名安全防护
     ///
     /// StartScdnDomain 用于开启域名的安全防护配置
     @inlinable
-    public func startScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
-        try await self.startScdnDomain(StartScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartScdnDomainResponse {
+        try await self.startScdnDomain(StartScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

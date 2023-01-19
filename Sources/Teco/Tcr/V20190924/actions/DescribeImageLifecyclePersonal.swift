@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcr {
     ///
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
-    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecyclePersonalResponse> {
-        self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecyclePersonalResponse> {
+        self.client.execute(action: "DescribeImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版仓库自动清理策略
     ///
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
-    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
-        try await self.client.execute(action: "DescribeImageLifecyclePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageLifecyclePersonal(_ input: DescribeImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
+        try await self.client.execute(action: "DescribeImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取个人版仓库自动清理策略
     ///
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
-    public func describeImageLifecyclePersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecyclePersonalResponse> {
-        self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    public func describeImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecyclePersonalResponse> {
+        self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版仓库自动清理策略
     ///
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
-    public func describeImageLifecyclePersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
-        try await self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    public func describeImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
+        try await self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mps {
     ///
     /// 启动媒体传输流。
     @inlinable
-    public func startStreamLinkFlow(_ input: StartStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartStreamLinkFlowResponse> {
-        self.client.execute(action: "StartStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startStreamLinkFlow(_ input: StartStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartStreamLinkFlowResponse> {
+        self.client.execute(action: "StartStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启媒体传输流
     ///
     /// 启动媒体传输流。
     @inlinable
-    public func startStreamLinkFlow(_ input: StartStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartStreamLinkFlowResponse {
-        try await self.client.execute(action: "StartStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startStreamLinkFlow(_ input: StartStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartStreamLinkFlowResponse {
+        try await self.client.execute(action: "StartStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启媒体传输流
     ///
     /// 启动媒体传输流。
     @inlinable
-    public func startStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartStreamLinkFlowResponse> {
-        self.startStreamLinkFlow(StartStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func startStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartStreamLinkFlowResponse> {
+        self.startStreamLinkFlow(StartStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启媒体传输流
     ///
     /// 启动媒体传输流。
     @inlinable
-    public func startStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartStreamLinkFlowResponse {
-        try await self.startStreamLinkFlow(StartStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func startStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartStreamLinkFlowResponse {
+        try await self.startStreamLinkFlow(StartStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

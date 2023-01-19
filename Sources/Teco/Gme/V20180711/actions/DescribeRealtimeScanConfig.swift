@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Gme {
 
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
-        self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
+        self.client.execute(action: "DescribeRealtimeScanConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
-        try await self.client.execute(action: "DescribeRealtimeScanConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRealtimeScanConfig(_ input: DescribeRealtimeScanConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
+        try await self.client.execute(action: "DescribeRealtimeScanConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
-        self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), logger: logger, on: eventLoop)
+    public func describeRealtimeScanConfig(bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealtimeScanConfigResponse> {
+        self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户自定义送检信息
     @inlinable
-    public func describeRealtimeScanConfig(bizId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
-        try await self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), logger: logger, on: eventLoop)
+    public func describeRealtimeScanConfig(bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealtimeScanConfigResponse {
+        try await self.describeRealtimeScanConfig(DescribeRealtimeScanConfigRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

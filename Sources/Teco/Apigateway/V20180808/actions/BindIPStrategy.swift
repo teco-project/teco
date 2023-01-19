@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apigateway {
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
-        self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindIPStrategy(_ input: BindIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
+        self.client.execute(action: "BindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(_ input: BindIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
-        try await self.client.execute(action: "BindIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindIPStrategy(_ input: BindIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
+        try await self.client.execute(action: "BindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
-        self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), logger: logger, on: eventLoop)
+    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
+        self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// API绑定IP策略
     ///
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
-    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
-        try await self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), logger: logger, on: eventLoop)
+    public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
+        try await self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), region: region, logger: logger, on: eventLoop)
     }
 }

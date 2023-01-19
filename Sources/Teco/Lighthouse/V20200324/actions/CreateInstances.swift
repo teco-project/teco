@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Lighthouse {
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     ///
     /// 本接口(CreateInstances)用于创建一个或多个指定套餐的轻量应用服务器实例。
     @inlinable
-    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
+    public func createInstances(bundleId: String, blueprintId: String, instanceChargePrepaid: InstanceChargePrepaid, instanceName: String? = nil, instanceCount: UInt64? = nil, zones: [String]? = nil, dryRun: Bool? = nil, clientToken: String? = nil, loginConfiguration: LoginConfiguration? = nil, containers: [DockerContainerConfiguration]? = nil, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(CreateInstancesRequest(bundleId: bundleId, blueprintId: blueprintId, instanceChargePrepaid: instanceChargePrepaid, instanceName: instanceName, instanceCount: instanceCount, zones: zones, dryRun: dryRun, clientToken: clientToken, loginConfiguration: loginConfiguration, containers: containers, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
 }

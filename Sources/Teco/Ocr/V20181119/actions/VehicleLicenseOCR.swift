@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,8 +88,8 @@ extension Ocr {
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
-        self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
+        self.client.execute(action: "VehicleLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 行驶证识别
@@ -100,8 +100,8 @@ extension Ocr {
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
-        try await self.client.execute(action: "VehicleLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
+        try await self.client.execute(action: "VehicleLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 行驶证识别
@@ -112,8 +112,8 @@ extension Ocr {
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
-        self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
+        self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
     }
 
     /// 行驶证识别
@@ -124,7 +124,7 @@ extension Ocr {
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
-        try await self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
+        try await self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
     }
 }

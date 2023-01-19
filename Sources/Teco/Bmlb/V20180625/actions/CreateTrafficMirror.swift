@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
-        self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
+        self.client.execute(action: "CreateTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
-        try await self.client.execute(action: "CreateTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTrafficMirror(_ input: CreateTrafficMirrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
+        try await self.client.execute(action: "CreateTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
-        self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), logger: logger, on: eventLoop)
+    public func createTrafficMirror(alias: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficMirrorResponse> {
+        self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建流量镜像实例
     ///
     /// 创建流量镜像实例。
     @inlinable
-    public func createTrafficMirror(alias: String, vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
-        try await self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), logger: logger, on: eventLoop)
+    public func createTrafficMirror(alias: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficMirrorResponse {
+        try await self.createTrafficMirror(CreateTrafficMirrorRequest(alias: alias, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

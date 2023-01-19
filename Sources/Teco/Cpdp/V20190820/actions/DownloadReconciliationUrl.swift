@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cpdp {
     ///
     /// 获取对账中心账单下载地址的接口
     @inlinable
-    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReconciliationUrlResponse> {
-        self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReconciliationUrlResponse> {
+        self.client.execute(action: "DownloadReconciliationUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-对账中心账单下载接口
     ///
     /// 获取对账中心账单下载地址的接口
     @inlinable
-    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
-        try await self.client.execute(action: "DownloadReconciliationUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadReconciliationUrl(_ input: DownloadReconciliationUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
+        try await self.client.execute(action: "DownloadReconciliationUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-对账中心账单下载接口
     ///
     /// 获取对账中心账单下载地址的接口
     @inlinable
-    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReconciliationUrlResponse> {
-        self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadReconciliationUrlResponse> {
+        self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-对账中心账单下载接口
     ///
     /// 获取对账中心账单下载地址的接口
     @inlinable
-    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
-        try await self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func downloadReconciliationUrl(mainAppId: String, appCode: String, billDate: String, subAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadReconciliationUrlResponse {
+        try await self.downloadReconciliationUrl(DownloadReconciliationUrlRequest(mainAppId: mainAppId, appCode: appCode, billDate: billDate, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

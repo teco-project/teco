@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
-    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceDataResponse> {
-        self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDeviceData(_ input: GetDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceDataResponse> {
+        self.client.execute(action: "GetDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备数据
     ///
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
-    public func getDeviceData(_ input: GetDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
-        try await self.client.execute(action: "GetDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDeviceData(_ input: GetDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
+        try await self.client.execute(action: "GetDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备数据
     ///
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
-    public func getDeviceData(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceDataResponse> {
-        self.getDeviceData(GetDeviceDataRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func getDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceDataResponse> {
+        self.getDeviceData(GetDeviceDataRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备数据
     ///
     /// 获取某个设备当前上报到云端的数据，该接口适用于使用数据模板协议的产品。
     @inlinable
-    public func getDeviceData(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
-        try await self.getDeviceData(GetDeviceDataRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func getDeviceData(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceDataResponse {
+        try await self.getDeviceData(GetDeviceDataRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

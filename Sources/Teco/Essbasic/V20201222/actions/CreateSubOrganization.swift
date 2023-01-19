@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -152,31 +152,31 @@ extension Essbasic {
     ///
     /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
     @inlinable
-    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubOrganizationResponse> {
-        self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubOrganization(_ input: CreateSubOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubOrganizationResponse> {
+        self.client.execute(action: "CreateSubOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册子机构
     ///
     /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
     @inlinable
-    public func createSubOrganization(_ input: CreateSubOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
-        try await self.client.execute(action: "CreateSubOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubOrganization(_ input: CreateSubOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
+        try await self.client.execute(action: "CreateSubOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册子机构
     ///
     /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
     @inlinable
-    public func createSubOrganization(caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String? = nil, useOpenId: Bool? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyClientIp: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubOrganizationResponse> {
-        self.createSubOrganization(CreateSubOrganizationRequest(caller: caller, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, name: name, openId: openId, useOpenId: useOpenId, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyClientIp: verifyClientIp, verifyServerIp: verifyServerIp, contactAddress: contactAddress, email: email), logger: logger, on: eventLoop)
+    public func createSubOrganization(caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String? = nil, useOpenId: Bool? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyClientIp: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubOrganizationResponse> {
+        self.createSubOrganization(CreateSubOrganizationRequest(caller: caller, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, name: name, openId: openId, useOpenId: useOpenId, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyClientIp: verifyClientIp, verifyServerIp: verifyServerIp, contactAddress: contactAddress, email: email), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册子机构
     ///
     /// 此接口（CreateSubOrganization）用于在腾讯电子签内注册子机构。
     @inlinable
-    public func createSubOrganization(caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String? = nil, useOpenId: Bool? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyClientIp: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
-        try await self.createSubOrganization(CreateSubOrganizationRequest(caller: caller, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, name: name, openId: openId, useOpenId: useOpenId, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyClientIp: verifyClientIp, verifyServerIp: verifyServerIp, contactAddress: contactAddress, email: email), logger: logger, on: eventLoop)
+    public func createSubOrganization(caller: Caller, idCardType: String, idCardNumber: String, organizationType: String, legalName: String, legalIdCardType: String, legalIdCardNumber: String, name: String, openId: String? = nil, useOpenId: Bool? = nil, idCardFileType: String? = nil, bizLicenseFile: String? = nil, bizLicenseFileName: String? = nil, legalMobile: String? = nil, contactName: String? = nil, verifyClientIp: String? = nil, verifyServerIp: String? = nil, contactAddress: Address? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubOrganizationResponse {
+        try await self.createSubOrganization(CreateSubOrganizationRequest(caller: caller, idCardType: idCardType, idCardNumber: idCardNumber, organizationType: organizationType, legalName: legalName, legalIdCardType: legalIdCardType, legalIdCardNumber: legalIdCardNumber, name: name, openId: openId, useOpenId: useOpenId, idCardFileType: idCardFileType, bizLicenseFile: bizLicenseFile, bizLicenseFileName: bizLicenseFileName, legalMobile: legalMobile, contactName: contactName, verifyClientIp: verifyClientIp, verifyServerIp: verifyServerIp, contactAddress: contactAddress, email: email), region: region, logger: logger, on: eventLoop)
     }
 }

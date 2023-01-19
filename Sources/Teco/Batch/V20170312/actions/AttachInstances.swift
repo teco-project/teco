@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
+        self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加实例到计算环境
@@ -66,8 +66,8 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(_ input: AttachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        try await self.client.execute(action: "AttachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加实例到计算环境
@@ -79,8 +79,8 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
-        self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), logger: logger, on: eventLoop)
+    public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
+        self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加实例到计算环境
@@ -92,7 +92,7 @@ extension Batch {
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
     @inlinable
-    public func attachInstances(envId: String, instances: [Instance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
-        try await self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), logger: logger, on: eventLoop)
+    public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
+        try await self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

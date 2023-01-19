@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Cfw {
 
     /// 修改规则表状态
     @inlinable
-    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableStatusResponse> {
-        self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTableStatus(_ input: ModifyTableStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableStatusResponse> {
+        self.client.execute(action: "ModifyTableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改规则表状态
     @inlinable
-    public func modifyTableStatus(_ input: ModifyTableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
-        try await self.client.execute(action: "ModifyTableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTableStatus(_ input: ModifyTableStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
+        try await self.client.execute(action: "ModifyTableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改规则表状态
     @inlinable
-    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableStatusResponse> {
-        self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), logger: logger, on: eventLoop)
+    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableStatusResponse> {
+        self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则表状态
     @inlinable
-    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
-        try await self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), logger: logger, on: eventLoop)
+    public func modifyTableStatus(edgeId: String? = nil, status: UInt64? = nil, area: String? = nil, direction: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableStatusResponse {
+        try await self.modifyTableStatus(ModifyTableStatusRequest(edgeId: edgeId, status: status, area: area, direction: direction), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,8 +77,8 @@ extension Live {
     /// 批量绑定证书对应的播放域名，并更新启用状态。
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
-    public func modifyLiveDomainCertBindings(_ input: ModifyLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainCertBindingsResponse> {
-        self.client.execute(action: "ModifyLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLiveDomainCertBindings(_ input: ModifyLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainCertBindingsResponse> {
+        self.client.execute(action: "ModifyLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定证书对应的播放域名
@@ -86,8 +86,8 @@ extension Live {
     /// 批量绑定证书对应的播放域名，并更新启用状态。
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
-    public func modifyLiveDomainCertBindings(_ input: ModifyLiveDomainCertBindingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainCertBindingsResponse {
-        try await self.client.execute(action: "ModifyLiveDomainCertBindings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLiveDomainCertBindings(_ input: ModifyLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainCertBindingsResponse {
+        try await self.client.execute(action: "ModifyLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量绑定证书对应的播放域名
@@ -95,8 +95,8 @@ extension Live {
     /// 批量绑定证书对应的播放域名，并更新启用状态。
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
-    public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainCertBindingsResponse> {
-        self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainCertBindingsResponse> {
+        self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定证书对应的播放域名
@@ -104,7 +104,7 @@ extension Live {
     /// 批量绑定证书对应的播放域名，并更新启用状态。
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
-    public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainCertBindingsResponse {
-        try await self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainCertBindingsResponse {
+        try await self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }
 }

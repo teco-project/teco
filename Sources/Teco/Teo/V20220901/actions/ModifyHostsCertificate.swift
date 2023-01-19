@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Teo {
     ///
     /// 用于修改域名证书
     @inlinable
-    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
-        self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
+        self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名证书
     ///
     /// 用于修改域名证书
     @inlinable
-    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
-        try await self.client.execute(action: "ModifyHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyHostsCertificate(_ input: ModifyHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
+        try await self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名证书
     ///
     /// 用于修改域名证书
     @inlinable
-    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
-        self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), logger: logger, on: eventLoop)
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
+        self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名证书
     ///
     /// 用于修改域名证书
     @inlinable
-    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
-        try await self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), logger: logger, on: eventLoop)
+    public func modifyHostsCertificate(zoneId: String, hosts: [String], serverCertInfo: [ServerCertInfo]? = nil, applyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
+        try await self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, serverCertInfo: serverCertInfo, applyType: applyType), region: region, logger: logger, on: eventLoop)
     }
 }

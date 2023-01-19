@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dayu {
 
     /// 修改4层转发规则
     @inlinable
-    public func modifyNewL4Rule(_ input: ModifyNewL4RuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNewL4RuleResponse> {
-        self.client.execute(action: "ModifyNewL4Rule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNewL4Rule(_ input: ModifyNewL4RuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNewL4RuleResponse> {
+        self.client.execute(action: "ModifyNewL4Rule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改4层转发规则
     @inlinable
-    public func modifyNewL4Rule(_ input: ModifyNewL4RuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
-        try await self.client.execute(action: "ModifyNewL4Rule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNewL4Rule(_ input: ModifyNewL4RuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
+        try await self.client.execute(action: "ModifyNewL4Rule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改4层转发规则
     @inlinable
-    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNewL4RuleResponse> {
-        self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNewL4RuleResponse> {
+        self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改4层转发规则
     @inlinable
-    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
-        try await self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), logger: logger, on: eventLoop)
+    public func modifyNewL4Rule(business: String, id: String, rule: L4RuleEntry, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNewL4RuleResponse {
+        try await self.modifyNewL4Rule(ModifyNewL4RuleRequest(business: business, id: id, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 }

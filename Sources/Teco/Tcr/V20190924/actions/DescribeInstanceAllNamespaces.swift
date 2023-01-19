@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcr {
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
-        self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
+        self.client.execute(action: "DescribeInstanceAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
-        try await self.client.execute(action: "DescribeInstanceAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
+        try await self.client.execute(action: "DescribeInstanceAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
-        self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
+        self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
     @inlinable
-    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
-        try await self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
+        try await self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

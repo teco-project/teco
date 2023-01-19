@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -173,31 +173,31 @@ extension Monitor {
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
-        self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
+        self.client.execute(action: "DescribeAlarmPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询告警策略列表（支持按实例等条件筛选）
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
-        try await self.client.execute(action: "DescribeAlarmPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmPolicies(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
+        try await self.client.execute(action: "DescribeAlarmPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询告警策略列表（支持按实例等条件筛选）
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
-        self.describeAlarmPolicies(DescribeAlarmPoliciesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), logger: logger, on: eventLoop)
+    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmPoliciesResponse> {
+        self.describeAlarmPolicies(DescribeAlarmPoliciesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警策略列表（支持按实例等条件筛选）
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
-        try await self.describeAlarmPolicies(DescribeAlarmPoliciesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), logger: logger, on: eventLoop)
+    public func describeAlarmPolicies(module: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, policyName: String? = nil, monitorTypes: [String]? = nil, namespaces: [String]? = nil, dimensions: String? = nil, receiverUids: [Int64]? = nil, receiverGroups: [Int64]? = nil, policyType: [String]? = nil, field: String? = nil, order: String? = nil, projectIds: [Int64]? = nil, noticeIds: [String]? = nil, ruleTypes: [String]? = nil, enable: [Int64]? = nil, notBindingNoticeRule: Int64? = nil, instanceGroupId: Int64? = nil, needCorrespondence: Int64? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, oneClickPolicyType: [String]? = nil, notBindAll: Int64? = nil, notInstanceGroup: Int64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmPoliciesResponse {
+        try await self.describeAlarmPolicies(DescribeAlarmPoliciesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, policyName: policyName, monitorTypes: monitorTypes, namespaces: namespaces, dimensions: dimensions, receiverUids: receiverUids, receiverGroups: receiverGroups, policyType: policyType, field: field, order: order, projectIds: projectIds, noticeIds: noticeIds, ruleTypes: ruleTypes, enable: enable, notBindingNoticeRule: notBindingNoticeRule, instanceGroupId: instanceGroupId, needCorrespondence: needCorrespondence, triggerTasks: triggerTasks, oneClickPolicyType: oneClickPolicyType, notBindAll: notBindAll, notInstanceGroup: notInstanceGroup, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

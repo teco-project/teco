@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Tsf {
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
-        self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
+        self.client.execute(action: "DescribeGroupsWithPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
-        try await self.client.execute(action: "DescribeGroupsWithPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupsWithPlugin(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
+        try await self.client.execute(action: "DescribeGroupsWithPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
-        self.describeGroupsWithPlugin(DescribeGroupsWithPluginRequest(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsWithPluginResponse> {
+        self.describeGroupsWithPlugin(DescribeGroupsWithPluginRequest(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
-        try await self.describeGroupsWithPlugin(DescribeGroupsWithPluginRequest(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeGroupsWithPlugin(pluginId: String, bound: Bool, offset: Int64, limit: Int64, searchWord: String? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsWithPluginResponse {
+        try await self.describeGroupsWithPlugin(DescribeGroupsWithPluginRequest(pluginId: pluginId, bound: bound, offset: offset, limit: limit, searchWord: searchWord, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

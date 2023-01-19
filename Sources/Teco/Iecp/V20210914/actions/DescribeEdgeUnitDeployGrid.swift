@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Iecp {
 
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
-        self.client.execute(action: "DescribeEdgeUnitDeployGrid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
+        self.client.execute(action: "DescribeEdgeUnitDeployGrid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitDeployGrid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitDeployGrid(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitDeployGrid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
-        self.describeEdgeUnitDeployGrid(DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitDeployGridResponse> {
+        self.describeEdgeUnitDeployGrid(DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid列表
     @inlinable
-    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
-        try await self.describeEdgeUnitDeployGrid(DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitDeployGrid(edgeUnitId: UInt64, namespace: String? = nil, namePattern: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitDeployGridResponse {
+        try await self.describeEdgeUnitDeployGrid(DescribeEdgeUnitDeployGridRequest(edgeUnitId: edgeUnitId, namespace: namespace, namePattern: namePattern, offset: offset, limit: limit, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

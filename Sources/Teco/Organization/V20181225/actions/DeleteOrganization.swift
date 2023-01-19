@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Organization {
 
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(_ input: DeleteOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
-        self.client.execute(action: "DeleteOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteOrganization(_ input: DeleteOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
+        self.client.execute(action: "DeleteOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(_ input: DeleteOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {
-        try await self.client.execute(action: "DeleteOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteOrganization(_ input: DeleteOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {
+        try await self.client.execute(action: "DeleteOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
-        self.deleteOrganization(DeleteOrganizationRequest(), logger: logger, on: eventLoop)
+    public func deleteOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationResponse> {
+        self.deleteOrganization(DeleteOrganizationRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除企业组织
     @inlinable
-    public func deleteOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {
-        try await self.deleteOrganization(DeleteOrganizationRequest(), logger: logger, on: eventLoop)
+    public func deleteOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationResponse {
+        try await self.deleteOrganization(DeleteOrganizationRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

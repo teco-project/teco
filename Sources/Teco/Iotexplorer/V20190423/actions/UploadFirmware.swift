@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Iotexplorer {
     ///
     /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
     @inlinable
-    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
-        self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadFirmware(_ input: UploadFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
+        self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建固件版本信息
     ///
     /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
     @inlinable
-    public func uploadFirmware(_ input: UploadFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
-        try await self.client.execute(action: "UploadFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadFirmware(_ input: UploadFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
+        try await self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建固件版本信息
     ///
     /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
     @inlinable
-    public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
-        self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), logger: logger, on: eventLoop)
+    public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
+        self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建固件版本信息
     ///
     /// 本接口（UploadFirmware）用于创建设备固件版本信息，在平台用于固件版本升级、固件资源下发等。
     @inlinable
-    public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
-        try await self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), logger: logger, on: eventLoop)
+    public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
+        try await self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), region: region, logger: logger, on: eventLoop)
     }
 }

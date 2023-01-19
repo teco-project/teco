@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Ecm {
 
     /// 创建路由策略
     @inlinable
-    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
-        self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRoutes(_ input: CreateRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
+        self.client.execute(action: "CreateRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建路由策略
     @inlinable
-    public func createRoutes(_ input: CreateRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
-        try await self.client.execute(action: "CreateRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRoutes(_ input: CreateRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
+        try await self.client.execute(action: "CreateRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建路由策略
     @inlinable
-    public func createRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
-        self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutesResponse> {
+        self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建路由策略
     @inlinable
-    public func createRoutes(routeTableId: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
-        try await self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), logger: logger, on: eventLoop)
+    public func createRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutesResponse {
+        try await self.createRoutes(CreateRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

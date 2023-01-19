@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Dlc {
     ///
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
-    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScriptResponse> {
-        self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScript(_ input: DeleteScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScriptResponse> {
+        self.client.execute(action: "DeleteScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除sql脚本
     ///
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
-    public func deleteScript(_ input: DeleteScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
-        try await self.client.execute(action: "DeleteScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScript(_ input: DeleteScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
+        try await self.client.execute(action: "DeleteScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除sql脚本
     ///
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
-    public func deleteScript(scriptIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScriptResponse> {
-        self.deleteScript(DeleteScriptRequest(scriptIds: scriptIds), logger: logger, on: eventLoop)
+    public func deleteScript(scriptIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScriptResponse> {
+        self.deleteScript(DeleteScriptRequest(scriptIds: scriptIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除sql脚本
     ///
     /// 该接口（DeleteScript）用于删除sql脚本。
     @inlinable
-    public func deleteScript(scriptIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
-        try await self.deleteScript(DeleteScriptRequest(scriptIds: scriptIds), logger: logger, on: eventLoop)
+    public func deleteScript(scriptIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScriptResponse {
+        try await self.deleteScript(DeleteScriptRequest(scriptIds: scriptIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Antiddos {
 
     /// 获取CC分级策略
     @inlinable
-    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelPolicyResponse> {
-        self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelPolicyResponse> {
+        self.client.execute(action: "DescribeCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC分级策略
     @inlinable
-    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
-        try await self.client.execute(action: "DescribeCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCLevelPolicy(_ input: DescribeCCLevelPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
+        try await self.client.execute(action: "DescribeCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC分级策略
     @inlinable
-    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelPolicyResponse> {
-        self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelPolicyResponse> {
+        self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC分级策略
     @inlinable
-    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
-        try await self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelPolicyResponse {
+        try await self.describeCCLevelPolicy(DescribeCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

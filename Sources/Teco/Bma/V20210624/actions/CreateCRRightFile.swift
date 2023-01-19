@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Bma {
 
     /// 权属文件添加
     @inlinable
-    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightFileResponse> {
-        self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRRightFile(_ input: CreateCRRightFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightFileResponse> {
+        self.client.execute(action: "CreateCRRightFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 权属文件添加
     @inlinable
-    public func createCRRightFile(_ input: CreateCRRightFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
-        try await self.client.execute(action: "CreateCRRightFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRRightFile(_ input: CreateCRRightFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
+        try await self.client.execute(action: "CreateCRRightFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 权属文件添加
     @inlinable
-    public func createCRRightFile(workId: Int64, fileList: [File], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightFileResponse> {
-        self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), logger: logger, on: eventLoop)
+    public func createCRRightFile(workId: Int64, fileList: [File], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightFileResponse> {
+        self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 权属文件添加
     @inlinable
-    public func createCRRightFile(workId: Int64, fileList: [File], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
-        try await self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), logger: logger, on: eventLoop)
+    public func createCRRightFile(workId: Int64, fileList: [File], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
+        try await self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Essbasic {
     ///
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
-    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
-        self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
+        self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件下载链接
     ///
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
-    public func describeFileUrls(_ input: DescribeFileUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
-        try await self.client.execute(action: "DescribeFileUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFileUrls(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件下载链接
     ///
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
-    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
-        self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), logger: logger, on: eventLoop)
+    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
+        self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件下载链接
     ///
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
-    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
-        try await self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), logger: logger, on: eventLoop)
+    public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
+        try await self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 }

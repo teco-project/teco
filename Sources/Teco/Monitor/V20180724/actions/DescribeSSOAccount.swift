@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Monitor {
     ///
     /// 列出当前grafana实例的所有授权账号
     @inlinable
-    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSSOAccountResponse> {
-        self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSSOAccountResponse> {
+        self.client.execute(action: "DescribeSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出授权账号
     ///
     /// 列出当前grafana实例的所有授权账号
     @inlinable
-    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
-        try await self.client.execute(action: "DescribeSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSSOAccount(_ input: DescribeSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
+        try await self.client.execute(action: "DescribeSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出授权账号
     ///
     /// 列出当前grafana实例的所有授权账号
     @inlinable
-    public func describeSSOAccount(instanceId: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSSOAccountResponse> {
-        self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), logger: logger, on: eventLoop)
+    public func describeSSOAccount(instanceId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSSOAccountResponse> {
+        self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出授权账号
     ///
     /// 列出当前grafana实例的所有授权账号
     @inlinable
-    public func describeSSOAccount(instanceId: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
-        try await self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), logger: logger, on: eventLoop)
+    public func describeSSOAccount(instanceId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
+        try await self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

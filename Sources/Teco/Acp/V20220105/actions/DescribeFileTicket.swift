@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Acp {
     ///
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
-    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileTicketResponse> {
-        self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFileTicket(_ input: DescribeFileTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileTicketResponse> {
+        self.client.execute(action: "DescribeFileTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用合规文件上传凭证接口
     ///
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
-    public func describeFileTicket(_ input: DescribeFileTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
-        try await self.client.execute(action: "DescribeFileTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFileTicket(_ input: DescribeFileTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
+        try await self.client.execute(action: "DescribeFileTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用合规文件上传凭证接口
     ///
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
-    public func describeFileTicket(source: Int64, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileTicketResponse> {
-        self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), logger: logger, on: eventLoop)
+    public func describeFileTicket(source: Int64, platform: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileTicketResponse> {
+        self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用合规文件上传凭证接口
     ///
     /// 获取应用合规文件上传凭证，用于上传诊断文件
     @inlinable
-    public func describeFileTicket(source: Int64, platform: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
-        try await self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), logger: logger, on: eventLoop)
+    public func describeFileTicket(source: Int64, platform: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileTicketResponse {
+        try await self.describeFileTicket(DescribeFileTicketRequest(source: source, platform: platform), region: region, logger: logger, on: eventLoop)
     }
 }

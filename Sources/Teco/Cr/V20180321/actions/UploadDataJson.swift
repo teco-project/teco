@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cr {
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
-        self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadDataJson(_ input: UploadDataJsonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
+        self.client.execute(action: "UploadDataJson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(_ input: UploadDataJsonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
-        try await self.client.execute(action: "UploadDataJson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadDataJson(_ input: UploadDataJsonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
+        try await self.client.execute(action: "UploadDataJson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
-        self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDataJsonResponse> {
+        self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传Json格式数据
     ///
     /// 上传Json格式数据，接口返回数据任务ID
     @inlinable
-    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
-        try await self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func uploadDataJson(module: String, operation: String, data: String, uploadModel: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDataJsonResponse {
+        try await self.uploadDataJson(UploadDataJsonRequest(module: module, operation: operation, data: data, uploadModel: uploadModel, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

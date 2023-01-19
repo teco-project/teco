@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension As {
     /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
-    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAutoScalingInstancesResponse> {
-        self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAutoScalingInstancesResponse> {
+        self.client.execute(action: "StartAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启伸缩组内 CVM 实例
@@ -64,8 +64,8 @@ extension As {
     /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
-    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
-        try await self.client.execute(action: "StartAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startAutoScalingInstances(_ input: StartAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
+        try await self.client.execute(action: "StartAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启伸缩组内 CVM 实例
@@ -74,8 +74,8 @@ extension As {
     /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
-    public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAutoScalingInstancesResponse> {
-        self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAutoScalingInstancesResponse> {
+        self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启伸缩组内 CVM 实例
@@ -84,7 +84,7 @@ extension As {
     /// * 开机成功，实例转为`IN_SERVICE`状态后，会增加期望实例数，期望实例数不可超过设置的最大值
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
-    public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
-        try await self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
+        try await self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

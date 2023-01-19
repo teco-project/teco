@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Cpdp {
 
     /// 智慧零售-查询公司抬头
     @inlinable
-    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCompanyTitleResponse> {
-        self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCompanyTitleResponse> {
+        self.client.execute(action: "QueryCompanyTitle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询公司抬头
     @inlinable
-    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
-        try await self.client.execute(action: "QueryCompanyTitle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCompanyTitle(_ input: QueryCompanyTitleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
+        try await self.client.execute(action: "QueryCompanyTitle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智慧零售-查询公司抬头
     @inlinable
-    public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCompanyTitleResponse> {
-        self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), logger: logger, on: eventLoop)
+    public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCompanyTitleResponse> {
+        self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询公司抬头
     @inlinable
-    public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
-        try await self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), logger: logger, on: eventLoop)
+    public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
+        try await self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

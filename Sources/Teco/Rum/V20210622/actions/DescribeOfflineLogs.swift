@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Rum {
 
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
-        self.client.execute(action: "DescribeOfflineLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
+        self.client.execute(action: "DescribeOfflineLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {
-        try await self.client.execute(action: "DescribeOfflineLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOfflineLogs(_ input: DescribeOfflineLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {
+        try await self.client.execute(action: "DescribeOfflineLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(projectKey: String, fileIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
-        self.describeOfflineLogs(DescribeOfflineLogsRequest(projectKey: projectKey, fileIDs: fileIDs), logger: logger, on: eventLoop)
+    public func describeOfflineLogs(projectKey: String, fileIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogsResponse> {
+        self.describeOfflineLogs(DescribeOfflineLogsRequest(projectKey: projectKey, fileIDs: fileIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取对应离线日志
     @inlinable
-    public func describeOfflineLogs(projectKey: String, fileIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {
-        try await self.describeOfflineLogs(DescribeOfflineLogsRequest(projectKey: projectKey, fileIDs: fileIDs), logger: logger, on: eventLoop)
+    public func describeOfflineLogs(projectKey: String, fileIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogsResponse {
+        try await self.describeOfflineLogs(DescribeOfflineLogsRequest(projectKey: projectKey, fileIDs: fileIDs), region: region, logger: logger, on: eventLoop)
     }
 }

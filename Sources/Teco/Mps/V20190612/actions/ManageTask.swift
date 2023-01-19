@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Mps {
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
-        self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func manageTask(_ input: ManageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
+        self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(_ input: ManageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
-        try await self.client.execute(action: "ManageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func manageTask(_ input: ManageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
+        try await self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
-        self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), logger: logger, on: eventLoop)
+    public func manageTask(operationType: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
+        self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
     @inlinable
-    public func manageTask(operationType: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
-        try await self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), logger: logger, on: eventLoop)
+    public func manageTask(operationType: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
+        try await self.manageTask(ManageTaskRequest(operationType: operationType, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

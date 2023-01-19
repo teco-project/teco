@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Redis {
     ///
     /// 应用参数模板到实例
     @inlinable
-    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyParamsTemplateResponse> {
-        self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyParamsTemplateResponse> {
+        self.client.execute(action: "ApplyParamsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 应用参数模板
     ///
     /// 应用参数模板到实例
     @inlinable
-    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
-        try await self.client.execute(action: "ApplyParamsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyParamsTemplate(_ input: ApplyParamsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
+        try await self.client.execute(action: "ApplyParamsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 应用参数模板
     ///
     /// 应用参数模板到实例
     @inlinable
-    public func applyParamsTemplate(instanceIds: [String], templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyParamsTemplateResponse> {
-        self.applyParamsTemplate(ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId), logger: logger, on: eventLoop)
+    public func applyParamsTemplate(instanceIds: [String], templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyParamsTemplateResponse> {
+        self.applyParamsTemplate(ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用参数模板
     ///
     /// 应用参数模板到实例
     @inlinable
-    public func applyParamsTemplate(instanceIds: [String], templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
-        try await self.applyParamsTemplate(ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId), logger: logger, on: eventLoop)
+    public func applyParamsTemplate(instanceIds: [String], templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyParamsTemplateResponse {
+        try await self.applyParamsTemplate(ApplyParamsTemplateRequest(instanceIds: instanceIds, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

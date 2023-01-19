@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tione {
 
     /// 删除Notebook生命周期脚本
     @inlinable
-    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookLifecycleScriptResponse> {
-        self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookLifecycleScriptResponse> {
+        self.client.execute(action: "DeleteNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Notebook生命周期脚本
     @inlinable
-    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
-        try await self.client.execute(action: "DeleteNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNotebookLifecycleScript(_ input: DeleteNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
+        try await self.client.execute(action: "DeleteNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Notebook生命周期脚本
     @inlinable
-    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookLifecycleScriptResponse> {
-        self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), logger: logger, on: eventLoop)
+    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookLifecycleScriptResponse> {
+        self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Notebook生命周期脚本
     @inlinable
-    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
-        try await self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), logger: logger, on: eventLoop)
+    public func deleteNotebookLifecycleScript(notebookLifecycleScriptsName: String, forcible: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookLifecycleScriptResponse {
+        try await self.deleteNotebookLifecycleScript(DeleteNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, forcible: forcible), region: region, logger: logger, on: eventLoop)
     }
 }

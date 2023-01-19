@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ssa {
 
     /// 云配置检查项总览页检查项列表
     @inlinable
-    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigListResponse> {
-        self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigList(_ input: DescribeConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigListResponse> {
+        self.client.execute(action: "DescribeConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云配置检查项总览页检查项列表
     @inlinable
-    public func describeConfigList(_ input: DescribeConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
-        try await self.client.execute(action: "DescribeConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigList(_ input: DescribeConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
+        try await self.client.execute(action: "DescribeConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云配置检查项总览页检查项列表
     @inlinable
-    public func describeConfigList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigListResponse> {
-        self.describeConfigList(DescribeConfigListRequest(filter: filter), logger: logger, on: eventLoop)
+    public func describeConfigList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigListResponse> {
+        self.describeConfigList(DescribeConfigListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云配置检查项总览页检查项列表
     @inlinable
-    public func describeConfigList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
-        try await self.describeConfigList(DescribeConfigListRequest(filter: filter), logger: logger, on: eventLoop)
+    public func describeConfigList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
+        try await self.describeConfigList(DescribeConfigListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
     }
 }

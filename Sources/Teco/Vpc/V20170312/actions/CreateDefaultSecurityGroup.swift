@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,8 +50,8 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
-        self.client.execute(action: "CreateDefaultSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
+        self.client.execute(action: "CreateDefaultSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建默认安全组
@@ -61,8 +61,8 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
-        try await self.client.execute(action: "CreateDefaultSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDefaultSecurityGroup(_ input: CreateDefaultSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
+        try await self.client.execute(action: "CreateDefaultSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建默认安全组
@@ -72,8 +72,8 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
-        self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func createDefaultSecurityGroup(projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
+        self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建默认安全组
@@ -83,7 +83,7 @@ extension Vpc {
     /// * 默认安全组会放通所有IPv4规则，在创建后通常您需要再调用CreateSecurityGroupPolicies将安全组的规则设置为需要的规则。
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createDefaultSecurityGroup(projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
-        try await self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func createDefaultSecurityGroup(projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
+        try await self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

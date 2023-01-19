@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Dcdb {
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
-        self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cloneAccount(_ input: CloneAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
+        self.client.execute(action: "CloneAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(_ input: CloneAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
-        try await self.client.execute(action: "CloneAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cloneAccount(_ input: CloneAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
+        try await self.client.execute(action: "CloneAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
-        self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), logger: logger, on: eventLoop)
+    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneAccountResponse> {
+        self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 克隆实例账户
     ///
     /// 本接口（CloneAccount）用于克隆实例账户。
     @inlinable
-    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
-        try await self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), logger: logger, on: eventLoop)
+    public func cloneAccount(instanceId: String, srcUser: String, srcHost: String, dstUser: String, dstHost: String, dstDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneAccountResponse {
+        try await self.cloneAccount(CloneAccountRequest(instanceId: instanceId, srcUser: srcUser, srcHost: srcHost, dstUser: dstUser, dstHost: dstHost, dstDesc: dstDesc), region: region, logger: logger, on: eventLoop)
     }
 }

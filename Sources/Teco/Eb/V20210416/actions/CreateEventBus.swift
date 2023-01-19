@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Eb {
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(_ input: CreateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
-        self.client.execute(action: "CreateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEventBus(_ input: CreateEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
+        self.client.execute(action: "CreateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建事件集
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(_ input: CreateEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
-        try await self.client.execute(action: "CreateEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEventBus(_ input: CreateEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
+        try await self.client.execute(action: "CreateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建事件集
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(eventBusName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
-        self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), logger: logger, on: eventLoop)
+    public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
+        self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件集
     ///
     /// 用于创建事件集
     @inlinable
-    public func createEventBus(eventBusName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
-        try await self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), logger: logger, on: eventLoop)
+    public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
+        try await self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

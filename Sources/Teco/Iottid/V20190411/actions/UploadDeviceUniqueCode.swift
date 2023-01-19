@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Iottid {
     ///
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
-    public func uploadDeviceUniqueCode(_ input: UploadDeviceUniqueCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDeviceUniqueCodeResponse> {
-        self.client.execute(action: "UploadDeviceUniqueCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadDeviceUniqueCode(_ input: UploadDeviceUniqueCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDeviceUniqueCodeResponse> {
+        self.client.execute(action: "UploadDeviceUniqueCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传硬件唯一标识码
     ///
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
-    public func uploadDeviceUniqueCode(_ input: UploadDeviceUniqueCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDeviceUniqueCodeResponse {
-        try await self.client.execute(action: "UploadDeviceUniqueCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadDeviceUniqueCode(_ input: UploadDeviceUniqueCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDeviceUniqueCodeResponse {
+        try await self.client.execute(action: "UploadDeviceUniqueCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传硬件唯一标识码
     ///
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
-    public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDeviceUniqueCodeResponse> {
-        self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), logger: logger, on: eventLoop)
+    public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDeviceUniqueCodeResponse> {
+        self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传硬件唯一标识码
     ///
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
-    public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDeviceUniqueCodeResponse {
-        try await self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), logger: logger, on: eventLoop)
+    public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDeviceUniqueCodeResponse {
+        try await self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

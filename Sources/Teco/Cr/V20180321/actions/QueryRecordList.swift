@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,25 +98,25 @@ extension Cr {
 
     /// 查询录音列表
     @inlinable
-    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRecordListResponse> {
-        self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryRecordList(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRecordListResponse> {
+        self.client.execute(action: "QueryRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询录音列表
     @inlinable
-    public func queryRecordList(_ input: QueryRecordListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
-        try await self.client.execute(action: "QueryRecordList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryRecordList(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
+        try await self.client.execute(action: "QueryRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询录音列表
     @inlinable
-    public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRecordListResponse> {
-        self.queryRecordList(QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), logger: logger, on: eventLoop)
+    public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRecordListResponse> {
+        self.queryRecordList(QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录音列表
     @inlinable
-    public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
-        try await self.queryRecordList(QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), logger: logger, on: eventLoop)
+    public func queryRecordList(module: String, operation: String, offset: Int64, limit: Int64, botId: String? = nil, botName: String? = nil, calledPhone: String? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRecordListResponse {
+        try await self.queryRecordList(QueryRecordListRequest(module: module, operation: operation, offset: offset, limit: limit, botId: botId, botName: botName, calledPhone: calledPhone, startBizDate: startBizDate, endBizDate: endBizDate), region: region, logger: logger, on: eventLoop)
     }
 }

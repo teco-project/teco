@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tcr {
     ///
     /// 创建实例的临时或长期访问凭证
     @inlinable
-    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceTokenResponse> {
-        self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstanceToken(_ input: CreateInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceTokenResponse> {
+        self.client.execute(action: "CreateInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例访问凭证
     ///
     /// 创建实例的临时或长期访问凭证
     @inlinable
-    public func createInstanceToken(_ input: CreateInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
-        try await self.client.execute(action: "CreateInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstanceToken(_ input: CreateInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
+        try await self.client.execute(action: "CreateInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例访问凭证
     ///
     /// 创建实例的临时或长期访问凭证
     @inlinable
-    public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceTokenResponse> {
-        self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), logger: logger, on: eventLoop)
+    public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceTokenResponse> {
+        self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例访问凭证
     ///
     /// 创建实例的临时或长期访问凭证
     @inlinable
-    public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
-        try await self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), logger: logger, on: eventLoop)
+    public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
+        try await self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 }

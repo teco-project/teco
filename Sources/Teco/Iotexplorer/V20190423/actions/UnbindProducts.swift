@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Iotexplorer {
 
     /// 批量解绑子产品
     @inlinable
-    public func unbindProducts(_ input: UnbindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindProductsResponse> {
-        self.client.execute(action: "UnbindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindProducts(_ input: UnbindProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindProductsResponse> {
+        self.client.execute(action: "UnbindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑子产品
     @inlinable
-    public func unbindProducts(_ input: UnbindProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindProductsResponse {
-        try await self.client.execute(action: "UnbindProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindProducts(_ input: UnbindProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindProductsResponse {
+        try await self.client.execute(action: "UnbindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量解绑子产品
     @inlinable
-    public func unbindProducts(gatewayProductId: String, productIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindProductsResponse> {
-        self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), logger: logger, on: eventLoop)
+    public func unbindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindProductsResponse> {
+        self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑子产品
     @inlinable
-    public func unbindProducts(gatewayProductId: String, productIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindProductsResponse {
-        try await self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), logger: logger, on: eventLoop)
+    public func unbindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindProductsResponse {
+        try await self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
     }
 }

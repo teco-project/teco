@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Iotexplorer {
 
     /// 查询绑定到家庭的网关设备的子设备列表
     @inlinable
-    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewaySubDeviceListResponse> {
-        self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewaySubDeviceListResponse> {
+        self.client.execute(action: "DescribeGatewaySubDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询绑定到家庭的网关设备的子设备列表
     @inlinable
-    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
-        try await self.client.execute(action: "DescribeGatewaySubDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGatewaySubDeviceList(_ input: DescribeGatewaySubDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
+        try await self.client.execute(action: "DescribeGatewaySubDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询绑定到家庭的网关设备的子设备列表
     @inlinable
-    public func describeGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewaySubDeviceListResponse> {
-        self.describeGatewaySubDeviceList(DescribeGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewaySubDeviceListResponse> {
+        self.describeGatewaySubDeviceList(DescribeGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询绑定到家庭的网关设备的子设备列表
     @inlinable
-    public func describeGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
-        try await self.describeGatewaySubDeviceList(DescribeGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGatewaySubDeviceList(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewaySubDeviceListResponse {
+        try await self.describeGatewaySubDeviceList(DescribeGatewaySubDeviceListRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Iotvideo {
     ///
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable
-    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunOtaVersionResponse> {
-        self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runOtaVersion(_ input: RunOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunOtaVersionResponse> {
+        self.client.execute(action: "RunOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 固件版本正式发布
     ///
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable
-    public func runOtaVersion(_ input: RunOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
-        try await self.client.execute(action: "RunOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runOtaVersion(_ input: RunOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
+        try await self.client.execute(action: "RunOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 固件版本正式发布
     ///
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable
-    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunOtaVersionResponse> {
-        self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunOtaVersionResponse> {
+        self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 固件版本正式发布
     ///
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable
-    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
-        try await self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
+        try await self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Monitor {
 
     /// 删除 exporter 集成
     @inlinable
-    public func deleteExporterIntegration(_ input: DeleteExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExporterIntegrationResponse> {
-        self.client.execute(action: "DeleteExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteExporterIntegration(_ input: DeleteExporterIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExporterIntegrationResponse> {
+        self.client.execute(action: "DeleteExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 exporter 集成
     @inlinable
-    public func deleteExporterIntegration(_ input: DeleteExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
-        try await self.client.execute(action: "DeleteExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteExporterIntegration(_ input: DeleteExporterIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
+        try await self.client.execute(action: "DeleteExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 exporter 集成
     @inlinable
-    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExporterIntegrationResponse> {
-        self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExporterIntegrationResponse> {
+        self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 exporter 集成
     @inlinable
-    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
-        try await self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
+        try await self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cwp {
 
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
-        self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanVulAgain(_ input: ScanVulAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
+        self.client.execute(action: "ScanVulAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(_ input: ScanVulAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
-        try await self.client.execute(action: "ScanVulAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanVulAgain(_ input: ScanVulAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
+        try await self.client.execute(action: "ScanVulAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(eventIds: String, uuids: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
-        self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), logger: logger, on: eventLoop)
+    public func scanVulAgain(eventIds: String, uuids: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
+        self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-重新检测接口
     @inlinable
-    public func scanVulAgain(eventIds: String, uuids: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
-        try await self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), logger: logger, on: eventLoop)
+    public func scanVulAgain(eventIds: String, uuids: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
+        try await self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }
 }

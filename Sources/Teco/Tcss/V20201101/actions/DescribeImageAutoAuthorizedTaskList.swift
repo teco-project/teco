@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Tcss {
 
     /// 查询镜像自动授权任务列表
     @inlinable
-    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedTaskListResponse> {
-        self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedTaskListResponse> {
+        self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像自动授权任务列表
     @inlinable
-    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
-        try await self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageAutoAuthorizedTaskList(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
+        try await self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像自动授权任务列表
     @inlinable
-    public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedTaskListResponse> {
-        self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedTaskListResponse> {
+        self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像自动授权任务列表
     @inlinable
-    public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
-        try await self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
+        try await self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

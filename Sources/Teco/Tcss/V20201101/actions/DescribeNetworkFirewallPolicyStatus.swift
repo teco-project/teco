@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcss {
 
     /// 容器网络查询网络策略策略执行状态
     @inlinable
-    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyStatusResponse> {
-        self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyStatusResponse> {
+        self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络查询网络策略策略执行状态
     @inlinable
-    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
-        try await self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNetworkFirewallPolicyStatus(_ input: DescribeNetworkFirewallPolicyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
+        try await self.client.execute(action: "DescribeNetworkFirewallPolicyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络查询网络策略策略执行状态
     @inlinable
-    public func describeNetworkFirewallPolicyStatus(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyStatusResponse> {
-        self.describeNetworkFirewallPolicyStatus(DescribeNetworkFirewallPolicyStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPolicyStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkFirewallPolicyStatusResponse> {
+        self.describeNetworkFirewallPolicyStatus(DescribeNetworkFirewallPolicyStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络查询网络策略策略执行状态
     @inlinable
-    public func describeNetworkFirewallPolicyStatus(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
-        try await self.describeNetworkFirewallPolicyStatus(DescribeNetworkFirewallPolicyStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeNetworkFirewallPolicyStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkFirewallPolicyStatusResponse {
+        try await self.describeNetworkFirewallPolicyStatus(DescribeNetworkFirewallPolicyStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

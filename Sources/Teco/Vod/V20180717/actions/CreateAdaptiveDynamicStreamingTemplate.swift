@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,31 +111,31 @@ extension Vod {
     ///
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAdaptiveDynamicStreamingTemplateResponse> {
-        self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAdaptiveDynamicStreamingTemplateResponse> {
+        self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转自适应码流模板
     ///
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
-        try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAdaptiveDynamicStreamingTemplate(_ input: CreateAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
+        try await self.client.execute(action: "CreateAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建转自适应码流模板
     ///
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAdaptiveDynamicStreamingTemplateResponse> {
-        self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), logger: logger, on: eventLoop)
+    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAdaptiveDynamicStreamingTemplateResponse> {
+        self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转自适应码流模板
     ///
     /// 创建转自适应码流模板，数量上限：100。
     @inlinable
-    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
-        try await self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), logger: logger, on: eventLoop)
+    public func createAdaptiveDynamicStreamingTemplate(format: String, streamInfos: [AdaptiveStreamTemplate], subAppId: UInt64? = nil, name: String? = nil, drmType: String? = nil, drmKeyProvider: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, comment: String? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAdaptiveDynamicStreamingTemplateResponse {
+        try await self.createAdaptiveDynamicStreamingTemplate(CreateAdaptiveDynamicStreamingTemplateRequest(format: format, streamInfos: streamInfos, subAppId: subAppId, name: name, drmType: drmType, drmKeyProvider: drmKeyProvider, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, comment: comment, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }
 }

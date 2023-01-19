@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
-    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartReplicationResponse> {
-        self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startReplication(_ input: StartReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartReplicationResponse> {
+        self.client.execute(action: "StartReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启复制
     ///
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
-    public func startReplication(_ input: StartReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
-        try await self.client.execute(action: "StartReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startReplication(_ input: StartReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
+        try await self.client.execute(action: "StartReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启复制
     ///
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
-    public func startReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartReplicationResponse> {
-        self.startReplication(StartReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func startReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartReplicationResponse> {
+        self.startReplication(StartReplicationRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启复制
     ///
     /// 开启 RO 复制，从主实例同步数据。
     @inlinable
-    public func startReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
-        try await self.startReplication(StartReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func startReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartReplicationResponse {
+        try await self.startReplication(StartReplicationRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

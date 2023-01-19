@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cpdp {
     ///
     /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
     @inlinable
-    public func closeCloudOrder(_ input: CloseCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCloudOrderResponse> {
-        self.client.execute(action: "CloseCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeCloudOrder(_ input: CloseCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCloudOrderResponse> {
+        self.client.execute(action: "CloseCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-关闭订单
     ///
     /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
     @inlinable
-    public func closeCloudOrder(_ input: CloseCloudOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
-        try await self.client.execute(action: "CloseCloudOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeCloudOrder(_ input: CloseCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
+        try await self.client.execute(action: "CloseCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫V2-关闭订单
     ///
     /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
     @inlinable
-    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCloudOrderResponse> {
-        self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCloudOrderResponse> {
+        self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-关闭订单
     ///
     /// 通过此接口关闭此前已创建的订单。关闭后，用户将无法继续付款，仅能关闭创建后未支付的订单。
     @inlinable
-    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
-        try await self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func closeCloudOrder(midasAppId: String, userId: String, outTradeNo: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCloudOrderResponse {
+        try await self.closeCloudOrder(CloseCloudOrderRequest(midasAppId: midasAppId, userId: userId, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

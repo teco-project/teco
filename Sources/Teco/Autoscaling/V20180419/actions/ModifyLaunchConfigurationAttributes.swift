@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -165,8 +165,8 @@ extension As {
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable
-    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaunchConfigurationAttributesResponse> {
-        self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaunchConfigurationAttributesResponse> {
+        self.client.execute(action: "ModifyLaunchConfigurationAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改启动配置属性
@@ -175,8 +175,8 @@ extension As {
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable
-    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
-        try await self.client.execute(action: "ModifyLaunchConfigurationAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLaunchConfigurationAttributes(_ input: ModifyLaunchConfigurationAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
+        try await self.client.execute(action: "ModifyLaunchConfigurationAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改启动配置属性
@@ -185,8 +185,8 @@ extension As {
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable
-    public func modifyLaunchConfigurationAttributes(launchConfigurationId: String, imageId: String? = nil, instanceTypes: [String]? = nil, instanceTypesCheckPolicy: String? = nil, launchConfigurationName: String? = nil, userData: String? = nil, securityGroupIds: [String]? = nil, internetAccessible: InternetAccessible? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, diskTypePolicy: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, enhancedService: EnhancedService? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaunchConfigurationAttributesResponse> {
-        self.modifyLaunchConfigurationAttributes(ModifyLaunchConfigurationAttributesRequest(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, instanceTypesCheckPolicy: instanceTypesCheckPolicy, launchConfigurationName: launchConfigurationName, userData: userData, securityGroupIds: securityGroupIds, internetAccessible: internetAccessible, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceMarketOptions: instanceMarketOptions, diskTypePolicy: diskTypePolicy, systemDisk: systemDisk, dataDisks: dataDisks, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, enhancedService: enhancedService, camRoleName: camRoleName, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), logger: logger, on: eventLoop)
+    public func modifyLaunchConfigurationAttributes(launchConfigurationId: String, imageId: String? = nil, instanceTypes: [String]? = nil, instanceTypesCheckPolicy: String? = nil, launchConfigurationName: String? = nil, userData: String? = nil, securityGroupIds: [String]? = nil, internetAccessible: InternetAccessible? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, diskTypePolicy: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, enhancedService: EnhancedService? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaunchConfigurationAttributesResponse> {
+        self.modifyLaunchConfigurationAttributes(ModifyLaunchConfigurationAttributesRequest(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, instanceTypesCheckPolicy: instanceTypesCheckPolicy, launchConfigurationName: launchConfigurationName, userData: userData, securityGroupIds: securityGroupIds, internetAccessible: internetAccessible, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceMarketOptions: instanceMarketOptions, diskTypePolicy: diskTypePolicy, systemDisk: systemDisk, dataDisks: dataDisks, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, enhancedService: enhancedService, camRoleName: camRoleName, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改启动配置属性
@@ -195,7 +195,7 @@ extension As {
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable
-    public func modifyLaunchConfigurationAttributes(launchConfigurationId: String, imageId: String? = nil, instanceTypes: [String]? = nil, instanceTypesCheckPolicy: String? = nil, launchConfigurationName: String? = nil, userData: String? = nil, securityGroupIds: [String]? = nil, internetAccessible: InternetAccessible? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, diskTypePolicy: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, enhancedService: EnhancedService? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
-        try await self.modifyLaunchConfigurationAttributes(ModifyLaunchConfigurationAttributesRequest(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, instanceTypesCheckPolicy: instanceTypesCheckPolicy, launchConfigurationName: launchConfigurationName, userData: userData, securityGroupIds: securityGroupIds, internetAccessible: internetAccessible, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceMarketOptions: instanceMarketOptions, diskTypePolicy: diskTypePolicy, systemDisk: systemDisk, dataDisks: dataDisks, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, enhancedService: enhancedService, camRoleName: camRoleName, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), logger: logger, on: eventLoop)
+    public func modifyLaunchConfigurationAttributes(launchConfigurationId: String, imageId: String? = nil, instanceTypes: [String]? = nil, instanceTypesCheckPolicy: String? = nil, launchConfigurationName: String? = nil, userData: String? = nil, securityGroupIds: [String]? = nil, internetAccessible: InternetAccessible? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, diskTypePolicy: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, enhancedService: EnhancedService? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaunchConfigurationAttributesResponse {
+        try await self.modifyLaunchConfigurationAttributes(ModifyLaunchConfigurationAttributesRequest(launchConfigurationId: launchConfigurationId, imageId: imageId, instanceTypes: instanceTypes, instanceTypesCheckPolicy: instanceTypesCheckPolicy, launchConfigurationName: launchConfigurationName, userData: userData, securityGroupIds: securityGroupIds, internetAccessible: internetAccessible, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, instanceMarketOptions: instanceMarketOptions, diskTypePolicy: diskTypePolicy, systemDisk: systemDisk, dataDisks: dataDisks, hostNameSettings: hostNameSettings, instanceNameSettings: instanceNameSettings, enhancedService: enhancedService, camRoleName: camRoleName, hpcClusterId: hpcClusterId, iPv6InternetAccessible: iPv6InternetAccessible), region: region, logger: logger, on: eventLoop)
     }
 }

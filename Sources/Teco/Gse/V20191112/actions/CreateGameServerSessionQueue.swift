@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
-    public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
-        self.client.execute(action: "CreateGameServerSessionQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
+        self.client.execute(action: "CreateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建游戏服务器会话队列
@@ -77,8 +77,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
-    public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
-        try await self.client.execute(action: "CreateGameServerSessionQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
+        try await self.client.execute(action: "CreateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建游戏服务器会话队列
@@ -86,8 +86,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
-    public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
-        self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), logger: logger, on: eventLoop)
+    public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
+        self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建游戏服务器会话队列
@@ -95,7 +95,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
-    public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
-        try await self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), logger: logger, on: eventLoop)
+    public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
+        try await self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

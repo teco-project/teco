@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable
-    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
-        self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindGroupDevices(_ input: BindGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
+        self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable
-    public func bindGroupDevices(_ input: BindGroupDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
-        try await self.client.execute(action: "BindGroupDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindGroupDevices(_ input: BindGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
+        try await self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable
-    public func bindGroupDevices(groupId: String, deviceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
-        self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), logger: logger, on: eventLoop)
+    public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
+        self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable
-    public func bindGroupDevices(groupId: String, deviceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
-        try await self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), logger: logger, on: eventLoop)
+    public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
+        try await self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
     }
 }

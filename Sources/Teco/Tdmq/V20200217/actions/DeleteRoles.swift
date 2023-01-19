@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tdmq {
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
-        self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRoles(_ input: DeleteRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
+        self.client.execute(action: "DeleteRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(_ input: DeleteRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
-        try await self.client.execute(action: "DeleteRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRoles(_ input: DeleteRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
+        try await self.client.execute(action: "DeleteRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除角色
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(roleNames: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
-        self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolesResponse> {
+        self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
     ///
     /// 删除角色，支持批量。
     @inlinable
-    public func deleteRoles(roleNames: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
-        try await self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteRoles(roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolesResponse {
+        try await self.deleteRoles(DeleteRolesRequest(roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

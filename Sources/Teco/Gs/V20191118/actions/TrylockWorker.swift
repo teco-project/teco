@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Gs {
 
     /// 尝试锁定机器
     @inlinable
-    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
-        self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func trylockWorker(_ input: TrylockWorkerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
+        self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 尝试锁定机器
     @inlinable
-    public func trylockWorker(_ input: TrylockWorkerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
-        try await self.client.execute(action: "TrylockWorker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func trylockWorker(_ input: TrylockWorkerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
+        try await self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 尝试锁定机器
     @inlinable
-    public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
-        self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), logger: logger, on: eventLoop)
+    public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
+        self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 尝试锁定机器
     @inlinable
-    public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
-        try await self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), logger: logger, on: eventLoop)
+    public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
+        try await self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

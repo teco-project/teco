@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
-        self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
+        self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 套餐包信息统计
@@ -70,8 +70,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
-        try await self.client.execute(action: "SmsPackagesStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func smsPackagesStatistics(_ input: SmsPackagesStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
+        try await self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 套餐包信息统计
@@ -80,8 +80,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
-        self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
+        self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 套餐包信息统计
@@ -90,7 +90,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
-        try await self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
+        try await self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

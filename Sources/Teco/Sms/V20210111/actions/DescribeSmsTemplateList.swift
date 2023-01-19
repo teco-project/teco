@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
+        self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信模板状态查询
@@ -79,8 +79,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 短信模板状态查询
@@ -89,8 +89,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
+        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短信模板状态查询
@@ -99,7 +99,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

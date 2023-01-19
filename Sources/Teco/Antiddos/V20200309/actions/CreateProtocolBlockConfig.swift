@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Antiddos {
 
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
-        self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
+        self.client.execute(action: "CreateProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
-        try await self.client.execute(action: "CreateProtocolBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
+        try await self.client.execute(action: "CreateProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
-        self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), logger: logger, on: eventLoop)
+    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
+        self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的协议封禁配置
     @inlinable
-    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
-        try await self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), logger: logger, on: eventLoop)
+    public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
+        try await self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Postgres {
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
+        self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeDBInstance(_ input: UpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
-        self.upgradeDBInstance(UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), logger: logger, on: eventLoop)
+    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceResponse> {
+        self.upgradeDBInstance(UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例配置（废弃）
     ///
     /// 本接口（UpgradeDBInstance）用于升级实例配置。
     @inlinable
-    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
-        try await self.upgradeDBInstance(UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), logger: logger, on: eventLoop)
+    public func upgradeDBInstance(memory: Int64, storage: Int64, dbInstanceId: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, activityId: Int64? = nil, switchTag: Int64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceResponse {
+        try await self.upgradeDBInstance(UpgradeDBInstanceRequest(memory: memory, storage: storage, dbInstanceId: dbInstanceId, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 }

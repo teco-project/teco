@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Teo {
 
     /// 源站组创建
     @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOriginGroupResponse> {
-        self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOriginGroupResponse> {
+        self.client.execute(action: "CreateOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 源站组创建
     @inlinable
-    public func createOriginGroup(_ input: CreateOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
-        try await self.client.execute(action: "CreateOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOriginGroup(_ input: CreateOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
+        try await self.client.execute(action: "CreateOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 源站组创建
     @inlinable
-    public func createOriginGroup(originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOriginGroupResponse> {
-        self.createOriginGroup(CreateOriginGroupRequest(originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), logger: logger, on: eventLoop)
+    public func createOriginGroup(originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOriginGroupResponse> {
+        self.createOriginGroup(CreateOriginGroupRequest(originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 源站组创建
     @inlinable
-    public func createOriginGroup(originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
-        try await self.createOriginGroup(CreateOriginGroupRequest(originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), logger: logger, on: eventLoop)
+    public func createOriginGroup(originName: String, type: String, record: [OriginRecord], zoneId: String, originType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOriginGroupResponse {
+        try await self.createOriginGroup(CreateOriginGroupRequest(originName: originName, type: type, record: record, zoneId: zoneId, originType: originType), region: region, logger: logger, on: eventLoop)
     }
 }

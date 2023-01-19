@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Cdb {
     ///
     /// 调整数据库代理配置
     @inlinable
-    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyResponse> {
-        self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyResponse> {
+        self.client.execute(action: "UpgradeCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级数据库代理配置
     ///
     /// 调整数据库代理配置
     @inlinable
-    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
-        try await self.client.execute(action: "UpgradeCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeCDBProxy(_ input: UpgradeCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
+        try await self.client.execute(action: "UpgradeCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级数据库代理配置
     ///
     /// 调整数据库代理配置
     @inlinable
-    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyResponse> {
-        self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyResponse> {
+        self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级数据库代理配置
     ///
     /// 调整数据库代理配置
     @inlinable
-    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
-        try await self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    public func upgradeCDBProxy(instanceId: String, proxyGroupId: String, proxyCount: Int64, cpu: Int64, mem: Int64, reloadBalance: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyResponse {
+        try await self.upgradeCDBProxy(UpgradeCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, proxyCount: proxyCount, cpu: cpu, mem: mem, reloadBalance: reloadBalance, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 }

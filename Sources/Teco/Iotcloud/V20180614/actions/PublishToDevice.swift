@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Iotcloud {
     ///
     /// 服务器端下发消息给lora类型的设备
     @inlinable
-    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
-        self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishToDevice(_ input: PublishToDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
+        self.client.execute(action: "PublishToDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
     @inlinable
-    public func publishToDevice(_ input: PublishToDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
-        try await self.client.execute(action: "PublishToDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishToDevice(_ input: PublishToDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
+        try await self.client.execute(action: "PublishToDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
     @inlinable
-    public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
-        self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), logger: logger, on: eventLoop)
+    public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
+        self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
     @inlinable
-    public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
-        try await self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), logger: logger, on: eventLoop)
+    public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
+        try await self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 }

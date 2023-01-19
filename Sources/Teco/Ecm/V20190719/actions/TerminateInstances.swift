@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Ecm {
 
     /// 销毁实例
     @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateInstances(_ input: TerminateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
+        self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁实例
     @inlinable
-    public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateInstances(_ input: TerminateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁实例
     @inlinable
-    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
+        self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁实例
     @inlinable
-    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), logger: logger, on: eventLoop)
+    public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
+        try await self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), region: region, logger: logger, on: eventLoop)
     }
 }

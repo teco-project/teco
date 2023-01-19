@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tdmq {
 
     /// 删除RocketMQ命名空间
     @inlinable
-    public func deleteRocketMQNamespace(_ input: DeleteRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQNamespaceResponse> {
-        self.client.execute(action: "DeleteRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRocketMQNamespace(_ input: DeleteRocketMQNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQNamespaceResponse> {
+        self.client.execute(action: "DeleteRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ命名空间
     @inlinable
-    public func deleteRocketMQNamespace(_ input: DeleteRocketMQNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQNamespaceResponse {
-        try await self.client.execute(action: "DeleteRocketMQNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRocketMQNamespace(_ input: DeleteRocketMQNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQNamespaceResponse {
+        try await self.client.execute(action: "DeleteRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除RocketMQ命名空间
     @inlinable
-    public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQNamespaceResponse> {
-        self.deleteRocketMQNamespace(DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQNamespaceResponse> {
+        self.deleteRocketMQNamespace(DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ命名空间
     @inlinable
-    public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQNamespaceResponse {
-        try await self.deleteRocketMQNamespace(DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId), logger: logger, on: eventLoop)
+    public func deleteRocketMQNamespace(clusterId: String, namespaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQNamespaceResponse {
+        try await self.deleteRocketMQNamespace(DeleteRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId), region: region, logger: logger, on: eventLoop)
     }
 }

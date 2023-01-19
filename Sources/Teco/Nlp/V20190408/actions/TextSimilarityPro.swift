@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Nlp {
     /// 鉴于句子相似度是一个应用非常广泛的功能，腾讯云自然语言处理团队在Bert等领先的深度神经网络模型的基础上，专门针对文本相似任务进行了优化，并持续迭代更新。基于句子相似度，可以轻松实现诸如文本去重、相似推荐等功能。
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
-    public func textSimilarityPro(_ input: TextSimilarityProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextSimilarityProResponse> {
-        self.client.execute(action: "TextSimilarityPro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textSimilarityPro(_ input: TextSimilarityProRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextSimilarityProResponse> {
+        self.client.execute(action: "TextSimilarityPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 句子相似度高级版
@@ -64,8 +64,8 @@ extension Nlp {
     /// 鉴于句子相似度是一个应用非常广泛的功能，腾讯云自然语言处理团队在Bert等领先的深度神经网络模型的基础上，专门针对文本相似任务进行了优化，并持续迭代更新。基于句子相似度，可以轻松实现诸如文本去重、相似推荐等功能。
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
-    public func textSimilarityPro(_ input: TextSimilarityProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityProResponse {
-        try await self.client.execute(action: "TextSimilarityPro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textSimilarityPro(_ input: TextSimilarityProRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityProResponse {
+        try await self.client.execute(action: "TextSimilarityPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 句子相似度高级版
@@ -74,8 +74,8 @@ extension Nlp {
     /// 鉴于句子相似度是一个应用非常广泛的功能，腾讯云自然语言处理团队在Bert等领先的深度神经网络模型的基础上，专门针对文本相似任务进行了优化，并持续迭代更新。基于句子相似度，可以轻松实现诸如文本去重、相似推荐等功能。
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
-    public func textSimilarityPro(srcText: String, targetText: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextSimilarityProResponse> {
-        self.textSimilarityPro(TextSimilarityProRequest(srcText: srcText, targetText: targetText), logger: logger, on: eventLoop)
+    public func textSimilarityPro(srcText: String, targetText: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextSimilarityProResponse> {
+        self.textSimilarityPro(TextSimilarityProRequest(srcText: srcText, targetText: targetText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 句子相似度高级版
@@ -84,7 +84,7 @@ extension Nlp {
     /// 鉴于句子相似度是一个应用非常广泛的功能，腾讯云自然语言处理团队在Bert等领先的深度神经网络模型的基础上，专门针对文本相似任务进行了优化，并持续迭代更新。基于句子相似度，可以轻松实现诸如文本去重、相似推荐等功能。
     /// 接口将以句子数量为单位消耗资源包，而不是调用接口次数为单位。
     @inlinable
-    public func textSimilarityPro(srcText: String, targetText: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityProResponse {
-        try await self.textSimilarityPro(TextSimilarityProRequest(srcText: srcText, targetText: targetText), logger: logger, on: eventLoop)
+    public func textSimilarityPro(srcText: String, targetText: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityProResponse {
+        try await self.textSimilarityPro(TextSimilarityProRequest(srcText: srcText, targetText: targetText), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -176,31 +176,31 @@ extension Tcss {
     ///
     /// 查询镜像详细信息
     @inlinable
-    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageDetailResponse> {
-        self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageDetailResponse> {
+        self.client.execute(action: "DescribeAssetImageDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
     ///
     /// 查询镜像详细信息
     @inlinable
-    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
-        try await self.client.execute(action: "DescribeAssetImageDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageDetail(_ input: DescribeAssetImageDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
+        try await self.client.execute(action: "DescribeAssetImageDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像信息
     ///
     /// 查询镜像详细信息
     @inlinable
-    public func describeAssetImageDetail(imageID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageDetailResponse> {
-        self.describeAssetImageDetail(DescribeAssetImageDetailRequest(imageID: imageID), logger: logger, on: eventLoop)
+    public func describeAssetImageDetail(imageID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageDetailResponse> {
+        self.describeAssetImageDetail(DescribeAssetImageDetailRequest(imageID: imageID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
     ///
     /// 查询镜像详细信息
     @inlinable
-    public func describeAssetImageDetail(imageID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
-        try await self.describeAssetImageDetail(DescribeAssetImageDetailRequest(imageID: imageID), logger: logger, on: eventLoop)
+    public func describeAssetImageDetail(imageID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageDetailResponse {
+        try await self.describeAssetImageDetail(DescribeAssetImageDetailRequest(imageID: imageID), region: region, logger: logger, on: eventLoop)
     }
 }

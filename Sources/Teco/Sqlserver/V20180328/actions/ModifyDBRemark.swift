@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable
-    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
-        self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
+        self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable
-    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
-        try await self.client.execute(action: "ModifyDBRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBRemark(_ input: ModifyDBRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
+        try await self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable
-    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
-        self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), logger: logger, on: eventLoop)
+    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
+        self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable
-    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
-        try await self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), logger: logger, on: eventLoop)
+    public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
+        try await self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
     }
 }

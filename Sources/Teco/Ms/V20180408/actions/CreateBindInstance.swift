@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ms {
     ///
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindInstanceResponse> {
-        self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBindInstance(_ input: CreateBindInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindInstanceResponse> {
+        self.client.execute(action: "CreateBindInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将应用绑定到资源
     ///
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createBindInstance(_ input: CreateBindInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
-        try await self.client.execute(action: "CreateBindInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBindInstance(_ input: CreateBindInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
+        try await self.client.execute(action: "CreateBindInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将应用绑定到资源
     ///
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindInstanceResponse> {
-        self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), logger: logger, on: eventLoop)
+    public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindInstanceResponse> {
+        self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将应用绑定到资源
     ///
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
-        try await self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), logger: logger, on: eventLoop)
+    public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
+        try await self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
     }
 }

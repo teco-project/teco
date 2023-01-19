@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Live {
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
-    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
-        self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
+        self.client.execute(action: "DescribeTopClientIpSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
-    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
-        try await self.client.execute(action: "DescribeTopClientIpSumInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopClientIpSumInfoList(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
+        try await self.client.execute(action: "DescribeTopClientIpSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
-    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
-        self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopClientIpSumInfoListResponse> {
+        self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某段时间top n客户端ip汇总信息
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
-    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
-        try await self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), logger: logger, on: eventLoop)
+    public func describeTopClientIpSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, mainlandOrOversea: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopClientIpSumInfoListResponse {
+        try await self.describeTopClientIpSumInfoList(DescribeTopClientIpSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam, mainlandOrOversea: mainlandOrOversea, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 删除运行环境
     @inlinable
-    public func deleteRuntime(_ input: DeleteRuntimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuntimeResponse> {
-        self.client.execute(action: "DeleteRuntime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRuntime(_ input: DeleteRuntimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuntimeResponse> {
+        self.client.execute(action: "DeleteRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行环境
@@ -53,8 +53,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 删除运行环境
     @inlinable
-    public func deleteRuntime(_ input: DeleteRuntimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuntimeResponse {
-        try await self.client.execute(action: "DeleteRuntime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRuntime(_ input: DeleteRuntimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuntimeResponse {
+        try await self.client.execute(action: "DeleteRuntime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除运行环境
@@ -62,8 +62,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 删除运行环境
     @inlinable
-    public func deleteRuntime(runtime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuntimeResponse> {
-        self.deleteRuntime(DeleteRuntimeRequest(runtime: runtime), logger: logger, on: eventLoop)
+    public func deleteRuntime(runtime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuntimeResponse> {
+        self.deleteRuntime(DeleteRuntimeRequest(runtime: runtime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行环境
@@ -71,7 +71,7 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 删除运行环境
     @inlinable
-    public func deleteRuntime(runtime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuntimeResponse {
-        try await self.deleteRuntime(DeleteRuntimeRequest(runtime: runtime), logger: logger, on: eventLoop)
+    public func deleteRuntime(runtime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuntimeResponse {
+        try await self.deleteRuntime(DeleteRuntimeRequest(runtime: runtime), region: region, logger: logger, on: eventLoop)
     }
 }

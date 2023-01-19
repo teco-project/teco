@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Cme {
     ///
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
-    public func exportVideoByVideoSegmentationData(_ input: ExportVideoByVideoSegmentationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByVideoSegmentationDataResponse> {
-        self.client.execute(action: "ExportVideoByVideoSegmentationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVideoByVideoSegmentationData(_ input: ExportVideoByVideoSegmentationDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByVideoSegmentationDataResponse> {
+        self.client.execute(action: "ExportVideoByVideoSegmentationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用视频智能拆条数据导出视频
     ///
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
-    public func exportVideoByVideoSegmentationData(_ input: ExportVideoByVideoSegmentationDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
-        try await self.client.execute(action: "ExportVideoByVideoSegmentationData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVideoByVideoSegmentationData(_ input: ExportVideoByVideoSegmentationDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
+        try await self.client.execute(action: "ExportVideoByVideoSegmentationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用视频智能拆条数据导出视频
     ///
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
-    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByVideoSegmentationDataResponse> {
-        self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByVideoSegmentationDataResponse> {
+        self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用视频智能拆条数据导出视频
     ///
     /// 使用视频智能拆条数据导出视频，将指定的视频拆条片段导出为一个视频(内测中，请勿使用)。
     @inlinable
-    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
-        try await self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    public func exportVideoByVideoSegmentationData(platform: String, projectId: String, segmentGroupId: String, segmentIds: [String], definition: UInt64, exportDestination: String, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByVideoSegmentationDataResponse {
+        try await self.exportVideoByVideoSegmentationData(ExportVideoByVideoSegmentationDataRequest(platform: platform, projectId: projectId, segmentGroupId: segmentGroupId, segmentIds: segmentIds, definition: definition, exportDestination: exportDestination, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

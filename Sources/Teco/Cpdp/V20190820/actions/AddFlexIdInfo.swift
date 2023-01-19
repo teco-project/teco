@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cpdp {
 
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
-        self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
+        self.client.execute(action: "AddFlexIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
-        try await self.client.execute(action: "AddFlexIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addFlexIdInfo(_ input: AddFlexIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
+        try await self.client.execute(action: "AddFlexIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
-        self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), logger: logger, on: eventLoop)
+    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexIdInfoResponse> {
+        self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-补充证件信息
     @inlinable
-    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
-        try await self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), logger: logger, on: eventLoop)
+    public func addFlexIdInfo(idType: Int64, idNo: String, payeeId: String, environment: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexIdInfoResponse {
+        try await self.addFlexIdInfo(AddFlexIdInfoRequest(idType: idType, idNo: idNo, payeeId: payeeId, environment: environment, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

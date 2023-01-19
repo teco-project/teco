@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Emr {
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
-        self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
+        self.client.execute(action: "InquirePriceRenewEmr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群续费询价
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
-        try await self.client.execute(action: "InquirePriceRenewEmr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceRenewEmr(_ input: InquirePriceRenewEmrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
+        try await self.client.execute(action: "InquirePriceRenewEmr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群续费询价
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
-        self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), logger: logger, on: eventLoop)
+    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewEmrResponse> {
+        self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群续费询价
     ///
     /// 集群续费询价。
     @inlinable
-    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
-        try await self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), logger: logger, on: eventLoop)
+    public func inquirePriceRenewEmr(timeSpan: UInt64, instanceId: String, placement: Placement, payMode: Int64, timeUnit: String? = nil, currency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewEmrResponse {
+        try await self.inquirePriceRenewEmr(InquirePriceRenewEmrRequest(timeSpan: timeSpan, instanceId: instanceId, placement: placement, payMode: payMode, timeUnit: timeUnit, currency: currency), region: region, logger: logger, on: eventLoop)
     }
 }

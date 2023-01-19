@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,31 +50,31 @@ extension Teo {
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
-        self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
+        self.client.execute(action: "SwitchLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
-        try await self.client.execute(action: "SwitchLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
+        try await self.client.execute(action: "SwitchLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(topicId: String, isOpen: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
-        self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), logger: logger, on: eventLoop)
+    public func switchLogTopicTask(topicId: String, isOpen: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
+        self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
     @inlinable
-    public func switchLogTopicTask(topicId: String, isOpen: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
-        try await self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), logger: logger, on: eventLoop)
+    public func switchLogTopicTask(topicId: String, isOpen: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
+        try await self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }
 }

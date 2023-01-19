@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,25 +48,25 @@ extension Antiddos {
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
-        self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
+        self.client.execute(action: "DescribeBasicDeviceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
-        try await self.client.execute(action: "DescribeBasicDeviceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBasicDeviceStatus(_ input: DescribeBasicDeviceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
+        try await self.client.execute(action: "DescribeBasicDeviceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
-        self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), logger: logger, on: eventLoop)
+    public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceStatusResponse> {
+        self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护攻击状态
     @inlinable
-    public func describeBasicDeviceStatus(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
-        try await self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), logger: logger, on: eventLoop)
+    public func describeBasicDeviceStatus(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceStatusResponse {
+        try await self.describeBasicDeviceStatus(DescribeBasicDeviceStatusRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

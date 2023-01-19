@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Cdwch {
     ///
     /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
     @inlinable
-    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecResponse> {
-        self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSpec(_ input: DescribeSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecResponse> {
+        self.client.execute(action: "DescribeSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群规格
     ///
     /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
     @inlinable
-    public func describeSpec(_ input: DescribeSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
-        try await self.client.execute(action: "DescribeSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSpec(_ input: DescribeSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
+        try await self.client.execute(action: "DescribeSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群规格
     ///
     /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
     @inlinable
-    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecResponse> {
-        self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), logger: logger, on: eventLoop)
+    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecResponse> {
+        self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群规格
     ///
     /// 购买页拉取集群的数据节点和zookeeper节点的规格列表
     @inlinable
-    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
-        try await self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), logger: logger, on: eventLoop)
+    public func describeSpec(zone: String, payMode: String? = nil, isElastic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecResponse {
+        try await self.describeSpec(DescribeSpecRequest(zone: zone, payMode: payMode, isElastic: isElastic), region: region, logger: logger, on: eventLoop)
     }
 }

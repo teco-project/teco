@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Vm {
     ///
     /// 通过URL或存储桶创建审核任务
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
     ///
     /// 通过URL或存储桶创建审核任务
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建视频审核任务
     ///
     /// 通过URL或存储桶创建审核任务
     @inlinable
-    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
     ///
     /// 通过URL或存储桶创建审核任务
     @inlinable
-    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

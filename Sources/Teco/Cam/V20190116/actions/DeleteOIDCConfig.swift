@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cam {
 
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
-        self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
+        self.client.execute(action: "DeleteOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
-        try await self.client.execute(action: "DeleteOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteOIDCConfig(_ input: DeleteOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
+        try await self.client.execute(action: "DeleteOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
-        self.deleteOIDCConfig(DeleteOIDCConfigRequest(name: name), logger: logger, on: eventLoop)
+    public func deleteOIDCConfig(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOIDCConfigResponse> {
+        self.deleteOIDCConfig(DeleteOIDCConfigRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除OIDC身份提供商
     @inlinable
-    public func deleteOIDCConfig(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
-        try await self.deleteOIDCConfig(DeleteOIDCConfigRequest(name: name), logger: logger, on: eventLoop)
+    public func deleteOIDCConfig(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOIDCConfigResponse {
+        try await self.deleteOIDCConfig(DeleteOIDCConfigRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

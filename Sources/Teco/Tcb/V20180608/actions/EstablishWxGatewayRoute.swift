@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcb {
 
     /// 创建或修改安全网关路由
     @inlinable
-    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishWxGatewayRouteResponse> {
-        self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishWxGatewayRouteResponse> {
+        self.client.execute(action: "EstablishWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或修改安全网关路由
     @inlinable
-    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
-        try await self.client.execute(action: "EstablishWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func establishWxGatewayRoute(_ input: EstablishWxGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
+        try await self.client.execute(action: "EstablishWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建或修改安全网关路由
     @inlinable
-    public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishWxGatewayRouteResponse> {
-        self.establishWxGatewayRoute(EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), logger: logger, on: eventLoop)
+    public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishWxGatewayRouteResponse> {
+        self.establishWxGatewayRoute(EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建或修改安全网关路由
     @inlinable
-    public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
-        try await self.establishWxGatewayRoute(EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), logger: logger, on: eventLoop)
+    public func establishWxGatewayRoute(gatewayId: String, gatewayRouteName: String, gatewayRouteAddr: String, gatewayRouteProtocol: String, gatewayRouteDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishWxGatewayRouteResponse {
+        try await self.establishWxGatewayRoute(EstablishWxGatewayRouteRequest(gatewayId: gatewayId, gatewayRouteName: gatewayRouteName, gatewayRouteAddr: gatewayRouteAddr, gatewayRouteProtocol: gatewayRouteProtocol, gatewayRouteDesc: gatewayRouteDesc), region: region, logger: logger, on: eventLoop)
     }
 }

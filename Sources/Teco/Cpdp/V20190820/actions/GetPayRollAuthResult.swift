@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cpdp {
 
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
-        self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
+        self.client.execute(action: "GetPayRollAuthResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
-        try await self.client.execute(action: "GetPayRollAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPayRollAuthResult(_ input: GetPayRollAuthResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
+        try await self.client.execute(action: "GetPayRollAuthResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
-        self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), logger: logger, on: eventLoop)
+    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResultResponse> {
+        self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-获取核身结果
     @inlinable
-    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
-        try await self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), logger: logger, on: eventLoop)
+    public func getPayRollAuthResult(authNumber: String, subMerchantId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResultResponse {
+        try await self.getPayRollAuthResult(GetPayRollAuthResultRequest(authNumber: authNumber, subMerchantId: subMerchantId), region: region, logger: logger, on: eventLoop)
     }
 }

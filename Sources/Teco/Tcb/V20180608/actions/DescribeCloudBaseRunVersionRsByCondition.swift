@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -35,31 +35,31 @@ extension Tcb {
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunVersionRsByCondition(_ input: DescribeCloudBaseRunVersionRsByConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunVersionRsByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
-        self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionRsByCondition(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionRsByConditionResponse> {
+        self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管详情
     ///
     /// DescribeCloudBaseRunVersionRsByCondition 获取云托管详情
     @inlinable
-    public func describeCloudBaseRunVersionRsByCondition(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
-        try await self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionRsByCondition(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionRsByConditionResponse {
+        try await self.describeCloudBaseRunVersionRsByCondition(DescribeCloudBaseRunVersionRsByConditionRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

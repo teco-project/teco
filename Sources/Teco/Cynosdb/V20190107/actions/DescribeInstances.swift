@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,31 +97,31 @@ extension Cynosdb {
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
+        self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
+        self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
-    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeInstances(limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, filters: [QueryFilter]? = nil, dbType: String? = nil, status: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

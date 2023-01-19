@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iottid {
     ///
     /// 下载芯片订单的TID
     @inlinable
-    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadTidsResponse> {
-        self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadTids(_ input: DownloadTidsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadTidsResponse> {
+        self.client.execute(action: "DownloadTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载芯片订单的TID
     ///
     /// 下载芯片订单的TID
     @inlinable
-    public func downloadTids(_ input: DownloadTidsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
-        try await self.client.execute(action: "DownloadTids", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadTids(_ input: DownloadTidsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
+        try await self.client.execute(action: "DownloadTids", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载芯片订单的TID
     ///
     /// 下载芯片订单的TID
     @inlinable
-    public func downloadTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadTidsResponse> {
-        self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    public func downloadTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadTidsResponse> {
+        self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载芯片订单的TID
     ///
     /// 下载芯片订单的TID
     @inlinable
-    public func downloadTids(orderId: String, quantity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
-        try await self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), logger: logger, on: eventLoop)
+    public func downloadTids(orderId: String, quantity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadTidsResponse {
+        try await self.downloadTids(DownloadTidsRequest(orderId: orderId, quantity: quantity), region: region, logger: logger, on: eventLoop)
     }
 }

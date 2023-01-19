@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Live {
 
     /// 获取截图规则列表
     @inlinable
-    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotRulesResponse> {
-        self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotRulesResponse> {
+        self.client.execute(action: "DescribeLiveSnapshotRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取截图规则列表
     @inlinable
-    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
-        try await self.client.execute(action: "DescribeLiveSnapshotRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveSnapshotRules(_ input: DescribeLiveSnapshotRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
+        try await self.client.execute(action: "DescribeLiveSnapshotRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取截图规则列表
     @inlinable
-    public func describeLiveSnapshotRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotRulesResponse> {
-        self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveSnapshotRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotRulesResponse> {
+        self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取截图规则列表
     @inlinable
-    public func describeLiveSnapshotRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
-        try await self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveSnapshotRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotRulesResponse {
+        try await self.describeLiveSnapshotRules(DescribeLiveSnapshotRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bm {
     ///
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
-    public func offlineDevices(_ input: OfflineDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineDevicesResponse> {
-        self.client.execute(action: "OfflineDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offlineDevices(_ input: OfflineDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineDevicesResponse> {
+        self.client.execute(action: "OfflineDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还服务器
     ///
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
-    public func offlineDevices(_ input: OfflineDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
-        try await self.client.execute(action: "OfflineDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offlineDevices(_ input: OfflineDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
+        try await self.client.execute(action: "OfflineDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退还服务器
     ///
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
-    public func offlineDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineDevicesResponse> {
-        self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func offlineDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineDevicesResponse> {
+        self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退还服务器
     ///
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
-    public func offlineDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
-        try await self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func offlineDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
+        try await self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

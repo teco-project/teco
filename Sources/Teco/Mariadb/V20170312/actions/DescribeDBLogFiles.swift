@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Mariadb {
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
-        self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
+        self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
-        try await self.client.execute(action: "DescribeDBLogFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBLogFiles(_ input: DescribeDBLogFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
+        try await self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(instanceId: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
-        self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    public func describeDBLogFiles(instanceId: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
+        self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
     ///
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
-    public func describeDBLogFiles(instanceId: String, type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
-        try await self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    public func describeDBLogFiles(instanceId: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
+        try await self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

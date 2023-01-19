@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Batch {
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
     @inlinable
-    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLogsResponse> {
-        self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLogsResponse> {
+        self.client.execute(action: "DescribeTaskLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务日志详情
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
     @inlinable
-    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
-        try await self.client.execute(action: "DescribeTaskLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskLogs(_ input: DescribeTaskLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
+        try await self.client.execute(action: "DescribeTaskLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取任务日志详情
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
     @inlinable
-    public func describeTaskLogs(jobId: String, taskName: String, taskInstanceIndexes: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLogsResponse> {
-        self.describeTaskLogs(DescribeTaskLogsRequest(jobId: jobId, taskName: taskName, taskInstanceIndexes: taskInstanceIndexes, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTaskLogs(jobId: String, taskName: String, taskInstanceIndexes: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLogsResponse> {
+        self.describeTaskLogs(DescribeTaskLogsRequest(jobId: jobId, taskName: taskName, taskInstanceIndexes: taskInstanceIndexes, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务日志详情
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
     @inlinable
-    public func describeTaskLogs(jobId: String, taskName: String, taskInstanceIndexes: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
-        try await self.describeTaskLogs(DescribeTaskLogsRequest(jobId: jobId, taskName: taskName, taskInstanceIndexes: taskInstanceIndexes, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTaskLogs(jobId: String, taskName: String, taskInstanceIndexes: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLogsResponse {
+        try await self.describeTaskLogs(DescribeTaskLogsRequest(jobId: jobId, taskName: taskName, taskInstanceIndexes: taskInstanceIndexes, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 规则执行结果列表查询
     @inlinable
-    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsResponse> {
-        self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsResponse> {
+        self.client.execute(action: "DescribeRuleExecResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则执行结果列表查询
     @inlinable
-    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
-        try await self.client.execute(action: "DescribeRuleExecResults", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleExecResults(_ input: DescribeRuleExecResultsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
+        try await self.client.execute(action: "DescribeRuleExecResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 规则执行结果列表查询
     @inlinable
-    public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsResponse> {
-        self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsResponse> {
+        self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则执行结果列表查询
     @inlinable
-    public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
-        try await self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
+        try await self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

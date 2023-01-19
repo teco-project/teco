@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,8 +72,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
-    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
-        self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
+        self.client.execute(action: "DescribeAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取生成包列表
@@ -81,8 +81,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
-    public func describeAssets(_ input: DescribeAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
-        try await self.client.execute(action: "DescribeAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
+        try await self.client.execute(action: "DescribeAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取生成包列表
@@ -90,8 +90,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
-    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
-        self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
+        self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取生成包列表
@@ -99,7 +99,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
-    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
-        try await self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
+        try await self.describeAssets(DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

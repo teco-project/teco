@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,31 +100,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBPriceResponse> {
-        self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBPriceResponse> {
+        self.client.execute(action: "DescribeDCDBPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购分布式数据库实例询价
     ///
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
-        try await self.client.execute(action: "DescribeDCDBPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDCDBPrice(_ input: DescribeDCDBPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
+        try await self.client.execute(action: "DescribeDCDBPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新购分布式数据库实例询价
     ///
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBPriceResponse> {
-        self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBPriceResponse> {
+        self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新购分布式数据库实例询价
     ///
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
-        try await self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
+        try await self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

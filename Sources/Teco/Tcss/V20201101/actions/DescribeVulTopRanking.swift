@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询漏洞Top排名列表
     @inlinable
-    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopRankingResponse> {
-        self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopRankingResponse> {
+        self.client.execute(action: "DescribeVulTopRanking", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞Top排名列表
     @inlinable
-    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
-        try await self.client.execute(action: "DescribeVulTopRanking", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulTopRanking(_ input: DescribeVulTopRankingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
+        try await self.client.execute(action: "DescribeVulTopRanking", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞Top排名列表
     @inlinable
-    public func describeVulTopRanking(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopRankingResponse> {
-        self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    public func describeVulTopRanking(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopRankingResponse> {
+        self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞Top排名列表
     @inlinable
-    public func describeVulTopRanking(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
-        try await self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    public func describeVulTopRanking(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopRankingResponse {
+        try await self.describeVulTopRanking(DescribeVulTopRankingRequest(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 }

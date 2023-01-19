@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Bmvpc {
     ///
     /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
     @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
-        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNatGateway(_ input: CreateNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
+        self.client.execute(action: "CreateNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关
     ///
     /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
     @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNatGateway(_ input: CreateNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.client.execute(action: "CreateNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建NAT网关
     ///
     /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
     @inlinable
-    public func createNatGateway(forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]? = nil, ipInfoSet: [IpInfo]? = nil, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, exclusive: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
-        self.createNatGateway(CreateNatGatewayRequest(forwardMode: forwardMode, vpcId: vpcId, natName: natName, maxConcurrent: maxConcurrent, subnetIds: subnetIds, ipInfoSet: ipInfoSet, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum, exclusive: exclusive), logger: logger, on: eventLoop)
+    public func createNatGateway(forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]? = nil, ipInfoSet: [IpInfo]? = nil, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, exclusive: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
+        self.createNatGateway(CreateNatGatewayRequest(forwardMode: forwardMode, vpcId: vpcId, natName: natName, maxConcurrent: maxConcurrent, subnetIds: subnetIds, ipInfoSet: ipInfoSet, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum, exclusive: exclusive), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关
     ///
     /// 创建NAT网关接口，可针对网段方式、子网全部IP、子网部分IP这三种方式创建NAT网关
     @inlinable
-    public func createNatGateway(forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]? = nil, ipInfoSet: [IpInfo]? = nil, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, exclusive: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.createNatGateway(CreateNatGatewayRequest(forwardMode: forwardMode, vpcId: vpcId, natName: natName, maxConcurrent: maxConcurrent, subnetIds: subnetIds, ipInfoSet: ipInfoSet, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum, exclusive: exclusive), logger: logger, on: eventLoop)
+    public func createNatGateway(forwardMode: String, vpcId: String, natName: String, maxConcurrent: UInt64, subnetIds: [String]? = nil, ipInfoSet: [IpInfo]? = nil, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, exclusive: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.createNatGateway(CreateNatGatewayRequest(forwardMode: forwardMode, vpcId: vpcId, natName: natName, maxConcurrent: maxConcurrent, subnetIds: subnetIds, ipInfoSet: ipInfoSet, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum, exclusive: exclusive), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tdmq {
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
-        self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
+        self.client.execute(action: "DeleteEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
-        try await self.client.execute(action: "DeleteEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEnvironments(_ input: DeleteEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
+        try await self.client.execute(action: "DeleteEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除命名空间
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
-        self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentsResponse> {
+        self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
     ///
     /// 批量删除租户下的命名空间
     @inlinable
-    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
-        try await self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteEnvironments(environmentIds: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentsResponse {
+        try await self.deleteEnvironments(DeleteEnvironmentsRequest(environmentIds: environmentIds, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

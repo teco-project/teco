@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Iotcloud {
     ///
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProduct(_ input: CreateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
+        self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
     ///
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProduct(_ input: CreateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建产品
     ///
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
-    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), logger: logger, on: eventLoop)
+    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
+        self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
     ///
     /// 本接口（CreateProduct）用于创建一个新的物联网通信产品
     @inlinable
-    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), logger: logger, on: eventLoop)
+    public func createProduct(productName: String, productProperties: ProductProperties? = nil, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(productName: productName, productProperties: productProperties, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,31 +84,31 @@ extension Essbasic {
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
-        self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rejectFlow(_ input: RejectFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
+        self.client.execute(action: "RejectFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(_ input: RejectFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
-        try await self.client.execute(action: "RejectFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rejectFlow(_ input: RejectFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
+        try await self.client.execute(action: "RejectFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
-        self.rejectFlow(RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), logger: logger, on: eventLoop)
+    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectFlowResponse> {
+        self.rejectFlow(RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拒签流程
     ///
     /// 此接口（RejectFlow）用于用户拒绝签署合同流程。
     @inlinable
-    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
-        try await self.rejectFlow(RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), logger: logger, on: eventLoop)
+    public func rejectFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, rejectMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectFlowResponse {
+        try await self.rejectFlow(RejectFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, rejectMessage: rejectMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

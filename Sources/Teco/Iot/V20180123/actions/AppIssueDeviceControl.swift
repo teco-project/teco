@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iot {
     ///
     /// 用户通过APP控制设备
     @inlinable
-    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppIssueDeviceControlResponse> {
-        self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppIssueDeviceControlResponse> {
+        self.client.execute(action: "AppIssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户控制设备
     ///
     /// 用户通过APP控制设备
     @inlinable
-    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
-        try await self.client.execute(action: "AppIssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appIssueDeviceControl(_ input: AppIssueDeviceControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
+        try await self.client.execute(action: "AppIssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户控制设备
     ///
     /// 用户通过APP控制设备
     @inlinable
-    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppIssueDeviceControlResponse> {
-        self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppIssueDeviceControlResponse> {
+        self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户控制设备
     ///
     /// 用户通过APP控制设备
     @inlinable
-    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
-        try await self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    public func appIssueDeviceControl(accessToken: String, productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppIssueDeviceControlResponse {
+        try await self.appIssueDeviceControl(AppIssueDeviceControlRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 }

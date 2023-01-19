@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
-    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmAttributeResponse> {
-        self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmAttributeResponse> {
+        self.client.execute(action: "DescribeAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警设置
     ///
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
-    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
-        try await self.client.execute(action: "DescribeAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmAttribute(_ input: DescribeAlarmAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
+        try await self.client.execute(action: "DescribeAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取告警设置
     ///
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
-    public func describeAlarmAttribute(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmAttributeResponse> {
-        self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), logger: logger, on: eventLoop)
+    public func describeAlarmAttribute(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmAttributeResponse> {
+        self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警设置
     ///
     /// 本接口 (DescribeAlarmAttribute) 用于获取告警设置。
     @inlinable
-    public func describeAlarmAttribute(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
-        try await self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), logger: logger, on: eventLoop)
+    public func describeAlarmAttribute(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmAttributeResponse {
+        try await self.describeAlarmAttribute(DescribeAlarmAttributeRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Npp {
 
     /// 回拨话单获取接口
     @inlinable
-    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackCdrResponse> {
-        self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackCdrResponse> {
+        self.client.execute(action: "DescribeCallBackCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨话单获取接口
     @inlinable
-    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
-        try await self.client.execute(action: "DescribeCallBackCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCallBackCdr(_ input: DescribeCallBackCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
+        try await self.client.execute(action: "DescribeCallBackCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回拨话单获取接口
     @inlinable
-    public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackCdrResponse> {
-        self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), logger: logger, on: eventLoop)
+    public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackCdrResponse> {
+        self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨话单获取接口
     @inlinable
-    public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
-        try await self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), logger: logger, on: eventLoop)
+    public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
+        try await self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
     }
 }

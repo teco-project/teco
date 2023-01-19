@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Lighthouse {
     ///
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importKeyPair(_ input: ImportKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
+        self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
     ///
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importKeyPair(_ input: ImportKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入密钥对
     ///
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
-    public func importKeyPair(keyName: String, publicKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), logger: logger, on: eventLoop)
+    public func importKeyPair(keyName: String, publicKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
+        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
     ///
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
-    public func importKeyPair(keyName: String, publicKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), logger: logger, on: eventLoop)
+    public func importKeyPair(keyName: String, publicKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), region: region, logger: logger, on: eventLoop)
     }
 }

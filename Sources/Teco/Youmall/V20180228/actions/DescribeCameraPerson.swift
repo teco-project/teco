@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Youmall {
     ///
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
-    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCameraPersonResponse> {
-        self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCameraPersonResponse> {
+        self.client.execute(action: "DescribeCameraPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取收银台前顾客身份ID
     ///
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
-    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
-        try await self.client.execute(action: "DescribeCameraPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCameraPerson(_ input: DescribeCameraPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
+        try await self.client.execute(action: "DescribeCameraPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取收银台前顾客身份ID
     ///
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
-    public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCameraPersonResponse> {
-        self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), logger: logger, on: eventLoop)
+    public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCameraPersonResponse> {
+        self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取收银台前顾客身份ID
     ///
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
-    public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
-        try await self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), logger: logger, on: eventLoop)
+    public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
+        try await self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), region: region, logger: logger, on: eventLoop)
     }
 }

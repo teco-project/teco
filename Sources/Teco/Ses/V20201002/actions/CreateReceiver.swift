@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ses {
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
-        self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReceiver(_ input: CreateReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
+        self.client.execute(action: "CreateReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(_ input: CreateReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
-        try await self.client.execute(action: "CreateReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReceiver(_ input: CreateReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
+        try await self.client.execute(action: "CreateReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
-        self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), logger: logger, on: eventLoop)
+    public func createReceiver(receiversName: String, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReceiverResponse> {
+        self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建收件人列表
     ///
     /// 创建收件人列表，收件人列表是发送批量邮件的目标邮件地址列表。创建列表后，需要上传收件人邮箱地址。之后创建发送任务，关联列表，便可以实现批量发送邮件的功能
     @inlinable
-    public func createReceiver(receiversName: String, desc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
-        try await self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), logger: logger, on: eventLoop)
+    public func createReceiver(receiversName: String, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReceiverResponse {
+        try await self.createReceiver(CreateReceiverRequest(receiversName: receiversName, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 }

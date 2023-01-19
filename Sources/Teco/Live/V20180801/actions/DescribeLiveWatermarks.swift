@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Live {
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
-        self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
+        self.client.execute(action: "DescribeLiveWatermarks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询水印列表
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
-        try await self.client.execute(action: "DescribeLiveWatermarks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveWatermarks(_ input: DescribeLiveWatermarksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
+        try await self.client.execute(action: "DescribeLiveWatermarks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询水印列表
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
-        self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), logger: logger, on: eventLoop)
+    public func describeLiveWatermarks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
+        self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询水印列表
     ///
     /// 查询水印列表。
     @inlinable
-    public func describeLiveWatermarks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
-        try await self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), logger: logger, on: eventLoop)
+    public func describeLiveWatermarks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
+        try await self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,8 +104,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createLifecycleHook(_ input: CreateLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifecycleHookResponse> {
-        self.client.execute(action: "CreateLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLifecycleHook(_ input: CreateLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifecycleHookResponse> {
+        self.client.execute(action: "CreateLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建生命周期挂钩
@@ -129,8 +129,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createLifecycleHook(_ input: CreateLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
-        try await self.client.execute(action: "CreateLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLifecycleHook(_ input: CreateLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
+        try await self.client.execute(action: "CreateLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建生命周期挂钩
@@ -154,8 +154,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifecycleHookResponse> {
-        self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifecycleHookResponse> {
+        self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建生命周期挂钩
@@ -179,7 +179,7 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
-        try await self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func createLifecycleHook(autoScalingGroupId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifecycleHookResponse {
+        try await self.createLifecycleHook(CreateLifecycleHookRequest(autoScalingGroupId: autoScalingGroupId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 }

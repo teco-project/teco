@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
-        self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startBaselineDetect(_ input: StartBaselineDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
+        self.client.execute(action: "StartBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(_ input: StartBaselineDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
-        try await self.client.execute(action: "StartBaselineDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startBaselineDetect(_ input: StartBaselineDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
+        try await self.client.execute(action: "StartBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
-        self.startBaselineDetect(StartBaselineDetectRequest(param: param), logger: logger, on: eventLoop)
+    public func startBaselineDetect(param: BaselineDetectParam, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBaselineDetectResponse> {
+        self.startBaselineDetect(StartBaselineDetectRequest(param: param), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检测基线
     @inlinable
-    public func startBaselineDetect(param: BaselineDetectParam, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
-        try await self.startBaselineDetect(StartBaselineDetectRequest(param: param), logger: logger, on: eventLoop)
+    public func startBaselineDetect(param: BaselineDetectParam, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBaselineDetectResponse {
+        try await self.startBaselineDetect(StartBaselineDetectRequest(param: param), region: region, logger: logger, on: eventLoop)
     }
 }

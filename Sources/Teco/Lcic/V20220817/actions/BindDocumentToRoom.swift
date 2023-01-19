@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Lcic {
 
     /// 绑定文档到房间
     @inlinable
-    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDocumentToRoomResponse> {
-        self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDocumentToRoomResponse> {
+        self.client.execute(action: "BindDocumentToRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定文档到房间
     @inlinable
-    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
-        try await self.client.execute(action: "BindDocumentToRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindDocumentToRoom(_ input: BindDocumentToRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
+        try await self.client.execute(action: "BindDocumentToRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定文档到房间
     @inlinable
-    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDocumentToRoomResponse> {
-        self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), logger: logger, on: eventLoop)
+    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDocumentToRoomResponse> {
+        self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定文档到房间
     @inlinable
-    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
-        try await self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), logger: logger, on: eventLoop)
+    public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
+        try await self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

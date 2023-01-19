@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Asr {
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
-        self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
+        self.client.execute(action: "DeleteAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
-        try await self.client.execute(action: "DeleteAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAsrVocab(_ input: DeleteAsrVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
+        try await self.client.execute(action: "DeleteAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
-        self.deleteAsrVocab(DeleteAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    public func deleteAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAsrVocabResponse> {
+        self.deleteAsrVocab(DeleteAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除热词表
     ///
     /// 用户通过本接口进行热词表的删除。
     @inlinable
-    public func deleteAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
-        try await self.deleteAsrVocab(DeleteAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    public func deleteAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAsrVocabResponse {
+        try await self.deleteAsrVocab(DeleteAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 }

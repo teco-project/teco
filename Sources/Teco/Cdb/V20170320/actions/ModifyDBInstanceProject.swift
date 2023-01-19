@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
     @inlinable
-    public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
-        self.client.execute(action: "ModifyDBInstanceProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
+        self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
     @inlinable
-    public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
-        try await self.client.execute(action: "ModifyDBInstanceProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
+        try await self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
     @inlinable
-    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
-        self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), logger: logger, on: eventLoop)
+    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
+        self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
     @inlinable
-    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
-        try await self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), logger: logger, on: eventLoop)
+    public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
+        try await self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), region: region, logger: logger, on: eventLoop)
     }
 }

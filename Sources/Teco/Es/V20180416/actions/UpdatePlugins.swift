@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Es {
 
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
-        self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updatePlugins(_ input: UpdatePluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
+        self.client.execute(action: "UpdatePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(_ input: UpdatePluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
-        try await self.client.execute(action: "UpdatePlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updatePlugins(_ input: UpdatePluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
+        try await self.client.execute(action: "UpdatePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
-        self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), logger: logger, on: eventLoop)
+    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePluginsResponse> {
+        self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 变更插件列表
     @inlinable
-    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
-        try await self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), logger: logger, on: eventLoop)
+    public func updatePlugins(instanceId: String, installPluginList: [String]? = nil, removePluginList: [String]? = nil, forceRestart: Bool? = nil, forceUpdate: Bool? = nil, pluginType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePluginsResponse {
+        try await self.updatePlugins(UpdatePluginsRequest(instanceId: instanceId, installPluginList: installPluginList, removePluginList: removePluginList, forceRestart: forceRestart, forceUpdate: forceUpdate, pluginType: pluginType), region: region, logger: logger, on: eventLoop)
     }
 }

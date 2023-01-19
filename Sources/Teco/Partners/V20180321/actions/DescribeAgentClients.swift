@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Partners {
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
-        self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentClients(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
+        self.client.execute(action: "DescribeAgentClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(_ input: DescribeAgentClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
-        try await self.client.execute(action: "DescribeAgentClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentClients(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
+        try await self.client.execute(action: "DescribeAgentClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
-        self.describeAgentClients(DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
+    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientsResponse> {
+        self.describeAgentClients(DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
     @inlinable
-    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
-        try await self.describeAgentClients(DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), logger: logger, on: eventLoop)
+    public func describeAgentClients(clientUin: String? = nil, clientName: String? = nil, clientFlag: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, salesUin: String? = nil, salesName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientsResponse {
+        try await self.describeAgentClients(DescribeAgentClientsRequest(clientUin: clientUin, clientName: clientName, clientFlag: clientFlag, orderDirection: orderDirection, offset: offset, limit: limit, salesUin: salesUin, salesName: salesName), region: region, logger: logger, on: eventLoop)
     }
 }

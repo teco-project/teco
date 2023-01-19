@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 云支付-下载机构文件接口
     @inlinable
-    public func downloadOrgFile(_ input: DownloadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadOrgFileResponse> {
-        self.client.execute(action: "DownloadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadOrgFile(_ input: DownloadOrgFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadOrgFileResponse> {
+        self.client.execute(action: "DownloadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-下载机构文件接口
     @inlinable
-    public func downloadOrgFile(_ input: DownloadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
-        try await self.client.execute(action: "DownloadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadOrgFile(_ input: DownloadOrgFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
+        try await self.client.execute(action: "DownloadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-下载机构文件接口
     @inlinable
-    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadOrgFileResponse> {
-        self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), logger: logger, on: eventLoop)
+    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadOrgFileResponse> {
+        self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-下载机构文件接口
     @inlinable
-    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
-        try await self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), logger: logger, on: eventLoop)
+    public func downloadOrgFile(openId: String, openKey: String, storage: String? = nil, filePath: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadOrgFileResponse {
+        try await self.downloadOrgFile(DownloadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, filePath: filePath, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

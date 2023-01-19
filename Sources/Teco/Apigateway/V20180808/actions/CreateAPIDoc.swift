@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Apigateway {
 
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
-        self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAPIDoc(_ input: CreateAPIDocRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
+        self.client.execute(action: "CreateAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(_ input: CreateAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
-        try await self.client.execute(action: "CreateAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAPIDoc(_ input: CreateAPIDocRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
+        try await self.client.execute(action: "CreateAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
-        self.createAPIDoc(CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAPIDocResponse> {
+        self.createAPIDoc(CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 API 文档
     @inlinable
-    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
-        try await self.createAPIDoc(CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func createAPIDoc(apiDocName: String, serviceId: String, environment: String, apiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAPIDocResponse {
+        try await self.createAPIDoc(CreateAPIDocRequest(apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Tcss {
 
     /// 查询受漏洞的容器列表
     @inlinable
-    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulContainerListResponse> {
-        self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulContainerListResponse> {
+        self.client.execute(action: "DescribeVulContainerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询受漏洞的容器列表
     @inlinable
-    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
-        try await self.client.execute(action: "DescribeVulContainerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulContainerList(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
+        try await self.client.execute(action: "DescribeVulContainerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询受漏洞的容器列表
     @inlinable
-    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulContainerListResponse> {
-        self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulContainerListResponse> {
+        self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询受漏洞的容器列表
     @inlinable
-    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
-        try await self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeVulContainerList(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulContainerListResponse {
+        try await self.describeVulContainerList(DescribeVulContainerListRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Vpc {
     ///
     /// 该接口用于修改IPV6转换规则，当前仅支持修改转换规则名称，IPV4地址和IPV4端口号
     @inlinable
-    public func modifyIp6Rule(_ input: ModifyIp6RuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6RuleResponse> {
-        self.client.execute(action: "ModifyIp6Rule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyIp6Rule(_ input: ModifyIp6RuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6RuleResponse> {
+        self.client.execute(action: "ModifyIp6Rule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改IPV6转换规则属性
     ///
     /// 该接口用于修改IPV6转换规则，当前仅支持修改转换规则名称，IPV4地址和IPV4端口号
     @inlinable
-    public func modifyIp6Rule(_ input: ModifyIp6RuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6RuleResponse {
-        try await self.client.execute(action: "ModifyIp6Rule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyIp6Rule(_ input: ModifyIp6RuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6RuleResponse {
+        try await self.client.execute(action: "ModifyIp6Rule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改IPV6转换规则属性
     ///
     /// 该接口用于修改IPV6转换规则，当前仅支持修改转换规则名称，IPV4地址和IPV4端口号
     @inlinable
-    public func modifyIp6Rule(ip6TranslatorId: String, ip6RuleId: String, ip6RuleName: String? = nil, vip: String? = nil, vport: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6RuleResponse> {
-        self.modifyIp6Rule(ModifyIp6RuleRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleId: ip6RuleId, ip6RuleName: ip6RuleName, vip: vip, vport: vport), logger: logger, on: eventLoop)
+    public func modifyIp6Rule(ip6TranslatorId: String, ip6RuleId: String, ip6RuleName: String? = nil, vip: String? = nil, vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6RuleResponse> {
+        self.modifyIp6Rule(ModifyIp6RuleRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleId: ip6RuleId, ip6RuleName: ip6RuleName, vip: vip, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改IPV6转换规则属性
     ///
     /// 该接口用于修改IPV6转换规则，当前仅支持修改转换规则名称，IPV4地址和IPV4端口号
     @inlinable
-    public func modifyIp6Rule(ip6TranslatorId: String, ip6RuleId: String, ip6RuleName: String? = nil, vip: String? = nil, vport: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6RuleResponse {
-        try await self.modifyIp6Rule(ModifyIp6RuleRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleId: ip6RuleId, ip6RuleName: ip6RuleName, vip: vip, vport: vport), logger: logger, on: eventLoop)
+    public func modifyIp6Rule(ip6TranslatorId: String, ip6RuleId: String, ip6RuleName: String? = nil, vip: String? = nil, vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6RuleResponse {
+        try await self.modifyIp6Rule(ModifyIp6RuleRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleId: ip6RuleId, ip6RuleName: ip6RuleName, vip: vip, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 }

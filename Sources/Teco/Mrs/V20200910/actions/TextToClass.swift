@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mrs {
     ///
     /// 文本分类
     @inlinable
-    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToClassResponse> {
-        self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textToClass(_ input: TextToClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToClassResponse> {
+        self.client.execute(action: "TextToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本分类接口
     ///
     /// 文本分类
     @inlinable
-    public func textToClass(_ input: TextToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
-        try await self.client.execute(action: "TextToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textToClass(_ input: TextToClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
+        try await self.client.execute(action: "TextToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文本分类接口
     ///
     /// 文本分类
     @inlinable
-    public func textToClass(text: String, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToClassResponse> {
-        self.textToClass(TextToClassRequest(text: text, userType: userType), logger: logger, on: eventLoop)
+    public func textToClass(text: String, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToClassResponse> {
+        self.textToClass(TextToClassRequest(text: text, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本分类接口
     ///
     /// 文本分类
     @inlinable
-    public func textToClass(text: String, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
-        try await self.textToClass(TextToClassRequest(text: text, userType: userType), logger: logger, on: eventLoop)
+    public func textToClass(text: String, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToClassResponse {
+        try await self.textToClass(TextToClassRequest(text: text, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

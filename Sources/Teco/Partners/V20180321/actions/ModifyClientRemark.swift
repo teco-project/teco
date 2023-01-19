@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Partners {
     ///
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable
-    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
-        self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
+        self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable
-    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
-        try await self.client.execute(action: "ModifyClientRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClientRemark(_ input: ModifyClientRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
+        try await self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable
-    public func modifyClientRemark(clientRemark: String, clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
-        self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), logger: logger, on: eventLoop)
+    public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
+        self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
     @inlinable
-    public func modifyClientRemark(clientRemark: String, clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
-        try await self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), logger: logger, on: eventLoop)
+    public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
+        try await self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

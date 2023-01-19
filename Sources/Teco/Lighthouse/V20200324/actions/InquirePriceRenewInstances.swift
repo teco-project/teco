@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Lighthouse {
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
-        self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
+        self.client.execute(action: "InquirePriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
-        try await self.client.execute(action: "InquirePriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceRenewInstances(_ input: InquirePriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
+        try await self.client.execute(action: "InquirePriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例询价
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
-        self.inquirePriceRenewInstances(InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), logger: logger, on: eventLoop)
+    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewInstancesResponse> {
+        self.inquirePriceRenewInstances(InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口（InquirePriceRenewInstances）用于续费实例询价。
     @inlinable
-    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
-        try await self.inquirePriceRenewInstances(InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), logger: logger, on: eventLoop)
+    public func inquirePriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid? = nil, renewDataDisk: Bool? = nil, alignInstanceExpiredTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewInstancesResponse {
+        try await self.inquirePriceRenewInstances(InquirePriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, alignInstanceExpiredTime: alignInstanceExpiredTime), region: region, logger: logger, on: eventLoop)
     }
 }

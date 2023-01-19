@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Scf {
     ///
     /// 该接口根据传入参数更新函数代码。
     @inlinable
-    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionCodeResponse> {
-        self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionCodeResponse> {
+        self.client.execute(action: "UpdateFunctionCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新函数代码
     ///
     /// 该接口根据传入参数更新函数代码。
     @inlinable
-    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
-        try await self.client.execute(action: "UpdateFunctionCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateFunctionCode(_ input: UpdateFunctionCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
+        try await self.client.execute(action: "UpdateFunctionCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新函数代码
     ///
     /// 该接口根据传入参数更新函数代码。
     @inlinable
-    public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionCodeResponse> {
-        self.updateFunctionCode(UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), logger: logger, on: eventLoop)
+    public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionCodeResponse> {
+        self.updateFunctionCode(UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新函数代码
     ///
     /// 该接口根据传入参数更新函数代码。
     @inlinable
-    public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
-        try await self.updateFunctionCode(UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), logger: logger, on: eventLoop)
+    public func updateFunctionCode(functionName: String, handler: String? = nil, cosBucketName: String? = nil, cosObjectName: String? = nil, zipFile: String? = nil, namespace: String? = nil, cosBucketRegion: String? = nil, installDependency: String? = nil, envId: String? = nil, publish: String? = nil, code: Code? = nil, codeSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionCodeResponse {
+        try await self.updateFunctionCode(UpdateFunctionCodeRequest(functionName: functionName, handler: handler, cosBucketName: cosBucketName, cosObjectName: cosObjectName, zipFile: zipFile, namespace: namespace, cosBucketRegion: cosBucketRegion, installDependency: installDependency, envId: envId, publish: publish, code: code, codeSource: codeSource), region: region, logger: logger, on: eventLoop)
     }
 }

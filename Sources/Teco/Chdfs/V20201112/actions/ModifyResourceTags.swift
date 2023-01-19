@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Chdfs {
     ///
     /// 修改资源标签列表，全量覆盖。
     @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
-        self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
+        self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改资源标签列表
     ///
     /// 修改资源标签列表，全量覆盖。
     @inlinable
-    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
-        try await self.client.execute(action: "ModifyResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
+        try await self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改资源标签列表
     ///
     /// 修改资源标签列表，全量覆盖。
     @inlinable
-    public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
-        self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
+        self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改资源标签列表
     ///
     /// 修改资源标签列表，全量覆盖。
     @inlinable
-    public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
-        try await self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
+        try await self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

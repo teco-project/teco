@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 创建边缘节点
     @inlinable
-    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeResponse> {
-        self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeNode(_ input: CreateEdgeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeResponse> {
+        self.client.execute(action: "CreateEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘节点
     @inlinable
-    public func createEdgeNode(_ input: CreateEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
-        try await self.client.execute(action: "CreateEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeNode(_ input: CreateEdgeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
+        try await self.client.execute(action: "CreateEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建边缘节点
     @inlinable
-    public func createEdgeNode(edgeUnitId: UInt64, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeResponse> {
-        self.createEdgeNode(CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name), logger: logger, on: eventLoop)
+    public func createEdgeNode(edgeUnitId: UInt64, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeResponse> {
+        self.createEdgeNode(CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘节点
     @inlinable
-    public func createEdgeNode(edgeUnitId: UInt64, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
-        try await self.createEdgeNode(CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name), logger: logger, on: eventLoop)
+    public func createEdgeNode(edgeUnitId: UInt64, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeResponse {
+        try await self.createEdgeNode(CreateEdgeNodeRequest(edgeUnitId: edgeUnitId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

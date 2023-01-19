@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Eb {
     ///
     /// 用于更新转换器
     @inlinable
-    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTransformationResponse> {
-        self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateTransformation(_ input: UpdateTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTransformationResponse> {
+        self.client.execute(action: "UpdateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新转换器
     ///
     /// 用于更新转换器
     @inlinable
-    public func updateTransformation(_ input: UpdateTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
-        try await self.client.execute(action: "UpdateTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateTransformation(_ input: UpdateTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
+        try await self.client.execute(action: "UpdateTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新转换器
     ///
     /// 用于更新转换器
     @inlinable
-    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTransformationResponse> {
-        self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), logger: logger, on: eventLoop)
+    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTransformationResponse> {
+        self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新转换器
     ///
     /// 用于更新转换器
     @inlinable
-    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
-        try await self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), logger: logger, on: eventLoop)
+    public func updateTransformation(eventBusId: String, ruleId: String, transformationId: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTransformationResponse {
+        try await self.updateTransformation(UpdateTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 }

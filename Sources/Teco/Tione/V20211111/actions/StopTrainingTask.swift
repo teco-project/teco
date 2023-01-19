@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tione {
 
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
-        self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopTrainingTask(_ input: StopTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
+        self.client.execute(action: "StopTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(_ input: StopTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
-        try await self.client.execute(action: "StopTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopTrainingTask(_ input: StopTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
+        try await self.client.execute(action: "StopTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
-        self.stopTrainingTask(StopTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func stopTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTrainingTaskResponse> {
+        self.stopTrainingTask(StopTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止模型训练任务
     @inlinable
-    public func stopTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
-        try await self.stopTrainingTask(StopTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func stopTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTrainingTaskResponse {
+        try await self.stopTrainingTask(StopTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

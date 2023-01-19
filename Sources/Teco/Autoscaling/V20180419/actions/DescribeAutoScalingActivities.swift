@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension As {
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
-    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingActivitiesResponse> {
-        self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingActivitiesResponse> {
+        self.client.execute(action: "DescribeAutoScalingActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩活动
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
-    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
-        try await self.client.execute(action: "DescribeAutoScalingActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAutoScalingActivities(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
+        try await self.client.execute(action: "DescribeAutoScalingActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询伸缩活动
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
-    public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingActivitiesResponse> {
-        self.describeAutoScalingActivities(DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingActivitiesResponse> {
+        self.describeAutoScalingActivities(DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩活动
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
-    public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
-        try await self.describeAutoScalingActivities(DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAutoScalingActivities(activityIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingActivitiesResponse {
+        try await self.describeAutoScalingActivities(DescribeAutoScalingActivitiesRequest(activityIds: activityIds, filters: filters, limit: limit, offset: offset, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

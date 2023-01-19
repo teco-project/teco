@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Postgres {
     ///
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
-    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryAnalysisResponse> {
-        self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryAnalysisResponse> {
+        self.client.execute(action: "DescribeSlowQueryAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢查询统计分析列表
     ///
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
-    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
-        try await self.client.execute(action: "DescribeSlowQueryAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSlowQueryAnalysis(_ input: DescribeSlowQueryAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
+        try await self.client.execute(action: "DescribeSlowQueryAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取慢查询统计分析列表
     ///
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
-    public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryAnalysisResponse> {
-        self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryAnalysisResponse> {
+        self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取慢查询统计分析列表
     ///
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
-    public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
-        try await self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
+        try await self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

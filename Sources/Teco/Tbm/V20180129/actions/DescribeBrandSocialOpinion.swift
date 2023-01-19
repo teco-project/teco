@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Tbm {
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
-        self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
+        self.client.execute(action: "DescribeBrandSocialOpinion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
-        try await self.client.execute(action: "DescribeBrandSocialOpinion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBrandSocialOpinion(_ input: DescribeBrandSocialOpinionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
+        try await self.client.execute(action: "DescribeBrandSocialOpinion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
-        self.describeBrandSocialOpinion(DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), logger: logger, on: eventLoop)
+    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandSocialOpinionResponse> {
+        self.describeBrandSocialOpinion(DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
     @inlinable
-    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
-        try await self.describeBrandSocialOpinion(DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), logger: logger, on: eventLoop)
+    public func describeBrandSocialOpinion(brandId: String, startDate: Date, endDate: Date, offset: Int64? = nil, limit: Int64? = nil, showList: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandSocialOpinionResponse {
+        try await self.describeBrandSocialOpinion(DescribeBrandSocialOpinionRequest(brandId: brandId, startDate: startDate, endDate: endDate, offset: offset, limit: limit, showList: showList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apigateway {
     ///
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
-    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiAppResponse> {
-        self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindApiApp(_ input: UnbindApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiAppResponse> {
+        self.client.execute(action: "UnbindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除应用和API绑定关系
     ///
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
-    public func unbindApiApp(_ input: UnbindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
-        try await self.client.execute(action: "UnbindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindApiApp(_ input: UnbindApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
+        try await self.client.execute(action: "UnbindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除应用和API绑定关系
     ///
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
-    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiAppResponse> {
-        self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiAppResponse> {
+        self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除应用和API绑定关系
     ///
     /// 本接口（UnbindApiApp）用于解除应用和API绑定。
     @inlinable
-    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
-        try await self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func unbindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiAppResponse {
+        try await self.unbindApiApp(UnbindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

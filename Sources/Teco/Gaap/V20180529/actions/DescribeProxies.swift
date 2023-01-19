@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,31 +113,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
-    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesResponse> {
-        self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxies(_ input: DescribeProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesResponse> {
+        self.client.execute(action: "DescribeProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道实例列表
     ///
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
-    public func describeProxies(_ input: DescribeProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
-        try await self.client.execute(action: "DescribeProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxies(_ input: DescribeProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
+        try await self.client.execute(action: "DescribeProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通道实例列表
     ///
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
-    public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesResponse> {
-        self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesResponse> {
+        self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道实例列表
     ///
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
-    public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
-        try await self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
+        try await self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 }

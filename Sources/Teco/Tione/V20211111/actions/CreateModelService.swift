@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -196,31 +196,31 @@ extension Tione {
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
-        self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createModelService(_ input: CreateModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
+        self.client.execute(action: "CreateModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(_ input: CreateModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
-        try await self.client.execute(action: "CreateModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createModelService(_ input: CreateModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
+        try await self.client.execute(action: "CreateModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
-        self.createModelService(CreateModelServiceRequest(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit), logger: logger, on: eventLoop)
+    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelServiceResponse> {
+        self.createModelService(CreateModelServiceRequest(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建模型服务
     ///
     /// 用于创建、发布一个新的模型服务
     @inlinable
-    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
-        try await self.createModelService(CreateModelServiceRequest(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit), logger: logger, on: eventLoop)
+    public func createModelService(imageInfo: ImageInfo, serviceGroupId: String? = nil, serviceGroupName: String? = nil, serviceDescription: String? = nil, chargeType: String? = nil, resourceGroupId: String? = nil, modelInfo: ModelInfo? = nil, env: [EnvVar]? = nil, resources: ResourceInfo? = nil, instanceType: String? = nil, scaleMode: String? = nil, replicas: Int64? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, logEnable: Bool? = nil, logConfig: LogConfig? = nil, authorizationEnable: Bool? = nil, tags: [Tag]? = nil, newVersion: Bool? = nil, cronScaleJobs: [CronScaleJob]? = nil, scaleStrategy: String? = nil, hybridBillingPrepaidReplicas: Int64? = nil, createSource: String? = nil, modelHotUpdateEnable: Bool? = nil, scheduledAction: ScheduledAction? = nil, volumeMount: VolumeMount? = nil, serviceLimit: ServiceLimit? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelServiceResponse {
+        try await self.createModelService(CreateModelServiceRequest(imageInfo: imageInfo, serviceGroupId: serviceGroupId, serviceGroupName: serviceGroupName, serviceDescription: serviceDescription, chargeType: chargeType, resourceGroupId: resourceGroupId, modelInfo: modelInfo, env: env, resources: resources, instanceType: instanceType, scaleMode: scaleMode, replicas: replicas, horizontalPodAutoscaler: horizontalPodAutoscaler, logEnable: logEnable, logConfig: logConfig, authorizationEnable: authorizationEnable, tags: tags, newVersion: newVersion, cronScaleJobs: cronScaleJobs, scaleStrategy: scaleStrategy, hybridBillingPrepaidReplicas: hybridBillingPrepaidReplicas, createSource: createSource, modelHotUpdateEnable: modelHotUpdateEnable, scheduledAction: scheduledAction, volumeMount: volumeMount, serviceLimit: serviceLimit), region: region, logger: logger, on: eventLoop)
     }
 }

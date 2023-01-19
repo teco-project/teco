@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Chdfs {
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable
-    public func modifyAccessRules(_ input: ModifyAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
-        self.client.execute(action: "ModifyAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccessRules(_ input: ModifyAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
+        self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable
-    public func modifyAccessRules(_ input: ModifyAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
-        try await self.client.execute(action: "ModifyAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccessRules(_ input: ModifyAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
+        try await self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable
-    public func modifyAccessRules(accessRules: [AccessRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
-        self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), logger: logger, on: eventLoop)
+    public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
+        self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
     @inlinable
-    public func modifyAccessRules(accessRules: [AccessRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
-        try await self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), logger: logger, on: eventLoop)
+    public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
+        try await self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }
 }

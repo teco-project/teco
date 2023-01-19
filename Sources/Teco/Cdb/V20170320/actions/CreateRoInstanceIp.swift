@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cdb {
     ///
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
-    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoInstanceIpResponse> {
-        self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoInstanceIpResponse> {
+        self.client.execute(action: "CreateRoInstanceIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云数据库只读实例的独立VIP
     ///
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
-    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
-        try await self.client.execute(action: "CreateRoInstanceIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRoInstanceIp(_ input: CreateRoInstanceIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
+        try await self.client.execute(action: "CreateRoInstanceIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云数据库只读实例的独立VIP
     ///
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
-    public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoInstanceIpResponse> {
-        self.createRoInstanceIp(CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), logger: logger, on: eventLoop)
+    public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoInstanceIpResponse> {
+        self.createRoInstanceIp(CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云数据库只读实例的独立VIP
     ///
     /// 本接口(CreateRoInstanceIp)用于创建云数据库只读实例的独立VIP。
     @inlinable
-    public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
-        try await self.createRoInstanceIp(CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), logger: logger, on: eventLoop)
+    public func createRoInstanceIp(instanceId: String, uniqSubnetId: String? = nil, uniqVpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoInstanceIpResponse {
+        try await self.createRoInstanceIp(CreateRoInstanceIpRequest(instanceId: instanceId, uniqSubnetId: uniqSubnetId, uniqVpcId: uniqVpcId), region: region, logger: logger, on: eventLoop)
     }
 }

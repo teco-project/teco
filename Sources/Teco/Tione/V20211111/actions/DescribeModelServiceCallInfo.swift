@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
-        self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
+        self.client.execute(action: "DescribeModelServiceCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
-        try await self.client.execute(action: "DescribeModelServiceCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModelServiceCallInfo(_ input: DescribeModelServiceCallInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
+        try await self.client.execute(action: "DescribeModelServiceCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
-        self.describeModelServiceCallInfo(DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceCallInfoResponse> {
+        self.describeModelServiceCallInfo(DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的调用信息
     @inlinable
-    public func describeModelServiceCallInfo(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
-        try await self.describeModelServiceCallInfo(DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    public func describeModelServiceCallInfo(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceCallInfoResponse {
+        try await self.describeModelServiceCallInfo(DescribeModelServiceCallInfoRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

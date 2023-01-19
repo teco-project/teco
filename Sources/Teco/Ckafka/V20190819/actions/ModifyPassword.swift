@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 修改密码
     @inlinable
-    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPasswordResponse> {
-        self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPassword(_ input: ModifyPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPasswordResponse> {
+        self.client.execute(action: "ModifyPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改密码
     @inlinable
-    public func modifyPassword(_ input: ModifyPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
-        try await self.client.execute(action: "ModifyPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPassword(_ input: ModifyPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
+        try await self.client.execute(action: "ModifyPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改密码
     @inlinable
-    public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPasswordResponse> {
-        self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), logger: logger, on: eventLoop)
+    public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPasswordResponse> {
+        self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改密码
     @inlinable
-    public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
-        try await self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), logger: logger, on: eventLoop)
+    public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
+        try await self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), region: region, logger: logger, on: eventLoop)
     }
 }

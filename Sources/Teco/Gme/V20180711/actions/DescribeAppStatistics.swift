@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Gme {
     ///
     /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
     @inlinable
-    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppStatisticsResponse> {
-        self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppStatisticsResponse> {
+        self.client.execute(action: "DescribeAppStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用用量统计数据
     ///
     /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
     @inlinable
-    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
-        try await self.client.execute(action: "DescribeAppStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAppStatistics(_ input: DescribeAppStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
+        try await self.client.execute(action: "DescribeAppStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用用量统计数据
     ///
     /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
     @inlinable
-    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppStatisticsResponse> {
-        self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), logger: logger, on: eventLoop)
+    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppStatisticsResponse> {
+        self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用用量统计数据
     ///
     /// 本接口(DescribeAppStatistics)用于获取某个GME应用的用量数据。包括实时语音，语音消息及转文本，语音分析等。最长查询周期为最近60天。
     @inlinable
-    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
-        try await self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), logger: logger, on: eventLoop)
+    public func describeAppStatistics(bizId: UInt64, startDate: Date, endDate: Date, services: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppStatisticsResponse {
+        try await self.describeAppStatistics(DescribeAppStatisticsRequest(bizId: bizId, startDate: startDate, endDate: endDate, services: services), region: region, logger: logger, on: eventLoop)
     }
 }

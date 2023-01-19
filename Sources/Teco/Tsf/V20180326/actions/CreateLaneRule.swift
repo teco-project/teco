@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tsf {
 
     /// 创建泳道规则
     @inlinable
-    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneRuleResponse> {
-        self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLaneRule(_ input: CreateLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneRuleResponse> {
+        self.client.execute(action: "CreateLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建泳道规则
     @inlinable
-    public func createLaneRule(_ input: CreateLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
-        try await self.client.execute(action: "CreateLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLaneRule(_ input: CreateLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
+        try await self.client.execute(action: "CreateLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建泳道规则
     @inlinable
-    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneRuleResponse> {
-        self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneRuleResponse> {
+        self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建泳道规则
     @inlinable
-    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
-        try await self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createLaneRule(ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneRuleResponse {
+        try await self.createLaneRule(CreateLaneRuleRequest(ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

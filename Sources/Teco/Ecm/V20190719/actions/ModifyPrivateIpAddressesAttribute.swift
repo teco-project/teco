@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 用于修改弹性网卡内网IP属性。
     @inlinable
-    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateIpAddressesAttributeResponse> {
-        self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateIpAddressesAttributeResponse> {
+        self.client.execute(action: "ModifyPrivateIpAddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡内网IP信息
     ///
     /// 用于修改弹性网卡内网IP属性。
     @inlinable
-    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
-        try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrivateIpAddressesAttribute(_ input: ModifyPrivateIpAddressesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
+        try await self.client.execute(action: "ModifyPrivateIpAddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性网卡内网IP信息
     ///
     /// 用于修改弹性网卡内网IP属性。
     @inlinable
-    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateIpAddressesAttributeResponse> {
-        self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateIpAddressesAttributeResponse> {
+        self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡内网IP信息
     ///
     /// 用于修改弹性网卡内网IP属性。
     @inlinable
-    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
-        try await self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func modifyPrivateIpAddressesAttribute(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateIpAddressesAttributeResponse {
+        try await self.modifyPrivateIpAddressesAttribute(ModifyPrivateIpAddressesAttributeRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

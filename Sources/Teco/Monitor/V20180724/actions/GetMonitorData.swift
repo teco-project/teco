@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,8 +112,8 @@ extension Monitor {
     /// >?
     /// >- 2022年9月1日起，云监控开始对GetMonitorData接口计费。每个主账号每月可获得100万次免费请求额度，超过免费额度后如需继续调用接口需要开通 [API请求按量付费](https://buy.cloud.tencent.com/APIRequestBuy)。计费规则可查看[API计费文档](https://cloud.tencent.com/document/product/248/77914)。
     @inlinable
-    public func getMonitorData(_ input: GetMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMonitorDataResponse> {
-        self.client.execute(action: "GetMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getMonitorData(_ input: GetMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMonitorDataResponse> {
+        self.client.execute(action: "GetMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取指标监控数据
@@ -125,8 +125,8 @@ extension Monitor {
     /// >?
     /// >- 2022年9月1日起，云监控开始对GetMonitorData接口计费。每个主账号每月可获得100万次免费请求额度，超过免费额度后如需继续调用接口需要开通 [API请求按量付费](https://buy.cloud.tencent.com/APIRequestBuy)。计费规则可查看[API计费文档](https://cloud.tencent.com/document/product/248/77914)。
     @inlinable
-    public func getMonitorData(_ input: GetMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMonitorDataResponse {
-        try await self.client.execute(action: "GetMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getMonitorData(_ input: GetMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMonitorDataResponse {
+        try await self.client.execute(action: "GetMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取指标监控数据
@@ -138,8 +138,8 @@ extension Monitor {
     /// >?
     /// >- 2022年9月1日起，云监控开始对GetMonitorData接口计费。每个主账号每月可获得100万次免费请求额度，超过免费额度后如需继续调用接口需要开通 [API请求按量付费](https://buy.cloud.tencent.com/APIRequestBuy)。计费规则可查看[API计费文档](https://cloud.tencent.com/document/product/248/77914)。
     @inlinable
-    public func getMonitorData(namespace: String, metricName: String, instances: [Instance], period: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMonitorDataResponse> {
-        self.getMonitorData(GetMonitorDataRequest(namespace: namespace, metricName: metricName, instances: instances, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func getMonitorData(namespace: String, metricName: String, instances: [Instance], period: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMonitorDataResponse> {
+        self.getMonitorData(GetMonitorDataRequest(namespace: namespace, metricName: metricName, instances: instances, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取指标监控数据
@@ -151,7 +151,7 @@ extension Monitor {
     /// >?
     /// >- 2022年9月1日起，云监控开始对GetMonitorData接口计费。每个主账号每月可获得100万次免费请求额度，超过免费额度后如需继续调用接口需要开通 [API请求按量付费](https://buy.cloud.tencent.com/APIRequestBuy)。计费规则可查看[API计费文档](https://cloud.tencent.com/document/product/248/77914)。
     @inlinable
-    public func getMonitorData(namespace: String, metricName: String, instances: [Instance], period: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMonitorDataResponse {
-        try await self.getMonitorData(GetMonitorDataRequest(namespace: namespace, metricName: metricName, instances: instances, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func getMonitorData(namespace: String, metricName: String, instances: [Instance], period: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMonitorDataResponse {
+        try await self.getMonitorData(GetMonitorDataRequest(namespace: namespace, metricName: metricName, instances: instances, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

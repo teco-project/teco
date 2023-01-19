@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Cam {
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
-        self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPolicy(_ input: CreatePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
+        self.client.execute(action: "CreatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(_ input: CreatePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
-        try await self.client.execute(action: "CreatePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPolicy(_ input: CreatePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
+        try await self.client.execute(action: "CreatePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
-        self.createPolicy(CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description), logger: logger, on: eventLoop)
+    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyResponse> {
+        self.createPolicy(CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建策略
     ///
     /// 本接口（CreatePolicy）可用于创建策略。
     @inlinable
-    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
-        try await self.createPolicy(CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description), logger: logger, on: eventLoop)
+    public func createPolicy(policyName: String, policyDocument: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyResponse {
+        try await self.createPolicy(CreatePolicyRequest(policyName: policyName, policyDocument: policyDocument, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

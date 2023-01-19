@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotcloud {
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
-        self.client.execute(action: "UpdateDevicePSK", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
+        self.client.execute(action: "UpdateDevicePSK", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
-        try await self.client.execute(action: "UpdateDevicePSK", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDevicePSK(_ input: UpdateDevicePSKRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
+        try await self.client.execute(action: "UpdateDevicePSK", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
-        self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)
+    public func updateDevicePSK(productId: String, deviceName: String, psk: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
+        self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
     @inlinable
-    public func updateDevicePSK(productId: String, deviceName: String, psk: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
-        try await self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), logger: logger, on: eventLoop)
+    public func updateDevicePSK(productId: String, deviceName: String, psk: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
+        try await self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), region: region, logger: logger, on: eventLoop)
     }
 }

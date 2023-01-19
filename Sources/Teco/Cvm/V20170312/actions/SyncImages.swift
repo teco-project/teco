@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Cvm {
     /// * 该接口支持多个同步地域。
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
-    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
-        self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncImages(_ input: SyncImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
+        self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步镜像
@@ -81,8 +81,8 @@ extension Cvm {
     /// * 该接口支持多个同步地域。
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
-    public func syncImages(_ input: SyncImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
-        try await self.client.execute(action: "SyncImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncImages(_ input: SyncImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
+        try await self.client.execute(action: "SyncImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步镜像
@@ -92,8 +92,8 @@ extension Cvm {
     /// * 该接口支持多个同步地域。
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
-    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
-        self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), logger: logger, on: eventLoop)
+    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncImagesResponse> {
+        self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步镜像
@@ -103,7 +103,7 @@ extension Cvm {
     /// * 该接口支持多个同步地域。
     /// * 单个帐号在每个地域最多支持存在10个自定义镜像。
     @inlinable
-    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
-        try await self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), logger: logger, on: eventLoop)
+    public func syncImages(imageIds: [String], destinationRegions: [String], dryRun: Bool? = nil, imageName: String? = nil, imageSetRequired: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncImagesResponse {
+        try await self.syncImages(SyncImagesRequest(imageIds: imageIds, destinationRegions: destinationRegions, dryRun: dryRun, imageName: imageName, imageSetRequired: imageSetRequired), region: region, logger: logger, on: eventLoop)
     }
 }

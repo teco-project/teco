@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdn {
     ///
     /// EnableClsLogTopic 用于启动日志主题投递。注意：启动后，所有绑定该日志主题域名的日志将继续投递至该主题。生效时间约为 5~15 分钟。
     @inlinable
-    public func enableClsLogTopic(_ input: EnableClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClsLogTopicResponse> {
-        self.client.execute(action: "EnableClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableClsLogTopic(_ input: EnableClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClsLogTopicResponse> {
+        self.client.execute(action: "EnableClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动日志主题投递
     ///
     /// EnableClsLogTopic 用于启动日志主题投递。注意：启动后，所有绑定该日志主题域名的日志将继续投递至该主题。生效时间约为 5~15 分钟。
     @inlinable
-    public func enableClsLogTopic(_ input: EnableClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClsLogTopicResponse {
-        try await self.client.execute(action: "EnableClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableClsLogTopic(_ input: EnableClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClsLogTopicResponse {
+        try await self.client.execute(action: "EnableClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动日志主题投递
     ///
     /// EnableClsLogTopic 用于启动日志主题投递。注意：启动后，所有绑定该日志主题域名的日志将继续投递至该主题。生效时间约为 5~15 分钟。
     @inlinable
-    public func enableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClsLogTopicResponse> {
-        self.enableClsLogTopic(EnableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func enableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClsLogTopicResponse> {
+        self.enableClsLogTopic(EnableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动日志主题投递
     ///
     /// EnableClsLogTopic 用于启动日志主题投递。注意：启动后，所有绑定该日志主题域名的日志将继续投递至该主题。生效时间约为 5~15 分钟。
     @inlinable
-    public func enableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClsLogTopicResponse {
-        try await self.enableClsLogTopic(EnableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func enableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClsLogTopicResponse {
+        try await self.enableClsLogTopic(EnableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

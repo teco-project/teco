@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Ccc {
 
     /// 获取电话服务记录与录音
     @inlinable
-    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCdrResponse> {
-        self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTelCdr(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCdrResponse> {
+        self.client.execute(action: "DescribeTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取电话服务记录与录音
     @inlinable
-    public func describeTelCdr(_ input: DescribeTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
-        try await self.client.execute(action: "DescribeTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTelCdr(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
+        try await self.client.execute(action: "DescribeTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取电话服务记录与录音
     @inlinable
-    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCdrResponse> {
-        self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), logger: logger, on: eventLoop)
+    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCdrResponse> {
+        self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取电话服务记录与录音
     @inlinable
-    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
-        try await self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), logger: logger, on: eventLoop)
+    public func describeTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, instanceId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, sdkAppId: Int64? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, phones: [String]? = nil, sessionIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCdrResponse {
+        try await self.describeTelCdr(DescribeTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, instanceId: instanceId, limit: limit, offset: offset, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, phones: phones, sessionIds: sessionIds), region: region, logger: logger, on: eventLoop)
     }
 }

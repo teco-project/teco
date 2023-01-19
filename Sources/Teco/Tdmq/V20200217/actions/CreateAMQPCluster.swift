@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tdmq {
 
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
-        self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
+        self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.client.execute(action: "CreateAMQPCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAMQPCluster(_ input: CreateAMQPClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
+        try await self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
-        self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), logger: logger, on: eventLoop)
+    public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
+        self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP集群
     @inlinable
-    public func createAMQPCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), logger: logger, on: eventLoop)
+    public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
+        try await self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

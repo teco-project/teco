@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Domain {
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
-        self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkBatchStatus(_ input: CheckBatchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
+        self.client.execute(action: "CheckBatchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(_ input: CheckBatchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
-        try await self.client.execute(action: "CheckBatchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkBatchStatus(_ input: CheckBatchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
+        try await self.client.execute(action: "CheckBatchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(logIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
-        self.checkBatchStatus(CheckBatchStatusRequest(logIds: logIds), logger: logger, on: eventLoop)
+    public func checkBatchStatus(logIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBatchStatusResponse> {
+        self.checkBatchStatus(CheckBatchStatusRequest(logIds: logIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志状态
     ///
     /// 本接口 ( CheckBatchStatus ) 用于查询批量操作日志状态 。
     @inlinable
-    public func checkBatchStatus(logIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
-        try await self.checkBatchStatus(CheckBatchStatusRequest(logIds: logIds), logger: logger, on: eventLoop)
+    public func checkBatchStatus(logIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBatchStatusResponse {
+        try await self.checkBatchStatus(CheckBatchStatusRequest(logIds: logIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,8 +67,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func processImage(_ input: ProcessImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
-        self.client.execute(action: "ProcessImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func processImage(_ input: ProcessImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
+        self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片处理
@@ -80,8 +80,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func processImage(_ input: ProcessImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
-        try await self.client.execute(action: "ProcessImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func processImage(_ input: ProcessImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
+        try await self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 图片处理
@@ -93,8 +93,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
-        self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
+        self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片处理
@@ -106,7 +106,7 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响识别效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
-        try await self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
+        try await self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

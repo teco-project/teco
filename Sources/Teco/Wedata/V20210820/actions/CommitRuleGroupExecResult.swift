@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Wedata {
     ///
     /// Runner 规则检测结果上报
     @inlinable
-    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupExecResultResponse> {
-        self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupExecResultResponse> {
+        self.client.execute(action: "CommitRuleGroupExecResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则检测结果上报
     ///
     /// Runner 规则检测结果上报
     @inlinable
-    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
-        try await self.client.execute(action: "CommitRuleGroupExecResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func commitRuleGroupExecResult(_ input: CommitRuleGroupExecResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
+        try await self.client.execute(action: "CommitRuleGroupExecResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 规则检测结果上报
     ///
     /// Runner 规则检测结果上报
     @inlinable
-    public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupExecResultResponse> {
-        self.commitRuleGroupExecResult(CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), logger: logger, on: eventLoop)
+    public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupExecResultResponse> {
+        self.commitRuleGroupExecResult(CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则检测结果上报
     ///
     /// Runner 规则检测结果上报
     @inlinable
-    public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
-        try await self.commitRuleGroupExecResult(CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), logger: logger, on: eventLoop)
+    public func commitRuleGroupExecResult(projectId: String, ruleGroupExecId: UInt64, ruleGroupState: String, ruleExecResults: [RunnerRuleExecResult], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupExecResultResponse {
+        try await self.commitRuleGroupExecResult(CommitRuleGroupExecResultRequest(projectId: projectId, ruleGroupExecId: ruleGroupExecId, ruleGroupState: ruleGroupState, ruleExecResults: ruleExecResults), region: region, logger: logger, on: eventLoop)
     }
 }

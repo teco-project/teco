@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -144,25 +144,25 @@ extension Dayu {
 
     /// 获取DDoS攻击事件详情
     @inlinable
-    public func describeDDoSEvInfo(_ input: DescribeDDoSEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvInfoResponse> {
-        self.client.execute(action: "DescribeDDoSEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSEvInfo(_ input: DescribeDDoSEvInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvInfoResponse> {
+        self.client.execute(action: "DescribeDDoSEvInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击事件详情
     @inlinable
-    public func describeDDoSEvInfo(_ input: DescribeDDoSEvInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
-        try await self.client.execute(action: "DescribeDDoSEvInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSEvInfo(_ input: DescribeDDoSEvInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
+        try await self.client.execute(action: "DescribeDDoSEvInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS攻击事件详情
     @inlinable
-    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvInfoResponse> {
-        self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvInfoResponse> {
+        self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击事件详情
     @inlinable
-    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
-        try await self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSEvInfo(business: String, id: String, ip: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvInfoResponse {
+        try await self.describeDDoSEvInfo(DescribeDDoSEvInfoRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tke {
     ///
     /// 移出节点池节点，但保留在集群内
     @inlinable
-    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
-        self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
+        self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
     @inlinable
-    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
-        try await self.client.execute(action: "RemoveNodeFromNodePool", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
+        try await self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
     @inlinable
-    public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
-        self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
+        self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
     @inlinable
-    public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
-        try await self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
+        try await self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

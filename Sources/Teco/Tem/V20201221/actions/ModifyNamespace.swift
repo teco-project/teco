@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tem {
     ///
     /// 编辑环境
     @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
+        self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑命名空间
     ///
     /// 编辑环境
     @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑命名空间
     ///
     /// 编辑环境
     @inlinable
-    public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
+        self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑命名空间
     ///
     /// 编辑环境
     @inlinable
-    public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

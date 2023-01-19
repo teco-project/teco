@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -35,31 +35,31 @@ extension Rce {
     ///
     /// 此接口用于查询风险评估结果
     @inlinable
-    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
-        self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
+        self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
     @inlinable
-    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
-        try await self.client.execute(action: "DescribeRiskAssessment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
+        try await self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
     @inlinable
-    public func describeRiskAssessment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
-        self.describeRiskAssessment(DescribeRiskAssessmentRequest(), logger: logger, on: eventLoop)
+    public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
+        self.describeRiskAssessment(DescribeRiskAssessmentRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
     @inlinable
-    public func describeRiskAssessment(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
-        try await self.describeRiskAssessment(DescribeRiskAssessmentRequest(), logger: logger, on: eventLoop)
+    public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
+        try await self.describeRiskAssessment(DescribeRiskAssessmentRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

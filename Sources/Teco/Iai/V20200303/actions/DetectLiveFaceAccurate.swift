@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Iai {
     /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
-    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceAccurateResponse> {
-        self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceAccurateResponse> {
+        self.client.execute(action: "DetectLiveFaceAccurate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测（高精度版）
@@ -83,8 +83,8 @@ extension Iai {
     /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
-    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
-        try await self.client.execute(action: "DetectLiveFaceAccurate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectLiveFaceAccurate(_ input: DetectLiveFaceAccurateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
+        try await self.client.execute(action: "DetectLiveFaceAccurate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸静态活体检测（高精度版）
@@ -93,8 +93,8 @@ extension Iai {
     /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
-    public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceAccurateResponse> {
-        self.detectLiveFaceAccurate(DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceAccurateResponse> {
+        self.detectLiveFaceAccurate(DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测（高精度版）
@@ -103,7 +103,7 @@ extension Iai {
     /// 相比现有静态活体检测服务，高精度版在维持高真人通过率的前提下，增强了对高清屏幕、裁剪纸片、3D面具等攻击的防御能力，攻击拦截率约为业内同类型产品形态4-5倍。同时支持多场景人脸核验，满足移动端、PC端各类型场景的图片活体检验需求，适用于各个行业不同的活体检验应用。
     /// 人脸静态活体检测（高精度版）接口于2022年8月1日 00:00起正式开始计费，采取后付费按量计费模式，详见[计费概述](https://cloud.tencent.com/document/product/867/17640)。
     @inlinable
-    public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
-        try await self.detectLiveFaceAccurate(DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func detectLiveFaceAccurate(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceAccurateResponse {
+        try await self.detectLiveFaceAccurate(DetectLiveFaceAccurateRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

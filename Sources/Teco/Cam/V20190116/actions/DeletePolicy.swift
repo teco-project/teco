@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cam {
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
-        self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePolicy(_ input: DeletePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
+        self.client.execute(action: "DeletePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(_ input: DeletePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
-        try await self.client.execute(action: "DeletePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePolicy(_ input: DeletePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
+        try await self.client.execute(action: "DeletePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
-        self.deletePolicy(DeletePolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    public func deletePolicy(policyId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyResponse> {
+        self.deletePolicy(DeletePolicyRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除策略
     ///
     /// 本接口（DeletePolicy）可用于删除策略。
     @inlinable
-    public func deletePolicy(policyId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
-        try await self.deletePolicy(DeletePolicyRequest(policyId: policyId), logger: logger, on: eventLoop)
+    public func deletePolicy(policyId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyResponse {
+        try await self.deletePolicy(DeletePolicyRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

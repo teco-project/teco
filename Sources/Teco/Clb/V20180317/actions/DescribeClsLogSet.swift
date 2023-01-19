@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Clb {
     ///
     /// 获取用户的CLB专有日志集。
     @inlinable
-    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClsLogSetResponse> {
-        self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClsLogSetResponse> {
+        self.client.execute(action: "DescribeClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户的CLB专有日志集
     ///
     /// 获取用户的CLB专有日志集。
     @inlinable
-    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
-        try await self.client.execute(action: "DescribeClsLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClsLogSet(_ input: DescribeClsLogSetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
+        try await self.client.execute(action: "DescribeClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户的CLB专有日志集
     ///
     /// 获取用户的CLB专有日志集。
     @inlinable
-    public func describeClsLogSet(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClsLogSetResponse> {
-        self.describeClsLogSet(DescribeClsLogSetRequest(), logger: logger, on: eventLoop)
+    public func describeClsLogSet(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClsLogSetResponse> {
+        self.describeClsLogSet(DescribeClsLogSetRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户的CLB专有日志集
     ///
     /// 获取用户的CLB专有日志集。
     @inlinable
-    public func describeClsLogSet(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
-        try await self.describeClsLogSet(DescribeClsLogSetRequest(), logger: logger, on: eventLoop)
+    public func describeClsLogSet(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClsLogSetResponse {
+        try await self.describeClsLogSet(DescribeClsLogSetRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

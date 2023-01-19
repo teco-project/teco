@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Monitor {
 
     /// 列出 Grafana 环境变量
     @inlinable
-    public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaEnvironmentsResponse> {
-        self.client.execute(action: "DescribeGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaEnvironmentsResponse> {
+        self.client.execute(action: "DescribeGrafanaEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 环境变量
     @inlinable
-    public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
-        try await self.client.execute(action: "DescribeGrafanaEnvironments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGrafanaEnvironments(_ input: DescribeGrafanaEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
+        try await self.client.execute(action: "DescribeGrafanaEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Grafana 环境变量
     @inlinable
-    public func describeGrafanaEnvironments(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaEnvironmentsResponse> {
-        self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeGrafanaEnvironments(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaEnvironmentsResponse> {
+        self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 环境变量
     @inlinable
-    public func describeGrafanaEnvironments(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
-        try await self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeGrafanaEnvironments(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaEnvironmentsResponse {
+        try await self.describeGrafanaEnvironments(DescribeGrafanaEnvironmentsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

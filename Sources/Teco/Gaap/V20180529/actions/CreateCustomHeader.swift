@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Gaap {
     ///
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable
-    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomHeaderResponse> {
-        self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomHeader(_ input: CreateCustomHeaderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomHeaderResponse> {
+        self.client.execute(action: "CreateCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义header
     ///
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable
-    public func createCustomHeader(_ input: CreateCustomHeaderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
-        try await self.client.execute(action: "CreateCustomHeader", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomHeader(_ input: CreateCustomHeaderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
+        try await self.client.execute(action: "CreateCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义header
     ///
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable
-    public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomHeaderResponse> {
-        self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), logger: logger, on: eventLoop)
+    public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomHeaderResponse> {
+        self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义header
     ///
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable
-    public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
-        try await self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), logger: logger, on: eventLoop)
+    public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
+        try await self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 }

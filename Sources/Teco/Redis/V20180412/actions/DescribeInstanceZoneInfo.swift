@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Redis {
 
     /// 查询Redis节点详细信息
     @inlinable
-    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
-        self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
+        self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis节点详细信息
     @inlinable
-    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
-        try await self.client.execute(action: "DescribeInstanceZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceZoneInfo(_ input: DescribeInstanceZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
+        try await self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Redis节点详细信息
     @inlinable
-    public func describeInstanceZoneInfo(instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
-        self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
+        self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis节点详细信息
     @inlinable
-    public func describeInstanceZoneInfo(instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
-        try await self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
+        try await self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

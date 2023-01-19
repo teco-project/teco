@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,8 +65,8 @@ extension Vod {
     /// 该接口用于修改点播域名的加速区域。
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable
-    public func modifyVodDomainAccelerateConfig(_ input: ModifyVodDomainAccelerateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainAccelerateConfigResponse> {
-        self.client.execute(action: "ModifyVodDomainAccelerateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVodDomainAccelerateConfig(_ input: ModifyVodDomainAccelerateConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainAccelerateConfigResponse> {
+        self.client.execute(action: "ModifyVodDomainAccelerateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或者关闭点播域名加速地域
@@ -74,8 +74,8 @@ extension Vod {
     /// 该接口用于修改点播域名的加速区域。
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable
-    public func modifyVodDomainAccelerateConfig(_ input: ModifyVodDomainAccelerateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainAccelerateConfigResponse {
-        try await self.client.execute(action: "ModifyVodDomainAccelerateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVodDomainAccelerateConfig(_ input: ModifyVodDomainAccelerateConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainAccelerateConfigResponse {
+        try await self.client.execute(action: "ModifyVodDomainAccelerateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或者关闭点播域名加速地域
@@ -83,8 +83,8 @@ extension Vod {
     /// 该接口用于修改点播域名的加速区域。
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable
-    public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainAccelerateConfigResponse> {
-        self.modifyVodDomainAccelerateConfig(ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainAccelerateConfigResponse> {
+        self.modifyVodDomainAccelerateConfig(ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或者关闭点播域名加速地域
@@ -92,7 +92,7 @@ extension Vod {
     /// 该接口用于修改点播域名的加速区域。
     /// 1、域名部署状态为 Online 状态时才允许修改加速区域。
     @inlinable
-    public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainAccelerateConfigResponse {
-        try await self.modifyVodDomainAccelerateConfig(ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyVodDomainAccelerateConfig(domain: String, area: String, status: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainAccelerateConfigResponse {
+        try await self.modifyVodDomainAccelerateConfig(ModifyVodDomainAccelerateConfigRequest(domain: domain, area: area, status: status, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcss {
     ///
     /// DescribePostPayDetail  查询后付费详情
     @inlinable
-    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostPayDetailResponse> {
-        self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostPayDetailResponse> {
+        self.client.execute(action: "DescribePostPayDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费详情
     ///
     /// DescribePostPayDetail  查询后付费详情
     @inlinable
-    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
-        try await self.client.execute(action: "DescribePostPayDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePostPayDetail(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
+        try await self.client.execute(action: "DescribePostPayDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询后付费详情
     ///
     /// DescribePostPayDetail  查询后付费详情
     @inlinable
-    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostPayDetailResponse> {
-        self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePostPayDetailResponse> {
+        self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费详情
     ///
     /// DescribePostPayDetail  查询后付费详情
     @inlinable
-    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
-        try await self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describePostPayDetail(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePostPayDetailResponse {
+        try await self.describePostPayDetail(DescribePostPayDetailRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,8 +62,8 @@ extension Cdn {
     /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
-        self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
+        self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新 URL
@@ -71,8 +71,8 @@ extension Cdn {
     /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        try await self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
+        try await self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新 URL
@@ -80,8 +80,8 @@ extension Cdn {
     /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
-    public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
-        self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode), logger: logger, on: eventLoop)
+    public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
+        self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新 URL
@@ -89,7 +89,7 @@ extension Cdn {
     /// PurgeUrlsCache 用于批量提交 URL 进行刷新，根据 URL 中域名的当前加速区域进行对应区域的刷新。
     /// 默认情况下境内、境外加速区域每日 URL 刷新额度各为 10000 条，每次最多可提交 1000 条。
     @inlinable
-    public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        try await self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode), logger: logger, on: eventLoop)
+    public func purgeUrlsCache(urls: [String], area: String? = nil, urlEncode: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
+        try await self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls, area: area, urlEncode: urlEncode), region: region, logger: logger, on: eventLoop)
     }
 }

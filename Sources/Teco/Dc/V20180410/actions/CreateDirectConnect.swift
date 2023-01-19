@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -131,8 +131,8 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
-        self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDirectConnect(_ input: CreateDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
+        self.client.execute(action: "CreateDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请物理专线
@@ -142,8 +142,8 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(_ input: CreateDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
-        try await self.client.execute(action: "CreateDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDirectConnect(_ input: CreateDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
+        try await self.client.execute(action: "CreateDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请物理专线
@@ -153,8 +153,8 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
-        self.createDirectConnect(CreateDirectConnectRequest(directConnectName: directConnectName, accessPointId: accessPointId, lineOperator: lineOperator, portType: portType, circuitCode: circuitCode, location: location, bandwidth: bandwidth, redundantDirectConnectId: redundantDirectConnectId, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw), logger: logger, on: eventLoop)
+    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectResponse> {
+        self.createDirectConnect(CreateDirectConnectRequest(directConnectName: directConnectName, accessPointId: accessPointId, lineOperator: lineOperator, portType: portType, circuitCode: circuitCode, location: location, bandwidth: bandwidth, redundantDirectConnectId: redundantDirectConnectId, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请物理专线
@@ -164,7 +164,7 @@ extension Dc {
     /// 账号要进行实名认证，否则不允许申请物理专线；
     /// 若账户下存在欠费状态的物理专线，则不能申请更多的物理专线。
     @inlinable
-    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
-        try await self.createDirectConnect(CreateDirectConnectRequest(directConnectName: directConnectName, accessPointId: accessPointId, lineOperator: lineOperator, portType: portType, circuitCode: circuitCode, location: location, bandwidth: bandwidth, redundantDirectConnectId: redundantDirectConnectId, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw), logger: logger, on: eventLoop)
+    public func createDirectConnect(directConnectName: String, accessPointId: String, lineOperator: String, portType: String, circuitCode: String? = nil, location: String? = nil, bandwidth: Int64? = nil, redundantDirectConnectId: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectResponse {
+        try await self.createDirectConnect(CreateDirectConnectRequest(directConnectName: directConnectName, accessPointId: accessPointId, lineOperator: lineOperator, portType: portType, circuitCode: circuitCode, location: location, bandwidth: bandwidth, redundantDirectConnectId: redundantDirectConnectId, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw), region: region, logger: logger, on: eventLoop)
     }
 }

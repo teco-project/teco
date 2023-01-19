@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,8 +75,8 @@ extension Vod {
     ///    1. 可以查询最近365天内的视频处理统计数据。
     ///    2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessUsageDataResponse> {
-        self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessUsageDataResponse> {
+        self.client.execute(action: "DescribeMediaProcessUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询视频处理用量统计数据
@@ -85,8 +85,8 @@ extension Vod {
     ///    1. 可以查询最近365天内的视频处理统计数据。
     ///    2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
-        try await self.client.execute(action: "DescribeMediaProcessUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaProcessUsageData(_ input: DescribeMediaProcessUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
+        try await self.client.execute(action: "DescribeMediaProcessUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询视频处理用量统计数据
@@ -95,8 +95,8 @@ extension Vod {
     ///    1. 可以查询最近365天内的视频处理统计数据。
     ///    2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessUsageDataResponse> {
-        self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessUsageDataResponse> {
+        self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频处理用量统计数据
@@ -105,7 +105,7 @@ extension Vod {
     ///    1. 可以查询最近365天内的视频处理统计数据。
     ///    2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
-        try await self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    public func describeMediaProcessUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessUsageDataResponse {
+        try await self.describeMediaProcessUsageData(DescribeMediaProcessUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

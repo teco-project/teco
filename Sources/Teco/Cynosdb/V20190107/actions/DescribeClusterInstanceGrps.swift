@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
     @inlinable
-    public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
-        self.client.execute(action: "DescribeClusterInstanceGrps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
+        self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例组
     ///
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
     @inlinable
-    public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
-        try await self.client.execute(action: "DescribeClusterInstanceGrps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
+        try await self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例组
     ///
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
     @inlinable
-    public func describeClusterInstanceGrps(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
-        self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
+        self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例组
     ///
     /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
     @inlinable
-    public func describeClusterInstanceGrps(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
-        try await self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
+        try await self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

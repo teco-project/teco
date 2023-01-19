@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Live {
     ///
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
-    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliverBandwidthListResponse> {
-        self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliverBandwidthListResponse> {
+        self.client.execute(action: "DescribeDeliverBandwidthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播转推计费带宽
     ///
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
-    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
-        try await self.client.execute(action: "DescribeDeliverBandwidthList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeliverBandwidthList(_ input: DescribeDeliverBandwidthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
+        try await self.client.execute(action: "DescribeDeliverBandwidthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询直播转推计费带宽
     ///
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
-    public func describeDeliverBandwidthList(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliverBandwidthListResponse> {
-        self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDeliverBandwidthList(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliverBandwidthListResponse> {
+        self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播转推计费带宽
     ///
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
-    public func describeDeliverBandwidthList(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
-        try await self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDeliverBandwidthList(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
+        try await self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

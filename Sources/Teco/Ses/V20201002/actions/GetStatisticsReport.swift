@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Ses {
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(_ input: GetStatisticsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
-        self.client.execute(action: "GetStatisticsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getStatisticsReport(_ input: GetStatisticsReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
+        self.client.execute(action: "GetStatisticsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(_ input: GetStatisticsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticsReportResponse {
-        try await self.client.execute(action: "GetStatisticsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getStatisticsReport(_ input: GetStatisticsReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticsReportResponse {
+        try await self.client.execute(action: "GetStatisticsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
-        self.getStatisticsReport(GetStatisticsReportRequest(startDate: startDate, endDate: endDate, domain: domain, receivingMailboxType: receivingMailboxType), logger: logger, on: eventLoop)
+    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticsReportResponse> {
+        self.getStatisticsReport(GetStatisticsReportRequest(startDate: startDate, endDate: endDate, domain: domain, receivingMailboxType: receivingMailboxType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取发送统计数据
     ///
     /// 获取近期发送的统计情况，包含发送量、送达率、打开率、退信率等一系列数据。
     @inlinable
-    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticsReportResponse {
-        try await self.getStatisticsReport(GetStatisticsReportRequest(startDate: startDate, endDate: endDate, domain: domain, receivingMailboxType: receivingMailboxType), logger: logger, on: eventLoop)
+    public func getStatisticsReport(startDate: Date, endDate: Date, domain: String? = nil, receivingMailboxType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticsReportResponse {
+        try await self.getStatisticsReport(GetStatisticsReportRequest(startDate: startDate, endDate: endDate, domain: domain, receivingMailboxType: receivingMailboxType), region: region, logger: logger, on: eventLoop)
     }
 }

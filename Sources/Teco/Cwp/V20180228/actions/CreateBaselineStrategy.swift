@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Cwp {
     ///
     /// 根据策略信息创建基线策略
     @inlinable
-    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
-        self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
+        self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
     @inlinable
-    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
-        try await self.client.execute(action: "CreateBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
+        try await self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
     @inlinable
-    public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
-        self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), logger: logger, on: eventLoop)
+    public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
+        self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
     @inlinable
-    public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
-        try await self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), logger: logger, on: eventLoop)
+    public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
+        try await self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 }

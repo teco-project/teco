@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Tcb {
 
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
-        self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
+        self.client.execute(action: "DescribeEnvDealRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
-        try await self.client.execute(action: "DescribeEnvDealRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvDealRegion(_ input: DescribeEnvDealRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
+        try await self.client.execute(action: "DescribeEnvDealRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
-        self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), logger: logger, on: eventLoop)
+    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvDealRegionResponse> {
+        self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境下单地域
     @inlinable
-    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
-        try await self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), logger: logger, on: eventLoop)
+    public func describeEnvDealRegion(envId: String, dealType: String, dealAction: String, dealRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvDealRegionResponse {
+        try await self.describeEnvDealRegion(DescribeEnvDealRegionRequest(envId: envId, dealType: dealType, dealAction: dealAction, dealRegion: dealRegion), region: region, logger: logger, on: eventLoop)
     }
 }

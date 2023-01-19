@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Youmall {
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopHourTrafficInfo(_ input: DescribeShopHourTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopHourTrafficInfoResponse> {
-        self.client.execute(action: "DescribeShopHourTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeShopHourTrafficInfo(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopHourTrafficInfoResponse> {
+        self.client.execute(action: "DescribeShopHourTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取每小时客流人数
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopHourTrafficInfo(_ input: DescribeShopHourTrafficInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
-        try await self.client.execute(action: "DescribeShopHourTrafficInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeShopHourTrafficInfo(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
+        try await self.client.execute(action: "DescribeShopHourTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取每小时客流人数
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopHourTrafficInfoResponse> {
-        self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopHourTrafficInfoResponse> {
+        self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取每小时客流人数
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
-        try await self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeShopHourTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopHourTrafficInfoResponse {
+        try await self.describeShopHourTrafficInfo(DescribeShopHourTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

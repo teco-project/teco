@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Eis {
 
     /// 获取连接器操作列表
     @inlinable
-    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEisConnectorOperationsResponse> {
-        self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEisConnectorOperationsResponse> {
+        self.client.execute(action: "ListEisConnectorOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取连接器操作列表
     @inlinable
-    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
-        try await self.client.execute(action: "ListEisConnectorOperations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listEisConnectorOperations(_ input: ListEisConnectorOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
+        try await self.client.execute(action: "ListEisConnectorOperations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取连接器操作列表
     @inlinable
-    public func listEisConnectorOperations(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEisConnectorOperationsResponse> {
-        self.listEisConnectorOperations(ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion), logger: logger, on: eventLoop)
+    public func listEisConnectorOperations(connectorName: String, connectorVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEisConnectorOperationsResponse> {
+        self.listEisConnectorOperations(ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取连接器操作列表
     @inlinable
-    public func listEisConnectorOperations(connectorName: String, connectorVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
-        try await self.listEisConnectorOperations(ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion), logger: logger, on: eventLoop)
+    public func listEisConnectorOperations(connectorName: String, connectorVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEisConnectorOperationsResponse {
+        try await self.listEisConnectorOperations(ListEisConnectorOperationsRequest(connectorName: connectorName, connectorVersion: connectorVersion), region: region, logger: logger, on: eventLoop)
     }
 }

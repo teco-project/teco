@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Tiw {
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
-        self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
+        self.client.execute(action: "SetTranscodeCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
-        try await self.client.execute(action: "SetTranscodeCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setTranscodeCallback(_ input: SetTranscodeCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
+        try await self.client.execute(action: "SetTranscodeCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
-        self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setTranscodeCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTranscodeCallbackResponse> {
+        self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置文档转码回调地址
     ///
     /// 设置文档转码回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40260
     @inlinable
-    public func setTranscodeCallback(sdkAppId: Int64, callback: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
-        try await self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func setTranscodeCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTranscodeCallbackResponse {
+        try await self.setTranscodeCallback(SetTranscodeCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

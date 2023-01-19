@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tse {
 
     /// 删除引擎实例
     @inlinable
-    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
-        self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEngine(_ input: DeleteEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
+        self.client.execute(action: "DeleteEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除引擎实例
     @inlinable
-    public func deleteEngine(_ input: DeleteEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
-        try await self.client.execute(action: "DeleteEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEngine(_ input: DeleteEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
+        try await self.client.execute(action: "DeleteEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除引擎实例
     @inlinable
-    public func deleteEngine(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
-        self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteEngine(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
+        self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除引擎实例
     @inlinable
-    public func deleteEngine(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
-        try await self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteEngine(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
+        try await self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

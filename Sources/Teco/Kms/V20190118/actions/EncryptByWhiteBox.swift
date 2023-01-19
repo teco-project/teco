@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Kms {
 
     /// 使用白盒密钥进行加密
     @inlinable
-    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EncryptByWhiteBoxResponse> {
-        self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EncryptByWhiteBoxResponse> {
+        self.client.execute(action: "EncryptByWhiteBox", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用白盒密钥进行加密
     @inlinable
-    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
-        try await self.client.execute(action: "EncryptByWhiteBox", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func encryptByWhiteBox(_ input: EncryptByWhiteBoxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
+        try await self.client.execute(action: "EncryptByWhiteBox", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用白盒密钥进行加密
     @inlinable
-    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EncryptByWhiteBoxResponse> {
-        self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), logger: logger, on: eventLoop)
+    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EncryptByWhiteBoxResponse> {
+        self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用白盒密钥进行加密
     @inlinable
-    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
-        try await self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), logger: logger, on: eventLoop)
+    public func encryptByWhiteBox(keyId: String, plainText: String, initializationVector: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptByWhiteBoxResponse {
+        try await self.encryptByWhiteBox(EncryptByWhiteBoxRequest(keyId: keyId, plainText: plainText, initializationVector: initializationVector), region: region, logger: logger, on: eventLoop)
     }
 }

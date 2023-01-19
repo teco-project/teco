@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cam {
 
     /// 通过子用户UIN列表查询子用户
     @inlinable
-    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAccountsResponse> {
-        self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAccountsResponse> {
+        self.client.execute(action: "DescribeSubAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过子用户UIN列表查询子用户
     @inlinable
-    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
-        try await self.client.execute(action: "DescribeSubAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubAccounts(_ input: DescribeSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
+        try await self.client.execute(action: "DescribeSubAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过子用户UIN列表查询子用户
     @inlinable
-    public func describeSubAccounts(filterSubAccountUin: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAccountsResponse> {
-        self.describeSubAccounts(DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin), logger: logger, on: eventLoop)
+    public func describeSubAccounts(filterSubAccountUin: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubAccountsResponse> {
+        self.describeSubAccounts(DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过子用户UIN列表查询子用户
     @inlinable
-    public func describeSubAccounts(filterSubAccountUin: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
-        try await self.describeSubAccounts(DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin), logger: logger, on: eventLoop)
+    public func describeSubAccounts(filterSubAccountUin: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubAccountsResponse {
+        try await self.describeSubAccounts(DescribeSubAccountsRequest(filterSubAccountUin: filterSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Tcaplusdb {
     ///
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
-    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyIdlFilesResponse> {
-        self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyIdlFilesResponse> {
+        self.client.execute(action: "VerifyIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验创建表格文件
     ///
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
-    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
-        try await self.client.execute(action: "VerifyIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyIdlFiles(_ input: VerifyIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
+        try await self.client.execute(action: "VerifyIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传并校验创建表格文件
     ///
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
-    public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyIdlFilesResponse> {
-        self.verifyIdlFiles(VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), logger: logger, on: eventLoop)
+    public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyIdlFilesResponse> {
+        self.verifyIdlFiles(VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验创建表格文件
     ///
     /// 上传并校验创建表格文件，返回校验合法的表格定义
     @inlinable
-    public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
-        try await self.verifyIdlFiles(VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), logger: logger, on: eventLoop)
+    public func verifyIdlFiles(clusterId: String, tableGroupId: String? = nil, existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyIdlFilesResponse {
+        try await self.verifyIdlFiles(VerifyIdlFilesRequest(clusterId: clusterId, tableGroupId: tableGroupId, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 }

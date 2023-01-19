@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -130,25 +130,25 @@ extension Ocr {
 
     /// 印尼身份证识别
     @inlinable
-    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
-        self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
+        self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 印尼身份证识别
     @inlinable
-    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
-        try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeIndonesiaIDCardOCR(_ input: RecognizeIndonesiaIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
+        try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 印尼身份证识别
     @inlinable
-    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
-        self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), logger: logger, on: eventLoop)
+    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
+        self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 印尼身份证识别
     @inlinable
-    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
-        try await self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), logger: logger, on: eventLoop)
+    public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
+        try await self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
-        self.client.execute(action: "ParseLiveStreamProcessNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
+        self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解析直播流处理结果
@@ -87,8 +87,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
-        try await self.client.execute(action: "ParseLiveStreamProcessNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func parseLiveStreamProcessNotification(_ input: ParseLiveStreamProcessNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
+        try await self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解析直播流处理结果
@@ -96,8 +96,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseLiveStreamProcessNotification(content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
-        self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), logger: logger, on: eventLoop)
+    public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
+        self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解析直播流处理结果
@@ -105,7 +105,7 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 直播流处理事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseLiveStreamProcessNotification(content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
-        try await self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), logger: logger, on: eventLoop)
+    public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
+        try await self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
     }
 }

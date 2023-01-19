@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件监听器
     @inlinable
-    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
-        self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerEventListener(_ input: RegisterEventListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
+        self.client.execute(action: "RegisterEventListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册事件监听器【Beta版本】
@@ -78,8 +78,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件监听器
     @inlinable
-    public func registerEventListener(_ input: RegisterEventListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
-        try await self.client.execute(action: "RegisterEventListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerEventListener(_ input: RegisterEventListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
+        try await self.client.execute(action: "RegisterEventListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册事件监听器【Beta版本】
@@ -87,8 +87,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件监听器
     @inlinable
-    public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
-        self.registerEventListener(RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), logger: logger, on: eventLoop)
+    public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventListenerResponse> {
+        self.registerEventListener(RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册事件监听器【Beta版本】
@@ -96,7 +96,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件监听器
     @inlinable
-    public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
-        try await self.registerEventListener(RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), logger: logger, on: eventLoop)
+    public func registerEventListener(key: String, eventName: String, projectId: String, type: String? = nil, properties: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventListenerResponse {
+        try await self.registerEventListener(RegisterEventListenerRequest(key: key, eventName: eventName, projectId: projectId, type: type, properties: properties), region: region, logger: logger, on: eventLoop)
     }
 }

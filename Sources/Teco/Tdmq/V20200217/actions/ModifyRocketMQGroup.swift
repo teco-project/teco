@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tdmq {
 
     /// 更新RocketMQ消费组信息
     @inlinable
-    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
-        self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
+        self.client.execute(action: "ModifyRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ消费组信息
     @inlinable
-    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
-        try await self.client.execute(action: "ModifyRocketMQGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRocketMQGroup(_ input: ModifyRocketMQGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
+        try await self.client.execute(action: "ModifyRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新RocketMQ消费组信息
     @inlinable
-    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
-        self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), logger: logger, on: eventLoop)
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
+        self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ消费组信息
     @inlinable
-    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
-        try await self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), logger: logger, on: eventLoop)
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
+        try await self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), region: region, logger: logger, on: eventLoop)
     }
 }

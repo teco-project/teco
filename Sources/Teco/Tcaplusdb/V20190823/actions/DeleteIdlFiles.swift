@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcaplusdb {
     ///
     /// 指定集群ID和待删除IDL文件的信息，删除目标文件，如果文件正在被表关联则删除失败。
     @inlinable
-    public func deleteIdlFiles(_ input: DeleteIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIdlFilesResponse> {
-        self.client.execute(action: "DeleteIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIdlFiles(_ input: DeleteIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIdlFilesResponse> {
+        self.client.execute(action: "DeleteIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除IDL描述文件
     ///
     /// 指定集群ID和待删除IDL文件的信息，删除目标文件，如果文件正在被表关联则删除失败。
     @inlinable
-    public func deleteIdlFiles(_ input: DeleteIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIdlFilesResponse {
-        try await self.client.execute(action: "DeleteIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIdlFiles(_ input: DeleteIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIdlFilesResponse {
+        try await self.client.execute(action: "DeleteIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除IDL描述文件
     ///
     /// 指定集群ID和待删除IDL文件的信息，删除目标文件，如果文件正在被表关联则删除失败。
     @inlinable
-    public func deleteIdlFiles(clusterId: String, idlFiles: [IdlFileInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIdlFilesResponse> {
-        self.deleteIdlFiles(DeleteIdlFilesRequest(clusterId: clusterId, idlFiles: idlFiles), logger: logger, on: eventLoop)
+    public func deleteIdlFiles(clusterId: String, idlFiles: [IdlFileInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIdlFilesResponse> {
+        self.deleteIdlFiles(DeleteIdlFilesRequest(clusterId: clusterId, idlFiles: idlFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除IDL描述文件
     ///
     /// 指定集群ID和待删除IDL文件的信息，删除目标文件，如果文件正在被表关联则删除失败。
     @inlinable
-    public func deleteIdlFiles(clusterId: String, idlFiles: [IdlFileInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIdlFilesResponse {
-        try await self.deleteIdlFiles(DeleteIdlFilesRequest(clusterId: clusterId, idlFiles: idlFiles), logger: logger, on: eventLoop)
+    public func deleteIdlFiles(clusterId: String, idlFiles: [IdlFileInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIdlFilesResponse {
+        try await self.deleteIdlFiles(DeleteIdlFilesRequest(clusterId: clusterId, idlFiles: idlFiles), region: region, logger: logger, on: eventLoop)
     }
 }

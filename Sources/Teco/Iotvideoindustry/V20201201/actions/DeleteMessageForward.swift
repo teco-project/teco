@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iotvideoindustry {
 
     /// 删除消息转发配置
     @inlinable
-    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageForwardResponse> {
-        self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageForwardResponse> {
+        self.client.execute(action: "DeleteMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除消息转发配置
     @inlinable
-    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
-        try await self.client.execute(action: "DeleteMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMessageForward(_ input: DeleteMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
+        try await self.client.execute(action: "DeleteMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除消息转发配置
     @inlinable
-    public func deleteMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageForwardResponse> {
-        self.deleteMessageForward(DeleteMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    public func deleteMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageForwardResponse> {
+        self.deleteMessageForward(DeleteMessageForwardRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除消息转发配置
     @inlinable
-    public func deleteMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
-        try await self.deleteMessageForward(DeleteMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    public func deleteMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageForwardResponse {
+        try await self.deleteMessageForward(DeleteMessageForwardRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 }

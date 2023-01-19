@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
-    public func describeApiAppsStatus(_ input: DescribeApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppsStatusResponse> {
-        self.client.execute(action: "DescribeApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiAppsStatus(_ input: DescribeApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppsStatusResponse> {
+        self.client.execute(action: "DescribeApiAppsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用列表
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
-    public func describeApiAppsStatus(_ input: DescribeApiAppsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppsStatusResponse {
-        try await self.client.execute(action: "DescribeApiAppsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiAppsStatus(_ input: DescribeApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppsStatusResponse {
+        try await self.client.execute(action: "DescribeApiAppsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用列表
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
-    public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppsStatusResponse> {
-        self.describeApiAppsStatus(DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppsStatusResponse> {
+        self.describeApiAppsStatus(DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用列表
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
-    public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppsStatusResponse {
-        try await self.describeApiAppsStatus(DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeApiAppsStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppsStatusResponse {
+        try await self.describeApiAppsStatus(DescribeApiAppsStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

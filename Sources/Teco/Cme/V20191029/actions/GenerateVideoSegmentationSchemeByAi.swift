@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Cme {
     /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
-    public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
-        self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
+        self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频智能拆条
@@ -69,8 +69,8 @@ extension Cme {
     /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
-    public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
-        try await self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateVideoSegmentationSchemeByAi(_ input: GenerateVideoSegmentationSchemeByAiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
+        try await self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 视频智能拆条
@@ -79,8 +79,8 @@ extension Cme {
     /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
-    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
-        self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
+    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
+        self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频智能拆条
@@ -89,7 +89,7 @@ extension Cme {
     /// <li>和平精英集锦和王者荣耀集锦根据击杀场景进行拆条，足球集锦和篮球集锦根据进球场景进行拆条，人物集锦根据人物人脸特征进行拆条，新闻拆条根据导播进行拆条。</li>
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
-    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
-        try await self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), logger: logger, on: eventLoop)
+    public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
+        try await self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

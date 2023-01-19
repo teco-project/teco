@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Tcss {
 
     /// 创建镜像导出任务
     @inlinable
-    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageExportJobResponse> {
-        self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageExportJob(_ input: CreateImageExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageExportJobResponse> {
+        self.client.execute(action: "CreateImageExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像导出任务
     @inlinable
-    public func createImageExportJob(_ input: CreateImageExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
-        try await self.client.execute(action: "CreateImageExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageExportJob(_ input: CreateImageExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
+        try await self.client.execute(action: "CreateImageExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像导出任务
     @inlinable
-    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageExportJobResponse> {
-        self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), logger: logger, on: eventLoop)
+    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageExportJobResponse> {
+        self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像导出任务
     @inlinable
-    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
-        try await self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), logger: logger, on: eventLoop)
+    public func createImageExportJob(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageExportJobResponse {
+        try await self.createImageExportJob(CreateImageExportJobRequest(filters: filters, offset: offset, limit: limit, by: by, order: order, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

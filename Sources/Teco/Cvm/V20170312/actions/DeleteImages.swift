@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Cvm {
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
-        self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
+        self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像
@@ -67,8 +67,8 @@ extension Cvm {
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable
-    public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
+        try await self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除镜像
@@ -78,8 +78,8 @@ extension Cvm {
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable
-    public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
-        self.deleteImages(DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
+        self.deleteImages(DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像
@@ -89,7 +89,7 @@ extension Cvm {
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
     @inlinable
-    public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
-        try await self.deleteImages(DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
+        try await self.deleteImages(DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

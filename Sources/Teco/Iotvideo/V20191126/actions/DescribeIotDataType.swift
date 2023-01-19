@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
     @inlinable
-    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDataTypeResponse> {
-        self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDataTypeResponse> {
+        self.client.execute(action: "DescribeIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义物模型数据类型
     ///
     /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
     @inlinable
-    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
-        try await self.client.execute(action: "DescribeIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIotDataType(_ input: DescribeIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
+        try await self.client.execute(action: "DescribeIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询自定义物模型数据类型
     ///
     /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
     @inlinable
-    public func describeIotDataType(typeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDataTypeResponse> {
-        self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    public func describeIotDataType(typeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDataTypeResponse> {
+        self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义物模型数据类型
     ///
     /// 本接口（DescribeIotDataType）用于查询自定义的物模型数据类型。
     @inlinable
-    public func describeIotDataType(typeId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
-        try await self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    public func describeIotDataType(typeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDataTypeResponse {
+        try await self.describeIotDataType(DescribeIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 }

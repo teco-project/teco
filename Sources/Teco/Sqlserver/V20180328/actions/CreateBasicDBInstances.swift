@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -152,31 +152,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
     @inlinable
-    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDBInstancesResponse> {
-        self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDBInstancesResponse> {
+        self.client.execute(action: "CreateBasicDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建基础版实例
     ///
     /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
     @inlinable
-    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
-        try await self.client.execute(action: "CreateBasicDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBasicDBInstances(_ input: CreateBasicDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
+        try await self.client.execute(action: "CreateBasicDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建基础版实例
     ///
     /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
     @inlinable
-    public func createBasicDBInstances(zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String? = nil, projectId: UInt64? = nil, goodsNum: UInt64? = nil, dbVersion: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDBInstancesResponse> {
-        self.createBasicDBInstances(CreateBasicDBInstancesRequest(zone: zone, cpu: cpu, memory: memory, storage: storage, subnetId: subnetId, vpcId: vpcId, machineType: machineType, instanceChargeType: instanceChargeType, projectId: projectId, goodsNum: goodsNum, dbVersion: dbVersion, period: period, securityGroupList: securityGroupList, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, voucherIds: voucherIds, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags, collation: collation, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func createBasicDBInstances(zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String? = nil, projectId: UInt64? = nil, goodsNum: UInt64? = nil, dbVersion: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDBInstancesResponse> {
+        self.createBasicDBInstances(CreateBasicDBInstancesRequest(zone: zone, cpu: cpu, memory: memory, storage: storage, subnetId: subnetId, vpcId: vpcId, machineType: machineType, instanceChargeType: instanceChargeType, projectId: projectId, goodsNum: goodsNum, dbVersion: dbVersion, period: period, securityGroupList: securityGroupList, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, voucherIds: voucherIds, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags, collation: collation, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建基础版实例
     ///
     /// 本接口（CreateBasicDBInstances）用于创建SQL server基础版实例。
     @inlinable
-    public func createBasicDBInstances(zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String? = nil, projectId: UInt64? = nil, goodsNum: UInt64? = nil, dbVersion: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
-        try await self.createBasicDBInstances(CreateBasicDBInstancesRequest(zone: zone, cpu: cpu, memory: memory, storage: storage, subnetId: subnetId, vpcId: vpcId, machineType: machineType, instanceChargeType: instanceChargeType, projectId: projectId, goodsNum: goodsNum, dbVersion: dbVersion, period: period, securityGroupList: securityGroupList, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, voucherIds: voucherIds, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags, collation: collation, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func createBasicDBInstances(zone: String, cpu: UInt64, memory: UInt64, storage: UInt64, subnetId: String, vpcId: String, machineType: String, instanceChargeType: String? = nil, projectId: UInt64? = nil, goodsNum: UInt64? = nil, dbVersion: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoRenewFlag: Int64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, weekly: [Int64]? = nil, startTime: String? = nil, span: Int64? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDBInstancesResponse {
+        try await self.createBasicDBInstances(CreateBasicDBInstancesRequest(zone: zone, cpu: cpu, memory: memory, storage: storage, subnetId: subnetId, vpcId: vpcId, machineType: machineType, instanceChargeType: instanceChargeType, projectId: projectId, goodsNum: goodsNum, dbVersion: dbVersion, period: period, securityGroupList: securityGroupList, autoRenewFlag: autoRenewFlag, autoVoucher: autoVoucher, voucherIds: voucherIds, weekly: weekly, startTime: startTime, span: span, resourceTags: resourceTags, collation: collation, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
-        self.client.execute(action: "DescribeLiveStreamState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
+        self.client.execute(action: "DescribeLiveStreamState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流状态
@@ -84,8 +84,8 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
-        try await self.client.execute(action: "DescribeLiveStreamState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveStreamState(_ input: DescribeLiveStreamStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
+        try await self.client.execute(action: "DescribeLiveStreamState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流状态
@@ -100,8 +100,8 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
-        self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamStateResponse> {
+        self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流状态
@@ -116,7 +116,7 @@ extension Live {
     /// 2.3 通过 本接口 查询直播流状态，判断主播是否在线。
     /// 2.4 以上任一方式判断为在线，都认为主播开播中，并且接口查询超时或解析异常时，也默认为在线，减少对业务的影响。
     @inlinable
-    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
-        try await self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeLiveStreamState(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamStateResponse {
+        try await self.describeLiveStreamState(DescribeLiveStreamStateRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tione {
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
-        self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
+        self.client.execute(action: "DescribeBatchTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
-        try await self.client.execute(action: "DescribeBatchTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBatchTaskInstances(_ input: DescribeBatchTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
+        try await self.client.execute(action: "DescribeBatchTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
-        self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    public func describeBatchTaskInstances(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchTaskInstancesResponse> {
+        self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跑批实例列表
     ///
     /// 查询跑批实例列表
     @inlinable
-    public func describeBatchTaskInstances(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
-        try await self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    public func describeBatchTaskInstances(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchTaskInstancesResponse {
+        try await self.describeBatchTaskInstances(DescribeBatchTaskInstancesRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Live {
     ///
     /// 恢复某条流的推流。
     @inlinable
-    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
-        self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
+        self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
     @inlinable
-    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
-        try await self.client.execute(action: "ResumeLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeLiveStream(_ input: ResumeLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
+        try await self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
     @inlinable
-    public func resumeLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
-        self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
+        self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
     @inlinable
-    public func resumeLiveStream(appName: String, domainName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
-        try await self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), logger: logger, on: eventLoop)
+    public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
+        try await self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

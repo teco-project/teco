@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Wav {
     ///
     /// 企业可通过此接口基于外部联系人获取指定成员添加的客户列表。客户是指配置了客户联系功能的成员所添加的外部联系人。没有配置客户联系功能的成员，所添加的外部联系人将不会作为客户返回。
     @inlinable
-    public func queryExternalContactList(_ input: QueryExternalContactListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactListResponse> {
-        self.client.execute(action: "QueryExternalContactList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryExternalContactList(_ input: QueryExternalContactListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactListResponse> {
+        self.client.execute(action: "QueryExternalContactList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人列表接口
     ///
     /// 企业可通过此接口基于外部联系人获取指定成员添加的客户列表。客户是指配置了客户联系功能的成员所添加的外部联系人。没有配置客户联系功能的成员，所添加的外部联系人将不会作为客户返回。
     @inlinable
-    public func queryExternalContactList(_ input: QueryExternalContactListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactListResponse {
-        try await self.client.execute(action: "QueryExternalContactList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryExternalContactList(_ input: QueryExternalContactListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactListResponse {
+        try await self.client.execute(action: "QueryExternalContactList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询外部联系人列表接口
     ///
     /// 企业可通过此接口基于外部联系人获取指定成员添加的客户列表。客户是指配置了客户联系功能的成员所添加的外部联系人。没有配置客户联系功能的成员，所添加的外部联系人将不会作为客户返回。
     @inlinable
-    public func queryExternalContactList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactListResponse> {
-        self.queryExternalContactList(QueryExternalContactListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryExternalContactList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactListResponse> {
+        self.queryExternalContactList(QueryExternalContactListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人列表接口
     ///
     /// 企业可通过此接口基于外部联系人获取指定成员添加的客户列表。客户是指配置了客户联系功能的成员所添加的外部联系人。没有配置客户联系功能的成员，所添加的外部联系人将不会作为客户返回。
     @inlinable
-    public func queryExternalContactList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactListResponse {
-        try await self.queryExternalContactList(QueryExternalContactListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryExternalContactList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactListResponse {
+        try await self.queryExternalContactList(QueryExternalContactListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cfw {
 
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
-    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInfoCountResponse> {
-        self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInfoCountResponse> {
+        self.client.execute(action: "DescribeNatFwInfoCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
-    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
-        try await self.client.execute(action: "DescribeNatFwInfoCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNatFwInfoCount(_ input: DescribeNatFwInfoCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
+        try await self.client.execute(action: "DescribeNatFwInfoCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
-    public func describeNatFwInfoCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInfoCountResponse> {
-        self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), logger: logger, on: eventLoop)
+    public func describeNatFwInfoCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInfoCountResponse> {
+        self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
-    public func describeNatFwInfoCount(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
-        try await self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), logger: logger, on: eventLoop)
+    public func describeNatFwInfoCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
+        try await self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

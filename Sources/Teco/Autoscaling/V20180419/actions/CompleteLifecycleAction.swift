@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension As {
     /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable
-    public func completeLifecycleAction(_ input: CompleteLifecycleActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteLifecycleActionResponse> {
-        self.client.execute(action: "CompleteLifecycleAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func completeLifecycleAction(_ input: CompleteLifecycleActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteLifecycleActionResponse> {
+        self.client.execute(action: "CompleteLifecycleAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 完成生命周期动作
@@ -68,8 +68,8 @@ extension As {
     /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable
-    public func completeLifecycleAction(_ input: CompleteLifecycleActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
-        try await self.client.execute(action: "CompleteLifecycleAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func completeLifecycleAction(_ input: CompleteLifecycleActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
+        try await self.client.execute(action: "CompleteLifecycleAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 完成生命周期动作
@@ -77,8 +77,8 @@ extension As {
     /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable
-    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteLifecycleActionResponse> {
-        self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), logger: logger, on: eventLoop)
+    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteLifecycleActionResponse> {
+        self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 完成生命周期动作
@@ -86,7 +86,7 @@ extension As {
     /// 本接口（CompleteLifecycleAction）用于完成生命周期动作。
     /// * 用户通过调用本接口，指定一个具体的生命周期挂钩的结果（“CONITNUE”或者“ABANDON”）。如果一直不调用本接口，则生命周期挂钩会在超时后按照“DefaultResult”进行处理。
     @inlinable
-    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
-        try await self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), logger: logger, on: eventLoop)
+    public func completeLifecycleAction(lifecycleHookId: String, lifecycleActionResult: String, instanceId: String? = nil, lifecycleActionToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteLifecycleActionResponse {
+        try await self.completeLifecycleAction(CompleteLifecycleActionRequest(lifecycleHookId: lifecycleHookId, lifecycleActionResult: lifecycleActionResult, instanceId: instanceId, lifecycleActionToken: lifecycleActionToken), region: region, logger: logger, on: eventLoop)
     }
 }

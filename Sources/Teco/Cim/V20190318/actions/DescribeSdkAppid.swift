@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cim {
     ///
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
-    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSdkAppidResponse> {
-        self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSdkAppidResponse> {
+        self.client.execute(action: "DescribeSdkAppid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云通信 IM 的 SDKAppid
     ///
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
-    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
-        try await self.client.execute(action: "DescribeSdkAppid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSdkAppid(_ input: DescribeSdkAppidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
+        try await self.client.execute(action: "DescribeSdkAppid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云通信 IM 的 SDKAppid
     ///
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
-    public func describeSdkAppid(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSdkAppidResponse> {
-        self.describeSdkAppid(DescribeSdkAppidRequest(), logger: logger, on: eventLoop)
+    public func describeSdkAppid(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSdkAppidResponse> {
+        self.describeSdkAppid(DescribeSdkAppidRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云通信 IM 的 SDKAppid
     ///
     /// 获取云通信IM中腾讯云账号对应的SDKAppID
     @inlinable
-    public func describeSdkAppid(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
-        try await self.describeSdkAppid(DescribeSdkAppidRequest(), logger: logger, on: eventLoop)
+    public func describeSdkAppid(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSdkAppidResponse {
+        try await self.describeSdkAppid(DescribeSdkAppidRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
-        self.client.execute(action: "DescribeOpenPorts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
+        self.client.execute(action: "DescribeOpenPorts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
-        try await self.client.execute(action: "DescribeOpenPorts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOpenPorts(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
+        try await self.client.execute(action: "DescribeOpenPorts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
-        self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortsResponse> {
+        self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
     @inlinable
-    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
-        try await self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeOpenPorts(uuid: String? = nil, port: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortsResponse {
+        try await self.describeOpenPorts(DescribeOpenPortsRequest(uuid: uuid, port: port, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

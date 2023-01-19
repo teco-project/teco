@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcb {
 
     /// 查询环境后付费计费详情
     @inlinable
-    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvPostpaidDeductResponse> {
-        self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvPostpaidDeductResponse> {
+        self.client.execute(action: "DescribeEnvPostpaidDeduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询环境后付费计费详情
     @inlinable
-    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
-        try await self.client.execute(action: "DescribeEnvPostpaidDeduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvPostpaidDeduct(_ input: DescribeEnvPostpaidDeductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
+        try await self.client.execute(action: "DescribeEnvPostpaidDeduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询环境后付费计费详情
     @inlinable
-    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvPostpaidDeductResponse> {
-        self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvPostpaidDeductResponse> {
+        self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境后付费计费详情
     @inlinable
-    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
-        try await self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeEnvPostpaidDeduct(resourceTypes: [String], envId: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvPostpaidDeductResponse {
+        try await self.describeEnvPostpaidDeduct(DescribeEnvPostpaidDeductRequest(resourceTypes: resourceTypes, envId: envId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

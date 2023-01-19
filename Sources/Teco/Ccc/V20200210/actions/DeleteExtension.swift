@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Ccc {
 
     /// 删除话机账号
     @inlinable
-    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
-        self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteExtension(_ input: DeleteExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
+        self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除话机账号
     @inlinable
-    public func deleteExtension(_ input: DeleteExtensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
-        try await self.client.execute(action: "DeleteExtension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteExtension(_ input: DeleteExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
+        try await self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除话机账号
     @inlinable
-    public func deleteExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
-        self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
+        self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除话机账号
     @inlinable
-    public func deleteExtension(sdkAppId: UInt64, extensionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
-        try await self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), logger: logger, on: eventLoop)
+    public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
+        try await self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Wedata {
 
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
-        self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
+        self.client.execute(action: "DryRunDIOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
-        try await self.client.execute(action: "DryRunDIOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dryRunDIOfflineTask(_ input: DryRunDIOfflineTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
+        try await self.client.execute(action: "DryRunDIOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
-        self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), logger: logger, on: eventLoop)
+    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DryRunDIOfflineTaskResponse> {
+        self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调试运行集成任务
     @inlinable
-    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
-        try await self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), logger: logger, on: eventLoop)
+    public func dryRunDIOfflineTask(taskId: String, projectId: String, resourceGroup: String? = nil, taskTypeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DryRunDIOfflineTaskResponse {
+        try await self.dryRunDIOfflineTask(DryRunDIOfflineTaskRequest(taskId: taskId, projectId: projectId, resourceGroup: resourceGroup, taskTypeId: taskTypeId), region: region, logger: logger, on: eventLoop)
     }
 }

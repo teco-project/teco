@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcb {
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
-        self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
+        self.client.execute(action: "DescribeStandaloneGatewayPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
-        try await self.client.execute(action: "DescribeStandaloneGatewayPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStandaloneGatewayPackage(_ input: DescribeStandaloneGatewayPackageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
+        try await self.client.execute(action: "DescribeStandaloneGatewayPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
-        self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayPackageResponse> {
+        self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询小租户网关套餐信息
     ///
     /// 本接口（DescribeStandaloneGatewayPackage）用于查询小租户网关套餐信息。
     @inlinable
-    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
-        try await self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    public func describeStandaloneGatewayPackage(envId: String? = nil, packageVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayPackageResponse {
+        try await self.describeStandaloneGatewayPackage(DescribeStandaloneGatewayPackageRequest(envId: envId, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

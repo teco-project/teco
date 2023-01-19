@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apigateway {
     ///
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
-    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiAppResponse> {
-        self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindApiApp(_ input: BindApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiAppResponse> {
+        self.client.execute(action: "BindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定应用到API
     ///
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
-    public func bindApiApp(_ input: BindApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
-        try await self.client.execute(action: "BindApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindApiApp(_ input: BindApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
+        try await self.client.execute(action: "BindApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定应用到API
     ///
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
-    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiAppResponse> {
-        self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiAppResponse> {
+        self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定应用到API
     ///
     /// 本接口（BindApiApp）用于绑定应用到API。
     @inlinable
-    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
-        try await self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func bindApiApp(apiAppId: String, environment: String, serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiAppResponse {
+        try await self.bindApiApp(BindApiAppRequest(apiAppId: apiAppId, environment: environment, serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

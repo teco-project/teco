@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Apigateway {
     ///
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
-    public func deleteService(_ input: DeleteServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceResponse> {
-        self.client.execute(action: "DeleteService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteService(_ input: DeleteServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceResponse> {
+        self.client.execute(action: "DeleteService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务
     ///
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
-    public func deleteService(_ input: DeleteServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
-        try await self.client.execute(action: "DeleteService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteService(_ input: DeleteServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
+        try await self.client.execute(action: "DeleteService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除服务
     ///
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
-    public func deleteService(serviceId: String, skipVerification: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceResponse> {
-        self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), logger: logger, on: eventLoop)
+    public func deleteService(serviceId: String, skipVerification: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceResponse> {
+        self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务
     ///
     /// 本接口（DeleteService）用于删除 API 网关中某个服务。
     @inlinable
-    public func deleteService(serviceId: String, skipVerification: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
-        try await self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), logger: logger, on: eventLoop)
+    public func deleteService(serviceId: String, skipVerification: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceResponse {
+        try await self.deleteService(DeleteServiceRequest(serviceId: serviceId, skipVerification: skipVerification), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Iai {
     ///
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
-    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonBaseInfoResponse> {
-        self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonBaseInfoResponse> {
+        self.client.execute(action: "GetPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员基础信息
     ///
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
-    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
-        try await self.client.execute(action: "GetPersonBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPersonBaseInfo(_ input: GetPersonBaseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
+        try await self.client.execute(action: "GetPersonBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人员基础信息
     ///
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
-    public func getPersonBaseInfo(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonBaseInfoResponse> {
-        self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), logger: logger, on: eventLoop)
+    public func getPersonBaseInfo(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonBaseInfoResponse> {
+        self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员基础信息
     ///
     /// 获取指定人员的信息，包括姓名、性别、人脸等。
     @inlinable
-    public func getPersonBaseInfo(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
-        try await self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), logger: logger, on: eventLoop)
+    public func getPersonBaseInfo(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonBaseInfoResponse {
+        try await self.getPersonBaseInfo(GetPersonBaseInfoRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

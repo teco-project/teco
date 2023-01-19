@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Captcha {
     ///
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
-    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTicketStatisticsResponse> {
-        self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTicketStatisticsResponse> {
+        self.client.execute(action: "GetTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个CaptchaAppID票据校验数据
     ///
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
-    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
-        try await self.client.execute(action: "GetTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTicketStatistics(_ input: GetTicketStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
+        try await self.client.execute(action: "GetTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单个CaptchaAppID票据校验数据
     ///
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
-    public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTicketStatisticsResponse> {
-        self.getTicketStatistics(GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), logger: logger, on: eventLoop)
+    public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTicketStatisticsResponse> {
+        self.getTicketStatistics(GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个CaptchaAppID票据校验数据
     ///
     /// 查询单个CaptchaAppID票据校验数据，包括：票据校验量、票据校验通过量、票据校验拦截量。
     @inlinable
-    public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
-        try await self.getTicketStatistics(GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), logger: logger, on: eventLoop)
+    public func getTicketStatistics(captchaAppId: String, startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTicketStatisticsResponse {
+        try await self.getTicketStatistics(GetTicketStatisticsRequest(captchaAppId: captchaAppId, startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
-        self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transferCloudStorage(_ input: TransferCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
+        self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(_ input: TransferCloudStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
-        try await self.client.execute(action: "TransferCloudStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transferCloudStorage(_ input: TransferCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
+        try await self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
-        self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), logger: logger, on: eventLoop)
+    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
+        self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 转移云存服务
     @inlinable
-    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
-        try await self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), logger: logger, on: eventLoop)
+    public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
+        try await self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }
 }

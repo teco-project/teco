@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tione {
 
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
-        self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
+        self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
-        try await self.client.execute(action: "DeleteTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
+        try await self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
-        self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
+        self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除训练任务
     @inlinable
-    public func deleteTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
-        try await self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
+        try await self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

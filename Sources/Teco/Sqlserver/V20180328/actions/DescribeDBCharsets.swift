@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
-        self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
+        self.client.execute(action: "DescribeDBCharsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
-        try await self.client.execute(action: "DescribeDBCharsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBCharsets(_ input: DescribeDBCharsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
+        try await self.client.execute(action: "DescribeDBCharsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
-        self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBCharsets(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBCharsetsResponse> {
+        self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库字符集
     ///
     /// 本接口（DescribeDBCharsets）用于查询实例支持的数据库字符集。
     @inlinable
-    public func describeDBCharsets(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
-        try await self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBCharsets(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBCharsetsResponse {
+        try await self.describeDBCharsets(DescribeDBCharsetsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

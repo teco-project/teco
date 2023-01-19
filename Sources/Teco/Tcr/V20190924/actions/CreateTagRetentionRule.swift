@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcr {
 
     /// 创建版本保留规则
     @inlinable
-    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
-        self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
+        self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建版本保留规则
     @inlinable
-    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
-        try await self.client.execute(action: "CreateTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
+        try await self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建版本保留规则
     @inlinable
-    public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
-        self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), logger: logger, on: eventLoop)
+    public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
+        self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建版本保留规则
     @inlinable
-    public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
-        try await self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), logger: logger, on: eventLoop)
+    public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
+        try await self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 }

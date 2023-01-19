@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Teo {
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
-    public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
-        self.client.execute(action: "ReclaimZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reclaimZone(_ input: ReclaimZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
+        self.client.execute(action: "ReclaimZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
-    public func reclaimZone(_ input: ReclaimZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
-        try await self.client.execute(action: "ReclaimZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reclaimZone(_ input: ReclaimZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
+        try await self.client.execute(action: "ReclaimZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
-    public func reclaimZone(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
-        self.reclaimZone(ReclaimZoneRequest(name: name), logger: logger, on: eventLoop)
+    public func reclaimZone(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
+        self.reclaimZone(ReclaimZoneRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 找回站点
     ///
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
-    public func reclaimZone(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
-        try await self.reclaimZone(ReclaimZoneRequest(name: name), logger: logger, on: eventLoop)
+    public func reclaimZone(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
+        try await self.reclaimZone(ReclaimZoneRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

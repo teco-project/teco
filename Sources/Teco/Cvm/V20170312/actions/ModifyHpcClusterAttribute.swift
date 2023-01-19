@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cvm {
     ///
     /// 修改高性能计算集群属性。
     @inlinable
-    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHpcClusterAttributeResponse> {
-        self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHpcClusterAttributeResponse> {
+        self.client.execute(action: "ModifyHpcClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改高性能计算集群属性
     ///
     /// 修改高性能计算集群属性。
     @inlinable
-    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
-        try await self.client.execute(action: "ModifyHpcClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyHpcClusterAttribute(_ input: ModifyHpcClusterAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
+        try await self.client.execute(action: "ModifyHpcClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改高性能计算集群属性
     ///
     /// 修改高性能计算集群属性。
     @inlinable
-    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHpcClusterAttributeResponse> {
-        self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHpcClusterAttributeResponse> {
+        self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改高性能计算集群属性
     ///
     /// 修改高性能计算集群属性。
     @inlinable
-    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
-        try await self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
+        try await self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

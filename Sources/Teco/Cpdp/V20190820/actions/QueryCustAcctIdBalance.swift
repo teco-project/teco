@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,31 +110,31 @@ extension Cpdp {
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
-        self.client.execute(action: "QueryCustAcctIdBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
+        self.client.execute(action: "QueryCustAcctIdBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustAcctIdBalanceResponse {
-        try await self.client.execute(action: "QueryCustAcctIdBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCustAcctIdBalance(_ input: QueryCustAcctIdBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustAcctIdBalanceResponse {
+        try await self.client.execute(action: "QueryCustAcctIdBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
-        self.queryCustAcctIdBalance(QueryCustAcctIdBalanceRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustAcctIdBalanceResponse> {
+        self.queryCustAcctIdBalance(QueryCustAcctIdBalanceRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行子账户余额
     ///
     /// 查询银行子账户余额。查询会员子账户以及平台的功能子账户的余额。
     @inlinable
-    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustAcctIdBalanceResponse {
-        try await self.queryCustAcctIdBalance(QueryCustAcctIdBalanceRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryCustAcctIdBalance(mrchCode: String, queryFlag: String, pageNum: String, subAcctNo: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustAcctIdBalanceResponse {
+        try await self.queryCustAcctIdBalance(QueryCustAcctIdBalanceRequest(mrchCode: mrchCode, queryFlag: queryFlag, pageNum: pageNum, subAcctNo: subAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

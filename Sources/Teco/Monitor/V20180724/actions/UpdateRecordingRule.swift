@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Monitor {
     ///
     /// 更新 Prometheus 的预聚合规则
     @inlinable
-    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordingRuleResponse> {
-        self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordingRuleResponse> {
+        self.client.execute(action: "UpdateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新预聚合规则
     ///
     /// 更新 Prometheus 的预聚合规则
     @inlinable
-    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
-        try await self.client.execute(action: "UpdateRecordingRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRecordingRule(_ input: UpdateRecordingRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
+        try await self.client.execute(action: "UpdateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新预聚合规则
     ///
     /// 更新 Prometheus 的预聚合规则
     @inlinable
-    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordingRuleResponse> {
-        self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), logger: logger, on: eventLoop)
+    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordingRuleResponse> {
+        self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新预聚合规则
     ///
     /// 更新 Prometheus 的预聚合规则
     @inlinable
-    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
-        try await self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), logger: logger, on: eventLoop)
+    public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
+        try await self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }
 }

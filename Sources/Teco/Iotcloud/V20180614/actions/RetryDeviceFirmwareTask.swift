@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotcloud {
 
     /// 重试设备升级任务
     @inlinable
-    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
-        self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
+        self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重试设备升级任务
     @inlinable
-    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
-        try await self.client.execute(action: "RetryDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
+        try await self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重试设备升级任务
     @inlinable
-    public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
-        self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
+        self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试设备升级任务
     @inlinable
-    public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
-        try await self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
+        try await self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

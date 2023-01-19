@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cdn {
     ///
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable
-    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageClsTopicDomainsResponse> {
-        self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageClsTopicDomainsResponse> {
+        self.client.execute(action: "ManageClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管理日志主题下绑定的域名
     ///
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable
-    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
-        try await self.client.execute(action: "ManageClsTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func manageClsTopicDomains(_ input: ManageClsTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
+        try await self.client.execute(action: "ManageClsTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 管理日志主题下绑定的域名
     ///
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable
-    public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageClsTopicDomainsResponse> {
-        self.manageClsTopicDomains(ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), logger: logger, on: eventLoop)
+    public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageClsTopicDomainsResponse> {
+        self.manageClsTopicDomains(ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 管理日志主题下绑定的域名
     ///
     /// ManageClsTopicDomains 用于管理某日志主题下绑定的域名列表。
     @inlinable
-    public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
-        try await self.manageClsTopicDomains(ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), logger: logger, on: eventLoop)
+    public func manageClsTopicDomains(logsetId: String, topicId: String, channel: String? = nil, domainAreaConfigs: [DomainAreaConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageClsTopicDomainsResponse {
+        try await self.manageClsTopicDomains(ManageClsTopicDomainsRequest(logsetId: logsetId, topicId: topicId, channel: channel, domainAreaConfigs: domainAreaConfigs), region: region, logger: logger, on: eventLoop)
     }
 }

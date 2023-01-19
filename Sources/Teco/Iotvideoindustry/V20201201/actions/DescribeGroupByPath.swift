@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideoindustry {
 
     /// 根据分组路径查询分组
     @inlinable
-    public func describeGroupByPath(_ input: DescribeGroupByPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByPathResponse> {
-        self.client.execute(action: "DescribeGroupByPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupByPath(_ input: DescribeGroupByPathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByPathResponse> {
+        self.client.execute(action: "DescribeGroupByPath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据分组路径查询分组
     @inlinable
-    public func describeGroupByPath(_ input: DescribeGroupByPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
-        try await self.client.execute(action: "DescribeGroupByPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupByPath(_ input: DescribeGroupByPathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
+        try await self.client.execute(action: "DescribeGroupByPath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据分组路径查询分组
     @inlinable
-    public func describeGroupByPath(groupPath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByPathResponse> {
-        self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), logger: logger, on: eventLoop)
+    public func describeGroupByPath(groupPath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByPathResponse> {
+        self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据分组路径查询分组
     @inlinable
-    public func describeGroupByPath(groupPath: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
-        try await self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), logger: logger, on: eventLoop)
+    public func describeGroupByPath(groupPath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByPathResponse {
+        try await self.describeGroupByPath(DescribeGroupByPathRequest(groupPath: groupPath), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable
-    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateAttributeResponse> {
-        self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateAttributeResponse> {
+        self.client.execute(action: "ModifyServiceTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改协议端口模板
     ///
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable
-    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
-        try await self.client.execute(action: "ModifyServiceTemplateAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyServiceTemplateAttribute(_ input: ModifyServiceTemplateAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
+        try await self.client.execute(action: "ModifyServiceTemplateAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改协议端口模板
     ///
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable
-    public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateAttributeResponse> {
-        self.modifyServiceTemplateAttribute(ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), logger: logger, on: eventLoop)
+    public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateAttributeResponse> {
+        self.modifyServiceTemplateAttribute(ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改协议端口模板
     ///
     /// 本接口（ModifyServiceTemplateAttribute）用于修改协议端口模板
     @inlinable
-    public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
-        try await self.modifyServiceTemplateAttribute(ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), logger: logger, on: eventLoop)
+    public func modifyServiceTemplateAttribute(serviceTemplateId: String, serviceTemplateName: String? = nil, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateAttributeResponse {
+        try await self.modifyServiceTemplateAttribute(ModifyServiceTemplateAttributeRequest(serviceTemplateId: serviceTemplateId, serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
     }
 }

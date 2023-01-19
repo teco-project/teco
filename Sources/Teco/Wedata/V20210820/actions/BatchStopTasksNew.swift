@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
-    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStopTasksNewResponse> {
-        self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStopTasksNewResponse> {
+        self.client.execute(action: "BatchStopTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量停止任务【Beta版本】
@@ -62,8 +62,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
-    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
-        try await self.client.execute(action: "BatchStopTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchStopTasksNew(_ input: BatchStopTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
+        try await self.client.execute(action: "BatchStopTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量停止任务【Beta版本】
@@ -71,8 +71,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
-    public func batchStopTasksNew(taskIdList: [String], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStopTasksNewResponse> {
-        self.batchStopTasksNew(BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchStopTasksNew(taskIdList: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStopTasksNewResponse> {
+        self.batchStopTasksNew(BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量停止任务【Beta版本】
@@ -80,7 +80,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 仅对任务状态为”调度中“和”已暂停“有效，对所选任务的任务实例进行终止，并停止调度
     @inlinable
-    public func batchStopTasksNew(taskIdList: [String], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
-        try await self.batchStopTasksNew(BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchStopTasksNew(taskIdList: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStopTasksNewResponse {
+        try await self.batchStopTasksNew(BatchStopTasksNewRequest(taskIdList: taskIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

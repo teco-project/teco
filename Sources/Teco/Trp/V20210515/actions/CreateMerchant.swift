@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Trp {
 
     /// 新建商户
     @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
-        self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMerchant(_ input: CreateMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
+        self.client.execute(action: "CreateMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建商户
     @inlinable
-    public func createMerchant(_ input: CreateMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
-        try await self.client.execute(action: "CreateMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMerchant(_ input: CreateMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.client.execute(action: "CreateMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建商户
     @inlinable
-    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
-        self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMerchantResponse> {
+        self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建商户
     @inlinable
-    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
-        try await self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    public func createMerchant(name: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMerchantResponse {
+        try await self.createMerchant(CreateMerchantRequest(name: name, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
     }
 }

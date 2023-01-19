@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Market {
     ///
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
-    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlowProductRemindResponse> {
-        self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func flowProductRemind(_ input: FlowProductRemindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlowProductRemindResponse> {
+        self.client.execute(action: "FlowProductRemind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 计量商品用量提醒
     ///
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
-    public func flowProductRemind(_ input: FlowProductRemindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
-        try await self.client.execute(action: "FlowProductRemind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func flowProductRemind(_ input: FlowProductRemindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
+        try await self.client.execute(action: "FlowProductRemind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 计量商品用量提醒
     ///
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
-    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlowProductRemindResponse> {
-        self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), logger: logger, on: eventLoop)
+    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlowProductRemindResponse> {
+        self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 计量商品用量提醒
     ///
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
-    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
-        try await self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), logger: logger, on: eventLoop)
+    public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
+        try await self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), region: region, logger: logger, on: eventLoop)
     }
 }

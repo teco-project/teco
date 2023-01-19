@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
-    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseTableResponse> {
-        self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseTableResponse> {
+        self.client.execute(action: "DescribeDatabaseTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库表信息
     ///
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
-    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
-        try await self.client.execute(action: "DescribeDatabaseTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatabaseTable(_ input: DescribeDatabaseTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
+        try await self.client.execute(action: "DescribeDatabaseTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库表信息
     ///
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
-    public func describeDatabaseTable(instanceId: String, dbName: String, table: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseTableResponse> {
-        self.describeDatabaseTable(DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table), logger: logger, on: eventLoop)
+    public func describeDatabaseTable(instanceId: String, dbName: String, table: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseTableResponse> {
+        self.describeDatabaseTable(DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库表信息
     ///
     /// 本接口（DescribeDatabaseTable）用于查询云数据库实例的表信息。
     @inlinable
-    public func describeDatabaseTable(instanceId: String, dbName: String, table: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
-        try await self.describeDatabaseTable(DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table), logger: logger, on: eventLoop)
+    public func describeDatabaseTable(instanceId: String, dbName: String, table: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseTableResponse {
+        try await self.describeDatabaseTable(DescribeDatabaseTableRequest(instanceId: instanceId, dbName: dbName, table: table), region: region, logger: logger, on: eventLoop)
     }
 }

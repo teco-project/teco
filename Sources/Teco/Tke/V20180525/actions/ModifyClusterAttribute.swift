@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Tke {
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
-        self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
+        self.client.execute(action: "ModifyClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
-        try await self.client.execute(action: "ModifyClusterAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterAttribute(_ input: ModifyClusterAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
+        try await self.client.execute(action: "ModifyClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
-        self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), logger: logger, on: eventLoop)
+    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
+        self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群属性
     @inlinable
-    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
-        try await self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), logger: logger, on: eventLoop)
+    public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
+        try await self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Cls {
 
     /// 修改机器组
     @inlinable
-    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
-        self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
+        self.client.execute(action: "ModifyMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改机器组
     @inlinable
-    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
-        try await self.client.execute(action: "ModifyMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMachineGroup(_ input: ModifyMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
+        try await self.client.execute(action: "ModifyMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改机器组
     @inlinable
-    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
-        self.modifyMachineGroup(ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), logger: logger, on: eventLoop)
+    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMachineGroupResponse> {
+        self.modifyMachineGroup(ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改机器组
     @inlinable
-    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
-        try await self.modifyMachineGroup(ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), logger: logger, on: eventLoop)
+    public func modifyMachineGroup(groupId: String, groupName: String? = nil, machineGroupType: MachineGroupTypeInfo? = nil, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMachineGroupResponse {
+        try await self.modifyMachineGroup(ModifyMachineGroupRequest(groupId: groupId, groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 }

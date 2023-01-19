@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dcdb {
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
-        self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
+        self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
-        try await self.client.execute(action: "IsolateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateDedicatedDBInstance(_ input: IsolateDedicatedDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
+        try await self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
-        self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
+        self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离独享云数据库实例
     ///
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable
-    public func isolateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
-        try await self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
+        try await self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dlc {
 
     /// 查询具体的spark应用
     @inlinable
-    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
-        self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
+        self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询具体的spark应用
     @inlinable
-    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
-        try await self.client.execute(action: "DescribeSparkAppJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSparkAppJob(_ input: DescribeSparkAppJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
+        try await self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询具体的spark应用
     @inlinable
-    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
-        self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
+        self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询具体的spark应用
     @inlinable
-    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
-        try await self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
+        try await self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
     }
 }

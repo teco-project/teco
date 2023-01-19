@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Scf {
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
-        self.client.execute(action: "GetReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
+        self.client.execute(action: "GetReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
-        try await self.client.execute(action: "GetReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getReservedConcurrencyConfig(_ input: GetReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
+        try await self.client.execute(action: "GetReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
-        self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetReservedConcurrencyConfigResponse> {
+        self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数最大独占配额详情
     ///
     /// 获取函数的最大独占配额详情。
     @inlinable
-    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
-        try await self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), logger: logger, on: eventLoop)
+    public func getReservedConcurrencyConfig(functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetReservedConcurrencyConfigResponse {
+        try await self.getReservedConcurrencyConfig(GetReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

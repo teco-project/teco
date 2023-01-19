@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,31 +84,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
     @inlinable
-    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResetInstanceBlueprintsResponse> {
-        self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResetInstanceBlueprintsResponse> {
+        self.client.execute(action: "DescribeResetInstanceBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询重置实例的镜像信息
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
     @inlinable
-    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
-        try await self.client.execute(action: "DescribeResetInstanceBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResetInstanceBlueprints(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
+        try await self.client.execute(action: "DescribeResetInstanceBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询重置实例的镜像信息
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
     @inlinable
-    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResetInstanceBlueprintsResponse> {
-        self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResetInstanceBlueprintsResponse> {
+        self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询重置实例的镜像信息
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
     @inlinable
-    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
-        try await self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeResetInstanceBlueprints(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResetInstanceBlueprintsResponse {
+        try await self.describeResetInstanceBlueprints(DescribeResetInstanceBlueprintsRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

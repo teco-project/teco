@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ump {
 
     /// 获取多经点位底图
     @inlinable
-    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiBizBaseImageResponse> {
-        self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiBizBaseImageResponse> {
+        self.client.execute(action: "DescribeMultiBizBaseImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取多经点位底图
     @inlinable
-    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
-        try await self.client.execute(action: "DescribeMultiBizBaseImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMultiBizBaseImage(_ input: DescribeMultiBizBaseImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
+        try await self.client.execute(action: "DescribeMultiBizBaseImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取多经点位底图
     @inlinable
-    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiBizBaseImageResponse> {
-        self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiBizBaseImageResponse> {
+        self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多经点位底图
     @inlinable
-    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
-        try await self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
+        try await self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

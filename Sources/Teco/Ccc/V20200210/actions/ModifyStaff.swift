@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Ccc {
 
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
-        self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyStaff(_ input: ModifyStaffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
+        self.client.execute(action: "ModifyStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(_ input: ModifyStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
-        try await self.client.execute(action: "ModifyStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyStaff(_ input: ModifyStaffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
+        try await self.client.execute(action: "ModifyStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
-        self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), logger: logger, on: eventLoop)
+    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
+        self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改客服账号
     @inlinable
-    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
-        try await self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), logger: logger, on: eventLoop)
+    public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
+        try await self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), region: region, logger: logger, on: eventLoop)
     }
 }

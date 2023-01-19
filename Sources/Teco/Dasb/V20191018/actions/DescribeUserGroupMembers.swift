@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Dasb {
 
     /// 查询用户组成员列表
     @inlinable
-    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupMembersResponse> {
-        self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupMembersResponse> {
+        self.client.execute(action: "DescribeUserGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户组成员列表
     @inlinable
-    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
-        try await self.client.execute(action: "DescribeUserGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserGroupMembers(_ input: DescribeUserGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
+        try await self.client.execute(action: "DescribeUserGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户组成员列表
     @inlinable
-    public func describeUserGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupMembersResponse> {
-        self.describeUserGroupMembers(DescribeUserGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeUserGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupMembersResponse> {
+        self.describeUserGroupMembers(DescribeUserGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户组成员列表
     @inlinable
-    public func describeUserGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
-        try await self.describeUserGroupMembers(DescribeUserGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeUserGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupMembersResponse {
+        try await self.describeUserGroupMembers(DescribeUserGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

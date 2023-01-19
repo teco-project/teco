@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cloudhsm {
 
     /// 获取当前地域所支持的设备列表
     @inlinable
-    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedHsmResponse> {
-        self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedHsmResponse> {
+        self.client.execute(action: "DescribeSupportedHsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前地域所支持的设备列表
     @inlinable
-    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
-        try await self.client.execute(action: "DescribeSupportedHsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSupportedHsm(_ input: DescribeSupportedHsmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
+        try await self.client.execute(action: "DescribeSupportedHsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取当前地域所支持的设备列表
     @inlinable
-    public func describeSupportedHsm(hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedHsmResponse> {
-        self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), logger: logger, on: eventLoop)
+    public func describeSupportedHsm(hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedHsmResponse> {
+        self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取当前地域所支持的设备列表
     @inlinable
-    public func describeSupportedHsm(hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
-        try await self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), logger: logger, on: eventLoop)
+    public func describeSupportedHsm(hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedHsmResponse {
+        try await self.describeSupportedHsm(DescribeSupportedHsmRequest(hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 }

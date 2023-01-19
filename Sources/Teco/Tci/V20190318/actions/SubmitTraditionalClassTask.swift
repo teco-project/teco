@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     ///
     @inlinable
-    public func submitTraditionalClassTask(_ input: SubmitTraditionalClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTraditionalClassTaskResponse> {
-        self.client.execute(action: "SubmitTraditionalClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitTraditionalClassTask(_ input: SubmitTraditionalClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTraditionalClassTaskResponse> {
+        self.client.execute(action: "SubmitTraditionalClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交传统面授大班课（含课桌）任务
@@ -90,8 +90,8 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     ///
     @inlinable
-    public func submitTraditionalClassTask(_ input: SubmitTraditionalClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
-        try await self.client.execute(action: "SubmitTraditionalClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitTraditionalClassTask(_ input: SubmitTraditionalClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
+        try await self.client.execute(action: "SubmitTraditionalClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交传统面授大班课（含课桌）任务
@@ -106,8 +106,8 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     ///
     @inlinable
-    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTraditionalClassTaskResponse> {
-        self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTraditionalClassTaskResponse> {
+        self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交传统面授大班课（含课桌）任务
@@ -122,7 +122,7 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     ///
     @inlinable
-    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
-        try await self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    public func submitTraditionalClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTraditionalClassTaskResponse {
+        try await self.submitTraditionalClassTask(SubmitTraditionalClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
     }
 }

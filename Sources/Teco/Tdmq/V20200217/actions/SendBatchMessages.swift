@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,8 +94,8 @@ extension Tdmq {
     /// 批量发送消息
     /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
     @inlinable
-    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendBatchMessagesResponse> {
-        self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendBatchMessages(_ input: SendBatchMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendBatchMessagesResponse> {
+        self.client.execute(action: "SendBatchMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量发送消息
@@ -103,8 +103,8 @@ extension Tdmq {
     /// 批量发送消息
     /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
     @inlinable
-    public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
-        try await self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendBatchMessages(_ input: SendBatchMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
+        try await self.client.execute(action: "SendBatchMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量发送消息
@@ -112,8 +112,8 @@ extension Tdmq {
     /// 批量发送消息
     /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
     @inlinable
-    public func sendBatchMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendBatchMessagesResponse> {
-        self.sendBatchMessages(SendBatchMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages, batchingMaxMessages: batchingMaxMessages, batchingMaxPublishDelay: batchingMaxPublishDelay, batchingMaxBytes: batchingMaxBytes), logger: logger, on: eventLoop)
+    public func sendBatchMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendBatchMessagesResponse> {
+        self.sendBatchMessages(SendBatchMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages, batchingMaxMessages: batchingMaxMessages, batchingMaxPublishDelay: batchingMaxPublishDelay, batchingMaxBytes: batchingMaxBytes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量发送消息
@@ -121,7 +121,7 @@ extension Tdmq {
     /// 批量发送消息
     /// 注意：TDMQ 批量发送消息的接口是在 TDMQ-HTTP 的服务侧将消息打包为一个 Batch，然后将该 Batch 在服务内部当作一次 TCP 请求发送出去。所以在使用过程中，用户还是按照单条消息发送的逻辑，每一条消息是一个独立的 HTTP 的请求，在 TDMQ-HTTP 的服务内部，会将多个 HTTP 的请求聚合为一个 Batch 发送到服务端。即，批量发送消息在使用上与发送单条消息是一致的，batch 的聚合是在 TDMQ-HTTP 的服务内部完成的。
     @inlinable
-    public func sendBatchMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
-        try await self.sendBatchMessages(SendBatchMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages, batchingMaxMessages: batchingMaxMessages, batchingMaxPublishDelay: batchingMaxPublishDelay, batchingMaxBytes: batchingMaxBytes), logger: logger, on: eventLoop)
+    public func sendBatchMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
+        try await self.sendBatchMessages(SendBatchMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages, batchingMaxMessages: batchingMaxMessages, batchingMaxPublishDelay: batchingMaxPublishDelay, batchingMaxBytes: batchingMaxBytes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Mrs {
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
-        self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func imageToObject(_ input: ImageToObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
+        self.client.execute(action: "ImageToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片结构化接口
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(_ input: ImageToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
-        try await self.client.execute(action: "ImageToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func imageToObject(_ input: ImageToObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
+        try await self.client.execute(action: "ImageToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 图片结构化接口
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
-        self.imageToObject(ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToObjectResponse> {
+        self.imageToObject(ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片结构化接口
     ///
     /// 图片转结构化对象
     @inlinable
-    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
-        try await self.imageToObject(ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    public func imageToObject(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, isUsedClassify: Bool, userType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToObjectResponse {
+        try await self.imageToObject(ImageToObjectRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

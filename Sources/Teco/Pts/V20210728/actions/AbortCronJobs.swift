@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Pts {
 
     /// 停止定时任务
     @inlinable
-    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
-        self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func abortCronJobs(_ input: AbortCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
+        self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止定时任务
     @inlinable
-    public func abortCronJobs(_ input: AbortCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
-        try await self.client.execute(action: "AbortCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func abortCronJobs(_ input: AbortCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
+        try await self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止定时任务
     @inlinable
-    public func abortCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
-        self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
+        self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止定时任务
     @inlinable
-    public func abortCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
-        try await self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
+        try await self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 }

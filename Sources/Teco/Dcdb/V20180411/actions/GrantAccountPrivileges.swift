@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,8 +82,8 @@ extension Dcdb {
     /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
+        self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置账号权限
@@ -91,8 +91,8 @@ extension Dcdb {
     /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置账号权限
@@ -100,8 +100,8 @@ extension Dcdb {
     /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
+        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置账号权限
@@ -109,7 +109,7 @@ extension Dcdb {
     /// 本接口（GrantAccountPrivileges）用于给云数据库账号赋权。
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 查询实例访问来源信息
     @inlinable
-    public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
-        self.client.execute(action: "DescribeInstanceMonitorSIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
+        self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问来源信息
     @inlinable
-    public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorSIP", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceMonitorSIP(_ input: DescribeInstanceMonitorSIPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例访问来源信息
     @inlinable
-    public func describeInstanceMonitorSIP(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
-        self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
+        self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问来源信息
     @inlinable
-    public func describeInstanceMonitorSIP(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
-        try await self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
+        try await self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

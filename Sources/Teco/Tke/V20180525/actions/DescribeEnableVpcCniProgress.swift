@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tke {
     ///
     /// 本接口用于查询开启vpc-cni模式的任务进度
     @inlinable
-    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnableVpcCniProgressResponse> {
-        self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnableVpcCniProgressResponse> {
+        self.client.execute(action: "DescribeEnableVpcCniProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询开启vpc-cni异步任务的进度
     ///
     /// 本接口用于查询开启vpc-cni模式的任务进度
     @inlinable
-    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
-        try await self.client.execute(action: "DescribeEnableVpcCniProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnableVpcCniProgress(_ input: DescribeEnableVpcCniProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
+        try await self.client.execute(action: "DescribeEnableVpcCniProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询开启vpc-cni异步任务的进度
     ///
     /// 本接口用于查询开启vpc-cni模式的任务进度
     @inlinable
-    public func describeEnableVpcCniProgress(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnableVpcCniProgressResponse> {
-        self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEnableVpcCniProgress(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnableVpcCniProgressResponse> {
+        self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询开启vpc-cni异步任务的进度
     ///
     /// 本接口用于查询开启vpc-cni模式的任务进度
     @inlinable
-    public func describeEnableVpcCniProgress(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
-        try await self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEnableVpcCniProgress(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnableVpcCniProgressResponse {
+        try await self.describeEnableVpcCniProgress(DescribeEnableVpcCniProgressRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

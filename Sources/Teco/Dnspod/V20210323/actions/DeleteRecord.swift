@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dnspod {
 
     /// 删除记录
     @inlinable
-    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
-        self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRecord(_ input: DeleteRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
+        self.client.execute(action: "DeleteRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除记录
     @inlinable
-    public func deleteRecord(_ input: DeleteRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
-        try await self.client.execute(action: "DeleteRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRecord(_ input: DeleteRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
+        try await self.client.execute(action: "DeleteRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除记录
     @inlinable
-    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
-        self.deleteRecord(DeleteRecordRequest(domain: domain, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordResponse> {
+        self.deleteRecord(DeleteRecordRequest(domain: domain, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除记录
     @inlinable
-    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
-        try await self.deleteRecord(DeleteRecordRequest(domain: domain, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteRecord(domain: String, recordId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordResponse {
+        try await self.deleteRecord(DeleteRecordRequest(domain: domain, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

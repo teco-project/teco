@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
-        self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
+        self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的备注信息
     ///
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
-    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.client.execute(action: "ModifyAccountDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例账号的备注信息
     ///
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
-    public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
-        self.modifyAccountDescription(ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description), logger: logger, on: eventLoop)
+    public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
+        self.modifyAccountDescription(ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的备注信息
     ///
     /// 本接口(ModifyAccountDescription)用于修改云数据库账户的备注信息。
     @inlinable
-    public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.modifyAccountDescription(ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description), logger: logger, on: eventLoop)
+    public func modifyAccountDescription(instanceId: String, accounts: [Account], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
+        try await self.modifyAccountDescription(ModifyAccountDescriptionRequest(instanceId: instanceId, accounts: accounts, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

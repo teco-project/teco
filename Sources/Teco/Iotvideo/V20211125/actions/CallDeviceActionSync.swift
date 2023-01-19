@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iotvideo {
 
     /// 同步调用设备行为
     @inlinable
-    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
-        self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
+        self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步调用设备行为
     @inlinable
-    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
-        try await self.client.execute(action: "CallDeviceActionSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func callDeviceActionSync(_ input: CallDeviceActionSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
+        try await self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步调用设备行为
     @inlinable
-    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
-        self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
+        self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步调用设备行为
     @inlinable
-    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
-        try await self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), logger: logger, on: eventLoop)
+    public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
+        try await self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
     }
 }

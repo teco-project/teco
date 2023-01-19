@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Tcss {
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
-        self.client.execute(action: "DescribeAssetImageVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
+        self.client.execute(action: "DescribeAssetImageVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
-        try await self.client.execute(action: "DescribeAssetImageVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageVirusList(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
+        try await self.client.execute(action: "DescribeAssetImageVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
-        self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListResponse> {
+        self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像病毒列表
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
-        try await self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetImageVirusList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListResponse {
+        try await self.describeAssetImageVirusList(DescribeAssetImageVirusListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

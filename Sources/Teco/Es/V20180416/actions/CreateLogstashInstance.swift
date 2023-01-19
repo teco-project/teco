@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -132,31 +132,31 @@ extension Es {
     ///
     /// 用于创建Logstash实例
     @inlinable
-    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogstashInstanceResponse> {
-        self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogstashInstanceResponse> {
+        self.client.execute(action: "CreateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Logstash实例
     ///
     /// 用于创建Logstash实例
     @inlinable
-    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
-        try await self.client.execute(action: "CreateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLogstashInstance(_ input: CreateLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
+        try await self.client.execute(action: "CreateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Logstash实例
     ///
     /// 用于创建Logstash实例
     @inlinable
-    public func createLogstashInstance(instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, licenseType: String? = nil, tagList: [TagInfo]? = nil, operationDuration: OperationDuration? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogstashInstanceResponse> {
-        self.createLogstashInstance(CreateLogstashInstanceRequest(instanceName: instanceName, zone: zone, logstashVersion: logstashVersion, vpcId: vpcId, subnetId: subnetId, nodeNum: nodeNum, chargeType: chargeType, chargePeriod: chargePeriod, timeUnit: timeUnit, autoVoucher: autoVoucher, voucherIds: voucherIds, renewFlag: renewFlag, nodeType: nodeType, diskType: diskType, diskSize: diskSize, licenseType: licenseType, tagList: tagList, operationDuration: operationDuration), logger: logger, on: eventLoop)
+    public func createLogstashInstance(instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, licenseType: String? = nil, tagList: [TagInfo]? = nil, operationDuration: OperationDuration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogstashInstanceResponse> {
+        self.createLogstashInstance(CreateLogstashInstanceRequest(instanceName: instanceName, zone: zone, logstashVersion: logstashVersion, vpcId: vpcId, subnetId: subnetId, nodeNum: nodeNum, chargeType: chargeType, chargePeriod: chargePeriod, timeUnit: timeUnit, autoVoucher: autoVoucher, voucherIds: voucherIds, renewFlag: renewFlag, nodeType: nodeType, diskType: diskType, diskSize: diskSize, licenseType: licenseType, tagList: tagList, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Logstash实例
     ///
     /// 用于创建Logstash实例
     @inlinable
-    public func createLogstashInstance(instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, licenseType: String? = nil, tagList: [TagInfo]? = nil, operationDuration: OperationDuration? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
-        try await self.createLogstashInstance(CreateLogstashInstanceRequest(instanceName: instanceName, zone: zone, logstashVersion: logstashVersion, vpcId: vpcId, subnetId: subnetId, nodeNum: nodeNum, chargeType: chargeType, chargePeriod: chargePeriod, timeUnit: timeUnit, autoVoucher: autoVoucher, voucherIds: voucherIds, renewFlag: renewFlag, nodeType: nodeType, diskType: diskType, diskSize: diskSize, licenseType: licenseType, tagList: tagList, operationDuration: operationDuration), logger: logger, on: eventLoop)
+    public func createLogstashInstance(instanceName: String, zone: String, logstashVersion: String, vpcId: String, subnetId: String, nodeNum: UInt64? = nil, chargeType: String? = nil, chargePeriod: UInt64? = nil, timeUnit: String? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, renewFlag: String? = nil, nodeType: String? = nil, diskType: String? = nil, diskSize: UInt64? = nil, licenseType: String? = nil, tagList: [TagInfo]? = nil, operationDuration: OperationDuration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogstashInstanceResponse {
+        try await self.createLogstashInstance(CreateLogstashInstanceRequest(instanceName: instanceName, zone: zone, logstashVersion: logstashVersion, vpcId: vpcId, subnetId: subnetId, nodeNum: nodeNum, chargeType: chargeType, chargePeriod: chargePeriod, timeUnit: timeUnit, autoVoucher: autoVoucher, voucherIds: voucherIds, renewFlag: renewFlag, nodeType: nodeType, diskType: diskType, diskSize: diskSize, licenseType: licenseType, tagList: tagList, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
     }
 }

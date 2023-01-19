@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cfw {
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
-    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstancesInfoResponse> {
-        self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstancesInfoResponse> {
+        self.client.execute(action: "DescribeNatFwInstancesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取租户所有NAT实例卡片信息
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
-    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
-        try await self.client.execute(action: "DescribeNatFwInstancesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNatFwInstancesInfo(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
+        try await self.client.execute(action: "DescribeNatFwInstancesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取租户所有NAT实例卡片信息
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
-    public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstancesInfoResponse> {
-        self.describeNatFwInstancesInfo(DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstancesInfoResponse> {
+        self.describeNatFwInstancesInfo(DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取租户所有NAT实例卡片信息
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
-    public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
-        try await self.describeNatFwInstancesInfo(DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatFwInstancesInfo(filter: [NatFwFilter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstancesInfoResponse {
+        try await self.describeNatFwInstancesInfo(DescribeNatFwInstancesInfoRequest(filter: filter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Cpdp {
 
     /// 灵云V2-订单汇总列表查询
     @inlinable
-    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexOrderSummaryListResponse> {
-        self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexOrderSummaryListResponse> {
+        self.client.execute(action: "QueryFlexOrderSummaryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-订单汇总列表查询
     @inlinable
-    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
-        try await self.client.execute(action: "QueryFlexOrderSummaryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexOrderSummaryList(_ input: QueryFlexOrderSummaryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
+        try await self.client.execute(action: "QueryFlexOrderSummaryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-订单汇总列表查询
     @inlinable
-    public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexOrderSummaryListResponse> {
-        self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexOrderSummaryListResponse> {
+        self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-订单汇总列表查询
     @inlinable
-    public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
-        try await self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
+        try await self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

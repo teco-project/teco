@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Essbasic {
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
-        self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
+        self.client.execute(action: "ChannelCreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
-        try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateFlowGroupByFiles(_ input: ChannelCreateFlowGroupByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.client.execute(action: "ChannelCreateFlowGroupByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
-        self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
+        self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
-        try await self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

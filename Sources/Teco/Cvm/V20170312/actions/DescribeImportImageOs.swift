@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cvm {
     ///
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
-    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportImageOsResponse> {
-        self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportImageOsResponse> {
+        self.client.execute(action: "DescribeImportImageOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询外部导入镜像支持的OS列表
     ///
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
-    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
-        try await self.client.execute(action: "DescribeImportImageOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImportImageOs(_ input: DescribeImportImageOsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
+        try await self.client.execute(action: "DescribeImportImageOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询外部导入镜像支持的OS列表
     ///
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
-    public func describeImportImageOs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportImageOsResponse> {
-        self.describeImportImageOs(DescribeImportImageOsRequest(), logger: logger, on: eventLoop)
+    public func describeImportImageOs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportImageOsResponse> {
+        self.describeImportImageOs(DescribeImportImageOsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部导入镜像支持的OS列表
     ///
     /// 查看可以导入的镜像操作系统信息。
     @inlinable
-    public func describeImportImageOs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
-        try await self.describeImportImageOs(DescribeImportImageOsRequest(), logger: logger, on: eventLoop)
+    public func describeImportImageOs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportImageOsResponse {
+        try await self.describeImportImageOs(DescribeImportImageOsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

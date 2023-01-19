@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Bma {
 
     /// 更新作品
     @inlinable
-    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCRWorkResponse> {
-        self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCRWork(_ input: UpdateCRWorkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCRWorkResponse> {
+        self.client.execute(action: "UpdateCRWork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新作品
     @inlinable
-    public func updateCRWork(_ input: UpdateCRWorkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
-        try await self.client.execute(action: "UpdateCRWork", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCRWork(_ input: UpdateCRWorkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
+        try await self.client.execute(action: "UpdateCRWork", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新作品
     @inlinable
-    public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCRWorkResponse> {
-        self.updateCRWork(UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType), logger: logger, on: eventLoop)
+    public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCRWorkResponse> {
+        self.updateCRWork(UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新作品
     @inlinable
-    public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
-        try await self.updateCRWork(UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType), logger: logger, on: eventLoop)
+    public func updateCRWork(workId: Int64, contentType: String? = nil, content: String? = nil, certType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCRWorkResponse {
+        try await self.updateCRWork(UpdateCRWorkRequest(workId: workId, contentType: contentType, content: content, certType: certType), region: region, logger: logger, on: eventLoop)
     }
 }

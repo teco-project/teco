@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcaplusdb {
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
-        self.client.execute(action: "ClearTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func clearTables(_ input: ClearTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
+        self.client.execute(action: "ClearTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(_ input: ClearTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
-        try await self.client.execute(action: "ClearTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func clearTables(_ input: ClearTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
+        try await self.client.execute(action: "ClearTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
-        self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearTablesResponse> {
+        self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清除表数据
     ///
     /// 根据给定的表信息，清除表数据。
     @inlinable
-    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
-        try await self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func clearTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearTablesResponse {
+        try await self.clearTables(ClearTablesRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

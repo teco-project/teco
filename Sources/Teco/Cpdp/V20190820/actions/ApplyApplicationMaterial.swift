@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Cpdp {
     ///
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
-    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyApplicationMaterialResponse> {
-        self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyApplicationMaterialResponse> {
+        self.client.execute(action: "ApplyApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-提交申报材料
     ///
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
-    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
-        try await self.client.execute(action: "ApplyApplicationMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyApplicationMaterial(_ input: ApplyApplicationMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
+        try await self.client.execute(action: "ApplyApplicationMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-提交申报材料
     ///
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
-    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyApplicationMaterialResponse> {
-        self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), logger: logger, on: eventLoop)
+    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyApplicationMaterialResponse> {
+        self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-提交申报材料
     ///
     /// 跨境-提交申报材料。申报材料的主体是付款人，需要提前调用【跨境-付款人申请】接口提交付款人信息且审核通过后调用。
     @inlinable
-    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
-        try await self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), logger: logger, on: eventLoop)
+    public func applyApplicationMaterial(transactionId: String, declareId: String, payerId: String, sourceCurrency: String, targetCurrency: String, tradeCode: String, originalDeclareId: String? = nil, sourceAmount: Int64? = nil, targetAmount: Int64? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyApplicationMaterialResponse {
+        try await self.applyApplicationMaterial(ApplyApplicationMaterialRequest(transactionId: transactionId, declareId: declareId, payerId: payerId, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, tradeCode: tradeCode, originalDeclareId: originalDeclareId, sourceAmount: sourceAmount, targetAmount: targetAmount, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

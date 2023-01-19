@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Lcic {
 
     /// 登录
     @inlinable
-    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginUserResponse> {
-        self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func loginUser(_ input: LoginUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginUserResponse> {
+        self.client.execute(action: "LoginUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 登录
     @inlinable
-    public func loginUser(_ input: LoginUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
-        try await self.client.execute(action: "LoginUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func loginUser(_ input: LoginUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
+        try await self.client.execute(action: "LoginUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 登录
     @inlinable
-    public func loginUser(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginUserResponse> {
-        self.loginUser(LoginUserRequest(userId: userId), logger: logger, on: eventLoop)
+    public func loginUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginUserResponse> {
+        self.loginUser(LoginUserRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 登录
     @inlinable
-    public func loginUser(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
-        try await self.loginUser(LoginUserRequest(userId: userId), logger: logger, on: eventLoop)
+    public func loginUser(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginUserResponse {
+        try await self.loginUser(LoginUserRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
     @inlinable
-    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstanceDetailResponse> {
-        self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstanceDetailResponse> {
+        self.client.execute(action: "DescribeExclusiveInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询独享实例详情
     ///
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
     @inlinable
-    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
-        try await self.client.execute(action: "DescribeExclusiveInstanceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExclusiveInstanceDetail(_ input: DescribeExclusiveInstanceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
+        try await self.client.execute(action: "DescribeExclusiveInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询独享实例详情
     ///
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
     @inlinable
-    public func describeExclusiveInstanceDetail(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstanceDetailResponse> {
-        self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeExclusiveInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstanceDetailResponse> {
+        self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独享实例详情
     ///
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。​
     @inlinable
-    public func describeExclusiveInstanceDetail(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
-        try await self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeExclusiveInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
+        try await self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

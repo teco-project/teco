@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Clb {
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
-        self.client.execute(action: "DescribeClassicalLBTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
+        self.client.execute(action: "DescribeClassicalLBTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
-        try await self.client.execute(action: "DescribeClassicalLBTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClassicalLBTargets(_ input: DescribeClassicalLBTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
+        try await self.client.execute(action: "DescribeClassicalLBTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
-        self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    public func describeClassicalLBTargets(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBTargetsResponse> {
+        self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡绑定的后端服务器列表
     ///
     /// DescribeClassicalLBTargets用于获取传统型负载均衡绑定的后端服务。
     @inlinable
-    public func describeClassicalLBTargets(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
-        try await self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    public func describeClassicalLBTargets(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBTargetsResponse {
+        try await self.describeClassicalLBTargets(DescribeClassicalLBTargetsRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 }

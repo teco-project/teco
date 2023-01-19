@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Vod {
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
-        self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWordSamples(_ input: CreateWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
+        self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(_ input: CreateWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
-        try await self.client.execute(action: "CreateWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWordSamples(_ input: CreateWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
+        try await self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
-        self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
+        self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
     @inlinable
-    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
-        try await self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
+        try await self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

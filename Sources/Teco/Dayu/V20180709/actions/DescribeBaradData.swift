@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,31 +107,31 @@ extension Dayu {
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
-        self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaradData(_ input: DescribeBaradDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
+        self.client.execute(action: "DescribeBaradData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(_ input: DescribeBaradDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
-        try await self.client.execute(action: "DescribeBaradData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaradData(_ input: DescribeBaradDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
+        try await self.client.execute(action: "DescribeBaradData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
-        self.describeBaradData(DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), logger: logger, on: eventLoop)
+    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaradDataResponse> {
+        self.describeBaradData(DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转发报表数据
     ///
     /// 为大禹子产品提供业务转发指标数据的接口
     @inlinable
-    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
-        try await self.describeBaradData(DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), logger: logger, on: eventLoop)
+    public func describeBaradData(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, protocolPort: [ProtocolPort]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaradDataResponse {
+        try await self.describeBaradData(DescribeBaradDataRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime, statistics: statistics, protocolPort: protocolPort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

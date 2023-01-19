@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Ess {
 
     /// 查询转换任务状态
     @inlinable
-    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
-        self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTaskResultApi(_ input: GetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
+        self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
     @inlinable
-    public func getTaskResultApi(_ input: GetTaskResultApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
-        try await self.client.execute(action: "GetTaskResultApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTaskResultApi(_ input: GetTaskResultApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
+        try await self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询转换任务状态
     @inlinable
-    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
-        self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), logger: logger, on: eventLoop)
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
+        self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
     @inlinable
-    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
-        try await self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), logger: logger, on: eventLoop)
+    public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
+        try await self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
     }
 }

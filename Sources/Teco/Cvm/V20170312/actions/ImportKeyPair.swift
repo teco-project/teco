@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,8 +66,8 @@ extension Cvm {
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importKeyPair(_ input: ImportKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
+        self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
@@ -77,8 +77,8 @@ extension Cvm {
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
-    public func importKeyPair(_ input: ImportKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.client.execute(action: "ImportKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importKeyPair(_ input: ImportKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入密钥对
@@ -88,8 +88,8 @@ extension Cvm {
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
-    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
+        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
@@ -99,7 +99,7 @@ extension Cvm {
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
-    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
+        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

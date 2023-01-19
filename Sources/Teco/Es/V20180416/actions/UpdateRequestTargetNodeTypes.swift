@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Es {
 
     /// 更新接收客户端请求的节点类型
     @inlinable
-    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRequestTargetNodeTypesResponse> {
-        self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRequestTargetNodeTypesResponse> {
+        self.client.execute(action: "UpdateRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新接收客户端请求的节点类型
     @inlinable
-    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
-        try await self.client.execute(action: "UpdateRequestTargetNodeTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRequestTargetNodeTypes(_ input: UpdateRequestTargetNodeTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
+        try await self.client.execute(action: "UpdateRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新接收客户端请求的节点类型
     @inlinable
-    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRequestTargetNodeTypesResponse> {
-        self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), logger: logger, on: eventLoop)
+    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRequestTargetNodeTypesResponse> {
+        self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新接收客户端请求的节点类型
     @inlinable
-    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
-        try await self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), logger: logger, on: eventLoop)
+    public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
+        try await self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), region: region, logger: logger, on: eventLoop)
     }
 }

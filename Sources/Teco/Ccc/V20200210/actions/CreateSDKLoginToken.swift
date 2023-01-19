@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Ccc {
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
-        self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
+        self.client.execute(action: "CreateSDKLoginToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
-        try await self.client.execute(action: "CreateSDKLoginToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSDKLoginToken(_ input: CreateSDKLoginTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
+        try await self.client.execute(action: "CreateSDKLoginToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
-        self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), logger: logger, on: eventLoop)
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSDKLoginTokenResponse> {
+        self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 SDK 登录 Token
     ///
     /// 创建 SDK 登录 Token。
     @inlinable
-    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
-        try await self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), logger: logger, on: eventLoop)
+    public func createSDKLoginToken(sdkAppId: Int64, seatUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSDKLoginTokenResponse {
+        try await self.createSDKLoginToken(CreateSDKLoginTokenRequest(sdkAppId: sdkAppId, seatUserId: seatUserId), region: region, logger: logger, on: eventLoop)
     }
 }

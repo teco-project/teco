@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cls {
     ///
     /// 本接口用于获取主题分区列表。
     @inlinable
-    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePartitionsResponse> {
-        self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePartitions(_ input: DescribePartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePartitionsResponse> {
+        self.client.execute(action: "DescribePartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分区列表
     ///
     /// 本接口用于获取主题分区列表。
     @inlinable
-    public func describePartitions(_ input: DescribePartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
-        try await self.client.execute(action: "DescribePartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePartitions(_ input: DescribePartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
+        try await self.client.execute(action: "DescribePartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取分区列表
     ///
     /// 本接口用于获取主题分区列表。
     @inlinable
-    public func describePartitions(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePartitionsResponse> {
-        self.describePartitions(DescribePartitionsRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func describePartitions(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePartitionsResponse> {
+        self.describePartitions(DescribePartitionsRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分区列表
     ///
     /// 本接口用于获取主题分区列表。
     @inlinable
-    public func describePartitions(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
-        try await self.describePartitions(DescribePartitionsRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func describePartitions(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePartitionsResponse {
+        try await self.describePartitions(DescribePartitionsRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

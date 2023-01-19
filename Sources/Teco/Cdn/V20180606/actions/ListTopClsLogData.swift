@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Cdn {
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
-        self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
+        self.client.execute(action: "ListTopClsLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
-        try await self.client.execute(action: "ListTopClsLogData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTopClsLogData(_ input: ListTopClsLogDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
+        try await self.client.execute(action: "ListTopClsLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
-        self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopClsLogDataResponse> {
+        self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过CLS日志计算Top信息
     ///
     /// 通过CLS日志计算Top信息。支持近7天的日志数据。
     @inlinable
-    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
-        try await self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    public func listTopClsLogData(logsetId: String, topicIds: String, startTime: String, endTime: String, domain: String, url: String, channel: String? = nil, limit: UInt64? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopClsLogDataResponse {
+        try await self.listTopClsLogData(ListTopClsLogDataRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, domain: domain, url: url, channel: channel, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

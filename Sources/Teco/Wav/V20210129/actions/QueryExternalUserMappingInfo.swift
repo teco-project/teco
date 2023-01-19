@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Wav {
     ///
     /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
     @inlinable
-    public func queryExternalUserMappingInfo(_ input: QueryExternalUserMappingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalUserMappingInfoResponse> {
-        self.client.execute(action: "QueryExternalUserMappingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryExternalUserMappingInfo(_ input: QueryExternalUserMappingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalUserMappingInfoResponse> {
+        self.client.execute(action: "QueryExternalUserMappingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 外部联系人转换接口
     ///
     /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
     @inlinable
-    public func queryExternalUserMappingInfo(_ input: QueryExternalUserMappingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
-        try await self.client.execute(action: "QueryExternalUserMappingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryExternalUserMappingInfo(_ input: QueryExternalUserMappingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
+        try await self.client.execute(action: "QueryExternalUserMappingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 外部联系人转换接口
     ///
     /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
     @inlinable
-    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalUserMappingInfoResponse> {
-        self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), logger: logger, on: eventLoop)
+    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalUserMappingInfoResponse> {
+        self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 外部联系人转换接口
     ///
     /// 企业可通过此接口将企业主体对应的外部联系人id转换为乐销车应用主体对应的外部联系人。
     @inlinable
-    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
-        try await self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), logger: logger, on: eventLoop)
+    public func queryExternalUserMappingInfo(corpExternalUserIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalUserMappingInfoResponse {
+        try await self.queryExternalUserMappingInfo(QueryExternalUserMappingInfoRequest(corpExternalUserIdList: corpExternalUserIdList), region: region, logger: logger, on: eventLoop)
     }
 }

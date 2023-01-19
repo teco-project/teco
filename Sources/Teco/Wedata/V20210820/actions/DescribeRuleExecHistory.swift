@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 查询规则执行历史， 最近30条
     @inlinable
-    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecHistoryResponse> {
-        self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecHistoryResponse> {
+        self.client.execute(action: "DescribeRuleExecHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则执行历史， 最近30条
     @inlinable
-    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
-        try await self.client.execute(action: "DescribeRuleExecHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleExecHistory(_ input: DescribeRuleExecHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
+        try await self.client.execute(action: "DescribeRuleExecHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询规则执行历史， 最近30条
     @inlinable
-    public func describeRuleExecHistory(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecHistoryResponse> {
-        self.describeRuleExecHistory(DescribeRuleExecHistoryRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleExecHistory(ruleId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecHistoryResponse> {
+        self.describeRuleExecHistory(DescribeRuleExecHistoryRequest(ruleId: ruleId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则执行历史， 最近30条
     @inlinable
-    public func describeRuleExecHistory(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
-        try await self.describeRuleExecHistory(DescribeRuleExecHistoryRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleExecHistory(ruleId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecHistoryResponse {
+        try await self.describeRuleExecHistory(DescribeRuleExecHistoryRequest(ruleId: ruleId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

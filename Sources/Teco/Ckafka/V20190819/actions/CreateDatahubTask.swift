@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Ckafka {
 
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
-        self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDatahubTask(_ input: CreateDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
+        self.client.execute(action: "CreateDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(_ input: CreateDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
-        try await self.client.execute(action: "CreateDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDatahubTask(_ input: CreateDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
+        try await self.client.execute(action: "CreateDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
-        self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), logger: logger, on: eventLoop)
+    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
+        self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建DIP转储任务
     @inlinable
-    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
-        try await self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), logger: logger, on: eventLoop)
+    public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
+        try await self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

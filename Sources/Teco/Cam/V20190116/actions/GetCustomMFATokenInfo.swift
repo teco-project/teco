@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cam {
 
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
-        self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
+        self.client.execute(action: "GetCustomMFATokenInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
-        try await self.client.execute(action: "GetCustomMFATokenInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCustomMFATokenInfo(_ input: GetCustomMFATokenInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
+        try await self.client.execute(action: "GetCustomMFATokenInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
-        self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    public func getCustomMFATokenInfo(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
+        self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义多因子Token关联信息
     @inlinable
-    public func getCustomMFATokenInfo(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
-        try await self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    public func getCustomMFATokenInfo(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
+        try await self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
     }
 }

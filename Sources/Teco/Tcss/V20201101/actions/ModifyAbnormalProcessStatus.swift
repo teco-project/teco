@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcss {
     ///
     /// 修改异常进程事件的状态信息
     @inlinable
-    public func modifyAbnormalProcessStatus(_ input: ModifyAbnormalProcessStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAbnormalProcessStatusResponse> {
-        self.client.execute(action: "ModifyAbnormalProcessStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAbnormalProcessStatus(_ input: ModifyAbnormalProcessStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAbnormalProcessStatusResponse> {
+        self.client.execute(action: "ModifyAbnormalProcessStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改异常进程事件状态
     ///
     /// 修改异常进程事件的状态信息
     @inlinable
-    public func modifyAbnormalProcessStatus(_ input: ModifyAbnormalProcessStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
-        try await self.client.execute(action: "ModifyAbnormalProcessStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAbnormalProcessStatus(_ input: ModifyAbnormalProcessStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
+        try await self.client.execute(action: "ModifyAbnormalProcessStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改异常进程事件状态
     ///
     /// 修改异常进程事件的状态信息
     @inlinable
-    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAbnormalProcessStatusResponse> {
-        self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAbnormalProcessStatusResponse> {
+        self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改异常进程事件状态
     ///
     /// 修改异常进程事件的状态信息
     @inlinable
-    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
-        try await self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
+        try await self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

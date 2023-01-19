@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cfw {
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
-        self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
+        self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
-        try await self.client.execute(action: "ModifyResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
+        try await self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
-        self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), logger: logger, on: eventLoop)
+    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
+        self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
     @inlinable
-    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
-        try await self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), logger: logger, on: eventLoop)
+    public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
+        try await self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }
 }

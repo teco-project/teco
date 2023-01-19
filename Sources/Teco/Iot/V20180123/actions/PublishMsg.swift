@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iot {
     ///
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable
-    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMsgResponse> {
-        self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishMsg(_ input: PublishMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMsgResponse> {
+        self.client.execute(action: "PublishMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 向Topic发布消息
     ///
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable
-    public func publishMsg(_ input: PublishMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
-        try await self.client.execute(action: "PublishMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishMsg(_ input: PublishMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
+        try await self.client.execute(action: "PublishMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 向Topic发布消息
     ///
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable
-    public func publishMsg(topic: String, message: String, qos: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMsgResponse> {
-        self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), logger: logger, on: eventLoop)
+    public func publishMsg(topic: String, message: String, qos: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMsgResponse> {
+        self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 向Topic发布消息
     ///
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable
-    public func publishMsg(topic: String, message: String, qos: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
-        try await self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), logger: logger, on: eventLoop)
+    public func publishMsg(topic: String, message: String, qos: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
+        try await self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), region: region, logger: logger, on: eventLoop)
     }
 }

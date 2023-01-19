@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
-    public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
-        self.client.execute(action: "StartMatchingBackfill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
+        self.client.execute(action: "StartMatchingBackfill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起回填匹配
@@ -73,8 +73,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
-    public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
-        try await self.client.execute(action: "StartMatchingBackfill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
+        try await self.client.execute(action: "StartMatchingBackfill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起回填匹配
@@ -82,8 +82,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
-    public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
-        self.startMatchingBackfill(StartMatchingBackfillRequest(matchCode: matchCode, players: players, gameServerSessionId: gameServerSessionId, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
+        self.startMatchingBackfill(StartMatchingBackfillRequest(matchCode: matchCode, players: players, gameServerSessionId: gameServerSessionId, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起回填匹配
@@ -91,7 +91,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
-    public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
-        try await self.startMatchingBackfill(StartMatchingBackfillRequest(matchCode: matchCode, players: players, gameServerSessionId: gameServerSessionId, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
+        try await self.startMatchingBackfill(StartMatchingBackfillRequest(matchCode: matchCode, players: players, gameServerSessionId: gameServerSessionId, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 }

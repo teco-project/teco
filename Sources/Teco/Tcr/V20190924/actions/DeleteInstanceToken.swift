@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcr {
 
     /// 删除长期访问凭证
     @inlinable
-    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
-        self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
+        self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除长期访问凭证
     @inlinable
-    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
-        try await self.client.execute(action: "DeleteInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
+        try await self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除长期访问凭证
     @inlinable
-    public func deleteInstanceToken(registryId: String, tokenId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
-        self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), logger: logger, on: eventLoop)
+    public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
+        self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除长期访问凭证
     @inlinable
-    public func deleteInstanceToken(registryId: String, tokenId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
-        try await self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), logger: logger, on: eventLoop)
+    public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
+        try await self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }
 }

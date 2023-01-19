@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension As {
     ///
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable
-    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledActionResponse> {
-        self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledActionResponse> {
+        self.client.execute(action: "ModifyScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改定时任务
     ///
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable
-    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
-        try await self.client.execute(action: "ModifyScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyScheduledAction(_ input: ModifyScheduledActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
+        try await self.client.execute(action: "ModifyScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改定时任务
     ///
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable
-    public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledActionResponse> {
-        self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledActionResponse> {
+        self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改定时任务
     ///
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable
-    public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
-        try await self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
+        try await self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
     }
 }

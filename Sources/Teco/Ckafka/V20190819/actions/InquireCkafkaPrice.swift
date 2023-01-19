@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,31 +107,31 @@ extension Ckafka {
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
-        self.client.execute(action: "InquireCkafkaPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
+        self.client.execute(action: "InquireCkafkaPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireCkafkaPriceResponse {
-        try await self.client.execute(action: "InquireCkafkaPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquireCkafkaPrice(_ input: InquireCkafkaPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireCkafkaPriceResponse {
+        try await self.client.execute(action: "InquireCkafkaPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
-        self.inquireCkafkaPrice(InquireCkafkaPriceRequest(instanceType: instanceType, instanceChargeParam: instanceChargeParam, instanceNum: instanceNum, bandwidth: bandwidth, inquiryDiskParam: inquiryDiskParam, messageRetention: messageRetention, topic: topic, partition: partition, zoneIds: zoneIds, categoryAction: categoryAction, billType: billType, publicNetworkParam: publicNetworkParam, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquireCkafkaPriceResponse> {
+        self.inquireCkafkaPrice(InquireCkafkaPriceRequest(instanceType: instanceType, instanceChargeParam: instanceChargeParam, instanceNum: instanceNum, bandwidth: bandwidth, inquiryDiskParam: inquiryDiskParam, messageRetention: messageRetention, topic: topic, partition: partition, zoneIds: zoneIds, categoryAction: categoryAction, billType: billType, publicNetworkParam: publicNetworkParam, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// Ckafka询价
     ///
     /// Ckafka实例购买/续费询价
     @inlinable
-    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireCkafkaPriceResponse {
-        try await self.inquireCkafkaPrice(InquireCkafkaPriceRequest(instanceType: instanceType, instanceChargeParam: instanceChargeParam, instanceNum: instanceNum, bandwidth: bandwidth, inquiryDiskParam: inquiryDiskParam, messageRetention: messageRetention, topic: topic, partition: partition, zoneIds: zoneIds, categoryAction: categoryAction, billType: billType, publicNetworkParam: publicNetworkParam, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func inquireCkafkaPrice(instanceType: String, instanceChargeParam: InstanceChargeParam? = nil, instanceNum: Int64? = nil, bandwidth: Int64? = nil, inquiryDiskParam: InquiryDiskParam? = nil, messageRetention: Int64? = nil, topic: Int64? = nil, partition: Int64? = nil, zoneIds: [Int64]? = nil, categoryAction: String? = nil, billType: String? = nil, publicNetworkParam: InquiryPublicNetworkParam? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquireCkafkaPriceResponse {
+        try await self.inquireCkafkaPrice(InquireCkafkaPriceRequest(instanceType: instanceType, instanceChargeParam: instanceChargeParam, instanceNum: instanceNum, bandwidth: bandwidth, inquiryDiskParam: inquiryDiskParam, messageRetention: messageRetention, topic: topic, partition: partition, zoneIds: zoneIds, categoryAction: categoryAction, billType: billType, publicNetworkParam: publicNetworkParam, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

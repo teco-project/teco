@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,25 +125,25 @@ extension Tdmq {
 
     /// 创建cmq队列接口
     @inlinable
-    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqQueueResponse> {
-        self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCmqQueue(_ input: CreateCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqQueueResponse> {
+        self.client.execute(action: "CreateCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq队列接口
     @inlinable
-    public func createCmqQueue(_ input: CreateCmqQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
-        try await self.client.execute(action: "CreateCmqQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCmqQueue(_ input: CreateCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
+        try await self.client.execute(action: "CreateCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建cmq队列接口
     @inlinable
-    public func createCmqQueue(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, retentionSizeInMB: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqQueueResponse> {
-        self.createCmqQueue(CreateCmqQueueRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, transaction: transaction, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, policy: policy, maxReceiveCount: maxReceiveCount, maxTimeToLive: maxTimeToLive, trace: trace, tags: tags, retentionSizeInMB: retentionSizeInMB), logger: logger, on: eventLoop)
+    public func createCmqQueue(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, retentionSizeInMB: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqQueueResponse> {
+        self.createCmqQueue(CreateCmqQueueRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, transaction: transaction, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, policy: policy, maxReceiveCount: maxReceiveCount, maxTimeToLive: maxTimeToLive, trace: trace, tags: tags, retentionSizeInMB: retentionSizeInMB), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq队列接口
     @inlinable
-    public func createCmqQueue(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, retentionSizeInMB: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
-        try await self.createCmqQueue(CreateCmqQueueRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, transaction: transaction, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, policy: policy, maxReceiveCount: maxReceiveCount, maxTimeToLive: maxTimeToLive, trace: trace, tags: tags, retentionSizeInMB: retentionSizeInMB), logger: logger, on: eventLoop)
+    public func createCmqQueue(queueName: String, maxMsgHeapNum: UInt64? = nil, pollingWaitSeconds: UInt64? = nil, visibilityTimeout: UInt64? = nil, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, rewindSeconds: UInt64? = nil, transaction: UInt64? = nil, firstQueryInterval: UInt64? = nil, maxQueryCount: UInt64? = nil, deadLetterQueueName: String? = nil, policy: UInt64? = nil, maxReceiveCount: UInt64? = nil, maxTimeToLive: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, retentionSizeInMB: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqQueueResponse {
+        try await self.createCmqQueue(CreateCmqQueueRequest(queueName: queueName, maxMsgHeapNum: maxMsgHeapNum, pollingWaitSeconds: pollingWaitSeconds, visibilityTimeout: visibilityTimeout, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, rewindSeconds: rewindSeconds, transaction: transaction, firstQueryInterval: firstQueryInterval, maxQueryCount: maxQueryCount, deadLetterQueueName: deadLetterQueueName, policy: policy, maxReceiveCount: maxReceiveCount, maxTimeToLive: maxTimeToLive, trace: trace, tags: tags, retentionSizeInMB: retentionSizeInMB), region: region, logger: logger, on: eventLoop)
     }
 }

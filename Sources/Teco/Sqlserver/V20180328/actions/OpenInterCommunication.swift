@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
-    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenInterCommunicationResponse> {
-        self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openInterCommunication(_ input: OpenInterCommunicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenInterCommunicationResponse> {
+        self.client.execute(action: "OpenInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 打开实例的互通
     ///
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
-    public func openInterCommunication(_ input: OpenInterCommunicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
-        try await self.client.execute(action: "OpenInterCommunication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openInterCommunication(_ input: OpenInterCommunicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
+        try await self.client.execute(action: "OpenInterCommunication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 打开实例的互通
     ///
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
-    public func openInterCommunication(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenInterCommunicationResponse> {
-        self.openInterCommunication(OpenInterCommunicationRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func openInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenInterCommunicationResponse> {
+        self.openInterCommunication(OpenInterCommunicationRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 打开实例的互通
     ///
     /// 本接口（OpenInterCommunication）用于打开实例的互通，实例互通可以实现商业智能服务相互联通。
     @inlinable
-    public func openInterCommunication(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
-        try await self.openInterCommunication(OpenInterCommunicationRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func openInterCommunication(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenInterCommunicationResponse {
+        try await self.openInterCommunication(OpenInterCommunicationRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

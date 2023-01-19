@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ds {
     ///
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
-    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadContractResponse> {
-        self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadContract(_ input: DownloadContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadContractResponse> {
+        self.client.execute(action: "DownloadContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载合同
     ///
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
-    public func downloadContract(_ input: DownloadContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
-        try await self.client.execute(action: "DownloadContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadContract(_ input: DownloadContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
+        try await self.client.execute(action: "DownloadContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载合同
     ///
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
-    public func downloadContract(module: String, operation: String, contractResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadContractResponse> {
-        self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), logger: logger, on: eventLoop)
+    public func downloadContract(module: String, operation: String, contractResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadContractResponse> {
+        self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载合同
     ///
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
-    public func downloadContract(module: String, operation: String, contractResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
-        try await self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), logger: logger, on: eventLoop)
+    public func downloadContract(module: String, operation: String, contractResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
+        try await self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), region: region, logger: logger, on: eventLoop)
     }
 }

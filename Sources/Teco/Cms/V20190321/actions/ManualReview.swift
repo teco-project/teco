@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cms {
 
     /// 人工审核对外接口
     @inlinable
-    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualReviewResponse> {
-        self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func manualReview(_ input: ManualReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualReviewResponse> {
+        self.client.execute(action: "ManualReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人工审核对外接口
     @inlinable
-    public func manualReview(_ input: ManualReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
-        try await self.client.execute(action: "ManualReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func manualReview(_ input: ManualReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
+        try await self.client.execute(action: "ManualReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人工审核对外接口
     @inlinable
-    public func manualReview(reviewContent: ManualReviewContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualReviewResponse> {
-        self.manualReview(ManualReviewRequest(reviewContent: reviewContent), logger: logger, on: eventLoop)
+    public func manualReview(reviewContent: ManualReviewContent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualReviewResponse> {
+        self.manualReview(ManualReviewRequest(reviewContent: reviewContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人工审核对外接口
     @inlinable
-    public func manualReview(reviewContent: ManualReviewContent, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
-        try await self.manualReview(ManualReviewRequest(reviewContent: reviewContent), logger: logger, on: eventLoop)
+    public func manualReview(reviewContent: ManualReviewContent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualReviewResponse {
+        try await self.manualReview(ManualReviewRequest(reviewContent: reviewContent), region: region, logger: logger, on: eventLoop)
     }
 }

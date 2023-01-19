@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Lighthouse {
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
-        self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
+        self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
-        try await self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstancesLoginKeyPairAttribute(_ input: ModifyInstancesLoginKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
+        try await self.client.execute(action: "ModifyInstancesLoginKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
-        self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), logger: logger, on: eventLoop)
+    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesLoginKeyPairAttributeResponse> {
+        self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例默认登录密钥对属性
     ///
     /// 本接口用于设置实例默认登录密钥对属性。
     @inlinable
-    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
-        try await self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), logger: logger, on: eventLoop)
+    public func modifyInstancesLoginKeyPairAttribute(instanceIds: [String], permitLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesLoginKeyPairAttributeResponse {
+        try await self.modifyInstancesLoginKeyPairAttribute(ModifyInstancesLoginKeyPairAttributeRequest(instanceIds: instanceIds, permitLogin: permitLogin), region: region, logger: logger, on: eventLoop)
     }
 }

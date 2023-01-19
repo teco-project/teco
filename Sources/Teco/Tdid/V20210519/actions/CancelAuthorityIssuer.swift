@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdid {
 
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
-        self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
+        self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
-        try await self.client.execute(action: "CancelAuthorityIssuer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
+        try await self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
-        self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
+    public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
+        self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤消权威机构认证
     @inlinable
-    public func cancelAuthorityIssuer(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
-        try await self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), logger: logger, on: eventLoop)
+    public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
+        try await self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
     }
 }

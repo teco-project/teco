@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 网站防篡改-查询动态防护信息
     @inlinable
-    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageProtectStatResponse> {
-        self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageProtectStatResponse> {
+        self.client.execute(action: "DescribeWebPageProtectStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网页防篡改防护统计
     ///
     /// 网站防篡改-查询动态防护信息
     @inlinable
-    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
-        try await self.client.execute(action: "DescribeWebPageProtectStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebPageProtectStat(_ input: DescribeWebPageProtectStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
+        try await self.client.execute(action: "DescribeWebPageProtectStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网页防篡改防护统计
     ///
     /// 网站防篡改-查询动态防护信息
     @inlinable
-    public func describeWebPageProtectStat(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageProtectStatResponse> {
-        self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), logger: logger, on: eventLoop)
+    public func describeWebPageProtectStat(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageProtectStatResponse> {
+        self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网页防篡改防护统计
     ///
     /// 网站防篡改-查询动态防护信息
     @inlinable
-    public func describeWebPageProtectStat(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
-        try await self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), logger: logger, on: eventLoop)
+    public func describeWebPageProtectStat(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageProtectStatResponse {
+        try await self.describeWebPageProtectStat(DescribeWebPageProtectStatRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

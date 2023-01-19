@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cds {
     ///
     /// 用于查询数据安全审计产品实例价格
     @inlinable
-    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceDbauditInstanceResponse> {
-        self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceDbauditInstanceResponse> {
+        self.client.execute(action: "InquiryPriceDbauditInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据安全审计产品实例询价
     ///
     /// 用于查询数据安全审计产品实例价格
     @inlinable
-    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceDbauditInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceDbauditInstance(_ input: InquiryPriceDbauditInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceDbauditInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据安全审计产品实例询价
     ///
     /// 用于查询数据安全审计产品实例价格
     @inlinable
-    public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceDbauditInstanceResponse> {
-        self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), logger: logger, on: eventLoop)
+    public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceDbauditInstanceResponse> {
+        self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据安全审计产品实例询价
     ///
     /// 用于查询数据安全审计产品实例价格
     @inlinable
-    public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
-        try await self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), logger: logger, on: eventLoop)
+    public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
+        try await self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), region: region, logger: logger, on: eventLoop)
     }
 }

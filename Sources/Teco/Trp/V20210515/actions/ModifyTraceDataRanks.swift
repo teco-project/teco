@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Trp {
 
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
-        self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
+        self.client.execute(action: "ModifyTraceDataRanks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
-        try await self.client.execute(action: "ModifyTraceDataRanks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTraceDataRanks(_ input: ModifyTraceDataRanksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
+        try await self.client.execute(action: "ModifyTraceDataRanks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
-        self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), logger: logger, on: eventLoop)
+    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
+        self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改溯源信息的排序
     @inlinable
-    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
-        try await self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), logger: logger, on: eventLoop)
+    public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
+        try await self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), region: region, logger: logger, on: eventLoop)
     }
 }

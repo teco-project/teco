@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Live {
     ///
     /// 删除截图规则。
     @inlinable
-    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotRuleResponse> {
-        self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotRuleResponse> {
+        self.client.execute(action: "DeleteLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除截图规则
     ///
     /// 删除截图规则。
     @inlinable
-    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
-        try await self.client.execute(action: "DeleteLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveSnapshotRule(_ input: DeleteLiveSnapshotRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
+        try await self.client.execute(action: "DeleteLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除截图规则
     ///
     /// 删除截图规则。
     @inlinable
-    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotRuleResponse> {
-        self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotRuleResponse> {
+        self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除截图规则
     ///
     /// 删除截图规则。
     @inlinable
-    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
-        try await self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotRuleResponse {
+        try await self.deleteLiveSnapshotRule(DeleteLiveSnapshotRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

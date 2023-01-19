@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Wedata {
     ///
     /// 批量继续执行集成实时任务
     @inlinable
-    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchResumeIntegrationTasksResponse> {
-        self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchResumeIntegrationTasksResponse> {
+        self.client.execute(action: "BatchResumeIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量继续执行集成任务
     ///
     /// 批量继续执行集成实时任务
     @inlinable
-    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchResumeIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchResumeIntegrationTasks(_ input: BatchResumeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchResumeIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量继续执行集成任务
     ///
     /// 批量继续执行集成实时任务
     @inlinable
-    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchResumeIntegrationTasksResponse> {
-        self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchResumeIntegrationTasksResponse> {
+        self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量继续执行集成任务
     ///
     /// 批量继续执行集成实时任务
     @inlinable
-    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
-        try await self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
+        try await self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

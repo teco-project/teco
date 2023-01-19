@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Partners {
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
-    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentPayDealsResponse> {
-        self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentPayDealsResponse> {
+        self.client.execute(action: "DescribeAgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 代理商代付订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
-    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
-        try await self.client.execute(action: "DescribeAgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentPayDeals(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
+        try await self.client.execute(action: "DescribeAgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 代理商代付订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
-    public func describeAgentPayDeals(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentPayDealsResponse> {
-        self.describeAgentPayDeals(DescribeAgentPayDealsRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), logger: logger, on: eventLoop)
+    public func describeAgentPayDeals(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentPayDealsResponse> {
+        self.describeAgentPayDeals(DescribeAgentPayDealsRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商代付订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
-    public func describeAgentPayDeals(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
-        try await self.describeAgentPayDeals(DescribeAgentPayDealsRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), logger: logger, on: eventLoop)
+    public func describeAgentPayDeals(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentPayDealsResponse {
+        try await self.describeAgentPayDeals(DescribeAgentPayDealsRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

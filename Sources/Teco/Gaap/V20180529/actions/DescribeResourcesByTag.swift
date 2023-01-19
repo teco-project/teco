@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
-    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagResponse> {
-        self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagResponse> {
+        self.client.execute(action: "DescribeResourcesByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据标签拉取资源列表
     ///
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
-    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
-        try await self.client.execute(action: "DescribeResourcesByTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourcesByTag(_ input: DescribeResourcesByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
+        try await self.client.execute(action: "DescribeResourcesByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据标签拉取资源列表
     ///
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
-    public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagResponse> {
-        self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagResponse> {
+        self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据标签拉取资源列表
     ///
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
-    public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
-        try await self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
+        try await self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 }

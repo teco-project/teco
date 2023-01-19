@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dlc {
 
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
-        self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
+        self.client.execute(action: "AddUsersToWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
-        try await self.client.execute(action: "AddUsersToWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addUsersToWorkGroup(_ input: AddUsersToWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
+        try await self.client.execute(action: "AddUsersToWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
-        self.addUsersToWorkGroup(AddUsersToWorkGroupRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersToWorkGroupResponse> {
+        self.addUsersToWorkGroup(AddUsersToWorkGroupRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加用户到工作组
     @inlinable
-    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
-        try await self.addUsersToWorkGroup(AddUsersToWorkGroupRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func addUsersToWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersToWorkGroupResponse {
+        try await self.addUsersToWorkGroup(AddUsersToWorkGroupRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 }

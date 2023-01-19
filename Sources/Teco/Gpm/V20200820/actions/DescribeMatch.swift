@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配详情
     @inlinable
-    public func describeMatch(_ input: DescribeMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
-        self.client.execute(action: "DescribeMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMatch(_ input: DescribeMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
+        self.client.execute(action: "DescribeMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配详情
@@ -58,8 +58,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配详情
     @inlinable
-    public func describeMatch(_ input: DescribeMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
-        try await self.client.execute(action: "DescribeMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMatch(_ input: DescribeMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
+        try await self.client.execute(action: "DescribeMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询匹配详情
@@ -67,8 +67,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配详情
     @inlinable
-    public func describeMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
-        self.describeMatch(DescribeMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    public func describeMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
+        self.describeMatch(DescribeMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配详情
@@ -76,7 +76,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配详情
     @inlinable
-    public func describeMatch(matchCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
-        try await self.describeMatch(DescribeMatchRequest(matchCode: matchCode), logger: logger, on: eventLoop)
+    public func describeMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
+        try await self.describeMatch(DescribeMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
     }
 }

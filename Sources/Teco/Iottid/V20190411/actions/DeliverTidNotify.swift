@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Iottid {
     ///
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
-        self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
+        self.client.execute(action: "DeliverTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全芯片TID空发回执
     ///
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
-        try await self.client.execute(action: "DeliverTidNotify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deliverTidNotify(_ input: DeliverTidNotifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
+        try await self.client.execute(action: "DeliverTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全芯片TID空发回执
     ///
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
-        self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
+    public func deliverTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
+        self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全芯片TID空发回执
     ///
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
-    public func deliverTidNotify(orderId: String, tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
-        try await self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), logger: logger, on: eventLoop)
+    public func deliverTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
+        try await self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
     }
 }

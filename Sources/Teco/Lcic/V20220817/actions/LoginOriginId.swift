@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Lcic {
     ///
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
-    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginOriginIdResponse> {
-        self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func loginOriginId(_ input: LoginOriginIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginOriginIdResponse> {
+        self.client.execute(action: "LoginOriginId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 源账号登录
     ///
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
-    public func loginOriginId(_ input: LoginOriginIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
-        try await self.client.execute(action: "LoginOriginId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func loginOriginId(_ input: LoginOriginIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
+        try await self.client.execute(action: "LoginOriginId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 源账号登录
     ///
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
-    public func loginOriginId(sdkAppId: UInt64, originId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginOriginIdResponse> {
-        self.loginOriginId(LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId), logger: logger, on: eventLoop)
+    public func loginOriginId(sdkAppId: UInt64, originId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LoginOriginIdResponse> {
+        self.loginOriginId(LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 源账号登录
     ///
     /// 使用源账号登录，源账号为注册时填入的originId
     @inlinable
-    public func loginOriginId(sdkAppId: UInt64, originId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
-        try await self.loginOriginId(LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId), logger: logger, on: eventLoop)
+    public func loginOriginId(sdkAppId: UInt64, originId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LoginOriginIdResponse {
+        try await self.loginOriginId(LoginOriginIdRequest(sdkAppId: sdkAppId, originId: originId), region: region, logger: logger, on: eventLoop)
     }
 }

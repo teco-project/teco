@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Eb {
     ///
     /// 用于获取转换器详情
     @inlinable
-    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransformationResponse> {
-        self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTransformation(_ input: GetTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransformationResponse> {
+        self.client.execute(action: "GetTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转换器详情
     ///
     /// 用于获取转换器详情
     @inlinable
-    public func getTransformation(_ input: GetTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
-        try await self.client.execute(action: "GetTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTransformation(_ input: GetTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
+        try await self.client.execute(action: "GetTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转换器详情
     ///
     /// 用于获取转换器详情
     @inlinable
-    public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransformationResponse> {
-        self.getTransformation(GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), logger: logger, on: eventLoop)
+    public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransformationResponse> {
+        self.getTransformation(GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转换器详情
     ///
     /// 用于获取转换器详情
     @inlinable
-    public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
-        try await self.getTransformation(GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), logger: logger, on: eventLoop)
+    public func getTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransformationResponse {
+        try await self.getTransformation(GetTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 }

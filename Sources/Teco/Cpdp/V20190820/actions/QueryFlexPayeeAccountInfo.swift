@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Cpdp {
 
     /// 灵云V2-收款用户账户信息查询
     @inlinable
-    public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountInfoResponse> {
-        self.client.execute(action: "QueryFlexPayeeAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountInfoResponse> {
+        self.client.execute(action: "QueryFlexPayeeAccountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户信息查询
     @inlinable
-    public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
-        try await self.client.execute(action: "QueryFlexPayeeAccountInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexPayeeAccountInfo(_ input: QueryFlexPayeeAccountInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
+        try await self.client.execute(action: "QueryFlexPayeeAccountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-收款用户账户信息查询
     @inlinable
-    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountInfoResponse> {
-        self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountInfoResponse> {
+        self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户信息查询
     @inlinable
-    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
-        try await self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountInfoResponse {
+        try await self.queryFlexPayeeAccountInfo(QueryFlexPayeeAccountInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

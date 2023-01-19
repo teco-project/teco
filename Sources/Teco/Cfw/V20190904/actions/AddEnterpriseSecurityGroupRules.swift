@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cfw {
 
     /// 创建新企业安全组规则
     @inlinable
-    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEnterpriseSecurityGroupRulesResponse> {
-        self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEnterpriseSecurityGroupRulesResponse> {
+        self.client.execute(action: "AddEnterpriseSecurityGroupRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建新企业安全组规则
     @inlinable
-    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
-        try await self.client.execute(action: "AddEnterpriseSecurityGroupRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addEnterpriseSecurityGroupRules(_ input: AddEnterpriseSecurityGroupRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
+        try await self.client.execute(action: "AddEnterpriseSecurityGroupRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建新企业安全组规则
     @inlinable
-    public func addEnterpriseSecurityGroupRules(data: [SecurityGroupRule], type: UInt64? = nil, clientToken: String? = nil, isDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEnterpriseSecurityGroupRulesResponse> {
-        self.addEnterpriseSecurityGroupRules(AddEnterpriseSecurityGroupRulesRequest(data: data, type: type, clientToken: clientToken, isDelay: isDelay), logger: logger, on: eventLoop)
+    public func addEnterpriseSecurityGroupRules(data: [SecurityGroupRule], type: UInt64? = nil, clientToken: String? = nil, isDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEnterpriseSecurityGroupRulesResponse> {
+        self.addEnterpriseSecurityGroupRules(AddEnterpriseSecurityGroupRulesRequest(data: data, type: type, clientToken: clientToken, isDelay: isDelay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建新企业安全组规则
     @inlinable
-    public func addEnterpriseSecurityGroupRules(data: [SecurityGroupRule], type: UInt64? = nil, clientToken: String? = nil, isDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
-        try await self.addEnterpriseSecurityGroupRules(AddEnterpriseSecurityGroupRulesRequest(data: data, type: type, clientToken: clientToken, isDelay: isDelay), logger: logger, on: eventLoop)
+    public func addEnterpriseSecurityGroupRules(data: [SecurityGroupRule], type: UInt64? = nil, clientToken: String? = nil, isDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEnterpriseSecurityGroupRulesResponse {
+        try await self.addEnterpriseSecurityGroupRules(AddEnterpriseSecurityGroupRulesRequest(data: data, type: type, clientToken: clientToken, isDelay: isDelay), region: region, logger: logger, on: eventLoop)
     }
 }

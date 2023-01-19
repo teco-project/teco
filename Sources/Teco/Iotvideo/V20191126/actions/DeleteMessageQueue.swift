@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable
-    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
-        self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
+        self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable
-    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
-        try await self.client.execute(action: "DeleteMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
+        try await self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable
-    public func deleteMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
-        self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
+        self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
     @inlinable
-    public func deleteMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
-        try await self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
+        try await self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

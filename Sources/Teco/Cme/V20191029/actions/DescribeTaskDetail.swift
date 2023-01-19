@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Cme {
     /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
     /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
     @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
+        self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务详情
@@ -100,8 +100,8 @@ extension Cme {
     /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
     /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
     @inlinable
-    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.client.execute(action: "DescribeTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskDetail(_ input: DescribeTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取任务详情
@@ -110,8 +110,8 @@ extension Cme {
     /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
     /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
     @inlinable
-    public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        self.describeTaskDetail(DescribeTaskDetailRequest(platform: platform, taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
+        self.describeTaskDetail(DescribeTaskDetailRequest(platform: platform, taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务详情
@@ -120,7 +120,7 @@ extension Cme {
     /// <li>任务基础信息：包括任务状态、错误信息、创建时间等；</li>
     /// <li>导出项目输出信息：包括输出的素材 Id 等。</li>
     @inlinable
-    public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.describeTaskDetail(DescribeTaskDetailRequest(platform: platform, taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeTaskDetail(platform: String, taskId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
+        try await self.describeTaskDetail(DescribeTaskDetailRequest(platform: platform, taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

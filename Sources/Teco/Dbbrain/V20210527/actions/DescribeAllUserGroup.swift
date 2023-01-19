@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dbbrain {
     ///
     /// 获取邮件发送联系组的相关信息。
     @inlinable
-    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllUserGroupResponse> {
-        self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllUserGroupResponse> {
+        self.client.execute(action: "DescribeAllUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取邮件发送中联系组信息
     ///
     /// 获取邮件发送联系组的相关信息。
     @inlinable
-    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
-        try await self.client.execute(action: "DescribeAllUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllUserGroup(_ input: DescribeAllUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
+        try await self.client.execute(action: "DescribeAllUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取邮件发送中联系组信息
     ///
     /// 获取邮件发送联系组的相关信息。
     @inlinable
-    public func describeAllUserGroup(product: String, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllUserGroupResponse> {
-        self.describeAllUserGroup(DescribeAllUserGroupRequest(product: product, names: names), logger: logger, on: eventLoop)
+    public func describeAllUserGroup(product: String, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllUserGroupResponse> {
+        self.describeAllUserGroup(DescribeAllUserGroupRequest(product: product, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取邮件发送中联系组信息
     ///
     /// 获取邮件发送联系组的相关信息。
     @inlinable
-    public func describeAllUserGroup(product: String, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
-        try await self.describeAllUserGroup(DescribeAllUserGroupRequest(product: product, names: names), logger: logger, on: eventLoop)
+    public func describeAllUserGroup(product: String, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllUserGroupResponse {
+        try await self.describeAllUserGroup(DescribeAllUserGroupRequest(product: product, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

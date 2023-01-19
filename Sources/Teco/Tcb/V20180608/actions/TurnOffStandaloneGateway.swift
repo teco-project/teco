@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcb {
     ///
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
-    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TurnOffStandaloneGatewayResponse> {
-        self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TurnOffStandaloneGatewayResponse> {
+        self.client.execute(action: "TurnOffStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭小租户网关
     ///
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
-    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
-        try await self.client.execute(action: "TurnOffStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func turnOffStandaloneGateway(_ input: TurnOffStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
+        try await self.client.execute(action: "TurnOffStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭小租户网关
     ///
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
-    public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TurnOffStandaloneGatewayResponse> {
-        self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), logger: logger, on: eventLoop)
+    public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TurnOffStandaloneGatewayResponse> {
+        self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭小租户网关
     ///
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
-    public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
-        try await self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), logger: logger, on: eventLoop)
+    public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
+        try await self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), region: region, logger: logger, on: eventLoop)
     }
 }

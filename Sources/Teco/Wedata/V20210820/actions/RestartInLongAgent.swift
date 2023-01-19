@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Wedata {
 
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
-        self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartInLongAgent(_ input: RestartInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
+        self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(_ input: RestartInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
-        try await self.client.execute(action: "RestartInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartInLongAgent(_ input: RestartInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
+        try await self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
-        self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
+        self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启采集器
     @inlinable
-    public func restartInLongAgent(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
-        try await self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
+        try await self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Mps {
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAdaptiveDynamicStreamingTemplatesResponse> {
-        self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAdaptiveDynamicStreamingTemplatesResponse> {
+        self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转自适应码流模板列表
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
-        try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAdaptiveDynamicStreamingTemplates(_ input: DescribeAdaptiveDynamicStreamingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
+        try await self.client.execute(action: "DescribeAdaptiveDynamicStreamingTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转自适应码流模板列表
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAdaptiveDynamicStreamingTemplatesResponse> {
-        self.describeAdaptiveDynamicStreamingTemplates(DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAdaptiveDynamicStreamingTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAdaptiveDynamicStreamingTemplatesResponse> {
+        self.describeAdaptiveDynamicStreamingTemplates(DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转自适应码流模板列表
     ///
     /// 查询转自适应码流模板，支持根据条件，分页查询。
     @inlinable
-    public func describeAdaptiveDynamicStreamingTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
-        try await self.describeAdaptiveDynamicStreamingTemplates(DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAdaptiveDynamicStreamingTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAdaptiveDynamicStreamingTemplatesResponse {
+        try await self.describeAdaptiveDynamicStreamingTemplates(DescribeAdaptiveDynamicStreamingTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

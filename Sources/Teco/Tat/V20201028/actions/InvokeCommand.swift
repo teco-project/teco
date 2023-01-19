@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,8 +95,8 @@ extension Tat {
     /// * 指定的实例需要处于 RUNNING 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func invokeCommand(_ input: InvokeCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeCommandResponse> {
-        self.client.execute(action: "InvokeCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func invokeCommand(_ input: InvokeCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeCommandResponse> {
+        self.client.execute(action: "InvokeCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 触发命令
@@ -108,8 +108,8 @@ extension Tat {
     /// * 指定的实例需要处于 RUNNING 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func invokeCommand(_ input: InvokeCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
-        try await self.client.execute(action: "InvokeCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func invokeCommand(_ input: InvokeCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
+        try await self.client.execute(action: "InvokeCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 触发命令
@@ -121,8 +121,8 @@ extension Tat {
     /// * 指定的实例需要处于 RUNNING 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeCommandResponse> {
-        self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeCommandResponse> {
+        self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 触发命令
@@ -134,7 +134,7 @@ extension Tat {
     /// * 指定的实例需要处于 RUNNING 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
-        try await self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func invokeCommand(commandId: String, instanceIds: [String], parameters: String? = nil, username: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeCommandResponse {
+        try await self.invokeCommand(InvokeCommandRequest(commandId: commandId, instanceIds: instanceIds, parameters: parameters, username: username, workingDirectory: workingDirectory, timeout: timeout, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

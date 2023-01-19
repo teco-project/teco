@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Wedata {
 
     /// 获取离线任务实例
     @inlinable
-    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOfflineInstanceListResponse> {
-        self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOfflineInstanceListResponse> {
+        self.client.execute(action: "GetOfflineInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取离线任务实例
     @inlinable
-    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
-        try await self.client.execute(action: "GetOfflineInstanceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getOfflineInstanceList(_ input: GetOfflineInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
+        try await self.client.execute(action: "GetOfflineInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取离线任务实例
     @inlinable
-    public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOfflineInstanceListResponse> {
-        self.getOfflineInstanceList(GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), logger: logger, on: eventLoop)
+    public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOfflineInstanceListResponse> {
+        self.getOfflineInstanceList(GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取离线任务实例
     @inlinable
-    public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
-        try await self.getOfflineInstanceList(GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), logger: logger, on: eventLoop)
+    public func getOfflineInstanceList(pageIndex: String, pageSize: UInt64, projectId: String, searchCondition: SearchCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOfflineInstanceListResponse {
+        try await self.getOfflineInstanceList(GetOfflineInstanceListRequest(pageIndex: pageIndex, pageSize: pageSize, projectId: projectId, searchCondition: searchCondition), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ckafka {
     ///
     /// 查询最新消息列表
     @inlinable
-    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchLatestDatahubMessageListResponse> {
-        self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchLatestDatahubMessageListResponse> {
+        self.client.execute(action: "FetchLatestDatahubMessageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic最新消息列表
     ///
     /// 查询最新消息列表
     @inlinable
-    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
-        try await self.client.execute(action: "FetchLatestDatahubMessageList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func fetchLatestDatahubMessageList(_ input: FetchLatestDatahubMessageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
+        try await self.client.execute(action: "FetchLatestDatahubMessageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Datahub Topic最新消息列表
     ///
     /// 查询最新消息列表
     @inlinable
-    public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchLatestDatahubMessageListResponse> {
-        self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), logger: logger, on: eventLoop)
+    public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchLatestDatahubMessageListResponse> {
+        self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic最新消息列表
     ///
     /// 查询最新消息列表
     @inlinable
-    public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
-        try await self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), logger: logger, on: eventLoop)
+    public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
+        try await self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Ssl {
     ///
     /// 批量修改证书所属项目。
     @inlinable
-    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateProjectResponse> {
-        self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateProjectResponse> {
+        self.client.execute(action: "ModifyCertificateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改证书所属项目
     ///
     /// 批量修改证书所属项目。
     @inlinable
-    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
-        try await self.client.execute(action: "ModifyCertificateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCertificateProject(_ input: ModifyCertificateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
+        try await self.client.execute(action: "ModifyCertificateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改证书所属项目
     ///
     /// 批量修改证书所属项目。
     @inlinable
-    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateProjectResponse> {
-        self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateProjectResponse> {
+        self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改证书所属项目
     ///
     /// 批量修改证书所属项目。
     @inlinable
-    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
-        try await self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
+        try await self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

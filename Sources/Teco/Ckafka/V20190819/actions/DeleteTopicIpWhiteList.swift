@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Ckafka {
 
     /// 删除主题IP白名单
     @inlinable
-    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicIpWhiteListResponse> {
-        self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicIpWhiteListResponse> {
+        self.client.execute(action: "DeleteTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除主题IP白名单
     @inlinable
-    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
-        try await self.client.execute(action: "DeleteTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTopicIpWhiteList(_ input: DeleteTopicIpWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
+        try await self.client.execute(action: "DeleteTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除主题IP白名单
     @inlinable
-    public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicIpWhiteListResponse> {
-        self.deleteTopicIpWhiteList(DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicIpWhiteListResponse> {
+        self.deleteTopicIpWhiteList(DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除主题IP白名单
     @inlinable
-    public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
-        try await self.deleteTopicIpWhiteList(DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    public func deleteTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicIpWhiteListResponse {
+        try await self.deleteTopicIpWhiteList(DeleteTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 }

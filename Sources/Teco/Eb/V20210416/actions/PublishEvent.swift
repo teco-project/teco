@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Eb {
     ///
     /// （已废弃）用于Event事件投递
     @inlinable
-    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishEventResponse> {
-        self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishEvent(_ input: PublishEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishEventResponse> {
+        self.client.execute(action: "PublishEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Event事件投递
     ///
     /// （已废弃）用于Event事件投递
     @inlinable
-    public func publishEvent(_ input: PublishEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
-        try await self.client.execute(action: "PublishEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishEvent(_ input: PublishEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
+        try await self.client.execute(action: "PublishEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Event事件投递
     ///
     /// （已废弃）用于Event事件投递
     @inlinable
-    public func publishEvent(eventList: [Event], eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishEventResponse> {
-        self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    public func publishEvent(eventList: [Event], eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishEventResponse> {
+        self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 
     /// Event事件投递
     ///
     /// （已废弃）用于Event事件投递
     @inlinable
-    public func publishEvent(eventList: [Event], eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
-        try await self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), logger: logger, on: eventLoop)
+    public func publishEvent(eventList: [Event], eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
+        try await self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 }

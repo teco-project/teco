@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Kms {
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable
-    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
-        self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
+        self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable
-    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
-        try await self.client.execute(action: "CancelKeyArchive", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
+        try await self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable
-    public func cancelKeyArchive(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
-        self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
+        self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable
-    public func cancelKeyArchive(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
-        try await self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
+        try await self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

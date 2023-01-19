@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Tione {
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
-        self.client.execute(action: "DescribeTrainingTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
+        self.client.execute(action: "DescribeTrainingTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 模型训练任务列表
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTasksResponse {
-        try await self.client.execute(action: "DescribeTrainingTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrainingTasks(_ input: DescribeTrainingTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTasksResponse {
+        try await self.client.execute(action: "DescribeTrainingTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 模型训练任务列表
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
-        self.describeTrainingTasks(DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTasksResponse> {
+        self.describeTrainingTasks(DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型训练任务列表
     ///
     /// 训练任务列表
     @inlinable
-    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTasksResponse {
-        try await self.describeTrainingTasks(DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeTrainingTasks(filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTasksResponse {
+        try await self.describeTrainingTasks(DescribeTrainingTasksRequest(filters: filters, tagFilters: tagFilters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 }

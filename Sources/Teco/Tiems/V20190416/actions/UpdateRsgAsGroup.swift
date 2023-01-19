@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 更新资源组的伸缩组
     @inlinable
-    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
-        self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
+        self.client.execute(action: "UpdateRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新资源组的伸缩组
@@ -77,8 +77,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 更新资源组的伸缩组
     @inlinable
-    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
-        try await self.client.execute(action: "UpdateRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRsgAsGroup(_ input: UpdateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
+        try await self.client.execute(action: "UpdateRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新资源组的伸缩组
@@ -86,8 +86,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 更新资源组的伸缩组
     @inlinable
-    public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
-        self.updateRsgAsGroup(UpdateRsgAsGroupRequest(id: id, name: name, maxSize: maxSize, minSize: minSize, desiredSize: desiredSize), logger: logger, on: eventLoop)
+    public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRsgAsGroupResponse> {
+        self.updateRsgAsGroup(UpdateRsgAsGroupRequest(id: id, name: name, maxSize: maxSize, minSize: minSize, desiredSize: desiredSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新资源组的伸缩组
@@ -95,7 +95,7 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 更新资源组的伸缩组
     @inlinable
-    public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
-        try await self.updateRsgAsGroup(UpdateRsgAsGroupRequest(id: id, name: name, maxSize: maxSize, minSize: minSize, desiredSize: desiredSize), logger: logger, on: eventLoop)
+    public func updateRsgAsGroup(id: String, name: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRsgAsGroupResponse {
+        try await self.updateRsgAsGroup(UpdateRsgAsGroupRequest(id: id, name: name, maxSize: maxSize, minSize: minSize, desiredSize: desiredSize), region: region, logger: logger, on: eventLoop)
     }
 }

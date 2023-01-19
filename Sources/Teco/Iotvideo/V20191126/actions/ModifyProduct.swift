@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotvideo {
     ///
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProduct(_ input: ModifyProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
+        self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑产品信息
     ///
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProduct(_ input: ModifyProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑产品信息
     ///
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable
-    public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), logger: logger, on: eventLoop)
+    public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
+        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑产品信息
     ///
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable
-    public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), logger: logger, on: eventLoop)
+    public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), region: region, logger: logger, on: eventLoop)
     }
 }

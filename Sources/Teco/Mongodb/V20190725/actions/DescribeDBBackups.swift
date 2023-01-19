@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Mongodb {
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
-        self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
+        self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(_ input: DescribeDBBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
-        try await self.client.execute(action: "DescribeDBBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBBackups(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
+        try await self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
-        self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
+        self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
-    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
-        try await self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
+        try await self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

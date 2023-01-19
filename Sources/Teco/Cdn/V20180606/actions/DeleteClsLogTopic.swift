@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdn {
     ///
     /// DeleteClsLogTopic 用于删除日志主题。注意：删除后，所有该日志主题下绑定域名的日志将不再继续投递至该主题，已经投递的日志将会被全部清空。生效时间约为 5~15 分钟。
     @inlinable
-    public func deleteClsLogTopic(_ input: DeleteClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClsLogTopicResponse> {
-        self.client.execute(action: "DeleteClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteClsLogTopic(_ input: DeleteClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClsLogTopicResponse> {
+        self.client.execute(action: "DeleteClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除日志主题
     ///
     /// DeleteClsLogTopic 用于删除日志主题。注意：删除后，所有该日志主题下绑定域名的日志将不再继续投递至该主题，已经投递的日志将会被全部清空。生效时间约为 5~15 分钟。
     @inlinable
-    public func deleteClsLogTopic(_ input: DeleteClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClsLogTopicResponse {
-        try await self.client.execute(action: "DeleteClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteClsLogTopic(_ input: DeleteClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClsLogTopicResponse {
+        try await self.client.execute(action: "DeleteClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除日志主题
     ///
     /// DeleteClsLogTopic 用于删除日志主题。注意：删除后，所有该日志主题下绑定域名的日志将不再继续投递至该主题，已经投递的日志将会被全部清空。生效时间约为 5~15 分钟。
     @inlinable
-    public func deleteClsLogTopic(topicId: String, logsetId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClsLogTopicResponse> {
-        self.deleteClsLogTopic(DeleteClsLogTopicRequest(topicId: topicId, logsetId: logsetId, channel: channel), logger: logger, on: eventLoop)
+    public func deleteClsLogTopic(topicId: String, logsetId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClsLogTopicResponse> {
+        self.deleteClsLogTopic(DeleteClsLogTopicRequest(topicId: topicId, logsetId: logsetId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除日志主题
     ///
     /// DeleteClsLogTopic 用于删除日志主题。注意：删除后，所有该日志主题下绑定域名的日志将不再继续投递至该主题，已经投递的日志将会被全部清空。生效时间约为 5~15 分钟。
     @inlinable
-    public func deleteClsLogTopic(topicId: String, logsetId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClsLogTopicResponse {
-        try await self.deleteClsLogTopic(DeleteClsLogTopicRequest(topicId: topicId, logsetId: logsetId, channel: channel), logger: logger, on: eventLoop)
+    public func deleteClsLogTopic(topicId: String, logsetId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClsLogTopicResponse {
+        try await self.deleteClsLogTopic(DeleteClsLogTopicRequest(topicId: topicId, logsetId: logsetId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

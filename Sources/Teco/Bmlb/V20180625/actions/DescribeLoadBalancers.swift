@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -124,25 +124,25 @@ extension Bmlb {
 
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
-        self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
+        self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLoadBalancers(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
-        self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), logger: logger, on: eventLoop)
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
+        self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), logger: logger, on: eventLoop)
+    public func describeLoadBalancers(loadBalancerIds: [String]? = nil, loadBalancerType: String? = nil, loadBalancerName: String? = nil, domain: String? = nil, loadBalancerVips: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, projectId: UInt64? = nil, exclusive: UInt64? = nil, tgwSetType: String? = nil, vpcId: String? = nil, queryType: String? = nil, confId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
+        try await self.describeLoadBalancers(DescribeLoadBalancersRequest(loadBalancerIds: loadBalancerIds, loadBalancerType: loadBalancerType, loadBalancerName: loadBalancerName, domain: domain, loadBalancerVips: loadBalancerVips, offset: offset, limit: limit, searchKey: searchKey, orderBy: orderBy, orderType: orderType, projectId: projectId, exclusive: exclusive, tgwSetType: tgwSetType, vpcId: vpcId, queryType: queryType, confId: confId), region: region, logger: logger, on: eventLoop)
     }
 }

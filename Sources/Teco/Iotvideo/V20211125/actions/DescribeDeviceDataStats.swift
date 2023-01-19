@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Iotvideo {
 
     /// 查询设备数据统计
     @inlinable
-    public func describeDeviceDataStats(_ input: DescribeDeviceDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataStatsResponse> {
-        self.client.execute(action: "DescribeDeviceDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceDataStats(_ input: DescribeDeviceDataStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataStatsResponse> {
+        self.client.execute(action: "DescribeDeviceDataStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备数据统计
     @inlinable
-    public func describeDeviceDataStats(_ input: DescribeDeviceDataStatsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataStatsResponse {
-        try await self.client.execute(action: "DescribeDeviceDataStats", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceDataStats(_ input: DescribeDeviceDataStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataStatsResponse {
+        try await self.client.execute(action: "DescribeDeviceDataStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备数据统计
     @inlinable
-    public func describeDeviceDataStats(startDate: String, endDate: String, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataStatsResponse> {
-        self.describeDeviceDataStats(DescribeDeviceDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), logger: logger, on: eventLoop)
+    public func describeDeviceDataStats(startDate: String, endDate: String, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataStatsResponse> {
+        self.describeDeviceDataStats(DescribeDeviceDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备数据统计
     @inlinable
-    public func describeDeviceDataStats(startDate: String, endDate: String, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataStatsResponse {
-        try await self.describeDeviceDataStats(DescribeDeviceDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), logger: logger, on: eventLoop)
+    public func describeDeviceDataStats(startDate: String, endDate: String, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataStatsResponse {
+        try await self.describeDeviceDataStats(DescribeDeviceDataStatsRequest(startDate: startDate, endDate: endDate, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

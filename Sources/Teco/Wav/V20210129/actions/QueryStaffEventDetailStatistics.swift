@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Wav {
     ///
     /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
-    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryStaffEventDetailStatisticsResponse> {
-        self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryStaffEventDetailStatisticsResponse> {
+        self.client.execute(action: "QueryStaffEventDetailStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业成员SaaS使用明细数据接口
     ///
     /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
-    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
-        try await self.client.execute(action: "QueryStaffEventDetailStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryStaffEventDetailStatistics(_ input: QueryStaffEventDetailStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
+        try await self.client.execute(action: "QueryStaffEventDetailStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 企业成员SaaS使用明细数据接口
     ///
     /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
-    public func queryStaffEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryStaffEventDetailStatisticsResponse> {
-        self.queryStaffEventDetailStatistics(QueryStaffEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryStaffEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryStaffEventDetailStatisticsResponse> {
+        self.queryStaffEventDetailStatistics(QueryStaffEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业成员SaaS使用明细数据接口
     ///
     /// 通过接口拉取SaaS内企业成员在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
-    public func queryStaffEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
-        try await self.queryStaffEventDetailStatistics(QueryStaffEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryStaffEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryStaffEventDetailStatisticsResponse {
+        try await self.queryStaffEventDetailStatistics(QueryStaffEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

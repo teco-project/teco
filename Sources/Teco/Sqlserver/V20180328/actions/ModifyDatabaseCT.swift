@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Sqlserver {
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
-        self.client.execute(action: "ModifyDatabaseCT", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
+        self.client.execute(action: "ModifyDatabaseCT", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
-        try await self.client.execute(action: "ModifyDatabaseCT", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDatabaseCT(_ input: ModifyDatabaseCTRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
+        try await self.client.execute(action: "ModifyDatabaseCT", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
-        self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), logger: logger, on: eventLoop)
+    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCTResponse> {
+        self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用&禁用数据库CT
     ///
     /// 本接口(ModifyDatabaseCT)用于启用、禁用数据库数据变更跟踪(CT)
     @inlinable
-    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
-        try await self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), logger: logger, on: eventLoop)
+    public func modifyDatabaseCT(dbNames: [String], modifyType: String, instanceId: String, changeRetentionDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCTResponse {
+        try await self.modifyDatabaseCT(ModifyDatabaseCTRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId, changeRetentionDay: changeRetentionDay), region: region, logger: logger, on: eventLoop)
     }
 }

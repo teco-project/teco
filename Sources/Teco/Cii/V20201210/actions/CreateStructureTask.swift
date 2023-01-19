@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Cii {
     ///
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
-    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
-        self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStructureTask(_ input: CreateStructureTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
+        self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建结构化任务
     ///
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
-    public func createStructureTask(_ input: CreateStructureTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
-        try await self.client.execute(action: "CreateStructureTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStructureTask(_ input: CreateStructureTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
+        try await self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建结构化任务
     ///
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
-    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
-        self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), logger: logger, on: eventLoop)
+    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
+        self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建结构化任务
     ///
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
-    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
-        try await self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), logger: logger, on: eventLoop)
+    public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
+        try await self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), region: region, logger: logger, on: eventLoop)
     }
 }

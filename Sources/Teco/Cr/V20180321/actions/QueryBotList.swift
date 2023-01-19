@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cr {
 
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
-        self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBotList(_ input: QueryBotListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
+        self.client.execute(action: "QueryBotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(_ input: QueryBotListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
-        try await self.client.execute(action: "QueryBotList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBotList(_ input: QueryBotListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
+        try await self.client.execute(action: "QueryBotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
-        self.queryBotList(QueryBotListRequest(module: module, operation: operation), logger: logger, on: eventLoop)
+    public func queryBotList(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
+        self.queryBotList(QueryBotListRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人任务状态列表
     @inlinable
-    public func queryBotList(module: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
-        try await self.queryBotList(QueryBotListRequest(module: module, operation: operation), logger: logger, on: eventLoop)
+    public func queryBotList(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
+        try await self.queryBotList(QueryBotListRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 }

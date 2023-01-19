@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cfw {
 
     /// 中止安全组规则下发
     @inlinable
-    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSecurityGroupRuleDispatchResponse> {
-        self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSecurityGroupRuleDispatchResponse> {
+        self.client.execute(action: "StopSecurityGroupRuleDispatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 中止安全组规则下发
     @inlinable
-    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
-        try await self.client.execute(action: "StopSecurityGroupRuleDispatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopSecurityGroupRuleDispatch(_ input: StopSecurityGroupRuleDispatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
+        try await self.client.execute(action: "StopSecurityGroupRuleDispatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 中止安全组规则下发
     @inlinable
-    public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSecurityGroupRuleDispatchResponse> {
-        self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), logger: logger, on: eventLoop)
+    public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSecurityGroupRuleDispatchResponse> {
+        self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 中止安全组规则下发
     @inlinable
-    public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
-        try await self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), logger: logger, on: eventLoop)
+    public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
+        try await self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), region: region, logger: logger, on: eventLoop)
     }
 }

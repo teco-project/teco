@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Partners {
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable
-    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
-        self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
+        self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable
-    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
-        try await self.client.execute(action: "AgentTransferMoney", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func agentTransferMoney(_ input: AgentTransferMoneyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
+        try await self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable
-    public func agentTransferMoney(clientUin: String, amount: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
-        self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), logger: logger, on: eventLoop)
+    public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
+        self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable
-    public func agentTransferMoney(clientUin: String, amount: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
-        try await self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), logger: logger, on: eventLoop)
+    public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
+        try await self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
     }
 }

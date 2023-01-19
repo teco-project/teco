@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Eiam {
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
-    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationAuthorizationsResponse> {
-        self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationAuthorizationsResponse> {
+        self.client.execute(action: "ListApplicationAuthorizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 应用授权关系列表信息
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
-    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
-        try await self.client.execute(action: "ListApplicationAuthorizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listApplicationAuthorizations(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
+        try await self.client.execute(action: "ListApplicationAuthorizations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 应用授权关系列表信息
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
-    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationAuthorizationsResponse> {
-        self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListApplicationAuthorizationsResponse> {
+        self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用授权关系列表信息
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
-    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
-        try await self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listApplicationAuthorizations(entityType: String, searchCondition: AuthorizationInfoSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListApplicationAuthorizationsResponse {
+        try await self.listApplicationAuthorizations(ListApplicationAuthorizationsRequest(entityType: entityType, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

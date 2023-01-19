@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable
-    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunPrometheusInstanceResponse> {
-        self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunPrometheusInstanceResponse> {
+        self.client.execute(action: "RunPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化TMP实例
     ///
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable
-    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
-        try await self.client.execute(action: "RunPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runPrometheusInstance(_ input: RunPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
+        try await self.client.execute(action: "RunPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 初始化TMP实例
     ///
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable
-    public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunPrometheusInstanceResponse> {
-        self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunPrometheusInstanceResponse> {
+        self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 初始化TMP实例
     ///
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable
-    public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
-        try await self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
+        try await self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

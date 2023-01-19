@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tic {
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
-        self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteStackVersion(_ input: DeleteStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
+        self.client.execute(action: "DeleteStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(_ input: DeleteStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
-        try await self.client.execute(action: "DeleteStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteStackVersion(_ input: DeleteStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
+        try await self.client.execute(action: "DeleteStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
-        self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), logger: logger, on: eventLoop)
+    public func deleteStackVersion(versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
+        self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
     @inlinable
-    public func deleteStackVersion(versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
-        try await self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), logger: logger, on: eventLoop)
+    public func deleteStackVersion(versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
+        try await self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

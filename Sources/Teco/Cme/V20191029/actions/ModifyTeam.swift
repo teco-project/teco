@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Cme {
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
     @inlinable
-    public func modifyTeam(_ input: ModifyTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
-        self.client.execute(action: "ModifyTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTeam(_ input: ModifyTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
+        self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改团队信息
@@ -68,8 +68,8 @@ extension Cme {
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
     @inlinable
-    public func modifyTeam(_ input: ModifyTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
-        try await self.client.execute(action: "ModifyTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTeam(_ input: ModifyTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
+        try await self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改团队信息
@@ -77,8 +77,8 @@ extension Cme {
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
     @inlinable
-    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
-        self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), logger: logger, on: eventLoop)
+    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
+        self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改团队信息
@@ -86,7 +86,7 @@ extension Cme {
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
     @inlinable
-    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
-        try await self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), logger: logger, on: eventLoop)
+    public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
+        try await self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

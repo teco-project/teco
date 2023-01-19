@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,8 +98,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流
     @inlinable
-    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowInfoResponse> {
-        self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowInfoResponse> {
+        self.client.execute(action: "ModifyWorkflowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新工作流【Beta版本】
@@ -107,8 +107,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流
     @inlinable
-    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
-        try await self.client.execute(action: "ModifyWorkflowInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWorkflowInfo(_ input: ModifyWorkflowInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
+        try await self.client.execute(action: "ModifyWorkflowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新工作流【Beta版本】
@@ -116,8 +116,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流
     @inlinable
-    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowInfoResponse> {
-        self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), logger: logger, on: eventLoop)
+    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowInfoResponse> {
+        self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新工作流【Beta版本】
@@ -125,7 +125,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流
     @inlinable
-    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
-        try await self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), logger: logger, on: eventLoop)
+    public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
+        try await self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), region: region, logger: logger, on: eventLoop)
     }
 }

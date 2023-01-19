@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Waf {
 
     /// 开启或禁用自定义策略
     @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleStatusResponse> {
-        self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleStatusResponse> {
+        self.client.execute(action: "ModifyCustomRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或禁用自定义策略
     @inlinable
-    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
-        try await self.client.execute(action: "ModifyCustomRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomRuleStatus(_ input: ModifyCustomRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.client.execute(action: "ModifyCustomRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或禁用自定义策略
     @inlinable
-    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleStatusResponse> {
-        self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), logger: logger, on: eventLoop)
+    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleStatusResponse> {
+        self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或禁用自定义策略
     @inlinable
-    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
-        try await self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), logger: logger, on: eventLoop)
+    public func modifyCustomRuleStatus(domain: String, ruleId: UInt64, status: UInt64, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
+        try await self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(domain: domain, ruleId: ruleId, status: status, edition: edition), region: region, logger: logger, on: eventLoop)
     }
 }

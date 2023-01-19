@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,25 +91,25 @@ extension Wedata {
 
     /// 查询实时任务日志列表
     @inlinable
-    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamTaskLogListResponse> {
-        self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamTaskLogListResponse> {
+        self.client.execute(action: "DescribeStreamTaskLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实时任务日志列表
     @inlinable
-    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
-        try await self.client.execute(action: "DescribeStreamTaskLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamTaskLogList(_ input: DescribeStreamTaskLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
+        try await self.client.execute(action: "DescribeStreamTaskLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实时任务日志列表
     @inlinable
-    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamTaskLogListResponse> {
-        self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), logger: logger, on: eventLoop)
+    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamTaskLogListResponse> {
+        self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时任务日志列表
     @inlinable
-    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
-        try await self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), logger: logger, on: eventLoop)
+    public func describeStreamTaskLogList(projectId: String, taskId: String, jobId: String, endTime: UInt64, startTime: UInt64, container: String? = nil, limit: UInt64? = nil, orderType: String? = nil, runningOrderId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamTaskLogListResponse {
+        try await self.describeStreamTaskLogList(DescribeStreamTaskLogListRequest(projectId: projectId, taskId: taskId, jobId: jobId, endTime: endTime, startTime: startTime, container: container, limit: limit, orderType: orderType, runningOrderId: runningOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

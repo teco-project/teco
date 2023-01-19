@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -142,31 +142,31 @@ extension Npp {
     ///
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
-    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVirtualNumResponse> {
-        self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getVirtualNum(_ input: GetVirtualNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVirtualNumResponse> {
+        self.client.execute(action: "GetVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直拨获取中间号
     ///
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
-    public func getVirtualNum(_ input: GetVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
-        try await self.client.execute(action: "GetVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getVirtualNum(_ input: GetVirtualNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
+        try await self.client.execute(action: "GetVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直拨获取中间号
     ///
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
-    public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVirtualNumResponse> {
-        self.getVirtualNum(GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), logger: logger, on: eventLoop)
+    public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVirtualNumResponse> {
+        self.getVirtualNum(GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直拨获取中间号
     ///
     /// 直拨获取中间号（App 使用方发起）
     @inlinable
-    public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
-        try await self.getVirtualNum(GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), logger: logger, on: eventLoop)
+    public func getVirtualNum(bizAppId: String, dst: String, src: String? = nil, accreditList: [String]? = nil, assignVirtualNum: String? = nil, record: String? = nil, cityId: String? = nil, bizId: String? = nil, maxAssignTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVirtualNumResponse {
+        try await self.getVirtualNum(GetVirtualNumRequest(bizAppId: bizAppId, dst: dst, src: src, accreditList: accreditList, assignVirtualNum: assignVirtualNum, record: record, cityId: cityId, bizId: bizId, maxAssignTime: maxAssignTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl), region: region, logger: logger, on: eventLoop)
     }
 }

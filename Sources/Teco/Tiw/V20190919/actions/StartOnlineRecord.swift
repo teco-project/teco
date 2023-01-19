@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,31 +127,31 @@ extension Tiw {
     ///
     /// 发起一个实时录制任务
     @inlinable
-    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartOnlineRecordResponse> {
-        self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startOnlineRecord(_ input: StartOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartOnlineRecordResponse> {
+        self.client.execute(action: "StartOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开始实时录制
     ///
     /// 发起一个实时录制任务
     @inlinable
-    public func startOnlineRecord(_ input: StartOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
-        try await self.client.execute(action: "StartOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startOnlineRecord(_ input: StartOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
+        try await self.client.execute(action: "StartOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开始实时录制
     ///
     /// 发起一个实时录制任务
     @inlinable
-    public func startOnlineRecord(sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String? = nil, concat: Concat? = nil, whiteboard: Whiteboard? = nil, mixStream: MixStream? = nil, extras: [String]? = nil, audioFileNeeded: Bool? = nil, recordControl: RecordControl? = nil, recordMode: String? = nil, chatGroupId: String? = nil, autoStopTimeout: Int64? = nil, extraData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartOnlineRecordResponse> {
-        self.startOnlineRecord(StartOnlineRecordRequest(sdkAppId: sdkAppId, roomId: roomId, recordUserId: recordUserId, recordUserSig: recordUserSig, groupId: groupId, concat: concat, whiteboard: whiteboard, mixStream: mixStream, extras: extras, audioFileNeeded: audioFileNeeded, recordControl: recordControl, recordMode: recordMode, chatGroupId: chatGroupId, autoStopTimeout: autoStopTimeout, extraData: extraData), logger: logger, on: eventLoop)
+    public func startOnlineRecord(sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String? = nil, concat: Concat? = nil, whiteboard: Whiteboard? = nil, mixStream: MixStream? = nil, extras: [String]? = nil, audioFileNeeded: Bool? = nil, recordControl: RecordControl? = nil, recordMode: String? = nil, chatGroupId: String? = nil, autoStopTimeout: Int64? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartOnlineRecordResponse> {
+        self.startOnlineRecord(StartOnlineRecordRequest(sdkAppId: sdkAppId, roomId: roomId, recordUserId: recordUserId, recordUserSig: recordUserSig, groupId: groupId, concat: concat, whiteboard: whiteboard, mixStream: mixStream, extras: extras, audioFileNeeded: audioFileNeeded, recordControl: recordControl, recordMode: recordMode, chatGroupId: chatGroupId, autoStopTimeout: autoStopTimeout, extraData: extraData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始实时录制
     ///
     /// 发起一个实时录制任务
     @inlinable
-    public func startOnlineRecord(sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String? = nil, concat: Concat? = nil, whiteboard: Whiteboard? = nil, mixStream: MixStream? = nil, extras: [String]? = nil, audioFileNeeded: Bool? = nil, recordControl: RecordControl? = nil, recordMode: String? = nil, chatGroupId: String? = nil, autoStopTimeout: Int64? = nil, extraData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
-        try await self.startOnlineRecord(StartOnlineRecordRequest(sdkAppId: sdkAppId, roomId: roomId, recordUserId: recordUserId, recordUserSig: recordUserSig, groupId: groupId, concat: concat, whiteboard: whiteboard, mixStream: mixStream, extras: extras, audioFileNeeded: audioFileNeeded, recordControl: recordControl, recordMode: recordMode, chatGroupId: chatGroupId, autoStopTimeout: autoStopTimeout, extraData: extraData), logger: logger, on: eventLoop)
+    public func startOnlineRecord(sdkAppId: Int64, roomId: Int64, recordUserId: String, recordUserSig: String, groupId: String? = nil, concat: Concat? = nil, whiteboard: Whiteboard? = nil, mixStream: MixStream? = nil, extras: [String]? = nil, audioFileNeeded: Bool? = nil, recordControl: RecordControl? = nil, recordMode: String? = nil, chatGroupId: String? = nil, autoStopTimeout: Int64? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartOnlineRecordResponse {
+        try await self.startOnlineRecord(StartOnlineRecordRequest(sdkAppId: sdkAppId, roomId: roomId, recordUserId: recordUserId, recordUserSig: recordUserSig, groupId: groupId, concat: concat, whiteboard: whiteboard, mixStream: mixStream, extras: extras, audioFileNeeded: audioFileNeeded, recordControl: recordControl, recordMode: recordMode, chatGroupId: chatGroupId, autoStopTimeout: autoStopTimeout, extraData: extraData), region: region, logger: logger, on: eventLoop)
     }
 }

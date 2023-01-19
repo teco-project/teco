@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Live {
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
-        self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dropLiveStream(_ input: DropLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
+        self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 断开直播推流
@@ -63,8 +63,8 @@ extension Live {
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(_ input: DropLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
-        try await self.client.execute(action: "DropLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dropLiveStream(_ input: DropLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
+        try await self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 断开直播推流
@@ -72,8 +72,8 @@ extension Live {
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(streamName: String, domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
-        self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), logger: logger, on: eventLoop)
+    public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
+        self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 断开直播推流
@@ -81,7 +81,7 @@ extension Live {
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
     @inlinable
-    public func dropLiveStream(streamName: String, domainName: String, appName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
-        try await self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), logger: logger, on: eventLoop)
+    public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
+        try await self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 }

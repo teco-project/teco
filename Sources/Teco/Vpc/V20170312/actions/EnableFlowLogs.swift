@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
     @inlinable
-    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
-        self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableFlowLogs(_ input: EnableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
+        self.client.execute(action: "EnableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
     @inlinable
-    public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
-        try await self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableFlowLogs(_ input: EnableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
+        try await self.client.execute(action: "EnableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
     @inlinable
-    public func enableFlowLogs(flowLogIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
-        self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), logger: logger, on: eventLoop)
+    public func enableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
+        self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
     @inlinable
-    public func enableFlowLogs(flowLogIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
-        try await self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), logger: logger, on: eventLoop)
+    public func enableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
+        try await self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }
 }

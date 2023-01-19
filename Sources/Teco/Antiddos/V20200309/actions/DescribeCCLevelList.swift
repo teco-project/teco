@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Antiddos {
     ///
     /// 获取边界防护CC防护等级列表
     @inlinable
-    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelListResponse> {
-        self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelListResponse> {
+        self.client.execute(action: "DescribeCCLevelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护等级列表
     ///
     /// 获取边界防护CC防护等级列表
     @inlinable
-    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
-        try await self.client.execute(action: "DescribeCCLevelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCLevelList(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
+        try await self.client.execute(action: "DescribeCCLevelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC防护等级列表
     ///
     /// 获取边界防护CC防护等级列表
     @inlinable
-    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelListResponse> {
-        self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCLevelListResponse> {
+        self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护等级列表
     ///
     /// 获取边界防护CC防护等级列表
     @inlinable
-    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
-        try await self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCCLevelList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCLevelListResponse {
+        try await self.describeCCLevelList(DescribeCCLevelListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

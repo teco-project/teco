@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateBackupMigration）用于创建备份导入任务。
     @inlinable
-    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupMigrationResponse> {
-        self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBackupMigration(_ input: CreateBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupMigrationResponse> {
+        self.client.execute(action: "CreateBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建备份导入任务
     ///
     /// 本接口（CreateBackupMigration）用于创建备份导入任务。
     @inlinable
-    public func createBackupMigration(_ input: CreateBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
-        try await self.client.execute(action: "CreateBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBackupMigration(_ input: CreateBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
+        try await self.client.execute(action: "CreateBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建备份导入任务
     ///
     /// 本接口（CreateBackupMigration）用于创建备份导入任务。
     @inlinable
-    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupMigrationResponse> {
-        self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupMigrationResponse> {
+        self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建备份导入任务
     ///
     /// 本接口（CreateBackupMigration）用于创建备份导入任务。
     @inlinable
-    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
-        try await self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), logger: logger, on: eventLoop)
+    public func createBackupMigration(instanceId: String, recoveryType: String, uploadType: String, migrationName: String, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupMigrationResponse {
+        try await self.createBackupMigration(CreateBackupMigrationRequest(instanceId: instanceId, recoveryType: recoveryType, uploadType: uploadType, migrationName: migrationName, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
     }
 }

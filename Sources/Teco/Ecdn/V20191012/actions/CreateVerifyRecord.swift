@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func createVerifyRecord(_ input: CreateVerifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        self.client.execute(action: "CreateVerifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
+        self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成解析记录
@@ -65,8 +65,8 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func createVerifyRecord(_ input: CreateVerifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        try await self.client.execute(action: "CreateVerifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVerifyRecord(_ input: CreateVerifyRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
+        try await self.client.execute(action: "CreateVerifyRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成解析记录
@@ -74,8 +74,8 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func createVerifyRecord(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
-        self.createVerifyRecord(CreateVerifyRecordRequest(domain: domain), logger: logger, on: eventLoop)
+    public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVerifyRecordResponse> {
+        self.createVerifyRecord(CreateVerifyRecordRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成解析记录
@@ -83,7 +83,7 @@ extension Ecdn {
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="	https://cloud.tencent.com/document/api/228/48118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func createVerifyRecord(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
-        try await self.createVerifyRecord(CreateVerifyRecordRequest(domain: domain), logger: logger, on: eventLoop)
+    public func createVerifyRecord(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
+        try await self.createVerifyRecord(CreateVerifyRecordRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

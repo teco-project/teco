@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Vpc {
     /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
-    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclResponse> {
-        self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetworkAcl(_ input: CreateNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclResponse> {
+        self.client.execute(action: "CreateNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建网络ACL
@@ -72,8 +72,8 @@ extension Vpc {
     /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
-    public func createNetworkAcl(_ input: CreateNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
-        try await self.client.execute(action: "CreateNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetworkAcl(_ input: CreateNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
+        try await self.client.execute(action: "CreateNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建网络ACL
@@ -81,8 +81,8 @@ extension Vpc {
     /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
-    public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclResponse> {
-        self.createNetworkAcl(CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), logger: logger, on: eventLoop)
+    public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclResponse> {
+        self.createNetworkAcl(CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网络ACL
@@ -90,7 +90,7 @@ extension Vpc {
     /// 本接口（CreateNetworkAcl）用于创建新的<a href="https://cloud.tencent.com/document/product/215/20088">网络ACL</a>。
     /// * 新建的网络ACL的入站和出站规则默认都是全部拒绝，在创建后通常您需要再调用ModifyNetworkAclEntries将网络ACL的规则设置为需要的规则。
     @inlinable
-    public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
-        try await self.createNetworkAcl(CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), logger: logger, on: eventLoop)
+    public func createNetworkAcl(vpcId: String, networkAclName: String, networkAclType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclResponse {
+        try await self.createNetworkAcl(CreateNetworkAclRequest(vpcId: vpcId, networkAclName: networkAclName, networkAclType: networkAclType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

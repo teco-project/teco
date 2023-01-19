@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cam {
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
-        self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
+        self.client.execute(action: "CreatePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
-        try await self.client.execute(action: "CreatePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPolicyVersion(_ input: CreatePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
+        try await self.client.execute(action: "CreatePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
-        self.createPolicyVersion(CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), logger: logger, on: eventLoop)
+    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyVersionResponse> {
+        self.createPolicyVersion(CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增策略版本接口
     ///
     /// 该接口（CreatePolicyVersion）用于新增策略版本，用户创建了一个策略版本之后可以方便的通过变更策略版本的方式来变更策略。
     @inlinable
-    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
-        try await self.createPolicyVersion(CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), logger: logger, on: eventLoop)
+    public func createPolicyVersion(policyId: UInt64, policyDocument: String, setAsDefault: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyVersionResponse {
+        try await self.createPolicyVersion(CreatePolicyVersionRequest(policyId: policyId, policyDocument: policyDocument, setAsDefault: setAsDefault), region: region, logger: logger, on: eventLoop)
     }
 }

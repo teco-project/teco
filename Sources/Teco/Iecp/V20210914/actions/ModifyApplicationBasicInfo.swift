@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 修改应用模板基本信息
     @inlinable
-    public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
-        self.client.execute(action: "ModifyApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
+        self.client.execute(action: "ModifyApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板基本信息
     @inlinable
-    public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
-        try await self.client.execute(action: "ModifyApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
+        try await self.client.execute(action: "ModifyApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用模板基本信息
     @inlinable
-    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
-        self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
+        self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板基本信息
     @inlinable
-    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
-        try await self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
+        try await self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }
 }

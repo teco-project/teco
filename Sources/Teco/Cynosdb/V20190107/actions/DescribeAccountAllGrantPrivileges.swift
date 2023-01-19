@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Cynosdb {
 
     /// 账号所有权限
     @inlinable
-    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
-        self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
+        self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 账号所有权限
     @inlinable
-    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
-        try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountAllGrantPrivileges(_ input: DescribeAccountAllGrantPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
+        try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 账号所有权限
     @inlinable
-    public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
-        self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), logger: logger, on: eventLoop)
+    public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
+        self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)
     }
 
     /// 账号所有权限
     @inlinable
-    public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
-        try await self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), logger: logger, on: eventLoop)
+    public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
+        try await self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)
     }
 }

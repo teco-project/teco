@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Bmvpc {
 
     /// 删除黑石路由表路由规则
     @inlinable
-    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutePolicyResponse> {
-        self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutePolicyResponse> {
+        self.client.execute(action: "DeleteRoutePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除黑石路由表路由规则
     @inlinable
-    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
-        try await self.client.execute(action: "DeleteRoutePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRoutePolicy(_ input: DeleteRoutePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
+        try await self.client.execute(action: "DeleteRoutePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除黑石路由表路由规则
     @inlinable
-    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutePolicyResponse> {
-        self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), logger: logger, on: eventLoop)
+    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutePolicyResponse> {
+        self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除黑石路由表路由规则
     @inlinable
-    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
-        try await self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), logger: logger, on: eventLoop)
+    public func deleteRoutePolicy(routeTableId: String, routePolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutePolicyResponse {
+        try await self.deleteRoutePolicy(DeleteRoutePolicyRequest(routeTableId: routeTableId, routePolicyId: routePolicyId), region: region, logger: logger, on: eventLoop)
     }
 }

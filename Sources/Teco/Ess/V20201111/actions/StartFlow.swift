@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Ess {
     /// 适用场景：见创建签署流程接口。
     /// 注：该接口是“创建电子文档”接口的后置接口，用于激活包含完整合同信息（模板及内容信息）的流程。激活后的流程就是一份待签署的电子合同。
     @inlinable
-    public func startFlow(_ input: StartFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFlowResponse> {
-        self.client.execute(action: "StartFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startFlow(_ input: StartFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFlowResponse> {
+        self.client.execute(action: "StartFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起流程
@@ -74,8 +74,8 @@ extension Ess {
     /// 适用场景：见创建签署流程接口。
     /// 注：该接口是“创建电子文档”接口的后置接口，用于激活包含完整合同信息（模板及内容信息）的流程。激活后的流程就是一份待签署的电子合同。
     @inlinable
-    public func startFlow(_ input: StartFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFlowResponse {
-        try await self.client.execute(action: "StartFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startFlow(_ input: StartFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFlowResponse {
+        try await self.client.execute(action: "StartFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起流程
@@ -84,8 +84,8 @@ extension Ess {
     /// 适用场景：见创建签署流程接口。
     /// 注：该接口是“创建电子文档”接口的后置接口，用于激活包含完整合同信息（模板及内容信息）的流程。激活后的流程就是一份待签署的电子合同。
     @inlinable
-    public func startFlow(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFlowResponse> {
-        self.startFlow(StartFlowRequest(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent), logger: logger, on: eventLoop)
+    public func startFlow(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFlowResponse> {
+        self.startFlow(StartFlowRequest(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起流程
@@ -94,7 +94,7 @@ extension Ess {
     /// 适用场景：见创建签署流程接口。
     /// 注：该接口是“创建电子文档”接口的后置接口，用于激活包含完整合同信息（模板及内容信息）的流程。激活后的流程就是一份待签署的电子合同。
     @inlinable
-    public func startFlow(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFlowResponse {
-        try await self.startFlow(StartFlowRequest(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent), logger: logger, on: eventLoop)
+    public func startFlow(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFlowResponse {
+        try await self.startFlow(StartFlowRequest(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

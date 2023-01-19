@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Vod {
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable
-    public func confirmEvents(_ input: ConfirmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
-        self.client.execute(action: "ConfirmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func confirmEvents(_ input: ConfirmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
+        self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 确认事件通知
@@ -66,8 +66,8 @@ extension Vod {
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable
-    public func confirmEvents(_ input: ConfirmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
-        try await self.client.execute(action: "ConfirmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func confirmEvents(_ input: ConfirmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
+        try await self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 确认事件通知
@@ -76,8 +76,8 @@ extension Vod {
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable
-    public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
-        self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
+        self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 确认事件通知
@@ -86,7 +86,7 @@ extension Vod {
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable
-    public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
-        try await self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
+        try await self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

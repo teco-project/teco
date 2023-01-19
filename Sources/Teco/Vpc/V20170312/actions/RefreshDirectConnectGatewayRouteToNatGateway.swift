@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Vpc {
     ///
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDirectConnectGatewayRouteToNatGatewayResponse> {
-        self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDirectConnectGatewayRouteToNatGatewayResponse> {
+        self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新专线直连NAT路由
     ///
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
-        try await self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refreshDirectConnectGatewayRouteToNatGateway(_ input: RefreshDirectConnectGatewayRouteToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
+        try await self.client.execute(action: "RefreshDirectConnectGatewayRouteToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新专线直连NAT路由
     ///
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDirectConnectGatewayRouteToNatGatewayResponse> {
-        self.refreshDirectConnectGatewayRouteToNatGateway(RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDirectConnectGatewayRouteToNatGatewayResponse> {
+        self.refreshDirectConnectGatewayRouteToNatGateway(RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新专线直连NAT路由
     ///
     /// 刷新专线直连nat路由，更新nat到专线的路由表
     @inlinable
-    public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
-        try await self.refreshDirectConnectGatewayRouteToNatGateway(RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func refreshDirectConnectGatewayRouteToNatGateway(vpcId: String, natGatewayId: String, dryRun: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDirectConnectGatewayRouteToNatGatewayResponse {
+        try await self.refreshDirectConnectGatewayRouteToNatGateway(RefreshDirectConnectGatewayRouteToNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Iotexplorer {
 
     /// 获取实时位置解析
     @inlinable
-    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceLocationSolveResponse> {
-        self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceLocationSolveResponse> {
+        self.client.execute(action: "DescribeDeviceLocationSolve", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实时位置解析
     @inlinable
-    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
-        try await self.client.execute(action: "DescribeDeviceLocationSolve", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceLocationSolve(_ input: DescribeDeviceLocationSolveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
+        try await self.client.execute(action: "DescribeDeviceLocationSolve", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实时位置解析
     @inlinable
-    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceLocationSolveResponse> {
-        self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), logger: logger, on: eventLoop)
+    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceLocationSolveResponse> {
+        self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实时位置解析
     @inlinable
-    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
-        try await self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), logger: logger, on: eventLoop)
+    public func describeDeviceLocationSolve(productId: String, deviceName: String, locationType: String, gnssNavigation: String? = nil, wiFiInfo: [WifiInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceLocationSolveResponse {
+        try await self.describeDeviceLocationSolve(DescribeDeviceLocationSolveRequest(productId: productId, deviceName: deviceName, locationType: locationType, gnssNavigation: gnssNavigation, wiFiInfo: wiFiInfo), region: region, logger: logger, on: eventLoop)
     }
 }

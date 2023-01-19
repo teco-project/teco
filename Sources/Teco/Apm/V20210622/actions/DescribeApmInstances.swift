@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apm {
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
-        self.client.execute(action: "DescribeApmInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApmInstances(_ input: DescribeApmInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
+        self.client.execute(action: "DescribeApmInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(_ input: DescribeApmInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
-        try await self.client.execute(action: "DescribeApmInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApmInstances(_ input: DescribeApmInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
+        try await self.client.execute(action: "DescribeApmInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
-        self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), logger: logger, on: eventLoop)
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmInstancesResponse> {
+        self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取APM实例列表
     ///
     /// APM实例列表拉取
     @inlinable
-    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
-        try await self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), logger: logger, on: eventLoop)
+    public func describeApmInstances(tags: [ApmTag]? = nil, instanceName: String? = nil, instanceIds: [String]? = nil, demoInstanceFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmInstancesResponse {
+        try await self.describeApmInstances(DescribeApmInstancesRequest(tags: tags, instanceName: instanceName, instanceIds: instanceIds, demoInstanceFlag: demoInstanceFlag), region: region, logger: logger, on: eventLoop)
     }
 }

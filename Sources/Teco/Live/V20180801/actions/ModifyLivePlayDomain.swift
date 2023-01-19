@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Live {
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
-        self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
+        self.client.execute(action: "ModifyLivePlayDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
-        try await self.client.execute(action: "ModifyLivePlayDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLivePlayDomain(_ input: ModifyLivePlayDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
+        try await self.client.execute(action: "ModifyLivePlayDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
-        self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), logger: logger, on: eventLoop)
+    public func modifyLivePlayDomain(domainName: String, playType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
+        self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改播放域名信息
     ///
     /// 修改播放域名信息。
     @inlinable
-    public func modifyLivePlayDomain(domainName: String, playType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
-        try await self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), logger: logger, on: eventLoop)
+    public func modifyLivePlayDomain(domainName: String, playType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
+        try await self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Teo {
     ///
     /// 创建自定义规则的自定义页
     @inlinable
-    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomErrorPageResponse> {
-        self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomErrorPageResponse> {
+        self.client.execute(action: "CreateCustomErrorPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义页
     ///
     /// 创建自定义规则的自定义页
     @inlinable
-    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
-        try await self.client.execute(action: "CreateCustomErrorPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomErrorPage(_ input: CreateCustomErrorPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
+        try await self.client.execute(action: "CreateCustomErrorPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义页
     ///
     /// 创建自定义规则的自定义页
     @inlinable
-    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomErrorPageResponse> {
-        self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), logger: logger, on: eventLoop)
+    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomErrorPageResponse> {
+        self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义页
     ///
     /// 创建自定义规则的自定义页
     @inlinable
-    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
-        try await self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), logger: logger, on: eventLoop)
+    public func createCustomErrorPage(zoneId: String, entity: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomErrorPageResponse {
+        try await self.createCustomErrorPage(CreateCustomErrorPageRequest(zoneId: zoneId, entity: entity, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

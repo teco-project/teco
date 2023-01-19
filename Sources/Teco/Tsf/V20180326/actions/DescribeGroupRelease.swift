@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tsf {
     ///
     /// 查询部署组相关的发布信息
     @inlinable
-    public func describeGroupRelease(_ input: DescribeGroupReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupReleaseResponse> {
-        self.client.execute(action: "DescribeGroupRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupRelease(_ input: DescribeGroupReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupReleaseResponse> {
+        self.client.execute(action: "DescribeGroupRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询部署组发布信息
     ///
     /// 查询部署组相关的发布信息
     @inlinable
-    public func describeGroupRelease(_ input: DescribeGroupReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
-        try await self.client.execute(action: "DescribeGroupRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupRelease(_ input: DescribeGroupReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
+        try await self.client.execute(action: "DescribeGroupRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询部署组发布信息
     ///
     /// 查询部署组相关的发布信息
     @inlinable
-    public func describeGroupRelease(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupReleaseResponse> {
-        self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupRelease(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupReleaseResponse> {
+        self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询部署组发布信息
     ///
     /// 查询部署组相关的发布信息
     @inlinable
-    public func describeGroupRelease(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
-        try await self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupRelease(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupReleaseResponse {
+        try await self.describeGroupRelease(DescribeGroupReleaseRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

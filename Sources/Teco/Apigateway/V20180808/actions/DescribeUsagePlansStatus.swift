@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
-    public func describeUsagePlansStatus(_ input: DescribeUsagePlansStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlansStatusResponse> {
-        self.client.execute(action: "DescribeUsagePlansStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsagePlansStatus(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlansStatusResponse> {
+        self.client.execute(action: "DescribeUsagePlansStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划列表
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
-    public func describeUsagePlansStatus(_ input: DescribeUsagePlansStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
-        try await self.client.execute(action: "DescribeUsagePlansStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsagePlansStatus(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
+        try await self.client.execute(action: "DescribeUsagePlansStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询使用计划列表
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
-    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlansStatusResponse> {
-        self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlansStatusResponse> {
+        self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划列表
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
-    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
-        try await self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeUsagePlansStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlansStatusResponse {
+        try await self.describeUsagePlansStatus(DescribeUsagePlansStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

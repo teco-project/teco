@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Waf {
 
     /// 描述WAF威胁情报封禁模块配置详情
     @inlinable
-    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafThreatenIntelligenceResponse> {
-        self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafThreatenIntelligenceResponse> {
+        self.client.execute(action: "DescribeWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF威胁情报封禁模块配置详情
     @inlinable
-    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
-        try await self.client.execute(action: "DescribeWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWafThreatenIntelligence(_ input: DescribeWafThreatenIntelligenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
+        try await self.client.execute(action: "DescribeWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 描述WAF威胁情报封禁模块配置详情
     @inlinable
-    public func describeWafThreatenIntelligence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafThreatenIntelligenceResponse> {
-        self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), logger: logger, on: eventLoop)
+    public func describeWafThreatenIntelligence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafThreatenIntelligenceResponse> {
+        self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF威胁情报封禁模块配置详情
     @inlinable
-    public func describeWafThreatenIntelligence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
-        try await self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), logger: logger, on: eventLoop)
+    public func describeWafThreatenIntelligence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafThreatenIntelligenceResponse {
+        try await self.describeWafThreatenIntelligence(DescribeWafThreatenIntelligenceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Teo {
 
     /// 为未购买套餐的站点购买套餐
     @inlinable
-    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePlanForZoneResponse> {
-        self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPlanForZone(_ input: CreatePlanForZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePlanForZoneResponse> {
+        self.client.execute(action: "CreatePlanForZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 为未购买套餐的站点购买套餐
     @inlinable
-    public func createPlanForZone(_ input: CreatePlanForZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
-        try await self.client.execute(action: "CreatePlanForZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPlanForZone(_ input: CreatePlanForZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
+        try await self.client.execute(action: "CreatePlanForZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 为未购买套餐的站点购买套餐
     @inlinable
-    public func createPlanForZone(zoneId: String, planType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePlanForZoneResponse> {
-        self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), logger: logger, on: eventLoop)
+    public func createPlanForZone(zoneId: String, planType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePlanForZoneResponse> {
+        self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为未购买套餐的站点购买套餐
     @inlinable
-    public func createPlanForZone(zoneId: String, planType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
-        try await self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), logger: logger, on: eventLoop)
+    public func createPlanForZone(zoneId: String, planType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePlanForZoneResponse {
+        try await self.createPlanForZone(CreatePlanForZoneRequest(zoneId: zoneId, planType: planType), region: region, logger: logger, on: eventLoop)
     }
 }

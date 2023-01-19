@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 查询数据来源列表
     @inlinable
-    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBasesResponse> {
-        self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataBases(_ input: DescribeDataBasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBasesResponse> {
+        self.client.execute(action: "DescribeDataBases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据来源列表
     @inlinable
-    public func describeDataBases(_ input: DescribeDataBasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
-        try await self.client.execute(action: "DescribeDataBases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataBases(_ input: DescribeDataBasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
+        try await self.client.execute(action: "DescribeDataBases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据来源列表
     @inlinable
-    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBasesResponse> {
-        self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), logger: logger, on: eventLoop)
+    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBasesResponse> {
+        self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据来源列表
     @inlinable
-    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
-        try await self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), logger: logger, on: eventLoop)
+    public func describeDataBases(projectId: String? = nil, datasourceId: String? = nil, dsTypes: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBasesResponse {
+        try await self.describeDataBases(DescribeDataBasesRequest(projectId: projectId, datasourceId: datasourceId, dsTypes: dsTypes), region: region, logger: logger, on: eventLoop)
     }
 }

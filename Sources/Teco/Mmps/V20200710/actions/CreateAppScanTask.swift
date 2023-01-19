@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,25 +99,25 @@ extension Mmps {
 
     /// 创建小程序隐私合规诊断任务
     @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
-        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
+        self.client.execute(action: "CreateAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建小程序隐私合规诊断任务
     @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.client.execute(action: "CreateAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建小程序隐私合规诊断任务
     @inlinable
-    public func createAppScanTask(taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String? = nil, appVersion: String? = nil, contactName: String? = nil, telNumber: String? = nil, corpName: String? = nil, salesPerson: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
-        self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, appName: appName, appVersion: appVersion, contactName: contactName, telNumber: telNumber, corpName: corpName, salesPerson: salesPerson, email: email), logger: logger, on: eventLoop)
+    public func createAppScanTask(taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String? = nil, appVersion: String? = nil, contactName: String? = nil, telNumber: String? = nil, corpName: String? = nil, salesPerson: String? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
+        self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, appName: appName, appVersion: appVersion, contactName: contactName, telNumber: telNumber, corpName: corpName, salesPerson: salesPerson, email: email), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建小程序隐私合规诊断任务
     @inlinable
-    public func createAppScanTask(taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String? = nil, appVersion: String? = nil, contactName: String? = nil, telNumber: String? = nil, corpName: String? = nil, salesPerson: String? = nil, email: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, appName: appName, appVersion: appVersion, contactName: contactName, telNumber: telNumber, corpName: corpName, salesPerson: salesPerson, email: email), logger: logger, on: eventLoop)
+    public func createAppScanTask(taskType: Int64, source: Int64, appPackage: String, platform: Int64, appName: String? = nil, appVersion: String? = nil, contactName: String? = nil, telNumber: String? = nil, corpName: String? = nil, salesPerson: String? = nil, email: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, appPackage: appPackage, platform: platform, appName: appName, appVersion: appVersion, contactName: contactName, telNumber: telNumber, corpName: corpName, salesPerson: salesPerson, email: email), region: region, logger: logger, on: eventLoop)
     }
 }

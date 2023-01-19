@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,31 +109,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
     @inlinable
-    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupByFlowIdResponse> {
-        self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupByFlowIdResponse> {
+        self.client.execute(action: "DescribeBackupByFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据流程ID查询备份信息
     ///
     /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
     @inlinable
-    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
-        try await self.client.execute(action: "DescribeBackupByFlowId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupByFlowId(_ input: DescribeBackupByFlowIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
+        try await self.client.execute(action: "DescribeBackupByFlowId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据流程ID查询备份信息
     ///
     /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
     @inlinable
-    public func describeBackupByFlowId(instanceId: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupByFlowIdResponse> {
-        self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeBackupByFlowId(instanceId: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupByFlowIdResponse> {
+        self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据流程ID查询备份信息
     ///
     /// 本接口(DescribeBackupByFlowId)用于通过备份创建流程的ID查询创建的备份详情，流程ID可从接口CreateBackup中获得。
     @inlinable
-    public func describeBackupByFlowId(instanceId: String, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
-        try await self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeBackupByFlowId(instanceId: String, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupByFlowIdResponse {
+        try await self.describeBackupByFlowId(DescribeBackupByFlowIdRequest(instanceId: instanceId, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

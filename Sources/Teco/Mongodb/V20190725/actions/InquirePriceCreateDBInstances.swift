@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,31 +127,31 @@ extension Mongodb {
     ///
     /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
     @inlinable
-    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDBInstancesResponse> {
-        self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDBInstancesResponse> {
+        self.client.execute(action: "InquirePriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
     @inlinable
-    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
-        try await self.client.execute(action: "InquirePriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreateDBInstances(_ input: InquirePriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
+        try await self.client.execute(action: "InquirePriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
     @inlinable
-    public func inquirePriceCreateDBInstances(zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64? = nil, instanceChargeType: String? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNum: UInt64? = nil, configServerCpu: UInt64? = nil, configServerMemory: UInt64? = nil, configServerVolume: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDBInstancesResponse> {
-        self.inquirePriceCreateDBInstances(InquirePriceCreateDBInstancesRequest(zone: zone, nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, clusterType: clusterType, replicateSetNum: replicateSetNum, period: period, instanceChargeType: instanceChargeType, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNum: mongosNum, configServerCpu: configServerCpu, configServerMemory: configServerMemory, configServerVolume: configServerVolume), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDBInstances(zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64? = nil, instanceChargeType: String? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNum: UInt64? = nil, configServerCpu: UInt64? = nil, configServerMemory: UInt64? = nil, configServerVolume: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDBInstancesResponse> {
+        self.inquirePriceCreateDBInstances(InquirePriceCreateDBInstancesRequest(zone: zone, nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, clusterType: clusterType, replicateSetNum: replicateSetNum, period: period, instanceChargeType: instanceChargeType, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNum: mongosNum, configServerCpu: configServerCpu, configServerMemory: configServerMemory, configServerVolume: configServerVolume), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquirePriceCreateDBInstances）用于创建数据库实例询价。本接口参数中必须传入region参数，否则无法通过校验。本接口仅允许针对购买限制范围内的实例配置进行询价。
     @inlinable
-    public func inquirePriceCreateDBInstances(zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64? = nil, instanceChargeType: String? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNum: UInt64? = nil, configServerCpu: UInt64? = nil, configServerMemory: UInt64? = nil, configServerVolume: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
-        try await self.inquirePriceCreateDBInstances(InquirePriceCreateDBInstancesRequest(zone: zone, nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, clusterType: clusterType, replicateSetNum: replicateSetNum, period: period, instanceChargeType: instanceChargeType, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNum: mongosNum, configServerCpu: configServerCpu, configServerMemory: configServerMemory, configServerVolume: configServerVolume), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDBInstances(zone: String, nodeNum: Int64, memory: Int64, volume: Int64, mongoVersion: String, machineCode: String, goodsNum: Int64, clusterType: String, replicateSetNum: Int64, period: Int64? = nil, instanceChargeType: String? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNum: UInt64? = nil, configServerCpu: UInt64? = nil, configServerMemory: UInt64? = nil, configServerVolume: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDBInstancesResponse {
+        try await self.inquirePriceCreateDBInstances(InquirePriceCreateDBInstancesRequest(zone: zone, nodeNum: nodeNum, memory: memory, volume: volume, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, clusterType: clusterType, replicateSetNum: replicateSetNum, period: period, instanceChargeType: instanceChargeType, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNum: mongosNum, configServerCpu: configServerCpu, configServerMemory: configServerMemory, configServerVolume: configServerVolume), region: region, logger: logger, on: eventLoop)
     }
 }

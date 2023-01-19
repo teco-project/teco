@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcbr {
 
     /// 查询云托管服务详情
     @inlinable
-    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServerDetailResponse> {
-        self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServerDetailResponse> {
+        self.client.execute(action: "DescribeCloudRunServerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云托管服务详情
     @inlinable
-    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
-        try await self.client.execute(action: "DescribeCloudRunServerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudRunServerDetail(_ input: DescribeCloudRunServerDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
+        try await self.client.execute(action: "DescribeCloudRunServerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云托管服务详情
     @inlinable
-    public func describeCloudRunServerDetail(envId: String, serverName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServerDetailResponse> {
-        self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), logger: logger, on: eventLoop)
+    public func describeCloudRunServerDetail(envId: String, serverName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServerDetailResponse> {
+        self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云托管服务详情
     @inlinable
-    public func describeCloudRunServerDetail(envId: String, serverName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
-        try await self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), logger: logger, on: eventLoop)
+    public func describeCloudRunServerDetail(envId: String, serverName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
+        try await self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
     }
 }

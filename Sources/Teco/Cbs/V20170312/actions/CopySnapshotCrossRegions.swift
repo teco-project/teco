@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Cbs {
     /// * 本接口为异步接口，当跨地域复制的请求下发成功后会返回一个新的快照ID，此时快照未立即复制到目标地域，可请求目标地域的[DescribeSnapshots](/document/product/362/15647)接口查询新快照的状态，判断是否复制完成。如果快照的状态为“NORMAL”，表示快照复制完成。
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
-    public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopySnapshotCrossRegionsResponse> {
-        self.client.execute(action: "CopySnapshotCrossRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopySnapshotCrossRegionsResponse> {
+        self.client.execute(action: "CopySnapshotCrossRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 快照跨地域复制
@@ -69,8 +69,8 @@ extension Cbs {
     /// * 本接口为异步接口，当跨地域复制的请求下发成功后会返回一个新的快照ID，此时快照未立即复制到目标地域，可请求目标地域的[DescribeSnapshots](/document/product/362/15647)接口查询新快照的状态，判断是否复制完成。如果快照的状态为“NORMAL”，表示快照复制完成。
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
-    public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
-        try await self.client.execute(action: "CopySnapshotCrossRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
+        try await self.client.execute(action: "CopySnapshotCrossRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 快照跨地域复制
@@ -79,8 +79,8 @@ extension Cbs {
     /// * 本接口为异步接口，当跨地域复制的请求下发成功后会返回一个新的快照ID，此时快照未立即复制到目标地域，可请求目标地域的[DescribeSnapshots](/document/product/362/15647)接口查询新快照的状态，判断是否复制完成。如果快照的状态为“NORMAL”，表示快照复制完成。
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
-    public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopySnapshotCrossRegionsResponse> {
-        self.copySnapshotCrossRegions(CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopySnapshotCrossRegionsResponse> {
+        self.copySnapshotCrossRegions(CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 快照跨地域复制
@@ -89,7 +89,7 @@ extension Cbs {
     /// * 本接口为异步接口，当跨地域复制的请求下发成功后会返回一个新的快照ID，此时快照未立即复制到目标地域，可请求目标地域的[DescribeSnapshots](/document/product/362/15647)接口查询新快照的状态，判断是否复制完成。如果快照的状态为“NORMAL”，表示快照复制完成。
     /// * 本接口实现的快照跨地域复制操作将产生跨地域流量，预计2022年第三季度会针对此功能进行商业化计费；请留意后续站内信公告，避免产生预期外扣费。
     @inlinable
-    public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
-        try await self.copySnapshotCrossRegions(CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
+        try await self.copySnapshotCrossRegions(CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 }

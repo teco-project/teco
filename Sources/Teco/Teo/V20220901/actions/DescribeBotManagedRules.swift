@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Teo {
 
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
-        self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
+        self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.client.execute(action: "DescribeBotManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBotManagedRules(_ input: DescribeBotManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
-        self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
+        self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot托管规则
     @inlinable
-    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeBotManagedRules(offset: Int64, limit: Int64, zoneId: String? = nil, entity: String? = nil, ruleType: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
+        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(offset: offset, limit: limit, zoneId: zoneId, entity: entity, ruleType: ruleType, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

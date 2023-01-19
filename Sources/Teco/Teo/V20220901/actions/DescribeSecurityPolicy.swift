@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Teo {
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
-        self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
+        self.client.execute(action: "DescribeSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityPolicy(_ input: DescribeSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
-        self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyResponse> {
+        self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全防护配置详情
     ///
     /// 查询安全防护配置详情。请求参数中ZoneId+Entity或TemplateId至少填一项。
     @inlinable
-    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
-        try await self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeSecurityPolicy(zoneId: String? = nil, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyResponse {
+        try await self.describeSecurityPolicy(DescribeSecurityPolicyRequest(zoneId: zoneId, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

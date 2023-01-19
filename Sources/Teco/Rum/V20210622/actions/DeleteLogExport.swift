@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Rum {
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
-        self.client.execute(action: "DeleteLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLogExport(_ input: DeleteLogExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
+        self.client.execute(action: "DeleteLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
@@ -65,8 +65,8 @@ extension Rum {
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(_ input: DeleteLogExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
-        try await self.client.execute(action: "DeleteLogExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLogExport(_ input: DeleteLogExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
+        try await self.client.execute(action: "DeleteLogExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除日志下载任务
@@ -75,8 +75,8 @@ extension Rum {
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
-        self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), logger: logger, on: eventLoop)
+    public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
+        self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
@@ -85,7 +85,7 @@ extension Rum {
     /// 本接口用于删除日志下载任务
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func deleteLogExport(id: Int64, exportID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
-        try await self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), logger: logger, on: eventLoop)
+    public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
+        try await self.deleteLogExport(DeleteLogExportRequest(id: id, exportID: exportID), region: region, logger: logger, on: eventLoop)
     }
 }

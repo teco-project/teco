@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tcr {
 
     /// 创建触发器
     @inlinable
-    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebhookTriggerResponse> {
-        self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebhookTriggerResponse> {
+        self.client.execute(action: "CreateWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建触发器
     @inlinable
-    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
-        try await self.client.execute(action: "CreateWebhookTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWebhookTrigger(_ input: CreateWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
+        try await self.client.execute(action: "CreateWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建触发器
     @inlinable
-    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebhookTriggerResponse> {
-        self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), logger: logger, on: eventLoop)
+    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebhookTriggerResponse> {
+        self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建触发器
     @inlinable
-    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
-        try await self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), logger: logger, on: eventLoop)
+    public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
+        try await self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

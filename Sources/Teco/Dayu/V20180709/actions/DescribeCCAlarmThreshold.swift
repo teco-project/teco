@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Dayu {
     ///
     /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
-    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCAlarmThresholdResponse> {
-        self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCAlarmThresholdResponse> {
+        self.client.execute(action: "DescribeCCAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC告警通知阈值
     ///
     /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
-    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
-        try await self.client.execute(action: "DescribeCCAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCAlarmThreshold(_ input: DescribeCCAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
+        try await self.client.execute(action: "DescribeCCAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC告警通知阈值
     ///
     /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
-    public func describeCCAlarmThreshold(business: String, rsId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCAlarmThresholdResponse> {
-        self.describeCCAlarmThreshold(DescribeCCAlarmThresholdRequest(business: business, rsId: rsId), logger: logger, on: eventLoop)
+    public func describeCCAlarmThreshold(business: String, rsId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCAlarmThresholdResponse> {
+        self.describeCCAlarmThreshold(DescribeCCAlarmThresholdRequest(business: business, rsId: rsId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC告警通知阈值
     ///
     /// 获取高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
-    public func describeCCAlarmThreshold(business: String, rsId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
-        try await self.describeCCAlarmThreshold(DescribeCCAlarmThresholdRequest(business: business, rsId: rsId), logger: logger, on: eventLoop)
+    public func describeCCAlarmThreshold(business: String, rsId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCAlarmThresholdResponse {
+        try await self.describeCCAlarmThreshold(DescribeCCAlarmThresholdRequest(business: business, rsId: rsId), region: region, logger: logger, on: eventLoop)
     }
 }

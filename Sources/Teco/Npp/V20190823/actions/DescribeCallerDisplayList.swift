@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Npp {
 
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
-        self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
+        self.client.execute(action: "DescribeCallerDisplayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
-        try await self.client.execute(action: "DescribeCallerDisplayList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCallerDisplayList(_ input: DescribeCallerDisplayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
+        try await self.client.execute(action: "DescribeCallerDisplayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(bizAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
-        self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), logger: logger, on: eventLoop)
+    public func describeCallerDisplayList(bizAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
+        self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨拉取主叫显号号码集合
     @inlinable
-    public func describeCallerDisplayList(bizAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
-        try await self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), logger: logger, on: eventLoop)
+    public func describeCallerDisplayList(bizAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
+        try await self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), region: region, logger: logger, on: eventLoop)
     }
 }

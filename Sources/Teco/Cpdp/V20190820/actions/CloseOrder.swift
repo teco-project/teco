@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cpdp {
     ///
     /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
     @inlinable
-    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseOrderResponse> {
-        self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeOrder(_ input: CloseOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseOrderResponse> {
+        self.client.execute(action: "CloseOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-关闭订单接口
     ///
     /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
     @inlinable
-    public func closeOrder(_ input: CloseOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
-        try await self.client.execute(action: "CloseOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeOrder(_ input: CloseOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
+        try await self.client.execute(action: "CloseOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-关闭订单接口
     ///
     /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
     @inlinable
-    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseOrderResponse> {
-        self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseOrderResponse> {
+        self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-关闭订单接口
     ///
     /// 通过此接口关闭此前已创建的订单，关闭后，用户将无法继续付款。仅能关闭创建后未支付的订单
     @inlinable
-    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
-        try await self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func closeOrder(midasAppId: String, userId: String, midasSecretId: String, midasSignature: String, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOrderResponse {
+        try await self.closeOrder(CloseOrderRequest(midasAppId: midasAppId, userId: userId, midasSecretId: midasSecretId, midasSignature: midasSignature, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

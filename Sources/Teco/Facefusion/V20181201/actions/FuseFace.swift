@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,8 +88,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(_ input: FuseFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
-        self.client.execute(action: "FuseFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func fuseFace(_ input: FuseFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
+        self.client.execute(action: "FuseFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 选脸融合
@@ -99,8 +99,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(_ input: FuseFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
-        try await self.client.execute(action: "FuseFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func fuseFace(_ input: FuseFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
+        try await self.client.execute(action: "FuseFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 选脸融合
@@ -110,8 +110,8 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
-        self.fuseFace(FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FuseFaceResponse> {
+        self.fuseFace(FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), region: region, logger: logger, on: eventLoop)
     }
 
     /// 选脸融合
@@ -121,7 +121,7 @@ extension Facefusion {
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
-        try await self.fuseFace(FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), logger: logger, on: eventLoop)
+    public func fuseFace(projectId: String, modelId: String, rspImgType: String, mergeInfos: [MergeInfo], fuseProfileDegree: Int64? = nil, fuseFaceDegree: Int64? = nil, celebrityIdentify: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FuseFaceResponse {
+        try await self.fuseFace(FuseFaceRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, mergeInfos: mergeInfos, fuseProfileDegree: fuseProfileDegree, fuseFaceDegree: fuseFaceDegree, celebrityIdentify: celebrityIdentify), region: region, logger: logger, on: eventLoop)
     }
 }

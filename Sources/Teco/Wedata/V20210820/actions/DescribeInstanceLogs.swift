@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
-        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
+        self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例日志列表【Beta版本】
@@ -68,8 +68,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例日志列表【Beta版本】
@@ -77,8 +77,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
-        self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
+    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
+        self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例日志列表【Beta版本】
@@ -86,7 +86,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 获取实例日志列表
     @inlinable
-    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), logger: logger, on: eventLoop)
+    public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
     }
 }

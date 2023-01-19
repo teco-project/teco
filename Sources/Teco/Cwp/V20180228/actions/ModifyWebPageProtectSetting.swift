@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cwp {
 
     /// 修改网站防护设置
     @inlinable
-    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSettingResponse> {
-        self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSettingResponse> {
+        self.client.execute(action: "ModifyWebPageProtectSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改网站防护设置
     @inlinable
-    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
-        try await self.client.execute(action: "ModifyWebPageProtectSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWebPageProtectSetting(_ input: ModifyWebPageProtectSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
+        try await self.client.execute(action: "ModifyWebPageProtectSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改网站防护设置
     @inlinable
-    public func modifyWebPageProtectSetting(modifyType: UInt64, value: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSettingResponse> {
-        self.modifyWebPageProtectSetting(ModifyWebPageProtectSettingRequest(modifyType: modifyType, value: value, id: id), logger: logger, on: eventLoop)
+    public func modifyWebPageProtectSetting(modifyType: UInt64, value: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSettingResponse> {
+        self.modifyWebPageProtectSetting(ModifyWebPageProtectSettingRequest(modifyType: modifyType, value: value, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网站防护设置
     @inlinable
-    public func modifyWebPageProtectSetting(modifyType: UInt64, value: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
-        try await self.modifyWebPageProtectSetting(ModifyWebPageProtectSettingRequest(modifyType: modifyType, value: value, id: id), logger: logger, on: eventLoop)
+    public func modifyWebPageProtectSetting(modifyType: UInt64, value: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSettingResponse {
+        try await self.modifyWebPageProtectSetting(ModifyWebPageProtectSettingRequest(modifyType: modifyType, value: value, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

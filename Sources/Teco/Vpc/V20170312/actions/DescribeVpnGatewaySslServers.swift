@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Vpc {
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
-        self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
+        self.client.execute(action: "DescribeVpnGatewaySslServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
-        try await self.client.execute(action: "DescribeVpnGatewaySslServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpnGatewaySslServers(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
+        try await self.client.execute(action: "DescribeVpnGatewaySslServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
-        self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslServersResponse> {
+        self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
-        try await self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslServers(offset: UInt64? = nil, limit: UInt64? = nil, sslVpnServerIds: [String]? = nil, filters: [FilterObject]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslServersResponse {
+        try await self.describeVpnGatewaySslServers(DescribeVpnGatewaySslServersRequest(offset: offset, limit: limit, sslVpnServerIds: sslVpnServerIds, filters: filters, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 }

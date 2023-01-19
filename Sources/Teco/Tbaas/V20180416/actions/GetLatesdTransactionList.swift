@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Tbaas {
 
     /// 获取最新交易列表
     @inlinable
-    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
-        self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
+        self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取最新交易列表
     @inlinable
-    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
-        try await self.client.execute(action: "GetLatesdTransactionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getLatesdTransactionList(_ input: GetLatesdTransactionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
+        try await self.client.execute(action: "GetLatesdTransactionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取最新交易列表
     @inlinable
-    public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
-        self.getLatesdTransactionList(GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLatesdTransactionListResponse> {
+        self.getLatesdTransactionList(GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取最新交易列表
     @inlinable
-    public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
-        try await self.getLatesdTransactionList(GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getLatesdTransactionList(module: String, operation: String, groupId: UInt64, channelId: UInt64, latestBlockNumber: UInt64, groupName: String, channelName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLatesdTransactionListResponse {
+        try await self.getLatesdTransactionList(GetLatesdTransactionListRequest(module: module, operation: operation, groupId: groupId, channelId: channelId, latestBlockNumber: latestBlockNumber, groupName: groupName, channelName: channelName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotexplorer {
     ///
     /// 下发RRPC消息
     @inlinable
-    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishRRPCMessageResponse> {
-        self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishRRPCMessageResponse> {
+        self.client.execute(action: "PublishRRPCMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布RRPC消息
     ///
     /// 下发RRPC消息
     @inlinable
-    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
-        try await self.client.execute(action: "PublishRRPCMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishRRPCMessage(_ input: PublishRRPCMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
+        try await self.client.execute(action: "PublishRRPCMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布RRPC消息
     ///
     /// 下发RRPC消息
     @inlinable
-    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishRRPCMessageResponse> {
-        self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), logger: logger, on: eventLoop)
+    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishRRPCMessageResponse> {
+        self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布RRPC消息
     ///
     /// 下发RRPC消息
     @inlinable
-    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
-        try await self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), logger: logger, on: eventLoop)
+    public func publishRRPCMessage(productId: String, deviceName: String, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
+        try await self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), region: region, logger: logger, on: eventLoop)
     }
 }

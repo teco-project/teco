@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Waf {
     ///
     /// 本接口用于修改访问日志保存期限
     @inlinable
-    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
-        self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
+        self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
     @inlinable
-    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
-        try await self.client.execute(action: "ModifyAccessPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
+        try await self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
     @inlinable
-    public func modifyAccessPeriod(period: Int64, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
-        self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), logger: logger, on: eventLoop)
+    public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
+        self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
     @inlinable
-    public func modifyAccessPeriod(period: Int64, topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
-        try await self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), logger: logger, on: eventLoop)
+    public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
+        try await self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

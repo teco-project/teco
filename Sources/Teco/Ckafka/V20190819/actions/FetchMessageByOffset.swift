@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ckafka {
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageByOffsetResponse> {
-        self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageByOffsetResponse> {
+        self.client.execute(action: "FetchMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
-        try await self.client.execute(action: "FetchMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func fetchMessageByOffset(_ input: FetchMessageByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
+        try await self.client.execute(action: "FetchMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageByOffsetResponse> {
-        self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageByOffsetResponse> {
+        self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
-        try await self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    public func fetchMessageByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageByOffsetResponse {
+        try await self.fetchMessageByOffset(FetchMessageByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

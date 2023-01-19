@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcr {
     ///
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
-    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointDnsStatusResponse> {
-        self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointDnsStatusResponse> {
+        self.client.execute(action: "DescribeInternalEndpointDnsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有域名解析状态
     ///
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
-    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
-        try await self.client.execute(action: "DescribeInternalEndpointDnsStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInternalEndpointDnsStatus(_ input: DescribeInternalEndpointDnsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
+        try await self.client.execute(action: "DescribeInternalEndpointDnsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询私有域名解析状态
     ///
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
-    public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointDnsStatusResponse> {
-        self.describeInternalEndpointDnsStatus(DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet), logger: logger, on: eventLoop)
+    public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternalEndpointDnsStatusResponse> {
+        self.describeInternalEndpointDnsStatus(DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询私有域名解析状态
     ///
     /// 批量查询vpc是否已经添加私有域名解析
     @inlinable
-    public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
-        try await self.describeInternalEndpointDnsStatus(DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet), logger: logger, on: eventLoop)
+    public func describeInternalEndpointDnsStatus(vpcSet: [VpcAndDomainInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternalEndpointDnsStatusResponse {
+        try await self.describeInternalEndpointDnsStatus(DescribeInternalEndpointDnsStatusRequest(vpcSet: vpcSet), region: region, logger: logger, on: eventLoop)
     }
 }

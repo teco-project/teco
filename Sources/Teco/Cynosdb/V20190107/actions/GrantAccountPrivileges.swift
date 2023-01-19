@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cynosdb {
 
     /// 批量授权账号权限
     @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
+        self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量授权账号权限
     @inlinable
-    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.client.execute(action: "GrantAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func grantAccountPrivileges(_ input: GrantAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量授权账号权限
     @inlinable
-    public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
+        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量授权账号权限
     @inlinable
-    public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    public func grantAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
+        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 }

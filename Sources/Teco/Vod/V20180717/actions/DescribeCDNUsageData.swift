@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,8 +87,8 @@ extension Vod {
     ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
-    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNUsageDataResponse> {
-        self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNUsageDataResponse> {
+        self.client.execute(action: "DescribeCDNUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询点播 CDN 用量数据
@@ -99,8 +99,8 @@ extension Vod {
     ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
-    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
-        try await self.client.execute(action: "DescribeCDNUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCDNUsageData(_ input: DescribeCDNUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
+        try await self.client.execute(action: "DescribeCDNUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询点播 CDN 用量数据
@@ -111,8 +111,8 @@ extension Vod {
     ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
-    public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNUsageDataResponse> {
-        self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), logger: logger, on: eventLoop)
+    public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNUsageDataResponse> {
+        self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询点播 CDN 用量数据
@@ -123,7 +123,7 @@ extension Vod {
     ///    3. 可以指定用量数据的时间粒度，支持5分钟、1小时、1天的时间粒度。
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
-    public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
-        try await self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), logger: logger, on: eventLoop)
+    public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
+        try await self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 }

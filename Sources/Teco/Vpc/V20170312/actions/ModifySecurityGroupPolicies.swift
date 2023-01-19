@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,8 +67,8 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
-        self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
+        self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组出站和入站规则
@@ -89,8 +89,8 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
-        try await self.client.execute(action: "ModifySecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
+        try await self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全组出站和入站规则
@@ -111,8 +111,8 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
-        self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), logger: logger, on: eventLoop)
+    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
+        self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组出站和入站规则
@@ -133,7 +133,7 @@ extension Vpc {
     /// </ul></li></ul></li>
     /// </ul>
     @inlinable
-    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
-        try await self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), logger: logger, on: eventLoop)
+    public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
+        try await self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
     }
 }

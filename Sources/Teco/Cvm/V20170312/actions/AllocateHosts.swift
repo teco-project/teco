@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Cvm {
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
-        self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func allocateHosts(_ input: AllocateHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
+        self.client.execute(action: "AllocateHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建CDH实例
@@ -87,8 +87,8 @@ extension Cvm {
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(_ input: AllocateHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
-        try await self.client.execute(action: "AllocateHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func allocateHosts(_ input: AllocateHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
+        try await self.client.execute(action: "AllocateHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建CDH实例
@@ -96,8 +96,8 @@ extension Cvm {
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
-        self.allocateHosts(AllocateHostsRequest(placement: placement, clientToken: clientToken, hostChargePrepaid: hostChargePrepaid, hostChargeType: hostChargeType, hostType: hostType, hostCount: hostCount, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateHostsResponse> {
+        self.allocateHosts(AllocateHostsRequest(placement: placement, clientToken: clientToken, hostChargePrepaid: hostChargePrepaid, hostChargeType: hostChargeType, hostType: hostType, hostCount: hostCount, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建CDH实例
@@ -105,7 +105,7 @@ extension Cvm {
     /// 本接口 (AllocateHosts) 用于创建一个或多个指定配置的CDH实例。
     /// * 当HostChargeType为PREPAID时，必须指定HostChargePrepaid参数。
     @inlinable
-    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
-        try await self.allocateHosts(AllocateHostsRequest(placement: placement, clientToken: clientToken, hostChargePrepaid: hostChargePrepaid, hostChargeType: hostChargeType, hostType: hostType, hostCount: hostCount, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func allocateHosts(placement: Placement, clientToken: String? = nil, hostChargePrepaid: ChargePrepaid? = nil, hostChargeType: String? = nil, hostType: String? = nil, hostCount: UInt64? = nil, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateHostsResponse {
+        try await self.allocateHosts(AllocateHostsRequest(placement: placement, clientToken: clientToken, hostChargePrepaid: hostChargePrepaid, hostChargeType: hostChargeType, hostType: hostType, hostCount: hostCount, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

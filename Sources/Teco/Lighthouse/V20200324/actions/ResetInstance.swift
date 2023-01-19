@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,8 +52,8 @@ extension Lighthouse {
     /// * 目前不支持实例使用该接口实现 LINUX_UNIX 和 WINDOWS 操作系统切换。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func resetInstance(_ input: ResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstanceResponse> {
-        self.client.execute(action: "ResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetInstance(_ input: ResetInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstanceResponse> {
+        self.client.execute(action: "ResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装系统
@@ -64,8 +64,8 @@ extension Lighthouse {
     /// * 目前不支持实例使用该接口实现 LINUX_UNIX 和 WINDOWS 操作系统切换。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func resetInstance(_ input: ResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
-        try await self.client.execute(action: "ResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetInstance(_ input: ResetInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
+        try await self.client.execute(action: "ResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重装系统
@@ -76,8 +76,8 @@ extension Lighthouse {
     /// * 目前不支持实例使用该接口实现 LINUX_UNIX 和 WINDOWS 操作系统切换。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func resetInstance(instanceId: String, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstanceResponse> {
-        self.resetInstance(ResetInstanceRequest(instanceId: instanceId, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    public func resetInstance(instanceId: String, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstanceResponse> {
+        self.resetInstance(ResetInstanceRequest(instanceId: instanceId, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重装系统
@@ -88,7 +88,7 @@ extension Lighthouse {
     /// * 目前不支持实例使用该接口实现 LINUX_UNIX 和 WINDOWS 操作系统切换。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func resetInstance(instanceId: String, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
-        try await self.resetInstance(ResetInstanceRequest(instanceId: instanceId, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    public func resetInstance(instanceId: String, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
+        try await self.resetInstance(ResetInstanceRequest(instanceId: instanceId, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cfw {
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
-        self.client.execute(action: "DescribeResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
+        self.client.execute(action: "DescribeResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
-        try await self.client.execute(action: "DescribeResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceGroup(_ input: DescribeResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
+        try await self.client.execute(action: "DescribeResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
-        self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeResourceGroup(queryType: String, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupResponse> {
+        self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询
     ///
     /// DescribeResourceGroup资产中心资产树信息
     @inlinable
-    public func describeResourceGroup(queryType: String, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
-        try await self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeResourceGroup(queryType: String, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupResponse {
+        try await self.describeResourceGroup(DescribeResourceGroupRequest(queryType: queryType, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

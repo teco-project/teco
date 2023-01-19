@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,31 +112,31 @@ extension Tia {
     ///
     /// 创建训练任务
     @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createJob(_ input: CreateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
+        self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Job
     ///
     /// 创建训练任务
     @inlinable
-    public func createJob(_ input: CreateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.client.execute(action: "CreateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createJob(_ input: CreateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Job
     ///
     /// 创建训练任务
     @inlinable
-    public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), logger: logger, on: eventLoop)
+    public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
+        self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Job
     ///
     /// 创建训练任务
     @inlinable
-    public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), logger: logger, on: eventLoop)
+    public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
+        try await self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
     }
 }

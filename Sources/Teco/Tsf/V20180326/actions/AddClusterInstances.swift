@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Tsf {
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addClusterInstances(_ input: AddClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterInstancesResponse> {
-        self.client.execute(action: "AddClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addClusterInstances(_ input: AddClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterInstancesResponse> {
+        self.client.execute(action: "AddClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群添加云主机
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addClusterInstances(_ input: AddClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterInstancesResponse {
-        try await self.client.execute(action: "AddClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addClusterInstances(_ input: AddClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterInstancesResponse {
+        try await self.client.execute(action: "AddClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群添加云主机
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterInstancesResponse> {
-        self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterInstancesResponse> {
+        self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群添加云主机
     ///
     /// 添加云主机节点至TSF集群
     @inlinable
-    public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterInstancesResponse {
-        try await self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterInstancesResponse {
+        try await self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

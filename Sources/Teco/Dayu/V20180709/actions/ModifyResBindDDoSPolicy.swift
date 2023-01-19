@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dayu {
     ///
     /// 资源实例绑定DDoS高级策略
     @inlinable
-    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResBindDDoSPolicyResponse> {
-        self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResBindDDoSPolicyResponse> {
+        self.client.execute(action: "ModifyResBindDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源绑定DDoS高级策略
     ///
     /// 资源实例绑定DDoS高级策略
     @inlinable
-    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
-        try await self.client.execute(action: "ModifyResBindDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResBindDDoSPolicy(_ input: ModifyResBindDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
+        try await self.client.execute(action: "ModifyResBindDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资源绑定DDoS高级策略
     ///
     /// 资源实例绑定DDoS高级策略
     @inlinable
-    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResBindDDoSPolicyResponse> {
-        self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), logger: logger, on: eventLoop)
+    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResBindDDoSPolicyResponse> {
+        self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资源绑定DDoS高级策略
     ///
     /// 资源实例绑定DDoS高级策略
     @inlinable
-    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
-        try await self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), logger: logger, on: eventLoop)
+    public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
+        try await self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), region: region, logger: logger, on: eventLoop)
     }
 }

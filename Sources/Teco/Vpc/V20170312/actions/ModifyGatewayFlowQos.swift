@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable
-    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGatewayFlowQosResponse> {
-        self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGatewayFlowQosResponse> {
+        self.client.execute(action: "ModifyGatewayFlowQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整网关流控带宽
     ///
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable
-    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
-        try await self.client.execute(action: "ModifyGatewayFlowQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGatewayFlowQos(_ input: ModifyGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
+        try await self.client.execute(action: "ModifyGatewayFlowQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调整网关流控带宽
     ///
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable
-    public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGatewayFlowQosResponse> {
-        self.modifyGatewayFlowQos(ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), logger: logger, on: eventLoop)
+    public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGatewayFlowQosResponse> {
+        self.modifyGatewayFlowQos(ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整网关流控带宽
     ///
     /// 本接口（ModifyGatewayFlowQos）用于调整网关流控带宽。
     @inlinable
-    public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
-        try await self.modifyGatewayFlowQos(ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), logger: logger, on: eventLoop)
+    public func modifyGatewayFlowQos(gatewayId: String, bandwidth: Int64, ipAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGatewayFlowQosResponse {
+        try await self.modifyGatewayFlowQos(ModifyGatewayFlowQosRequest(gatewayId: gatewayId, bandwidth: bandwidth, ipAddresses: ipAddresses), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Lighthouse {
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable
-    public func attachCcn(_ input: AttachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
-        self.client.execute(action: "AttachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachCcn(_ input: AttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
+        self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable
-    public func attachCcn(_ input: AttachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
-        try await self.client.execute(action: "AttachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachCcn(_ input: AttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
+        try await self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable
-    public func attachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
-        self.attachCcn(AttachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
+        self.attachCcn(AttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
     @inlinable
-    public func attachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
-        try await self.attachCcn(AttachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
+        try await self.attachCcn(AttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

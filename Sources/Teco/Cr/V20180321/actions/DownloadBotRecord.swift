@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cr {
     ///
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
-    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBotRecordResponse> {
-        self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadBotRecord(_ input: DownloadBotRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBotRecordResponse> {
+        self.client.execute(action: "DownloadBotRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载任务录音与文本
     ///
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
-    public func downloadBotRecord(_ input: DownloadBotRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
-        try await self.client.execute(action: "DownloadBotRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadBotRecord(_ input: DownloadBotRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
+        try await self.client.execute(action: "DownloadBotRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载任务录音与文本
     ///
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
-    public func downloadBotRecord(module: String, operation: String, bizDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBotRecordResponse> {
-        self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), logger: logger, on: eventLoop)
+    public func downloadBotRecord(module: String, operation: String, bizDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBotRecordResponse> {
+        self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载任务录音与文本
     ///
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
-    public func downloadBotRecord(module: String, operation: String, bizDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
-        try await self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), logger: logger, on: eventLoop)
+    public func downloadBotRecord(module: String, operation: String, bizDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
+        try await self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), region: region, logger: logger, on: eventLoop)
     }
 }

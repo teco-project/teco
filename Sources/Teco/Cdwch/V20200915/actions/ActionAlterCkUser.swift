@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Cdwch {
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
-        self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
+        self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
-        try await self.client.execute(action: "ActionAlterCkUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func actionAlterCkUser(_ input: ActionAlterCkUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
+        try await self.client.execute(action: "ActionAlterCkUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
-        self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), logger: logger, on: eventLoop)
+    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActionAlterCkUserResponse> {
+        self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改ck用户接口
     ///
     /// 新增和修改用户接口
     @inlinable
-    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
-        try await self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), logger: logger, on: eventLoop)
+    public func actionAlterCkUser(userInfo: CkUserAlterInfo, apiType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActionAlterCkUserResponse {
+        try await self.actionAlterCkUser(ActionAlterCkUserRequest(userInfo: userInfo, apiType: apiType), region: region, logger: logger, on: eventLoop)
     }
 }

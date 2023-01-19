@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -151,31 +151,31 @@ extension Mariadb {
     ///
     /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
-        self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDBInstance(_ input: CreateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
+        self.client.execute(action: "CreateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例（包年包月）
     ///
     /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
-    public func createDBInstance(_ input: CreateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.client.execute(action: "CreateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDBInstance(_ input: CreateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.client.execute(action: "CreateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例（包年包月）
     ///
     /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
-    public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
-        self.createDBInstance(CreateDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), logger: logger, on: eventLoop)
+    public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceResponse> {
+        self.createDBInstance(CreateDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例（包年包月）
     ///
     /// 本接口（CreateDBInstance）用于创建包年包月的云数据库实例，可通过传入实例规格、数据库版本号、购买时长和数量等信息创建云数据库实例。
     @inlinable
-    public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
-        try await self.createDBInstance(CreateDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), logger: logger, on: eventLoop)
+    public func createDBInstance(zones: [String], nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, dbVersionId: String? = nil, instanceName: String? = nil, securityGroupIds: [String]? = nil, autoRenewFlag: Int64? = nil, ipv6Flag: Int64? = nil, resourceTags: [ResourceTag]? = nil, initParams: [DBParamValue]? = nil, dcnRegion: String? = nil, dcnInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceResponse {
+        try await self.createDBInstance(CreateDBInstanceRequest(zones: zones, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, projectId: projectId, dbVersionId: dbVersionId, instanceName: instanceName, securityGroupIds: securityGroupIds, autoRenewFlag: autoRenewFlag, ipv6Flag: ipv6Flag, resourceTags: resourceTags, initParams: initParams, dcnRegion: dcnRegion, dcnInstanceId: dcnInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

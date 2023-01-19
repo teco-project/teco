@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tem {
 
     /// 删除 Ingress 规则
     @inlinable
-    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIngressResponse> {
-        self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIngress(_ input: DeleteIngressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIngressResponse> {
+        self.client.execute(action: "DeleteIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Ingress 规则
     @inlinable
-    public func deleteIngress(_ input: DeleteIngressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
-        try await self.client.execute(action: "DeleteIngress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIngress(_ input: DeleteIngressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
+        try await self.client.execute(action: "DeleteIngress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Ingress 规则
     @inlinable
-    public func deleteIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIngressResponse> {
-        self.deleteIngress(DeleteIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func deleteIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIngressResponse> {
+        self.deleteIngress(DeleteIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Ingress 规则
     @inlinable
-    public func deleteIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
-        try await self.deleteIngress(DeleteIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func deleteIngress(namespaceId: String, eksNamespace: String, name: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIngressResponse {
+        try await self.deleteIngress(DeleteIngressRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, name: name, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

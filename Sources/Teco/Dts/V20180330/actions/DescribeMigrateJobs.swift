@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,8 +82,8 @@ extension Dts {
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateJobsResponse> {
-        self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateJobsResponse> {
+        self.client.execute(action: "DescribeMigrateJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据迁移任务
@@ -91,8 +91,8 @@ extension Dts {
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
-        try await self.client.execute(action: "DescribeMigrateJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMigrateJobs(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
+        try await self.client.execute(action: "DescribeMigrateJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据迁移任务
@@ -100,8 +100,8 @@ extension Dts {
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateJobsResponse> {
-        self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrateJobsResponse> {
+        self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据迁移任务
@@ -109,7 +109,7 @@ extension Dts {
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
-        try await self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeMigrateJobs(jobId: String? = nil, jobName: String? = nil, order: String? = nil, orderSeq: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrateJobsResponse {
+        try await self.describeMigrateJobs(DescribeMigrateJobsRequest(jobId: jobId, jobName: jobName, order: order, orderSeq: orderSeq, offset: offset, limit: limit, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 }

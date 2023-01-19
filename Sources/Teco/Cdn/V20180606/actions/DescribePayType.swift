@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Cdn {
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
-        self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePayType(_ input: DescribePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
+        self.client.execute(action: "DescribePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询计费方式
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(_ input: DescribePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
-        try await self.client.execute(action: "DescribePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePayType(_ input: DescribePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
+        try await self.client.execute(action: "DescribePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询计费方式
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
-        self.describePayType(DescribePayTypeRequest(area: area, product: product), logger: logger, on: eventLoop)
+    public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePayTypeResponse> {
+        self.describePayType(DescribePayTypeRequest(area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询计费方式
     ///
     /// DescribePayType 用于查询用户的计费类型，计费周期等信息。
     @inlinable
-    public func describePayType(area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
-        try await self.describePayType(DescribePayTypeRequest(area: area, product: product), logger: logger, on: eventLoop)
+    public func describePayType(area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePayTypeResponse {
+        try await self.describePayType(DescribePayTypeRequest(area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

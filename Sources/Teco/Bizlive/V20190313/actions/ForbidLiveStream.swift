@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Bizlive {
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable
-    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
-        self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
+        self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable
-    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
-        try await self.client.execute(action: "ForbidLiveStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
+        try await self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable
-    public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
-        self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), logger: logger, on: eventLoop)
+    public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
+        self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable
-    public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
-        try await self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), logger: logger, on: eventLoop)
+    public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
+        try await self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
     }
 }

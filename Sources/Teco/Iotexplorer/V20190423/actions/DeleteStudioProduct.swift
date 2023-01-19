@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotexplorer {
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
-        self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
+        self.client.execute(action: "DeleteStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
-        try await self.client.execute(action: "DeleteStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteStudioProduct(_ input: DeleteStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
+        try await self.client.execute(action: "DeleteStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
-        self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
+    public func deleteStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
+        self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除产品
     ///
     /// 提供删除某个项目下产品的能力
     @inlinable
-    public func deleteStudioProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
-        try await self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), logger: logger, on: eventLoop)
+    public func deleteStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
+        try await self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

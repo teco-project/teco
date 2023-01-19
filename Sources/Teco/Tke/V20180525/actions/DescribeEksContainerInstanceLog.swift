@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Tke {
     ///
     /// 查询容器实例中容器日志
     @inlinable
-    public func describeEksContainerInstanceLog(_ input: DescribeEksContainerInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEksContainerInstanceLogResponse> {
-        self.client.execute(action: "DescribeEksContainerInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEksContainerInstanceLog(_ input: DescribeEksContainerInstanceLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEksContainerInstanceLogResponse> {
+        self.client.execute(action: "DescribeEksContainerInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例日志
     ///
     /// 查询容器实例中容器日志
     @inlinable
-    public func describeEksContainerInstanceLog(_ input: DescribeEksContainerInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEksContainerInstanceLogResponse {
-        try await self.client.execute(action: "DescribeEksContainerInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEksContainerInstanceLog(_ input: DescribeEksContainerInstanceLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEksContainerInstanceLogResponse {
+        try await self.client.execute(action: "DescribeEksContainerInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器实例日志
     ///
     /// 查询容器实例中容器日志
     @inlinable
-    public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEksContainerInstanceLogResponse> {
-        self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), logger: logger, on: eventLoop)
+    public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEksContainerInstanceLogResponse> {
+        self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例日志
     ///
     /// 查询容器实例中容器日志
     @inlinable
-    public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEksContainerInstanceLogResponse {
-        try await self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), logger: logger, on: eventLoop)
+    public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEksContainerInstanceLogResponse {
+        try await self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), region: region, logger: logger, on: eventLoop)
     }
 }

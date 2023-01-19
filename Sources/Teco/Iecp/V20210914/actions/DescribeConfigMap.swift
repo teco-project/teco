@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Iecp {
 
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
-        self.client.execute(action: "DescribeConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigMap(_ input: DescribeConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
+        self.client.execute(action: "DescribeConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(_ input: DescribeConfigMapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
-        try await self.client.execute(action: "DescribeConfigMap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigMap(_ input: DescribeConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
+        try await self.client.execute(action: "DescribeConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
-        self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
+    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
+        self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap详情
     @inlinable
-    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
-        try await self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), logger: logger, on: eventLoop)
+    public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
+        try await self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,8 +72,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingUsageResponse> {
-        self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingUsageResponse> {
+        self.client.execute(action: "DescribeRecordingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC录制用量
@@ -85,8 +85,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
-        try await self.client.execute(action: "DescribeRecordingUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordingUsage(_ input: DescribeRecordingUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
+        try await self.client.execute(action: "DescribeRecordingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询TRTC录制用量
@@ -98,8 +98,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingUsageResponse> {
-        self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingUsageResponse> {
+        self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC录制用量
@@ -111,7 +111,7 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
-        try await self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
+        try await self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

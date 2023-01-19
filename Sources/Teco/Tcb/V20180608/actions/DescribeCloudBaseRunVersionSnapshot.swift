@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcb {
 
     /// 查询版本历史
     @inlinable
-    public func describeCloudBaseRunVersionSnapshot(_ input: DescribeCloudBaseRunVersionSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionSnapshotResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionSnapshot(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionSnapshotResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询版本历史
     @inlinable
-    public func describeCloudBaseRunVersionSnapshot(_ input: DescribeCloudBaseRunVersionSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunVersionSnapshot(_ input: DescribeCloudBaseRunVersionSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunVersionSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询版本历史
     @inlinable
-    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionSnapshotResponse> {
-        self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionSnapshotResponse> {
+        self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询版本历史
     @inlinable
-    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
-        try await self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunVersionSnapshot(serverName: String, versionName: String, envId: String, snapshotName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionSnapshotResponse {
+        try await self.describeCloudBaseRunVersionSnapshot(DescribeCloudBaseRunVersionSnapshotRequest(serverName: serverName, versionName: versionName, envId: envId, snapshotName: snapshotName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

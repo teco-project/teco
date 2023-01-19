@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bmlb {
     ///
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
-    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
-        self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
+        self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户指定的黑石负载均衡实例
     ///
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
-    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
-        try await self.client.execute(action: "DeleteLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
+        try await self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户指定的黑石负载均衡实例
     ///
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
-    public func deleteLoadBalancer(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
-        self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    public func deleteLoadBalancer(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
+        self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户指定的黑石负载均衡实例
     ///
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
-    public func deleteLoadBalancer(loadBalancerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
-        try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), logger: logger, on: eventLoop)
+    public func deleteLoadBalancer(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
+        try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
     }
 }

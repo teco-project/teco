@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cwp {
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
-    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentStatisticsResponse> {
-        self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentStatisticsResponse> {
+        self.client.execute(action: "DescribeComponentStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组件统计列表
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
-    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
-        try await self.client.execute(action: "DescribeComponentStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComponentStatistics(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
+        try await self.client.execute(action: "DescribeComponentStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取组件统计列表
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
-    public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentStatisticsResponse> {
-        self.describeComponentStatistics(DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentStatisticsResponse> {
+        self.describeComponentStatistics(DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件统计列表
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
-    public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
-        try await self.describeComponentStatistics(DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeComponentStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentStatisticsResponse {
+        try await self.describeComponentStatistics(DescribeComponentStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

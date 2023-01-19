@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dayu {
     ///
     /// 删除四层转发规则
     @inlinable
-    public func deleteL4Rules(_ input: DeleteL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteL4RulesResponse> {
-        self.client.execute(action: "DeleteL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteL4Rules(_ input: DeleteL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteL4RulesResponse> {
+        self.client.execute(action: "DeleteL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除L4转发规则
     ///
     /// 删除四层转发规则
     @inlinable
-    public func deleteL4Rules(_ input: DeleteL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
-        try await self.client.execute(action: "DeleteL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteL4Rules(_ input: DeleteL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
+        try await self.client.execute(action: "DeleteL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除L4转发规则
     ///
     /// 删除四层转发规则
     @inlinable
-    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteL4RulesResponse> {
-        self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteL4RulesResponse> {
+        self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除L4转发规则
     ///
     /// 删除四层转发规则
     @inlinable
-    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
-        try await self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func deleteL4Rules(business: String, id: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL4RulesResponse {
+        try await self.deleteL4Rules(DeleteL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

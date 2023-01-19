@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Mongodb {
     ///
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable
-    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstancesResponse> {
-        self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewDBInstances(_ input: RenewDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstancesResponse> {
+        self.client.execute(action: "RenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费云数据库实例
     ///
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable
-    public func renewDBInstances(_ input: RenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
-        try await self.client.execute(action: "RenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewDBInstances(_ input: RenewDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
+        try await self.client.execute(action: "RenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费云数据库实例
     ///
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable
-    public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstancesResponse> {
-        self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstancesResponse> {
+        self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费云数据库实例
     ///
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable
-    public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
-        try await self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
+        try await self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

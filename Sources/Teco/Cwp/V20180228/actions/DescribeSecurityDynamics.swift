@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cwp {
     ///
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
-    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityDynamicsResponse> {
-        self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityDynamicsResponse> {
+        self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件动态消息
     ///
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
-    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
-        try await self.client.execute(action: "DescribeSecurityDynamics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityDynamics(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
+        try await self.client.execute(action: "DescribeSecurityDynamics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全事件动态消息
     ///
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
-    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityDynamicsResponse> {
-        self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityDynamicsResponse> {
+        self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件动态消息
     ///
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
-    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
-        try await self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSecurityDynamics(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityDynamicsResponse {
+        try await self.describeSecurityDynamics(DescribeSecurityDynamicsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
-        self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopReplication(_ input: StopReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
+        self.client.execute(action: "StopReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(_ input: StopReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
-        try await self.client.execute(action: "StopReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopReplication(_ input: StopReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
+        try await self.client.execute(action: "StopReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
-        self.stopReplication(StopReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopReplicationResponse> {
+        self.stopReplication(StopReplicationRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止复制
     ///
     /// 停止 RO 复制，中断从主实例同步数据。
     @inlinable
-    public func stopReplication(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
-        try await self.stopReplication(StopReplicationRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopReplication(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopReplicationResponse {
+        try await self.stopReplication(StopReplicationRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

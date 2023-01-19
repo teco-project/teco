@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Wedata {
 
     /// 查询任务实例的关联实例列表
     @inlinable
-    public func describeRelatedInstances(_ input: DescribeRelatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedInstancesResponse> {
-        self.client.execute(action: "DescribeRelatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRelatedInstances(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedInstancesResponse> {
+        self.client.execute(action: "DescribeRelatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务实例的关联实例列表
     @inlinable
-    public func describeRelatedInstances(_ input: DescribeRelatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedInstancesResponse {
-        try await self.client.execute(action: "DescribeRelatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRelatedInstances(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedInstancesResponse {
+        try await self.client.execute(action: "DescribeRelatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询任务实例的关联实例列表
     @inlinable
-    public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedInstancesResponse> {
-        self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedInstancesResponse> {
+        self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务实例的关联实例列表
     @inlinable
-    public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedInstancesResponse {
-        try await self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedInstancesResponse {
+        try await self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

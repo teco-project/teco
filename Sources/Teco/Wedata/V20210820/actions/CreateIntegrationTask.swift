@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 创建集成任务
     @inlinable
-    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationTaskResponse> {
-        self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationTaskResponse> {
+        self.client.execute(action: "CreateIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集成任务
     @inlinable
-    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
-        try await self.client.execute(action: "CreateIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIntegrationTask(_ input: CreateIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
+        try await self.client.execute(action: "CreateIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集成任务
     @inlinable
-    public func createIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationTaskResponse> {
-        self.createIntegrationTask(CreateIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId), logger: logger, on: eventLoop)
+    public func createIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationTaskResponse> {
+        self.createIntegrationTask(CreateIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集成任务
     @inlinable
-    public func createIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
-        try await self.createIntegrationTask(CreateIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId), logger: logger, on: eventLoop)
+    public func createIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationTaskResponse {
+        try await self.createIntegrationTask(CreateIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Bmvpc {
 
     /// 创建黑石私有网络
     @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
-        self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVpc(_ input: CreateVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
+        self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石私有网络
     @inlinable
-    public func createVpc(_ input: CreateVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        try await self.client.execute(action: "CreateVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVpc(_ input: CreateVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.client.execute(action: "CreateVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石私有网络
     @inlinable
-    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
-        self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), logger: logger, on: eventLoop)
+    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcResponse> {
+        self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石私有网络
     @inlinable
-    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
-        try await self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), logger: logger, on: eventLoop)
+    public func createVpc(vpcName: String, cidrBlock: String, zone: String, subnetSet: [VpcSubnetCreateInfo]? = nil, enableMonitoring: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcResponse {
+        try await self.createVpc(CreateVpcRequest(vpcName: vpcName, cidrBlock: cidrBlock, zone: zone, subnetSet: subnetSet, enableMonitoring: enableMonitoring), region: region, logger: logger, on: eventLoop)
     }
 }

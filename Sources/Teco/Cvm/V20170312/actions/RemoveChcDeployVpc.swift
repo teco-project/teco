@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cvm {
 
     /// 清理CHC物理服务器的部署网络
     @inlinable
-    public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
-        self.client.execute(action: "RemoveChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
+        self.client.execute(action: "RemoveChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的部署网络
     @inlinable
-    public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
-        try await self.client.execute(action: "RemoveChcDeployVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
+        try await self.client.execute(action: "RemoveChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清理CHC物理服务器的部署网络
     @inlinable
-    public func removeChcDeployVpc(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
-        self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    public func removeChcDeployVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
+        self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的部署网络
     @inlinable
-    public func removeChcDeployVpc(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
-        try await self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    public func removeChcDeployVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
+        try await self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }
 }

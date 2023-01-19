@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
-        self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
+        self.client.execute(action: "DescribeConfigMapYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
-        try await self.client.execute(action: "DescribeConfigMapYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigMapYamlError(_ input: DescribeConfigMapYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
+        try await self.client.execute(action: "DescribeConfigMapYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
-        self.describeConfigMapYamlError(DescribeConfigMapYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeConfigMapYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapYamlErrorResponse> {
+        self.describeConfigMapYamlError(DescribeConfigMapYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验ConfigMap的Yaml语法
     @inlinable
-    public func describeConfigMapYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
-        try await self.describeConfigMapYamlError(DescribeConfigMapYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeConfigMapYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapYamlErrorResponse {
+        try await self.describeConfigMapYamlError(DescribeConfigMapYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

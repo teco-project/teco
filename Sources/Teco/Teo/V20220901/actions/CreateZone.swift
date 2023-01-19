@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Teo {
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
-        self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createZone(_ input: CreateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
+        self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(_ input: CreateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.client.execute(action: "CreateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createZone(_ input: CreateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建站点
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
-        self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), logger: logger, on: eventLoop)
+    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
+        self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
     ///
     /// 用于用户接入新的站点。
     @inlinable
-    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), logger: logger, on: eventLoop)
+    public func createZone(zoneName: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, allowDuplicates: Bool? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
+        try await self.createZone(CreateZoneRequest(zoneName: zoneName, type: type, jumpStart: jumpStart, tags: tags, allowDuplicates: allowDuplicates, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }
 }

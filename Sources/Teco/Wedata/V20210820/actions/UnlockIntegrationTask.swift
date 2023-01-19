@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 解锁集成任务
     @inlinable
-    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockIntegrationTaskResponse> {
-        self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockIntegrationTaskResponse> {
+        self.client.execute(action: "UnlockIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解锁集成任务
     @inlinable
-    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
-        try await self.client.execute(action: "UnlockIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unlockIntegrationTask(_ input: UnlockIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
+        try await self.client.execute(action: "UnlockIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解锁集成任务
     @inlinable
-    public func unlockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockIntegrationTaskResponse> {
-        self.unlockIntegrationTask(UnlockIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func unlockIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockIntegrationTaskResponse> {
+        self.unlockIntegrationTask(UnlockIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解锁集成任务
     @inlinable
-    public func unlockIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
-        try await self.unlockIntegrationTask(UnlockIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func unlockIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockIntegrationTaskResponse {
+        try await self.unlockIntegrationTask(UnlockIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

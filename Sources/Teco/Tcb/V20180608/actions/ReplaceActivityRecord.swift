@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcb {
 
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
-        self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
+        self.client.execute(action: "ReplaceActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
-        try await self.client.execute(action: "ReplaceActivityRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
+        try await self.client.execute(action: "ReplaceActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
-        self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), logger: logger, on: eventLoop)
+    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
+        self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新活动详情
     @inlinable
-    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
-        try await self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), logger: logger, on: eventLoop)
+    public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
+        try await self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

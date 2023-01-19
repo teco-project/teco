@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Kms {
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
-        self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
+        self.client.execute(action: "CancelKeyDeletion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
-        try await self.client.execute(action: "CancelKeyDeletion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelKeyDeletion(_ input: CancelKeyDeletionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
+        try await self.client.execute(action: "CancelKeyDeletion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
-        self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func cancelKeyDeletion(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
+        self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消CMK计划删除操作
     ///
     /// 取消CMK的计划删除操作
     @inlinable
-    public func cancelKeyDeletion(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
-        try await self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func cancelKeyDeletion(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
+        try await self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

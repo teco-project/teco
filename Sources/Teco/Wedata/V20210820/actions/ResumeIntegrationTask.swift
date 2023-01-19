@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
-        self.client.execute(action: "ResumeIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
+        self.client.execute(action: "ResumeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
-        try await self.client.execute(action: "ResumeIntegrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeIntegrationTask(_ input: ResumeIntegrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
+        try await self.client.execute(action: "ResumeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
-        self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func resumeIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
+        self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 继续集成任务
     @inlinable
-    public func resumeIntegrationTask(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
-        try await self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func resumeIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
+        try await self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

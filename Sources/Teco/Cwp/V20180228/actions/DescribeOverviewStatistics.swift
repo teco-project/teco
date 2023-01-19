@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cwp {
     ///
     /// 获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
-        self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
+        self.client.execute(action: "DescribeOverviewStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取概览统计数据
     ///
     /// 获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
-        try await self.client.execute(action: "DescribeOverviewStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewStatistics(_ input: DescribeOverviewStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
+        try await self.client.execute(action: "DescribeOverviewStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取概览统计数据
     ///
     /// 获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
-        self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), logger: logger, on: eventLoop)
+    public func describeOverviewStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
+        self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取概览统计数据
     ///
     /// 获取概览统计数据。
     @inlinable
-    public func describeOverviewStatistics(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
-        try await self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), logger: logger, on: eventLoop)
+    public func describeOverviewStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
+        try await self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcaplusdb {
 
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
-        self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
+        self.client.execute(action: "ModifyClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
-        try await self.client.execute(action: "ModifyClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterTags(_ input: ModifyClusterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
+        try await self.client.execute(action: "ModifyClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
-        self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterTagsResponse> {
+        self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群标签
     @inlinable
-    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
-        try await self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), logger: logger, on: eventLoop)
+    public func modifyClusterTags(clusterId: String, replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterTagsResponse {
+        try await self.modifyClusterTags(ModifyClusterTagsRequest(clusterId: clusterId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
 }

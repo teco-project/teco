@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dlc {
     ///
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
-    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportTaskResponse> {
-        self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createExportTask(_ input: CreateExportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportTaskResponse> {
+        self.client.execute(action: "CreateExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建导出任务
     ///
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
-    public func createExportTask(_ input: CreateExportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
-        try await self.client.execute(action: "CreateExportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createExportTask(_ input: CreateExportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
+        try await self.client.execute(action: "CreateExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建导出任务
     ///
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
-    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportTaskResponse> {
-        self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportTaskResponse> {
+        self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导出任务
     ///
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
-    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
-        try await self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
+        try await self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
     }
 }

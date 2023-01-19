@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Pds {
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
-        self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
+        self.client.execute(action: "DescribeStockEstimation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 存量判断服务
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
-        try await self.client.execute(action: "DescribeStockEstimation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStockEstimation(_ input: DescribeStockEstimationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
+        try await self.client.execute(action: "DescribeStockEstimation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 存量判断服务
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
-        self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    public func describeStockEstimation(serviceParams: UserInfos, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStockEstimationResponse> {
+        self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 存量判断服务
     ///
     /// 查询存量判断服务
     @inlinable
-    public func describeStockEstimation(serviceParams: UserInfos, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
-        try await self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), logger: logger, on: eventLoop)
+    public func describeStockEstimation(serviceParams: UserInfos, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStockEstimationResponse {
+        try await self.describeStockEstimation(DescribeStockEstimationRequest(serviceParams: serviceParams), region: region, logger: logger, on: eventLoop)
     }
 }

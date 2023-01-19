@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Iotvideo {
 
     /// 获取设备图片流数据
     @inlinable
-    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageStreamDataResponse> {
-        self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageStreamDataResponse> {
+        self.client.execute(action: "DescribeCloudStorageStreamData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备图片流数据
     @inlinable
-    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
-        try await self.client.execute(action: "DescribeCloudStorageStreamData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageStreamData(_ input: DescribeCloudStorageStreamDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
+        try await self.client.execute(action: "DescribeCloudStorageStreamData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备图片流数据
     @inlinable
-    public func describeCloudStorageStreamData(productId: String, deviceName: String, startTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageStreamDataResponse> {
-        self.describeCloudStorageStreamData(DescribeCloudStorageStreamDataRequest(productId: productId, deviceName: deviceName, startTime: startTime), logger: logger, on: eventLoop)
+    public func describeCloudStorageStreamData(productId: String, deviceName: String, startTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageStreamDataResponse> {
+        self.describeCloudStorageStreamData(DescribeCloudStorageStreamDataRequest(productId: productId, deviceName: deviceName, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备图片流数据
     @inlinable
-    public func describeCloudStorageStreamData(productId: String, deviceName: String, startTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
-        try await self.describeCloudStorageStreamData(DescribeCloudStorageStreamDataRequest(productId: productId, deviceName: deviceName, startTime: startTime), logger: logger, on: eventLoop)
+    public func describeCloudStorageStreamData(productId: String, deviceName: String, startTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageStreamDataResponse {
+        try await self.describeCloudStorageStreamData(DescribeCloudStorageStreamDataRequest(productId: productId, deviceName: deviceName, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 }

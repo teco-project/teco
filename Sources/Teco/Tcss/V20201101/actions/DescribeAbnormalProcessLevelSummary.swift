@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
-    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessLevelSummaryResponse> {
-        self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessLevelSummaryResponse> {
+        self.client.execute(action: "DescribeAbnormalProcessLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
-    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAbnormalProcessLevelSummary(_ input: DescribeAbnormalProcessLevelSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
-    public func describeAbnormalProcessLevelSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessLevelSummaryResponse> {
-        self.describeAbnormalProcessLevelSummary(DescribeAbnormalProcessLevelSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessLevelSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessLevelSummaryResponse> {
+        self.describeAbnormalProcessLevelSummary(DescribeAbnormalProcessLevelSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 统计异常进程各威胁等级待处理事件数
     @inlinable
-    public func describeAbnormalProcessLevelSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
-        try await self.describeAbnormalProcessLevelSummary(DescribeAbnormalProcessLevelSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessLevelSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessLevelSummaryResponse {
+        try await self.describeAbnormalProcessLevelSummary(DescribeAbnormalProcessLevelSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

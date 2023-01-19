@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Postgres {
     ///
     /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
     @inlinable
-    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceAttributeResponse> {
-        self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceAttributeResponse> {
+        self.client.execute(action: "DescribeDBInstanceAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例详情
     ///
     /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
     @inlinable
-    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
-        try await self.client.execute(action: "DescribeDBInstanceAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBInstanceAttribute(_ input: DescribeDBInstanceAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
+        try await self.client.execute(action: "DescribeDBInstanceAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例详情
     ///
     /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
     @inlinable
-    public func describeDBInstanceAttribute(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceAttributeResponse> {
-        self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeDBInstanceAttribute(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceAttributeResponse> {
+        self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例详情
     ///
     /// 本接口 (DescribeDBInstanceAttribute) 用于查询某个实例的详情信息。
     @inlinable
-    public func describeDBInstanceAttribute(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
-        try await self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeDBInstanceAttribute(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceAttributeResponse {
+        try await self.describeDBInstanceAttribute(DescribeDBInstanceAttributeRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

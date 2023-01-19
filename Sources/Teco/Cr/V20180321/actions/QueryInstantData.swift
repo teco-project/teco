@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Cr {
 
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
-        self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryInstantData(_ input: QueryInstantDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
+        self.client.execute(action: "QueryInstantData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(_ input: QueryInstantDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
-        try await self.client.execute(action: "QueryInstantData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryInstantData(_ input: QueryInstantDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
+        try await self.client.execute(action: "QueryInstantData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
-        self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), logger: logger, on: eventLoop)
+    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
+        self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时数据查询
     @inlinable
-    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
-        try await self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), logger: logger, on: eventLoop)
+    public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
+        try await self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

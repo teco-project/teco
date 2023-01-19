@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Tcss {
     ///
     /// 查询运行时异常进程事件详细信息
     @inlinable
-    public func describeAbnormalProcessDetail(_ input: DescribeAbnormalProcessDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessDetailResponse> {
-        self.client.execute(action: "DescribeAbnormalProcessDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAbnormalProcessDetail(_ input: DescribeAbnormalProcessDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessDetailResponse> {
+        self.client.execute(action: "DescribeAbnormalProcessDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时异常进程事件详细信息
     ///
     /// 查询运行时异常进程事件详细信息
     @inlinable
-    public func describeAbnormalProcessDetail(_ input: DescribeAbnormalProcessDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessDetailResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAbnormalProcessDetail(_ input: DescribeAbnormalProcessDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessDetailResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时异常进程事件详细信息
     ///
     /// 查询运行时异常进程事件详细信息
     @inlinable
-    public func describeAbnormalProcessDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessDetailResponse> {
-        self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessDetailResponse> {
+        self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时异常进程事件详细信息
     ///
     /// 查询运行时异常进程事件详细信息
     @inlinable
-    public func describeAbnormalProcessDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessDetailResponse {
-        try await self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessDetailResponse {
+        try await self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

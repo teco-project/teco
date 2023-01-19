@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cpdp {
 
     /// 云支付-分账授权申请接口
     @inlinable
-    public func distributeAccreditTlinx(_ input: DistributeAccreditTlinxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditTlinxResponse> {
-        self.client.execute(action: "DistributeAccreditTlinx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func distributeAccreditTlinx(_ input: DistributeAccreditTlinxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditTlinxResponse> {
+        self.client.execute(action: "DistributeAccreditTlinx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账授权申请接口
     @inlinable
-    public func distributeAccreditTlinx(_ input: DistributeAccreditTlinxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
-        try await self.client.execute(action: "DistributeAccreditTlinx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func distributeAccreditTlinx(_ input: DistributeAccreditTlinxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
+        try await self.client.execute(action: "DistributeAccreditTlinx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-分账授权申请接口
     @inlinable
-    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditTlinxResponse> {
-        self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), logger: logger, on: eventLoop)
+    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditTlinxResponse> {
+        self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账授权申请接口
     @inlinable
-    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
-        try await self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), logger: logger, on: eventLoop)
+    public func distributeAccreditTlinx(openId: String, openKey: String, authType: String, percent: String? = nil, fullName: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditTlinxResponse {
+        try await self.distributeAccreditTlinx(DistributeAccreditTlinxRequest(openId: openId, openKey: openKey, authType: authType, percent: percent, fullName: fullName, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Tdmq {
 
     /// 创建cmq主题
     @inlinable
-    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqTopicResponse> {
-        self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCmqTopic(_ input: CreateCmqTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqTopicResponse> {
+        self.client.execute(action: "CreateCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq主题
     @inlinable
-    public func createCmqTopic(_ input: CreateCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
-        try await self.client.execute(action: "CreateCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCmqTopic(_ input: CreateCmqTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
+        try await self.client.execute(action: "CreateCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建cmq主题
     @inlinable
-    public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqTopicResponse> {
-        self.createCmqTopic(CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), logger: logger, on: eventLoop)
+    public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqTopicResponse> {
+        self.createCmqTopic(CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq主题
     @inlinable
-    public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
-        try await self.createCmqTopic(CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), logger: logger, on: eventLoop)
+    public func createCmqTopic(topicName: String, maxMsgSize: UInt64? = nil, filterType: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqTopicResponse {
+        try await self.createCmqTopic(CreateCmqTopicRequest(topicName: topicName, maxMsgSize: maxMsgSize, filterType: filterType, msgRetentionSeconds: msgRetentionSeconds, trace: trace, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

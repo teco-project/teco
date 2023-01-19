@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Clb {
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
-        self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
+        self.client.execute(action: "DescribeCustomizedConfigAssociateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
-        try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomizedConfigAssociateList(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
+        try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
-        self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
+    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
+        self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置绑定的server或location。
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
-        try await self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), logger: logger, on: eventLoop)
+    public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
+        try await self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

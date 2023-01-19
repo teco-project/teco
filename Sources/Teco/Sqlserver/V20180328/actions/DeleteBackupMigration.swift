@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable
-    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
-        self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
+        self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable
-    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
-        try await self.client.execute(action: "DeleteBackupMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
+        try await self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable
-    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
-        self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
+        self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
     @inlinable
-    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
-        try await self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), logger: logger, on: eventLoop)
+    public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
+        try await self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
-        self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
+        self.client.execute(action: "DescribeTableInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
-        try await self.client.execute(action: "DescribeTableInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTableInfoList(_ input: DescribeTableInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
+        try await self.client.execute(action: "DescribeTableInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
-        self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), logger: logger, on: eventLoop)
+    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
+        self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据表信息
     @inlinable
-    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
-        try await self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), logger: logger, on: eventLoop)
+    public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
+        try await self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), region: region, logger: logger, on: eventLoop)
     }
 }

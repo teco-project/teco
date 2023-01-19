@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Bmvpc {
 
     /// 物理机加入子网
     @inlinable
-    public func createInterfaces(_ input: CreateInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInterfacesResponse> {
-        self.client.execute(action: "CreateInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInterfaces(_ input: CreateInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInterfacesResponse> {
+        self.client.execute(action: "CreateInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 物理机加入子网
     @inlinable
-    public func createInterfaces(_ input: CreateInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
-        try await self.client.execute(action: "CreateInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInterfaces(_ input: CreateInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
+        try await self.client.execute(action: "CreateInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 物理机加入子网
     @inlinable
-    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInterfacesResponse> {
-        self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInterfacesResponse> {
+        self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 物理机加入子网
     @inlinable
-    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
-        try await self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func createInterfaces(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInterfacesResponse {
+        try await self.createInterfaces(CreateInterfacesRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

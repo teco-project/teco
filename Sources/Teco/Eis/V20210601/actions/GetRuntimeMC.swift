@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Eis {
 
     /// 获取运行时详情
     @inlinable
-    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeMCResponse> {
-        self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRuntimeMC(_ input: GetRuntimeMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeMCResponse> {
+        self.client.execute(action: "GetRuntimeMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时详情
     @inlinable
-    public func getRuntimeMC(_ input: GetRuntimeMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
-        try await self.client.execute(action: "GetRuntimeMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRuntimeMC(_ input: GetRuntimeMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
+        try await self.client.execute(action: "GetRuntimeMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取运行时详情
     @inlinable
-    public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeMCResponse> {
-        self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), logger: logger, on: eventLoop)
+    public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeMCResponse> {
+        self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时详情
     @inlinable
-    public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
-        try await self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), logger: logger, on: eventLoop)
+    public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
+        try await self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tcss {
 
     /// 查询漏洞镜像统计
     @inlinable
-    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageSummaryResponse> {
-        self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageSummaryResponse> {
+        self.client.execute(action: "DescribeVulImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞镜像统计
     @inlinable
-    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
-        try await self.client.execute(action: "DescribeVulImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulImageSummary(_ input: DescribeVulImageSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
+        try await self.client.execute(action: "DescribeVulImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞镜像统计
     @inlinable
-    public func describeVulImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageSummaryResponse> {
-        self.describeVulImageSummary(DescribeVulImageSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeVulImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulImageSummaryResponse> {
+        self.describeVulImageSummary(DescribeVulImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞镜像统计
     @inlinable
-    public func describeVulImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
-        try await self.describeVulImageSummary(DescribeVulImageSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeVulImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulImageSummaryResponse {
+        try await self.describeVulImageSummary(DescribeVulImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

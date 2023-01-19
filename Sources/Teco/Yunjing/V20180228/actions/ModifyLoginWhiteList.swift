@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Yunjing {
 
     /// 编辑白名单规则
     @inlinable
-    public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
-        self.client.execute(action: "ModifyLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
+        self.client.execute(action: "ModifyLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑白名单规则
     @inlinable
-    public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
-        try await self.client.execute(action: "ModifyLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
+        try await self.client.execute(action: "ModifyLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑白名单规则
     @inlinable
-    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
-        self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), logger: logger, on: eventLoop)
+    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
+        self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑白名单规则
     @inlinable
-    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
-        try await self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), logger: logger, on: eventLoop)
+    public func modifyLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
+        try await self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

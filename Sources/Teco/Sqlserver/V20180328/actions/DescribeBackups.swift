@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -120,31 +120,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
-        self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackups(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
+        self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(_ input: DescribeBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        try await self.client.execute(action: "DescribeBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackups(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备份列表
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
-        self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), logger: logger, on: eventLoop)
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
+        self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份列表
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        try await self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), logger: logger, on: eventLoop)
+    public func describeBackups(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
+        try await self.describeBackups(DescribeBackupsRequest(startTime: startTime, endTime: endTime, instanceId: instanceId, limit: limit, offset: offset, backupName: backupName, strategy: strategy, backupWay: backupWay, backupId: backupId, databaseName: databaseName, group: group, type: type, backupFormat: backupFormat), region: region, logger: logger, on: eventLoop)
     }
 }

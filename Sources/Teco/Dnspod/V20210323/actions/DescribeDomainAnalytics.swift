@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Dnspod {
     ///
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
-    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAnalyticsResponse> {
-        self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAnalyticsResponse> {
+        self.client.execute(action: "DescribeDomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名解析量统计
     ///
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
-    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
-        try await self.client.execute(action: "DescribeDomainAnalytics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainAnalytics(_ input: DescribeDomainAnalyticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
+        try await self.client.execute(action: "DescribeDomainAnalytics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名解析量统计
     ///
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
-    public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAnalyticsResponse> {
-        self.describeDomainAnalytics(DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAnalyticsResponse> {
+        self.describeDomainAnalytics(DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名解析量统计
     ///
     /// 统计各个域名的解析量，帮助您了解流量情况、时间段分布。支持查看近 3 个月内的统计情况
     @inlinable
-    public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
-        try await self.describeDomainAnalytics(DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainAnalytics(domain: String, startDate: String, endDate: String, dnsFormat: String? = nil, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAnalyticsResponse {
+        try await self.describeDomainAnalytics(DescribeDomainAnalyticsRequest(domain: domain, startDate: startDate, endDate: endDate, dnsFormat: dnsFormat, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

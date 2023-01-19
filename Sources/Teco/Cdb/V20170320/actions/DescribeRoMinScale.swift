@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
-    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoMinScaleResponse> {
-        self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoMinScaleResponse> {
+        self.client.execute(action: "DescribeRoMinScale", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取只读实例购买或升级的最小规格
     ///
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
-    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
-        try await self.client.execute(action: "DescribeRoMinScale", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoMinScale(_ input: DescribeRoMinScaleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
+        try await self.client.execute(action: "DescribeRoMinScale", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取只读实例购买或升级的最小规格
     ///
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
-    public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoMinScaleResponse> {
-        self.describeRoMinScale(DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), logger: logger, on: eventLoop)
+    public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoMinScaleResponse> {
+        self.describeRoMinScale(DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取只读实例购买或升级的最小规格
     ///
     /// 本接口(DescribeRoMinScale)用于获取只读实例购买、升级时的最小规格。
     @inlinable
-    public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
-        try await self.describeRoMinScale(DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), logger: logger, on: eventLoop)
+    public func describeRoMinScale(roInstanceId: String? = nil, masterInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoMinScaleResponse {
+        try await self.describeRoMinScale(DescribeRoMinScaleRequest(roInstanceId: roInstanceId, masterInstanceId: masterInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

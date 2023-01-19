@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Dayu {
 
     /// 下载攻击事件的pcap包
     @inlinable
-    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePcapResponse> {
-        self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePcap(_ input: DescribePcapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePcapResponse> {
+        self.client.execute(action: "DescribePcap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载攻击事件的pcap包
     @inlinable
-    public func describePcap(_ input: DescribePcapRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
-        try await self.client.execute(action: "DescribePcap", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePcap(_ input: DescribePcapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
+        try await self.client.execute(action: "DescribePcap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载攻击事件的pcap包
     @inlinable
-    public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePcapResponse> {
-        self.describePcap(DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), logger: logger, on: eventLoop)
+    public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePcapResponse> {
+        self.describePcap(DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载攻击事件的pcap包
     @inlinable
-    public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
-        try await self.describePcap(DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), logger: logger, on: eventLoop)
+    public func describePcap(business: String, id: String, startTime: Date, endTime: Date, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePcapResponse {
+        try await self.describePcap(DescribePcapRequest(business: business, id: id, startTime: startTime, endTime: endTime, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

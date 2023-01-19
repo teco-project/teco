@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tem {
 
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
-        self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvironment(_ input: DescribeEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
+        self.client.execute(action: "DescribeEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(_ input: DescribeEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
-        try await self.client.execute(action: "DescribeEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvironment(_ input: DescribeEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
+        try await self.client.execute(action: "DescribeEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
-        self.describeEnvironment(DescribeEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentResponse> {
+        self.describeEnvironment(DescribeEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境基础信息
     @inlinable
-    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
-        try await self.describeEnvironment(DescribeEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeEnvironment(environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentResponse {
+        try await self.describeEnvironment(DescribeEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

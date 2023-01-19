@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,31 +94,31 @@ extension Tcb {
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
-        self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
+        self.client.execute(action: "DescribeCloudBaseBuildService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
-        try await self.client.execute(action: "DescribeCloudBaseBuildService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseBuildService(_ input: DescribeCloudBaseBuildServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
+        try await self.client.execute(action: "DescribeCloudBaseBuildService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
-        self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), logger: logger, on: eventLoop)
+    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseBuildServiceResponse> {
+        self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云托管代码上传和下载url
     ///
     /// 获取云托管代码上传url
     @inlinable
-    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
-        try await self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), logger: logger, on: eventLoop)
+    public func describeCloudBaseBuildService(envId: String, serviceName: String, ciBusiness: String? = nil, serviceVersion: String? = nil, suffix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseBuildServiceResponse {
+        try await self.describeCloudBaseBuildService(DescribeCloudBaseBuildServiceRequest(envId: envId, serviceName: serviceName, ciBusiness: ciBusiness, serviceVersion: serviceVersion, suffix: suffix), region: region, logger: logger, on: eventLoop)
     }
 }

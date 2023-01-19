@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
-        self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
+        self.client.execute(action: "DescribeMonitorDataByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
-        try await self.client.execute(action: "DescribeMonitorDataByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMonitorDataByDate(_ input: DescribeMonitorDataByDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
+        try await self.client.execute(action: "DescribeMonitorDataByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
-        self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorDataByDateResponse> {
+        self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营中心-设备录像存储统计
     @inlinable
-    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
-        try await self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeMonitorDataByDate(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorDataByDateResponse {
+        try await self.describeMonitorDataByDate(DescribeMonitorDataByDateRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

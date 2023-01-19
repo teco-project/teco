@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tcss {
     ///
     /// 容器安全查询镜像扫描状态
     @inlinable
-    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanStatusResponse> {
-        self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanStatusResponse> {
+        self.client.execute(action: "DescribeAssetImageScanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像扫描状态
     ///
     /// 容器安全查询镜像扫描状态
     @inlinable
-    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
-        try await self.client.execute(action: "DescribeAssetImageScanStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageScanStatus(_ input: DescribeAssetImageScanStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
+        try await self.client.execute(action: "DescribeAssetImageScanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像扫描状态
     ///
     /// 容器安全查询镜像扫描状态
     @inlinable
-    public func describeAssetImageScanStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanStatusResponse> {
-        self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeAssetImageScanStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanStatusResponse> {
+        self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像扫描状态
     ///
     /// 容器安全查询镜像扫描状态
     @inlinable
-    public func describeAssetImageScanStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
-        try await self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeAssetImageScanStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
+        try await self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

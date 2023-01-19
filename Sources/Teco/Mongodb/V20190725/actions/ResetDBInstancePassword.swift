@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Mongodb {
 
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
-        self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
+        self.client.execute(action: "ResetDBInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
-        try await self.client.execute(action: "ResetDBInstancePassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetDBInstancePassword(_ input: ResetDBInstancePasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
+        try await self.client.execute(action: "ResetDBInstancePassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
-        self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDBInstancePasswordResponse> {
+        self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例用户的密码
     @inlinable
-    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
-        try await self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    public func resetDBInstancePassword(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDBInstancePasswordResponse {
+        try await self.resetDBInstancePassword(ResetDBInstancePasswordRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

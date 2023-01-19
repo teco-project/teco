@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tdid {
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
-        self.client.execute(action: "GetCredentialIssueRank", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
+        self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
-        try await self.client.execute(action: "GetCredentialIssueRank", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCredentialIssueRank(_ input: GetCredentialIssueRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
+        try await self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
-        self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
+        self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发机构排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
-        try await self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
+        try await self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

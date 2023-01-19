@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func startMigrateJob(_ input: StartMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrateJobResponse> {
-        self.client.execute(action: "StartMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startMigrateJob(_ input: StartMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrateJobResponse> {
+        self.client.execute(action: "StartMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动数据迁移任务
     ///
     /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func startMigrateJob(_ input: StartMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
-        try await self.client.execute(action: "StartMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startMigrateJob(_ input: StartMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
+        try await self.client.execute(action: "StartMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动数据迁移任务
     ///
     /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func startMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrateJobResponse> {
-        self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func startMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrateJobResponse> {
+        self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动数据迁移任务
     ///
     /// 本接口（StartMigrationJob）用于启动迁移任务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func startMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
-        try await self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func startMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrateJobResponse {
+        try await self.startMigrateJob(StartMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

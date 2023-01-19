@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 设置实例输入模式
     @inlinable
-    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceReadOnlyResponse> {
-        self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceReadOnlyResponse> {
+        self.client.execute(action: "ModifyInstanceReadOnly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例输入模式
     @inlinable
-    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
-        try await self.client.execute(action: "ModifyInstanceReadOnly", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceReadOnly(_ input: ModifyInstanceReadOnlyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
+        try await self.client.execute(action: "ModifyInstanceReadOnly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置实例输入模式
     @inlinable
-    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceReadOnlyResponse> {
-        self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), logger: logger, on: eventLoop)
+    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceReadOnlyResponse> {
+        self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置实例输入模式
     @inlinable
-    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
-        try await self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), logger: logger, on: eventLoop)
+    public func modifyInstanceReadOnly(instanceId: String, inputMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
+        try await self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,25 +119,25 @@ extension Bmeip {
 
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
-        self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEips(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
+        self.client.execute(action: "DescribeEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(_ input: DescribeEipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
-        try await self.client.execute(action: "DescribeEips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEips(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
+        try await self.client.execute(action: "DescribeEips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
-        self.describeEips(DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), logger: logger, on: eventLoop)
+    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipsResponse> {
+        self.describeEips(DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
-        try await self.describeEips(DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), logger: logger, on: eventLoop)
+    public func describeEips(eipIds: [String]? = nil, eips: [String]? = nil, instanceIds: [String]? = nil, searchKey: String? = nil, status: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, payMode: String? = nil, vpcId: String? = nil, bindTypes: [Int64]? = nil, exclusiveTag: Int64? = nil, aclId: String? = nil, bindAcl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipsResponse {
+        try await self.describeEips(DescribeEipsRequest(eipIds: eipIds, eips: eips, instanceIds: instanceIds, searchKey: searchKey, status: status, offset: offset, limit: limit, orderField: orderField, order: order, payMode: payMode, vpcId: vpcId, bindTypes: bindTypes, exclusiveTag: exclusiveTag, aclId: aclId, bindAcl: bindAcl), region: region, logger: logger, on: eventLoop)
     }
 }

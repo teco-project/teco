@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Live {
     ///
     /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
     @inlinable
-    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordTaskResponse> {
-        self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordTaskResponse> {
+        self.client.execute(action: "DeleteRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除录制任务（新）
     ///
     /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
     @inlinable
-    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
-        try await self.client.execute(action: "DeleteRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRecordTask(_ input: DeleteRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
+        try await self.client.execute(action: "DeleteRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除录制任务（新）
     ///
     /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
     @inlinable
-    public func deleteRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordTaskResponse> {
-        self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func deleteRecordTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordTaskResponse> {
+        self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除录制任务（新）
     ///
     /// 删除录制任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
     @inlinable
-    public func deleteRecordTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
-        try await self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func deleteRecordTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordTaskResponse {
+        try await self.deleteRecordTask(DeleteRecordTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

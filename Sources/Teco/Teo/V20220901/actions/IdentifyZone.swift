@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Teo {
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
-        self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func identifyZone(_ input: IdentifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
+        self.client.execute(action: "IdentifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(_ input: IdentifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
-        try await self.client.execute(action: "IdentifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func identifyZone(_ input: IdentifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
+        try await self.client.execute(action: "IdentifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
-        self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
+    public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdentifyZoneResponse> {
+        self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 认证站点
     ///
     /// 用于验证站点所有权。
     @inlinable
-    public func identifyZone(zoneName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
-        try await self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), logger: logger, on: eventLoop)
+    public func identifyZone(zoneName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdentifyZoneResponse {
+        try await self.identifyZone(IdentifyZoneRequest(zoneName: zoneName), region: region, logger: logger, on: eventLoop)
     }
 }

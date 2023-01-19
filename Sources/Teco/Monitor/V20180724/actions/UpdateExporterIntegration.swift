@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Monitor {
 
     /// 更新 exporter 集成配置
     @inlinable
-    public func updateExporterIntegration(_ input: UpdateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateExporterIntegrationResponse> {
-        self.client.execute(action: "UpdateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateExporterIntegration(_ input: UpdateExporterIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateExporterIntegrationResponse> {
+        self.client.execute(action: "UpdateExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 exporter 集成配置
     @inlinable
-    public func updateExporterIntegration(_ input: UpdateExporterIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateExporterIntegrationResponse {
-        try await self.client.execute(action: "UpdateExporterIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateExporterIntegration(_ input: UpdateExporterIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateExporterIntegrationResponse {
+        try await self.client.execute(action: "UpdateExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新 exporter 集成配置
     @inlinable
-    public func updateExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateExporterIntegrationResponse> {
-        self.updateExporterIntegration(UpdateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func updateExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateExporterIntegrationResponse> {
+        self.updateExporterIntegration(UpdateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 exporter 集成配置
     @inlinable
-    public func updateExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateExporterIntegrationResponse {
-        try await self.updateExporterIntegration(UpdateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func updateExporterIntegration(instanceId: String, kind: String, content: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateExporterIntegrationResponse {
+        try await self.updateExporterIntegration(UpdateExporterIntegrationRequest(instanceId: instanceId, kind: kind, content: content, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

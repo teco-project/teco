@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Cpdp {
 
     /// 云支付-获取门店OpenId接口
     @inlinable
-    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryShopOpenIdResponse> {
-        self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryShopOpenIdResponse> {
+        self.client.execute(action: "QueryShopOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-获取门店OpenId接口
     @inlinable
-    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
-        try await self.client.execute(action: "QueryShopOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryShopOpenId(_ input: QueryShopOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
+        try await self.client.execute(action: "QueryShopOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-获取门店OpenId接口
     @inlinable
-    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryShopOpenIdResponse> {
-        self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryShopOpenIdResponse> {
+        self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-获取门店OpenId接口
     @inlinable
-    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
-        try await self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), logger: logger, on: eventLoop)
+    public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
+        try await self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

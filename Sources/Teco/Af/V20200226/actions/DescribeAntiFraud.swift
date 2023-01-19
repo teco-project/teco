@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Af {
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
-        self.client.execute(action: "DescribeAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
+        self.client.execute(action: "DescribeAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 金融借贷反欺诈
@@ -65,8 +65,8 @@ extension Af {
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
-        try await self.client.execute(action: "DescribeAntiFraud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAntiFraud(_ input: DescribeAntiFraudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
+        try await self.client.execute(action: "DescribeAntiFraud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 金融借贷反欺诈
@@ -75,8 +75,8 @@ extension Af {
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
-        self.describeAntiFraud(DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAntiFraudResponse> {
+        self.describeAntiFraud(DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 金融借贷反欺诈
@@ -85,7 +85,7 @@ extension Af {
     /// 可以准确识别恶意用户信息，解决客户在支付、活动、理财，风控等业务环节遇到的欺诈威胁，降低企业
     /// 的损失。
     @inlinable
-    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
-        try await self.describeAntiFraud(DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), logger: logger, on: eventLoop)
+    public func describeAntiFraud(businessSecurityData: FinanceAntiFraudFilter? = nil, businessCryptoData: FinanceAntiFraudCryptoFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAntiFraudResponse {
+        try await self.describeAntiFraud(DescribeAntiFraudRequest(businessSecurityData: businessSecurityData, businessCryptoData: businessCryptoData), region: region, logger: logger, on: eventLoop)
     }
 }

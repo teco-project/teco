@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcr {
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
     @inlinable
-    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
-        self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
+        self.client.execute(action: "BatchDeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
     @inlinable
-    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
-        try await self.client.execute(action: "BatchDeleteImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
+        try await self.client.execute(action: "BatchDeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
     @inlinable
-    public func batchDeleteImagePersonal(repoName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
-        self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), logger: logger, on: eventLoop)
+    public func batchDeleteImagePersonal(repoName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
+        self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
     @inlinable
-    public func batchDeleteImagePersonal(repoName: String, tags: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
-        try await self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), logger: logger, on: eventLoop)
+    public func batchDeleteImagePersonal(repoName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
+        try await self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

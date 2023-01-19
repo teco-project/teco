@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 修改单元应用基本信息
     @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationBasicInfoResponse> {
-        self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationBasicInfoResponse> {
+        self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改单元应用基本信息
     @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
-        try await self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEdgeUnitApplicationBasicInfo(_ input: ModifyEdgeUnitApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
+        try await self.client.execute(action: "ModifyEdgeUnitApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改单元应用基本信息
     @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationBasicInfoResponse> {
-        self.modifyEdgeUnitApplicationBasicInfo(ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationBasicInfoResponse> {
+        self.modifyEdgeUnitApplicationBasicInfo(ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改单元应用基本信息
     @inlinable
-    public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
-        try await self.modifyEdgeUnitApplicationBasicInfo(ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitApplicationBasicInfo(basicInfo: ApplicationBasicInfo, edgeUnitId: UInt64? = nil, applicationId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationBasicInfoResponse {
+        try await self.modifyEdgeUnitApplicationBasicInfo(ModifyEdgeUnitApplicationBasicInfoRequest(basicInfo: basicInfo, edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

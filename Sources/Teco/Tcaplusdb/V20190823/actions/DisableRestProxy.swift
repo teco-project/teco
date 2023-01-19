@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tcaplusdb {
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
-        self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableRestProxy(_ input: DisableRestProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
+        self.client.execute(action: "DisableRestProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(_ input: DisableRestProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
-        try await self.client.execute(action: "DisableRestProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableRestProxy(_ input: DisableRestProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
+        try await self.client.execute(action: "DisableRestProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
-        self.disableRestProxy(DisableRestProxyRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func disableRestProxy(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRestProxyResponse> {
+        self.disableRestProxy(DisableRestProxyRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭restful api
     ///
     /// 当restful api为关闭状态时，可以通过此接口关闭restful api
     @inlinable
-    public func disableRestProxy(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
-        try await self.disableRestProxy(DisableRestProxyRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func disableRestProxy(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRestProxyResponse {
+        try await self.disableRestProxy(DisableRestProxyRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

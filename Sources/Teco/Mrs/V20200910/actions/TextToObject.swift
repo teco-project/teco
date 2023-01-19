@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Mrs {
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
-        self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textToObject(_ input: TextToObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
+        self.client.execute(action: "TextToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(_ input: TextToObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
-        try await self.client.execute(action: "TextToObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textToObject(_ input: TextToObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
+        try await self.client.execute(action: "TextToObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
-        self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToObjectResponse> {
+        self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本结构化接口
     ///
     /// 文本转结构化对象
     @inlinable
-    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
-        try await self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), logger: logger, on: eventLoop)
+    public func textToObject(text: String, type: UInt64, isUsedClassify: Bool, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToObjectResponse {
+        try await self.textToObject(TextToObjectRequest(text: text, type: type, isUsedClassify: isUsedClassify, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

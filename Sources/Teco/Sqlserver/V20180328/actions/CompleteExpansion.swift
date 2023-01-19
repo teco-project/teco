@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
-    public func completeExpansion(_ input: CompleteExpansionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteExpansionResponse> {
-        self.client.execute(action: "CompleteExpansion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func completeExpansion(_ input: CompleteExpansionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteExpansionResponse> {
+        self.client.execute(action: "CompleteExpansion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 立刻完成扩容任务
     ///
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
-    public func completeExpansion(_ input: CompleteExpansionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteExpansionResponse {
-        try await self.client.execute(action: "CompleteExpansion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func completeExpansion(_ input: CompleteExpansionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteExpansionResponse {
+        try await self.client.execute(action: "CompleteExpansion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 立刻完成扩容任务
     ///
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
-    public func completeExpansion(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteExpansionResponse> {
-        self.completeExpansion(CompleteExpansionRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func completeExpansion(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteExpansionResponse> {
+        self.completeExpansion(CompleteExpansionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 立刻完成扩容任务
     ///
     /// 本接口（CompleteExpansion）在实例发起扩容后，实例状态处于“升级待切换”时，可立即完成实例升级切换操作，无需等待可维护时间窗。本接口需要在实例低峰时调用，在完全切换成功前，存在部分库不可访问的风险。
     @inlinable
-    public func completeExpansion(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteExpansionResponse {
-        try await self.completeExpansion(CompleteExpansionRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func completeExpansion(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteExpansionResponse {
+        try await self.completeExpansion(CompleteExpansionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

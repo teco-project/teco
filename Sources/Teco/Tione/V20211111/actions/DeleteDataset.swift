@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tione {
 
     /// 删除数据集
     @inlinable
-    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatasetResponse> {
-        self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDataset(_ input: DeleteDatasetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatasetResponse> {
+        self.client.execute(action: "DeleteDataset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除数据集
     @inlinable
-    public func deleteDataset(_ input: DeleteDatasetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
-        try await self.client.execute(action: "DeleteDataset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDataset(_ input: DeleteDatasetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
+        try await self.client.execute(action: "DeleteDataset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除数据集
     @inlinable
-    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatasetResponse> {
-        self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), logger: logger, on: eventLoop)
+    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDatasetResponse> {
+        self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除数据集
     @inlinable
-    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
-        try await self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), logger: logger, on: eventLoop)
+    public func deleteDataset(datasetId: String, deleteLabelEnable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDatasetResponse {
+        try await self.deleteDataset(DeleteDatasetRequest(datasetId: datasetId, deleteLabelEnable: deleteLabelEnable), region: region, logger: logger, on: eventLoop)
     }
 }

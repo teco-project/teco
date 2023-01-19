@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotexplorer {
 
     /// 删除围栏
     @inlinable
-    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionFenceResponse> {
-        self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePositionFence(_ input: DeletePositionFenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionFenceResponse> {
+        self.client.execute(action: "DeletePositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除围栏
     @inlinable
-    public func deletePositionFence(_ input: DeletePositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
-        try await self.client.execute(action: "DeletePositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePositionFence(_ input: DeletePositionFenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
+        try await self.client.execute(action: "DeletePositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除围栏
     @inlinable
-    public func deletePositionFence(spaceId: String, fenceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionFenceResponse> {
-        self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), logger: logger, on: eventLoop)
+    public func deletePositionFence(spaceId: String, fenceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePositionFenceResponse> {
+        self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除围栏
     @inlinable
-    public func deletePositionFence(spaceId: String, fenceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
-        try await self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), logger: logger, on: eventLoop)
+    public func deletePositionFence(spaceId: String, fenceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePositionFenceResponse {
+        try await self.deletePositionFence(DeletePositionFenceRequest(spaceId: spaceId, fenceId: fenceId), region: region, logger: logger, on: eventLoop)
     }
 }

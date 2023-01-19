@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tci {
 
     /// 创建词汇
     @inlinable
-    public func createVocab(_ input: CreateVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabResponse> {
-        self.client.execute(action: "CreateVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVocab(_ input: CreateVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabResponse> {
+        self.client.execute(action: "CreateVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建词汇
     @inlinable
-    public func createVocab(_ input: CreateVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {
-        try await self.client.execute(action: "CreateVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVocab(_ input: CreateVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {
+        try await self.client.execute(action: "CreateVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建词汇
     @inlinable
-    public func createVocab(vocabLibName: String, vocabList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabResponse> {
-        self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), logger: logger, on: eventLoop)
+    public func createVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabResponse> {
+        self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建词汇
     @inlinable
-    public func createVocab(vocabLibName: String, vocabList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {
-        try await self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), logger: logger, on: eventLoop)
+    public func createVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {
+        try await self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
     }
 }

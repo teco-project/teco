@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Mongodb {
 
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
-        self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
+        self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
-        try await self.client.execute(action: "DescribeSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroup(_ input: DescribeSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
+        try await self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
-        self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
+        self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例绑定的安全组
     @inlinable
-    public func describeSecurityGroup(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
-        try await self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
+        try await self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

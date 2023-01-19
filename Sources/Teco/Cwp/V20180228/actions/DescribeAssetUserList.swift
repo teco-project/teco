@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Cwp {
 
     /// 获取账号列表
     @inlinable
-    public func describeAssetUserList(_ input: DescribeAssetUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserListResponse> {
-        self.client.execute(action: "DescribeAssetUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetUserList(_ input: DescribeAssetUserListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserListResponse> {
+        self.client.execute(action: "DescribeAssetUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账号列表
     @inlinable
-    public func describeAssetUserList(_ input: DescribeAssetUserListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserListResponse {
-        try await self.client.execute(action: "DescribeAssetUserList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetUserList(_ input: DescribeAssetUserListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserListResponse {
+        try await self.client.execute(action: "DescribeAssetUserList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取账号列表
     @inlinable
-    public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserListResponse> {
-        self.describeAssetUserList(DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetUserListResponse> {
+        self.describeAssetUserList(DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号列表
     @inlinable
-    public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserListResponse {
-        try await self.describeAssetUserList(DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetUserList(quuid: String? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetUserListResponse {
+        try await self.describeAssetUserList(DescribeAssetUserListRequest(quuid: quuid, filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Ccc {
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
-        self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
+        self.client.execute(action: "CreateAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
-        try await self.client.execute(action: "CreateAutoCalloutTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAutoCalloutTask(_ input: CreateAutoCalloutTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
+        try await self.client.execute(action: "CreateAutoCalloutTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
-        self.createAutoCalloutTask(CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), logger: logger, on: eventLoop)
+    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoCalloutTaskResponse> {
+        self.createAutoCalloutTask(CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自动外呼任务
     @inlinable
-    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
-        try await self.createAutoCalloutTask(CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), logger: logger, on: eventLoop)
+    public func createAutoCalloutTask(sdkAppId: UInt64, notBefore: Int64, callees: [String], callers: [String], ivrId: UInt64, name: String? = nil, description: String? = nil, notAfter: Int64? = nil, tries: UInt64? = nil, variables: [Variable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoCalloutTaskResponse {
+        try await self.createAutoCalloutTask(CreateAutoCalloutTaskRequest(sdkAppId: sdkAppId, notBefore: notBefore, callees: callees, callers: callers, ivrId: ivrId, name: name, description: description, notAfter: notAfter, tries: tries, variables: variables), region: region, logger: logger, on: eventLoop)
     }
 }

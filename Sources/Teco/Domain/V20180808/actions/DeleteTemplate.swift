@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Domain {
     ///
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable
-    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateResponse> {
-        self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTemplate(_ input: DeleteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateResponse> {
+        self.client.execute(action: "DeleteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除信息模板
     ///
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable
-    public func deleteTemplate(_ input: DeleteTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
-        try await self.client.execute(action: "DeleteTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTemplate(_ input: DeleteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
+        try await self.client.execute(action: "DeleteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除信息模板
     ///
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable
-    public func deleteTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateResponse> {
-        self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deleteTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateResponse> {
+        self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除信息模板
     ///
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable
-    public func deleteTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
-        try await self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deleteTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
+        try await self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

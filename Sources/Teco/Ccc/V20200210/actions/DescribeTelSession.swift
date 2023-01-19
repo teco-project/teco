@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ccc {
 
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
-        self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTelSession(_ input: DescribeTelSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
+        self.client.execute(action: "DescribeTelSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(_ input: DescribeTelSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
-        try await self.client.execute(action: "DescribeTelSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTelSession(_ input: DescribeTelSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
+        try await self.client.execute(action: "DescribeTelSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
-        self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), logger: logger, on: eventLoop)
+    public func describeTelSession(sdkAppId: Int64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
+        self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 会话信息
     @inlinable
-    public func describeTelSession(sdkAppId: Int64, sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
-        try await self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), logger: logger, on: eventLoop)
+    public func describeTelSession(sdkAppId: Int64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
+        try await self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

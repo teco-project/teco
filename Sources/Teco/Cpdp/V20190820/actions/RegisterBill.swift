@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -143,25 +143,25 @@ extension Cpdp {
 
     /// 登记挂账(支持撤销)
     @inlinable
-    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillResponse> {
-        self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerBill(_ input: RegisterBillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillResponse> {
+        self.client.execute(action: "RegisterBill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 登记挂账(支持撤销)
     @inlinable
-    public func registerBill(_ input: RegisterBillRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
-        try await self.client.execute(action: "RegisterBill", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerBill(_ input: RegisterBillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
+        try await self.client.execute(action: "RegisterBill", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 登记挂账(支持撤销)
     @inlinable
-    public func registerBill(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String? = nil, remark: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillResponse> {
-        self.registerBill(RegisterBillRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNo: bankAccountNo, platformShortNo: platformShortNo, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSeqNo: transSeqNo, tranFee: tranFee, orderAmt: orderAmt, bankSubAccountNo: bankSubAccountNo, tranNetMemberCode: tranNetMemberCode, tranType: tranType, reservedMessage: reservedMessage, remark: remark, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func registerBill(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String? = nil, remark: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillResponse> {
+        self.registerBill(RegisterBillRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNo: bankAccountNo, platformShortNo: platformShortNo, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSeqNo: transSeqNo, tranFee: tranFee, orderAmt: orderAmt, bankSubAccountNo: bankSubAccountNo, tranNetMemberCode: tranNetMemberCode, tranType: tranType, reservedMessage: reservedMessage, remark: remark, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 登记挂账(支持撤销)
     @inlinable
-    public func registerBill(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String? = nil, remark: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
-        try await self.registerBill(RegisterBillRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNo: bankAccountNo, platformShortNo: platformShortNo, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSeqNo: transSeqNo, tranFee: tranFee, orderAmt: orderAmt, bankSubAccountNo: bankSubAccountNo, tranNetMemberCode: tranNetMemberCode, tranType: tranType, reservedMessage: reservedMessage, remark: remark, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func registerBill(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNo: String, platformShortNo: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSeqNo: String, tranFee: String, orderAmt: String, bankSubAccountNo: String, tranNetMemberCode: String, tranType: String, reservedMessage: String? = nil, remark: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillResponse {
+        try await self.registerBill(RegisterBillRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNo: bankAccountNo, platformShortNo: platformShortNo, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSeqNo: transSeqNo, tranFee: tranFee, orderAmt: orderAmt, bankSubAccountNo: bankSubAccountNo, tranNetMemberCode: tranNetMemberCode, tranType: tranType, reservedMessage: reservedMessage, remark: remark, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

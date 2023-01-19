@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dbbrain {
     ///
     /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
     @inlinable
-    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogDownloadUrlsResponse> {
-        self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogDownloadUrlsResponse> {
+        self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全审计日志导出文件下载链接
     ///
     /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
     @inlinable
-    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
-        try await self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityAuditLogDownloadUrls(_ input: DescribeSecurityAuditLogDownloadUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
+        try await self.client.execute(action: "DescribeSecurityAuditLogDownloadUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全审计日志导出文件下载链接
     ///
     /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
     @inlinable
-    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogDownloadUrlsResponse> {
-        self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogDownloadUrlsResponse> {
+        self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全审计日志导出文件下载链接
     ///
     /// 查询安全审计日志导出文件下载链接。目前日志文件下载仅提供腾讯云内网地址，请通过广州地域的腾讯云服务器进行下载。
     @inlinable
-    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
-        try await self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogDownloadUrls(secAuditGroupId: String, asyncRequestId: UInt64, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogDownloadUrlsResponse {
+        try await self.describeSecurityAuditLogDownloadUrls(DescribeSecurityAuditLogDownloadUrlsRequest(secAuditGroupId: secAuditGroupId, asyncRequestId: asyncRequestId, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

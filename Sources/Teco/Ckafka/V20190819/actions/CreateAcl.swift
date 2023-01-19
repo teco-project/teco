@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Ckafka {
 
     /// 添加 ACL 策略
     @inlinable
-    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
-        self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAcl(_ input: CreateAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
+        self.client.execute(action: "CreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加 ACL 策略
     @inlinable
-    public func createAcl(_ input: CreateAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
-        try await self.client.execute(action: "CreateAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAcl(_ input: CreateAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
+        try await self.client.execute(action: "CreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加 ACL 策略
     @inlinable
-    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
-        self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), logger: logger, on: eventLoop)
+    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAclResponse> {
+        self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加 ACL 策略
     @inlinable
-    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
-        try await self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), logger: logger, on: eventLoop)
+    public func createAcl(instanceId: String, resourceType: Int64, operation: Int64, permissionType: Int64, resourceName: String? = nil, host: String? = nil, principal: String? = nil, resourceNameList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAclResponse {
+        try await self.createAcl(CreateAclRequest(instanceId: instanceId, resourceType: resourceType, operation: operation, permissionType: permissionType, resourceName: resourceName, host: host, principal: principal, resourceNameList: resourceNameList), region: region, logger: logger, on: eventLoop)
     }
 }

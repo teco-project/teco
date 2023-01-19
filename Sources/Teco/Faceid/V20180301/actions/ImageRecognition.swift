@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Faceid {
     ///
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
-    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageRecognitionResponse> {
-        self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func imageRecognition(_ input: ImageRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageRecognitionResponse> {
+        self.client.execute(action: "ImageRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 照片人脸核身
     ///
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
-    public func imageRecognition(_ input: ImageRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
-        try await self.client.execute(action: "ImageRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func imageRecognition(_ input: ImageRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
+        try await self.client.execute(action: "ImageRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 照片人脸核身
     ///
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
-    public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageRecognitionResponse> {
-        self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageRecognitionResponse> {
+        self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 照片人脸核身
     ///
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
-    public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
-        try await self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
+        try await self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

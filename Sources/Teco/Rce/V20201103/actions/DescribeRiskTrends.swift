@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Rce {
     ///
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
-    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskTrendsResponse> {
-        self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskTrendsResponse> {
+        self.client.execute(action: "DescribeRiskTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
-    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
-        try await self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
+        try await self.client.execute(action: "DescribeRiskTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
-    public func describeRiskTrends(businessSecurityData: InputFrontRisk, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskTrendsResponse> {
-        self.describeRiskTrends(DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    public func describeRiskTrends(businessSecurityData: InputFrontRisk, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskTrendsResponse> {
+        self.describeRiskTrends(DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
     @inlinable
-    public func describeRiskTrends(businessSecurityData: InputFrontRisk, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
-        try await self.describeRiskTrends(DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
+    public func describeRiskTrends(businessSecurityData: InputFrontRisk, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
+        try await self.describeRiskTrends(DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
     }
 }

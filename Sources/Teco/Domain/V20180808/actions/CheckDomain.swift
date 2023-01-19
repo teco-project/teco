@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,31 +104,31 @@ extension Domain {
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
-        self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkDomain(_ input: CheckDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
+        self.client.execute(action: "CheckDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(_ input: CheckDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
-        try await self.client.execute(action: "CheckDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkDomain(_ input: CheckDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
+        try await self.client.execute(action: "CheckDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
-        self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), logger: logger, on: eventLoop)
+    public func checkDomain(domainName: String, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDomainResponse> {
+        self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名注册查询
     ///
     /// 检查域名是否可以注册。
     @inlinable
-    public func checkDomain(domainName: String, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
-        try await self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), logger: logger, on: eventLoop)
+    public func checkDomain(domainName: String, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDomainResponse {
+        try await self.checkDomain(CheckDomainRequest(domainName: domainName, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

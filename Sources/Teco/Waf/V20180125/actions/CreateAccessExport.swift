@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Waf {
     ///
     /// 本接口用于创建访问日志导出
     @inlinable
-    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessExportResponse> {
-        self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccessExport(_ input: CreateAccessExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessExportResponse> {
+        self.client.execute(action: "CreateAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建访问日志导出
     ///
     /// 本接口用于创建访问日志导出
     @inlinable
-    public func createAccessExport(_ input: CreateAccessExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
-        try await self.client.execute(action: "CreateAccessExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccessExport(_ input: CreateAccessExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
+        try await self.client.execute(action: "CreateAccessExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建访问日志导出
     ///
     /// 本接口用于创建访问日志导出
     @inlinable
-    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessExportResponse> {
-        self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), logger: logger, on: eventLoop)
+    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessExportResponse> {
+        self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建访问日志导出
     ///
     /// 本接口用于创建访问日志导出
     @inlinable
-    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
-        try await self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), logger: logger, on: eventLoop)
+    public func createAccessExport(topicId: String, from: Int64, to: Int64, query: String, count: Int64, format: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessExportResponse {
+        try await self.createAccessExport(CreateAccessExportRequest(topicId: topicId, from: from, to: to, query: query, count: count, format: format, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

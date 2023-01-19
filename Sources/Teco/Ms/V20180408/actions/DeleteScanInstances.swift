@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ms {
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
-        self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
+        self.client.execute(action: "DeleteScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
-        try await self.client.execute(action: "DeleteScanInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScanInstances(_ input: DeleteScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
+        try await self.client.execute(action: "DeleteScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
-        self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), logger: logger, on: eventLoop)
+    public func deleteScanInstances(appSids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanInstancesResponse> {
+        self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除提交过的app扫描信息
     ///
     /// 删除一个或者多个app扫描信息
     @inlinable
-    public func deleteScanInstances(appSids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
-        try await self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), logger: logger, on: eventLoop)
+    public func deleteScanInstances(appSids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanInstancesResponse {
+        try await self.deleteScanInstances(DeleteScanInstancesRequest(appSids: appSids), region: region, logger: logger, on: eventLoop)
     }
 }

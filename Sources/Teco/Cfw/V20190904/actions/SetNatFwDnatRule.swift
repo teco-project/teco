@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Cfw {
 
     /// 配置防火墙Dnat规则
     @inlinable
-    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwDnatRuleResponse> {
-        self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwDnatRuleResponse> {
+        self.client.execute(action: "SetNatFwDnatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置防火墙Dnat规则
     @inlinable
-    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
-        try await self.client.execute(action: "SetNatFwDnatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setNatFwDnatRule(_ input: SetNatFwDnatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
+        try await self.client.execute(action: "SetNatFwDnatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置防火墙Dnat规则
     @inlinable
-    public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwDnatRuleResponse> {
-        self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), logger: logger, on: eventLoop)
+    public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwDnatRuleResponse> {
+        self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置防火墙Dnat规则
     @inlinable
-    public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
-        try await self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), logger: logger, on: eventLoop)
+    public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
+        try await self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), region: region, logger: logger, on: eventLoop)
     }
 }

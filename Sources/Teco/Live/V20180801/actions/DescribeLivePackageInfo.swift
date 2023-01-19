@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,31 +116,31 @@ extension Live {
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
-        self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
+        self.client.execute(action: "DescribeLivePackageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
-        try await self.client.execute(action: "DescribeLivePackageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLivePackageInfo(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
+        try await self.client.execute(action: "DescribeLivePackageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
-        self.describeLivePackageInfo(DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePackageInfoResponse> {
+        self.describeLivePackageInfo(DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播套餐包信息
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
-        try await self.describeLivePackageInfo(DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeLivePackageInfo(packageType: Int64, orderBy: String? = nil, pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePackageInfoResponse {
+        try await self.describeLivePackageInfo(DescribeLivePackageInfoRequest(packageType: packageType, orderBy: orderBy, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

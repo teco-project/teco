@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,8 +85,8 @@ extension Bda {
     /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func searchTrace(_ input: SearchTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTraceResponse> {
-        self.client.execute(action: "SearchTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchTrace(_ input: SearchTraceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTraceResponse> {
+        self.client.execute(action: "SearchTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人体搜索
@@ -98,8 +98,8 @@ extension Bda {
     /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func searchTrace(_ input: SearchTraceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
-        try await self.client.execute(action: "SearchTrace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchTrace(_ input: SearchTraceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
+        try await self.client.execute(action: "SearchTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人体搜索
@@ -111,8 +111,8 @@ extension Bda {
     /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTraceResponse> {
-        self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), logger: logger, on: eventLoop)
+    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchTraceResponse> {
+        self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人体搜索
@@ -124,7 +124,7 @@ extension Bda {
     /// - 人体动作轨迹，是一个包含1-5张图片的图片序列。您可以输入1张图片作为动作轨迹，也可以输入多张。单个动作轨迹中包含越多符合质量的图片，搜索效果越好。
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
-        try await self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), logger: logger, on: eventLoop)
+    public func searchTrace(groupId: String, trace: Trace, maxPersonNum: UInt64? = nil, traceMatchThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchTraceResponse {
+        try await self.searchTrace(SearchTraceRequest(groupId: groupId, trace: trace, maxPersonNum: maxPersonNum, traceMatchThreshold: traceMatchThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

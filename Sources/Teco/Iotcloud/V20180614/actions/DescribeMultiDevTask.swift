@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
-    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevTaskResponse> {
-        self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevTaskResponse> {
+        self.client.execute(action: "DescribeMultiDevTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备任务状态
     ///
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
-    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
-        try await self.client.execute(action: "DescribeMultiDevTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMultiDevTask(_ input: DescribeMultiDevTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
+        try await self.client.execute(action: "DescribeMultiDevTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取创建多设备任务状态
     ///
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
-    public func describeMultiDevTask(taskId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevTaskResponse> {
-        self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), logger: logger, on: eventLoop)
+    public func describeMultiDevTask(taskId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevTaskResponse> {
+        self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备任务状态
     ///
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
-    public func describeMultiDevTask(taskId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
-        try await self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), logger: logger, on: eventLoop)
+    public func describeMultiDevTask(taskId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
+        try await self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

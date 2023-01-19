@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Tci {
     ///
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioTaskResponse> {
-        self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAudioTask(_ input: DescribeAudioTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioTaskResponse> {
+        self.client.execute(action: "DescribeAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频分析结果查询
     ///
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeAudioTask(_ input: DescribeAudioTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
-        try await self.client.execute(action: "DescribeAudioTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAudioTask(_ input: DescribeAudioTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
+        try await self.client.execute(action: "DescribeAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 音频分析结果查询
     ///
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioTaskResponse> {
-        self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioTaskResponse> {
+        self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音频分析结果查询
     ///
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
-        try await self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
+        try await self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Tci {
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
-        self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func aiAssistant(_ input: AIAssistantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
+        self.client.execute(action: "AIAssistant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(_ input: AIAssistantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
-        try await self.client.execute(action: "AIAssistant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func aiAssistant(_ input: AIAssistantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
+        try await self.client.execute(action: "AIAssistant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
-        self.aiAssistant(AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AIAssistantResponse> {
+        self.aiAssistant(AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// AI 助教标准接口
     ///
     /// 提供 AI 助教基础版本功能接口
     @inlinable
-    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
-        try await self.aiAssistant(AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func aiAssistant(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, template: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AIAssistantResponse {
+        try await self.aiAssistant(AIAssistantRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, template: template, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 }

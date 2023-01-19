@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -118,8 +118,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
-        self.client.execute(action: "GeneralEfficientOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
+        self.client.execute(action: "GeneralEfficientOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别（精简版）
@@ -184,8 +184,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
-        try await self.client.execute(action: "GeneralEfficientOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
+        try await self.client.execute(action: "GeneralEfficientOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通用印刷体识别（精简版）
@@ -250,8 +250,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
-        self.generalEfficientOCR(GeneralEfficientOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
+        self.generalEfficientOCR(GeneralEfficientOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别（精简版）
@@ -316,7 +316,7 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
-        try await self.generalEfficientOCR(GeneralEfficientOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
+        try await self.generalEfficientOCR(GeneralEfficientOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

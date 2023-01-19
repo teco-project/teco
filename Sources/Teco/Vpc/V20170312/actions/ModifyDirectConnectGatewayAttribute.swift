@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable
-    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectGatewayAttributeResponse> {
-        self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectGatewayAttributeResponse> {
+        self.client.execute(action: "ModifyDirectConnectGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改专线网关属性
     ///
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable
-    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyDirectConnectGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDirectConnectGatewayAttribute(_ input: ModifyDirectConnectGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyDirectConnectGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改专线网关属性
     ///
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable
-    public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectGatewayAttributeResponse> {
-        self.modifyDirectConnectGatewayAttribute(ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), logger: logger, on: eventLoop)
+    public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectGatewayAttributeResponse> {
+        self.modifyDirectConnectGatewayAttribute(ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改专线网关属性
     ///
     /// 本接口（ModifyDirectConnectGatewayAttribute）用于修改专线网关属性
     @inlinable
-    public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
-        try await self.modifyDirectConnectGatewayAttribute(ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), logger: logger, on: eventLoop)
+    public func modifyDirectConnectGatewayAttribute(directConnectGatewayId: String, directConnectGatewayName: String? = nil, ccnRouteType: String? = nil, modeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectGatewayAttributeResponse {
+        try await self.modifyDirectConnectGatewayAttribute(ModifyDirectConnectGatewayAttributeRequest(directConnectGatewayId: directConnectGatewayId, directConnectGatewayName: directConnectGatewayName, ccnRouteType: ccnRouteType, modeType: modeType), region: region, logger: logger, on: eventLoop)
     }
 }

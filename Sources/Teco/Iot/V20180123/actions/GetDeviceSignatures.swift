@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iot {
     ///
     /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
     @inlinable
-    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceSignaturesResponse> {
-        self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceSignaturesResponse> {
+        self.client.execute(action: "GetDeviceSignatures", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备绑定签名
     ///
     /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
     @inlinable
-    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
-        try await self.client.execute(action: "GetDeviceSignatures", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDeviceSignatures(_ input: GetDeviceSignaturesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
+        try await self.client.execute(action: "GetDeviceSignatures", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备绑定签名
     ///
     /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
     @inlinable
-    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceSignaturesResponse> {
-        self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), logger: logger, on: eventLoop)
+    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceSignaturesResponse> {
+        self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备绑定签名
     ///
     /// 获取设备绑定签名，用于用户绑定某个设备的应用场景
     @inlinable
-    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
-        try await self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), logger: logger, on: eventLoop)
+    public func getDeviceSignatures(productId: String, deviceNames: [String], expire: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceSignaturesResponse {
+        try await self.getDeviceSignatures(GetDeviceSignaturesRequest(productId: productId, deviceNames: deviceNames, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 }

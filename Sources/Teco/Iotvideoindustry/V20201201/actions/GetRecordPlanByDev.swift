@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
-        self.client.execute(action: "GetRecordPlanByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
+        self.client.execute(action: "GetRecordPlanByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
-        try await self.client.execute(action: "GetRecordPlanByDev", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRecordPlanByDev(_ input: GetRecordPlanByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
+        try await self.client.execute(action: "GetRecordPlanByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
-        self.getRecordPlanByDev(GetRecordPlanByDevRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    public func getRecordPlanByDev(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlanByDevResponse> {
+        self.getRecordPlanByDev(GetRecordPlanByDevRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备绑定的录制计划
     ///
     /// 本接口(GetRecordPlanByDev)用于根据设备ID查询其绑定的录制计划.
     @inlinable
-    public func getRecordPlanByDev(deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
-        try await self.getRecordPlanByDev(GetRecordPlanByDevRequest(deviceId: deviceId), logger: logger, on: eventLoop)
+    public func getRecordPlanByDev(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlanByDevResponse {
+        try await self.getRecordPlanByDev(GetRecordPlanByDevRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

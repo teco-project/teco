@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tsf {
 
     /// 查询维度
     @inlinable
-    public func describeInvocationMetricDataDimension(_ input: DescribeInvocationMetricDataDimensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataDimensionResponse> {
-        self.client.execute(action: "DescribeInvocationMetricDataDimension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataDimension(_ input: DescribeInvocationMetricDataDimensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataDimensionResponse> {
+        self.client.execute(action: "DescribeInvocationMetricDataDimension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询维度
     @inlinable
-    public func describeInvocationMetricDataDimension(_ input: DescribeInvocationMetricDataDimensionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
-        try await self.client.execute(action: "DescribeInvocationMetricDataDimension", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInvocationMetricDataDimension(_ input: DescribeInvocationMetricDataDimensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
+        try await self.client.execute(action: "DescribeInvocationMetricDataDimension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询维度
     @inlinable
-    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataDimensionResponse> {
-        self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataDimensionResponse> {
+        self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维度
     @inlinable
-    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
-        try await self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataDimension(startTime: String, endTime: String, offset: Int64, limit: Int64, dimensionName: String, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataDimensionResponse {
+        try await self.describeInvocationMetricDataDimension(DescribeInvocationMetricDataDimensionRequest(startTime: startTime, endTime: endTime, offset: offset, limit: limit, dimensionName: dimensionName, searchWord: searchWord, metricDimensionValues: metricDimensionValues), region: region, logger: logger, on: eventLoop)
     }
 }

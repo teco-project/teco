@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,8 +61,8 @@ extension Sts {
     /// 获取当前调用者的身份信息。
     /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
     @inlinable
-    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
-        self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCallerIdentity(_ input: GetCallerIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
+        self.client.execute(action: "GetCallerIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前调用者的身份信息
@@ -70,8 +70,8 @@ extension Sts {
     /// 获取当前调用者的身份信息。
     /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
     @inlinable
-    public func getCallerIdentity(_ input: GetCallerIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
-        try await self.client.execute(action: "GetCallerIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCallerIdentity(_ input: GetCallerIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
+        try await self.client.execute(action: "GetCallerIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取当前调用者的身份信息
@@ -79,8 +79,8 @@ extension Sts {
     /// 获取当前调用者的身份信息。
     /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
     @inlinable
-    public func getCallerIdentity(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
-        self.getCallerIdentity(GetCallerIdentityRequest(), logger: logger, on: eventLoop)
+    public func getCallerIdentity(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCallerIdentityResponse> {
+        self.getCallerIdentity(GetCallerIdentityRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取当前调用者的身份信息
@@ -88,7 +88,7 @@ extension Sts {
     /// 获取当前调用者的身份信息。
     /// 接口支持主账号，子账号长期密钥以及AssumeRole，GetFederationToken生成的临时凭据的身份获取。
     @inlinable
-    public func getCallerIdentity(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
-        try await self.getCallerIdentity(GetCallerIdentityRequest(), logger: logger, on: eventLoop)
+    public func getCallerIdentity(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCallerIdentityResponse {
+        try await self.getCallerIdentity(GetCallerIdentityRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

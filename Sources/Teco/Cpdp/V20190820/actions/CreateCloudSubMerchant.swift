@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,31 +101,31 @@ extension Cpdp {
     ///
     /// 创建子商户
     @inlinable
-    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudSubMerchantResponse> {
-        self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudSubMerchantResponse> {
+        self.client.execute(action: "CreateCloudSubMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-创建子商户
     ///
     /// 创建子商户
     @inlinable
-    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
-        try await self.client.execute(action: "CreateCloudSubMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCloudSubMerchant(_ input: CreateCloudSubMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
+        try await self.client.execute(action: "CreateCloudSubMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫V2-创建子商户
     ///
     /// 创建子商户
     @inlinable
-    public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudSubMerchantResponse> {
-        self.createCloudSubMerchant(CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), logger: logger, on: eventLoop)
+    public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudSubMerchantResponse> {
+        self.createCloudSubMerchant(CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-创建子商户
     ///
     /// 创建子商户
     @inlinable
-    public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
-        try await self.createCloudSubMerchant(CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), logger: logger, on: eventLoop)
+    public func createCloudSubMerchant(midasAppId: String, parentAppId: String, subMchName: String, subMchDescription: String, midasEnvironment: String? = nil, subAppId: String? = nil, subMchShortName: String? = nil, outSubMerchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudSubMerchantResponse {
+        try await self.createCloudSubMerchant(CreateCloudSubMerchantRequest(midasAppId: midasAppId, parentAppId: parentAppId, subMchName: subMchName, subMchDescription: subMchDescription, midasEnvironment: midasEnvironment, subAppId: subAppId, subMchShortName: subMchShortName, outSubMerchantId: outSubMerchantId), region: region, logger: logger, on: eventLoop)
     }
 }

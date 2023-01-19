@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(_ input: DescribeBRIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
-        self.client.execute(action: "DescribeBRI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBRI(_ input: DescribeBRIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
+        self.client.execute(action: "DescribeBRI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取业务风险情报
@@ -72,8 +72,8 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(_ input: DescribeBRIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
-        try await self.client.execute(action: "DescribeBRI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBRI(_ input: DescribeBRIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
+        try await self.client.execute(action: "DescribeBRI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取业务风险情报
@@ -86,8 +86,8 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(requestData: BRIRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
-        self.describeBRI(DescribeBRIRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeBRI(requestData: BRIRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBRIResponse> {
+        self.describeBRI(DescribeBRIRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取业务风险情报
@@ -100,7 +100,7 @@ extension Bri {
     /// 当业务名为bri_url时，必须填Url字段.
     /// 当业务名为bri_social时，必须填QQ和Wechat字段两者其中一个或者两个.
     @inlinable
-    public func describeBRI(requestData: BRIRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
-        try await self.describeBRI(DescribeBRIRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeBRI(requestData: BRIRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBRIResponse {
+        try await self.describeBRI(DescribeBRIRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

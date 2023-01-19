@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 启用应用弹性策略组合
     @inlinable
-    public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApplicationAutoscalerResponse> {
-        self.client.execute(action: "EnableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApplicationAutoscalerResponse> {
+        self.client.execute(action: "EnableApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用应用弹性策略组合
     @inlinable
-    public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
-        try await self.client.execute(action: "EnableApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableApplicationAutoscaler(_ input: EnableApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
+        try await self.client.execute(action: "EnableApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用应用弹性策略组合
     @inlinable
-    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApplicationAutoscalerResponse> {
-        self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableApplicationAutoscalerResponse> {
+        self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用应用弹性策略组合
     @inlinable
-    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
-        try await self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), logger: logger, on: eventLoop)
+    public func enableApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableApplicationAutoscalerResponse {
+        try await self.enableApplicationAutoscaler(EnableApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId), region: region, logger: logger, on: eventLoop)
     }
 }

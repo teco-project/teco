@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
-        self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
+        self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建分组
     ///
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
-    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.client.execute(action: "CreateDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDeviceGroup(_ input: CreateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建分组
     ///
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
-    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
-        self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), logger: logger, on: eventLoop)
+    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
+        self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建分组
     ///
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
-    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), logger: logger, on: eventLoop)
+    public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
+        try await self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), region: region, logger: logger, on: eventLoop)
     }
 }

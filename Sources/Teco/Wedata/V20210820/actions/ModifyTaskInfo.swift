@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -188,8 +188,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
-        self.client.execute(action: "ModifyTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
+        self.client.execute(action: "ModifyTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新任务【Beta版本】
@@ -197,8 +197,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
-        try await self.client.execute(action: "ModifyTaskInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTaskInfo(_ input: ModifyTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
+        try await self.client.execute(action: "ModifyTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新任务【Beta版本】
@@ -206,8 +206,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
-        self.modifyTaskInfo(ModifyTaskInfoRequest(projectId: projectId, taskId: taskId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, startTime: startTime, endTime: endTime, taskAction: taskAction, cycleType: cycleType, cycleStep: cycleStep, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, taskName: taskName, retryWait: retryWait, tryLimit: tryLimit, retriable: retriable, runPriority: runPriority, taskExt: taskExt, resourceGroup: resourceGroup, yarnQueue: yarnQueue, brokerIp: brokerIp, inCharge: inCharge, notes: notes, taskParamInfos: taskParamInfos, sourceServer: sourceServer, targetServer: targetServer, dependencyWorkflow: dependencyWorkflow, dependencyConfigDTOs: dependencyConfigDTOs), logger: logger, on: eventLoop)
+    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskInfoResponse> {
+        self.modifyTaskInfo(ModifyTaskInfoRequest(projectId: projectId, taskId: taskId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, startTime: startTime, endTime: endTime, taskAction: taskAction, cycleType: cycleType, cycleStep: cycleStep, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, taskName: taskName, retryWait: retryWait, tryLimit: tryLimit, retriable: retriable, runPriority: runPriority, taskExt: taskExt, resourceGroup: resourceGroup, yarnQueue: yarnQueue, brokerIp: brokerIp, inCharge: inCharge, notes: notes, taskParamInfos: taskParamInfos, sourceServer: sourceServer, targetServer: targetServer, dependencyWorkflow: dependencyWorkflow, dependencyConfigDTOs: dependencyConfigDTOs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新任务【Beta版本】
@@ -215,7 +215,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新任务
     @inlinable
-    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
-        try await self.modifyTaskInfo(ModifyTaskInfoRequest(projectId: projectId, taskId: taskId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, startTime: startTime, endTime: endTime, taskAction: taskAction, cycleType: cycleType, cycleStep: cycleStep, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, taskName: taskName, retryWait: retryWait, tryLimit: tryLimit, retriable: retriable, runPriority: runPriority, taskExt: taskExt, resourceGroup: resourceGroup, yarnQueue: yarnQueue, brokerIp: brokerIp, inCharge: inCharge, notes: notes, taskParamInfos: taskParamInfos, sourceServer: sourceServer, targetServer: targetServer, dependencyWorkflow: dependencyWorkflow, dependencyConfigDTOs: dependencyConfigDTOs), logger: logger, on: eventLoop)
+    public func modifyTaskInfo(projectId: String, taskId: String, delayTime: Int64? = nil, startupTime: Int64? = nil, selfDepend: Int64? = nil, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, cycleType: Int64? = nil, cycleStep: Int64? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, taskName: String? = nil, retryWait: Int64? = nil, tryLimit: Int64? = nil, retriable: Int64? = nil, runPriority: Int64? = nil, taskExt: [TaskExtInfo]? = nil, resourceGroup: String? = nil, yarnQueue: String? = nil, brokerIp: String? = nil, inCharge: String? = nil, notes: String? = nil, taskParamInfos: [ParamInfo]? = nil, sourceServer: String? = nil, targetServer: String? = nil, dependencyWorkflow: String? = nil, dependencyConfigDTOs: [DependencyConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskInfoResponse {
+        try await self.modifyTaskInfo(ModifyTaskInfoRequest(projectId: projectId, taskId: taskId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, startTime: startTime, endTime: endTime, taskAction: taskAction, cycleType: cycleType, cycleStep: cycleStep, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, taskName: taskName, retryWait: retryWait, tryLimit: tryLimit, retriable: retriable, runPriority: runPriority, taskExt: taskExt, resourceGroup: resourceGroup, yarnQueue: yarnQueue, brokerIp: brokerIp, inCharge: inCharge, notes: notes, taskParamInfos: taskParamInfos, sourceServer: sourceServer, targetServer: targetServer, dependencyWorkflow: dependencyWorkflow, dependencyConfigDTOs: dependencyConfigDTOs), region: region, logger: logger, on: eventLoop)
     }
 }

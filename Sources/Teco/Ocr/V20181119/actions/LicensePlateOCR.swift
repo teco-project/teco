@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Ocr {
     /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LicensePlateOCRResponse> {
-        self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func licensePlateOCR(_ input: LicensePlateOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LicensePlateOCRResponse> {
+        self.client.execute(action: "LicensePlateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 车牌识别
@@ -85,8 +85,8 @@ extension Ocr {
     /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func licensePlateOCR(_ input: LicensePlateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
-        try await self.client.execute(action: "LicensePlateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func licensePlateOCR(_ input: LicensePlateOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
+        try await self.client.execute(action: "LicensePlateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 车牌识别
@@ -94,8 +94,8 @@ extension Ocr {
     /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LicensePlateOCRResponse> {
-        self.licensePlateOCR(LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LicensePlateOCRResponse> {
+        self.licensePlateOCR(LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 车牌识别
@@ -103,7 +103,7 @@ extension Ocr {
     /// 本接口支持对中国大陆机动车车牌的自动定位和识别，返回地域编号和车牌号码与车牌颜色信息。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
-        try await self.licensePlateOCR(LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func licensePlateOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LicensePlateOCRResponse {
+        try await self.licensePlateOCR(LicensePlateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Bizlive {
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
     @inlinable
-    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
-        self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
+        self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
     @inlinable
-    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamPlayInfoList(_ input: DescribeStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
     @inlinable
-    public func describeStreamPlayInfoList(endTime: String, playDomain: String, startTime: String, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
-        self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(endTime: endTime, playDomain: playDomain, startTime: startTime, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeStreamPlayInfoList(endTime: String, playDomain: String, startTime: String, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
+        self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(endTime: endTime, playDomain: playDomain, startTime: startTime, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流的播放信息列表
     ///
     /// 查询播放数据，支持按流名称查询详细播放数据，也可按播放域名查询详细总数据。
     @inlinable
-    public func describeStreamPlayInfoList(endTime: String, playDomain: String, startTime: String, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
-        try await self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(endTime: endTime, playDomain: playDomain, startTime: startTime, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeStreamPlayInfoList(endTime: String, playDomain: String, startTime: String, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
+        try await self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(endTime: endTime, playDomain: playDomain, startTime: startTime, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

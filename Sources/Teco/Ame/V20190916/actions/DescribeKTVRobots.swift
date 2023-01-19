@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Ame {
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
-    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVRobotsResponse> {
-        self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVRobotsResponse> {
+        self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动机器人信息
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
-    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
-        try await self.client.execute(action: "DescribeKTVRobots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVRobots(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
+        try await self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播互动机器人信息
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
-    public func describeKTVRobots(robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVRobotsResponse> {
-        self.describeKTVRobots(DescribeKTVRobotsRequest(robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeKTVRobots(robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVRobotsResponse> {
+        self.describeKTVRobots(DescribeKTVRobotsRequest(robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动机器人信息
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
-    public func describeKTVRobots(robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
-        try await self.describeKTVRobots(DescribeKTVRobotsRequest(robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeKTVRobots(robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
+        try await self.describeKTVRobots(DescribeKTVRobotsRequest(robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

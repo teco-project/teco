@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Ses {
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(_ input: SendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
-        self.client.execute(action: "SendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendEmail(_ input: SendEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
+        self.client.execute(action: "SendEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送邮件
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(_ input: SendEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
-        try await self.client.execute(action: "SendEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendEmail(_ input: SendEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
+        try await self.client.execute(action: "SendEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送邮件
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
-        self.sendEmail(SendEmailRequest(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), logger: logger, on: eventLoop)
+    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendEmailResponse> {
+        self.sendEmail(SendEmailRequest(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送邮件
     ///
     /// 您可以通过此API发送HTML或者TEXT邮件，适用于触发类邮件（验证码、交易类）。默认仅支持使用模板发送邮件。
     @inlinable
-    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
-        try await self.sendEmail(SendEmailRequest(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), logger: logger, on: eventLoop)
+    public func sendEmail(fromEmailAddress: String, destination: [String], subject: String, replyToAddresses: String? = nil, template: Template? = nil, simple: Simple? = nil, attachments: [Attachment]? = nil, unsubscribe: String? = nil, triggerType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendEmailResponse {
+        try await self.sendEmail(SendEmailRequest(fromEmailAddress: fromEmailAddress, destination: destination, subject: subject, replyToAddresses: replyToAddresses, template: template, simple: simple, attachments: attachments, unsubscribe: unsubscribe, triggerType: triggerType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cwp {
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
     @inlinable
-    public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
-        self.client.execute(action: "ChangeRuleEventsIgnoreStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
+        self.client.execute(action: "ChangeRuleEventsIgnoreStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
     @inlinable
-    public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
-        try await self.client.execute(action: "ChangeRuleEventsIgnoreStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
+        try await self.client.execute(action: "ChangeRuleEventsIgnoreStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
     @inlinable
-    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
-        self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), logger: logger, on: eventLoop)
+    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
+        self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
     @inlinable
-    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
-        try await self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), logger: logger, on: eventLoop)
+    public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
+        try await self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), region: region, logger: logger, on: eventLoop)
     }
 }

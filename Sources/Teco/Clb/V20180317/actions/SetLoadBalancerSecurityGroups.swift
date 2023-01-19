@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,8 +50,8 @@ extension Clb {
     /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
     /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
-        self.client.execute(action: "SetLoadBalancerSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
+        self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置负载均衡实例的安全组
@@ -60,8 +60,8 @@ extension Clb {
     /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
     /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
-        try await self.client.execute(action: "SetLoadBalancerSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
+        try await self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置负载均衡实例的安全组
@@ -70,8 +70,8 @@ extension Clb {
     /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
     /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
-        self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
+        self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置负载均衡实例的安全组
@@ -80,7 +80,7 @@ extension Clb {
     /// 绑定操作时，入参需要传入负载均衡实例要绑定的所有安全组（已绑定的+新增绑定的）。
     /// 解绑操作时，入参需要传入负载均衡实例执行解绑后所绑定的所有安全组；如果要解绑所有安全组，可不传此参数，或传入空数组。注意：内网负载均衡不支持绑定安全组。
     @inlinable
-    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
-        try await self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
+        try await self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 }

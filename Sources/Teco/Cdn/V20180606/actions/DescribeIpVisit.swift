@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,8 +87,8 @@ extension Cdn {
     /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
-    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpVisitResponse> {
-        self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpVisit(_ input: DescribeIpVisitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpVisitResponse> {
+        self.client.execute(action: "DescribeIpVisit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活跃用户查询
@@ -97,8 +97,8 @@ extension Cdn {
     /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
-    public func describeIpVisit(_ input: DescribeIpVisitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
-        try await self.client.execute(action: "DescribeIpVisit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpVisit(_ input: DescribeIpVisitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
+        try await self.client.execute(action: "DescribeIpVisit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 活跃用户查询
@@ -107,8 +107,8 @@ extension Cdn {
     /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
-    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpVisitResponse> {
-        self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), logger: logger, on: eventLoop)
+    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpVisitResponse> {
+        self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活跃用户查询
@@ -117,7 +117,7 @@ extension Cdn {
     /// + 5 分钟活跃用户数：根据日志中客户端 IP，5 分钟粒度去重统计
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
-    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
-        try await self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), logger: logger, on: eventLoop)
+    public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
+        try await self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

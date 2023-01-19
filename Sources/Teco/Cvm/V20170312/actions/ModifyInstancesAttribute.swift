@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Cvm {
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
+        self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例的属性
@@ -94,8 +94,8 @@ extension Cvm {
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例的属性
@@ -107,8 +107,8 @@ extension Cvm {
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
+        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例的属性
@@ -120,7 +120,7 @@ extension Cvm {
     /// * 修改关联安全组时，子机原来关联的安全组会被解绑。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, securityGroups: [String]? = nil, camRoleName: String? = nil, hostName: String? = nil, disableApiTermination: Bool? = nil, camRoleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName, securityGroups: securityGroups, camRoleName: camRoleName, hostName: hostName, disableApiTermination: disableApiTermination, camRoleType: camRoleType), region: region, logger: logger, on: eventLoop)
     }
 }

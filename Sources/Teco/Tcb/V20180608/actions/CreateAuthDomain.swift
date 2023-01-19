@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcb {
 
     /// 增加安全域名
     @inlinable
-    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuthDomainResponse> {
-        self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAuthDomain(_ input: CreateAuthDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuthDomainResponse> {
+        self.client.execute(action: "CreateAuthDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加安全域名
     @inlinable
-    public func createAuthDomain(_ input: CreateAuthDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
-        try await self.client.execute(action: "CreateAuthDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAuthDomain(_ input: CreateAuthDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
+        try await self.client.execute(action: "CreateAuthDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 增加安全域名
     @inlinable
-    public func createAuthDomain(envId: String, domains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuthDomainResponse> {
-        self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), logger: logger, on: eventLoop)
+    public func createAuthDomain(envId: String, domains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuthDomainResponse> {
+        self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加安全域名
     @inlinable
-    public func createAuthDomain(envId: String, domains: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
-        try await self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), logger: logger, on: eventLoop)
+    public func createAuthDomain(envId: String, domains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuthDomainResponse {
+        try await self.createAuthDomain(CreateAuthDomainRequest(envId: envId, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

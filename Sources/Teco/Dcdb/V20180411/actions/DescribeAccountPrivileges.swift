@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Dcdb {
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
-        self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
+        self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号权限
@@ -99,8 +99,8 @@ extension Dcdb {
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        try await self.client.execute(action: "DescribeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountPrivileges(_ input: DescribeAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
+        try await self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账号权限
@@ -108,8 +108,8 @@ extension Dcdb {
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
-        self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
+        self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账号权限
@@ -117,7 +117,7 @@ extension Dcdb {
     /// 本接口（DescribeAccountPrivileges）用于查询云数据库账号权限。
     /// 注意：注意：相同用户名，不同Host是不同的账号。
     @inlinable
-    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        try await self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), logger: logger, on: eventLoop)
+    public func describeAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
+        try await self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
     }
 }

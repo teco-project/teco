@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Tcss {
     ///
     /// 容器安全创建镜像扫描任务
     @inlinable
-    public func createAssetImageScanTask(_ input: CreateAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanTaskResponse> {
-        self.client.execute(action: "CreateAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAssetImageScanTask(_ input: CreateAssetImageScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanTaskResponse> {
+        self.client.execute(action: "CreateAssetImageScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像扫描任务
     ///
     /// 容器安全创建镜像扫描任务
     @inlinable
-    public func createAssetImageScanTask(_ input: CreateAssetImageScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
-        try await self.client.execute(action: "CreateAssetImageScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAssetImageScanTask(_ input: CreateAssetImageScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
+        try await self.client.execute(action: "CreateAssetImageScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像扫描任务
     ///
     /// 容器安全创建镜像扫描任务
     @inlinable
-    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanTaskResponse> {
-        self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanTaskResponse> {
+        self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像扫描任务
     ///
     /// 容器安全创建镜像扫描任务
     @inlinable
-    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
-        try await self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), logger: logger, on: eventLoop)
+    public func createAssetImageScanTask(all: Bool? = nil, images: [String]? = nil, scanVul: Bool? = nil, scanVirus: Bool? = nil, scanRisk: Bool? = nil, filters: [AssetFilters]? = nil, excludeImageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanTaskResponse {
+        try await self.createAssetImageScanTask(CreateAssetImageScanTaskRequest(all: all, images: images, scanVul: scanVul, scanVirus: scanVirus, scanRisk: scanRisk, filters: filters, excludeImageIds: excludeImageIds), region: region, logger: logger, on: eventLoop)
     }
 }

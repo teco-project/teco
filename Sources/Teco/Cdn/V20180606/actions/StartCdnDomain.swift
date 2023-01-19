@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,31 +44,31 @@ extension Cdn {
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
-        self.client.execute(action: "StartCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startCdnDomain(_ input: StartCdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
+        self.client.execute(action: "StartCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(_ input: StartCdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
-        try await self.client.execute(action: "StartCdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startCdnDomain(_ input: StartCdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
+        try await self.client.execute(action: "StartCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
-        self.startCdnDomain(StartCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
+        self.startCdnDomain(StartCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
     ///
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable
-    public func startCdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
-        try await self.startCdnDomain(StartCdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func startCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
+        try await self.startCdnDomain(StartCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

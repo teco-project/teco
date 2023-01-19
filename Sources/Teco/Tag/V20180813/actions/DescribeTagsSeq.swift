@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表。
     @inlinable
-    public func describeTagsSeq(_ input: DescribeTagsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsSeqResponse> {
-        self.client.execute(action: "DescribeTagsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagsSeq(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsSeqResponse> {
+        self.client.execute(action: "DescribeTagsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按顺序查询标签列表
     ///
     /// 用于查询已建立的标签列表。
     @inlinable
-    public func describeTagsSeq(_ input: DescribeTagsSeqRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsSeqResponse {
-        try await self.client.execute(action: "DescribeTagsSeq", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagsSeq(_ input: DescribeTagsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsSeqResponse {
+        try await self.client.execute(action: "DescribeTagsSeq", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 按顺序查询标签列表
     ///
     /// 用于查询已建立的标签列表。
     @inlinable
-    public func describeTagsSeq(tagKey: String? = nil, tagValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, createUin: UInt64? = nil, tagKeys: [String]? = nil, showProject: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsSeqResponse> {
-        self.describeTagsSeq(DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject), logger: logger, on: eventLoop)
+    public func describeTagsSeq(tagKey: String? = nil, tagValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, createUin: UInt64? = nil, tagKeys: [String]? = nil, showProject: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsSeqResponse> {
+        self.describeTagsSeq(DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按顺序查询标签列表
     ///
     /// 用于查询已建立的标签列表。
     @inlinable
-    public func describeTagsSeq(tagKey: String? = nil, tagValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, createUin: UInt64? = nil, tagKeys: [String]? = nil, showProject: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsSeqResponse {
-        try await self.describeTagsSeq(DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject), logger: logger, on: eventLoop)
+    public func describeTagsSeq(tagKey: String? = nil, tagValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, createUin: UInt64? = nil, tagKeys: [String]? = nil, showProject: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsSeqResponse {
+        try await self.describeTagsSeq(DescribeTagsSeqRequest(tagKey: tagKey, tagValue: tagValue, offset: offset, limit: limit, createUin: createUin, tagKeys: tagKeys, showProject: showProject), region: region, logger: logger, on: eventLoop)
     }
 }

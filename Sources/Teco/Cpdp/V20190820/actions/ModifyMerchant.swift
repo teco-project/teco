@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cpdp {
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMerchant(_ input: ModifyMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
+        self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMerchant(_ input: ModifyMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), logger: logger, on: eventLoop)
+    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
+        self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户信息修改接口
     ///
     /// 云鉴-商户信息修改的接口
     @inlinable
-    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), logger: logger, on: eventLoop)
+    public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
     }
 }

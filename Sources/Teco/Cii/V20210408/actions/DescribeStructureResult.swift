@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cii {
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(_ input: DescribeStructureResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
-        self.client.execute(action: "DescribeStructureResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStructureResult(_ input: DescribeStructureResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
+        self.client.execute(action: "DescribeStructureResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(_ input: DescribeStructureResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureResultResponse {
-        try await self.client.execute(action: "DescribeStructureResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStructureResult(_ input: DescribeStructureResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureResultResponse {
+        try await self.client.execute(action: "DescribeStructureResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
-        self.describeStructureResult(DescribeStructureResultRequest(mainTaskId: mainTaskId), logger: logger, on: eventLoop)
+    public func describeStructureResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureResultResponse> {
+        self.describeStructureResult(DescribeStructureResultRequest(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询结构化结果接口
     ///
     /// 本接口(DescribeStructureResult)用于查询结构化结果接口
     @inlinable
-    public func describeStructureResult(mainTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureResultResponse {
-        try await self.describeStructureResult(DescribeStructureResultRequest(mainTaskId: mainTaskId), logger: logger, on: eventLoop)
+    public func describeStructureResult(mainTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureResultResponse {
+        try await self.describeStructureResult(DescribeStructureResultRequest(mainTaskId: mainTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

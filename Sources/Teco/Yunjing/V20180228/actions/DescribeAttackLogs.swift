@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Yunjing {
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
-    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogsResponse> {
-        self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogsResponse> {
+        self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网络攻击日志列表
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
-    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
-        try await self.client.execute(action: "DescribeAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAttackLogs(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
+        try await self.client.execute(action: "DescribeAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 网络攻击日志列表
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
-    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogsResponse> {
-        self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogsResponse> {
+        self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网络攻击日志列表
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
-    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
-        try await self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func describeAttackLogs(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogsResponse {
+        try await self.describeAttackLogs(DescribeAttackLogsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Ocr {
     ///
     /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
     @inlinable
-    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnterpriseLicenseOCRResponse> {
-        self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnterpriseLicenseOCRResponse> {
+        self.client.execute(action: "EnterpriseLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业证照识别
     ///
     /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
     @inlinable
-    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
-        try await self.client.execute(action: "EnterpriseLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enterpriseLicenseOCR(_ input: EnterpriseLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
+        try await self.client.execute(action: "EnterpriseLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 企业证照识别
     ///
     /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
     @inlinable
-    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnterpriseLicenseOCRResponse> {
-        self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnterpriseLicenseOCRResponse> {
+        self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业证照识别
     ///
     /// 本接口支持智能化识别各类企业登记证书、许可证书、企业执照、三证合一类证书，结构化输出统一社会信用代码、公司名称、法定代表人、公司地址、注册资金、企业类型、经营范围等关键字段。
     @inlinable
-    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
-        try await self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func enterpriseLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnterpriseLicenseOCRResponse {
+        try await self.enterpriseLicenseOCR(EnterpriseLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

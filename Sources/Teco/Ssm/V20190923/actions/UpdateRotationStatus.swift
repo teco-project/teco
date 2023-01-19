@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
-        self.client.execute(action: "UpdateRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
+        self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置云产品凭据轮转策略
@@ -75,8 +75,8 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
-        try await self.client.execute(action: "UpdateRotationStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRotationStatus(_ input: UpdateRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
+        try await self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置云产品凭据轮转策略
@@ -86,8 +86,8 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
-        self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), logger: logger, on: eventLoop)
+    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
+        self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置云产品凭据轮转策略
@@ -97,7 +97,7 @@ extension Ssm {
     /// 轮转周期
     /// 轮转开始时间
     @inlinable
-    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
-        try await self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), logger: logger, on: eventLoop)
+    public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
+        try await self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tdmq {
 
     /// 查询cmq全量队列
     @inlinable
-    public func describeCmqQueues(_ input: DescribeCmqQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqQueuesResponse> {
-        self.client.execute(action: "DescribeCmqQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCmqQueues(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqQueuesResponse> {
+        self.client.execute(action: "DescribeCmqQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq全量队列
     @inlinable
-    public func describeCmqQueues(_ input: DescribeCmqQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
-        try await self.client.execute(action: "DescribeCmqQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCmqQueues(_ input: DescribeCmqQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
+        try await self.client.execute(action: "DescribeCmqQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询cmq全量队列
     @inlinable
-    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqQueuesResponse> {
-        self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqQueuesResponse> {
+        self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq全量队列
     @inlinable
-    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
-        try await self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), logger: logger, on: eventLoop)
+    public func describeCmqQueues(offset: UInt64? = nil, limit: UInt64? = nil, queueName: String? = nil, queueNameList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueuesResponse {
+        try await self.describeCmqQueues(DescribeCmqQueuesRequest(offset: offset, limit: limit, queueName: queueName, queueNameList: queueNameList, isTagFilter: isTagFilter, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

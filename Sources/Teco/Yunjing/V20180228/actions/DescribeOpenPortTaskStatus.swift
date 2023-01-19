@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
-    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortTaskStatusResponse> {
-        self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortTaskStatusResponse> {
+        self.client.execute(action: "DescribeOpenPortTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实时拉取端口任务状态
     ///
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
-    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
-        try await self.client.execute(action: "DescribeOpenPortTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOpenPortTaskStatus(_ input: DescribeOpenPortTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
+        try await self.client.execute(action: "DescribeOpenPortTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实时拉取端口任务状态
     ///
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
-    public func describeOpenPortTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortTaskStatusResponse> {
-        self.describeOpenPortTaskStatus(DescribeOpenPortTaskStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeOpenPortTaskStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOpenPortTaskStatusResponse> {
+        self.describeOpenPortTaskStatus(DescribeOpenPortTaskStatusRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实时拉取端口任务状态
     ///
     /// 本接口 (DescribeOpenPortTaskStatus) 用于获取实时拉取端口任务状态。
     @inlinable
-    public func describeOpenPortTaskStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
-        try await self.describeOpenPortTaskStatus(DescribeOpenPortTaskStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeOpenPortTaskStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOpenPortTaskStatusResponse {
+        try await self.describeOpenPortTaskStatus(DescribeOpenPortTaskStatusRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

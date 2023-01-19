@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Gaap {
     ///
     /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
     @inlinable
-    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesAttributeResponse> {
-        self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesAttributeResponse> {
+        self.client.execute(action: "ModifyProxiesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通道的属性
     ///
     /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
     @inlinable
-    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
-        try await self.client.execute(action: "ModifyProxiesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProxiesAttribute(_ input: ModifyProxiesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
+        try await self.client.execute(action: "ModifyProxiesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改通道的属性
     ///
     /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
     @inlinable
-    public func modifyProxiesAttribute(instanceIds: [String]? = nil, proxyName: String? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesAttributeResponse> {
-        self.modifyProxiesAttribute(ModifyProxiesAttributeRequest(instanceIds: instanceIds, proxyName: proxyName, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func modifyProxiesAttribute(instanceIds: [String]? = nil, proxyName: String? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesAttributeResponse> {
+        self.modifyProxiesAttribute(ModifyProxiesAttributeRequest(instanceIds: instanceIds, proxyName: proxyName, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通道的属性
     ///
     /// 本接口（ModifyProxiesAttribute）用于修改实例的属性（目前只支持修改通道的名称）。
     @inlinable
-    public func modifyProxiesAttribute(instanceIds: [String]? = nil, proxyName: String? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
-        try await self.modifyProxiesAttribute(ModifyProxiesAttributeRequest(instanceIds: instanceIds, proxyName: proxyName, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func modifyProxiesAttribute(instanceIds: [String]? = nil, proxyName: String? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesAttributeResponse {
+        try await self.modifyProxiesAttribute(ModifyProxiesAttributeRequest(instanceIds: instanceIds, proxyName: proxyName, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

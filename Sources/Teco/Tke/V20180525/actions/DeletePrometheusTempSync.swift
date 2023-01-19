@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
-        self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
+        self.client.execute(action: "DeletePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
-        try await self.client.execute(action: "DeletePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusTempSync(_ input: DeletePrometheusTempSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
+        try await self.client.execute(action: "DeletePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
-        self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), logger: logger, on: eventLoop)
+    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
+        self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除模板同步
     ///
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable
-    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
-        try await self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), logger: logger, on: eventLoop)
+    public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
+        try await self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 }

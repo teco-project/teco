@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Tione {
 
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
-        self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
+        self.client.execute(action: "DescribeNotebookLifecycleScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
-        try await self.client.execute(action: "DescribeNotebookLifecycleScripts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNotebookLifecycleScripts(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
+        try await self.client.execute(action: "DescribeNotebookLifecycleScripts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
-        self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptsResponse> {
+        self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
-        try await self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScripts(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptsResponse {
+        try await self.describeNotebookLifecycleScripts(DescribeNotebookLifecycleScriptsRequest(offset: offset, limit: limit, filters: filters, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 }

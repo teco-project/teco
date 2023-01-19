@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 停止模型加速任务
     @inlinable
-    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopModelAccelerateTaskResponse> {
-        self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopModelAccelerateTaskResponse> {
+        self.client.execute(action: "StopModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止模型加速任务
     @inlinable
-    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
-        try await self.client.execute(action: "StopModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopModelAccelerateTask(_ input: StopModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
+        try await self.client.execute(action: "StopModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止模型加速任务
     @inlinable
-    public func stopModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopModelAccelerateTaskResponse> {
-        self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    public func stopModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopModelAccelerateTaskResponse> {
+        self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止模型加速任务
     @inlinable
-    public func stopModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
-        try await self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    public func stopModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
+        try await self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

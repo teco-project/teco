@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cfs {
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
-        self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
+        self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "BindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindAutoSnapshotPolicy(_ input: BindAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "BindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
-        self.bindAutoSnapshotPolicy(BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), logger: logger, on: eventLoop)
+    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoSnapshotPolicyResponse> {
+        self.bindAutoSnapshotPolicy(BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件系统绑定快照策略
     ///
     /// 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
     @inlinable
-    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
-        try await self.bindAutoSnapshotPolicy(BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), logger: logger, on: eventLoop)
+    public func bindAutoSnapshotPolicy(autoSnapshotPolicyId: String, fileSystemIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoSnapshotPolicyResponse {
+        try await self.bindAutoSnapshotPolicy(BindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, fileSystemIds: fileSystemIds), region: region, logger: logger, on: eventLoop)
     }
 }

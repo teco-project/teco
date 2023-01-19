@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Bmlb {
     ///
     /// 设置流量镜像的健康检查参数。
     @inlinable
-    public func setTrafficMirrorHealthSwitch(_ input: SetTrafficMirrorHealthSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorHealthSwitchResponse> {
-        self.client.execute(action: "SetTrafficMirrorHealthSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setTrafficMirrorHealthSwitch(_ input: SetTrafficMirrorHealthSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorHealthSwitchResponse> {
+        self.client.execute(action: "SetTrafficMirrorHealthSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置流量镜像的健康检查参数
     ///
     /// 设置流量镜像的健康检查参数。
     @inlinable
-    public func setTrafficMirrorHealthSwitch(_ input: SetTrafficMirrorHealthSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
-        try await self.client.execute(action: "SetTrafficMirrorHealthSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setTrafficMirrorHealthSwitch(_ input: SetTrafficMirrorHealthSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
+        try await self.client.execute(action: "SetTrafficMirrorHealthSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置流量镜像的健康检查参数
     ///
     /// 设置流量镜像的健康检查参数。
     @inlinable
-    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorHealthSwitchResponse> {
-        self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), logger: logger, on: eventLoop)
+    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorHealthSwitchResponse> {
+        self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置流量镜像的健康检查参数
     ///
     /// 设置流量镜像的健康检查参数。
     @inlinable
-    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
-        try await self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), logger: logger, on: eventLoop)
+    public func setTrafficMirrorHealthSwitch(trafficMirrorId: String, healthSwitch: Int64, healthNum: Int64? = nil, unhealthNum: Int64? = nil, intervalTime: Int64? = nil, httpCheckDomain: String? = nil, httpCheckPath: String? = nil, httpCodes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorHealthSwitchResponse {
+        try await self.setTrafficMirrorHealthSwitch(SetTrafficMirrorHealthSwitchRequest(trafficMirrorId: trafficMirrorId, healthSwitch: healthSwitch, healthNum: healthNum, unhealthNum: unhealthNum, intervalTime: intervalTime, httpCheckDomain: httpCheckDomain, httpCheckPath: httpCheckPath, httpCodes: httpCodes), region: region, logger: logger, on: eventLoop)
     }
 }

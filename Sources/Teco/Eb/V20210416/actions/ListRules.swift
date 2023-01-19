@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Eb {
 
     /// 获取事件规则列表
     @inlinable
-    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
-        self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listRules(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
+        self.client.execute(action: "ListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件规则列表
     @inlinable
-    public func listRules(_ input: ListRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
-        try await self.client.execute(action: "ListRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listRules(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
+        try await self.client.execute(action: "ListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件规则列表
     @inlinable
-    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
-        self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
+        self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件规则列表
     @inlinable
-    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
-        try await self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
+        try await self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

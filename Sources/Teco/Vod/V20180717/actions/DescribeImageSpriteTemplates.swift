@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Vod {
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSpriteTemplatesResponse> {
-        self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSpriteTemplatesResponse> {
+        self.client.execute(action: "DescribeImageSpriteTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取雪碧图模板列表
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
-        try await self.client.execute(action: "DescribeImageSpriteTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageSpriteTemplates(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
+        try await self.client.execute(action: "DescribeImageSpriteTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取雪碧图模板列表
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSpriteTemplatesResponse> {
-        self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSpriteTemplatesResponse> {
+        self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取雪碧图模板列表
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
-        try await self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeImageSpriteTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSpriteTemplatesResponse {
+        try await self.describeImageSpriteTemplates(DescribeImageSpriteTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

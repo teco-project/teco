@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Yunjing {
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
-        self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
+        self.client.execute(action: "ModifyAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
-        try await self.client.execute(action: "ModifyAlarmAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAlarmAttribute(_ input: ModifyAlarmAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
+        try await self.client.execute(action: "ModifyAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
-        self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), logger: logger, on: eventLoop)
+    public func modifyAlarmAttribute(attribute: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
+        self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警设置
     ///
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable
-    public func modifyAlarmAttribute(attribute: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
-        try await self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), logger: logger, on: eventLoop)
+    public func modifyAlarmAttribute(attribute: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
+        try await self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Iotvideoindustry {
 
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
-        self.client.execute(action: "DescribeDeviceMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
+        self.client.execute(action: "DescribeDeviceMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
-        try await self.client.execute(action: "DescribeDeviceMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceMonitorData(_ input: DescribeDeviceMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
+        try await self.client.execute(action: "DescribeDeviceMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
-        self.describeDeviceMonitorData(DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), logger: logger, on: eventLoop)
+    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceMonitorDataResponse> {
+        self.describeDeviceMonitorData(DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备统计monitor信息
     @inlinable
-    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
-        try await self.describeDeviceMonitorData(DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), logger: logger, on: eventLoop)
+    public func describeDeviceMonitorData(startTime: Int64, endTime: Int64, type: String, timesSpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceMonitorDataResponse {
+        try await self.describeDeviceMonitorData(DescribeDeviceMonitorDataRequest(startTime: startTime, endTime: endTime, type: type, timesSpec: timesSpec), region: region, logger: logger, on: eventLoop)
     }
 }

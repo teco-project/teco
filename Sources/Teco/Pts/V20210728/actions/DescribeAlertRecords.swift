@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Pts {
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
-        self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
+        self.client.execute(action: "DescribeAlertRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
-        try await self.client.execute(action: "DescribeAlertRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlertRecords(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
+        try await self.client.execute(action: "DescribeAlertRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
-        self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), logger: logger, on: eventLoop)
+    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRecordsResponse> {
+        self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警历史
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
-        try await self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), logger: logger, on: eventLoop)
+    public func describeAlertRecords(projectIds: [String], scenarioIds: [String]? = nil, jobIds: [String]? = nil, ascend: Bool? = nil, orderBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, scenarioNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRecordsResponse {
+        try await self.describeAlertRecords(DescribeAlertRecordsRequest(projectIds: projectIds, scenarioIds: scenarioIds, jobIds: jobIds, ascend: ascend, orderBy: orderBy, offset: offset, limit: limit, scenarioNames: scenarioNames), region: region, logger: logger, on: eventLoop)
     }
 }

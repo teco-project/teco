@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitOpenClassTask(_ input: SubmitOpenClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOpenClassTaskResponse> {
-        self.client.execute(action: "SubmitOpenClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitOpenClassTask(_ input: SubmitOpenClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOpenClassTaskResponse> {
+        self.client.execute(action: "SubmitOpenClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交线下小班（无课桌）课任务
@@ -88,8 +88,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitOpenClassTask(_ input: SubmitOpenClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOpenClassTaskResponse {
-        try await self.client.execute(action: "SubmitOpenClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitOpenClassTask(_ input: SubmitOpenClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOpenClassTaskResponse {
+        try await self.client.execute(action: "SubmitOpenClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交线下小班（无课桌）课任务
@@ -103,8 +103,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOpenClassTaskResponse> {
-        self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOpenClassTaskResponse> {
+        self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交线下小班（无课桌）课任务
@@ -118,7 +118,7 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOpenClassTaskResponse {
-        try await self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), logger: logger, on: eventLoop)
+    public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOpenClassTaskResponse {
+        try await self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
     }
 }

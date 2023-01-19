@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tsf {
 
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
-        self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
+        self.client.execute(action: "DisassociateKafkaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
-        try await self.client.execute(action: "DisassociateKafkaConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateKafkaConfig(_ input: DisassociateKafkaConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
+        try await self.client.execute(action: "DisassociateKafkaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
-        self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateKafkaConfigResponse> {
+        self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消关联投递信息和部署组
     @inlinable
-    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
-        try await self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func disassociateKafkaConfig(configId: String, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateKafkaConfigResponse {
+        try await self.disassociateKafkaConfig(DisassociateKafkaConfigRequest(configId: configId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 }

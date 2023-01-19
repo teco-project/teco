@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,31 +116,31 @@ extension Faceid {
     ///
     /// 本接口用于校验姓名和身份证号的真实性和一致性，您可以通过输入姓名和身份证号或传入身份证人像面照片提供所需验证信息。
     @inlinable
-    public func idCardOCRVerification(_ input: IdCardOCRVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardOCRVerificationResponse> {
-        self.client.execute(action: "IdCardOCRVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func idCardOCRVerification(_ input: IdCardOCRVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardOCRVerificationResponse> {
+        self.client.execute(action: "IdCardOCRVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份证识别及信息核验
     ///
     /// 本接口用于校验姓名和身份证号的真实性和一致性，您可以通过输入姓名和身份证号或传入身份证人像面照片提供所需验证信息。
     @inlinable
-    public func idCardOCRVerification(_ input: IdCardOCRVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardOCRVerificationResponse {
-        try await self.client.execute(action: "IdCardOCRVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func idCardOCRVerification(_ input: IdCardOCRVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardOCRVerificationResponse {
+        try await self.client.execute(action: "IdCardOCRVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 身份证识别及信息核验
     ///
     /// 本接口用于校验姓名和身份证号的真实性和一致性，您可以通过输入姓名和身份证号或传入身份证人像面照片提供所需验证信息。
     @inlinable
-    public func idCardOCRVerification(idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, imageUrl: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardOCRVerificationResponse> {
-        self.idCardOCRVerification(IdCardOCRVerificationRequest(idCard: idCard, name: name, imageBase64: imageBase64, imageUrl: imageUrl, encryption: encryption), logger: logger, on: eventLoop)
+    public func idCardOCRVerification(idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, imageUrl: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IdCardOCRVerificationResponse> {
+        self.idCardOCRVerification(IdCardOCRVerificationRequest(idCard: idCard, name: name, imageBase64: imageBase64, imageUrl: imageUrl, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份证识别及信息核验
     ///
     /// 本接口用于校验姓名和身份证号的真实性和一致性，您可以通过输入姓名和身份证号或传入身份证人像面照片提供所需验证信息。
     @inlinable
-    public func idCardOCRVerification(idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, imageUrl: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardOCRVerificationResponse {
-        try await self.idCardOCRVerification(IdCardOCRVerificationRequest(idCard: idCard, name: name, imageBase64: imageBase64, imageUrl: imageUrl, encryption: encryption), logger: logger, on: eventLoop)
+    public func idCardOCRVerification(idCard: String? = nil, name: String? = nil, imageBase64: String? = nil, imageUrl: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IdCardOCRVerificationResponse {
+        try await self.idCardOCRVerification(IdCardOCRVerificationRequest(idCard: idCard, name: name, imageBase64: imageBase64, imageUrl: imageUrl, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

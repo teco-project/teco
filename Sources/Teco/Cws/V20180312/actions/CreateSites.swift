@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cws {
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
-        self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSites(_ input: CreateSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
+        self.client.execute(action: "CreateSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(_ input: CreateSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
-        try await self.client.execute(action: "CreateSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSites(_ input: CreateSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
+        try await self.client.execute(action: "CreateSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
-        self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), logger: logger, on: eventLoop)
+    public func createSites(urls: [String], userAgent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSitesResponse> {
+        self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增站点
     ///
     /// 本接口（CreateSites）用于新增一个或多个站点。
     @inlinable
-    public func createSites(urls: [String], userAgent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
-        try await self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), logger: logger, on: eventLoop)
+    public func createSites(urls: [String], userAgent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSitesResponse {
+        try await self.createSites(CreateSitesRequest(urls: urls, userAgent: userAgent), region: region, logger: logger, on: eventLoop)
     }
 }

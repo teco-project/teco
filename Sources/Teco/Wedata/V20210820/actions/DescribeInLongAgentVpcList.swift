@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Wedata {
 
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
-        self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
+        self.client.execute(action: "DescribeInLongAgentVpcList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
-        try await self.client.execute(action: "DescribeInLongAgentVpcList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInLongAgentVpcList(_ input: DescribeInLongAgentVpcListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
+        try await self.client.execute(action: "DescribeInLongAgentVpcList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
-        self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func describeInLongAgentVpcList(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentVpcListResponse> {
+        self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取采集器所在集群的VPC列表
     @inlinable
-    public func describeInLongAgentVpcList(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
-        try await self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func describeInLongAgentVpcList(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentVpcListResponse {
+        try await self.describeInLongAgentVpcList(DescribeInLongAgentVpcListRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

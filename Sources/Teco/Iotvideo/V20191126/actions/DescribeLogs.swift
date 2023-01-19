@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,8 +83,8 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
+        self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志列表
@@ -92,8 +92,8 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备日志列表
@@ -101,8 +101,8 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        self.describeLogs(DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
+        self.describeLogs(DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志列表
@@ -110,7 +110,7 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.describeLogs(DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeLogs(tid: String, limit: UInt64, offset: UInt64, logType: UInt64? = nil, startTime: UInt64? = nil, dataObject: String? = nil, endTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.describeLogs(DescribeLogsRequest(tid: tid, limit: limit, offset: offset, logType: logType, startTime: startTime, dataObject: dataObject, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

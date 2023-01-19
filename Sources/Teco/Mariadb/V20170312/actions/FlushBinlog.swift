@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mariadb {
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
     @inlinable
-    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
-        self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func flushBinlog(_ input: FlushBinlogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
+        self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
     @inlinable
-    public func flushBinlog(_ input: FlushBinlogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
-        try await self.client.execute(action: "FlushBinlog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func flushBinlog(_ input: FlushBinlogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
+        try await self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
     @inlinable
-    public func flushBinlog(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
-        self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
+        self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
     @inlinable
-    public func flushBinlog(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
-        try await self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
+        try await self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

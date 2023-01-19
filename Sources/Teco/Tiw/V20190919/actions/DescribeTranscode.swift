@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Tiw {
     ///
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
-    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeResponse> {
-        self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTranscode(_ input: DescribeTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeResponse> {
+        self.client.execute(action: "DescribeTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文档转码任务
     ///
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
-    public func describeTranscode(_ input: DescribeTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
-        try await self.client.execute(action: "DescribeTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTranscode(_ input: DescribeTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
+        try await self.client.execute(action: "DescribeTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文档转码任务
     ///
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
-    public func describeTranscode(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeResponse> {
-        self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTranscode(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeResponse> {
+        self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文档转码任务
     ///
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
-    public func describeTranscode(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
-        try await self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTranscode(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
+        try await self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 枚举消费分组(精简版)
     @inlinable
-    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupResponse> {
-        self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroup(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupResponse> {
+        self.client.execute(action: "DescribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 枚举消费分组(精简版)
     @inlinable
-    public func describeGroup(_ input: DescribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
-        try await self.client.execute(action: "DescribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroup(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
+        try await self.client.execute(action: "DescribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 枚举消费分组(精简版)
     @inlinable
-    public func describeGroup(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupResponse> {
-        self.describeGroup(DescribeGroupRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGroup(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupResponse> {
+        self.describeGroup(DescribeGroupRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举消费分组(精简版)
     @inlinable
-    public func describeGroup(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
-        try await self.describeGroup(DescribeGroupRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGroup(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupResponse {
+        try await self.describeGroup(DescribeGroupRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

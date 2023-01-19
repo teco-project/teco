@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcss {
 
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
-        self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
+        self.client.execute(action: "ModifySecLogJoinObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
-        try await self.client.execute(action: "ModifySecLogJoinObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
+        try await self.client.execute(action: "ModifySecLogJoinObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
-        self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), logger: logger, on: eventLoop)
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
+        self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入对象
     @inlinable
-    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
-        try await self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), logger: logger, on: eventLoop)
+    public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
+        try await self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
     }
 }

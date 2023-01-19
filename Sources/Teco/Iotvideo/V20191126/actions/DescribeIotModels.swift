@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
-    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelsResponse> {
-        self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIotModels(_ input: DescribeIotModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelsResponse> {
+        self.client.execute(action: "DescribeIotModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型历史版本列表
     ///
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
-    public func describeIotModels(_ input: DescribeIotModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
-        try await self.client.execute(action: "DescribeIotModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIotModels(_ input: DescribeIotModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
+        try await self.client.execute(action: "DescribeIotModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取物模型历史版本列表
     ///
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
-    public func describeIotModels(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelsResponse> {
-        self.describeIotModels(DescribeIotModelsRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeIotModels(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotModelsResponse> {
+        self.describeIotModels(DescribeIotModelsRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型历史版本列表
     ///
     /// 本接口（DescribeIotModels）用于列出物模型历史版本列表。
     @inlinable
-    public func describeIotModels(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
-        try await self.describeIotModels(DescribeIotModelsRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeIotModels(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotModelsResponse {
+        try await self.describeIotModels(DescribeIotModelsRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

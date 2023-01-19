@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cpdp {
 
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
-        self.client.execute(action: "DistributeAccreditQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
+        self.client.execute(action: "DistributeAccreditQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {
-        try await self.client.execute(action: "DistributeAccreditQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func distributeAccreditQuery(_ input: DistributeAccreditQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {
+        try await self.client.execute(action: "DistributeAccreditQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
-        self.distributeAccreditQuery(DistributeAccreditQueryRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeAccreditQueryResponse> {
+        self.distributeAccreditQuery(DistributeAccreditQueryRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账授权申请查询接口
     @inlinable
-    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {
-        try await self.distributeAccreditQuery(DistributeAccreditQueryRequest(openId: openId, openKey: openKey, profile: profile), logger: logger, on: eventLoop)
+    public func distributeAccreditQuery(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeAccreditQueryResponse {
+        try await self.distributeAccreditQuery(DistributeAccreditQueryRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

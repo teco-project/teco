@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cwp {
     ///
     /// 导出授权列表对应的绑定信息
     @inlinable
-    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportLicenseDetailResponse> {
-        self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportLicenseDetailResponse> {
+        self.client.execute(action: "ExportLicenseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出授权详情
     ///
     /// 导出授权列表对应的绑定信息
     @inlinable
-    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
-        try await self.client.execute(action: "ExportLicenseDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportLicenseDetail(_ input: ExportLicenseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
+        try await self.client.execute(action: "ExportLicenseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出授权详情
     ///
     /// 导出授权列表对应的绑定信息
     @inlinable
-    public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportLicenseDetailResponse> {
-        self.exportLicenseDetail(ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), logger: logger, on: eventLoop)
+    public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportLicenseDetailResponse> {
+        self.exportLicenseDetail(ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出授权详情
     ///
     /// 导出授权列表对应的绑定信息
     @inlinable
-    public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
-        try await self.exportLicenseDetail(ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), logger: logger, on: eventLoop)
+    public func exportLicenseDetail(filters: [Filters]? = nil, isHistory: Bool? = nil, tags: [Tags]? = nil, exportMonth: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportLicenseDetailResponse {
+        try await self.exportLicenseDetail(ExportLicenseDetailRequest(filters: filters, isHistory: isHistory, tags: tags, exportMonth: exportMonth), region: region, logger: logger, on: eventLoop)
     }
 }

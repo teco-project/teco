@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 创建消费者组
     @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConsumer(_ input: CreateConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
+        self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建消费者组
     @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConsumer(_ input: CreateConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建消费者组
     @inlinable
-    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), logger: logger, on: eventLoop)
+    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
+        self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建消费者组
     @inlinable
-    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), logger: logger, on: eventLoop)
+    public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), region: region, logger: logger, on: eventLoop)
     }
 }

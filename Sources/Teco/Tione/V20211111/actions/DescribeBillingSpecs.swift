@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tione {
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
-        self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
+        self.client.execute(action: "DescribeBillingSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
-        try await self.client.execute(action: "DescribeBillingSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBillingSpecs(_ input: DescribeBillingSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
+        try await self.client.execute(action: "DescribeBillingSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
-        self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillingSpecsResponse> {
+        self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询计费项列表
     ///
     /// 本接口(DescribeBillingSpecs)用于查询计费项列表
     @inlinable
-    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
-        try await self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func describeBillingSpecs(taskType: String, chargeType: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillingSpecsResponse {
+        try await self.describeBillingSpecs(DescribeBillingSpecsRequest(taskType: taskType, chargeType: chargeType, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 }

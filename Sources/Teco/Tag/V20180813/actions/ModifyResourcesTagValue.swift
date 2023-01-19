@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tag {
     ///
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable
-    public func modifyResourcesTagValue(_ input: ModifyResourcesTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcesTagValueResponse> {
-        self.client.execute(action: "ModifyResourcesTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourcesTagValue(_ input: ModifyResourcesTagValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcesTagValueResponse> {
+        self.client.execute(action: "ModifyResourcesTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改批量资源关联的标签值
     ///
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable
-    public func modifyResourcesTagValue(_ input: ModifyResourcesTagValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
-        try await self.client.execute(action: "ModifyResourcesTagValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourcesTagValue(_ input: ModifyResourcesTagValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
+        try await self.client.execute(action: "ModifyResourcesTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改批量资源关联的标签值
     ///
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable
-    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcesTagValueResponse> {
-        self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcesTagValueResponse> {
+        self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改批量资源关联的标签值
     ///
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable
-    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
-        try await self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), logger: logger, on: eventLoop)
+    public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
+        try await self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
 }

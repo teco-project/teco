@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,25 +87,25 @@ extension Cpdp {
 
     /// 灵云V2-查询结算订单列表
     @inlinable
-    public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexSettlementOrderListResponse> {
-        self.client.execute(action: "QueryFlexSettlementOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexSettlementOrderListResponse> {
+        self.client.execute(action: "QueryFlexSettlementOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询结算订单列表
     @inlinable
-    public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {
-        try await self.client.execute(action: "QueryFlexSettlementOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexSettlementOrderList(_ input: QueryFlexSettlementOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {
+        try await self.client.execute(action: "QueryFlexSettlementOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-查询结算订单列表
     @inlinable
-    public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexSettlementOrderListResponse> {
-        self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexSettlementOrderListResponse> {
+        self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询结算订单列表
     @inlinable
-    public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {
-        try await self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {
+        try await self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

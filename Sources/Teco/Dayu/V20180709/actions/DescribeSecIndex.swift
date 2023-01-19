@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Dayu {
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
-        self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecIndex(_ input: DescribeSecIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
+        self.client.execute(action: "DescribeSecIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全统计
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(_ input: DescribeSecIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
-        try await self.client.execute(action: "DescribeSecIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecIndex(_ input: DescribeSecIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
+        try await self.client.execute(action: "DescribeSecIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全统计
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
-        self.describeSecIndex(DescribeSecIndexRequest(), logger: logger, on: eventLoop)
+    public func describeSecIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
+        self.describeSecIndex(DescribeSecIndexRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全统计
     ///
     /// 获取本月安全统计
     @inlinable
-    public func describeSecIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
-        try await self.describeSecIndex(DescribeSecIndexRequest(), logger: logger, on: eventLoop)
+    public func describeSecIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
+        try await self.describeSecIndex(DescribeSecIndexRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

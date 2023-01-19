@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Wedata {
 
     /// 批量暂停集成任务
     @inlinable
-    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSuspendIntegrationTasksResponse> {
-        self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSuspendIntegrationTasksResponse> {
+        self.client.execute(action: "BatchSuspendIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量暂停集成任务
     @inlinable
-    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchSuspendIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchSuspendIntegrationTasks(_ input: BatchSuspendIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchSuspendIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量暂停集成任务
     @inlinable
-    public func batchSuspendIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSuspendIntegrationTasksResponse> {
-        self.batchSuspendIntegrationTasks(BatchSuspendIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchSuspendIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchSuspendIntegrationTasksResponse> {
+        self.batchSuspendIntegrationTasks(BatchSuspendIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量暂停集成任务
     @inlinable
-    public func batchSuspendIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
-        try await self.batchSuspendIntegrationTasks(BatchSuspendIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchSuspendIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchSuspendIntegrationTasksResponse {
+        try await self.batchSuspendIntegrationTasks(BatchSuspendIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

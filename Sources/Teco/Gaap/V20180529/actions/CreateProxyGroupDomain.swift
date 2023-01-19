@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Gaap {
     ///
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
-    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupDomainResponse> {
-        self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupDomainResponse> {
+        self.client.execute(action: "CreateProxyGroupDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通通道组域名（废弃）
     ///
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
-    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
-        try await self.client.execute(action: "CreateProxyGroupDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProxyGroupDomain(_ input: CreateProxyGroupDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
+        try await self.client.execute(action: "CreateProxyGroupDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通通道组域名（废弃）
     ///
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
-    public func createProxyGroupDomain(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupDomainResponse> {
-        self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func createProxyGroupDomain(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupDomainResponse> {
+        self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通通道组域名（废弃）
     ///
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
-    public func createProxyGroupDomain(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
-        try await self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func createProxyGroupDomain(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
+        try await self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

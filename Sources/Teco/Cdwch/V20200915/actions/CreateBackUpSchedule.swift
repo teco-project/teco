@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cdwch {
 
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
-        self.client.execute(action: "CreateBackUpSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
+        self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
-        try await self.client.execute(action: "CreateBackUpSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBackUpSchedule(_ input: CreateBackUpScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
+        try await self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
-        self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), logger: logger, on: eventLoop)
+    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
+        self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建或者修改备份策略
     @inlinable
-    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
-        try await self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), logger: logger, on: eventLoop)
+    public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
+        try await self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
     }
 }

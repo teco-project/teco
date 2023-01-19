@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcr {
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
-        self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
+        self.client.execute(action: "DeleteApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "DeleteApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "DeleteApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
-        self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), logger: logger, on: eventLoop)
+    public func deleteApplicationTriggerPersonal(triggerName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
+        self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
     @inlinable
-    public func deleteApplicationTriggerPersonal(triggerName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
-        try await self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), logger: logger, on: eventLoop)
+    public func deleteApplicationTriggerPersonal(triggerName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
+        try await self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), region: region, logger: logger, on: eventLoop)
     }
 }

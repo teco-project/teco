@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tat {
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
-        self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableInvoker(_ input: DisableInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
+        self.client.execute(action: "DisableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(_ input: DisableInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
-        try await self.client.execute(action: "DisableInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableInvoker(_ input: DisableInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
+        try await self.client.execute(action: "DisableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
-        self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    public func disableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
+        self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
     @inlinable
-    public func disableInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
-        try await self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    public func disableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
+        try await self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 }

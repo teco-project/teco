@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 查询边缘集群自定义参数
     @inlinable
-    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterExtraArgsResponse> {
-        self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterExtraArgsResponse> {
+        self.client.execute(action: "DescribeEdgeClusterExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群自定义参数
     @inlinable
-    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
-        try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeClusterExtraArgs(_ input: DescribeEdgeClusterExtraArgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
+        try await self.client.execute(action: "DescribeEdgeClusterExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘集群自定义参数
     @inlinable
-    public func describeEdgeClusterExtraArgs(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterExtraArgsResponse> {
-        self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEdgeClusterExtraArgs(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterExtraArgsResponse> {
+        self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群自定义参数
     @inlinable
-    public func describeEdgeClusterExtraArgs(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
-        try await self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEdgeClusterExtraArgs(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterExtraArgsResponse {
+        try await self.describeEdgeClusterExtraArgs(DescribeEdgeClusterExtraArgsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

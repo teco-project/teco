@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Cdb {
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
-        self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
+        self.client.execute(action: "InquiryPriceUpgradeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceUpgradeInstances(_ input: InquiryPriceUpgradeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
-        self.inquiryPriceUpgradeInstances(InquiryPriceUpgradeInstancesRequest(instanceId: instanceId, memory: memory, volume: volume, cpu: cpu, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstancesResponse> {
+        self.inquiryPriceUpgradeInstances(InquiryPriceUpgradeInstancesRequest(instanceId: instanceId, memory: memory, volume: volume, cpu: cpu, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库升级价格
     ///
     /// 本接口(InquiryPriceUpgradeInstances)用于查询云数据库实例升级的价格，支持查询按量计费或者包年包月实例的升级价格，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
-    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
-        try await self.inquiryPriceUpgradeInstances(InquiryPriceUpgradeInstancesRequest(instanceId: instanceId, memory: memory, volume: volume, cpu: cpu, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstances(instanceId: String, memory: UInt64, volume: UInt64, cpu: UInt64? = nil, protectMode: UInt64? = nil, deviceType: String? = nil, instanceNodes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstancesResponse {
+        try await self.inquiryPriceUpgradeInstances(InquiryPriceUpgradeInstancesRequest(instanceId: instanceId, memory: memory, volume: volume, cpu: cpu, protectMode: protectMode, deviceType: deviceType, instanceNodes: instanceNodes), region: region, logger: logger, on: eventLoop)
     }
 }

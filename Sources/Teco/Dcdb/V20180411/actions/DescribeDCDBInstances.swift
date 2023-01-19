@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -137,8 +137,8 @@ extension Dcdb {
     /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
     @inlinable
-    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstancesResponse> {
-        self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstancesResponse> {
+        self.client.execute(action: "DescribeDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
@@ -146,8 +146,8 @@ extension Dcdb {
     /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
     @inlinable
-    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDCDBInstances(_ input: DescribeDCDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例列表
@@ -155,8 +155,8 @@ extension Dcdb {
     /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
     @inlinable
-    public func describeDCDBInstances(instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, exclusterType: Int64? = nil, isFilterExcluster: Bool? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstancesResponse> {
-        self.describeDCDBInstances(DescribeDCDBInstancesRequest(instanceIds: instanceIds, searchName: searchName, searchKey: searchKey, projectIds: projectIds, isFilterVpc: isFilterVpc, vpcId: vpcId, subnetId: subnetId, orderBy: orderBy, orderByType: orderByType, offset: offset, limit: limit, exclusterType: exclusterType, isFilterExcluster: isFilterExcluster, exclusterIds: exclusterIds, tagKeys: tagKeys, filterInstanceType: filterInstanceType, status: status, excludeStatus: excludeStatus), logger: logger, on: eventLoop)
+    public func describeDCDBInstances(instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, exclusterType: Int64? = nil, isFilterExcluster: Bool? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstancesResponse> {
+        self.describeDCDBInstances(DescribeDCDBInstancesRequest(instanceIds: instanceIds, searchName: searchName, searchKey: searchKey, projectIds: projectIds, isFilterVpc: isFilterVpc, vpcId: vpcId, subnetId: subnetId, orderBy: orderBy, orderByType: orderByType, offset: offset, limit: limit, exclusterType: exclusterType, isFilterExcluster: isFilterExcluster, exclusterIds: exclusterIds, tagKeys: tagKeys, filterInstanceType: filterInstanceType, status: status, excludeStatus: excludeStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例列表
@@ -164,7 +164,7 @@ extension Dcdb {
     /// 查询云数据库实例列表，支持通过项目ID、实例ID、内网地址、实例名称等来筛选实例。
     /// 如果不指定任何筛选条件，则默认返回10条实例记录，单次请求最多支持返回100条实例记录。
     @inlinable
-    public func describeDCDBInstances(instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, exclusterType: Int64? = nil, isFilterExcluster: Bool? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
-        try await self.describeDCDBInstances(DescribeDCDBInstancesRequest(instanceIds: instanceIds, searchName: searchName, searchKey: searchKey, projectIds: projectIds, isFilterVpc: isFilterVpc, vpcId: vpcId, subnetId: subnetId, orderBy: orderBy, orderByType: orderByType, offset: offset, limit: limit, exclusterType: exclusterType, isFilterExcluster: isFilterExcluster, exclusterIds: exclusterIds, tagKeys: tagKeys, filterInstanceType: filterInstanceType, status: status, excludeStatus: excludeStatus), logger: logger, on: eventLoop)
+    public func describeDCDBInstances(instanceIds: [String]? = nil, searchName: String? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, isFilterVpc: Bool? = nil, vpcId: String? = nil, subnetId: String? = nil, orderBy: String? = nil, orderByType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, exclusterType: Int64? = nil, isFilterExcluster: Bool? = nil, exclusterIds: [String]? = nil, tagKeys: [String]? = nil, filterInstanceType: String? = nil, status: [Int64]? = nil, excludeStatus: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstancesResponse {
+        try await self.describeDCDBInstances(DescribeDCDBInstancesRequest(instanceIds: instanceIds, searchName: searchName, searchKey: searchKey, projectIds: projectIds, isFilterVpc: isFilterVpc, vpcId: vpcId, subnetId: subnetId, orderBy: orderBy, orderByType: orderByType, offset: offset, limit: limit, exclusterType: exclusterType, isFilterExcluster: isFilterExcluster, exclusterIds: exclusterIds, tagKeys: tagKeys, filterInstanceType: filterInstanceType, status: status, excludeStatus: excludeStatus), region: region, logger: logger, on: eventLoop)
     }
 }

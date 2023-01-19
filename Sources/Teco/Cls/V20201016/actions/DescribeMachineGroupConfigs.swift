@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cls {
 
     /// 获取机器组绑定的采集规则配置
     @inlinable
-    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupConfigsResponse> {
-        self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupConfigsResponse> {
+        self.client.execute(action: "DescribeMachineGroupConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机器组绑定的采集规则配置
     @inlinable
-    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
-        try await self.client.execute(action: "DescribeMachineGroupConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMachineGroupConfigs(_ input: DescribeMachineGroupConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
+        try await self.client.execute(action: "DescribeMachineGroupConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取机器组绑定的采集规则配置
     @inlinable
-    public func describeMachineGroupConfigs(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupConfigsResponse> {
-        self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeMachineGroupConfigs(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupConfigsResponse> {
+        self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机器组绑定的采集规则配置
     @inlinable
-    public func describeMachineGroupConfigs(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
-        try await self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeMachineGroupConfigs(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
+        try await self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

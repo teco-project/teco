@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Antiddos {
 
     /// 获取L7转发规则健康检查异常结果列表
     @inlinable
-    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesErrHealthResponse> {
-        self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesErrHealthResponse> {
+        self.client.execute(action: "DescribeNewL7RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取L7转发规则健康检查异常结果列表
     @inlinable
-    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
-        try await self.client.execute(action: "DescribeNewL7RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNewL7RulesErrHealth(_ input: DescribeNewL7RulesErrHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
+        try await self.client.execute(action: "DescribeNewL7RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取L7转发规则健康检查异常结果列表
     @inlinable
-    public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesErrHealthResponse> {
-        self.describeNewL7RulesErrHealth(DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL7RulesErrHealthResponse> {
+        self.describeNewL7RulesErrHealth(DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取L7转发规则健康检查异常结果列表
     @inlinable
-    public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
-        try await self.describeNewL7RulesErrHealth(DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeNewL7RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL7RulesErrHealthResponse {
+        try await self.describeNewL7RulesErrHealth(DescribeNewL7RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

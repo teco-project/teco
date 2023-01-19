@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Faceid {
     ///
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func checkPhoneAndName(_ input: CheckPhoneAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckPhoneAndNameResponse> {
-        self.client.execute(action: "CheckPhoneAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkPhoneAndName(_ input: CheckPhoneAndNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckPhoneAndNameResponse> {
+        self.client.execute(action: "CheckPhoneAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
     ///
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func checkPhoneAndName(_ input: CheckPhoneAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckPhoneAndNameResponse {
-        try await self.client.execute(action: "CheckPhoneAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkPhoneAndName(_ input: CheckPhoneAndNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckPhoneAndNameResponse {
+        try await self.client.execute(action: "CheckPhoneAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号二要素核验
     ///
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckPhoneAndNameResponse> {
-        self.checkPhoneAndName(CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckPhoneAndNameResponse> {
+        self.checkPhoneAndName(CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
     ///
     /// 手机号二要素核验接口用于校验手机号和姓名的真实性和一致性，支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckPhoneAndNameResponse {
-        try await self.checkPhoneAndName(CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption), logger: logger, on: eventLoop)
+    public func checkPhoneAndName(mobile: String, name: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckPhoneAndNameResponse {
+        try await self.checkPhoneAndName(CheckPhoneAndNameRequest(mobile: mobile, name: name, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

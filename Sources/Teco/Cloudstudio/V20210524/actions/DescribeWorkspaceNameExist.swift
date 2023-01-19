@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cloudstudio {
 
     /// 检查工作空间是否存在
     @inlinable
-    public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
-        self.client.execute(action: "DescribeWorkspaceNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
+        self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查工作空间是否存在
     @inlinable
-    public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
-        try await self.client.execute(action: "DescribeWorkspaceNameExist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
+        try await self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查工作空间是否存在
     @inlinable
-    public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
-        self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), logger: logger, on: eventLoop)
+    public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
+        self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查工作空间是否存在
     @inlinable
-    public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
-        try await self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), logger: logger, on: eventLoop)
+    public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
+        try await self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }
 }

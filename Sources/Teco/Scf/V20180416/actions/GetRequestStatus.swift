@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Scf {
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
-        self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRequestStatus(_ input: GetRequestStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
+        self.client.execute(action: "GetRequestStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(_ input: GetRequestStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
-        try await self.client.execute(action: "GetRequestStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRequestStatus(_ input: GetRequestStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
+        try await self.client.execute(action: "GetRequestStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
-        self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRequestStatusResponse> {
+        self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数单个请求运行状态
     ///
     /// 该接口根据指定的查询条件返回函数单个请求运行状态。
     @inlinable
-    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
-        try await self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func getRequestStatus(functionName: String, functionRequestId: String, namespace: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRequestStatusResponse {
+        try await self.getRequestStatus(GetRequestStatusRequest(functionName: functionName, functionRequestId: functionRequestId, namespace: namespace, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

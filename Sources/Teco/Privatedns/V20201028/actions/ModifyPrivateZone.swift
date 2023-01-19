@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Privatedns {
     ///
     /// 修改私有域信息
     @inlinable
-    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneResponse> {
-        self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneResponse> {
+        self.client.execute(action: "ModifyPrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域
     ///
     /// 修改私有域信息
     @inlinable
-    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
-        try await self.client.execute(action: "ModifyPrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrivateZone(_ input: ModifyPrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
+        try await self.client.execute(action: "ModifyPrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改私有域
     ///
     /// 修改私有域信息
     @inlinable
-    public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneResponse> {
-        self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), logger: logger, on: eventLoop)
+    public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneResponse> {
+        self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域
     ///
     /// 修改私有域信息
     @inlinable
-    public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
-        try await self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), logger: logger, on: eventLoop)
+    public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
+        try await self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), region: region, logger: logger, on: eventLoop)
     }
 }

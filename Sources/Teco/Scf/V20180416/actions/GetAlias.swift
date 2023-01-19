@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Scf {
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
-        self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAlias(_ input: GetAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
+        self.client.execute(action: "GetAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(_ input: GetAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
-        try await self.client.execute(action: "GetAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAlias(_ input: GetAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
+        try await self.client.execute(action: "GetAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
-        self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func getAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
+        self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取别名详细信息
     ///
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
-    public func getAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
-        try await self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func getAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
+        try await self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

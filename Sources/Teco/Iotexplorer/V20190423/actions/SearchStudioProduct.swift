@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Iotexplorer {
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(_ input: SearchStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
-        self.client.execute(action: "SearchStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchStudioProduct(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
+        self.client.execute(action: "SearchStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(_ input: SearchStudioProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
-        try await self.client.execute(action: "SearchStudioProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchStudioProduct(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
+        try await self.client.execute(action: "SearchStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
-        self.searchStudioProduct(SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), logger: logger, on: eventLoop)
+    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchStudioProductResponse> {
+        self.searchStudioProduct(SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
-        try await self.searchStudioProduct(SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), logger: logger, on: eventLoop)
+    public func searchStudioProduct(projectId: String? = nil, productName: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, devStatus: String? = nil, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchStudioProductResponse {
+        try await self.searchStudioProduct(SearchStudioProductRequest(projectId: projectId, productName: productName, limit: limit, offset: offset, devStatus: devStatus, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Emr {
 
     /// 查询集群列表
     @inlinable
-    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesListResponse> {
-        self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesList(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesListResponse> {
+        self.client.execute(action: "DescribeInstancesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeInstancesList(_ input: DescribeInstancesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
-        try await self.client.execute(action: "DescribeInstancesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesList(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
+        try await self.client.execute(action: "DescribeInstancesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesListResponse> {
-        self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), logger: logger, on: eventLoop)
+    public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesListResponse> {
+        self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
-        try await self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), logger: logger, on: eventLoop)
+    public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
+        try await self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

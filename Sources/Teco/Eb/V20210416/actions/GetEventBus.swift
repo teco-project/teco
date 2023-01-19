@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Eb {
 
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
-        self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getEventBus(_ input: GetEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
+        self.client.execute(action: "GetEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(_ input: GetEventBusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
-        try await self.client.execute(action: "GetEventBus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getEventBus(_ input: GetEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
+        try await self.client.execute(action: "GetEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
-        self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), logger: logger, on: eventLoop)
+    public func getEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
+        self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集详情
     @inlinable
-    public func getEventBus(eventBusId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
-        try await self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), logger: logger, on: eventLoop)
+    public func getEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
+        try await self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 }

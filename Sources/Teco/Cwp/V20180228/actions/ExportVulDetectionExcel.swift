@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Cwp {
 
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
-        self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
+        self.client.execute(action: "ExportVulDetectionExcel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
-        try await self.client.execute(action: "ExportVulDetectionExcel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVulDetectionExcel(_ input: ExportVulDetectionExcelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
+        try await self.client.execute(action: "ExportVulDetectionExcel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
-        self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func exportVulDetectionExcel(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
+        self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出本次漏洞检测Excel
     @inlinable
-    public func exportVulDetectionExcel(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
-        try await self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func exportVulDetectionExcel(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
+        try await self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

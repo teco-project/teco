@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tsf {
 
     /// 查询简单集群列表
     @inlinable
-    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleClustersResponse> {
-        self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleClustersResponse> {
+        self.client.execute(action: "DescribeSimpleClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询简单集群列表
     @inlinable
-    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
-        try await self.client.execute(action: "DescribeSimpleClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSimpleClusters(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
+        try await self.client.execute(action: "DescribeSimpleClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询简单集群列表
     @inlinable
-    public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleClustersResponse> {
-        self.describeSimpleClusters(DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleClustersResponse> {
+        self.describeSimpleClusters(DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询简单集群列表
     @inlinable
-    public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
-        try await self.describeSimpleClusters(DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeSimpleClusters(clusterIdList: [String]? = nil, clusterType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleClustersResponse {
+        try await self.describeSimpleClusters(DescribeSimpleClustersRequest(clusterIdList: clusterIdList, clusterType: clusterType, offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Eb {
 
     /// 更新事件目标
     @inlinable
-    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
-        self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateTarget(_ input: UpdateTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
+        self.client.execute(action: "UpdateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新事件目标
     @inlinable
-    public func updateTarget(_ input: UpdateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
-        try await self.client.execute(action: "UpdateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateTarget(_ input: UpdateTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
+        try await self.client.execute(action: "UpdateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新事件目标
     @inlinable
-    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
-        self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), logger: logger, on: eventLoop)
+    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTargetResponse> {
+        self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新事件目标
     @inlinable
-    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
-        try await self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), logger: logger, on: eventLoop)
+    public func updateTarget(eventBusId: String, ruleId: String, targetId: String, enableBatchDelivery: Bool? = nil, batchTimeout: Int64? = nil, batchEventCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTargetResponse {
+        try await self.updateTarget(UpdateTargetRequest(eventBusId: eventBusId, ruleId: ruleId, targetId: targetId, enableBatchDelivery: enableBatchDelivery, batchTimeout: batchTimeout, batchEventCount: batchEventCount), region: region, logger: logger, on: eventLoop)
     }
 }

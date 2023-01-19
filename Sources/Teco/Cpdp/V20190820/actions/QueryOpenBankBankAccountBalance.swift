@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Cpdp {
 
     /// 云企付-子商户银行卡余额查询
     @inlinable
-    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBankAccountBalanceResponse> {
-        self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBankAccountBalanceResponse> {
+        self.client.execute(action: "QueryOpenBankBankAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡余额查询
     @inlinable
-    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
-        try await self.client.execute(action: "QueryOpenBankBankAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankBankAccountBalance(_ input: QueryOpenBankBankAccountBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
+        try await self.client.execute(action: "QueryOpenBankBankAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户银行卡余额查询
     @inlinable
-    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBankAccountBalanceResponse> {
-        self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBankAccountBalanceResponse> {
+        self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡余额查询
     @inlinable
-    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
-        try await self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankBankAccountBalance(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankAccountBalanceResponse {
+        try await self.queryOpenBankBankAccountBalance(QueryOpenBankBankAccountBalanceRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

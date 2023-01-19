@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iot {
 
     /// 禁用规则
     @inlinable
-    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
-        self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deactivateRule(_ input: DeactivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
+        self.client.execute(action: "DeactivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用规则
     @inlinable
-    public func deactivateRule(_ input: DeactivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
-        try await self.client.execute(action: "DeactivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deactivateRule(_ input: DeactivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
+        try await self.client.execute(action: "DeactivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用规则
     @inlinable
-    public func deactivateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
-        self.deactivateRule(DeactivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deactivateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeactivateRuleResponse> {
+        self.deactivateRule(DeactivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用规则
     @inlinable
-    public func deactivateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
-        try await self.deactivateRule(DeactivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deactivateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeactivateRuleResponse {
+        try await self.deactivateRule(DeactivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

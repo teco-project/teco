@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
     @inlinable
-    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRuleRealServersResponse> {
-        self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRuleRealServersResponse> {
+        self.client.execute(action: "BindRuleRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 转发规则绑定源站
     ///
     /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
     @inlinable
-    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
-        try await self.client.execute(action: "BindRuleRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindRuleRealServers(_ input: BindRuleRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
+        try await self.client.execute(action: "BindRuleRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 转发规则绑定源站
     ///
     /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
     @inlinable
-    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRuleRealServersResponse> {
-        self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRuleRealServersResponse> {
+        self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 转发规则绑定源站
     ///
     /// 该接口用于7层监听器的转发规则绑定源站。注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。
     @inlinable
-    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
-        try await self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    public func bindRuleRealServers(ruleId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRuleRealServersResponse {
+        try await self.bindRuleRealServers(BindRuleRealServersRequest(ruleId: ruleId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
     }
 }

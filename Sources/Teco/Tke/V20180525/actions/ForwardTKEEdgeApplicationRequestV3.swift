@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tke {
 
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
-        self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
+        self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
-        try await self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func forwardTKEEdgeApplicationRequestV3(_ input: ForwardTKEEdgeApplicationRequestV3Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
+        try await self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
-        self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), logger: logger, on: eventLoop)
+    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
+        self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
     }
 
     /// 操作TKEEdge集群的addon
     @inlinable
-    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
-        try await self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), logger: logger, on: eventLoop)
+    public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
+        try await self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
     }
 }

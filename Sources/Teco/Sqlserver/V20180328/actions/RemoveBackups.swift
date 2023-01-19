@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Sqlserver {
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(_ input: RemoveBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
-        self.client.execute(action: "RemoveBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeBackups(_ input: RemoveBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
+        self.client.execute(action: "RemoveBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(_ input: RemoveBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBackupsResponse {
-        try await self.client.execute(action: "RemoveBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeBackups(_ input: RemoveBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBackupsResponse {
+        try await self.client.execute(action: "RemoveBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
-        self.removeBackups(RemoveBackupsRequest(instanceId: instanceId, backupNames: backupNames, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBackupsResponse> {
+        self.removeBackups(RemoveBackupsRequest(instanceId: instanceId, backupNames: backupNames, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除手动备份
     ///
     /// 本接口（RemoveBackups）可以删除用户手动创建的备份文件。待删除的备份策略可以是实例备份，也可以是多库备份。
     @inlinable
-    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBackupsResponse {
-        try await self.removeBackups(RemoveBackupsRequest(instanceId: instanceId, backupNames: backupNames, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func removeBackups(instanceId: String, backupNames: [String]? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBackupsResponse {
+        try await self.removeBackups(RemoveBackupsRequest(instanceId: instanceId, backupNames: backupNames, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

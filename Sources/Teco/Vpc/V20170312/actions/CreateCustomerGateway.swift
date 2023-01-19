@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Vpc {
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
-        self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
+        self.client.execute(action: "CreateCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
-        try await self.client.execute(action: "CreateCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomerGateway(_ input: CreateCustomerGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
+        try await self.client.execute(action: "CreateCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
-        self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), logger: logger, on: eventLoop)
+    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
+        self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建对端网关
     ///
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
-    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
-        try await self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), logger: logger, on: eventLoop)
+    public func createCustomerGateway(customerGatewayName: String, ipAddress: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
+        try await self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

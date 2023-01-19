@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,8 +86,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLiveFace(_ input: DetectLiveFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceResponse> {
-        self.client.execute(action: "DetectLiveFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectLiveFace(_ input: DetectLiveFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceResponse> {
+        self.client.execute(action: "DetectLiveFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测
@@ -101,8 +101,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLiveFace(_ input: DetectLiveFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceResponse {
-        try await self.client.execute(action: "DetectLiveFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectLiveFace(_ input: DetectLiveFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceResponse {
+        try await self.client.execute(action: "DetectLiveFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸静态活体检测
@@ -116,8 +116,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceResponse> {
-        self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceResponse> {
+        self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测
@@ -131,7 +131,7 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceResponse {
-        try await self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
+    public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceResponse {
+        try await self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

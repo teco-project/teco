@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,8 +100,8 @@ extension Live {
     /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
-    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePullStreamConfigResponse> {
-        self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePullStreamConfigResponse> {
+        self.client.execute(action: "CreatePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
@@ -112,8 +112,8 @@ extension Live {
     /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
-    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
-        try await self.client.execute(action: "CreatePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPullStreamConfig(_ input: CreatePullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
+        try await self.client.execute(action: "CreatePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
@@ -124,8 +124,8 @@ extension Live {
     /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
-    public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePullStreamConfigResponse> {
-        self.createPullStreamConfig(CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePullStreamConfigResponse> {
+        self.createPullStreamConfig(CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加拉流配置(该接口已下线,请使用新接口 CreateLivePullStreamTask)
@@ -136,7 +136,7 @@ extension Live {
     /// 拉流源地址即 FromUrl 可以是腾讯或非腾讯数据源，
     /// 但转推目标地址即 ToUrl 目前限制为已注册的腾讯直播域名。
     @inlinable
-    public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
-        try await self.createPullStreamConfig(CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func createPullStreamConfig(fromUrl: String, toUrl: String, areaId: Int64, ispId: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePullStreamConfigResponse {
+        try await self.createPullStreamConfig(CreatePullStreamConfigRequest(fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

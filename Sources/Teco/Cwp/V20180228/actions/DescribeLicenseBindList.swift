@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cwp {
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
-        self.client.execute(action: "DescribeLicenseBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
+        self.client.execute(action: "DescribeLicenseBindList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindListResponse {
-        try await self.client.execute(action: "DescribeLicenseBindList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLicenseBindList(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindListResponse {
+        try await self.client.execute(action: "DescribeLicenseBindList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
-        self.describeLicenseBindList(DescribeLicenseBindListRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseBindListResponse> {
+        self.describeLicenseBindList(DescribeLicenseBindListRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看授权绑定列表
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindListResponse {
-        try await self.describeLicenseBindList(DescribeLicenseBindListRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeLicenseBindList(licenseId: UInt64, licenseType: UInt64, resourceId: String, filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseBindListResponse {
+        try await self.describeLicenseBindList(DescribeLicenseBindListRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

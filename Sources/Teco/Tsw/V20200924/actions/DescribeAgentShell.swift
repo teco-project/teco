@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -38,25 +38,25 @@ extension Tsw {
 
     /// 获取服务接入信息
     @inlinable
-    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentShellResponse> {
-        self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentShell(_ input: DescribeAgentShellRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentShellResponse> {
+        self.client.execute(action: "DescribeAgentShell", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取服务接入信息
     @inlinable
-    public func describeAgentShell(_ input: DescribeAgentShellRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
-        try await self.client.execute(action: "DescribeAgentShell", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentShell(_ input: DescribeAgentShellRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
+        try await self.client.execute(action: "DescribeAgentShell", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取服务接入信息
     @inlinable
-    public func describeAgentShell(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentShellResponse> {
-        self.describeAgentShell(DescribeAgentShellRequest(), logger: logger, on: eventLoop)
+    public func describeAgentShell(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentShellResponse> {
+        self.describeAgentShell(DescribeAgentShellRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务接入信息
     @inlinable
-    public func describeAgentShell(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
-        try await self.describeAgentShell(DescribeAgentShellRequest(), logger: logger, on: eventLoop)
+    public func describeAgentShell(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentShellResponse {
+        try await self.describeAgentShell(DescribeAgentShellRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

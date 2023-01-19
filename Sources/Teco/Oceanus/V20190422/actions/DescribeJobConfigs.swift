@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Oceanus {
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
-        self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
+        self.client.execute(action: "DescribeJobConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
-        try await self.client.execute(action: "DescribeJobConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeJobConfigs(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
+        try await self.client.execute(action: "DescribeJobConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
-        self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobConfigsResponse> {
+        self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询作业配置
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
-        try await self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func describeJobConfigs(jobId: String, jobConfigVersions: [UInt64]? = nil, offset: Int64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, onlyDraft: Bool? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobConfigsResponse {
+        try await self.describeJobConfigs(DescribeJobConfigsRequest(jobId: jobId, jobConfigVersions: jobConfigVersions, offset: offset, limit: limit, filters: filters, onlyDraft: onlyDraft, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

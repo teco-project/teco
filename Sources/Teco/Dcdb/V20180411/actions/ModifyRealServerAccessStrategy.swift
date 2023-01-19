@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,8 +52,8 @@ extension Dcdb {
     /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
     /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
     @inlinable
-    public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerAccessStrategyResponse> {
-        self.client.execute(action: "ModifyRealServerAccessStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerAccessStrategyResponse> {
+        self.client.execute(action: "ModifyRealServerAccessStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改RS的访问策略
@@ -64,8 +64,8 @@ extension Dcdb {
     /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
     /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
     @inlinable
-    public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
-        try await self.client.execute(action: "ModifyRealServerAccessStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
+        try await self.client.execute(action: "ModifyRealServerAccessStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改RS的访问策略
@@ -76,8 +76,8 @@ extension Dcdb {
     /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
     /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
     @inlinable
-    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerAccessStrategyResponse> {
-        self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), logger: logger, on: eventLoop)
+    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerAccessStrategyResponse> {
+        self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改RS的访问策略
@@ -88,7 +88,7 @@ extension Dcdb {
     /// - 就近访问只针对实例是跨可用区部署有用，单可用区部署实例就近与否并无作用
     /// - DB每个Node对应一个proxy，如果开启就近访问，将会把连接集中到对应可用区的proxy上，可能造成热点问题，这种情况下如果是线上业务，请务必根据自己的业务请求量测试符合预期后再进行就近策略变更
     @inlinable
-    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
-        try await self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), logger: logger, on: eventLoop)
+    public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
+        try await self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), region: region, logger: logger, on: eventLoop)
     }
 }

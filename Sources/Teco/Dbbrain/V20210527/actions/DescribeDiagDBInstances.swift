@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Dbbrain {
     ///
     /// 获取实例信息列表。Region统一选择广州。
     @inlinable
-    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagDBInstancesResponse> {
-        self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagDBInstancesResponse> {
+        self.client.execute(action: "DescribeDiagDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例信息列表
     ///
     /// 获取实例信息列表。Region统一选择广州。
     @inlinable
-    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
-        try await self.client.execute(action: "DescribeDiagDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiagDBInstances(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
+        try await self.client.execute(action: "DescribeDiagDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例信息列表
     ///
     /// 获取实例信息列表。Region统一选择广州。
     @inlinable
-    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagDBInstancesResponse> {
-        self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), logger: logger, on: eventLoop)
+    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiagDBInstancesResponse> {
+        self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例信息列表
     ///
     /// 获取实例信息列表。Region统一选择广州。
     @inlinable
-    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
-        try await self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), logger: logger, on: eventLoop)
+    public func describeDiagDBInstances(isSupported: Bool, product: String, offset: Int64, limit: Int64, instanceNames: [String]? = nil, instanceIds: [String]? = nil, regions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiagDBInstancesResponse {
+        try await self.describeDiagDBInstances(DescribeDiagDBInstancesRequest(isSupported: isSupported, product: product, offset: offset, limit: limit, instanceNames: instanceNames, instanceIds: instanceIds, regions: regions), region: region, logger: logger, on: eventLoop)
     }
 }

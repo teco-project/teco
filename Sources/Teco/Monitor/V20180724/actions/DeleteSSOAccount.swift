@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Monitor {
     ///
     /// Grafana可视化服务 删除授权用户
     @inlinable
-    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
-        self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
+        self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
     @inlinable
-    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
-        try await self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
+        try await self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
     @inlinable
-    public func deleteSSOAccount(instanceId: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
-        self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), logger: logger, on: eventLoop)
+    public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
+        self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
     @inlinable
-    public func deleteSSOAccount(instanceId: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
-        try await self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), logger: logger, on: eventLoop)
+    public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
+        try await self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

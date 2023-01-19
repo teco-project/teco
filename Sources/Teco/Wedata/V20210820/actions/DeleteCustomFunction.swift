@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Wedata {
 
     /// 删除用户自定义函数
     @inlinable
-    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomFunctionResponse> {
-        self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomFunctionResponse> {
+        self.client.execute(action: "DeleteCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户自定义函数
     @inlinable
-    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
-        try await self.client.execute(action: "DeleteCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomFunction(_ input: DeleteCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
+        try await self.client.execute(action: "DeleteCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户自定义函数
     @inlinable
-    public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomFunctionResponse> {
-        self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomFunctionResponse> {
+        self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户自定义函数
     @inlinable
-    public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
-        try await self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
+        try await self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

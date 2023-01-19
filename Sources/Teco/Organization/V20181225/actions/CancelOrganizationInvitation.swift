@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Organization {
 
     /// 取消企业组织邀请
     @inlinable
-    public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationInvitationResponse> {
-        self.client.execute(action: "CancelOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationInvitationResponse> {
+        self.client.execute(action: "CancelOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消企业组织邀请
     @inlinable
-    public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {
-        try await self.client.execute(action: "CancelOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelOrganizationInvitation(_ input: CancelOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {
+        try await self.client.execute(action: "CancelOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消企业组织邀请
     @inlinable
-    public func cancelOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationInvitationResponse> {
-        self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    public func cancelOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationInvitationResponse> {
+        self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消企业组织邀请
     @inlinable
-    public func cancelOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {
-        try await self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    public func cancelOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {
+        try await self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

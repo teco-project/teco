@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Iotvideo {
 
     /// 查看AI推理结果推送配置
     @inlinable
-    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelChannelResponse> {
-        self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelChannelResponse> {
+        self.client.execute(action: "DescribeAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看AI推理结果推送配置
     @inlinable
-    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
-        try await self.client.execute(action: "DescribeAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAIModelChannel(_ input: DescribeAIModelChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
+        try await self.client.execute(action: "DescribeAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看AI推理结果推送配置
     @inlinable
-    public func describeAIModelChannel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelChannelResponse> {
-        self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func describeAIModelChannel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelChannelResponse> {
+        self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看AI推理结果推送配置
     @inlinable
-    public func describeAIModelChannel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
-        try await self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func describeAIModelChannel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelChannelResponse {
+        try await self.describeAIModelChannel(DescribeAIModelChannelRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

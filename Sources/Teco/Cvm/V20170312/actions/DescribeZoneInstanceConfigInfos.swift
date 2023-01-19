@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cvm {
     ///
     /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
     @inlinable
-    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneInstanceConfigInfosResponse> {
-        self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneInstanceConfigInfosResponse> {
+        self.client.execute(action: "DescribeZoneInstanceConfigInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取可用区机型配置信息
     ///
     /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
     @inlinable
-    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
-        try await self.client.execute(action: "DescribeZoneInstanceConfigInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneInstanceConfigInfos(_ input: DescribeZoneInstanceConfigInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
+        try await self.client.execute(action: "DescribeZoneInstanceConfigInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取可用区机型配置信息
     ///
     /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
     @inlinable
-    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneInstanceConfigInfosResponse> {
-        self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneInstanceConfigInfosResponse> {
+        self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可用区机型配置信息
     ///
     /// 本接口(DescribeZoneInstanceConfigInfos) 获取可用区的机型信息。
     @inlinable
-    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
-        try await self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeZoneInstanceConfigInfos(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneInstanceConfigInfosResponse {
+        try await self.describeZoneInstanceConfigInfos(DescribeZoneInstanceConfigInfosRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

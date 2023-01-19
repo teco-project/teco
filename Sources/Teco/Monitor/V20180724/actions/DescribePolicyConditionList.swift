@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Monitor {
 
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
-        self.client.execute(action: "DescribePolicyConditionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
+        self.client.execute(action: "DescribePolicyConditionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
-        try await self.client.execute(action: "DescribePolicyConditionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePolicyConditionList(_ input: DescribePolicyConditionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
+        try await self.client.execute(action: "DescribePolicyConditionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
-        self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), logger: logger, on: eventLoop)
+    public func describePolicyConditionList(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
+        self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础告警策略条件
     @inlinable
-    public func describePolicyConditionList(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
-        try await self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), logger: logger, on: eventLoop)
+    public func describePolicyConditionList(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
+        try await self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Cvm {
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
-    public func describeInstanceInternetBandwidthConfigs(_ input: DescribeInstanceInternetBandwidthConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceInternetBandwidthConfigsResponse> {
-        self.client.execute(action: "DescribeInstanceInternetBandwidthConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceInternetBandwidthConfigs(_ input: DescribeInstanceInternetBandwidthConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceInternetBandwidthConfigsResponse> {
+        self.client.execute(action: "DescribeInstanceInternetBandwidthConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例带宽配置
@@ -59,8 +59,8 @@ extension Cvm {
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
-    public func describeInstanceInternetBandwidthConfigs(_ input: DescribeInstanceInternetBandwidthConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceInternetBandwidthConfigsResponse {
-        try await self.client.execute(action: "DescribeInstanceInternetBandwidthConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceInternetBandwidthConfigs(_ input: DescribeInstanceInternetBandwidthConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceInternetBandwidthConfigsResponse {
+        try await self.client.execute(action: "DescribeInstanceInternetBandwidthConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例带宽配置
@@ -69,8 +69,8 @@ extension Cvm {
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
-    public func describeInstanceInternetBandwidthConfigs(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceInternetBandwidthConfigsResponse> {
-        self.describeInstanceInternetBandwidthConfigs(DescribeInstanceInternetBandwidthConfigsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceInternetBandwidthConfigs(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceInternetBandwidthConfigsResponse> {
+        self.describeInstanceInternetBandwidthConfigs(DescribeInstanceInternetBandwidthConfigsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例带宽配置
@@ -79,7 +79,7 @@ extension Cvm {
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
-    public func describeInstanceInternetBandwidthConfigs(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceInternetBandwidthConfigsResponse {
-        try await self.describeInstanceInternetBandwidthConfigs(DescribeInstanceInternetBandwidthConfigsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceInternetBandwidthConfigs(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceInternetBandwidthConfigsResponse {
+        try await self.describeInstanceInternetBandwidthConfigs(DescribeInstanceInternetBandwidthConfigsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

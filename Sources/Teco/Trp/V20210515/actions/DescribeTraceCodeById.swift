@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Trp {
 
     /// 查询二维码信息
     @inlinable
-    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodeByIdResponse> {
-        self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodeByIdResponse> {
+        self.client.execute(action: "DescribeTraceCodeById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询二维码信息
     @inlinable
-    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
-        try await self.client.execute(action: "DescribeTraceCodeById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTraceCodeById(_ input: DescribeTraceCodeByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
+        try await self.client.execute(action: "DescribeTraceCodeById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询二维码信息
     @inlinable
-    public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodeByIdResponse> {
-        self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), logger: logger, on: eventLoop)
+    public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodeByIdResponse> {
+        self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询二维码信息
     @inlinable
-    public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
-        try await self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), logger: logger, on: eventLoop)
+    public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
+        try await self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), region: region, logger: logger, on: eventLoop)
     }
 }

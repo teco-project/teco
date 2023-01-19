@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,25 +97,25 @@ extension Tci {
 
     /// 提交图像分析任务
     @inlinable
-    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskResponse> {
-        self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitImageTask(_ input: SubmitImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskResponse> {
+        self.client.execute(action: "SubmitImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交图像分析任务
     @inlinable
-    public func submitImageTask(_ input: SubmitImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
-        try await self.client.execute(action: "SubmitImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitImageTask(_ input: SubmitImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
+        try await self.client.execute(action: "SubmitImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交图像分析任务
     @inlinable
-    public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskResponse> {
-        self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskResponse> {
+        self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交图像分析任务
     @inlinable
-    public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
-        try await self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
+        try await self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

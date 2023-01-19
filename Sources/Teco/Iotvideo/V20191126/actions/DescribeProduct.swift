@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
-        self.client.execute(action: "DescribeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProduct(_ input: DescribeProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
+        self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(_ input: DescribeProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
-        try await self.client.execute(action: "DescribeProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProduct(_ input: DescribeProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
+        try await self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
-        self.describeProduct(DescribeProductRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
+        self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个产品详细信息
     ///
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
-    public func describeProduct(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
-        try await self.describeProduct(DescribeProductRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
+        try await self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

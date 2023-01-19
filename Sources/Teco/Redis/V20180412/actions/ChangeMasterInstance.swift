@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 复制组实例切主
     @inlinable
-    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeMasterInstanceResponse> {
-        self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeMasterInstanceResponse> {
+        self.client.execute(action: "ChangeMasterInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例切主
     @inlinable
-    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
-        try await self.client.execute(action: "ChangeMasterInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeMasterInstance(_ input: ChangeMasterInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
+        try await self.client.execute(action: "ChangeMasterInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制组实例切主
     @inlinable
-    public func changeMasterInstance(groupId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeMasterInstanceResponse> {
-        self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func changeMasterInstance(groupId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeMasterInstanceResponse> {
+        self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例切主
     @inlinable
-    public func changeMasterInstance(groupId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
-        try await self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func changeMasterInstance(groupId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
+        try await self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

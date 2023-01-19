@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
-        self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
+        self.client.execute(action: "DescribeProVersionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
-        try await self.client.execute(action: "DescribeProVersionStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProVersionStatus(_ input: DescribeProVersionStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
+        try await self.client.execute(action: "DescribeProVersionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
-        self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeProVersionStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionStatusResponse> {
+        self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版状态
     ///
     /// 用于获取单台主机或所有主机是否开通专业版状态。
     @inlinable
-    public func describeProVersionStatus(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
-        try await self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeProVersionStatus(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionStatusResponse {
+        try await self.describeProVersionStatus(DescribeProVersionStatusRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

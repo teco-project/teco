@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iotexplorer {
     ///
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
+        self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建项目
     ///
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建项目
     ///
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
-    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
+        self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建项目
     ///
     /// 为用户提供新建项目的能力，用于集中管理产品和应用。
     @inlinable
-    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func createProject(projectName: String, projectDesc: String, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(projectName: projectName, projectDesc: projectDesc, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

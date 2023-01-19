@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Mariadb {
 
     /// 解隔离后付费实例
     @inlinable
-    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
-        self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
+        self.client.execute(action: "ActivateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解隔离后付费实例
     @inlinable
-    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
-        try await self.client.execute(action: "ActivateHourDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func activateHourDBInstance(_ input: ActivateHourDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
+        try await self.client.execute(action: "ActivateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解隔离后付费实例
     @inlinable
-    public func activateHourDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
-        self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func activateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateHourDBInstanceResponse> {
+        self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解隔离后付费实例
     @inlinable
-    public func activateHourDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
-        try await self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func activateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateHourDBInstanceResponse {
+        try await self.activateHourDBInstance(ActivateHourDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

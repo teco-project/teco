@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcm {
 
     /// 修改 Tracing 配置
     @inlinable
-    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTracingConfigResponse> {
-        self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTracingConfigResponse> {
+        self.client.execute(action: "ModifyTracingConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 Tracing 配置
     @inlinable
-    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
-        try await self.client.execute(action: "ModifyTracingConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTracingConfig(_ input: ModifyTracingConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
+        try await self.client.execute(action: "ModifyTracingConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改 Tracing 配置
     @inlinable
-    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTracingConfigResponse> {
-        self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), logger: logger, on: eventLoop)
+    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTracingConfigResponse> {
+        self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 Tracing 配置
     @inlinable
-    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
-        try await self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), logger: logger, on: eventLoop)
+    public func modifyTracingConfig(meshId: String, enable: Bool? = nil, apm: APM? = nil, sampling: Float? = nil, zipkin: TracingZipkin? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTracingConfigResponse {
+        try await self.modifyTracingConfig(ModifyTracingConfigRequest(meshId: meshId, enable: enable, apm: apm, sampling: sampling, zipkin: zipkin), region: region, logger: logger, on: eventLoop)
     }
 }

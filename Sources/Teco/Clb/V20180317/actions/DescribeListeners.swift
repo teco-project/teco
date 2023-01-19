@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Clb {
     ///
     /// DescribeListeners 接口可根据负载均衡器 ID、监听器的协议或端口作为过滤条件获取监听器列表。如果不指定任何过滤条件，则返回该负载均衡实例下的所有监听器。
     @inlinable
-    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenersResponse> {
-        self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListeners(_ input: DescribeListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenersResponse> {
+        self.client.execute(action: "DescribeListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡的监听器列表
     ///
     /// DescribeListeners 接口可根据负载均衡器 ID、监听器的协议或端口作为过滤条件获取监听器列表。如果不指定任何过滤条件，则返回该负载均衡实例下的所有监听器。
     @inlinable
-    public func describeListeners(_ input: DescribeListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
-        try await self.client.execute(action: "DescribeListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListeners(_ input: DescribeListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
+        try await self.client.execute(action: "DescribeListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询负载均衡的监听器列表
     ///
     /// DescribeListeners 接口可根据负载均衡器 ID、监听器的协议或端口作为过滤条件获取监听器列表。如果不指定任何过滤条件，则返回该负载均衡实例下的所有监听器。
     @inlinable
-    public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenersResponse> {
-        self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
+    public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenersResponse> {
+        self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡的监听器列表
     ///
     /// DescribeListeners 接口可根据负载均衡器 ID、监听器的协议或端口作为过滤条件获取监听器列表。如果不指定任何过滤条件，则返回该负载均衡实例下的所有监听器。
     @inlinable
-    public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
-        try await self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
+    public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
+        try await self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
     }
 }

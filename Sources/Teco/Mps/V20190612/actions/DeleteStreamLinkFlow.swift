@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mps {
     ///
     /// 删除媒体传输的传输流配置。
     @inlinable
-    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkFlowResponse> {
-        self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkFlowResponse> {
+        self.client.execute(action: "DeleteStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体传输流
     ///
     /// 删除媒体传输的传输流配置。
     @inlinable
-    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
-        try await self.client.execute(action: "DeleteStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteStreamLinkFlow(_ input: DeleteStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
+        try await self.client.execute(action: "DeleteStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除媒体传输流
     ///
     /// 删除媒体传输的传输流配置。
     @inlinable
-    public func deleteStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkFlowResponse> {
-        self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func deleteStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkFlowResponse> {
+        self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体传输流
     ///
     /// 删除媒体传输的传输流配置。
     @inlinable
-    public func deleteStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
-        try await self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func deleteStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
+        try await self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

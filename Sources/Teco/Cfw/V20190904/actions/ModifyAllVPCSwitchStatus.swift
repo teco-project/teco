@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cfw {
 
     /// VPC防火墙一键开关
     @inlinable
-    public func modifyAllVPCSwitchStatus(_ input: ModifyAllVPCSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllVPCSwitchStatusResponse> {
-        self.client.execute(action: "ModifyAllVPCSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAllVPCSwitchStatus(_ input: ModifyAllVPCSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllVPCSwitchStatusResponse> {
+        self.client.execute(action: "ModifyAllVPCSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// VPC防火墙一键开关
     @inlinable
-    public func modifyAllVPCSwitchStatus(_ input: ModifyAllVPCSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
-        try await self.client.execute(action: "ModifyAllVPCSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAllVPCSwitchStatus(_ input: ModifyAllVPCSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
+        try await self.client.execute(action: "ModifyAllVPCSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// VPC防火墙一键开关
     @inlinable
-    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllVPCSwitchStatusResponse> {
-        self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), logger: logger, on: eventLoop)
+    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAllVPCSwitchStatusResponse> {
+        self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// VPC防火墙一键开关
     @inlinable
-    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
-        try await self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), logger: logger, on: eventLoop)
+    public func modifyAllVPCSwitchStatus(status: Int64, fireWallVpcIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAllVPCSwitchStatusResponse {
+        try await self.modifyAllVPCSwitchStatus(ModifyAllVPCSwitchStatusRequest(status: status, fireWallVpcIds: fireWallVpcIds), region: region, logger: logger, on: eventLoop)
     }
 }

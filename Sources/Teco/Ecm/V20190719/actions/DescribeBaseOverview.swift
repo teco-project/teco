@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Ecm {
 
     /// 获取概览页统计的基本数据
     @inlinable
-    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseOverviewResponse> {
-        self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseOverviewResponse> {
+        self.client.execute(action: "DescribeBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取概览页统计的基本数据
     @inlinable
-    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
-        try await self.client.execute(action: "DescribeBaseOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaseOverview(_ input: DescribeBaseOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
+        try await self.client.execute(action: "DescribeBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取概览页统计的基本数据
     @inlinable
-    public func describeBaseOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseOverviewResponse> {
-        self.describeBaseOverview(DescribeBaseOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeBaseOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseOverviewResponse> {
+        self.describeBaseOverview(DescribeBaseOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取概览页统计的基本数据
     @inlinable
-    public func describeBaseOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
-        try await self.describeBaseOverview(DescribeBaseOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeBaseOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseOverviewResponse {
+        try await self.describeBaseOverview(DescribeBaseOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Dts {
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable
-    public func modifyCompareTask(_ input: ModifyCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
-        self.client.execute(action: "ModifyCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCompareTask(_ input: ModifyCompareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
+        self.client.execute(action: "ModifyCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable
-    public func modifyCompareTask(_ input: ModifyCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
-        try await self.client.execute(action: "ModifyCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCompareTask(_ input: ModifyCompareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
+        try await self.client.execute(action: "ModifyCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改一致性校验任务
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable
-    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
-        self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), logger: logger, on: eventLoop)
+    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
+        self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable
-    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
-        try await self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), logger: logger, on: eventLoop)
+    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
+        try await self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 }

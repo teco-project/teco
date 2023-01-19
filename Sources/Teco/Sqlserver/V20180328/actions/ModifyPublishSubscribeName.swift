@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable
-    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublishSubscribeNameResponse> {
-        self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublishSubscribeNameResponse> {
+        self.client.execute(action: "ModifyPublishSubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改发布订阅的名称
     ///
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable
-    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
-        try await self.client.execute(action: "ModifyPublishSubscribeName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPublishSubscribeName(_ input: ModifyPublishSubscribeNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
+        try await self.client.execute(action: "ModifyPublishSubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改发布订阅的名称
     ///
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable
-    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublishSubscribeNameResponse> {
-        self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublishSubscribeNameResponse> {
+        self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改发布订阅的名称
     ///
     /// 本接口（ModifyPublishSubscribeName）修改发布订阅的名称。
     @inlinable
-    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
-        try await self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), logger: logger, on: eventLoop)
+    public func modifyPublishSubscribeName(publishSubscribeId: UInt64, publishSubscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublishSubscribeNameResponse {
+        try await self.modifyPublishSubscribeName(ModifyPublishSubscribeNameRequest(publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName), region: region, logger: logger, on: eventLoop)
     }
 }

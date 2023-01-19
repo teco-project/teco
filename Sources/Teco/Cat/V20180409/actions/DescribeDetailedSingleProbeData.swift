@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -133,31 +133,31 @@ extension Cat {
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
-        self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
+        self.client.execute(action: "DescribeDetailedSingleProbeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
-        try await self.client.execute(action: "DescribeDetailedSingleProbeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDetailedSingleProbeData(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
+        try await self.client.execute(action: "DescribeDetailedSingleProbeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
-        self.describeDetailedSingleProbeData(DescribeDetailedSingleProbeDataRequest(beginTime: beginTime, endTime: endTime, taskType: taskType, sortField: sortField, ascending: ascending, selectedFields: selectedFields, offset: offset, limit: limit, taskID: taskID, operators: operators, districts: districts, errorTypes: errorTypes, city: city), logger: logger, on: eventLoop)
+    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDetailedSingleProbeDataResponse> {
+        self.describeDetailedSingleProbeData(DescribeDetailedSingleProbeDataRequest(beginTime: beginTime, endTime: endTime, taskType: taskType, sortField: sortField, ascending: ascending, selectedFields: selectedFields, offset: offset, limit: limit, taskID: taskID, operators: operators, districts: districts, errorTypes: errorTypes, city: city), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出单次拨测详情数据
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
-        try await self.describeDetailedSingleProbeData(DescribeDetailedSingleProbeDataRequest(beginTime: beginTime, endTime: endTime, taskType: taskType, sortField: sortField, ascending: ascending, selectedFields: selectedFields, offset: offset, limit: limit, taskID: taskID, operators: operators, districts: districts, errorTypes: errorTypes, city: city), logger: logger, on: eventLoop)
+    public func describeDetailedSingleProbeData(beginTime: UInt64, endTime: UInt64, taskType: String, sortField: String, ascending: Bool, selectedFields: [String], offset: Int64, limit: Int64, taskID: [String]? = nil, operators: [String]? = nil, districts: [String]? = nil, errorTypes: [String]? = nil, city: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDetailedSingleProbeDataResponse {
+        try await self.describeDetailedSingleProbeData(DescribeDetailedSingleProbeDataRequest(beginTime: beginTime, endTime: endTime, taskType: taskType, sortField: sortField, ascending: ascending, selectedFields: selectedFields, offset: offset, limit: limit, taskID: taskID, operators: operators, districts: districts, errorTypes: errorTypes, city: city), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Tdmq {
 
     /// 发送单条消息
     @inlinable
-    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessagesResponse> {
-        self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendMessages(_ input: SendMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessagesResponse> {
+        self.client.execute(action: "SendMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送单条消息
     @inlinable
-    public func sendMessages(_ input: SendMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
-        try await self.client.execute(action: "SendMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendMessages(_ input: SendMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
+        try await self.client.execute(action: "SendMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送单条消息
     @inlinable
-    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessagesResponse> {
-        self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), logger: logger, on: eventLoop)
+    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessagesResponse> {
+        self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送单条消息
     @inlinable
-    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
-        try await self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), logger: logger, on: eventLoop)
+    public func sendMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessagesResponse {
+        try await self.sendMessages(SendMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages), region: region, logger: logger, on: eventLoop)
     }
 }

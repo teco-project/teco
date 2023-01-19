@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Live {
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
-        self.client.execute(action: "DescribeLiveForbidStreamList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
+        self.client.execute(action: "DescribeLiveForbidStreamList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取禁推流列表
@@ -85,8 +85,8 @@ extension Live {
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
-        try await self.client.execute(action: "DescribeLiveForbidStreamList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
+        try await self.client.execute(action: "DescribeLiveForbidStreamList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取禁推流列表
@@ -94,8 +94,8 @@ extension Live {
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
-        self.describeLiveForbidStreamList(DescribeLiveForbidStreamListRequest(pageNum: pageNum, pageSize: pageSize, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
+        self.describeLiveForbidStreamList(DescribeLiveForbidStreamListRequest(pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取禁推流列表
@@ -103,7 +103,7 @@ extension Live {
     /// 获取禁推流列表。
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
-    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
-        try await self.describeLiveForbidStreamList(DescribeLiveForbidStreamListRequest(pageNum: pageNum, pageSize: pageSize, streamName: streamName), logger: logger, on: eventLoop)
+    public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
+        try await self.describeLiveForbidStreamList(DescribeLiveForbidStreamListRequest(pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

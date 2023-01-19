@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tdmq {
     ///
     /// 获取Amqp Vhost 列表
     @inlinable
-    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
-        self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
+        self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
     @inlinable
-    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.client.execute(action: "DescribeAMQPVHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAMQPVHosts(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
+        try await self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
     @inlinable
-    public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
-        self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), logger: logger, on: eventLoop)
+    public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
+        self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
     @inlinable
-    public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), logger: logger, on: eventLoop)
+    public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
+        try await self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bm {
     ///
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
-    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverDevicesResponse> {
-        self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recoverDevices(_ input: RecoverDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverDevicesResponse> {
+        self.client.execute(action: "RecoverDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复物理机
     ///
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
-    public func recoverDevices(_ input: RecoverDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
-        try await self.client.execute(action: "RecoverDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recoverDevices(_ input: RecoverDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
+        try await self.client.execute(action: "RecoverDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复物理机
     ///
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
-    public func recoverDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverDevicesResponse> {
-        self.recoverDevices(RecoverDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func recoverDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverDevicesResponse> {
+        self.recoverDevices(RecoverDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复物理机
     ///
     /// 恢复回收站中的物理机（仅限后付费的物理机）
     @inlinable
-    public func recoverDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
-        try await self.recoverDevices(RecoverDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func recoverDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverDevicesResponse {
+        try await self.recoverDevices(RecoverDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

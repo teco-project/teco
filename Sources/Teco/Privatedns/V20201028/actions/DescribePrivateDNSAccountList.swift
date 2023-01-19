@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Privatedns {
 
     /// 获取私有域解析账号列表
     @inlinable
-    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateDNSAccountListResponse> {
-        self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateDNSAccountListResponse> {
+        self.client.execute(action: "DescribePrivateDNSAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析账号列表
     @inlinable
-    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
-        try await self.client.execute(action: "DescribePrivateDNSAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrivateDNSAccountList(_ input: DescribePrivateDNSAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
+        try await self.client.execute(action: "DescribePrivateDNSAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取私有域解析账号列表
     @inlinable
-    public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateDNSAccountListResponse> {
-        self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateDNSAccountListResponse> {
+        self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析账号列表
     @inlinable
-    public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
-        try await self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
+        try await self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

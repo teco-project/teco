@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cfg {
 
     /// 修改任务运行状态
     @inlinable
-    public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
-        self.client.execute(action: "ModifyTaskRunStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
+        self.client.execute(action: "ModifyTaskRunStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务运行状态
     @inlinable
-    public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
-        try await self.client.execute(action: "ModifyTaskRunStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
+        try await self.client.execute(action: "ModifyTaskRunStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改任务运行状态
     @inlinable
-    public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
-        self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), logger: logger, on: eventLoop)
+    public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
+        self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务运行状态
     @inlinable
-    public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
-        try await self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), logger: logger, on: eventLoop)
+    public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
+        try await self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), region: region, logger: logger, on: eventLoop)
     }
 }

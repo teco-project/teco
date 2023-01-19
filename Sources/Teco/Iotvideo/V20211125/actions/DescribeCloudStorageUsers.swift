@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iotvideo {
 
     /// 拉取云存用户列表
     @inlinable
-    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageUsersResponse> {
-        self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageUsersResponse> {
+        self.client.execute(action: "DescribeCloudStorageUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存用户列表
     @inlinable
-    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
-        try await self.client.execute(action: "DescribeCloudStorageUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageUsers(_ input: DescribeCloudStorageUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
+        try await self.client.execute(action: "DescribeCloudStorageUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取云存用户列表
     @inlinable
-    public func describeCloudStorageUsers(productId: String, deviceName: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageUsersResponse> {
-        self.describeCloudStorageUsers(DescribeCloudStorageUsersRequest(productId: productId, deviceName: deviceName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCloudStorageUsers(productId: String, deviceName: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageUsersResponse> {
+        self.describeCloudStorageUsers(DescribeCloudStorageUsersRequest(productId: productId, deviceName: deviceName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存用户列表
     @inlinable
-    public func describeCloudStorageUsers(productId: String, deviceName: String, limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
-        try await self.describeCloudStorageUsers(DescribeCloudStorageUsersRequest(productId: productId, deviceName: deviceName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCloudStorageUsers(productId: String, deviceName: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageUsersResponse {
+        try await self.describeCloudStorageUsers(DescribeCloudStorageUsersRequest(productId: productId, deviceName: deviceName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

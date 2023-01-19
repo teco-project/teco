@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tione {
 
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
-        self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
+        self.client.execute(action: "DescribeTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
-        try await self.client.execute(action: "DescribeTrainingTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrainingTask(_ input: DescribeTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
+        try await self.client.execute(action: "DescribeTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
-        self.describeTrainingTask(DescribeTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func describeTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingTaskResponse> {
+        self.describeTrainingTask(DescribeTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 训练任务详情
     @inlinable
-    public func describeTrainingTask(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
-        try await self.describeTrainingTask(DescribeTrainingTaskRequest(id: id), logger: logger, on: eventLoop)
+    public func describeTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingTaskResponse {
+        try await self.describeTrainingTask(DescribeTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

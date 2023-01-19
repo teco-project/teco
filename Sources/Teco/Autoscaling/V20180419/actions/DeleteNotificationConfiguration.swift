@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension As {
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
     @inlinable
-    public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
-        self.client.execute(action: "DeleteNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
+        self.client.execute(action: "DeleteNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
     @inlinable
-    public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
-        try await self.client.execute(action: "DeleteNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
+        try await self.client.execute(action: "DeleteNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
     @inlinable
-    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
-        self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), logger: logger, on: eventLoop)
+    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
+        self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
     @inlinable
-    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
-        try await self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), logger: logger, on: eventLoop)
+    public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
+        try await self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), region: region, logger: logger, on: eventLoop)
     }
 }

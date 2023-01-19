@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Ecm {
 
     /// 查询导入镜像任务
     @inlinable
-    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageTaskResponse> {
-        self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageTaskResponse> {
+        self.client.execute(action: "DescribeCustomImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询导入镜像任务
     @inlinable
-    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
-        try await self.client.execute(action: "DescribeCustomImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomImageTask(_ input: DescribeCustomImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
+        try await self.client.execute(action: "DescribeCustomImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询导入镜像任务
     @inlinable
-    public func describeCustomImageTask(filters: [Filter], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageTaskResponse> {
-        self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeCustomImageTask(filters: [Filter], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageTaskResponse> {
+        self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导入镜像任务
     @inlinable
-    public func describeCustomImageTask(filters: [Filter], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
-        try await self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeCustomImageTask(filters: [Filter], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageTaskResponse {
+        try await self.describeCustomImageTask(DescribeCustomImageTaskRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

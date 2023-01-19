@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
-    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessIntelligenceFileResponse> {
-        self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessIntelligenceFileResponse> {
+        self.client.execute(action: "CreateBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建商业智能服务文件
     ///
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
-    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
-        try await self.client.execute(action: "CreateBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBusinessIntelligenceFile(_ input: CreateBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
+        try await self.client.execute(action: "CreateBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建商业智能服务文件
     ///
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
-    public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessIntelligenceFileResponse> {
-        self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), logger: logger, on: eventLoop)
+    public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessIntelligenceFileResponse> {
+        self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建商业智能服务文件
     ///
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
-    public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
-        try await self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), logger: logger, on: eventLoop)
+    public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
+        try await self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

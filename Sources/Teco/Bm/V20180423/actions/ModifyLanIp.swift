@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Bm {
 
     /// 修改物理机内网IP（不重装系统）
     @inlinable
-    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLanIpResponse> {
-        self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLanIp(_ input: ModifyLanIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLanIpResponse> {
+        self.client.execute(action: "ModifyLanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改物理机内网IP（不重装系统）
     @inlinable
-    public func modifyLanIp(_ input: ModifyLanIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
-        try await self.client.execute(action: "ModifyLanIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLanIp(_ input: ModifyLanIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
+        try await self.client.execute(action: "ModifyLanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改物理机内网IP（不重装系统）
     @inlinable
-    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLanIpResponse> {
-        self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), logger: logger, on: eventLoop)
+    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLanIpResponse> {
+        self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改物理机内网IP（不重装系统）
     @inlinable
-    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
-        try await self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), logger: logger, on: eventLoop)
+    public func modifyLanIp(instanceId: String, vpcId: String, subnetId: String, lanIp: String? = nil, rebootDevice: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLanIpResponse {
+        try await self.modifyLanIp(ModifyLanIpRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, rebootDevice: rebootDevice), region: region, logger: logger, on: eventLoop)
     }
 }

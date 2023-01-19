@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tdmq {
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
-        self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
+        self.client.execute(action: "DescribeRabbitMQNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
-        try await self.client.execute(action: "DescribeRabbitMQNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRabbitMQNodeList(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
+        try await self.client.execute(action: "DescribeRabbitMQNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
-        self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRabbitMQNodeListResponse> {
+        self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// RabbitMQ专享版查询节点列表
     @inlinable
-    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
-        try await self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeRabbitMQNodeList(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRabbitMQNodeListResponse {
+        try await self.describeRabbitMQNodeList(DescribeRabbitMQNodeListRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

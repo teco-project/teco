@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Eb {
 
     /// 获取事件集列表
     @inlinable
-    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventBusesResponse> {
-        self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listEventBuses(_ input: ListEventBusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventBusesResponse> {
+        self.client.execute(action: "ListEventBuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集列表
     @inlinable
-    public func listEventBuses(_ input: ListEventBusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
-        try await self.client.execute(action: "ListEventBuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listEventBuses(_ input: ListEventBusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
+        try await self.client.execute(action: "ListEventBuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件集列表
     @inlinable
-    public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventBusesResponse> {
-        self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), logger: logger, on: eventLoop)
+    public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventBusesResponse> {
+        self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集列表
     @inlinable
-    public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
-        try await self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), logger: logger, on: eventLoop)
+    public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
+        try await self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

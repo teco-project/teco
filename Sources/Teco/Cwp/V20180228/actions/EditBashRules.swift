@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Cwp {
     ///
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRulesResponse> {
-        self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editBashRules(_ input: EditBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRulesResponse> {
+        self.client.execute(action: "EditBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改高危命令规则（支持多服务器选择）
     ///
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRules(_ input: EditBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
-        try await self.client.execute(action: "EditBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editBashRules(_ input: EditBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
+        try await self.client.execute(action: "EditBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增或修改高危命令规则（支持多服务器选择）
     ///
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRulesResponse> {
-        self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), logger: logger, on: eventLoop)
+    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRulesResponse> {
+        self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改高危命令规则（支持多服务器选择）
     ///
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
-        try await self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), logger: logger, on: eventLoop)
+    public func editBashRules(id: UInt64? = nil, uuids: [String]? = nil, hostIp: String? = nil, name: String? = nil, level: UInt64? = nil, rule: String? = nil, isGlobal: UInt64? = nil, white: UInt64? = nil, eventId: UInt64? = nil, dealOldEvents: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRulesResponse {
+        try await self.editBashRules(EditBashRulesRequest(id: id, uuids: uuids, hostIp: hostIp, name: name, level: level, rule: rule, isGlobal: isGlobal, white: white, eventId: eventId, dealOldEvents: dealOldEvents), region: region, logger: logger, on: eventLoop)
     }
 }

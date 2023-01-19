@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cme {
     ///
     /// 根据媒体 Id 删除媒体。
     @inlinable
-    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
-        self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMaterial(_ input: DeleteMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
+        self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
     @inlinable
-    public func deleteMaterial(_ input: DeleteMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
-        try await self.client.execute(action: "DeleteMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMaterial(_ input: DeleteMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
+        try await self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
     @inlinable
-    public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
-        self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
+        self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
     @inlinable
-    public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
-        try await self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
+        try await self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

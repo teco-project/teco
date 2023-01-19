@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Cdb {
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
-    public func describeBackupTables(_ input: DescribeBackupTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTablesResponse> {
-        self.client.execute(action: "DescribeBackupTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupTables(_ input: DescribeBackupTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTablesResponse> {
+        self.client.execute(action: "DescribeBackupTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定数据库的备份数据表
@@ -88,8 +88,8 @@ extension Cdb {
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
-    public func describeBackupTables(_ input: DescribeBackupTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTablesResponse {
-        try await self.client.execute(action: "DescribeBackupTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupTables(_ input: DescribeBackupTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTablesResponse {
+        try await self.client.execute(action: "DescribeBackupTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定数据库的备份数据表
@@ -98,8 +98,8 @@ extension Cdb {
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
-    public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTablesResponse> {
-        self.describeBackupTables(DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTablesResponse> {
+        self.describeBackupTables(DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定数据库的备份数据表
@@ -108,7 +108,7 @@ extension Cdb {
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
     @inlinable
-    public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTablesResponse {
-        try await self.describeBackupTables(DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBackupTables(instanceId: String, startTime: String, databaseName: String, searchTable: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTablesResponse {
+        try await self.describeBackupTables(DescribeBackupTablesRequest(instanceId: instanceId, startTime: startTime, databaseName: databaseName, searchTable: searchTable, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

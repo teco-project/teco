@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Emr {
     ///
     /// 获取账户的CVM配额
     @inlinable
-    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmQuotaResponse> {
-        self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmQuotaResponse> {
+        self.client.execute(action: "DescribeCvmQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账户的CVM配额
     ///
     /// 获取账户的CVM配额
     @inlinable
-    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
-        try await self.client.execute(action: "DescribeCvmQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCvmQuota(_ input: DescribeCvmQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
+        try await self.client.execute(action: "DescribeCvmQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账户的CVM配额
     ///
     /// 获取账户的CVM配额
     @inlinable
-    public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmQuotaResponse> {
-        self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmQuotaResponse> {
+        self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账户的CVM配额
     ///
     /// 获取账户的CVM配额
     @inlinable
-    public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
-        try await self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
+        try await self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -150,31 +150,31 @@ extension Bm {
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevices(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
+        self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机信息
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
-    public func describeDevices(_ input: DescribeDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.client.execute(action: "DescribeDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevices(_ input: DescribeDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询物理机信息
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
-    public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.describeDevices(DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), logger: logger, on: eventLoop)
+    public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
+        self.describeDevices(DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机信息
     ///
     /// 查询物理服务器，可以按照实例，业务IP等过滤
     @inlinable
-    public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.describeDevices(DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), logger: logger, on: eventLoop)
+    public func describeDevices(offset: UInt64, limit: UInt64, deviceClassCode: String? = nil, instanceIds: [String]? = nil, wanIps: [String]? = nil, lanIps: [String]? = nil, alias: String? = nil, vagueIp: String? = nil, deadlineStartTime: Date? = nil, deadlineEndTime: Date? = nil, autoRenewFlag: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tags: [Tag]? = nil, deviceType: String? = nil, isLuckyDevice: UInt64? = nil, orderField: String? = nil, order: UInt64? = nil, maintainStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
+        try await self.describeDevices(DescribeDevicesRequest(offset: offset, limit: limit, deviceClassCode: deviceClassCode, instanceIds: instanceIds, wanIps: wanIps, lanIps: lanIps, alias: alias, vagueIp: vagueIp, deadlineStartTime: deadlineStartTime, deadlineEndTime: deadlineEndTime, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, tags: tags, deviceType: deviceType, isLuckyDevice: isLuckyDevice, orderField: orderField, order: order, maintainStatus: maintainStatus), region: region, logger: logger, on: eventLoop)
     }
 }

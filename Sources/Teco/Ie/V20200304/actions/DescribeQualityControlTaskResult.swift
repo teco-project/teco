@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ie {
 
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
-        self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
+        self.client.execute(action: "DescribeQualityControlTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
-        try await self.client.execute(action: "DescribeQualityControlTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeQualityControlTaskResult(_ input: DescribeQualityControlTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
+        try await self.client.execute(action: "DescribeQualityControlTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
-        self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeQualityControlTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
+        self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体质检任务结果
     @inlinable
-    public func describeQualityControlTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
-        try await self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeQualityControlTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
+        try await self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

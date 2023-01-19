@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Apigateway {
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
-        self.client.execute(action: "DeleteUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
+        self.client.execute(action: "DeleteUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
-        try await self.client.execute(action: "DeleteUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUsagePlan(_ input: DeleteUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
+        try await self.client.execute(action: "DeleteUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
-        self.deleteUsagePlan(DeleteUsagePlanRequest(usagePlanId: usagePlanId), logger: logger, on: eventLoop)
+    public func deleteUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsagePlanResponse> {
+        self.deleteUsagePlan(DeleteUsagePlanRequest(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除使用计划
     ///
     /// 本接口（DeleteUsagePlan）用于删除使用计划。
     @inlinable
-    public func deleteUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
-        try await self.deleteUsagePlan(DeleteUsagePlanRequest(usagePlanId: usagePlanId), logger: logger, on: eventLoop)
+    public func deleteUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsagePlanResponse {
+        try await self.deleteUsagePlan(DeleteUsagePlanRequest(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 }

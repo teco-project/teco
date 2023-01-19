@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -114,25 +114,25 @@ extension Antiddos {
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
-        self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
+        self.client.execute(action: "DescribeListBGPInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
-        try await self.client.execute(action: "DescribeListBGPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListBGPInstances(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
+        try await self.client.execute(action: "DescribeListBGPInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
-        self.describeListBGPInstances(DescribeListBGPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag), logger: logger, on: eventLoop)
+    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPInstancesResponse> {
+        self.describeListBGPInstances(DescribeListBGPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
-        try await self.describeListBGPInstances(DescribeListBGPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag), logger: logger, on: eventLoop)
+    public func describeListBGPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterRegion: String? = nil, filterName: String? = nil, filterLine: UInt64? = nil, filterStatus: String? = nil, filterBoundStatus: String? = nil, filterInstanceIdList: [String]? = nil, filterEnterpriseFlag: UInt64? = nil, filterLightFlag: UInt64? = nil, filterChannelFlag: UInt64? = nil, filterTag: TagFilter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPInstancesResponse {
+        try await self.describeListBGPInstances(DescribeListBGPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterRegion: filterRegion, filterName: filterName, filterLine: filterLine, filterStatus: filterStatus, filterBoundStatus: filterBoundStatus, filterInstanceIdList: filterInstanceIdList, filterEnterpriseFlag: filterEnterpriseFlag, filterLightFlag: filterLightFlag, filterChannelFlag: filterChannelFlag, filterTag: filterTag), region: region, logger: logger, on: eventLoop)
     }
 }

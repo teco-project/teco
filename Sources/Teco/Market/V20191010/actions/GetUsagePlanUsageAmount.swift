@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Market {
     ///
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
-    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUsagePlanUsageAmountResponse> {
-        self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUsagePlanUsageAmountResponse> {
+        self.client.execute(action: "GetUsagePlanUsageAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划使用量
     ///
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
-    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
-        try await self.client.execute(action: "GetUsagePlanUsageAmount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUsagePlanUsageAmount(_ input: GetUsagePlanUsageAmountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
+        try await self.client.execute(action: "GetUsagePlanUsageAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询使用计划使用量
     ///
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
-    public func getUsagePlanUsageAmount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUsagePlanUsageAmountResponse> {
-        self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func getUsagePlanUsageAmount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUsagePlanUsageAmountResponse> {
+        self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划使用量
     ///
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
-    public func getUsagePlanUsageAmount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
-        try await self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func getUsagePlanUsageAmount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
+        try await self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

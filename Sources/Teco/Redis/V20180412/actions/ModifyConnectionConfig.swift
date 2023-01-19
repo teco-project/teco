@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Redis {
     ///
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
-    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectionConfigResponse> {
-        self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectionConfigResponse> {
+        self.client.execute(action: "ModifyConnectionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例连接配置
     ///
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
-    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
-        try await self.client.execute(action: "ModifyConnectionConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyConnectionConfig(_ input: ModifyConnectionConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
+        try await self.client.execute(action: "ModifyConnectionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例连接配置
     ///
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
-    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectionConfigResponse> {
-        self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), logger: logger, on: eventLoop)
+    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectionConfigResponse> {
+        self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例连接配置
     ///
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
-    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
-        try await self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), logger: logger, on: eventLoop)
+    public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
+        try await self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), region: region, logger: logger, on: eventLoop)
     }
 }

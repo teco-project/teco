@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Emr {
     ///
     /// EMR同步TKE中POD状态
     @inlinable
-    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
-        self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncPodState(_ input: SyncPodStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
+        self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
     @inlinable
-    public func syncPodState(_ input: SyncPodStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
-        try await self.client.execute(action: "SyncPodState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncPodState(_ input: SyncPodStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
+        try await self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
     @inlinable
-    public func syncPodState(message: PodState, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
-        self.syncPodState(SyncPodStateRequest(message: message), logger: logger, on: eventLoop)
+    public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
+        self.syncPodState(SyncPodStateRequest(message: message), region: region, logger: logger, on: eventLoop)
     }
 
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
     @inlinable
-    public func syncPodState(message: PodState, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
-        try await self.syncPodState(SyncPodStateRequest(message: message), logger: logger, on: eventLoop)
+    public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
+        try await self.syncPodState(SyncPodStateRequest(message: message), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tcr {
     ///
     /// 更新实例内指定长期访问凭证的启用状态
     @inlinable
-    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
-        self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
+        self.client.execute(action: "ModifyInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
     @inlinable
-    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
-        try await self.client.execute(action: "ModifyInstanceToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
+        try await self.client.execute(action: "ModifyInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
     @inlinable
-    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
-        self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), logger: logger, on: eventLoop)
+    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
+        self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
     @inlinable
-    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
-        try await self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), logger: logger, on: eventLoop)
+    public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
+        try await self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), region: region, logger: logger, on: eventLoop)
     }
 }

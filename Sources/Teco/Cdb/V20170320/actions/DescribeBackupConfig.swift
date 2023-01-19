@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupConfigResponse> {
-        self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupConfigResponse> {
+        self.client.execute(action: "DescribeBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库备份配置信息
     ///
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
-    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
-        try await self.client.execute(action: "DescribeBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupConfig(_ input: DescribeBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
+        try await self.client.execute(action: "DescribeBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库备份配置信息
     ///
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
-    public func describeBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupConfigResponse> {
-        self.describeBackupConfig(DescribeBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupConfigResponse> {
+        self.describeBackupConfig(DescribeBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库备份配置信息
     ///
     /// 本接口(DescribeBackupConfig)用于查询数据库备份配置信息。
     @inlinable
-    public func describeBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
-        try await self.describeBackupConfig(DescribeBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupConfigResponse {
+        try await self.describeBackupConfig(DescribeBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

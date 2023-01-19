@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Zj {
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
-        self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCampaign(_ input: CreateCampaignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
+        self.client.execute(action: "CreateCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建短信活动
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(_ input: CreateCampaignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
-        try await self.client.execute(action: "CreateCampaign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCampaign(_ input: CreateCampaignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
+        try await self.client.execute(action: "CreateCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建短信活动
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
-        self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), logger: logger, on: eventLoop)
+    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
+        self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建短信活动
     ///
     /// 创建短信推送活动
     @inlinable
-    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
-        try await self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), logger: logger, on: eventLoop)
+    public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
+        try await self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), region: region, logger: logger, on: eventLoop)
     }
 }

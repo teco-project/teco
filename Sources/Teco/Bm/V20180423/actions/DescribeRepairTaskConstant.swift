@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Bm {
 
     /// 维修任务配置获取
     @inlinable
-    public func describeRepairTaskConstant(_ input: DescribeRepairTaskConstantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepairTaskConstantResponse> {
-        self.client.execute(action: "DescribeRepairTaskConstant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRepairTaskConstant(_ input: DescribeRepairTaskConstantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepairTaskConstantResponse> {
+        self.client.execute(action: "DescribeRepairTaskConstant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务配置获取
     @inlinable
-    public func describeRepairTaskConstant(_ input: DescribeRepairTaskConstantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
-        try await self.client.execute(action: "DescribeRepairTaskConstant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRepairTaskConstant(_ input: DescribeRepairTaskConstantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
+        try await self.client.execute(action: "DescribeRepairTaskConstant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 维修任务配置获取
     @inlinable
-    public func describeRepairTaskConstant(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepairTaskConstantResponse> {
-        self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), logger: logger, on: eventLoop)
+    public func describeRepairTaskConstant(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepairTaskConstantResponse> {
+        self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务配置获取
     @inlinable
-    public func describeRepairTaskConstant(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
-        try await self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), logger: logger, on: eventLoop)
+    public func describeRepairTaskConstant(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
+        try await self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

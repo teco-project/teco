@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Cpdp {
 
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
-    public func queryOpenBankUnbindExternalSubMerchantBankAccount(_ input: QueryOpenBankUnbindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankUnbindExternalSubMerchantBankAccountResponse> {
-        self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(_ input: QueryOpenBankUnbindExternalSubMerchantBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankUnbindExternalSubMerchantBankAccountResponse> {
+        self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
-    public func queryOpenBankUnbindExternalSubMerchantBankAccount(_ input: QueryOpenBankUnbindExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
-        try await self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(_ input: QueryOpenBankUnbindExternalSubMerchantBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
+        try await self.client.execute(action: "QueryOpenBankUnbindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
-    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankUnbindExternalSubMerchantBankAccountResponse> {
-        self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), logger: logger, on: eventLoop)
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankUnbindExternalSubMerchantBankAccountResponse> {
+        self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡解绑结果查询
     @inlinable
-    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
-        try await self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), logger: logger, on: eventLoop)
+    public func queryOpenBankUnbindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankUnbindExternalSubMerchantBankAccountResponse {
+        try await self.queryOpenBankUnbindExternalSubMerchantBankAccount(QueryOpenBankUnbindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
     }
 }

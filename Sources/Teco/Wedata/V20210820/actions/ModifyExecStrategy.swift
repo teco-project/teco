@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -126,25 +126,25 @@ extension Wedata {
 
     /// 更新规则组执行策略
     @inlinable
-    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExecStrategyResponse> {
-        self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExecStrategyResponse> {
+        self.client.execute(action: "ModifyExecStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新规则组执行策略
     @inlinable
-    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
-        try await self.client.execute(action: "ModifyExecStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyExecStrategy(_ input: ModifyExecStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
+        try await self.client.execute(action: "ModifyExecStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新规则组执行策略
     @inlinable
-    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExecStrategyResponse> {
-        self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), logger: logger, on: eventLoop)
+    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExecStrategyResponse> {
+        self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新规则组执行策略
     @inlinable
-    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
-        try await self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), logger: logger, on: eventLoop)
+    public func modifyExecStrategy(ruleGroupId: UInt64? = nil, monitorType: UInt64? = nil, execQueue: String? = nil, executorGroupId: String? = nil, executorGroupName: String? = nil, tasks: [ProdSchedulerTask]? = nil, projectId: String? = nil, startTime: String? = nil, endTime: String? = nil, cycleType: String? = nil, cycleStep: UInt64? = nil, taskAction: String? = nil, delayTime: UInt64? = nil, databaseId: String? = nil, datasourceId: String? = nil, tableId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExecStrategyResponse {
+        try await self.modifyExecStrategy(ModifyExecStrategyRequest(ruleGroupId: ruleGroupId, monitorType: monitorType, execQueue: execQueue, executorGroupId: executorGroupId, executorGroupName: executorGroupName, tasks: tasks, projectId: projectId, startTime: startTime, endTime: endTime, cycleType: cycleType, cycleStep: cycleStep, taskAction: taskAction, delayTime: delayTime, databaseId: databaseId, datasourceId: datasourceId, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 }

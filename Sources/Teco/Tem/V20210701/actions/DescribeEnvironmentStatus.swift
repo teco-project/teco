@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tem {
 
     /// 获取环境状态
     @inlinable
-    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentStatusResponse> {
-        self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentStatusResponse> {
+        self.client.execute(action: "DescribeEnvironmentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取环境状态
     @inlinable
-    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
-        try await self.client.execute(action: "DescribeEnvironmentStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvironmentStatus(_ input: DescribeEnvironmentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
+        try await self.client.execute(action: "DescribeEnvironmentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取环境状态
     @inlinable
-    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentStatusResponse> {
-        self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentStatusResponse> {
+        self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境状态
     @inlinable
-    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
-        try await self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeEnvironmentStatus(environmentIds: [String], sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentStatusResponse {
+        try await self.describeEnvironmentStatus(DescribeEnvironmentStatusRequest(environmentIds: environmentIds, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

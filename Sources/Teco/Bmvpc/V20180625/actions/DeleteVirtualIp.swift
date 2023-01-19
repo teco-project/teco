@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmvpc {
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
-        self.client.execute(action: "DeleteVirtualIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
+        self.client.execute(action: "DeleteVirtualIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
-        try await self.client.execute(action: "DeleteVirtualIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVirtualIp(_ input: DeleteVirtualIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
+        try await self.client.execute(action: "DeleteVirtualIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(vpcId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
-        self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), logger: logger, on: eventLoop)
+    public func deleteVirtualIp(vpcId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
+        self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退还虚拟IP
     ///
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
-    public func deleteVirtualIp(vpcId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
-        try await self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), logger: logger, on: eventLoop)
+    public func deleteVirtualIp(vpcId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
+        try await self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 }

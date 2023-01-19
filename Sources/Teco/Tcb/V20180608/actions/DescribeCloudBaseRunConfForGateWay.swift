@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tcb {
     ///
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
-    public func describeCloudBaseRunConfForGateWay(_ input: DescribeCloudBaseRunConfForGateWayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunConfForGateWayResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunConfForGateWay(_ input: DescribeCloudBaseRunConfForGateWayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunConfForGateWayResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 独立网关云托管服务配置
     ///
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
-    public func describeCloudBaseRunConfForGateWay(_ input: DescribeCloudBaseRunConfForGateWayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunConfForGateWayResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunConfForGateWay(_ input: DescribeCloudBaseRunConfForGateWayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunConfForGateWayResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunConfForGateWay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 独立网关云托管服务配置
     ///
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
-    public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunConfForGateWayResponse> {
-        self.describeCloudBaseRunConfForGateWay(DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunConfForGateWayResponse> {
+        self.describeCloudBaseRunConfForGateWay(DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 独立网关云托管服务配置
     ///
     /// 独立网关中拉取云托管服务对应的配置信息
     @inlinable
-    public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunConfForGateWayResponse {
-        try await self.describeCloudBaseRunConfForGateWay(DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunConfForGateWay(envID: String, vpcID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunConfForGateWayResponse {
+        try await self.describeCloudBaseRunConfForGateWay(DescribeCloudBaseRunConfForGateWayRequest(envID: envID, vpcID: vpcID), region: region, logger: logger, on: eventLoop)
     }
 }

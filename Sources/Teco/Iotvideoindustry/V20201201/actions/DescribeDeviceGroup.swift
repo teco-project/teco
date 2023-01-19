@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
     @inlinable
-    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupResponse> {
-        self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupResponse> {
+        self.client.execute(action: "DescribeDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备分组信息
     ///
     /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
     @inlinable
-    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
-        try await self.client.execute(action: "DescribeDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceGroup(_ input: DescribeDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
+        try await self.client.execute(action: "DescribeDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备分组信息
     ///
     /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
     @inlinable
-    public func describeDeviceGroup(deviceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupResponse> {
-        self.describeDeviceGroup(DescribeDeviceGroupRequest(deviceIds: deviceIds), logger: logger, on: eventLoop)
+    public func describeDeviceGroup(deviceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupResponse> {
+        self.describeDeviceGroup(DescribeDeviceGroupRequest(deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备分组信息
     ///
     /// 本接口(DescribeDeviceGroup)用于根据设备ID查询设备所在分组信息，可批量查询。
     @inlinable
-    public func describeDeviceGroup(deviceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
-        try await self.describeDeviceGroup(DescribeDeviceGroupRequest(deviceIds: deviceIds), logger: logger, on: eventLoop)
+    public func describeDeviceGroup(deviceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupResponse {
+        try await self.describeDeviceGroup(DescribeDeviceGroupRequest(deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
     }
 }

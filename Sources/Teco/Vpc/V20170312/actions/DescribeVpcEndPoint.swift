@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Vpc {
     ///
     /// 查询终端节点列表。
     @inlinable
-    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
-        self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
+        self.client.execute(action: "DescribeVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点列表
     ///
     /// 查询终端节点列表。
     @inlinable
-    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
-        try await self.client.execute(action: "DescribeVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcEndPoint(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
+        try await self.client.execute(action: "DescribeVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询终端节点列表
     ///
     /// 查询终端节点列表。
     @inlinable
-    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
-        self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), logger: logger, on: eventLoop)
+    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointResponse> {
+        self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点列表
     ///
     /// 查询终端节点列表。
     @inlinable
-    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
-        try await self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), logger: logger, on: eventLoop)
+    public func describeVpcEndPoint(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, endPointId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointResponse {
+        try await self.describeVpcEndPoint(DescribeVpcEndPointRequest(filters: filters, offset: offset, limit: limit, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
     }
 }

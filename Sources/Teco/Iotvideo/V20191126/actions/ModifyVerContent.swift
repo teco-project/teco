@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotvideo {
 
     /// 编辑版本描述信息
     @inlinable
-    public func modifyVerContent(_ input: ModifyVerContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVerContentResponse> {
-        self.client.execute(action: "ModifyVerContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVerContent(_ input: ModifyVerContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVerContentResponse> {
+        self.client.execute(action: "ModifyVerContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑版本描述信息
     @inlinable
-    public func modifyVerContent(_ input: ModifyVerContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
-        try await self.client.execute(action: "ModifyVerContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVerContent(_ input: ModifyVerContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
+        try await self.client.execute(action: "ModifyVerContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑版本描述信息
     @inlinable
-    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVerContentResponse> {
-        self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVerContentResponse> {
+        self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑版本描述信息
     @inlinable
-    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
-        try await self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), logger: logger, on: eventLoop)
+    public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
+        try await self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,8 +84,8 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscode(_ input: StartMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeResponse> {
-        self.client.execute(action: "StartMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startMCUMixTranscode(_ input: StartMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeResponse> {
+        self.client.execute(action: "StartMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动云端混流
@@ -108,8 +108,8 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscode(_ input: StartMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeResponse {
-        try await self.client.execute(action: "StartMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startMCUMixTranscode(_ input: StartMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeResponse {
+        try await self.client.execute(action: "StartMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动云端混流
@@ -132,8 +132,8 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeResponse> {
-        self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), logger: logger, on: eventLoop)
+    public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeResponse> {
+        self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动云端混流
@@ -156,7 +156,7 @@ extension Trtc {
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable
-    public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeResponse {
-        try await self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), logger: logger, on: eventLoop)
+    public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeResponse {
+        try await self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
     }
 }

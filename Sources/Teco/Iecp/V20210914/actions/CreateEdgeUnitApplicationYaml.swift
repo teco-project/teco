@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// yaml方式创建应用
     @inlinable
-    public func createEdgeUnitApplicationYaml(_ input: CreateEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationYamlResponse> {
-        self.client.execute(action: "CreateEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeUnitApplicationYaml(_ input: CreateEdgeUnitApplicationYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationYamlResponse> {
+        self.client.execute(action: "CreateEdgeUnitApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// yaml方式创建应用
     @inlinable
-    public func createEdgeUnitApplicationYaml(_ input: CreateEdgeUnitApplicationYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
-        try await self.client.execute(action: "CreateEdgeUnitApplicationYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeUnitApplicationYaml(_ input: CreateEdgeUnitApplicationYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
+        try await self.client.execute(action: "CreateEdgeUnitApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// yaml方式创建应用
     @inlinable
-    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationYamlResponse> {
-        self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitApplicationYamlResponse> {
+        self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// yaml方式创建应用
     @inlinable
-    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
-        try await self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), logger: logger, on: eventLoop)
+    public func createEdgeUnitApplicationYaml(edgeUnitId: Int64, yaml: String, basicInfo: ApplicationBasicInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitApplicationYamlResponse {
+        try await self.createEdgeUnitApplicationYaml(CreateEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, yaml: yaml, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }
 }

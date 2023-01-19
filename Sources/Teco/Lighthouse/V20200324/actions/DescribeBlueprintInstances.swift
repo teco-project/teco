@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
-    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintInstancesResponse> {
-        self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintInstancesResponse> {
+        self.client.execute(action: "DescribeBlueprintInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像实例信息
     ///
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
-    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
-        try await self.client.execute(action: "DescribeBlueprintInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBlueprintInstances(_ input: DescribeBlueprintInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
+        try await self.client.execute(action: "DescribeBlueprintInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像实例信息
     ///
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
-    public func describeBlueprintInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintInstancesResponse> {
-        self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeBlueprintInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintInstancesResponse> {
+        self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像实例信息
     ///
     /// 本接口（DescribeBlueprintInstances）用于查询镜像实例信息。
     @inlinable
-    public func describeBlueprintInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
-        try await self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeBlueprintInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintInstancesResponse {
+        try await self.describeBlueprintInstances(DescribeBlueprintInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

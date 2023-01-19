@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
-        self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAppUsr(_ input: DeleteAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
+        self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(_ input: DeleteAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
-        try await self.client.execute(action: "DeleteAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAppUsr(_ input: DeleteAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
+        try await self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
-        self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), logger: logger, on: eventLoop)
+    public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
+        self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable
-    public func deleteAppUsr(accessId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
-        try await self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), logger: logger, on: eventLoop)
+    public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
+        try await self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 }

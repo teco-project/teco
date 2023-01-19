@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Wav {
     ///
     /// 根据游标拉取渠道活码列表信息
     @inlinable
-    public func queryChannelCodeList(_ input: QueryChannelCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChannelCodeListResponse> {
-        self.client.execute(action: "QueryChannelCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryChannelCodeList(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChannelCodeListResponse> {
+        self.client.execute(action: "QueryChannelCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道活码列表接口
     ///
     /// 根据游标拉取渠道活码列表信息
     @inlinable
-    public func queryChannelCodeList(_ input: QueryChannelCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
-        try await self.client.execute(action: "QueryChannelCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryChannelCodeList(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
+        try await self.client.execute(action: "QueryChannelCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询渠道活码列表接口
     ///
     /// 根据游标拉取渠道活码列表信息
     @inlinable
-    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChannelCodeListResponse> {
-        self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChannelCodeListResponse> {
+        self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询渠道活码列表接口
     ///
     /// 根据游标拉取渠道活码列表信息
     @inlinable
-    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
-        try await self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryChannelCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChannelCodeListResponse {
+        try await self.queryChannelCodeList(QueryChannelCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

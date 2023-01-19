@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Monitor {
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
-        self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
+        self.client.execute(action: "DeleteRecordingRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
-        try await self.client.execute(action: "DeleteRecordingRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRecordingRules(_ input: DeleteRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
+        try await self.client.execute(action: "DeleteRecordingRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
-        self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteRecordingRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingRulesResponse> {
+        self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除预聚合规则
     ///
     /// 批量删除 Prometheus 预聚合规则
     @inlinable
-    public func deleteRecordingRules(ruleIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
-        try await self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteRecordingRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingRulesResponse {
+        try await self.deleteRecordingRules(DeleteRecordingRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

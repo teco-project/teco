@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Monitor {
 
     /// 查询告警事件列表
     @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
-        self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
+        self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询告警事件列表
     @inlinable
-    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        try await self.client.execute(action: "DescribeAlarmEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmEvents(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
+        try await self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询告警事件列表
     @inlinable
-    public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
-        self.describeAlarmEvents(DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType), logger: logger, on: eventLoop)
+    public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
+        self.describeAlarmEvents(DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警事件列表
     @inlinable
-    public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        try await self.describeAlarmEvents(DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType), logger: logger, on: eventLoop)
+    public func describeAlarmEvents(module: String, namespace: String, monitorType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
+        try await self.describeAlarmEvents(DescribeAlarmEventsRequest(module: module, namespace: namespace, monitorType: monitorType), region: region, logger: logger, on: eventLoop)
     }
 }

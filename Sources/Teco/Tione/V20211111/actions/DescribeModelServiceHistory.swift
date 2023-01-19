@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
-        self.client.execute(action: "DescribeModelServiceHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
+        self.client.execute(action: "DescribeModelServiceHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
-        try await self.client.execute(action: "DescribeModelServiceHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModelServiceHistory(_ input: DescribeModelServiceHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
+        try await self.client.execute(action: "DescribeModelServiceHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
-        self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeModelServiceHistory(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceHistoryResponse> {
+        self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示服务的历史版本
     @inlinable
-    public func describeModelServiceHistory(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
-        try await self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeModelServiceHistory(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceHistoryResponse {
+        try await self.describeModelServiceHistory(DescribeModelServiceHistoryRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 }

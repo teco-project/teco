@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cfw {
 
     /// 删除规则
     @inlinable
-    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAcRuleResponse> {
-        self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAcRule(_ input: DeleteAcRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAcRuleResponse> {
+        self.client.execute(action: "DeleteAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
     @inlinable
-    public func deleteAcRule(_ input: DeleteAcRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
-        try await self.client.execute(action: "DeleteAcRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAcRule(_ input: DeleteAcRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
+        try await self.client.execute(action: "DeleteAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除规则
     @inlinable
-    public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAcRuleResponse> {
-        self.deleteAcRule(DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area), logger: logger, on: eventLoop)
+    public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAcRuleResponse> {
+        self.deleteAcRule(DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
     @inlinable
-    public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
-        try await self.deleteAcRule(DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area), logger: logger, on: eventLoop)
+    public func deleteAcRule(id: UInt64, direction: UInt64, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAcRuleResponse {
+        try await self.deleteAcRule(DeleteAcRuleRequest(id: id, direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

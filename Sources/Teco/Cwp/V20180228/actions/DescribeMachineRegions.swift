@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Cwp {
 
     /// 获取机器地域列表
     @inlinable
-    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineRegionsResponse> {
-        self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineRegionsResponse> {
+        self.client.execute(action: "DescribeMachineRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机器地域列表
     @inlinable
-    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
-        try await self.client.execute(action: "DescribeMachineRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMachineRegions(_ input: DescribeMachineRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
+        try await self.client.execute(action: "DescribeMachineRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取机器地域列表
     @inlinable
-    public func describeMachineRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineRegionsResponse> {
-        self.describeMachineRegions(DescribeMachineRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeMachineRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineRegionsResponse> {
+        self.describeMachineRegions(DescribeMachineRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机器地域列表
     @inlinable
-    public func describeMachineRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
-        try await self.describeMachineRegions(DescribeMachineRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeMachineRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineRegionsResponse {
+        try await self.describeMachineRegions(DescribeMachineRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

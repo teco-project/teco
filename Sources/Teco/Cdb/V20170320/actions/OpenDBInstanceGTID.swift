@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdb {
     ///
     /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
     @inlinable
-    public func openDBInstanceGTID(_ input: OpenDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBInstanceGTIDResponse> {
-        self.client.execute(action: "OpenDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openDBInstanceGTID(_ input: OpenDBInstanceGTIDRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBInstanceGTIDResponse> {
+        self.client.execute(action: "OpenDBInstanceGTID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启实例的GTID
     ///
     /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
     @inlinable
-    public func openDBInstanceGTID(_ input: OpenDBInstanceGTIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
-        try await self.client.execute(action: "OpenDBInstanceGTID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openDBInstanceGTID(_ input: OpenDBInstanceGTIDRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
+        try await self.client.execute(action: "OpenDBInstanceGTID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启实例的GTID
     ///
     /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
     @inlinable
-    public func openDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBInstanceGTIDResponse> {
-        self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openDBInstanceGTID(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBInstanceGTIDResponse> {
+        self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启实例的GTID
     ///
     /// 本接口(OpenDBInstanceGTID)用于开启云数据库实例的 GTID，只支持版本为 5.6 以及以上的实例。
     @inlinable
-    public func openDBInstanceGTID(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
-        try await self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func openDBInstanceGTID(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBInstanceGTIDResponse {
+        try await self.openDBInstanceGTID(OpenDBInstanceGTIDRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

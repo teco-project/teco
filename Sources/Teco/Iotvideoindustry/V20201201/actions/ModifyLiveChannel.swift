@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideoindustry {
 
     /// 编辑直播接口
     @inlinable
-    public func modifyLiveChannel(_ input: ModifyLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveChannelResponse> {
-        self.client.execute(action: "ModifyLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLiveChannel(_ input: ModifyLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveChannelResponse> {
+        self.client.execute(action: "ModifyLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑直播接口
     @inlinable
-    public func modifyLiveChannel(_ input: ModifyLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveChannelResponse {
-        try await self.client.execute(action: "ModifyLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLiveChannel(_ input: ModifyLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveChannelResponse {
+        try await self.client.execute(action: "ModifyLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑直播接口
     @inlinable
-    public func modifyLiveChannel(liveChannelId: String, liveChannelName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveChannelResponse> {
-        self.modifyLiveChannel(ModifyLiveChannelRequest(liveChannelId: liveChannelId, liveChannelName: liveChannelName), logger: logger, on: eventLoop)
+    public func modifyLiveChannel(liveChannelId: String, liveChannelName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveChannelResponse> {
+        self.modifyLiveChannel(ModifyLiveChannelRequest(liveChannelId: liveChannelId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑直播接口
     @inlinable
-    public func modifyLiveChannel(liveChannelId: String, liveChannelName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveChannelResponse {
-        try await self.modifyLiveChannel(ModifyLiveChannelRequest(liveChannelId: liveChannelId, liveChannelName: liveChannelName), logger: logger, on: eventLoop)
+    public func modifyLiveChannel(liveChannelId: String, liveChannelName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveChannelResponse {
+        try await self.modifyLiveChannel(ModifyLiveChannelRequest(liveChannelId: liveChannelId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 }

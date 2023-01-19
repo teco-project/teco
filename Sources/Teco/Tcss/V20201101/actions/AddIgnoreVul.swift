@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 新增漏洞扫描忽略漏洞
     @inlinable
-    public func addIgnoreVul(_ input: AddIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
-        self.client.execute(action: "AddIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addIgnoreVul(_ input: AddIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
+        self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞扫描忽略漏洞
     @inlinable
-    public func addIgnoreVul(_ input: AddIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
-        try await self.client.execute(action: "AddIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addIgnoreVul(_ input: AddIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
+        try await self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增漏洞扫描忽略漏洞
     @inlinable
-    public func addIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
-        self.addIgnoreVul(AddIgnoreVulRequest(list: list), logger: logger, on: eventLoop)
+    public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
+        self.addIgnoreVul(AddIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞扫描忽略漏洞
     @inlinable
-    public func addIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
-        try await self.addIgnoreVul(AddIgnoreVulRequest(list: list), logger: logger, on: eventLoop)
+    public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
+        try await self.addIgnoreVul(AddIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 }

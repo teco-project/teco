@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据工作流分页查询任务
     @inlinable
-    public func describeTasksByPage(_ input: DescribeTasksByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
-        self.client.execute(action: "DescribeTasksByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTasksByPage(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
+        self.client.execute(action: "DescribeTasksByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据工作流分页查询任务【Beta版本】
@@ -73,8 +73,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据工作流分页查询任务
     @inlinable
-    public func describeTasksByPage(_ input: DescribeTasksByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
-        try await self.client.execute(action: "DescribeTasksByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTasksByPage(_ input: DescribeTasksByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
+        try await self.client.execute(action: "DescribeTasksByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据工作流分页查询任务【Beta版本】
@@ -82,8 +82,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据工作流分页查询任务
     @inlinable
-    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
-        self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
+        self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据工作流分页查询任务【Beta版本】
@@ -91,7 +91,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据工作流分页查询任务
     @inlinable
-    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
-        try await self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
+        try await self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,31 +106,31 @@ extension Teo {
     ///
     /// 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
     @inlinable
-    public func describeDDoSAttackEvent(_ input: DescribeDDoSAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackEventResponse> {
-        self.client.execute(action: "DescribeDDoSAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSAttackEvent(_ input: DescribeDDoSAttackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackEventResponse> {
+        self.client.execute(action: "DescribeDDoSAttackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS攻击事件列表
     ///
     /// 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
     @inlinable
-    public func describeDDoSAttackEvent(_ input: DescribeDDoSAttackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventResponse {
-        try await self.client.execute(action: "DescribeDDoSAttackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSAttackEvent(_ input: DescribeDDoSAttackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventResponse {
+        try await self.client.execute(action: "DescribeDDoSAttackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询DDoS攻击事件列表
     ///
     /// 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
     @inlinable
-    public func describeDDoSAttackEvent(startTime: Date, endTime: Date, protocolType: String? = nil, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, showDetail: Bool? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackEventResponse> {
-        self.describeDDoSAttackEvent(DescribeDDoSAttackEventRequest(startTime: startTime, endTime: endTime, protocolType: protocolType, policyIds: policyIds, zoneIds: zoneIds, limit: limit, offset: offset, showDetail: showDetail, area: area), logger: logger, on: eventLoop)
+    public func describeDDoSAttackEvent(startTime: Date, endTime: Date, protocolType: String? = nil, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, showDetail: Bool? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackEventResponse> {
+        self.describeDDoSAttackEvent(DescribeDDoSAttackEventRequest(startTime: startTime, endTime: endTime, protocolType: protocolType, policyIds: policyIds, zoneIds: zoneIds, limit: limit, offset: offset, showDetail: showDetail, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS攻击事件列表
     ///
     /// 本接口（DescribeDDoSAttackEvent）用于查询DDoS攻击事件列表。
     @inlinable
-    public func describeDDoSAttackEvent(startTime: Date, endTime: Date, protocolType: String? = nil, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, showDetail: Bool? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventResponse {
-        try await self.describeDDoSAttackEvent(DescribeDDoSAttackEventRequest(startTime: startTime, endTime: endTime, protocolType: protocolType, policyIds: policyIds, zoneIds: zoneIds, limit: limit, offset: offset, showDetail: showDetail, area: area), logger: logger, on: eventLoop)
+    public func describeDDoSAttackEvent(startTime: Date, endTime: Date, protocolType: String? = nil, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, showDetail: Bool? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackEventResponse {
+        try await self.describeDDoSAttackEvent(DescribeDDoSAttackEventRequest(startTime: startTime, endTime: endTime, protocolType: protocolType, policyIds: policyIds, zoneIds: zoneIds, limit: limit, offset: offset, showDetail: showDetail, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

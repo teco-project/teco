@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcb {
 
     /// 修改日志主题
     @inlinable
-    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClsTopicResponse> {
-        self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClsTopic(_ input: ModifyClsTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClsTopicResponse> {
+        self.client.execute(action: "ModifyClsTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     @inlinable
-    public func modifyClsTopic(_ input: ModifyClsTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
-        try await self.client.execute(action: "ModifyClsTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClsTopic(_ input: ModifyClsTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
+        try await self.client.execute(action: "ModifyClsTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改日志主题
     @inlinable
-    public func modifyClsTopic(envId: String, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClsTopicResponse> {
-        self.modifyClsTopic(ModifyClsTopicRequest(envId: envId, period: period), logger: logger, on: eventLoop)
+    public func modifyClsTopic(envId: String, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClsTopicResponse> {
+        self.modifyClsTopic(ModifyClsTopicRequest(envId: envId, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     @inlinable
-    public func modifyClsTopic(envId: String, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
-        try await self.modifyClsTopic(ModifyClsTopicRequest(envId: envId, period: period), logger: logger, on: eventLoop)
+    public func modifyClsTopic(envId: String, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClsTopicResponse {
+        try await self.modifyClsTopic(ModifyClsTopicRequest(envId: envId, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

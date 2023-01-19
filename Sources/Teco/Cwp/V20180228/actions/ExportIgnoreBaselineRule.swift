@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cwp {
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
-        self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
+        self.client.execute(action: "ExportIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
-        try await self.client.execute(action: "ExportIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportIgnoreBaselineRule(_ input: ExportIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
+        try await self.client.execute(action: "ExportIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
-        self.exportIgnoreBaselineRule(ExportIgnoreBaselineRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    public func exportIgnoreBaselineRule(ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreBaselineRuleResponse> {
+        self.exportIgnoreBaselineRule(ExportIgnoreBaselineRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 已忽略基线检测项导出
     ///
     /// 导出已忽略基线检测项信息
     @inlinable
-    public func exportIgnoreBaselineRule(ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
-        try await self.exportIgnoreBaselineRule(ExportIgnoreBaselineRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    public func exportIgnoreBaselineRule(ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreBaselineRuleResponse {
+        try await self.exportIgnoreBaselineRule(ExportIgnoreBaselineRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

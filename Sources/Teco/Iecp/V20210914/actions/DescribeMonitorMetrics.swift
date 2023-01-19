@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Iecp {
 
     /// 查询边缘单元监控数据
     @inlinable
-    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorMetricsResponse> {
-        self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorMetricsResponse> {
+        self.client.execute(action: "DescribeMonitorMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元监控数据
     @inlinable
-    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
-        try await self.client.execute(action: "DescribeMonitorMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMonitorMetrics(_ input: DescribeMonitorMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
+        try await self.client.execute(action: "DescribeMonitorMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元监控数据
     @inlinable
-    public func describeMonitorMetrics(edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String? = nil, namespace: String? = nil, podName: String? = nil, workloadName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorMetricsResponse> {
-        self.describeMonitorMetrics(DescribeMonitorMetricsRequest(edgeUnitId: edgeUnitId, queryType: queryType, startTime: startTime, endTime: endTime, interval: interval, nodeName: nodeName, namespace: namespace, podName: podName, workloadName: workloadName), logger: logger, on: eventLoop)
+    public func describeMonitorMetrics(edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String? = nil, namespace: String? = nil, podName: String? = nil, workloadName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorMetricsResponse> {
+        self.describeMonitorMetrics(DescribeMonitorMetricsRequest(edgeUnitId: edgeUnitId, queryType: queryType, startTime: startTime, endTime: endTime, interval: interval, nodeName: nodeName, namespace: namespace, podName: podName, workloadName: workloadName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元监控数据
     @inlinable
-    public func describeMonitorMetrics(edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String? = nil, namespace: String? = nil, podName: String? = nil, workloadName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
-        try await self.describeMonitorMetrics(DescribeMonitorMetricsRequest(edgeUnitId: edgeUnitId, queryType: queryType, startTime: startTime, endTime: endTime, interval: interval, nodeName: nodeName, namespace: namespace, podName: podName, workloadName: workloadName), logger: logger, on: eventLoop)
+    public func describeMonitorMetrics(edgeUnitId: UInt64, queryType: String, startTime: Int64, endTime: Int64, interval: Int64, nodeName: String? = nil, namespace: String? = nil, podName: String? = nil, workloadName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorMetricsResponse {
+        try await self.describeMonitorMetrics(DescribeMonitorMetricsRequest(edgeUnitId: edgeUnitId, queryType: queryType, startTime: startTime, endTime: endTime, interval: interval, nodeName: nodeName, namespace: namespace, podName: podName, workloadName: workloadName), region: region, logger: logger, on: eventLoop)
     }
 }

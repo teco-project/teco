@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Organization {
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
-    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthAccountsResponse> {
-        self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthAccountsResponse> {
+        self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
-    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
-        try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrganizationMemberAuthAccounts(_ input: DescribeOrganizationMemberAuthAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
+        try await self.client.execute(action: "DescribeOrganizationMemberAuthAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
-    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthAccountsResponse> {
-        self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthAccountsResponse> {
+        self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
-    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
-        try await self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthAccounts(offset: Int64, limit: Int64, memberUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthAccountsResponse {
+        try await self.describeOrganizationMemberAuthAccounts(DescribeOrganizationMemberAuthAccountsRequest(offset: offset, limit: limit, memberUin: memberUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

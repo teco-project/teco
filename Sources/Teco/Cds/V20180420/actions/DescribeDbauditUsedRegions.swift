@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cds {
     ///
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
-    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditUsedRegionsResponse> {
-        self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditUsedRegionsResponse> {
+        self.client.execute(action: "DescribeDbauditUsedRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖地域列表
     ///
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
-    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
-        try await self.client.execute(action: "DescribeDbauditUsedRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDbauditUsedRegions(_ input: DescribeDbauditUsedRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
+        try await self.client.execute(action: "DescribeDbauditUsedRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询可售卖地域列表
     ///
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
-    public func describeDbauditUsedRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditUsedRegionsResponse> {
-        self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeDbauditUsedRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDbauditUsedRegionsResponse> {
+        self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖地域列表
     ///
     /// 本接口 (DescribeDbauditUsedRegions) 用于查询可售卖地域列表。
     @inlinable
-    public func describeDbauditUsedRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
-        try await self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeDbauditUsedRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDbauditUsedRegionsResponse {
+        try await self.describeDbauditUsedRegions(DescribeDbauditUsedRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

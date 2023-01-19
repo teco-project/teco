@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Tke {
 
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
-        self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
+        self.client.execute(action: "DescribeClusterSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
-        try await self.client.execute(action: "DescribeClusterSecurity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterSecurity(_ input: DescribeClusterSecurityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
+        try await self.client.execute(action: "DescribeClusterSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
-        self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterSecurity(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterSecurityResponse> {
+        self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群的密钥信息
     @inlinable
-    public func describeClusterSecurity(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
-        try await self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterSecurity(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterSecurityResponse {
+        try await self.describeClusterSecurity(DescribeClusterSecurityRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
-        self.client.execute(action: "DescribeNamespaceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
+        self.client.execute(action: "DescribeNamespaceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
-        try await self.client.execute(action: "DescribeNamespaceResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNamespaceResources(_ input: DescribeNamespaceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
+        try await self.client.execute(action: "DescribeNamespaceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
-        self.describeNamespaceResources(DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceResourcesResponse> {
+        self.describeNamespaceResources(DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间下的资源信息
     @inlinable
-    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
-        try await self.describeNamespaceResources(DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeNamespaceResources(edgeUnitID: UInt64, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceResourcesResponse {
+        try await self.describeNamespaceResources(DescribeNamespaceResourcesRequest(edgeUnitID: edgeUnitID, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

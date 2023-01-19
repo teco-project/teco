@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Domain {
     ///
     /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
     @inlinable
-    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerBatchResponse> {
-        self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerBatchResponse> {
+        self.client.execute(action: "ModifyDomainOwnerBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量账号间转移
     ///
     /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
     @inlinable
-    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
-        try await self.client.execute(action: "ModifyDomainOwnerBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomainOwnerBatch(_ input: ModifyDomainOwnerBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
+        try await self.client.execute(action: "ModifyDomainOwnerBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量账号间转移
     ///
     /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
     @inlinable
-    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerBatchResponse> {
-        self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), logger: logger, on: eventLoop)
+    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainOwnerBatchResponse> {
+        self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量账号间转移
     ///
     /// 本接口 ( ModifyDomainOwnerBatch) 用于域名批量账号间转移 。
     @inlinable
-    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
-        try await self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), logger: logger, on: eventLoop)
+    public func modifyDomainOwnerBatch(domains: [String], newOwnerUin: String, transferDns: Bool? = nil, newOwnerAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainOwnerBatchResponse {
+        try await self.modifyDomainOwnerBatch(ModifyDomainOwnerBatchRequest(domains: domains, newOwnerUin: newOwnerUin, transferDns: transferDns, newOwnerAppId: newOwnerAppId), region: region, logger: logger, on: eventLoop)
     }
 }

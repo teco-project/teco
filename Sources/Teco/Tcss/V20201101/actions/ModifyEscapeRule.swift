@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
-        self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
+        self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
-        try await self.client.execute(action: "ModifyEscapeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
+        try await self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
-        self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), logger: logger, on: eventLoop)
+    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
+        self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
     @inlinable
-    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
-        try await self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), logger: logger, on: eventLoop)
+    public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
+        try await self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Tcss {
     ///
     /// 查询合规检测的定时任务列表
     @inlinable
-    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePeriodTaskListResponse> {
-        self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePeriodTaskListResponse> {
+        self.client.execute(action: "DescribeCompliancePeriodTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询定时任务列表
     ///
     /// 查询合规检测的定时任务列表
     @inlinable
-    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
-        try await self.client.execute(action: "DescribeCompliancePeriodTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCompliancePeriodTaskList(_ input: DescribeCompliancePeriodTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
+        try await self.client.execute(action: "DescribeCompliancePeriodTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规查询定时任务列表
     ///
     /// 查询合规检测的定时任务列表
     @inlinable
-    public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePeriodTaskListResponse> {
-        self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePeriodTaskListResponse> {
+        self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询定时任务列表
     ///
     /// 查询合规检测的定时任务列表
     @inlinable
-    public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
-        try await self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
+        try await self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tsf {
 
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
-        self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePodInstances(_ input: DescribePodInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
+        self.client.execute(action: "DescribePodInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(_ input: DescribePodInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
-        try await self.client.execute(action: "DescribePodInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePodInstances(_ input: DescribePodInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
+        try await self.client.execute(action: "DescribePodInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
-        self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), logger: logger, on: eventLoop)
+    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
+        self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取部署组实例列表
     @inlinable
-    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
-        try await self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), logger: logger, on: eventLoop)
+    public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
+        try await self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
     @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupByReadOnlyInstanceResponse> {
-        self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupByReadOnlyInstanceResponse> {
+        self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过只读实例查询只读组
     ///
     /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
     @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
-        try await self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReadOnlyGroupByReadOnlyInstance(_ input: DescribeReadOnlyGroupByReadOnlyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
+        try await self.client.execute(action: "DescribeReadOnlyGroupByReadOnlyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过只读实例查询只读组
     ///
     /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
     @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupByReadOnlyInstanceResponse> {
-        self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupByReadOnlyInstanceResponse> {
+        self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过只读实例查询只读组
     ///
     /// 本接口（DescribeReadOnlyGroupByReadOnlyInstance）用于通过只读副本实例ID查询其所在的只读组。
     @inlinable
-    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
-        try await self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeReadOnlyGroupByReadOnlyInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupByReadOnlyInstanceResponse {
+        try await self.describeReadOnlyGroupByReadOnlyInstance(DescribeReadOnlyGroupByReadOnlyInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

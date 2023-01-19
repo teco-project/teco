@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -140,25 +140,25 @@ extension Bm {
 
     /// 重装操作系统
     @inlinable
-    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadDeviceOsResponse> {
-        self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadDeviceOsResponse> {
+        self.client.execute(action: "ReloadDeviceOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装操作系统
     @inlinable
-    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
-        try await self.client.execute(action: "ReloadDeviceOs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reloadDeviceOs(_ input: ReloadDeviceOsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
+        try await self.client.execute(action: "ReloadDeviceOs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重装操作系统
     @inlinable
-    public func reloadDeviceOs(instanceId: String, password: String, osTypeId: UInt64? = nil, raidId: UInt64? = nil, isZoning: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, lanIp: String? = nil, hyperThreading: UInt64? = nil, imageId: String? = nil, fileSystem: String? = nil, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, reserveSgConfig: UInt64? = nil, sysDataSpace: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadDeviceOsResponse> {
-        self.reloadDeviceOs(ReloadDeviceOsRequest(instanceId: instanceId, password: password, osTypeId: osTypeId, raidId: raidId, isZoning: isZoning, sysRootSpace: sysRootSpace, sysSwaporuefiSpace: sysSwaporuefiSpace, sysUsrlocalSpace: sysUsrlocalSpace, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, hyperThreading: hyperThreading, imageId: imageId, fileSystem: fileSystem, needSecurityAgent: needSecurityAgent, needMonitorAgent: needMonitorAgent, needEMRAgent: needEMRAgent, needEMRSoftware: needEMRSoftware, reserveSgConfig: reserveSgConfig, sysDataSpace: sysDataSpace), logger: logger, on: eventLoop)
+    public func reloadDeviceOs(instanceId: String, password: String, osTypeId: UInt64? = nil, raidId: UInt64? = nil, isZoning: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, lanIp: String? = nil, hyperThreading: UInt64? = nil, imageId: String? = nil, fileSystem: String? = nil, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, reserveSgConfig: UInt64? = nil, sysDataSpace: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadDeviceOsResponse> {
+        self.reloadDeviceOs(ReloadDeviceOsRequest(instanceId: instanceId, password: password, osTypeId: osTypeId, raidId: raidId, isZoning: isZoning, sysRootSpace: sysRootSpace, sysSwaporuefiSpace: sysSwaporuefiSpace, sysUsrlocalSpace: sysUsrlocalSpace, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, hyperThreading: hyperThreading, imageId: imageId, fileSystem: fileSystem, needSecurityAgent: needSecurityAgent, needMonitorAgent: needMonitorAgent, needEMRAgent: needEMRAgent, needEMRSoftware: needEMRSoftware, reserveSgConfig: reserveSgConfig, sysDataSpace: sysDataSpace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重装操作系统
     @inlinable
-    public func reloadDeviceOs(instanceId: String, password: String, osTypeId: UInt64? = nil, raidId: UInt64? = nil, isZoning: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, lanIp: String? = nil, hyperThreading: UInt64? = nil, imageId: String? = nil, fileSystem: String? = nil, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, reserveSgConfig: UInt64? = nil, sysDataSpace: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
-        try await self.reloadDeviceOs(ReloadDeviceOsRequest(instanceId: instanceId, password: password, osTypeId: osTypeId, raidId: raidId, isZoning: isZoning, sysRootSpace: sysRootSpace, sysSwaporuefiSpace: sysSwaporuefiSpace, sysUsrlocalSpace: sysUsrlocalSpace, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, hyperThreading: hyperThreading, imageId: imageId, fileSystem: fileSystem, needSecurityAgent: needSecurityAgent, needMonitorAgent: needMonitorAgent, needEMRAgent: needEMRAgent, needEMRSoftware: needEMRSoftware, reserveSgConfig: reserveSgConfig, sysDataSpace: sysDataSpace), logger: logger, on: eventLoop)
+    public func reloadDeviceOs(instanceId: String, password: String, osTypeId: UInt64? = nil, raidId: UInt64? = nil, isZoning: UInt64? = nil, sysRootSpace: UInt64? = nil, sysSwaporuefiSpace: UInt64? = nil, sysUsrlocalSpace: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, lanIp: String? = nil, hyperThreading: UInt64? = nil, imageId: String? = nil, fileSystem: String? = nil, needSecurityAgent: UInt64? = nil, needMonitorAgent: UInt64? = nil, needEMRAgent: UInt64? = nil, needEMRSoftware: UInt64? = nil, reserveSgConfig: UInt64? = nil, sysDataSpace: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadDeviceOsResponse {
+        try await self.reloadDeviceOs(ReloadDeviceOsRequest(instanceId: instanceId, password: password, osTypeId: osTypeId, raidId: raidId, isZoning: isZoning, sysRootSpace: sysRootSpace, sysSwaporuefiSpace: sysSwaporuefiSpace, sysUsrlocalSpace: sysUsrlocalSpace, vpcId: vpcId, subnetId: subnetId, lanIp: lanIp, hyperThreading: hyperThreading, imageId: imageId, fileSystem: fileSystem, needSecurityAgent: needSecurityAgent, needMonitorAgent: needMonitorAgent, needEMRAgent: needEMRAgent, needEMRSoftware: needEMRSoftware, reserveSgConfig: reserveSgConfig, sysDataSpace: sysDataSpace), region: region, logger: logger, on: eventLoop)
     }
 }

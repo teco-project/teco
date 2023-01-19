@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Eiam {
     ///
     /// 新建一个用户
     @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
+        self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建用户
     ///
     /// 新建一个用户
     @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建用户
     ///
     /// 新建一个用户
     @inlinable
-    public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        self.createUser(CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), logger: logger, on: eventLoop)
+    public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
+        self.createUser(CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建用户
     ///
     /// 新建一个用户
     @inlinable
-    public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.createUser(CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), logger: logger, on: eventLoop)
+    public func createUser(userName: String, password: String, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, phone: String? = nil, orgNodeId: String? = nil, expirationTime: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.createUser(CreateUserRequest(userName: userName, password: password, displayName: displayName, description: description, userGroupIds: userGroupIds, phone: phone, orgNodeId: orgNodeId, expirationTime: expirationTime, email: email, pwdNeedReset: pwdNeedReset, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 }

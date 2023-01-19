@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Pts {
 
     /// 创建定时任务
     @inlinable
-    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
-        self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCronJob(_ input: CreateCronJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
+        self.client.execute(action: "CreateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
     @inlinable
-    public func createCronJob(_ input: CreateCronJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
-        try await self.client.execute(action: "CreateCronJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCronJob(_ input: CreateCronJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
+        try await self.client.execute(action: "CreateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建定时任务
     @inlinable
-    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
-        self.createCronJob(CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), logger: logger, on: eventLoop)
+    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCronJobResponse> {
+        self.createCronJob(CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
     @inlinable
-    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
-        try await self.createCronJob(CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), logger: logger, on: eventLoop)
+    public func createCronJob(name: String, projectId: String, scenarioId: String, scenarioName: String, frequencyType: Int64, cronExpression: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCronJobResponse {
+        try await self.createCronJob(CreateCronJobRequest(name: name, projectId: projectId, scenarioId: scenarioId, scenarioName: scenarioName, frequencyType: frequencyType, cronExpression: cronExpression, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

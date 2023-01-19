@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
     @inlinable
-    public func describeNetDetects(_ input: DescribeNetDetectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectsResponse> {
-        self.client.execute(action: "DescribeNetDetects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNetDetects(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectsResponse> {
+        self.client.execute(action: "DescribeNetDetects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网络探测列表
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
     @inlinable
-    public func describeNetDetects(_ input: DescribeNetDetectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectsResponse {
-        try await self.client.execute(action: "DescribeNetDetects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNetDetects(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectsResponse {
+        try await self.client.execute(action: "DescribeNetDetects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网络探测列表
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
     @inlinable
-    public func describeNetDetects(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectsResponse> {
-        self.describeNetDetects(DescribeNetDetectsRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNetDetects(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectsResponse> {
+        self.describeNetDetects(DescribeNetDetectsRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网络探测列表
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
     @inlinable
-    public func describeNetDetects(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectsResponse {
-        try await self.describeNetDetects(DescribeNetDetectsRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNetDetects(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectsResponse {
+        try await self.describeNetDetects(DescribeNetDetectsRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

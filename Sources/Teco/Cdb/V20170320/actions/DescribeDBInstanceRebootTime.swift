@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
     @inlinable
-    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceRebootTimeResponse> {
-        self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceRebootTimeResponse> {
+        self.client.execute(action: "DescribeDBInstanceRebootTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的预期重启时间
     ///
     /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
     @inlinable
-    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
-        try await self.client.execute(action: "DescribeDBInstanceRebootTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBInstanceRebootTime(_ input: DescribeDBInstanceRebootTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
+        try await self.client.execute(action: "DescribeDBInstanceRebootTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库实例的预期重启时间
     ///
     /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
     @inlinable
-    public func describeDBInstanceRebootTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceRebootTimeResponse> {
-        self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeDBInstanceRebootTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceRebootTimeResponse> {
+        self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的预期重启时间
     ///
     /// 本接口(DescribeDBInstanceRebootTime)用于查询云数据库实例重启预计所需的时间。
     @inlinable
-    public func describeDBInstanceRebootTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
-        try await self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeDBInstanceRebootTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceRebootTimeResponse {
+        try await self.describeDBInstanceRebootTime(DescribeDBInstanceRebootTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

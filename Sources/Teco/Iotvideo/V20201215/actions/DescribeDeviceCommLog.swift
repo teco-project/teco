@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Iotvideo {
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
-        self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
+        self.client.execute(action: "DescribeDeviceCommLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
-        try await self.client.execute(action: "DescribeDeviceCommLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceCommLog(_ input: DescribeDeviceCommLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
+        try await self.client.execute(action: "DescribeDeviceCommLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
-        self.describeDeviceCommLog(DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), logger: logger, on: eventLoop)
+    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceCommLogResponse> {
+        self.describeDeviceCommLog(DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通讯日志
     ///
     /// 获取设备在指定时间范围内的通讯日志
     @inlinable
-    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
-        try await self.describeDeviceCommLog(DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), logger: logger, on: eventLoop)
+    public func describeDeviceCommLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: UInt64? = nil, context: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceCommLogResponse {
+        try await self.describeDeviceCommLog(DescribeDeviceCommLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

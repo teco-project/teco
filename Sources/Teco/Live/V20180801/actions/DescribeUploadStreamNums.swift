@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Live {
 
     /// 直播上行路数查询
     @inlinable
-    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
-        self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
+        self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播上行路数查询
     @inlinable
-    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
-        try await self.client.execute(action: "DescribeUploadStreamNums", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUploadStreamNums(_ input: DescribeUploadStreamNumsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
+        try await self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播上行路数查询
     @inlinable
-    public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
-        self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
+        self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播上行路数查询
     @inlinable
-    public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
-        try await self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
+        try await self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 }

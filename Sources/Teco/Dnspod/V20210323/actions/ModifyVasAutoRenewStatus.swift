@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dnspod {
 
     /// 增值服务自动续费设置
     @inlinable
-    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVasAutoRenewStatusResponse> {
-        self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVasAutoRenewStatusResponse> {
+        self.client.execute(action: "ModifyVasAutoRenewStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增值服务自动续费设置
     @inlinable
-    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
-        try await self.client.execute(action: "ModifyVasAutoRenewStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVasAutoRenewStatus(_ input: ModifyVasAutoRenewStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
+        try await self.client.execute(action: "ModifyVasAutoRenewStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 增值服务自动续费设置
     @inlinable
-    public func modifyVasAutoRenewStatus(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVasAutoRenewStatusResponse> {
-        self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), logger: logger, on: eventLoop)
+    public func modifyVasAutoRenewStatus(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVasAutoRenewStatusResponse> {
+        self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增值服务自动续费设置
     @inlinable
-    public func modifyVasAutoRenewStatus(resourceId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
-        try await self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), logger: logger, on: eventLoop)
+    public func modifyVasAutoRenewStatus(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVasAutoRenewStatusResponse {
+        try await self.modifyVasAutoRenewStatus(ModifyVasAutoRenewStatusRequest(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

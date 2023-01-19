@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -128,8 +128,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesReturnsByGroupResponse> {
-        self.client.execute(action: "SearchFacesReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesReturnsByGroupResponse> {
+        self.client.execute(action: "SearchFacesReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索分库返回
@@ -144,8 +144,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
-        try await self.client.execute(action: "SearchFacesReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
+        try await self.client.execute(action: "SearchFacesReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸搜索分库返回
@@ -160,8 +160,8 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesReturnsByGroupResponse> {
-        self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesReturnsByGroupResponse> {
+        self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索分库返回
@@ -176,7 +176,7 @@ extension Iai {
     /// >
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
-    public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
-        try await self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
+        try await self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

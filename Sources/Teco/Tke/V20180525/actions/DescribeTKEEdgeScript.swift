@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Tke {
     ///
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
-    public func describeTKEEdgeScript(_ input: DescribeTKEEdgeScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeScriptResponse> {
-        self.client.execute(action: "DescribeTKEEdgeScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTKEEdgeScript(_ input: DescribeTKEEdgeScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeScriptResponse> {
+        self.client.execute(action: "DescribeTKEEdgeScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘脚本链接
     ///
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
-    public func describeTKEEdgeScript(_ input: DescribeTKEEdgeScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeScriptResponse {
-        try await self.client.execute(action: "DescribeTKEEdgeScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTKEEdgeScript(_ input: DescribeTKEEdgeScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeScriptResponse {
+        try await self.client.execute(action: "DescribeTKEEdgeScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取边缘脚本链接
     ///
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
-    public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeScriptResponse> {
-        self.describeTKEEdgeScript(DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), logger: logger, on: eventLoop)
+    public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeScriptResponse> {
+        self.describeTKEEdgeScript(DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘脚本链接
     ///
     /// 获取边缘脚本链接，此接口用于添加第三方节点，通过下载脚本从而将节点添加到边缘集群。
     @inlinable
-    public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeScriptResponse {
-        try await self.describeTKEEdgeScript(DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), logger: logger, on: eventLoop)
+    public func describeTKEEdgeScript(clusterId: String, interface: String, nodeName: String? = nil, config: String? = nil, scriptVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeScriptResponse {
+        try await self.describeTKEEdgeScript(DescribeTKEEdgeScriptRequest(clusterId: clusterId, interface: interface, nodeName: nodeName, config: config, scriptVersion: scriptVersion), region: region, logger: logger, on: eventLoop)
     }
 }

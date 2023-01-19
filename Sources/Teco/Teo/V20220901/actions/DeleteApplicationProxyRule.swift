@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Teo {
 
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
-        self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
+        self.client.execute(action: "DeleteApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
-        try await self.client.execute(action: "DeleteApplicationProxyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApplicationProxyRule(_ input: DeleteApplicationProxyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
+        try await self.client.execute(action: "DeleteApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
-        self.deleteApplicationProxyRule(DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyRuleResponse> {
+        self.deleteApplicationProxyRule(DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理规则
     @inlinable
-    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
-        try await self.deleteApplicationProxyRule(DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteApplicationProxyRule(zoneId: String, proxyId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyRuleResponse {
+        try await self.deleteApplicationProxyRule(DeleteApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

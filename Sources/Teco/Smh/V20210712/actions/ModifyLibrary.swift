@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Smh {
     ///
     /// 修改 PaaS 服务媒体库配置项
     @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLibraryResponse> {
-        self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLibrary(_ input: ModifyLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLibraryResponse> {
+        self.client.execute(action: "ModifyLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体库配置项
     ///
     /// 修改 PaaS 服务媒体库配置项
     @inlinable
-    public func modifyLibrary(_ input: ModifyLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
-        try await self.client.execute(action: "ModifyLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLibrary(_ input: ModifyLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.client.execute(action: "ModifyLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改媒体库配置项
     ///
     /// 修改 PaaS 服务媒体库配置项
     @inlinable
-    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLibraryResponse> {
-        self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), logger: logger, on: eventLoop)
+    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLibraryResponse> {
+        self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体库配置项
     ///
     /// 修改 PaaS 服务媒体库配置项
     @inlinable
-    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
-        try await self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), logger: logger, on: eventLoop)
+    public func modifyLibrary(libraryId: String, name: String? = nil, remark: String? = nil, libraryExtension: LibraryExtension? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLibraryResponse {
+        try await self.modifyLibrary(ModifyLibraryRequest(libraryId: libraryId, name: name, remark: remark, libraryExtension: libraryExtension), region: region, logger: logger, on: eventLoop)
     }
 }

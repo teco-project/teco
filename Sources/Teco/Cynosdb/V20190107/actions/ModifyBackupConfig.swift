@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cynosdb {
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
-        self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
+        self.client.execute(action: "ModifyBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.client.execute(action: "ModifyBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.client.execute(action: "ModifyBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
-        self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), logger: logger, on: eventLoop)
+    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
+        self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
     @inlinable
-    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), logger: logger, on: eventLoop)
+    public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
     }
 }

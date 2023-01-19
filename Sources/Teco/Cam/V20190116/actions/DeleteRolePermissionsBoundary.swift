@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cam {
 
     /// 删除角色权限边界
     @inlinable
-    public func deleteRolePermissionsBoundary(_ input: DeleteRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolePermissionsBoundaryResponse> {
-        self.client.execute(action: "DeleteRolePermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRolePermissionsBoundary(_ input: DeleteRolePermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolePermissionsBoundaryResponse> {
+        self.client.execute(action: "DeleteRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除角色权限边界
     @inlinable
-    public func deleteRolePermissionsBoundary(_ input: DeleteRolePermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolePermissionsBoundaryResponse {
-        try await self.client.execute(action: "DeleteRolePermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRolePermissionsBoundary(_ input: DeleteRolePermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolePermissionsBoundaryResponse {
+        try await self.client.execute(action: "DeleteRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除角色权限边界
     @inlinable
-    public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolePermissionsBoundaryResponse> {
-        self.deleteRolePermissionsBoundary(DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRolePermissionsBoundaryResponse> {
+        self.deleteRolePermissionsBoundary(DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除角色权限边界
     @inlinable
-    public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolePermissionsBoundaryResponse {
-        try await self.deleteRolePermissionsBoundary(DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func deleteRolePermissionsBoundary(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRolePermissionsBoundaryResponse {
+        try await self.deleteRolePermissionsBoundary(DeleteRolePermissionsBoundaryRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

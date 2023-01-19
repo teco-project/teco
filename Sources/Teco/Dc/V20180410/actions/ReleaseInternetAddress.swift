@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dc {
     ///
     /// 释放已申请的互联网地址
     @inlinable
-    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseInternetAddressResponse> {
-        self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseInternetAddressResponse> {
+        self.client.execute(action: "ReleaseInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放互联网地址
     ///
     /// 释放已申请的互联网地址
     @inlinable
-    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
-        try await self.client.execute(action: "ReleaseInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseInternetAddress(_ input: ReleaseInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
+        try await self.client.execute(action: "ReleaseInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放互联网地址
     ///
     /// 释放已申请的互联网地址
     @inlinable
-    public func releaseInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseInternetAddressResponse> {
-        self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func releaseInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseInternetAddressResponse> {
+        self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放互联网地址
     ///
     /// 释放已申请的互联网地址
     @inlinable
-    public func releaseInternetAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
-        try await self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func releaseInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseInternetAddressResponse {
+        try await self.releaseInternetAddress(ReleaseInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tke {
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
-        self.client.execute(action: "RestartEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
+        self.client.execute(action: "RestartEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
-        try await self.client.execute(action: "RestartEKSContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
+        try await self.client.execute(action: "RestartEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
-        self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    public func restartEKSContainerInstances(eksCiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
+        self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
     @inlinable
-    public func restartEKSContainerInstances(eksCiIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
-        try await self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), logger: logger, on: eventLoop)
+    public func restartEKSContainerInstances(eksCiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
+        try await self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
     }
 }

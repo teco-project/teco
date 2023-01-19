@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension Wedata {
     /// 【必要字段】
     /// {数据来源DatasourceId}
     @inlinable
-    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupsByPageResponse> {
-        self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupsByPageResponse> {
+        self.client.execute(action: "DescribeRuleGroupsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则组接口
@@ -82,8 +82,8 @@ extension Wedata {
     /// 【必要字段】
     /// {数据来源DatasourceId}
     @inlinable
-    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
-        try await self.client.execute(action: "DescribeRuleGroupsByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleGroupsByPage(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
+        try await self.client.execute(action: "DescribeRuleGroupsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询规则组接口
@@ -93,8 +93,8 @@ extension Wedata {
     /// 【必要字段】
     /// {数据来源DatasourceId}
     @inlinable
-    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupsByPageResponse> {
-        self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupsByPageResponse> {
+        self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则组接口
@@ -104,7 +104,7 @@ extension Wedata {
     /// 【必要字段】
     /// {数据来源DatasourceId}
     @inlinable
-    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
-        try await self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleGroupsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupsByPageResponse {
+        try await self.describeRuleGroupsByPage(DescribeRuleGroupsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

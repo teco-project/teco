@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Trp {
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
-        self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTraceCodes(_ input: CreateTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
+        self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(_ input: CreateTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
-        try await self.client.execute(action: "CreateTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTraceCodes(_ input: CreateTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
+        try await self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
-        self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), logger: logger, on: eventLoop)
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
+        self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量导入二维码
     ///
     /// 批量导入二维码，只支持平台发的码
     @inlinable
-    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
-        try await self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), logger: logger, on: eventLoop)
+    public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
+        try await self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
     }
 }

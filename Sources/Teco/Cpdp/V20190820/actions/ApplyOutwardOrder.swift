@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -144,31 +144,31 @@ extension Cpdp {
     ///
     /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
     @inlinable
-    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOutwardOrderResponse> {
-        self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOutwardOrderResponse> {
+        self.client.execute(action: "ApplyOutwardOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-汇出指令申请
     ///
     /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
     @inlinable
-    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
-        try await self.client.execute(action: "ApplyOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyOutwardOrder(_ input: ApplyOutwardOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
+        try await self.client.execute(action: "ApplyOutwardOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-汇出指令申请
     ///
     /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
     @inlinable
-    public func applyOutwardOrder(transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float? = nil, targetAmount: Float? = nil, payeeName: String? = nil, payeeAddress: String? = nil, payeeBankAccountType: String? = nil, payeeCountryCode: String? = nil, payeeBankName: String? = nil, payeeBankAddress: String? = nil, payeeBankDistrict: String? = nil, payeeBankSwiftCode: String? = nil, payeeBankType: String? = nil, payeeBankCode: String? = nil, referenceForBeneficiary: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOutwardOrderResponse> {
-        self.applyOutwardOrder(ApplyOutwardOrderRequest(transactionId: transactionId, pricingCurrency: pricingCurrency, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, payeeType: payeeType, payeeAccount: payeeAccount, sourceAmount: sourceAmount, targetAmount: targetAmount, payeeName: payeeName, payeeAddress: payeeAddress, payeeBankAccountType: payeeBankAccountType, payeeCountryCode: payeeCountryCode, payeeBankName: payeeBankName, payeeBankAddress: payeeBankAddress, payeeBankDistrict: payeeBankDistrict, payeeBankSwiftCode: payeeBankSwiftCode, payeeBankType: payeeBankType, payeeBankCode: payeeBankCode, referenceForBeneficiary: referenceForBeneficiary, profile: profile), logger: logger, on: eventLoop)
+    public func applyOutwardOrder(transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float? = nil, targetAmount: Float? = nil, payeeName: String? = nil, payeeAddress: String? = nil, payeeBankAccountType: String? = nil, payeeCountryCode: String? = nil, payeeBankName: String? = nil, payeeBankAddress: String? = nil, payeeBankDistrict: String? = nil, payeeBankSwiftCode: String? = nil, payeeBankType: String? = nil, payeeBankCode: String? = nil, referenceForBeneficiary: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOutwardOrderResponse> {
+        self.applyOutwardOrder(ApplyOutwardOrderRequest(transactionId: transactionId, pricingCurrency: pricingCurrency, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, payeeType: payeeType, payeeAccount: payeeAccount, sourceAmount: sourceAmount, targetAmount: targetAmount, payeeName: payeeName, payeeAddress: payeeAddress, payeeBankAccountType: payeeBankAccountType, payeeCountryCode: payeeCountryCode, payeeBankName: payeeBankName, payeeBankAddress: payeeBankAddress, payeeBankDistrict: payeeBankDistrict, payeeBankSwiftCode: payeeBankSwiftCode, payeeBankType: payeeBankType, payeeBankCode: payeeBankCode, referenceForBeneficiary: referenceForBeneficiary, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-汇出指令申请
     ///
     /// 跨境-汇出指令申请。通过该接口可将对接方账户中的人民币余额汇兑成外币，再汇出至指定银行账户。
     @inlinable
-    public func applyOutwardOrder(transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float? = nil, targetAmount: Float? = nil, payeeName: String? = nil, payeeAddress: String? = nil, payeeBankAccountType: String? = nil, payeeCountryCode: String? = nil, payeeBankName: String? = nil, payeeBankAddress: String? = nil, payeeBankDistrict: String? = nil, payeeBankSwiftCode: String? = nil, payeeBankType: String? = nil, payeeBankCode: String? = nil, referenceForBeneficiary: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
-        try await self.applyOutwardOrder(ApplyOutwardOrderRequest(transactionId: transactionId, pricingCurrency: pricingCurrency, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, payeeType: payeeType, payeeAccount: payeeAccount, sourceAmount: sourceAmount, targetAmount: targetAmount, payeeName: payeeName, payeeAddress: payeeAddress, payeeBankAccountType: payeeBankAccountType, payeeCountryCode: payeeCountryCode, payeeBankName: payeeBankName, payeeBankAddress: payeeBankAddress, payeeBankDistrict: payeeBankDistrict, payeeBankSwiftCode: payeeBankSwiftCode, payeeBankType: payeeBankType, payeeBankCode: payeeBankCode, referenceForBeneficiary: referenceForBeneficiary, profile: profile), logger: logger, on: eventLoop)
+    public func applyOutwardOrder(transactionId: String, pricingCurrency: String, sourceCurrency: String, targetCurrency: String, payeeType: String, payeeAccount: String, sourceAmount: Float? = nil, targetAmount: Float? = nil, payeeName: String? = nil, payeeAddress: String? = nil, payeeBankAccountType: String? = nil, payeeCountryCode: String? = nil, payeeBankName: String? = nil, payeeBankAddress: String? = nil, payeeBankDistrict: String? = nil, payeeBankSwiftCode: String? = nil, payeeBankType: String? = nil, payeeBankCode: String? = nil, referenceForBeneficiary: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOutwardOrderResponse {
+        try await self.applyOutwardOrder(ApplyOutwardOrderRequest(transactionId: transactionId, pricingCurrency: pricingCurrency, sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, payeeType: payeeType, payeeAccount: payeeAccount, sourceAmount: sourceAmount, targetAmount: targetAmount, payeeName: payeeName, payeeAddress: payeeAddress, payeeBankAccountType: payeeBankAccountType, payeeCountryCode: payeeCountryCode, payeeBankName: payeeBankName, payeeBankAddress: payeeBankAddress, payeeBankDistrict: payeeBankDistrict, payeeBankSwiftCode: payeeBankSwiftCode, payeeBankType: payeeBankType, payeeBankCode: payeeBankCode, referenceForBeneficiary: referenceForBeneficiary, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

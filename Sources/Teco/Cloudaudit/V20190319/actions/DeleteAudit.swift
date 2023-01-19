@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cloudaudit {
 
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
-        self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAudit(_ input: DeleteAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
+        self.client.execute(action: "DeleteAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(_ input: DeleteAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
-        try await self.client.execute(action: "DeleteAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAudit(_ input: DeleteAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
+        try await self.client.execute(action: "DeleteAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
-        self.deleteAudit(DeleteAuditRequest(auditName: auditName), logger: logger, on: eventLoop)
+    public func deleteAudit(auditName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditResponse> {
+        self.deleteAudit(DeleteAuditRequest(auditName: auditName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除跟踪集
     @inlinable
-    public func deleteAudit(auditName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
-        try await self.deleteAudit(DeleteAuditRequest(auditName: auditName), logger: logger, on: eventLoop)
+    public func deleteAudit(auditName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditResponse {
+        try await self.deleteAudit(DeleteAuditRequest(auditName: auditName), region: region, logger: logger, on: eventLoop)
     }
 }

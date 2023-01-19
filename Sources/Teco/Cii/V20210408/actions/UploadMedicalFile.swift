@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cii {
     ///
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
-    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadMedicalFileResponse> {
-        self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadMedicalFileResponse> {
+        self.client.execute(action: "UploadMedicalFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传医疗影像文件
     ///
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
-    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
-        try await self.client.execute(action: "UploadMedicalFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadMedicalFile(_ input: UploadMedicalFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
+        try await self.client.execute(action: "UploadMedicalFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传医疗影像文件
     ///
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
-    public func uploadMedicalFile(fileURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadMedicalFileResponse> {
-        self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), logger: logger, on: eventLoop)
+    public func uploadMedicalFile(fileURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadMedicalFileResponse> {
+        self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传医疗影像文件
     ///
     /// 上传医疗影像文件，可以用来做结构化。
     @inlinable
-    public func uploadMedicalFile(fileURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
-        try await self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), logger: logger, on: eventLoop)
+    public func uploadMedicalFile(fileURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadMedicalFileResponse {
+        try await self.uploadMedicalFile(UploadMedicalFileRequest(fileURL: fileURL), region: region, logger: logger, on: eventLoop)
     }
 }

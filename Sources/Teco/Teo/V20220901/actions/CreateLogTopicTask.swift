@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,31 +100,31 @@ extension Teo {
     ///
     /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
     @inlinable
-    public func createLogTopicTask(_ input: CreateLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogTopicTaskResponse> {
-        self.client.execute(action: "CreateLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLogTopicTask(_ input: CreateLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogTopicTaskResponse> {
+        self.client.execute(action: "CreateLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建推送任务
     ///
     /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
     @inlinable
-    public func createLogTopicTask(_ input: CreateLogTopicTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
-        try await self.client.execute(action: "CreateLogTopicTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLogTopicTask(_ input: CreateLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
+        try await self.client.execute(action: "CreateLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建推送任务
     ///
     /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
     @inlinable
-    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogTopicTaskResponse> {
-        self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), logger: logger, on: eventLoop)
+    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogTopicTaskResponse> {
+        self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建推送任务
     ///
     /// 本接口（CreateLogTopicTask）用于创建日志推送任务。
     @inlinable
-    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
-        try await self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), logger: logger, on: eventLoop)
+    public func createLogTopicTask(logSetId: String, logSetRegion: String, topicName: String, taskName: String, zoneId: String, zoneName: String, entityType: String, period: UInt64, entityList: [String]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogTopicTaskResponse {
+        try await self.createLogTopicTask(CreateLogTopicTaskRequest(logSetId: logSetId, logSetRegion: logSetRegion, topicName: topicName, taskName: taskName, zoneId: zoneId, zoneName: zoneName, entityType: entityType, period: period, entityList: entityList, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

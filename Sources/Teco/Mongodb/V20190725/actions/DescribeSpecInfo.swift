@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Mongodb {
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
-        self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
+        self.client.execute(action: "DescribeSpecInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
-        try await self.client.execute(action: "DescribeSpecInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSpecInfo(_ input: DescribeSpecInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
+        try await self.client.execute(action: "DescribeSpecInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
-        self.describeSpecInfo(DescribeSpecInfoRequest(zone: zone), logger: logger, on: eventLoop)
+    public func describeSpecInfo(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpecInfoResponse> {
+        self.describeSpecInfo(DescribeSpecInfoRequest(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库的售卖规格
     ///
     /// 本接口(DescribeSpecInfo)用于查询实例的售卖规格。
     @inlinable
-    public func describeSpecInfo(zone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
-        try await self.describeSpecInfo(DescribeSpecInfoRequest(zone: zone), logger: logger, on: eventLoop)
+    public func describeSpecInfo(zone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpecInfoResponse {
+        try await self.describeSpecInfo(DescribeSpecInfoRequest(zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

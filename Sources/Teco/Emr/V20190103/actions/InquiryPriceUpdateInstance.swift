@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,25 +105,25 @@ extension Emr {
 
     /// 变配询价
     @inlinable
-    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpdateInstanceResponse> {
-        self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpdateInstanceResponse> {
+        self.client.execute(action: "InquiryPriceUpdateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 变配询价
     @inlinable
-    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpdateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceUpdateInstance(_ input: InquiryPriceUpdateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpdateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 变配询价
     @inlinable
-    public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpdateInstanceResponse> {
-        self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), logger: logger, on: eventLoop)
+    public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpdateInstanceResponse> {
+        self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 变配询价
     @inlinable
-    public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
-        try await self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), logger: logger, on: eventLoop)
+    public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
+        try await self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

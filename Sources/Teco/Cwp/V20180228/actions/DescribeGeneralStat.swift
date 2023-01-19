@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,25 +110,25 @@ extension Cwp {
 
     /// 获取主机相关统计
     @inlinable
-    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralStatResponse> {
-        self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralStatResponse> {
+        self.client.execute(action: "DescribeGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主机相关统计
     @inlinable
-    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
-        try await self.client.execute(action: "DescribeGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGeneralStat(_ input: DescribeGeneralStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
+        try await self.client.execute(action: "DescribeGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主机相关统计
     @inlinable
-    public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralStatResponse> {
-        self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), logger: logger, on: eventLoop)
+    public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralStatResponse> {
+        self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机相关统计
     @inlinable
-    public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
-        try await self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), logger: logger, on: eventLoop)
+    public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
+        try await self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), region: region, logger: logger, on: eventLoop)
     }
 }

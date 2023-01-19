@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotcloud {
     ///
     /// 本接口（DeleteTopicRule）用于删除规则
     @inlinable
-    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
-        self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
+        self.client.execute(action: "DeleteTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
     ///
     /// 本接口（DeleteTopicRule）用于删除规则
     @inlinable
-    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
-        try await self.client.execute(action: "DeleteTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTopicRule(_ input: DeleteTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
+        try await self.client.execute(action: "DeleteTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除规则
     ///
     /// 本接口（DeleteTopicRule）用于删除规则
     @inlinable
-    public func deleteTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
-        self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    public func deleteTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
+        self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
     ///
     /// 本接口（DeleteTopicRule）用于删除规则
     @inlinable
-    public func deleteTopicRule(ruleName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
-        try await self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), logger: logger, on: eventLoop)
+    public func deleteTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
+        try await self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

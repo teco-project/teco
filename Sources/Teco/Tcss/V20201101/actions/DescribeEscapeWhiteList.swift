@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Tcss {
 
     /// 查询逃逸白名单
     @inlinable
-    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeWhiteListResponse> {
-        self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeWhiteListResponse> {
+        self.client.execute(action: "DescribeEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询逃逸白名单
     @inlinable
-    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
-        try await self.client.execute(action: "DescribeEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEscapeWhiteList(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
+        try await self.client.execute(action: "DescribeEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询逃逸白名单
     @inlinable
-    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeWhiteListResponse> {
-        self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeWhiteListResponse> {
+        self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询逃逸白名单
     @inlinable
-    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
-        try await self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
+        try await self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

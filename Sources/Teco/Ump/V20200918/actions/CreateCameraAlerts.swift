@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ump {
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
-        self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
+        self.client.execute(action: "CreateCameraAlerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
-        try await self.client.execute(action: "CreateCameraAlerts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCameraAlerts(_ input: CreateCameraAlertsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
+        try await self.client.execute(action: "CreateCameraAlerts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
-        self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), logger: logger, on: eventLoop)
+    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraAlertsResponse> {
+        self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报相机告警信息
     ///
     /// 上报相机移动、遮挡等告警信息
     @inlinable
-    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
-        try await self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), logger: logger, on: eventLoop)
+    public func createCameraAlerts(alerts: [CreateCameraAlertAlert]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraAlertsResponse {
+        try await self.createCameraAlerts(CreateCameraAlertsRequest(alerts: alerts), region: region, logger: logger, on: eventLoop)
     }
 }

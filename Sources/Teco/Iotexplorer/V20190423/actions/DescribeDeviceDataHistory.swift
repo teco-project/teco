@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Iotexplorer {
     ///
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
-    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataHistoryResponse> {
-        self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataHistoryResponse> {
+        self.client.execute(action: "DescribeDeviceDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
     ///
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
-    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
-        try await self.client.execute(action: "DescribeDeviceDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceDataHistory(_ input: DescribeDeviceDataHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
+        try await self.client.execute(action: "DescribeDeviceDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备历史数据
     ///
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
-    public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataHistoryResponse> {
-        self.describeDeviceDataHistory(DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), logger: logger, on: eventLoop)
+    public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: Int64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataHistoryResponse> {
+        self.describeDeviceDataHistory(DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
     ///
     /// 获取设备在指定时间范围内上报的历史数据。
     @inlinable
-    public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
-        try await self.describeDeviceDataHistory(DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), logger: logger, on: eventLoop)
+    public func describeDeviceDataHistory(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, fieldName: String, limit: Int64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataHistoryResponse {
+        try await self.describeDeviceDataHistory(DescribeDeviceDataHistoryRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, fieldName: fieldName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 }

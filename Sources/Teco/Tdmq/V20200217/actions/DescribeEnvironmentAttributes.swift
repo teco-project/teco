@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Tdmq {
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
-        self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
+        self.client.execute(action: "DescribeEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间属性
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
-        try await self.client.execute(action: "DescribeEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvironmentAttributes(_ input: DescribeEnvironmentAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
+        try await self.client.execute(action: "DescribeEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取命名空间属性
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
-        self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
+        self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间属性
     ///
     /// 获取指定命名空间的属性
     @inlinable
-    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
-        try await self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
+        try await self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

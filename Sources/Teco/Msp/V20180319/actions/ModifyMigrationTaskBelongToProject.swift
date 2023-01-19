@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Msp {
 
     /// 更改迁移任务所属项目
     @inlinable
-    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskBelongToProjectResponse> {
-        self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskBelongToProjectResponse> {
+        self.client.execute(action: "ModifyMigrationTaskBelongToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更改迁移任务所属项目
     @inlinable
-    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
-        try await self.client.execute(action: "ModifyMigrationTaskBelongToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMigrationTaskBelongToProject(_ input: ModifyMigrationTaskBelongToProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
+        try await self.client.execute(action: "ModifyMigrationTaskBelongToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更改迁移任务所属项目
     @inlinable
-    public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskBelongToProjectResponse> {
-        self.modifyMigrationTaskBelongToProject(ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskBelongToProjectResponse> {
+        self.modifyMigrationTaskBelongToProject(ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改迁移任务所属项目
     @inlinable
-    public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
-        try await self.modifyMigrationTaskBelongToProject(ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyMigrationTaskBelongToProject(taskId: String, projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskBelongToProjectResponse {
+        try await self.modifyMigrationTaskBelongToProject(ModifyMigrationTaskBelongToProjectRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

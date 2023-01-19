@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 修改任务告警规则
     @inlinable
-    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskAlarmRegularResponse> {
-        self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskAlarmRegularResponse> {
+        self.client.execute(action: "ModifyTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务告警规则
     @inlinable
-    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
-        try await self.client.execute(action: "ModifyTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTaskAlarmRegular(_ input: ModifyTaskAlarmRegularRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
+        try await self.client.execute(action: "ModifyTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改任务告警规则
     @inlinable
-    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskAlarmRegularResponse> {
-        self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskAlarmRegularResponse> {
+        self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务告警规则
     @inlinable
-    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
-        try await self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
+        try await self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

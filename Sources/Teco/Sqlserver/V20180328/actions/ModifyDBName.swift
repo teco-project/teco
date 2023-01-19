@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyDBName）用于更新数据库名。
     @inlinable
-    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBNameResponse> {
-        self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBName(_ input: ModifyDBNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBNameResponse> {
+        self.client.execute(action: "ModifyDBName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新数据库名
     ///
     /// 本接口（ModifyDBName）用于更新数据库名。
     @inlinable
-    public func modifyDBName(_ input: ModifyDBNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
-        try await self.client.execute(action: "ModifyDBName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBName(_ input: ModifyDBNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
+        try await self.client.execute(action: "ModifyDBName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新数据库名
     ///
     /// 本接口（ModifyDBName）用于更新数据库名。
     @inlinable
-    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBNameResponse> {
-        self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), logger: logger, on: eventLoop)
+    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBNameResponse> {
+        self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新数据库名
     ///
     /// 本接口（ModifyDBName）用于更新数据库名。
     @inlinable
-    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
-        try await self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), logger: logger, on: eventLoop)
+    public func modifyDBName(instanceId: String, oldDBName: String, newDBName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBNameResponse {
+        try await self.modifyDBName(ModifyDBNameRequest(instanceId: instanceId, oldDBName: oldDBName, newDBName: newDBName), region: region, logger: logger, on: eventLoop)
     }
 }

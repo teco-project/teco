@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotvideo {
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable
-    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
-        self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
+        self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable
-    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
-        try await self.client.execute(action: "RunTestOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
+        try await self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable
-    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
-        self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), logger: logger, on: eventLoop)
+    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
+        self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
     @inlinable
-    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
-        try await self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), logger: logger, on: eventLoop)
+    public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
+        try await self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Wedata {
     ///
     /// 数据质量概览页面趋势变化接口
     @inlinable
-    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrendStatResponse> {
-        self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrendStat(_ input: DescribeTrendStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrendStatResponse> {
+        self.client.execute(action: "DescribeTrendStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量概览页面趋势接口
     ///
     /// 数据质量概览页面趋势变化接口
     @inlinable
-    public func describeTrendStat(_ input: DescribeTrendStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
-        try await self.client.execute(action: "DescribeTrendStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrendStat(_ input: DescribeTrendStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
+        try await self.client.execute(action: "DescribeTrendStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据质量概览页面趋势接口
     ///
     /// 数据质量概览页面趋势变化接口
     @inlinable
-    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrendStatResponse> {
-        self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrendStatResponse> {
+        self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据质量概览页面趋势接口
     ///
     /// 数据质量概览页面趋势变化接口
     @inlinable
-    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
-        try await self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeTrendStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrendStatResponse {
+        try await self.describeTrendStat(DescribeTrendStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Tbm {
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
     @inlinable
-    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandPosCommentsResponse> {
-        self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandPosCommentsResponse> {
+        self.client.execute(action: "DescribeBrandPosComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌用户好评列表
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
     @inlinable
-    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
-        try await self.client.execute(action: "DescribeBrandPosComments", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBrandPosComments(_ input: DescribeBrandPosCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
+        try await self.client.execute(action: "DescribeBrandPosComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取品牌用户好评列表
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
     @inlinable
-    public func describeBrandPosComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandPosCommentsResponse> {
-        self.describeBrandPosComments(DescribeBrandPosCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeBrandPosComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandPosCommentsResponse> {
+        self.describeBrandPosComments(DescribeBrandPosCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌用户好评列表
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门好评观点列表。
     @inlinable
-    public func describeBrandPosComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
-        try await self.describeBrandPosComments(DescribeBrandPosCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeBrandPosComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandPosCommentsResponse {
+        try await self.describeBrandPosComments(DescribeBrandPosCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

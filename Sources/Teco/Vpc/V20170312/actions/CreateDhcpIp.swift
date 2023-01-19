@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Vpc {
     ///
     /// 本接口（CreateDhcpIp）用于创建DhcpIp
     @inlinable
-    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
-        self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDhcpIp(_ input: CreateDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
+        self.client.execute(action: "CreateDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建DhcpIp
     ///
     /// 本接口（CreateDhcpIp）用于创建DhcpIp
     @inlinable
-    public func createDhcpIp(_ input: CreateDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
-        try await self.client.execute(action: "CreateDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDhcpIp(_ input: CreateDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
+        try await self.client.execute(action: "CreateDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建DhcpIp
     ///
     /// 本接口（CreateDhcpIp）用于创建DhcpIp
     @inlinable
-    public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
-        self.createDhcpIp(CreateDhcpIpRequest(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), logger: logger, on: eventLoop)
+    public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDhcpIpResponse> {
+        self.createDhcpIp(CreateDhcpIpRequest(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建DhcpIp
     ///
     /// 本接口（CreateDhcpIp）用于创建DhcpIp
     @inlinable
-    public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
-        try await self.createDhcpIp(CreateDhcpIpRequest(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), logger: logger, on: eventLoop)
+    public func createDhcpIp(vpcId: String, subnetId: String, dhcpIpName: String, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDhcpIpResponse {
+        try await self.createDhcpIp(CreateDhcpIpRequest(vpcId: vpcId, subnetId: subnetId, dhcpIpName: dhcpIpName, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Postgres {
     ///
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable
-    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupConfigResponse> {
-        self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupConfigResponse> {
+        self.client.execute(action: "ModifyReadOnlyGroupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改只读组配置
     ///
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable
-    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
-        try await self.client.execute(action: "ModifyReadOnlyGroupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyReadOnlyGroupConfig(_ input: ModifyReadOnlyGroupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
+        try await self.client.execute(action: "ModifyReadOnlyGroupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改只读组配置
     ///
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable
-    public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupConfigResponse> {
-        self.modifyReadOnlyGroupConfig(ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), logger: logger, on: eventLoop)
+    public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReadOnlyGroupConfigResponse> {
+        self.modifyReadOnlyGroupConfig(ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改只读组配置
     ///
     /// 本接口(ModifyReadOnlyGroupConfig)用于更新只读组配置信息
     @inlinable
-    public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
-        try await self.modifyReadOnlyGroupConfig(ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), logger: logger, on: eventLoop)
+    public func modifyReadOnlyGroupConfig(readOnlyGroupId: String, readOnlyGroupName: String? = nil, replayLagEliminate: UInt64? = nil, replayLatencyEliminate: UInt64? = nil, maxReplayLatency: UInt64? = nil, maxReplayLag: UInt64? = nil, rebalance: UInt64? = nil, minDelayEliminateReserve: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReadOnlyGroupConfigResponse {
+        try await self.modifyReadOnlyGroupConfig(ModifyReadOnlyGroupConfigRequest(readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, replayLagEliminate: replayLagEliminate, replayLatencyEliminate: replayLatencyEliminate, maxReplayLatency: maxReplayLatency, maxReplayLag: maxReplayLag, rebalance: rebalance, minDelayEliminateReserve: minDelayEliminateReserve), region: region, logger: logger, on: eventLoop)
     }
 }

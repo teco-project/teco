@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Gaap {
     ///
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
-    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionAndPriceResponse> {
-        self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionAndPriceResponse> {
+        self.client.execute(action: "DescribeRegionAndPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取源站区域和带宽梯度价格
     ///
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
-    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
-        try await self.client.execute(action: "DescribeRegionAndPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRegionAndPrice(_ input: DescribeRegionAndPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
+        try await self.client.execute(action: "DescribeRegionAndPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取源站区域和带宽梯度价格
     ///
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
-    public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionAndPriceResponse> {
-        self.describeRegionAndPrice(DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType), logger: logger, on: eventLoop)
+    public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionAndPriceResponse> {
+        self.describeRegionAndPrice(DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站区域和带宽梯度价格
     ///
     /// 该接口（DescribeRegionAndPrice）用于获取源站区域和带宽梯度价格
     @inlinable
-    public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
-        try await self.describeRegionAndPrice(DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType), logger: logger, on: eventLoop)
+    public func describeRegionAndPrice(ipAddressVersion: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionAndPriceResponse {
+        try await self.describeRegionAndPrice(DescribeRegionAndPriceRequest(ipAddressVersion: ipAddressVersion, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Lighthouse {
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
-        self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
+        self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除快照
@@ -53,8 +53,8 @@ extension Lighthouse {
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSnapshots(_ input: DeleteSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
+        try await self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除快照
@@ -62,8 +62,8 @@ extension Lighthouse {
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
-        self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func deleteSnapshots(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
+        self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除快照
@@ -71,7 +71,7 @@ extension Lighthouse {
     /// 本接口（DeleteSnapshots）用于删除快照。
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable
-    public func deleteSnapshots(snapshotIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func deleteSnapshots(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
+        try await self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

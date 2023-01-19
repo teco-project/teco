@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
-    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
-        self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
+        self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询参数修改日志
     ///
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
-    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
-        try await self.client.execute(action: "DescribeClusterParamLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterParamLogs(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
+        try await self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询参数修改日志
     ///
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
-    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
-        self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
+        self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询参数修改日志
     ///
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
-    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
-        try await self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
+        try await self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

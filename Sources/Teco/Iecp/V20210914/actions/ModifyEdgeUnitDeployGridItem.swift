@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iecp {
 
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
-        self.client.execute(action: "ModifyEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
+        self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
-        try await self.client.execute(action: "ModifyEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
+        try await self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
-        self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
+        self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元Grid部署应用副本数
     @inlinable
-    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
-        try await self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
+        try await self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

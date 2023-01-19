@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Gaap {
 
     /// 开启域名解析
     @inlinable
-    public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
-        self.client.execute(action: "EnableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
+        self.client.execute(action: "EnableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启域名解析
     @inlinable
-    public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
-        try await self.client.execute(action: "EnableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
+        try await self.client.execute(action: "EnableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启域名解析
     @inlinable
-    public func enableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
-        self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func enableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
+        self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启域名解析
     @inlinable
-    public func enableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
-        try await self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func enableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
+        try await self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

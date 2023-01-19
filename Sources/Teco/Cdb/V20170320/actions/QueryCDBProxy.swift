@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cdb {
 
     /// 查询代理详情
     @inlinable
-    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCDBProxyResponse> {
-        self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCDBProxy(_ input: QueryCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCDBProxyResponse> {
+        self.client.execute(action: "QueryCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询代理详情
     @inlinable
-    public func queryCDBProxy(_ input: QueryCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
-        try await self.client.execute(action: "QueryCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCDBProxy(_ input: QueryCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
+        try await self.client.execute(action: "QueryCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询代理详情
     @inlinable
-    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCDBProxyResponse> {
-        self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCDBProxyResponse> {
+        self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询代理详情
     @inlinable
-    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
-        try await self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func queryCDBProxy(instanceId: String, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCDBProxyResponse {
+        try await self.queryCDBProxy(QueryCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

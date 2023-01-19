@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Cwp {
 
     /// 导出资产管理内核模块列表
     @inlinable
-    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetCoreModuleListResponse> {
-        self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetCoreModuleListResponse> {
+        self.client.execute(action: "ExportAssetCoreModuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出资产管理内核模块列表
     @inlinable
-    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
-        try await self.client.execute(action: "ExportAssetCoreModuleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportAssetCoreModuleList(_ input: ExportAssetCoreModuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
+        try await self.client.execute(action: "ExportAssetCoreModuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出资产管理内核模块列表
     @inlinable
-    public func exportAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetCoreModuleListResponse> {
-        self.exportAssetCoreModuleList(ExportAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func exportAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetCoreModuleListResponse> {
+        self.exportAssetCoreModuleList(ExportAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出资产管理内核模块列表
     @inlinable
-    public func exportAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
-        try await self.exportAssetCoreModuleList(ExportAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func exportAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetCoreModuleListResponse {
+        try await self.exportAssetCoreModuleList(ExportAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

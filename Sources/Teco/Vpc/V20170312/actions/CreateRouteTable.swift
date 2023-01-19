@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Vpc {
     /// * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
-        self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRouteTable(_ input: CreateRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
+        self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建路由表
@@ -69,8 +69,8 @@ extension Vpc {
     /// * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createRouteTable(_ input: CreateRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
-        try await self.client.execute(action: "CreateRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRouteTable(_ input: CreateRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
+        try await self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建路由表
@@ -79,8 +79,8 @@ extension Vpc {
     /// * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
-        self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), logger: logger, on: eventLoop)
+    public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
+        self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建路由表
@@ -89,7 +89,7 @@ extension Vpc {
     /// * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
-        try await self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), logger: logger, on: eventLoop)
+    public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
+        try await self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

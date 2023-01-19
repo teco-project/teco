@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Tcss {
     ///
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
-    public func describeAssetImageRiskListExport(_ input: DescribeAssetImageRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRiskListExportResponse> {
-        self.client.execute(action: "DescribeAssetImageRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageRiskListExport(_ input: DescribeAssetImageRiskListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRiskListExportResponse> {
+        self.client.execute(action: "DescribeAssetImageRiskListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像风险列表导出
     ///
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
-    public func describeAssetImageRiskListExport(_ input: DescribeAssetImageRiskListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageRiskListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageRiskListExport(_ input: DescribeAssetImageRiskListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageRiskListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像风险列表导出
     ///
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
-    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRiskListExportResponse> {
-        self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRiskListExportResponse> {
+        self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像风险列表导出
     ///
     /// 容器安全搜索查询镜像风险列表导出
     @inlinable
-    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
-        try await self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageRiskListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRiskListExportResponse {
+        try await self.describeAssetImageRiskListExport(DescribeAssetImageRiskListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

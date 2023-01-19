@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 批量预注册节点
     @inlinable
-    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeBatchResponse> {
-        self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeBatchResponse> {
+        self.client.execute(action: "CreateEdgeNodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量预注册节点
     @inlinable
-    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
-        try await self.client.execute(action: "CreateEdgeNodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeNodeBatch(_ input: CreateEdgeNodeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
+        try await self.client.execute(action: "CreateEdgeNodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量预注册节点
     @inlinable
-    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeBatchResponse> {
-        self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), logger: logger, on: eventLoop)
+    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeBatchResponse> {
+        self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量预注册节点
     @inlinable
-    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
-        try await self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), logger: logger, on: eventLoop)
+    public func createEdgeNodeBatch(edgeUnitId: UInt64, nodes: [DracoNodeInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeBatchResponse {
+        try await self.createEdgeNodeBatch(CreateEdgeNodeBatchRequest(edgeUnitId: edgeUnitId, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 }

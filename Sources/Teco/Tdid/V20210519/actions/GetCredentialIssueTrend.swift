@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tdid {
 
     /// 凭证颁发趋势
     @inlinable
-    public func getCredentialIssueTrend(_ input: GetCredentialIssueTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueTrendResponse> {
-        self.client.execute(action: "GetCredentialIssueTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCredentialIssueTrend(_ input: GetCredentialIssueTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueTrendResponse> {
+        self.client.execute(action: "GetCredentialIssueTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发趋势
     @inlinable
-    public func getCredentialIssueTrend(_ input: GetCredentialIssueTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
-        try await self.client.execute(action: "GetCredentialIssueTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCredentialIssueTrend(_ input: GetCredentialIssueTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
+        try await self.client.execute(action: "GetCredentialIssueTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证颁发趋势
     @inlinable
-    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueTrendResponse> {
-        self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueTrendResponse> {
+        self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发趋势
     @inlinable
-    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
-        try await self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialIssueTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueTrendResponse {
+        try await self.getCredentialIssueTrend(GetCredentialIssueTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

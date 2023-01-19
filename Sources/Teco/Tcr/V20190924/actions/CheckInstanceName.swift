@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcr {
 
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
-        self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkInstanceName(_ input: CheckInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
+        self.client.execute(action: "CheckInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(_ input: CheckInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
-        try await self.client.execute(action: "CheckInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkInstanceName(_ input: CheckInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
+        try await self.client.execute(action: "CheckInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(registryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
-        self.checkInstanceName(CheckInstanceNameRequest(registryName: registryName), logger: logger, on: eventLoop)
+    public func checkInstanceName(registryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceNameResponse> {
+        self.checkInstanceName(CheckInstanceNameRequest(registryName: registryName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查待创建的实例名称是否符合规范
     @inlinable
-    public func checkInstanceName(registryName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
-        try await self.checkInstanceName(CheckInstanceNameRequest(registryName: registryName), logger: logger, on: eventLoop)
+    public func checkInstanceName(registryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceNameResponse {
+        try await self.checkInstanceName(CheckInstanceNameRequest(registryName: registryName), region: region, logger: logger, on: eventLoop)
     }
 }

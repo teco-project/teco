@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cdn {
 
     /// DDoS统计数据查询
     @inlinable
-    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDataResponse> {
-        self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSData(_ input: DescribeDDoSDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDataResponse> {
+        self.client.execute(action: "DescribeDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DDoS统计数据查询
     @inlinable
-    public func describeDDoSData(_ input: DescribeDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
-        try await self.client.execute(action: "DescribeDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSData(_ input: DescribeDDoSDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
+        try await self.client.execute(action: "DescribeDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DDoS统计数据查询
     @inlinable
-    public func describeDDoSData(startTime: String, endTime: String, interval: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDataResponse> {
-        self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), logger: logger, on: eventLoop)
+    public func describeDDoSData(startTime: String, endTime: String, interval: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDataResponse> {
+        self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// DDoS统计数据查询
     @inlinable
-    public func describeDDoSData(startTime: String, endTime: String, interval: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
-        try await self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), logger: logger, on: eventLoop)
+    public func describeDDoSData(startTime: String, endTime: String, interval: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
+        try await self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

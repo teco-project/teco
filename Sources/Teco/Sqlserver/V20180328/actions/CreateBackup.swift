@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Sqlserver {
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBackup(_ input: CreateBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
+        self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建备份
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(_ input: CreateBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.client.execute(action: "CreateBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBackup(_ input: CreateBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建备份
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), logger: logger, on: eventLoop)
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
+        self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建备份
     ///
     /// 本接口(CreateBackup)用于创建备份。
     @inlinable
-    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), logger: logger, on: eventLoop)
+    public func createBackup(strategy: Int64? = nil, dbNames: [String]? = nil, instanceId: String? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
+        try await self.createBackup(CreateBackupRequest(strategy: strategy, dbNames: dbNames, instanceId: instanceId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Gaap {
 
     /// 修改域名解析记录
     @inlinable
-    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainDnsResponse> {
-        self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainDnsResponse> {
+        self.client.execute(action: "ModifyGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名解析记录
     @inlinable
-    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
-        try await self.client.execute(action: "ModifyGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGlobalDomainDns(_ input: ModifyGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
+        try await self.client.execute(action: "ModifyGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名解析记录
     @inlinable
-    public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainDnsResponse> {
-        self.modifyGlobalDomainDns(ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), logger: logger, on: eventLoop)
+    public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainDnsResponse> {
+        self.modifyGlobalDomainDns(ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名解析记录
     @inlinable
-    public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
-        try await self.modifyGlobalDomainDns(ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), logger: logger, on: eventLoop)
+    public func modifyGlobalDomainDns(dnsRecordId: UInt64, domainId: String, nationCountryInnerCodes: [String], proxyIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainDnsResponse {
+        try await self.modifyGlobalDomainDns(ModifyGlobalDomainDnsRequest(dnsRecordId: dnsRecordId, domainId: domainId, nationCountryInnerCodes: nationCountryInnerCodes, proxyIdList: proxyIdList), region: region, logger: logger, on: eventLoop)
     }
 }

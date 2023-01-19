@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Vod {
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(_ input: DescribeMediaInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
-        self.client.execute(action: "DescribeMediaInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaInfos(_ input: DescribeMediaInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
+        self.client.execute(action: "DescribeMediaInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详细信息
@@ -99,8 +99,8 @@ extension Vod {
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(_ input: DescribeMediaInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
-        try await self.client.execute(action: "DescribeMediaInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaInfos(_ input: DescribeMediaInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
+        try await self.client.execute(action: "DescribeMediaInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取媒体详细信息
@@ -117,8 +117,8 @@ extension Vod {
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
-        self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
+        self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详细信息
@@ -135,7 +135,7 @@ extension Vod {
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
-        try await self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
+        try await self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

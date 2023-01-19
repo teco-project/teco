@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Asr {
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
-        self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAsrVocabList(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
+        self.client.execute(action: "GetAsrVocabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(_ input: GetAsrVocabListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
-        try await self.client.execute(action: "GetAsrVocabList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAsrVocabList(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
+        try await self.client.execute(action: "GetAsrVocabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
-        self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
+        self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举热词表
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
-        try await self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
+        try await self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

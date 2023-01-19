@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cdwch {
     ///
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
-    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterConfigsResponse> {
-        self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterConfigsResponse> {
+        self.client.execute(action: "ModifyClusterConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群配置文件接口
     ///
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
-    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
-        try await self.client.execute(action: "ModifyClusterConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterConfigs(_ input: ModifyClusterConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
+        try await self.client.execute(action: "ModifyClusterConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群配置文件接口
     ///
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
-    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterConfigsResponse> {
-        self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), logger: logger, on: eventLoop)
+    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterConfigsResponse> {
+        self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群配置文件接口
     ///
     /// 在集群配置页面修改集群配置文件接口，xml模式
     @inlinable
-    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
-        try await self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), logger: logger, on: eventLoop)
+    public func modifyClusterConfigs(instanceId: String, modifyConfContext: [ConfigSubmitContext], remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterConfigsResponse {
+        try await self.modifyClusterConfigs(ModifyClusterConfigsRequest(instanceId: instanceId, modifyConfContext: modifyConfContext, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

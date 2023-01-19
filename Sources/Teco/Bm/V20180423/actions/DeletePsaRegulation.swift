@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Bm {
 
     /// 删除预授权规则
     @inlinable
-    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
-        self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
+        self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除预授权规则
     @inlinable
-    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
-        try await self.client.execute(action: "DeletePsaRegulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
+        try await self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除预授权规则
     @inlinable
-    public func deletePsaRegulation(psaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
-        self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), logger: logger, on: eventLoop)
+    public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
+        self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除预授权规则
     @inlinable
-    public func deletePsaRegulation(psaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
-        try await self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), logger: logger, on: eventLoop)
+    public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
+        try await self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }
 }

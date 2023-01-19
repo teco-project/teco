@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Wedata {
 
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
-        self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
+        self.client.execute(action: "DescribeTableSchemaInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
-        try await self.client.execute(action: "DescribeTableSchemaInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTableSchemaInfo(_ input: DescribeTableSchemaInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
+        try await self.client.execute(action: "DescribeTableSchemaInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
-        self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), logger: logger, on: eventLoop)
+    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableSchemaInfoResponse> {
+        self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取表schema信息
     @inlinable
-    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
-        try await self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), logger: logger, on: eventLoop)
+    public func describeTableSchemaInfo(name: String, databaseName: String, msType: String, datasourceId: String, connectionType: String? = nil, schemaName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableSchemaInfoResponse {
+        try await self.describeTableSchemaInfo(DescribeTableSchemaInfoRequest(name: name, databaseName: databaseName, msType: msType, datasourceId: datasourceId, connectionType: connectionType, schemaName: schemaName), region: region, logger: logger, on: eventLoop)
     }
 }

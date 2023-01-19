@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Monitor {
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
-        self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
+        self.client.execute(action: "DeleteAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
-        try await self.client.execute(action: "DeleteAlarmNotices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
+        try await self.client.execute(action: "DeleteAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(module: String, noticeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
-        self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), logger: logger, on: eventLoop)
+    public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
+        self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable
-    public func deleteAlarmNotices(module: String, noticeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
-        try await self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), logger: logger, on: eventLoop)
+    public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
+        try await self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
     }
 }

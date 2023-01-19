@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cls {
 
     /// 创建采集规则配置
     @inlinable
-    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigResponse> {
-        self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConfig(_ input: CreateConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigResponse> {
+        self.client.execute(action: "CreateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建采集规则配置
     @inlinable
-    public func createConfig(_ input: CreateConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
-        try await self.client.execute(action: "CreateConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConfig(_ input: CreateConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
+        try await self.client.execute(action: "CreateConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建采集规则配置
     @inlinable
-    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigResponse> {
-        self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigResponse> {
+        self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建采集规则配置
     @inlinable
-    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
-        try await self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    public func createConfig(name: String, output: String, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigResponse {
+        try await self.createConfig(CreateConfigRequest(name: name, output: output, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
     }
 }

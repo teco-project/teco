@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dayu {
 
     /// 上传七层健康检查配置
     @inlinable
-    public func createL7HealthConfig(_ input: CreateL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7HealthConfigResponse> {
-        self.client.execute(action: "CreateL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createL7HealthConfig(_ input: CreateL7HealthConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7HealthConfigResponse> {
+        self.client.execute(action: "CreateL7HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传七层健康检查配置
     @inlinable
-    public func createL7HealthConfig(_ input: CreateL7HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7HealthConfigResponse {
-        try await self.client.execute(action: "CreateL7HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createL7HealthConfig(_ input: CreateL7HealthConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7HealthConfigResponse {
+        try await self.client.execute(action: "CreateL7HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传七层健康检查配置
     @inlinable
-    public func createL7HealthConfig(business: String, id: String, healthConfig: [L7HealthConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7HealthConfigResponse> {
-        self.createL7HealthConfig(CreateL7HealthConfigRequest(business: business, id: id, healthConfig: healthConfig), logger: logger, on: eventLoop)
+    public func createL7HealthConfig(business: String, id: String, healthConfig: [L7HealthConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7HealthConfigResponse> {
+        self.createL7HealthConfig(CreateL7HealthConfigRequest(business: business, id: id, healthConfig: healthConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传七层健康检查配置
     @inlinable
-    public func createL7HealthConfig(business: String, id: String, healthConfig: [L7HealthConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7HealthConfigResponse {
-        try await self.createL7HealthConfig(CreateL7HealthConfigRequest(business: business, id: id, healthConfig: healthConfig), logger: logger, on: eventLoop)
+    public func createL7HealthConfig(business: String, id: String, healthConfig: [L7HealthConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7HealthConfigResponse {
+        try await self.createL7HealthConfig(CreateL7HealthConfigRequest(business: business, id: id, healthConfig: healthConfig), region: region, logger: logger, on: eventLoop)
     }
 }

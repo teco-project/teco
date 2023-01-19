@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tsf {
 
     /// 创建仓库
     @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
-        self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRepository(_ input: CreateRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
+        self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建仓库
     @inlinable
-    public func createRepository(_ input: CreateRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.client.execute(action: "CreateRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRepository(_ input: CreateRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
+        try await self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建仓库
     @inlinable
-    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
-        self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
+        self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建仓库
     @inlinable
-    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), logger: logger, on: eventLoop)
+    public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
+        try await self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), region: region, logger: logger, on: eventLoop)
     }
 }

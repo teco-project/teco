@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Iotvideo {
 
     /// 获取设备上下线日志
     @inlinable
-    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStatusLogResponse> {
-        self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStatusLogResponse> {
+        self.client.execute(action: "DescribeDeviceStatusLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备上下线日志
     @inlinable
-    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
-        try await self.client.execute(action: "DescribeDeviceStatusLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceStatusLog(_ input: DescribeDeviceStatusLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
+        try await self.client.execute(action: "DescribeDeviceStatusLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备上下线日志
     @inlinable
-    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStatusLogResponse> {
-        self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), logger: logger, on: eventLoop)
+    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStatusLogResponse> {
+        self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备上下线日志
     @inlinable
-    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
-        try await self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), logger: logger, on: eventLoop)
+    public func describeDeviceStatusLog(minTime: UInt64, maxTime: UInt64, productId: String, deviceName: String, limit: Int64? = nil, context: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStatusLogResponse {
+        try await self.describeDeviceStatusLog(DescribeDeviceStatusLogRequest(minTime: minTime, maxTime: maxTime, productId: productId, deviceName: deviceName, limit: limit, context: context), region: region, logger: logger, on: eventLoop)
     }
 }

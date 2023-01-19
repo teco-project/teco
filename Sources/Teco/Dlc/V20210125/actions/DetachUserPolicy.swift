@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dlc {
 
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
-        self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
+        self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(_ input: DetachUserPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
-        try await self.client.execute(action: "DetachUserPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachUserPolicy(_ input: DetachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
+        try await self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
-        self.detachUserPolicy(DetachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
+    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
+        self.detachUserPolicy(DetachUserPolicyRequest(userId: userId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户鉴权策略
     @inlinable
-    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
-        try await self.detachUserPolicy(DetachUserPolicyRequest(userId: userId, policySet: policySet), logger: logger, on: eventLoop)
+    public func detachUserPolicy(userId: String, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
+        try await self.detachUserPolicy(DetachUserPolicyRequest(userId: userId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 }

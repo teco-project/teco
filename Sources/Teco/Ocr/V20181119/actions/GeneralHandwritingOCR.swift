@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Ocr {
     /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralHandwritingOCRResponse> {
-        self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralHandwritingOCRResponse> {
+        self.client.execute(action: "GeneralHandwritingOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用手写体识别
@@ -90,8 +90,8 @@ extension Ocr {
     /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
-        try await self.client.execute(action: "GeneralHandwritingOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generalHandwritingOCR(_ input: GeneralHandwritingOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
+        try await self.client.execute(action: "GeneralHandwritingOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通用手写体识别
@@ -99,8 +99,8 @@ extension Ocr {
     /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalHandwritingOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, enableWordPolygon: Bool? = nil, enableDetectText: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralHandwritingOCRResponse> {
-        self.generalHandwritingOCR(GeneralHandwritingOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, enableWordPolygon: enableWordPolygon, enableDetectText: enableDetectText), logger: logger, on: eventLoop)
+    public func generalHandwritingOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, enableWordPolygon: Bool? = nil, enableDetectText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralHandwritingOCRResponse> {
+        self.generalHandwritingOCR(GeneralHandwritingOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, enableWordPolygon: enableWordPolygon, enableDetectText: enableDetectText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用手写体识别
@@ -108,7 +108,7 @@ extension Ocr {
     /// 本接口支持图片内手写体文字的检测和识别，针对手写字体无规则、字迹潦草、模糊等特点进行了识别能力的增强。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalHandwritingOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, enableWordPolygon: Bool? = nil, enableDetectText: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
-        try await self.generalHandwritingOCR(GeneralHandwritingOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, enableWordPolygon: enableWordPolygon, enableDetectText: enableDetectText), logger: logger, on: eventLoop)
+    public func generalHandwritingOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, enableWordPolygon: Bool? = nil, enableDetectText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralHandwritingOCRResponse {
+        try await self.generalHandwritingOCR(GeneralHandwritingOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, enableWordPolygon: enableWordPolygon, enableDetectText: enableDetectText), region: region, logger: logger, on: eventLoop)
     }
 }

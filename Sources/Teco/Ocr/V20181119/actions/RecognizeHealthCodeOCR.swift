@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,8 +98,8 @@ extension Ocr {
     /// 本接口支持北京、上海、广东、江苏、吉林、黑龙江、天津、辽宁、浙江、河南、四川、贵州、山东、安徽、福建、江西、湖北、湖南等省份健康码的识别，包括持码人姓名、持码人身份证号、健康码更新时间、健康码颜色、核酸检测结果、核酸检测间隔时长、核酸检测时间，疫苗接种信息，八个字段的识别结果输出。不同省市健康码显示的字段信息有所不同，上述字段的识别结果可能为空，以图片上具体展示的信息为准。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func recognizeHealthCodeOCR(_ input: RecognizeHealthCodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeHealthCodeOCRResponse> {
-        self.client.execute(action: "RecognizeHealthCodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeHealthCodeOCR(_ input: RecognizeHealthCodeOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeHealthCodeOCRResponse> {
+        self.client.execute(action: "RecognizeHealthCodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 健康码识别
@@ -107,8 +107,8 @@ extension Ocr {
     /// 本接口支持北京、上海、广东、江苏、吉林、黑龙江、天津、辽宁、浙江、河南、四川、贵州、山东、安徽、福建、江西、湖北、湖南等省份健康码的识别，包括持码人姓名、持码人身份证号、健康码更新时间、健康码颜色、核酸检测结果、核酸检测间隔时长、核酸检测时间，疫苗接种信息，八个字段的识别结果输出。不同省市健康码显示的字段信息有所不同，上述字段的识别结果可能为空，以图片上具体展示的信息为准。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func recognizeHealthCodeOCR(_ input: RecognizeHealthCodeOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeHealthCodeOCRResponse {
-        try await self.client.execute(action: "RecognizeHealthCodeOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeHealthCodeOCR(_ input: RecognizeHealthCodeOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeHealthCodeOCRResponse {
+        try await self.client.execute(action: "RecognizeHealthCodeOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 健康码识别
@@ -116,8 +116,8 @@ extension Ocr {
     /// 本接口支持北京、上海、广东、江苏、吉林、黑龙江、天津、辽宁、浙江、河南、四川、贵州、山东、安徽、福建、江西、湖北、湖南等省份健康码的识别，包括持码人姓名、持码人身份证号、健康码更新时间、健康码颜色、核酸检测结果、核酸检测间隔时长、核酸检测时间，疫苗接种信息，八个字段的识别结果输出。不同省市健康码显示的字段信息有所不同，上述字段的识别结果可能为空，以图片上具体展示的信息为准。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeHealthCodeOCRResponse> {
-        self.recognizeHealthCodeOCR(RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), logger: logger, on: eventLoop)
+    public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeHealthCodeOCRResponse> {
+        self.recognizeHealthCodeOCR(RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 健康码识别
@@ -125,7 +125,7 @@ extension Ocr {
     /// 本接口支持北京、上海、广东、江苏、吉林、黑龙江、天津、辽宁、浙江、河南、四川、贵州、山东、安徽、福建、江西、湖北、湖南等省份健康码的识别，包括持码人姓名、持码人身份证号、健康码更新时间、健康码颜色、核酸检测结果、核酸检测间隔时长、核酸检测时间，疫苗接种信息，八个字段的识别结果输出。不同省市健康码显示的字段信息有所不同，上述字段的识别结果可能为空，以图片上具体展示的信息为准。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeHealthCodeOCRResponse {
-        try await self.recognizeHealthCodeOCR(RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), logger: logger, on: eventLoop)
+    public func recognizeHealthCodeOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeHealthCodeOCRResponse {
+        try await self.recognizeHealthCodeOCR(RecognizeHealthCodeOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

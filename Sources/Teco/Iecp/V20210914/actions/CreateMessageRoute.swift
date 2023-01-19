@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Iecp {
 
     /// 创建消息路由
     @inlinable
-    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageRouteResponse> {
-        self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMessageRoute(_ input: CreateMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageRouteResponse> {
+        self.client.execute(action: "CreateMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建消息路由
     @inlinable
-    public func createMessageRoute(_ input: CreateMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
-        try await self.client.execute(action: "CreateMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMessageRoute(_ input: CreateMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
+        try await self.client.execute(action: "CreateMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建消息路由
     @inlinable
-    public func createMessageRoute(routeName: String, descript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageRouteResponse> {
-        self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), logger: logger, on: eventLoop)
+    public func createMessageRoute(routeName: String, descript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageRouteResponse> {
+        self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建消息路由
     @inlinable
-    public func createMessageRoute(routeName: String, descript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
-        try await self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), logger: logger, on: eventLoop)
+    public func createMessageRoute(routeName: String, descript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageRouteResponse {
+        try await self.createMessageRoute(CreateMessageRouteRequest(routeName: routeName, descript: descript), region: region, logger: logger, on: eventLoop)
     }
 }

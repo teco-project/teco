@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Live {
     /// 查询直播域名 Referer 黑白名单配置。
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable
-    public func describeLiveDomainReferer(_ input: DescribeLiveDomainRefererRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainRefererResponse> {
-        self.client.execute(action: "DescribeLiveDomainReferer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveDomainReferer(_ input: DescribeLiveDomainRefererRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainRefererResponse> {
+        self.client.execute(action: "DescribeLiveDomainReferer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播域名 Referer 黑白名单配置
@@ -57,8 +57,8 @@ extension Live {
     /// 查询直播域名 Referer 黑白名单配置。
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable
-    public func describeLiveDomainReferer(_ input: DescribeLiveDomainRefererRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainRefererResponse {
-        try await self.client.execute(action: "DescribeLiveDomainReferer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveDomainReferer(_ input: DescribeLiveDomainRefererRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainRefererResponse {
+        try await self.client.execute(action: "DescribeLiveDomainReferer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询直播域名 Referer 黑白名单配置
@@ -66,8 +66,8 @@ extension Live {
     /// 查询直播域名 Referer 黑白名单配置。
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable
-    public func describeLiveDomainReferer(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainRefererResponse> {
-        self.describeLiveDomainReferer(DescribeLiveDomainRefererRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeLiveDomainReferer(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainRefererResponse> {
+        self.describeLiveDomainReferer(DescribeLiveDomainRefererRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播域名 Referer 黑白名单配置
@@ -75,7 +75,7 @@ extension Live {
     /// 查询直播域名 Referer 黑白名单配置。
     /// 由于 Referer 信息包含在 http 协议中，在开启配置后，播放协议为 rtmp 或 WebRTC 不会校验 Referer 配置，仍可正常播放。如需配置 Referer 鉴权建议使用 http-flv 或 http-hls 协议播放。
     @inlinable
-    public func describeLiveDomainReferer(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainRefererResponse {
-        try await self.describeLiveDomainReferer(DescribeLiveDomainRefererRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeLiveDomainReferer(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainRefererResponse {
+        try await self.describeLiveDomainReferer(DescribeLiveDomainRefererRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

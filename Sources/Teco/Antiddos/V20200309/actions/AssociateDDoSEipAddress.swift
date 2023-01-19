@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Antiddos {
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
-        self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
+        self.client.execute(action: "AssociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
-        try await self.client.execute(action: "AssociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateDDoSEipAddress(_ input: AssociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
+        try await self.client.execute(action: "AssociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
-        self.associateDDoSEipAddress(AssociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip, cvmInstanceID: cvmInstanceID, cvmRegion: cvmRegion), logger: logger, on: eventLoop)
+    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDDoSEipAddressResponse> {
+        self.associateDDoSEipAddress(AssociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip, cvmInstanceID: cvmInstanceID, cvmRegion: cvmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定高防弹性公网IP
     ///
     /// 本接口 (AssociateDDoSEipAddress) 用于将高防弹性公网IP绑定到实例或弹性网卡的指定内网 IP 上。
     @inlinable
-    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
-        try await self.associateDDoSEipAddress(AssociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip, cvmInstanceID: cvmInstanceID, cvmRegion: cvmRegion), logger: logger, on: eventLoop)
+    public func associateDDoSEipAddress(instanceId: String, eip: String, cvmInstanceID: String, cvmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDDoSEipAddressResponse {
+        try await self.associateDDoSEipAddress(AssociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip, cvmInstanceID: cvmInstanceID, cvmRegion: cvmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

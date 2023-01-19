@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Live {
     ///
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
-    public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
-        self.client.execute(action: "DescribePlayErrorCodeDetailInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
+        self.client.execute(action: "DescribePlayErrorCodeDetailInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http错误码实时数据
     ///
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
-    public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
-        try await self.client.execute(action: "DescribePlayErrorCodeDetailInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePlayErrorCodeDetailInfoList(_ input: DescribePlayErrorCodeDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
+        try await self.client.execute(action: "DescribePlayErrorCodeDetailInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询播放http错误码实时数据
     ///
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
-    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
-        self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeDetailInfoListResponse> {
+        self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http错误码实时数据
     ///
     /// 查询下行播放错误码信息，某段时间内1分钟粒度的各http错误码出现的次数，包括4xx，5xx。
     @inlinable
-    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
-        try await self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), logger: logger, on: eventLoop)
+    public func describePlayErrorCodeDetailInfoList(startTime: String, endTime: String, granularity: UInt64, statType: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeDetailInfoListResponse {
+        try await self.describePlayErrorCodeDetailInfoList(DescribePlayErrorCodeDetailInfoListRequest(startTime: startTime, endTime: endTime, granularity: granularity, statType: statType, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea), region: region, logger: logger, on: eventLoop)
     }
 }

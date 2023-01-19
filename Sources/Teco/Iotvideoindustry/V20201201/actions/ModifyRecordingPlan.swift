@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
-    public func modifyRecordingPlan(_ input: ModifyRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordingPlanResponse> {
-        self.client.execute(action: "ModifyRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordingPlan(_ input: ModifyRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordingPlanResponse> {
+        self.client.execute(action: "ModifyRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划
     ///
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
-    public func modifyRecordingPlan(_ input: ModifyRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
-        try await self.client.execute(action: "ModifyRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordingPlan(_ input: ModifyRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
+        try await self.client.execute(action: "ModifyRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新录制计划
     ///
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
-    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordingPlanResponse> {
-        self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), logger: logger, on: eventLoop)
+    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordingPlanResponse> {
+        self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划
     ///
     /// 本接口(ModifyRecordingPlan)用于更新录制计划。
     @inlinable
-    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
-        try await self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), logger: logger, on: eventLoop)
+    public func modifyRecordingPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordingPlanResponse {
+        try await self.modifyRecordingPlan(ModifyRecordingPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

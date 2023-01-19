@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Yunjing {
 
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
-        self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportBashEvents(_ input: ExportBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
+        self.client.execute(action: "ExportBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(_ input: ExportBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
-        try await self.client.execute(action: "ExportBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportBashEvents(_ input: ExportBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
+        try await self.client.execute(action: "ExportBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
-        self.exportBashEvents(ExportBashEventsRequest(), logger: logger, on: eventLoop)
+    public func exportBashEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBashEventsResponse> {
+        self.exportBashEvents(ExportBashEventsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出高危命令事件
     @inlinable
-    public func exportBashEvents(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
-        try await self.exportBashEvents(ExportBashEventsRequest(), logger: logger, on: eventLoop)
+    public func exportBashEvents(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBashEventsResponse {
+        try await self.exportBashEvents(ExportBashEventsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

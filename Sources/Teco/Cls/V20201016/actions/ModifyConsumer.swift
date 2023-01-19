@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cls {
     ///
     /// 本接口用于修改投递任务
     @inlinable
-    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
-        self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyConsumer(_ input: ModifyConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
+        self.client.execute(action: "ModifyConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
     @inlinable
-    public func modifyConsumer(_ input: ModifyConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
-        try await self.client.execute(action: "ModifyConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyConsumer(_ input: ModifyConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
+        try await self.client.execute(action: "ModifyConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
     @inlinable
-    public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
-        self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), logger: logger, on: eventLoop)
+    public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
+        self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
     @inlinable
-    public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
-        try await self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), logger: logger, on: eventLoop)
+    public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
+        try await self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
-        self.client.execute(action: "ChannelBatchCancelFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
+        self.client.execute(action: "ChannelBatchCancelFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 电子签渠道版-根据签署流程id批量撤销合同
@@ -85,8 +85,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
-        try await self.client.execute(action: "ChannelBatchCancelFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelBatchCancelFlows(_ input: ChannelBatchCancelFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
+        try await self.client.execute(action: "ChannelBatchCancelFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 电子签渠道版-根据签署流程id批量撤销合同
@@ -96,8 +96,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
-        self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelBatchCancelFlowsResponse> {
+        self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 电子签渠道版-根据签署流程id批量撤销合同
@@ -107,7 +107,7 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
-        try await self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelBatchCancelFlows(agent: Agent, flowIds: [String], cancelMessage: String? = nil, cancelMessageFormat: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelBatchCancelFlowsResponse {
+        try await self.channelBatchCancelFlows(ChannelBatchCancelFlowsRequest(agent: agent, flowIds: flowIds, cancelMessage: cancelMessage, cancelMessageFormat: cancelMessageFormat, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

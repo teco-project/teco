@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension As {
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
     @inlinable
-    public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
-        self.client.execute(action: "EnableAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
+        self.client.execute(action: "EnableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
     @inlinable
-    public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
-        try await self.client.execute(action: "EnableAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
+        try await self.client.execute(action: "EnableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
     @inlinable
-    public func enableAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
-        self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    public func enableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
+        self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
     @inlinable
-    public func enableAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
-        try await self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    public func enableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
+        try await self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

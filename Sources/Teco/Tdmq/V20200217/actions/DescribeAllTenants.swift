@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Tdmq {
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
-        self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllTenants(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
+        self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(_ input: DescribeAllTenantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
-        try await self.client.execute(action: "DescribeAllTenants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllTenants(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
+        try await self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
-        self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
+        self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
-        try await self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), logger: logger, on: eventLoop)
+    public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
+        try await self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Yunjing {
     ///
     /// 根据Ids删除高危命令事件
     @inlinable
-    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashEventsResponse> {
-        self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBashEvents(_ input: DeleteBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashEventsResponse> {
+        self.client.execute(action: "DeleteBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除高危命令事件
     ///
     /// 根据Ids删除高危命令事件
     @inlinable
-    public func deleteBashEvents(_ input: DeleteBashEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
-        try await self.client.execute(action: "DeleteBashEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBashEvents(_ input: DeleteBashEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
+        try await self.client.execute(action: "DeleteBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除高危命令事件
     ///
     /// 根据Ids删除高危命令事件
     @inlinable
-    public func deleteBashEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashEventsResponse> {
-        self.deleteBashEvents(DeleteBashEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteBashEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashEventsResponse> {
+        self.deleteBashEvents(DeleteBashEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除高危命令事件
     ///
     /// 根据Ids删除高危命令事件
     @inlinable
-    public func deleteBashEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
-        try await self.deleteBashEvents(DeleteBashEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteBashEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashEventsResponse {
+        try await self.deleteBashEvents(DeleteBashEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

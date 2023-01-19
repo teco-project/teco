@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
-    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePassWordResponse> {
-        self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePassWordResponse> {
+        self.client.execute(action: "UpdateDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备密码
     ///
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
-    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
-        try await self.client.execute(action: "UpdateDevicePassWord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDevicePassWord(_ input: UpdateDevicePassWordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
+        try await self.client.execute(action: "UpdateDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备密码
     ///
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
-    public func updateDevicePassWord(passWord: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePassWordResponse> {
-        self.updateDevicePassWord(UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func updateDevicePassWord(passWord: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePassWordResponse> {
+        self.updateDevicePassWord(UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备密码
     ///
     /// 本接口(UpdateDevicePassWord)用于修改设备密码。
     @inlinable
-    public func updateDevicePassWord(passWord: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
-        try await self.updateDevicePassWord(UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func updateDevicePassWord(passWord: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePassWordResponse {
+        try await self.updateDevicePassWord(UpdateDevicePassWordRequest(passWord: passWord, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

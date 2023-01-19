@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ape {
     ///
     /// 核销图片，获取原图URL地址
     @inlinable
-    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndDownloadsResponse> {
-        self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndDownloadsResponse> {
+        self.client.execute(action: "CreateOrderAndDownloads", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取图片下载地址
     ///
     /// 核销图片，获取原图URL地址
     @inlinable
-    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
-        try await self.client.execute(action: "CreateOrderAndDownloads", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOrderAndDownloads(_ input: CreateOrderAndDownloadsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
+        try await self.client.execute(action: "CreateOrderAndDownloads", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取图片下载地址
     ///
     /// 核销图片，获取原图URL地址
     @inlinable
-    public func createOrderAndDownloads(imageInfos: [ImageInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndDownloadsResponse> {
-        self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), logger: logger, on: eventLoop)
+    public func createOrderAndDownloads(imageInfos: [ImageInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndDownloadsResponse> {
+        self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片下载地址
     ///
     /// 核销图片，获取原图URL地址
     @inlinable
-    public func createOrderAndDownloads(imageInfos: [ImageInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
-        try await self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), logger: logger, on: eventLoop)
+    public func createOrderAndDownloads(imageInfos: [ImageInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
+        try await self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), region: region, logger: logger, on: eventLoop)
     }
 }

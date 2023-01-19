@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Tcss {
     ///
     /// 查询运行时反弹shell事件详细信息
     @inlinable
-    public func describeReverseShellDetail(_ input: DescribeReverseShellDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellDetailResponse> {
-        self.client.execute(action: "DescribeReverseShellDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReverseShellDetail(_ input: DescribeReverseShellDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellDetailResponse> {
+        self.client.execute(action: "DescribeReverseShellDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell事件详细信息
     ///
     /// 查询运行时反弹shell事件详细信息
     @inlinable
-    public func describeReverseShellDetail(_ input: DescribeReverseShellDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
-        try await self.client.execute(action: "DescribeReverseShellDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReverseShellDetail(_ input: DescribeReverseShellDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
+        try await self.client.execute(action: "DescribeReverseShellDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时反弹shell事件详细信息
     ///
     /// 查询运行时反弹shell事件详细信息
     @inlinable
-    public func describeReverseShellDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellDetailResponse> {
-        self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeReverseShellDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellDetailResponse> {
+        self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell事件详细信息
     ///
     /// 查询运行时反弹shell事件详细信息
     @inlinable
-    public func describeReverseShellDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
-        try await self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeReverseShellDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellDetailResponse {
+        try await self.describeReverseShellDetail(DescribeReverseShellDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

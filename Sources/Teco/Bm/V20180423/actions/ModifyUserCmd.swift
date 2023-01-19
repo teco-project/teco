@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Bm {
 
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
-        self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUserCmd(_ input: ModifyUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
+        self.client.execute(action: "ModifyUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(_ input: ModifyUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
-        try await self.client.execute(action: "ModifyUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUserCmd(_ input: ModifyUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
+        try await self.client.execute(action: "ModifyUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
-        self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
+        self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义脚本
     @inlinable
-    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
-        try await self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
+        try await self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

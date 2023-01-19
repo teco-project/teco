@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Batch {
     ///
     /// 用于查询任务模板信息
     @inlinable
-    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskTemplatesResponse> {
-        self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskTemplatesResponse> {
+        self.client.execute(action: "DescribeTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务模板
     ///
     /// 用于查询任务模板信息
     @inlinable
-    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
-        try await self.client.execute(action: "DescribeTaskTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskTemplates(_ input: DescribeTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
+        try await self.client.execute(action: "DescribeTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取任务模板
     ///
     /// 用于查询任务模板信息
     @inlinable
-    public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskTemplatesResponse> {
-        self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskTemplatesResponse> {
+        self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务模板
     ///
     /// 用于查询任务模板信息
     @inlinable
-    public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
-        try await self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
+        try await self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

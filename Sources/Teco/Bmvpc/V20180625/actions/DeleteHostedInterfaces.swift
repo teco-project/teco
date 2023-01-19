@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmvpc {
     ///
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
-    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfacesResponse> {
-        self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfacesResponse> {
+        self.client.execute(action: "DeleteHostedInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 托管机器移除子网(批量接口)
     ///
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
-    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
-        try await self.client.execute(action: "DeleteHostedInterfaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteHostedInterfaces(_ input: DeleteHostedInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
+        try await self.client.execute(action: "DeleteHostedInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 托管机器移除子网(批量接口)
     ///
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
-    public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfacesResponse> {
-        self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfacesResponse> {
+        self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 托管机器移除子网(批量接口)
     ///
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
-    public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
-        try await self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
+        try await self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 }

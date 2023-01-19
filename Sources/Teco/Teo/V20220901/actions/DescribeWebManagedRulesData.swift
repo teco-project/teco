@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,31 +104,31 @@ extension Teo {
     ///
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
-    public func describeWebManagedRulesData(_ input: DescribeWebManagedRulesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesDataResponse> {
-        self.client.execute(action: "DescribeWebManagedRulesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebManagedRulesData(_ input: DescribeWebManagedRulesDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesDataResponse> {
+        self.client.execute(action: "DescribeWebManagedRulesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询WAF攻击时序数据
     ///
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
-    public func describeWebManagedRulesData(_ input: DescribeWebManagedRulesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesDataResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebManagedRulesData(_ input: DescribeWebManagedRulesDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesDataResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询WAF攻击时序数据
     ///
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
-    public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesDataResponse> {
-        self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), logger: logger, on: eventLoop)
+    public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesDataResponse> {
+        self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询WAF攻击时序数据
     ///
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
-    public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesDataResponse {
-        try await self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), logger: logger, on: eventLoop)
+    public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesDataResponse {
+        try await self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

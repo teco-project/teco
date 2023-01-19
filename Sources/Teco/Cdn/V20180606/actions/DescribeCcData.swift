@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,25 +106,25 @@ extension Cdn {
 
     /// CC统计数据查询
     @inlinable
-    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcDataResponse> {
-        self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCcData(_ input: DescribeCcDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcDataResponse> {
+        self.client.execute(action: "DescribeCcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// CC统计数据查询
     @inlinable
-    public func describeCcData(_ input: DescribeCcDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
-        try await self.client.execute(action: "DescribeCcData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCcData(_ input: DescribeCcDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
+        try await self.client.execute(action: "DescribeCcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// CC统计数据查询
     @inlinable
-    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcDataResponse> {
-        self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), logger: logger, on: eventLoop)
+    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcDataResponse> {
+        self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// CC统计数据查询
     @inlinable
-    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
-        try await self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), logger: logger, on: eventLoop)
+    public func describeCcData(startTime: String, endTime: String, interval: String? = nil, domain: String? = nil, actionName: String? = nil, domains: [String]? = nil, source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcDataResponse {
+        try await self.describeCcData(DescribeCcDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, actionName: actionName, domains: domains, source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

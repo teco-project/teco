@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Cloudaudit {
 
     /// 修改云审计跟踪
     @inlinable
-    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditTrackResponse> {
-        self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditTrackResponse> {
+        self.client.execute(action: "ModifyAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云审计跟踪
     @inlinable
-    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
-        try await self.client.execute(action: "ModifyAuditTrack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAuditTrack(_ input: ModifyAuditTrackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
+        try await self.client.execute(action: "ModifyAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云审计跟踪
     @inlinable
-    public func modifyAuditTrack(trackId: UInt64, name: String? = nil, actionType: String? = nil, resourceType: String? = nil, status: UInt64? = nil, eventNames: [String]? = nil, storage: Storage? = nil, trackForAllMembers: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditTrackResponse> {
-        self.modifyAuditTrack(ModifyAuditTrackRequest(trackId: trackId, name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), logger: logger, on: eventLoop)
+    public func modifyAuditTrack(trackId: UInt64, name: String? = nil, actionType: String? = nil, resourceType: String? = nil, status: UInt64? = nil, eventNames: [String]? = nil, storage: Storage? = nil, trackForAllMembers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditTrackResponse> {
+        self.modifyAuditTrack(ModifyAuditTrackRequest(trackId: trackId, name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云审计跟踪
     @inlinable
-    public func modifyAuditTrack(trackId: UInt64, name: String? = nil, actionType: String? = nil, resourceType: String? = nil, status: UInt64? = nil, eventNames: [String]? = nil, storage: Storage? = nil, trackForAllMembers: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
-        try await self.modifyAuditTrack(ModifyAuditTrackRequest(trackId: trackId, name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), logger: logger, on: eventLoop)
+    public func modifyAuditTrack(trackId: UInt64, name: String? = nil, actionType: String? = nil, resourceType: String? = nil, status: UInt64? = nil, eventNames: [String]? = nil, storage: Storage? = nil, trackForAllMembers: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditTrackResponse {
+        try await self.modifyAuditTrack(ModifyAuditTrackRequest(trackId: trackId, name: name, actionType: actionType, resourceType: resourceType, status: status, eventNames: eventNames, storage: storage, trackForAllMembers: trackForAllMembers), region: region, logger: logger, on: eventLoop)
     }
 }

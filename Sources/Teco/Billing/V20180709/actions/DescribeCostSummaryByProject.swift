@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Billing {
 
     /// 获取按项目汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProjectResponse> {
-        self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProjectResponse> {
+        self.client.execute(action: "DescribeCostSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按项目汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCostSummaryByProject(_ input: DescribeCostSummaryByProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按项目汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProject(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProjectResponse> {
-        self.describeCostSummaryByProject(DescribeCostSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByProject(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProjectResponse> {
+        self.describeCostSummaryByProject(DescribeCostSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按项目汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProject(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
-        try await self.describeCostSummaryByProject(DescribeCostSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByProject(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProjectResponse {
+        try await self.describeCostSummaryByProject(DescribeCostSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 }

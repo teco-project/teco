@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Live {
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
-        self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
+        self.client.execute(action: "DescribeLiveTranscodeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveTranscodeTemplates(_ input: DescribeLiveTranscodeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
-        self.describeLiveTranscodeTemplates(DescribeLiveTranscodeTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplatesResponse> {
+        self.describeLiveTranscodeTemplates(DescribeLiveTranscodeTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转码模板列表
     ///
     /// 获取转码模板列表。
     @inlinable
-    public func describeLiveTranscodeTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
-        try await self.describeLiveTranscodeTemplates(DescribeLiveTranscodeTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplatesResponse {
+        try await self.describeLiveTranscodeTemplates(DescribeLiveTranscodeTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

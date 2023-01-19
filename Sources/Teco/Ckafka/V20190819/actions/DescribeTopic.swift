@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Ckafka {
     /// 接口请求域名：https://ckafka.tencentcloudapi.com
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
-    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicResponse> {
-        self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopic(_ input: DescribeTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicResponse> {
+        self.client.execute(action: "DescribeTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主题列表
@@ -78,8 +78,8 @@ extension Ckafka {
     /// 接口请求域名：https://ckafka.tencentcloudapi.com
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
-    public func describeTopic(_ input: DescribeTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
-        try await self.client.execute(action: "DescribeTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopic(_ input: DescribeTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
+        try await self.client.execute(action: "DescribeTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主题列表
@@ -87,8 +87,8 @@ extension Ckafka {
     /// 接口请求域名：https://ckafka.tencentcloudapi.com
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
-    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicResponse> {
-        self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), logger: logger, on: eventLoop)
+    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicResponse> {
+        self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主题列表
@@ -96,7 +96,7 @@ extension Ckafka {
     /// 接口请求域名：https://ckafka.tencentcloudapi.com
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
     @inlinable
-    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
-        try await self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), logger: logger, on: eventLoop)
+    public func describeTopic(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicResponse {
+        try await self.describeTopic(DescribeTopicRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
     }
 }

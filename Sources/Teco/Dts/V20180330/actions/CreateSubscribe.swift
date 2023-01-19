@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Dts {
     ///
     /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
     @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
-        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubscribe(_ input: CreateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
+        self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅对象
     ///
     /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
     @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubscribe(_ input: CreateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建订阅对象
     ///
     /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
     @inlinable
-    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
-        self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), logger: logger, on: eventLoop)
+    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
+        self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅对象
     ///
     /// 本接口(CreateSubscribe)用于创建一个数据订阅实例。
     @inlinable
-    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), logger: logger, on: eventLoop)
+    public func createSubscribe(product: String, payType: Int64, duration: Int64? = nil, count: Int64? = nil, autoRenew: Int64? = nil, tags: [TagItem]? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.createSubscribe(CreateSubscribeRequest(product: product, payType: payType, duration: duration, count: count, autoRenew: autoRenew, tags: tags, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

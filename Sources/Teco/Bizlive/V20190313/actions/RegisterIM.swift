@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Bizlive {
 
     /// 注册聊天室
     @inlinable
-    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIMResponse> {
-        self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerIM(_ input: RegisterIMRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIMResponse> {
+        self.client.execute(action: "RegisterIM", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册聊天室
     @inlinable
-    public func registerIM(_ input: RegisterIMRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
-        try await self.client.execute(action: "RegisterIM", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerIM(_ input: RegisterIMRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
+        try await self.client.execute(action: "RegisterIM", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册聊天室
     @inlinable
-    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIMResponse> {
-        self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), logger: logger, on: eventLoop)
+    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIMResponse> {
+        self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册聊天室
     @inlinable
-    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
-        try await self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), logger: logger, on: eventLoop)
+    public func registerIM(nickname: String, userId: String, headImgUrl: String? = nil, level: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIMResponse {
+        try await self.registerIM(RegisterIMRequest(nickname: nickname, userId: userId, headImgUrl: headImgUrl, level: level), region: region, logger: logger, on: eventLoop)
     }
 }

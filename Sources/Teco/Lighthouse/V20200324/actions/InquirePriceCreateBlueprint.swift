@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Lighthouse {
     ///
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
-    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateBlueprintResponse> {
-        self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateBlueprintResponse> {
+        self.client.execute(action: "InquirePriceCreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像询价
     ///
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
-    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
-        try await self.client.execute(action: "InquirePriceCreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreateBlueprint(_ input: InquirePriceCreateBlueprintRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
+        try await self.client.execute(action: "InquirePriceCreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像询价
     ///
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
-    public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateBlueprintResponse> {
-        self.inquirePriceCreateBlueprint(InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount), logger: logger, on: eventLoop)
+    public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateBlueprintResponse> {
+        self.inquirePriceCreateBlueprint(InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像询价
     ///
     /// 本接口 (InquirePriceCreateBlueprint) 用于创建镜像询价。
     @inlinable
-    public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
-        try await self.inquirePriceCreateBlueprint(InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount), logger: logger, on: eventLoop)
+    public func inquirePriceCreateBlueprint(blueprintCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateBlueprintResponse {
+        try await self.inquirePriceCreateBlueprint(InquirePriceCreateBlueprintRequest(blueprintCount: blueprintCount), region: region, logger: logger, on: eventLoop)
     }
 }

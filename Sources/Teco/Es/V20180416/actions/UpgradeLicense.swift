@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Es {
 
     /// 升级ES商业特性
     @inlinable
-    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLicenseResponse> {
-        self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeLicense(_ input: UpgradeLicenseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLicenseResponse> {
+        self.client.execute(action: "UpgradeLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级ES商业特性
     @inlinable
-    public func upgradeLicense(_ input: UpgradeLicenseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
-        try await self.client.execute(action: "UpgradeLicense", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeLicense(_ input: UpgradeLicenseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
+        try await self.client.execute(action: "UpgradeLicense", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级ES商业特性
     @inlinable
-    public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLicenseResponse> {
-        self.upgradeLicense(UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLicenseResponse> {
+        self.upgradeLicense(UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级ES商业特性
     @inlinable
-    public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
-        try await self.upgradeLicense(UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func upgradeLicense(instanceId: String, licenseType: String, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, basicSecurityType: UInt64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLicenseResponse {
+        try await self.upgradeLicense(UpgradeLicenseRequest(instanceId: instanceId, licenseType: licenseType, autoVoucher: autoVoucher, voucherIds: voucherIds, basicSecurityType: basicSecurityType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

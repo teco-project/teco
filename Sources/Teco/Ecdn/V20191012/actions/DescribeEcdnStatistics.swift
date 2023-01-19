@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,8 +110,8 @@ extension Ecdn {
     /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
-    public func describeEcdnStatistics(_ input: DescribeEcdnStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnStatisticsResponse> {
-        self.client.execute(action: "DescribeEcdnStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEcdnStatistics(_ input: DescribeEcdnStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnStatisticsResponse> {
+        self.client.execute(action: "DescribeEcdnStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 访问数据查询
@@ -125,8 +125,8 @@ extension Ecdn {
     /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
-    public func describeEcdnStatistics(_ input: DescribeEcdnStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
-        try await self.client.execute(action: "DescribeEcdnStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEcdnStatistics(_ input: DescribeEcdnStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
+        try await self.client.execute(action: "DescribeEcdnStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 访问数据查询
@@ -140,8 +140,8 @@ extension Ecdn {
     /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
-    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnStatisticsResponse> {
-        self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), logger: logger, on: eventLoop)
+    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEcdnStatisticsResponse> {
+        self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 访问数据查询
@@ -155,7 +155,7 @@ extension Ecdn {
     /// + 状态码 4xx 汇总及各 4 开头状态码明细（单位为 个）
     /// + 状态码 5xx 汇总及各 5 开头状态码明细（单位为 个）
     @inlinable
-    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
-        try await self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), logger: logger, on: eventLoop)
+    public func describeEcdnStatistics(startTime: Date, endTime: Date, metrics: [String], interval: Int64, domains: [String]? = nil, projects: [Int64]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEcdnStatisticsResponse {
+        try await self.describeEcdnStatistics(DescribeEcdnStatisticsRequest(startTime: startTime, endTime: endTime, metrics: metrics, interval: interval, domains: domains, projects: projects, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Redis {
 
     /// 查询实例访问的耗时分布
     @inlinable
-    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTookDistResponse> {
-        self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTookDistResponse> {
+        self.client.execute(action: "DescribeInstanceMonitorTookDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问的耗时分布
     @inlinable
-    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorTookDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceMonitorTookDist(_ input: DescribeInstanceMonitorTookDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorTookDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例访问的耗时分布
     @inlinable
-    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTookDistResponse> {
-        self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTookDistResponse> {
+        self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问的耗时分布
     @inlinable
-    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
-        try await self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTookDist(instanceId: String, date: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTookDistResponse {
+        try await self.describeInstanceMonitorTookDist(DescribeInstanceMonitorTookDistRequest(instanceId: instanceId, date: date, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
     @inlinable
-    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceResponse> {
-        self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetDevice(_ input: ResetDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceResponse> {
+        self.client.execute(action: "ResetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置设备
     ///
     /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
     @inlinable
-    public func resetDevice(_ input: ResetDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
-        try await self.client.execute(action: "ResetDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetDevice(_ input: ResetDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
+        try await self.client.execute(action: "ResetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置设备
     ///
     /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
     @inlinable
-    public func resetDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceResponse> {
-        self.resetDevice(ResetDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func resetDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceResponse> {
+        self.resetDevice(ResetDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置设备
     ///
     /// 重置设备操作，将会为设备生成新的证书及清空最新数据，需谨慎操作。
     @inlinable
-    public func resetDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
-        try await self.resetDevice(ResetDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func resetDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceResponse {
+        try await self.resetDevice(ResetDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

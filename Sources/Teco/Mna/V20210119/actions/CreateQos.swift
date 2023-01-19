@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Mna {
     ///
     /// 移动网络发起Qos加速过程
     @inlinable
-    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQosResponse> {
-        self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createQos(_ input: CreateQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQosResponse> {
+        self.client.execute(action: "CreateQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起Qos加速过程
     ///
     /// 移动网络发起Qos加速过程
     @inlinable
-    public func createQos(_ input: CreateQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
-        try await self.client.execute(action: "CreateQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createQos(_ input: CreateQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
+        try await self.client.execute(action: "CreateQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起Qos加速过程
     ///
     /// 移动网络发起Qos加速过程
     @inlinable
-    public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQosResponse> {
-        self.createQos(CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), logger: logger, on: eventLoop)
+    public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateQosResponse> {
+        self.createQos(CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起Qos加速过程
     ///
     /// 移动网络发起Qos加速过程
     @inlinable
-    public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
-        try await self.createQos(CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), logger: logger, on: eventLoop)
+    public func createQos(srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, qosMenu: String, deviceInfo: DeviceInfo? = nil, duration: UInt64? = nil, capacity: Capacity? = nil, templateId: String? = nil, protocol: UInt64? = nil, context: Context? = nil, extern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateQosResponse {
+        try await self.createQos(CreateQosRequest(srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, qosMenu: qosMenu, deviceInfo: deviceInfo, duration: duration, capacity: capacity, templateId: templateId, protocol: `protocol`, context: context, extern: extern), region: region, logger: logger, on: eventLoop)
     }
 }

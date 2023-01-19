@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Waf {
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
-        self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
+        self.client.execute(action: "DescribeWafAutoDenyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询ip惩罚规则
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
-        try await self.client.execute(action: "DescribeWafAutoDenyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWafAutoDenyRules(_ input: DescribeWafAutoDenyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
+        try await self.client.execute(action: "DescribeWafAutoDenyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询ip惩罚规则
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
-        self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), logger: logger, on: eventLoop)
+    public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
+        self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询ip惩罚规则
     ///
     /// 返回ip惩罚规则详细信息
     @inlinable
-    public func describeWafAutoDenyRules(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
-        try await self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), logger: logger, on: eventLoop)
+    public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
+        try await self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

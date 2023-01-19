@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ssl {
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
-        self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
+        self.client.execute(action: "UploadRevokeLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
-        try await self.client.execute(action: "UploadRevokeLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadRevokeLetter(_ input: UploadRevokeLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
+        try await self.client.execute(action: "UploadRevokeLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
-        self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), logger: logger, on: eventLoop)
+    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadRevokeLetterResponse> {
+        self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书吊销确认函
     ///
     /// 本接口（UploadRevokeLetter）用于上传证书吊销确认函。
     @inlinable
-    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
-        try await self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), logger: logger, on: eventLoop)
+    public func uploadRevokeLetter(certificateId: String, revokeLetter: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadRevokeLetterResponse {
+        try await self.uploadRevokeLetter(UploadRevokeLetterRequest(certificateId: certificateId, revokeLetter: revokeLetter), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tem {
 
     /// 获取应用弹性策略组合
     @inlinable
-    public func describeApplicationAutoscalerList(_ input: DescribeApplicationAutoscalerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAutoscalerListResponse> {
-        self.client.execute(action: "DescribeApplicationAutoscalerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationAutoscalerList(_ input: DescribeApplicationAutoscalerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAutoscalerListResponse> {
+        self.client.execute(action: "DescribeApplicationAutoscalerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用弹性策略组合
     @inlinable
-    public func describeApplicationAutoscalerList(_ input: DescribeApplicationAutoscalerListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
-        try await self.client.execute(action: "DescribeApplicationAutoscalerList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationAutoscalerList(_ input: DescribeApplicationAutoscalerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
+        try await self.client.execute(action: "DescribeApplicationAutoscalerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用弹性策略组合
     @inlinable
-    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAutoscalerListResponse> {
-        self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAutoscalerListResponse> {
+        self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用弹性策略组合
     @inlinable
-    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
-        try await self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
+        try await self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

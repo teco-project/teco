@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cbs {
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
-        self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
+        self.client.execute(action: "ModifyDisksRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
-        try await self.client.execute(action: "ModifyDisksRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
+        try await self.client.execute(action: "ModifyDisksRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
-        self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
+        self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
     @inlinable
-    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
-        try await self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
+        try await self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcr {
     ///
     /// 用于在企业版中返回Chart的下载信息
     @inlinable
-    public func describeChartDownloadInfo(_ input: DescribeChartDownloadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChartDownloadInfoResponse> {
-        self.client.execute(action: "DescribeChartDownloadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeChartDownloadInfo(_ input: DescribeChartDownloadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChartDownloadInfoResponse> {
+        self.client.execute(action: "DescribeChartDownloadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Chart包下载信息
     ///
     /// 用于在企业版中返回Chart的下载信息
     @inlinable
-    public func describeChartDownloadInfo(_ input: DescribeChartDownloadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChartDownloadInfoResponse {
-        try await self.client.execute(action: "DescribeChartDownloadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeChartDownloadInfo(_ input: DescribeChartDownloadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChartDownloadInfoResponse {
+        try await self.client.execute(action: "DescribeChartDownloadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Chart包下载信息
     ///
     /// 用于在企业版中返回Chart的下载信息
     @inlinable
-    public func describeChartDownloadInfo(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChartDownloadInfoResponse> {
-        self.describeChartDownloadInfo(DescribeChartDownloadInfoRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    public func describeChartDownloadInfo(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChartDownloadInfoResponse> {
+        self.describeChartDownloadInfo(DescribeChartDownloadInfoRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Chart包下载信息
     ///
     /// 用于在企业版中返回Chart的下载信息
     @inlinable
-    public func describeChartDownloadInfo(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChartDownloadInfoResponse {
-        try await self.describeChartDownloadInfo(DescribeChartDownloadInfoRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    public func describeChartDownloadInfo(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChartDownloadInfoResponse {
+        try await self.describeChartDownloadInfo(DescribeChartDownloadInfoRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
     }
 }

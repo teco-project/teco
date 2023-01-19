@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
-        self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
+        self.client.execute(action: "DescribeDracoEdgeNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
-        try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDracoEdgeNodeInstaller(_ input: DescribeDracoEdgeNodeInstallerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
+        try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(sn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
-        self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), logger: logger, on: eventLoop)
+    public func describeDracoEdgeNodeInstaller(sn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
+        self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 自动获取Draco设备的安装包
     @inlinable
-    public func describeDracoEdgeNodeInstaller(sn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
-        try await self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), logger: logger, on: eventLoop)
+    public func describeDracoEdgeNodeInstaller(sn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
+        try await self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), region: region, logger: logger, on: eventLoop)
     }
 }

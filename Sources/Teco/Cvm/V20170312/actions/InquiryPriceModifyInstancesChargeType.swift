@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Cvm {
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
-    public func inquiryPriceModifyInstancesChargeType(_ input: InquiryPriceModifyInstancesChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceModifyInstancesChargeTypeResponse> {
-        self.client.execute(action: "InquiryPriceModifyInstancesChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceModifyInstancesChargeType(_ input: InquiryPriceModifyInstancesChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceModifyInstancesChargeTypeResponse> {
+        self.client.execute(action: "InquiryPriceModifyInstancesChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例计费模式询价
@@ -74,8 +74,8 @@ extension Cvm {
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
-    public func inquiryPriceModifyInstancesChargeType(_ input: InquiryPriceModifyInstancesChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceModifyInstancesChargeTypeResponse {
-        try await self.client.execute(action: "InquiryPriceModifyInstancesChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceModifyInstancesChargeType(_ input: InquiryPriceModifyInstancesChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceModifyInstancesChargeTypeResponse {
+        try await self.client.execute(action: "InquiryPriceModifyInstancesChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例计费模式询价
@@ -84,8 +84,8 @@ extension Cvm {
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
-    public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceModifyInstancesChargeTypeResponse> {
-        self.inquiryPriceModifyInstancesChargeType(InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), logger: logger, on: eventLoop)
+    public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceModifyInstancesChargeTypeResponse> {
+        self.inquiryPriceModifyInstancesChargeType(InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例计费模式询价
@@ -94,7 +94,7 @@ extension Cvm {
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
-    public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceModifyInstancesChargeTypeResponse {
-        try await self.inquiryPriceModifyInstancesChargeType(InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), logger: logger, on: eventLoop)
+    public func inquiryPriceModifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceModifyInstancesChargeTypeResponse {
+        try await self.inquiryPriceModifyInstancesChargeType(InquiryPriceModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 }

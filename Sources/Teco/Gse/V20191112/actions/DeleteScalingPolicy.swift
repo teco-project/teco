@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Gse {
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
     @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
+        self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除扩缩容配置
@@ -62,8 +62,8 @@ extension Gse {
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
     @inlinable
-    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.client.execute(action: "DeleteScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除扩缩容配置
@@ -73,8 +73,8 @@ extension Gse {
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
     @inlinable
-    public func deleteScalingPolicy(fleetId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
+        self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除扩缩容配置
@@ -84,7 +84,7 @@ extension Gse {
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
     @inlinable
-    public func deleteScalingPolicy(fleetId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), logger: logger, on: eventLoop)
+    public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
+        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

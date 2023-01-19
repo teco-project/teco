@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 查询业务日志配置项信息
     @inlinable
-    public func describeBusinessLogConfig(_ input: DescribeBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigResponse> {
-        self.client.execute(action: "DescribeBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBusinessLogConfig(_ input: DescribeBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigResponse> {
+        self.client.execute(action: "DescribeBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询业务日志配置项信息
     @inlinable
-    public func describeBusinessLogConfig(_ input: DescribeBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
-        try await self.client.execute(action: "DescribeBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBusinessLogConfig(_ input: DescribeBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
+        try await self.client.execute(action: "DescribeBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询业务日志配置项信息
     @inlinable
-    public func describeBusinessLogConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigResponse> {
-        self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func describeBusinessLogConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigResponse> {
+        self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询业务日志配置项信息
     @inlinable
-    public func describeBusinessLogConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
-        try await self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func describeBusinessLogConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigResponse {
+        try await self.describeBusinessLogConfig(DescribeBusinessLogConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Dcdb {
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
-        self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
+        self.client.execute(action: "TerminateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
-        try await self.client.execute(action: "TerminateDedicatedDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateDedicatedDBInstance(_ input: TerminateDedicatedDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
+        try await self.client.execute(action: "TerminateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
-        self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func terminateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
+        self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁独享分布式数据库实例
     ///
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享分布式数据库实例。
     @inlinable
-    public func terminateDedicatedDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
-        try await self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func terminateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
+        try await self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,8 +37,8 @@ extension Vpc {
     /// 该接口一般用来解封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间解封禁, 只能按更粗的云联网实例粒度解封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度解封禁（UnlockCcnBandwidths）
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable
-    public func unlockCcns(_ input: UnlockCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockCcnsResponse> {
-        self.client.execute(action: "UnlockCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unlockCcns(_ input: UnlockCcnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockCcnsResponse> {
+        self.client.execute(action: "UnlockCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全解锁云联网实例
@@ -47,8 +47,8 @@ extension Vpc {
     /// 该接口一般用来解封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间解封禁, 只能按更粗的云联网实例粒度解封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度解封禁（UnlockCcnBandwidths）
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable
-    public func unlockCcns(_ input: UnlockCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
-        try await self.client.execute(action: "UnlockCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unlockCcns(_ input: UnlockCcnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
+        try await self.client.execute(action: "UnlockCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全解锁云联网实例
@@ -57,8 +57,8 @@ extension Vpc {
     /// 该接口一般用来解封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间解封禁, 只能按更粗的云联网实例粒度解封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度解封禁（UnlockCcnBandwidths）
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable
-    public func unlockCcns(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockCcnsResponse> {
-        self.unlockCcns(UnlockCcnsRequest(), logger: logger, on: eventLoop)
+    public func unlockCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockCcnsResponse> {
+        self.unlockCcns(UnlockCcnsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全解锁云联网实例
@@ -67,7 +67,7 @@ extension Vpc {
     /// 该接口一般用来解封禁出口限速的云联网实例, 目前联通内部运营系统通过云API调用, 因为出口限速无法按地域间解封禁, 只能按更粗的云联网实例粒度解封禁, 如果是地域间限速, 一般可以通过更细的限速实例粒度解封禁（UnlockCcnBandwidths）
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable
-    public func unlockCcns(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
-        try await self.unlockCcns(UnlockCcnsRequest(), logger: logger, on: eventLoop)
+    public func unlockCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
+        try await self.unlockCcns(UnlockCcnsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -42,25 +42,25 @@ extension Ecm {
 
     /// 获取机型配置列表
     @inlinable
-    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigResponse> {
-        self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigResponse> {
+        self.client.execute(action: "DescribeInstanceTypeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机型配置列表
     @inlinable
-    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
-        try await self.client.execute(action: "DescribeInstanceTypeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceTypeConfig(_ input: DescribeInstanceTypeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
+        try await self.client.execute(action: "DescribeInstanceTypeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取机型配置列表
     @inlinable
-    public func describeInstanceTypeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigResponse> {
-        self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigResponse> {
+        self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机型配置列表
     @inlinable
-    public func describeInstanceTypeConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
-        try await self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigResponse {
+        try await self.describeInstanceTypeConfig(DescribeInstanceTypeConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

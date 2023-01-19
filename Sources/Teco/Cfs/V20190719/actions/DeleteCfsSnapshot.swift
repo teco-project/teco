@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cfs {
 
     /// 删除文件系统快照
     @inlinable
-    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsSnapshotResponse> {
-        self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsSnapshotResponse> {
+        self.client.execute(action: "DeleteCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统快照
     @inlinable
-    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
-        try await self.client.execute(action: "DeleteCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCfsSnapshot(_ input: DeleteCfsSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
+        try await self.client.execute(action: "DeleteCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除文件系统快照
     @inlinable
-    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsSnapshotResponse> {
-        self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsSnapshotResponse> {
+        self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统快照
     @inlinable
-    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
-        try await self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), logger: logger, on: eventLoop)
+    public func deleteCfsSnapshot(snapshotId: String? = nil, snapshotIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsSnapshotResponse {
+        try await self.deleteCfsSnapshot(DeleteCfsSnapshotRequest(snapshotId: snapshotId, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Dbbrain {
     ///
     /// 获取实例诊断事件的列表。
     @inlinable
-    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagHistoryResponse> {
-        self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagHistoryResponse> {
+        self.client.execute(action: "DescribeDBDiagHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例诊断历史
     ///
     /// 获取实例诊断事件的列表。
     @inlinable
-    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
-        try await self.client.execute(action: "DescribeDBDiagHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBDiagHistory(_ input: DescribeDBDiagHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
+        try await self.client.execute(action: "DescribeDBDiagHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例诊断历史
     ///
     /// 获取实例诊断事件的列表。
     @inlinable
-    public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagHistoryResponse> {
-        self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), logger: logger, on: eventLoop)
+    public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagHistoryResponse> {
+        self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例诊断历史
     ///
     /// 获取实例诊断事件的列表。
     @inlinable
-    public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
-        try await self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), logger: logger, on: eventLoop)
+    public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
+        try await self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

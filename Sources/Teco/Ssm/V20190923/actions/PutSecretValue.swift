@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Ssm {
     /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
-    public func putSecretValue(_ input: PutSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutSecretValueResponse> {
-        self.client.execute(action: "PutSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putSecretValue(_ input: PutSecretValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutSecretValueResponse> {
+        self.client.execute(action: "PutSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加新版本凭据
@@ -77,8 +77,8 @@ extension Ssm {
     /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
-    public func putSecretValue(_ input: PutSecretValueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
-        try await self.client.execute(action: "PutSecretValue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putSecretValue(_ input: PutSecretValueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
+        try await self.client.execute(action: "PutSecretValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 增加新版本凭据
@@ -86,8 +86,8 @@ extension Ssm {
     /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
-    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutSecretValueResponse> {
-        self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutSecretValueResponse> {
+        self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加新版本凭据
@@ -95,7 +95,7 @@ extension Ssm {
     /// 该接口在指定名称的凭据下增加新版本的凭据内容，一个凭据下最多可以支持10个版本。只能对处于Enabled 和 Disabled 状态的凭据添加新的版本。
     /// 本接口仅适用于用户自定义凭据，对云产品凭据不能操作。
     @inlinable
-    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
-        try await self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), logger: logger, on: eventLoop)
+    public func putSecretValue(secretName: String, versionId: String, secretBinary: String? = nil, secretString: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutSecretValueResponse {
+        try await self.putSecretValue(PutSecretValueRequest(secretName: secretName, versionId: versionId, secretBinary: secretBinary, secretString: secretString), region: region, logger: logger, on: eventLoop)
     }
 }

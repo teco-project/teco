@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Monitor {
     /// 创建 Prometheus 告警规则。
     /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
     @inlinable
-    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertRuleResponse> {
-        self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAlertRule(_ input: CreateAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertRuleResponse> {
+        self.client.execute(action: "CreateAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建告警规则
@@ -101,8 +101,8 @@ extension Monitor {
     /// 创建 Prometheus 告警规则。
     /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
     @inlinable
-    public func createAlertRule(_ input: CreateAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
-        try await self.client.execute(action: "CreateAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAlertRule(_ input: CreateAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
+        try await self.client.execute(action: "CreateAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建告警规则
@@ -110,8 +110,8 @@ extension Monitor {
     /// 创建 Prometheus 告警规则。
     /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
     @inlinable
-    public func createAlertRule(instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64? = nil, duration: String? = nil, labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertRuleResponse> {
-        self.createAlertRule(CreateAlertRuleRequest(instanceId: instanceId, ruleName: ruleName, expr: expr, receivers: receivers, ruleState: ruleState, duration: duration, labels: labels, annotations: annotations, type: type), logger: logger, on: eventLoop)
+    public func createAlertRule(instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64? = nil, duration: String? = nil, labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertRuleResponse> {
+        self.createAlertRule(CreateAlertRuleRequest(instanceId: instanceId, ruleName: ruleName, expr: expr, receivers: receivers, ruleState: ruleState, duration: duration, labels: labels, annotations: annotations, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警规则
@@ -119,7 +119,7 @@ extension Monitor {
     /// 创建 Prometheus 告警规则。
     /// 请注意，**告警对象和告警消息是 Prometheus Rule Annotations 的特殊字段，需要通过 annotations 来传递，对应的 Key 分别为summary/description**，，请参考 [Prometheus Rule更多配置请参考](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/)。
     @inlinable
-    public func createAlertRule(instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64? = nil, duration: String? = nil, labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
-        try await self.createAlertRule(CreateAlertRuleRequest(instanceId: instanceId, ruleName: ruleName, expr: expr, receivers: receivers, ruleState: ruleState, duration: duration, labels: labels, annotations: annotations, type: type), logger: logger, on: eventLoop)
+    public func createAlertRule(instanceId: String, ruleName: String, expr: String, receivers: [String], ruleState: Int64? = nil, duration: String? = nil, labels: [PrometheusRuleKV]? = nil, annotations: [PrometheusRuleKV]? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertRuleResponse {
+        try await self.createAlertRule(CreateAlertRuleRequest(instanceId: instanceId, ruleName: ruleName, expr: expr, receivers: receivers, ruleState: ruleState, duration: duration, labels: labels, annotations: annotations, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

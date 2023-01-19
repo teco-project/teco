@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -126,31 +126,31 @@ extension Essbasic {
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
-        self.client.execute(action: "ChannelCreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
+        self.client.execute(action: "ChannelCreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
-        try await self.client.execute(action: "ChannelCreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateFlowByFiles(_ input: ChannelCreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
+        try await self.client.execute(action: "ChannelCreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
-        self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowByFilesResponse> {
+        self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道版通过文件创建签署流程
     ///
     /// 接口（ChannelCreateFlowByFiles）用于渠道版通过文件创建签署流程。此接口静默签能力不可直接使用，需要运营申请
     @inlinable
-    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
-        try await self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
+    public func channelCreateFlowByFiles(agent: Agent? = nil, flowName: String? = nil, flowApprovers: [FlowApproverInfo]? = nil, fileIds: [String]? = nil, components: [Component]? = nil, deadline: Int64? = nil, callbackUrl: String? = nil, unordered: Bool? = nil, flowType: String? = nil, flowDescription: String? = nil, customShowMap: String? = nil, customerData: String? = nil, needSignReview: Bool? = nil, operator: UserInfo? = nil, approverVerifyType: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowByFilesResponse {
+        try await self.channelCreateFlowByFiles(ChannelCreateFlowByFilesRequest(agent: agent, flowName: flowName, flowApprovers: flowApprovers, fileIds: fileIds, components: components, deadline: deadline, callbackUrl: callbackUrl, unordered: unordered, flowType: flowType, flowDescription: flowDescription, customShowMap: customShowMap, customerData: customerData, needSignReview: needSignReview, operator: `operator`, approverVerifyType: approverVerifyType, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
     }
 }

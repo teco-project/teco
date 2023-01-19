@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
-        self.client.execute(action: "ModifyService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyService(_ input: ModifyServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
+        self.client.execute(action: "ModifyService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(_ input: ModifyServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
-        try await self.client.execute(action: "ModifyService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyService(_ input: ModifyServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
+        try await self.client.execute(action: "ModifyService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
-        self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), logger: logger, on: eventLoop)
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceResponse> {
+        self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务
     ///
     /// 本接口（ModifyService）用于修改服务的相关信息。当服务创建后，服务的名称、描述和服务类型均可被修改。
     @inlinable
-    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
-        try await self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), logger: logger, on: eventLoop)
+    public func modifyService(serviceId: String, serviceName: String? = nil, serviceDesc: String? = nil, protocol: String? = nil, netTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceResponse {
+        try await self.modifyService(ModifyServiceRequest(serviceId: serviceId, serviceName: serviceName, serviceDesc: serviceDesc, protocol: `protocol`, netTypes: netTypes), region: region, logger: logger, on: eventLoop)
     }
 }

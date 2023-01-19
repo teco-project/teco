@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Kms {
     ///
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
-    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DecryptResponse> {
-        self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func decrypt(_ input: DecryptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DecryptResponse> {
+        self.client.execute(action: "Decrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解密
     ///
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
-    public func decrypt(_ input: DecryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
-        try await self.client.execute(action: "Decrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func decrypt(_ input: DecryptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
+        try await self.client.execute(action: "Decrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解密
     ///
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
-    public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DecryptResponse> {
-        self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), logger: logger, on: eventLoop)
+    public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DecryptResponse> {
+        self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解密
     ///
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
-    public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
-        try await self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), logger: logger, on: eventLoop)
+    public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
+        try await self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
     }
 }

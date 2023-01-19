@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Ckafka {
 
     /// 根据位点查询消息列表
     @inlinable
-    public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageListByOffsetResponse> {
-        self.client.execute(action: "FetchMessageListByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageListByOffsetResponse> {
+        self.client.execute(action: "FetchMessageListByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据位点查询消息列表
     @inlinable
-    public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {
-        try await self.client.execute(action: "FetchMessageListByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func fetchMessageListByOffset(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {
+        try await self.client.execute(action: "FetchMessageListByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据位点查询消息列表
     @inlinable
-    public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageListByOffsetResponse> {
-        self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), logger: logger, on: eventLoop)
+    public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageListByOffsetResponse> {
+        self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据位点查询消息列表
     @inlinable
-    public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {
-        try await self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), logger: logger, on: eventLoop)
+    public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {
+        try await self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), region: region, logger: logger, on: eventLoop)
     }
 }

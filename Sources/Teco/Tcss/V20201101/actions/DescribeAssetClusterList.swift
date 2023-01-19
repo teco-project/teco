@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Tcss {
 
     /// 查询集群列表
     @inlinable
-    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetClusterListResponse> {
-        self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetClusterListResponse> {
+        self.client.execute(action: "DescribeAssetClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
-        try await self.client.execute(action: "DescribeAssetClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetClusterList(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
+        try await self.client.execute(action: "DescribeAssetClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetClusterListResponse> {
-        self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetClusterListResponse> {
+        self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
-    public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
-        try await self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
+        try await self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

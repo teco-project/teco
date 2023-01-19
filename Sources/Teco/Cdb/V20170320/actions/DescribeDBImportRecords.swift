@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
-    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBImportRecordsResponse> {
-        self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBImportRecordsResponse> {
+        self.client.execute(action: "DescribeDBImportRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库导入任务记录
     ///
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
-    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
-        try await self.client.execute(action: "DescribeDBImportRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBImportRecords(_ input: DescribeDBImportRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
+        try await self.client.execute(action: "DescribeDBImportRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库导入任务记录
     ///
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
-    public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBImportRecordsResponse> {
-        self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBImportRecordsResponse> {
+        self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库导入任务记录
     ///
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
-    public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
-        try await self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
+        try await self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

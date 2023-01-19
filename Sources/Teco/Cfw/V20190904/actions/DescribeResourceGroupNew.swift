@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cfw {
     ///
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
-    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupNewResponse> {
-        self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupNewResponse> {
+        self.client.execute(action: "DescribeResourceGroupNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询new
     ///
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
-    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
-        try await self.client.execute(action: "DescribeResourceGroupNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceGroupNew(_ input: DescribeResourceGroupNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
+        try await self.client.execute(action: "DescribeResourceGroupNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产中心资产树信息查询new
     ///
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
-    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupNewResponse> {
-        self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), logger: logger, on: eventLoop)
+    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceGroupNewResponse> {
+        self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产树信息查询new
     ///
     /// DescribeResourceGroupNew资产中心资产树信息
     @inlinable
-    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
-        try await self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), logger: logger, on: eventLoop)
+    public func describeResourceGroupNew(queryType: String, groupId: String? = nil, showType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceGroupNewResponse {
+        try await self.describeResourceGroupNew(DescribeResourceGroupNewRequest(queryType: queryType, groupId: groupId, showType: showType), region: region, logger: logger, on: eventLoop)
     }
 }

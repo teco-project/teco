@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcr {
 
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
-        self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
+        self.client.execute(action: "DeleteSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
-        try await self.client.execute(action: "DeleteSignaturePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSignaturePolicy(_ input: DeleteSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
+        try await self.client.execute(action: "DeleteSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(registryId: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
-        self.deleteSignaturePolicy(DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName), logger: logger, on: eventLoop)
+    public func deleteSignaturePolicy(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSignaturePolicyResponse> {
+        self.deleteSignaturePolicy(DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间加签策略
     @inlinable
-    public func deleteSignaturePolicy(registryId: String, namespaceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
-        try await self.deleteSignaturePolicy(DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName), logger: logger, on: eventLoop)
+    public func deleteSignaturePolicy(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSignaturePolicyResponse {
+        try await self.deleteSignaturePolicy(DeleteSignaturePolicyRequest(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }
 }

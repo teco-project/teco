@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Clb {
     /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡七层监听器的转发规则
@@ -99,8 +99,8 @@ extension Clb {
     /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡七层监听器的转发规则
@@ -108,8 +108,8 @@ extension Clb {
     /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyRule(loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.modifyRule(ModifyRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, url: url, healthCheck: healthCheck, scheduler: scheduler, sessionExpireTime: sessionExpireTime, forwardType: forwardType, trpcCallee: trpcCallee, trpcFunc: trpcFunc), logger: logger, on: eventLoop)
+    public func modifyRule(loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.modifyRule(ModifyRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, url: url, healthCheck: healthCheck, scheduler: scheduler, sessionExpireTime: sessionExpireTime, forwardType: forwardType, trpcCallee: trpcCallee, trpcFunc: trpcFunc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡七层监听器的转发规则
@@ -117,7 +117,7 @@ extension Clb {
     /// ModifyRule 接口用来修改负载均衡七层监听器下的转发规则的各项属性，包括转发路径、健康检查属性、转发策略等。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyRule(loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.modifyRule(ModifyRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, url: url, healthCheck: healthCheck, scheduler: scheduler, sessionExpireTime: sessionExpireTime, forwardType: forwardType, trpcCallee: trpcCallee, trpcFunc: trpcFunc), logger: logger, on: eventLoop)
+    public func modifyRule(loadBalancerId: String, listenerId: String, locationId: String, url: String? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, sessionExpireTime: Int64? = nil, forwardType: String? = nil, trpcCallee: String? = nil, trpcFunc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.modifyRule(ModifyRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, url: url, healthCheck: healthCheck, scheduler: scheduler, sessionExpireTime: sessionExpireTime, forwardType: forwardType, trpcCallee: trpcCallee, trpcFunc: trpcFunc), region: region, logger: logger, on: eventLoop)
     }
 }

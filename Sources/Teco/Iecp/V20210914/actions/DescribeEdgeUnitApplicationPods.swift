@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 获取应用下Pod状态
     @inlinable
-    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodsResponse> {
-        self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodsResponse> {
+        self.client.execute(action: "DescribeEdgeUnitApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用下Pod状态
     @inlinable
-    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitApplicationPods(_ input: DescribeEdgeUnitApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用下Pod状态
     @inlinable
-    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodsResponse> {
-        self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodsResponse> {
+        self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用下Pod状态
     @inlinable
-    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
-        try await self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
+        try await self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

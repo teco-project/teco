@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -206,31 +206,31 @@ extension Postgres {
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.createInstances(CreateInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, charset: charset, adminName: adminName, adminPassword: adminPassword, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion, dbNodeSet: dbNodeSet, needSupportTDE: needSupportTDE, kmsKeyId: kmsKeyId, kmsRegion: kmsRegion, dbEngine: dbEngine, dbEngineConfig: dbEngineConfig), logger: logger, on: eventLoop)
+    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.createInstances(CreateInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, charset: charset, adminName: adminName, adminPassword: adminPassword, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion, dbNodeSet: dbNodeSet, needSupportTDE: needSupportTDE, kmsKeyId: kmsKeyId, kmsRegion: kmsRegion, dbEngine: dbEngine, dbEngineConfig: dbEngineConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例(新)
     ///
     /// 本接口 (CreateInstances) 用于创建一个或者多个PostgreSQL实例，通过此接口创建的实例无需进行初始化，可直接使用。
     @inlinable
-    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.createInstances(CreateInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, charset: charset, adminName: adminName, adminPassword: adminPassword, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion, dbNodeSet: dbNodeSet, needSupportTDE: needSupportTDE, kmsKeyId: kmsKeyId, kmsRegion: kmsRegion, dbEngine: dbEngine, dbEngineConfig: dbEngineConfig), logger: logger, on: eventLoop)
+    public func createInstances(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, zone: String, charset: String, adminName: String, adminPassword: String, projectId: Int64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, vpcId: String? = nil, subnetId: String? = nil, autoRenewFlag: Int64? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, tagList: [Tag]? = nil, securityGroupIds: [String]? = nil, dbMajorVersion: String? = nil, dbKernelVersion: String? = nil, dbNodeSet: [DBNode]? = nil, needSupportTDE: UInt64? = nil, kmsKeyId: String? = nil, kmsRegion: String? = nil, dbEngine: String? = nil, dbEngineConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(CreateInstancesRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, zone: zone, charset: charset, adminName: adminName, adminPassword: adminPassword, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, vpcId: vpcId, subnetId: subnetId, autoRenewFlag: autoRenewFlag, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, tagList: tagList, securityGroupIds: securityGroupIds, dbMajorVersion: dbMajorVersion, dbKernelVersion: dbKernelVersion, dbNodeSet: dbNodeSet, needSupportTDE: needSupportTDE, kmsKeyId: kmsKeyId, kmsRegion: kmsRegion, dbEngine: dbEngine, dbEngineConfig: dbEngineConfig), region: region, logger: logger, on: eventLoop)
     }
 }

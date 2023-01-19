@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcaplusdb {
 
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
-        self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTableMemos(_ input: ModifyTableMemosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
+        self.client.execute(action: "ModifyTableMemos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(_ input: ModifyTableMemosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
-        try await self.client.execute(action: "ModifyTableMemos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTableMemos(_ input: ModifyTableMemosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
+        try await self.client.execute(action: "ModifyTableMemos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
-        self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), logger: logger, on: eventLoop)
+    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableMemosResponse> {
+        self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改表备注信息
     @inlinable
-    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
-        try await self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), logger: logger, on: eventLoop)
+    public func modifyTableMemos(clusterId: String, tableMemos: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableMemosResponse {
+        try await self.modifyTableMemos(ModifyTableMemosRequest(clusterId: clusterId, tableMemos: tableMemos), region: region, logger: logger, on: eventLoop)
     }
 }

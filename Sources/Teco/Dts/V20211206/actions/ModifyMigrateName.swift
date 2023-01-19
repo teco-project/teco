@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dts {
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
-        self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
+        self.client.execute(action: "ModifyMigrateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
-        try await self.client.execute(action: "ModifyMigrateName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMigrateName(_ input: ModifyMigrateNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
+        try await self.client.execute(action: "ModifyMigrateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
-        self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    public func modifyMigrateName(jobId: String, jobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
+        self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改迁移名称
     ///
     /// 修改迁移任务名
     @inlinable
-    public func modifyMigrateName(jobId: String, jobName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
-        try await self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), logger: logger, on: eventLoop)
+    public func modifyMigrateName(jobId: String, jobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
+        try await self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
     }
 }

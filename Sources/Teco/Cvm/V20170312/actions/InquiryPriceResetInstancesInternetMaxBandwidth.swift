@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Cvm {
     /// * 接口不支持批量调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽。
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
-    public func inquiryPriceResetInstancesInternetMaxBandwidth(_ input: InquiryPriceResetInstancesInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesInternetMaxBandwidthResponse> {
-        self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesInternetMaxBandwidth(_ input: InquiryPriceResetInstancesInternetMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesInternetMaxBandwidthResponse> {
+        self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整实例带宽上限询价
@@ -82,8 +82,8 @@ extension Cvm {
     /// * 接口不支持批量调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽。
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
-    public func inquiryPriceResetInstancesInternetMaxBandwidth(_ input: InquiryPriceResetInstancesInternetMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesInternetMaxBandwidthResponse {
-        try await self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceResetInstancesInternetMaxBandwidth(_ input: InquiryPriceResetInstancesInternetMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesInternetMaxBandwidthResponse {
+        try await self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调整实例带宽上限询价
@@ -96,8 +96,8 @@ extension Cvm {
     /// * 接口不支持批量调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽。
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
-    public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesInternetMaxBandwidthResponse> {
-        self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesInternetMaxBandwidthResponse> {
+        self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整实例带宽上限询价
@@ -110,7 +110,7 @@ extension Cvm {
     /// * 接口不支持批量调整 `BANDWIDTH_PREPAID` 和 `BANDWIDTH_POSTPAID_BY_HOUR` 计费方式的带宽。
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
-    public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesInternetMaxBandwidthResponse {
-        try await self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesInternetMaxBandwidthResponse {
+        try await self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

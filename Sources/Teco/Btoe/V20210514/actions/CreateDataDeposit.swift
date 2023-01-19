@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Btoe {
     ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
-        self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
+        self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 业务数据明文存证
     ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createDataDeposit(_ input: CreateDataDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        try await self.client.execute(action: "CreateDataDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
+        try await self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 业务数据明文存证
     ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
-        self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
+        self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 业务数据明文存证
     ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
-        try await self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createDataDeposit(evidenceInfo: String, evidenceName: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
+        try await self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

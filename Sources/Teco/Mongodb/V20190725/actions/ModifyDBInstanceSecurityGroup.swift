@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Mongodb {
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
-        self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
+        self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
-        self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
+        self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
     @inlinable
-    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
-        try await self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
+        try await self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

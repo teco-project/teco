@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension As {
     ///
     /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
     @inlinable
-    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountLimitsResponse> {
-        self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountLimitsResponse> {
+        self.client.execute(action: "DescribeAccountLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户账号的资源限制
     ///
     /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
     @inlinable
-    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
-        try await self.client.execute(action: "DescribeAccountLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountLimits(_ input: DescribeAccountLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
+        try await self.client.execute(action: "DescribeAccountLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户账号的资源限制
     ///
     /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
     @inlinable
-    public func describeAccountLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountLimitsResponse> {
-        self.describeAccountLimits(DescribeAccountLimitsRequest(), logger: logger, on: eventLoop)
+    public func describeAccountLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountLimitsResponse> {
+        self.describeAccountLimits(DescribeAccountLimitsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户账号的资源限制
     ///
     /// 本接口（DescribeAccountLimits）用于查询用户账户在弹性伸缩中的资源限制。
     @inlinable
-    public func describeAccountLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
-        try await self.describeAccountLimits(DescribeAccountLimitsRequest(), logger: logger, on: eventLoop)
+    public func describeAccountLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountLimitsResponse {
+        try await self.describeAccountLimits(DescribeAccountLimitsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Ccc {
     ///
     /// 包括全媒体和文本两种类型
     @inlinable
-    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
-        self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
+        self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询在线客服记录
     ///
     /// 包括全媒体和文本两种类型
     @inlinable
-    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
-        try await self.client.execute(action: "DescribeIMCdrs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIMCdrs(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
+        try await self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询在线客服记录
     ///
     /// 包括全媒体和文本两种类型
     @inlinable
-    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
-        self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), logger: logger, on: eventLoop)
+    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
+        self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询在线客服记录
     ///
     /// 包括全媒体和文本两种类型
     @inlinable
-    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
-        try await self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), logger: logger, on: eventLoop)
+    public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
+        try await self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Cpdp {
     ///
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
-    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRelateAcctResponse> {
-        self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRelateAcctResponse> {
+        self.client.execute(action: "UnbindRelateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员解绑提现账户
     ///
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
-    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
-        try await self.client.execute(action: "UnbindRelateAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindRelateAcct(_ input: UnbindRelateAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
+        try await self.client.execute(action: "UnbindRelateAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-会员解绑提现账户
     ///
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
-    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRelateAcctResponse> {
-        self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRelateAcctResponse> {
+        self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员解绑提现账户
     ///
     /// 会员解绑提现账户。此接口可以支持会员解除名下的绑定账户关系。
     @inlinable
-    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
-        try await self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func unbindRelateAcct(mrchCode: String, functionFlag: String, tranNetMemberCode: String, memberAcctNo: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRelateAcctResponse {
+        try await self.unbindRelateAcct(UnbindRelateAcctRequest(mrchCode: mrchCode, functionFlag: functionFlag, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

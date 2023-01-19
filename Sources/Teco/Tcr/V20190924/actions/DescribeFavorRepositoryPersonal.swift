@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tcr {
 
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
-        self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
+        self.client.execute(action: "DescribeFavorRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
-        try await self.client.execute(action: "DescribeFavorRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFavorRepositoryPersonal(_ input: DescribeFavorRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
+        try await self.client.execute(action: "DescribeFavorRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
-        self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFavorRepositoryPersonalResponse> {
+        self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人收藏仓库
     @inlinable
-    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
-        try await self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeFavorRepositoryPersonal(repoName: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFavorRepositoryPersonalResponse {
+        try await self.describeFavorRepositoryPersonal(DescribeFavorRepositoryPersonalRequest(repoName: repoName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

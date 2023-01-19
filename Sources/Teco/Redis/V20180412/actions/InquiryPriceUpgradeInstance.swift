@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Redis {
 
     /// 查询实例扩容价格
     @inlinable
-    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstanceResponse> {
-        self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstanceResponse> {
+        self.client.execute(action: "InquiryPriceUpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩容价格
     @inlinable
-    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceUpgradeInstance(_ input: InquiryPriceUpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例扩容价格
     @inlinable
-    public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstanceResponse> {
-        self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstanceResponse> {
+        self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩容价格
     @inlinable
-    public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
-        try await self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
+        try await self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), region: region, logger: logger, on: eventLoop)
     }
 }

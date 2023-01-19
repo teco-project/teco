@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
-        self.client.execute(action: "ModifyEdgeUnitCloudApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
+        self.client.execute(action: "ModifyEdgeUnitCloudApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
-        try await self.client.execute(action: "ModifyEdgeUnitCloudApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEdgeUnitCloudApi(_ input: ModifyEdgeUnitCloudApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
+        try await self.client.execute(action: "ModifyEdgeUnitCloudApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
-        self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
+        self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新边缘单元信息
     @inlinable
-    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
-        try await self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), logger: logger, on: eventLoop)
+    public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
+        try await self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
     }
 }

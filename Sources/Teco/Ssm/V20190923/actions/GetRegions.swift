@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Ssm {
 
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
-        self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRegions(_ input: GetRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
+        self.client.execute(action: "GetRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(_ input: GetRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
-        try await self.client.execute(action: "GetRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRegions(_ input: GetRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
+        try await self.client.execute(action: "GetRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
-        self.getRegions(GetRegionsRequest(), logger: logger, on: eventLoop)
+    public func getRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRegionsResponse> {
+        self.getRegions(GetRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取控制台展示region列表
     @inlinable
-    public func getRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
-        try await self.getRegions(GetRegionsRequest(), logger: logger, on: eventLoop)
+    public func getRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRegionsResponse {
+        try await self.getRegions(GetRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

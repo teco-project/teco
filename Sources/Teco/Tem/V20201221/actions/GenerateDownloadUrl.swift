@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 生成包预签名下载链接
     @inlinable
-    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateDownloadUrlResponse> {
-        self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateDownloadUrlResponse> {
+        self.client.execute(action: "GenerateDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成包预签名下载链接
     @inlinable
-    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
-        try await self.client.execute(action: "GenerateDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateDownloadUrl(_ input: GenerateDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
+        try await self.client.execute(action: "GenerateDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成包预签名下载链接
     @inlinable
-    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateDownloadUrlResponse> {
-        self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateDownloadUrlResponse> {
+        self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成包预签名下载链接
     @inlinable
-    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
-        try await self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func generateDownloadUrl(serviceId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateDownloadUrlResponse {
+        try await self.generateDownloadUrl(GenerateDownloadUrlRequest(serviceId: serviceId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

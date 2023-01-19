@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Vod {
     /// * 分类层次不可超过 4 层。
     /// * 每个分类的子类数量不可超过 500 个。
     @inlinable
-    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClassResponse> {
-        self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createClass(_ input: CreateClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClassResponse> {
+        self.client.execute(action: "CreateClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建分类
@@ -71,8 +71,8 @@ extension Vod {
     /// * 分类层次不可超过 4 层。
     /// * 每个分类的子类数量不可超过 500 个。
     @inlinable
-    public func createClass(_ input: CreateClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
-        try await self.client.execute(action: "CreateClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createClass(_ input: CreateClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
+        try await self.client.execute(action: "CreateClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建分类
@@ -82,8 +82,8 @@ extension Vod {
     /// * 分类层次不可超过 4 层。
     /// * 每个分类的子类数量不可超过 500 个。
     @inlinable
-    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClassResponse> {
-        self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClassResponse> {
+        self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建分类
@@ -93,7 +93,7 @@ extension Vod {
     /// * 分类层次不可超过 4 层。
     /// * 每个分类的子类数量不可超过 500 个。
     @inlinable
-    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
-        try await self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func createClass(parentId: Int64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClassResponse {
+        try await self.createClass(CreateClassRequest(parentId: parentId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

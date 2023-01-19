@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Redis {
     ///
     /// 清空Redis实例的实例数据。
     @inlinable
-    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearInstanceResponse> {
-        self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func clearInstance(_ input: ClearInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearInstanceResponse> {
+        self.client.execute(action: "ClearInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清空Redis实例
     ///
     /// 清空Redis实例的实例数据。
     @inlinable
-    public func clearInstance(_ input: ClearInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
-        try await self.client.execute(action: "ClearInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func clearInstance(_ input: ClearInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
+        try await self.client.execute(action: "ClearInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清空Redis实例
     ///
     /// 清空Redis实例的实例数据。
     @inlinable
-    public func clearInstance(instanceId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearInstanceResponse> {
-        self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    public func clearInstance(instanceId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearInstanceResponse> {
+        self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空Redis实例
     ///
     /// 清空Redis实例的实例数据。
     @inlinable
-    public func clearInstance(instanceId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
-        try await self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    public func clearInstance(instanceId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearInstanceResponse {
+        try await self.clearInstance(ClearInstanceRequest(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

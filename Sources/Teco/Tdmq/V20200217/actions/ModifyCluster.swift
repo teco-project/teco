@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tdmq {
 
     /// 更新集群信息
     @inlinable
-    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
-        self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCluster(_ input: ModifyClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
+        self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新集群信息
     @inlinable
-    public func modifyCluster(_ input: ModifyClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
-        try await self.client.execute(action: "ModifyCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCluster(_ input: ModifyClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
+        try await self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新集群信息
     @inlinable
-    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
-        self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
+        self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新集群信息
     @inlinable
-    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
-        try await self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
+        try await self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 }

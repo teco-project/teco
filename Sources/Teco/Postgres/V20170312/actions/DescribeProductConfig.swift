@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Postgres {
     ///
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
-        self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
+        self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖规格配置
     ///
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
-    public func describeProductConfig(_ input: DescribeProductConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        try await self.client.execute(action: "DescribeProductConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductConfig(_ input: DescribeProductConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
+        try await self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询售卖规格配置
     ///
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
-    public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
-        self.describeProductConfig(DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine), logger: logger, on: eventLoop)
+    public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
+        self.describeProductConfig(DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖规格配置
     ///
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
-    public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        try await self.describeProductConfig(DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine), logger: logger, on: eventLoop)
+    public func describeProductConfig(zone: String? = nil, dbEngine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
+        try await self.describeProductConfig(DescribeProductConfigRequest(zone: zone, dbEngine: dbEngine), region: region, logger: logger, on: eventLoop)
     }
 }

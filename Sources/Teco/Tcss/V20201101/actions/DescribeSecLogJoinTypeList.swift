@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Tcss {
 
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
-        self.client.execute(action: "DescribeSecLogJoinTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
+        self.client.execute(action: "DescribeSecLogJoinTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
-        try await self.client.execute(action: "DescribeSecLogJoinTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecLogJoinTypeList(_ input: DescribeSecLogJoinTypeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
+        try await self.client.execute(action: "DescribeSecLogJoinTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
-        self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), logger: logger, on: eventLoop)
+    public func describeSecLogJoinTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinTypeListResponse> {
+        self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志接入列表
     @inlinable
-    public func describeSecLogJoinTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
-        try await self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), logger: logger, on: eventLoop)
+    public func describeSecLogJoinTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinTypeListResponse {
+        try await self.describeSecLogJoinTypeList(DescribeSecLogJoinTypeListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

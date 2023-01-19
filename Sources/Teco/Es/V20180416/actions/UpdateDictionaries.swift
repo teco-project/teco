@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Es {
 
     /// 更新ES集群词典
     @inlinable
-    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictionariesResponse> {
-        self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDictionaries(_ input: UpdateDictionariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictionariesResponse> {
+        self.client.execute(action: "UpdateDictionaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新ES集群词典
     @inlinable
-    public func updateDictionaries(_ input: UpdateDictionariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
-        try await self.client.execute(action: "UpdateDictionaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDictionaries(_ input: UpdateDictionariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
+        try await self.client.execute(action: "UpdateDictionaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新ES集群词典
     @inlinable
-    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictionariesResponse> {
-        self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictionariesResponse> {
+        self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新ES集群词典
     @inlinable
-    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
-        try await self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func updateDictionaries(instanceId: String, ikMainDicts: [String]? = nil, ikStopwords: [String]? = nil, synonym: [String]? = nil, qqDict: [String]? = nil, updateType: Int64? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictionariesResponse {
+        try await self.updateDictionaries(UpdateDictionariesRequest(instanceId: instanceId, ikMainDicts: ikMainDicts, ikStopwords: ikStopwords, synonym: synonym, qqDict: qqDict, updateType: updateType, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

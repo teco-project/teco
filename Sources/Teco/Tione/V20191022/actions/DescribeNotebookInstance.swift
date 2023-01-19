@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -167,31 +167,31 @@ extension Tione {
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
-        self.client.execute(action: "DescribeNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
+        self.client.execute(action: "DescribeNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
-        try await self.client.execute(action: "DescribeNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNotebookInstance(_ input: DescribeNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
+        try await self.client.execute(action: "DescribeNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
-        self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    public func describeNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
+        self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例
     ///
     /// 查询Notebook实例详情
     @inlinable
-    public func describeNotebookInstance(notebookInstanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
-        try await self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), logger: logger, on: eventLoop)
+    public func describeNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
+        try await self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
 }

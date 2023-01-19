@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcr {
     ///
     /// 删除共享版命名空间
     @inlinable
-    public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
-        self.client.execute(action: "DeleteNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
+        self.client.execute(action: "DeleteNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
     @inlinable
-    public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
-        try await self.client.execute(action: "DeleteNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
+        try await self.client.execute(action: "DeleteNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
     @inlinable
-    public func deleteNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
-        self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
+        self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
     @inlinable
-    public func deleteNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
-        try await self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
+        try await self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

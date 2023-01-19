@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ckafka {
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
-        self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
+        self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
-        try await self.client.execute(action: "DeleteRouteTriggerTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
+        try await self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
-        self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), logger: logger, on: eventLoop)
+    public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
+        self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
     @inlinable
-    public func deleteRouteTriggerTime(delayTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
-        try await self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), logger: logger, on: eventLoop)
+    public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
+        try await self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 绑定云资源
     @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResource(_ input: CreateResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
+        self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定云资源
     @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResource(_ input: CreateResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定云资源
     @inlinable
-    public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        self.createResource(CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
+        self.createResource(CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定云资源
     @inlinable
-    public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.createResource(CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func createResource(namespaceId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.createResource(CreateResourceRequest(namespaceId: namespaceId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

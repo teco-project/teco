@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionBatchResponse> {
-        self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionBatchResponse> {
+        self.client.execute(action: "JoinGameServerSessionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量加入游戏服务器会话
@@ -68,8 +68,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
-        try await self.client.execute(action: "JoinGameServerSessionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func joinGameServerSessionBatch(_ input: JoinGameServerSessionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
+        try await self.client.execute(action: "JoinGameServerSessionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量加入游戏服务器会话
@@ -77,8 +77,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSessionBatch(gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionBatchResponse> {
-        self.joinGameServerSessionBatch(JoinGameServerSessionBatchRequest(gameServerSessionId: gameServerSessionId, playerIds: playerIds, playerDataMap: playerDataMap), logger: logger, on: eventLoop)
+    public func joinGameServerSessionBatch(gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionBatchResponse> {
+        self.joinGameServerSessionBatch(JoinGameServerSessionBatchRequest(gameServerSessionId: gameServerSessionId, playerIds: playerIds, playerDataMap: playerDataMap), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量加入游戏服务器会话
@@ -86,7 +86,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSessionBatch）用于批量加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSessionBatch(gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
-        try await self.joinGameServerSessionBatch(JoinGameServerSessionBatchRequest(gameServerSessionId: gameServerSessionId, playerIds: playerIds, playerDataMap: playerDataMap), logger: logger, on: eventLoop)
+    public func joinGameServerSessionBatch(gameServerSessionId: String, playerIds: [String], playerDataMap: PlayerDataMap? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionBatchResponse {
+        try await self.joinGameServerSessionBatch(JoinGameServerSessionBatchRequest(gameServerSessionId: gameServerSessionId, playerIds: playerIds, playerDataMap: playerDataMap), region: region, logger: logger, on: eventLoop)
     }
 }

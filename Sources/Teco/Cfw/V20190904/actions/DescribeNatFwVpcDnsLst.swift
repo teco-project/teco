@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cfw {
 
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
-        self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
+        self.client.execute(action: "DescribeNatFwVpcDnsLst", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
-        try await self.client.execute(action: "DescribeNatFwVpcDnsLst", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNatFwVpcDnsLst(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
+        try await self.client.execute(action: "DescribeNatFwVpcDnsLst", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
-        self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwVpcDnsLstResponse> {
+        self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
-        try await self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatFwVpcDnsLst(natFwInsId: String, natInsIdFilter: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwVpcDnsLstResponse {
+        try await self.describeNatFwVpcDnsLst(DescribeNatFwVpcDnsLstRequest(natFwInsId: natFwInsId, natInsIdFilter: natInsIdFilter, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
-        self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
+        self.client.execute(action: "ModifyHaVipAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改HAVIP属性
     ///
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
-        try await self.client.execute(action: "ModifyHaVipAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyHaVipAttribute(_ input: ModifyHaVipAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
+        try await self.client.execute(action: "ModifyHaVipAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改HAVIP属性
     ///
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
-        self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), logger: logger, on: eventLoop)
+    public func modifyHaVipAttribute(haVipId: String, haVipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHaVipAttributeResponse> {
+        self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改HAVIP属性
     ///
     /// 本接口（ModifyHaVipAttribute）用于修改高可用虚拟IP（HAVIP）属性
     @inlinable
-    public func modifyHaVipAttribute(haVipId: String, haVipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
-        try await self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), logger: logger, on: eventLoop)
+    public func modifyHaVipAttribute(haVipId: String, haVipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHaVipAttributeResponse {
+        try await self.modifyHaVipAttribute(ModifyHaVipAttributeRequest(haVipId: haVipId, haVipName: haVipName), region: region, logger: logger, on: eventLoop)
     }
 }

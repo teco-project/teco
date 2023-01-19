@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ecm {
     ///
     /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
     @inlinable
-    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
-        self.client.execute(action: "DescribeAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
+        self.client.execute(action: "DescribeAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
     @inlinable
-    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
-        try await self.client.execute(action: "DescribeAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
+        try await self.client.execute(action: "DescribeAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
     @inlinable
-    public func describeAddressQuota(ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
-        self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func describeAddressQuota(ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
+        self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 查询您账户的弹性公网IP（简称 EIP）在当前地域的配额信息
     @inlinable
-    public func describeAddressQuota(ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
-        try await self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func describeAddressQuota(ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
+        try await self.describeAddressQuota(DescribeAddressQuotaRequest(ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Teo {
 
     /// 修改负载均衡
     @inlinable
-    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingResponse> {
-        self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingResponse> {
+        self.client.execute(action: "ModifyLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡
     @inlinable
-    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
-        try await self.client.execute(action: "ModifyLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoadBalancing(_ input: ModifyLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
+        try await self.client.execute(action: "ModifyLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡
     @inlinable
-    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingResponse> {
-        self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originId: originId, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingResponse> {
+        self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡
     @inlinable
-    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
-        try await self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originId: originId, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyLoadBalancing(zoneId: String, loadBalancingId: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingResponse {
+        try await self.modifyLoadBalancing(ModifyLoadBalancingRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

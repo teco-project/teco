@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Cvm {
     /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
-    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigsResponse> {
-        self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigsResponse> {
+        self.client.execute(action: "DescribeInstanceTypeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例机型列表
@@ -63,8 +63,8 @@ extension Cvm {
     /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
-    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
-        try await self.client.execute(action: "DescribeInstanceTypeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceTypeConfigs(_ input: DescribeInstanceTypeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
+        try await self.client.execute(action: "DescribeInstanceTypeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例机型列表
@@ -73,8 +73,8 @@ extension Cvm {
     /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
-    public func describeInstanceTypeConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigsResponse> {
-        self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigsResponse> {
+        self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例机型列表
@@ -83,7 +83,7 @@ extension Cvm {
     /// * 可以根据`zone`、`instance-family`来查询实例机型配置。过滤条件详见过滤器[`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
-    public func describeInstanceTypeConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
-        try await self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeInstanceTypeConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
+        try await self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

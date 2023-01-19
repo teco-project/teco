@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Postgres {
     ///
     /// 可对RO组进行网络的删除操作。
     @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupNetworkAccessResponse> {
-        self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupNetworkAccessResponse> {
+        self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除RO组网络
     ///
     /// 可对RO组进行网络的删除操作。
     @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
-        try await self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReadOnlyGroupNetworkAccess(_ input: DeleteReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
+        try await self.client.execute(action: "DeleteReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除RO组网络
     ///
     /// 可对RO组进行网络的删除操作。
     @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupNetworkAccessResponse> {
-        self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReadOnlyGroupNetworkAccessResponse> {
+        self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除RO组网络
     ///
     /// 可对RO组进行网络的删除操作。
     @inlinable
-    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
-        try await self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), logger: logger, on: eventLoop)
+    public func deleteReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, vip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReadOnlyGroupNetworkAccessResponse {
+        try await self.deleteReadOnlyGroupNetworkAccess(DeleteReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 }

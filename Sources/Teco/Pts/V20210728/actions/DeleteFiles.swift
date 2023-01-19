@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Pts {
 
     /// 删除文件
     @inlinable
-    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
-        self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFiles(_ input: DeleteFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
+        self.client.execute(action: "DeleteFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文件
     @inlinable
-    public func deleteFiles(_ input: DeleteFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
-        try await self.client.execute(action: "DeleteFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFiles(_ input: DeleteFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
+        try await self.client.execute(action: "DeleteFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除文件
     @inlinable
-    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
-        self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), logger: logger, on: eventLoop)
+    public func deleteFiles(projectId: String, fileIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFilesResponse> {
+        self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件
     @inlinable
-    public func deleteFiles(projectId: String, fileIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
-        try await self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), logger: logger, on: eventLoop)
+    public func deleteFiles(projectId: String, fileIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFilesResponse {
+        try await self.deleteFiles(DeleteFilesRequest(projectId: projectId, fileIds: fileIds), region: region, logger: logger, on: eventLoop)
     }
 }

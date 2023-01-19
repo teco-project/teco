@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
-        self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
+        self.client.execute(action: "DescribeConnectResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
-        try await self.client.execute(action: "DescribeConnectResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConnectResources(_ input: DescribeConnectResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
+        try await self.client.execute(action: "DescribeConnectResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
-        self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourcesResponse> {
+        self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub连接源列表
     @inlinable
-    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
-        try await self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeConnectResources(type: String? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourcesResponse {
+        try await self.describeConnectResources(DescribeConnectResourcesRequest(type: type, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

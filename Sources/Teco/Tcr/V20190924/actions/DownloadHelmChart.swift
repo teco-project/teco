@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Tcr {
     ///
     /// 用于在TCR中下载helm chart
     @inlinable
-    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadHelmChartResponse> {
-        self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadHelmChart(_ input: DownloadHelmChartRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadHelmChartResponse> {
+        self.client.execute(action: "DownloadHelmChart", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载Helm Chart
     ///
     /// 用于在TCR中下载helm chart
     @inlinable
-    public func downloadHelmChart(_ input: DownloadHelmChartRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
-        try await self.client.execute(action: "DownloadHelmChart", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadHelmChart(_ input: DownloadHelmChartRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
+        try await self.client.execute(action: "DownloadHelmChart", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载Helm Chart
     ///
     /// 用于在TCR中下载helm chart
     @inlinable
-    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadHelmChartResponse> {
-        self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadHelmChartResponse> {
+        self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载Helm Chart
     ///
     /// 用于在TCR中下载helm chart
     @inlinable
-    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
-        try await self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), logger: logger, on: eventLoop)
+    public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
+        try await self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
     }
 }

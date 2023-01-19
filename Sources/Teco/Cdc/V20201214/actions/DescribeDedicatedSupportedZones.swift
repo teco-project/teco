@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cdc {
 
     /// 查询专用集群支持的可用区列表
     @inlinable
-    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedSupportedZonesResponse> {
-        self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedSupportedZonesResponse> {
+        self.client.execute(action: "DescribeDedicatedSupportedZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群支持的可用区列表
     @inlinable
-    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
-        try await self.client.execute(action: "DescribeDedicatedSupportedZones", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDedicatedSupportedZones(_ input: DescribeDedicatedSupportedZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
+        try await self.client.execute(action: "DescribeDedicatedSupportedZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专用集群支持的可用区列表
     @inlinable
-    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedSupportedZonesResponse> {
-        self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), logger: logger, on: eventLoop)
+    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedSupportedZonesResponse> {
+        self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群支持的可用区列表
     @inlinable
-    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
-        try await self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), logger: logger, on: eventLoop)
+    public func describeDedicatedSupportedZones(regions: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedSupportedZonesResponse {
+        try await self.describeDedicatedSupportedZones(DescribeDedicatedSupportedZonesRequest(regions: regions), region: region, logger: logger, on: eventLoop)
     }
 }

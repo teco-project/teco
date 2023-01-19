@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Wedata {
 
     /// 查询表绑定执行规则组信息
     @inlinable
-    public func describeRuleGroupTable(_ input: DescribeRuleGroupTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupTableResponse> {
-        self.client.execute(action: "DescribeRuleGroupTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleGroupTable(_ input: DescribeRuleGroupTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupTableResponse> {
+        self.client.execute(action: "DescribeRuleGroupTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询表绑定执行规则组信息
     @inlinable
-    public func describeRuleGroupTable(_ input: DescribeRuleGroupTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
-        try await self.client.execute(action: "DescribeRuleGroupTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleGroupTable(_ input: DescribeRuleGroupTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
+        try await self.client.execute(action: "DescribeRuleGroupTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询表绑定执行规则组信息
     @inlinable
-    public func describeRuleGroupTable(tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupTableResponse> {
-        self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), logger: logger, on: eventLoop)
+    public func describeRuleGroupTable(tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupTableResponse> {
+        self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表绑定执行规则组信息
     @inlinable
-    public func describeRuleGroupTable(tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
-        try await self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), logger: logger, on: eventLoop)
+    public func describeRuleGroupTable(tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupTableResponse {
+        try await self.describeRuleGroupTable(DescribeRuleGroupTableRequest(tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 }

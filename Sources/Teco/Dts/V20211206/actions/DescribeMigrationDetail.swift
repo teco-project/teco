@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -141,25 +141,25 @@ extension Dts {
 
     /// 查询某个迁移任务详情
     @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDetailResponse> {
-        self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDetailResponse> {
+        self.client.execute(action: "DescribeMigrationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个迁移任务详情
     @inlinable
-    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
-        try await self.client.execute(action: "DescribeMigrationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMigrationDetail(_ input: DescribeMigrationDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
+        try await self.client.execute(action: "DescribeMigrationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询某个迁移任务详情
     @inlinable
-    public func describeMigrationDetail(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDetailResponse> {
-        self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeMigrationDetail(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDetailResponse> {
+        self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个迁移任务详情
     @inlinable
-    public func describeMigrationDetail(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
-        try await self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeMigrationDetail(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
+        try await self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

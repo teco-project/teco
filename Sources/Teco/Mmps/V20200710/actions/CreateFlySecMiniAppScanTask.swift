@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Mmps {
     ///
     /// 创建小程序翼扬安全的基础或深度诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTask(_ input: CreateFlySecMiniAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskResponse> {
-        self.client.execute(action: "CreateFlySecMiniAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlySecMiniAppScanTask(_ input: CreateFlySecMiniAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskResponse> {
+        self.client.execute(action: "CreateFlySecMiniAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建小程序翼扬安全诊断任务
     ///
     /// 创建小程序翼扬安全的基础或深度诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTask(_ input: CreateFlySecMiniAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskResponse {
-        try await self.client.execute(action: "CreateFlySecMiniAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlySecMiniAppScanTask(_ input: CreateFlySecMiniAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskResponse {
+        try await self.client.execute(action: "CreateFlySecMiniAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建小程序翼扬安全诊断任务
     ///
     /// 创建小程序翼扬安全的基础或深度诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTask(miniAppID: String, mode: Int64, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, industry: String? = nil, surveyContent: String? = nil, mobile: String? = nil, email: String? = nil, salesPerson: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskResponse> {
-        self.createFlySecMiniAppScanTask(CreateFlySecMiniAppScanTaskRequest(miniAppID: miniAppID, mode: mode, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, industry: industry, surveyContent: surveyContent, mobile: mobile, email: email, salesPerson: salesPerson, scanVersion: scanVersion), logger: logger, on: eventLoop)
+    public func createFlySecMiniAppScanTask(miniAppID: String, mode: Int64, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, industry: String? = nil, surveyContent: String? = nil, mobile: String? = nil, email: String? = nil, salesPerson: String? = nil, scanVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskResponse> {
+        self.createFlySecMiniAppScanTask(CreateFlySecMiniAppScanTaskRequest(miniAppID: miniAppID, mode: mode, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, industry: industry, surveyContent: surveyContent, mobile: mobile, email: email, salesPerson: salesPerson, scanVersion: scanVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建小程序翼扬安全诊断任务
     ///
     /// 创建小程序翼扬安全的基础或深度诊断任务
     @inlinable
-    public func createFlySecMiniAppScanTask(miniAppID: String, mode: Int64, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, industry: String? = nil, surveyContent: String? = nil, mobile: String? = nil, email: String? = nil, salesPerson: String? = nil, scanVersion: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskResponse {
-        try await self.createFlySecMiniAppScanTask(CreateFlySecMiniAppScanTaskRequest(miniAppID: miniAppID, mode: mode, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, industry: industry, surveyContent: surveyContent, mobile: mobile, email: email, salesPerson: salesPerson, scanVersion: scanVersion), logger: logger, on: eventLoop)
+    public func createFlySecMiniAppScanTask(miniAppID: String, mode: Int64, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, industry: String? = nil, surveyContent: String? = nil, mobile: String? = nil, email: String? = nil, salesPerson: String? = nil, scanVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskResponse {
+        try await self.createFlySecMiniAppScanTask(CreateFlySecMiniAppScanTaskRequest(miniAppID: miniAppID, mode: mode, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, industry: industry, surveyContent: surveyContent, mobile: mobile, email: email, salesPerson: salesPerson, scanVersion: scanVersion), region: region, logger: logger, on: eventLoop)
     }
 }

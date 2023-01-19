@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
-        self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHashDeposit(_ input: CreateHashDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
+        self.client.execute(action: "CreateHashDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证
@@ -82,8 +82,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDeposit(_ input: CreateHashDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        try await self.client.execute(action: "CreateHashDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHashDeposit(_ input: CreateHashDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
+        try await self.client.execute(action: "CreateHashDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 哈希上链存证
@@ -91,8 +91,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
-        self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
+        self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证
@@ -100,7 +100,7 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        try await self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
+        try await self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

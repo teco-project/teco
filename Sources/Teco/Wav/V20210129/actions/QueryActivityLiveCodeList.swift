@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Wav {
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
-        self.client.execute(action: "QueryActivityLiveCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
+        self.client.execute(action: "QueryActivityLiveCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
-        try await self.client.execute(action: "QueryActivityLiveCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryActivityLiveCodeList(_ input: QueryActivityLiveCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
+        try await self.client.execute(action: "QueryActivityLiveCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
-        self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityLiveCodeListResponse> {
+        self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询活动活码列表接口
     ///
     /// 根据游标拉取活动活码列表信息
     @inlinable
-    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
-        try await self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryActivityLiveCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityLiveCodeListResponse {
+        try await self.queryActivityLiveCodeList(QueryActivityLiveCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Cwp {
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
-        self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
+        self.client.execute(action: "DescribeBaselineStrategyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
-        try await self.client.execute(action: "DescribeBaselineStrategyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineStrategyDetail(_ input: DescribeBaselineStrategyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
+        try await self.client.execute(action: "DescribeBaselineStrategyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
-        self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineStrategyDetail(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
+        self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线策略详情
     ///
     /// 根据基线策略id查询策略详情
     @inlinable
-    public func describeBaselineStrategyDetail(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
-        try await self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineStrategyDetail(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
+        try await self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

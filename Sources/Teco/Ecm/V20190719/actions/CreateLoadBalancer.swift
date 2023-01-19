@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Ecm {
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
-        self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
+        self.client.execute(action: "CreateLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购买负载均衡实例
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.client.execute(action: "CreateLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoadBalancer(_ input: CreateLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.client.execute(action: "CreateLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 购买负载均衡实例
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
-        self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
+        self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买负载均衡实例
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 }

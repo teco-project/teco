@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cls {
 
     /// 删除应用到机器组的采集配置
     @inlinable
-    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
-        self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
+        self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用到机器组的采集配置
     @inlinable
-    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
-        try await self.client.execute(action: "DeleteConfigFromMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
+        try await self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用到机器组的采集配置
     @inlinable
-    public func deleteConfigFromMachineGroup(groupId: String, configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
-        self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), logger: logger, on: eventLoop)
+    public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
+        self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用到机器组的采集配置
     @inlinable
-    public func deleteConfigFromMachineGroup(groupId: String, configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
-        try await self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), logger: logger, on: eventLoop)
+    public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
+        try await self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

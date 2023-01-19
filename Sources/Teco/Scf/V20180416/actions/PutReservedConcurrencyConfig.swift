@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Scf {
     ///
     /// 设置函数最大独占配额
     @inlinable
-    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
-        self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
+        self.client.execute(action: "PutReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
     @inlinable
-    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
-        try await self.client.execute(action: "PutReservedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
+        try await self.client.execute(action: "PutReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
     @inlinable
-    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
-        self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
+        self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
     @inlinable
-    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
-        try await self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), logger: logger, on: eventLoop)
+    public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
+        try await self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

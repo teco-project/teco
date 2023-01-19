@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
-    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoGroupsResponse> {
-        self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoGroups(_ input: DescribeRoGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoGroupsResponse> {
+        self.client.execute(action: "DescribeRoGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的所有RO组的信息
     ///
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
-    public func describeRoGroups(_ input: DescribeRoGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
-        try await self.client.execute(action: "DescribeRoGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoGroups(_ input: DescribeRoGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
+        try await self.client.execute(action: "DescribeRoGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库实例的所有RO组的信息
     ///
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
-    public func describeRoGroups(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoGroupsResponse> {
-        self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeRoGroups(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoGroupsResponse> {
+        self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的所有RO组的信息
     ///
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
-    public func describeRoGroups(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
-        try await self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeRoGroups(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
+        try await self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

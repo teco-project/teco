@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tsf {
 
     /// 更新单元化规则
     @inlinable
-    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUnitRuleResponse> {
-        self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateUnitRule(_ input: UpdateUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUnitRuleResponse> {
+        self.client.execute(action: "UpdateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新单元化规则
     @inlinable
-    public func updateUnitRule(_ input: UpdateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
-        try await self.client.execute(action: "UpdateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateUnitRule(_ input: UpdateUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
+        try await self.client.execute(action: "UpdateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新单元化规则
     @inlinable
-    public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUnitRuleResponse> {
-        self.updateUnitRule(UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUnitRuleResponse> {
+        self.updateUnitRule(UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新单元化规则
     @inlinable
-    public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
-        try await self.updateUnitRule(UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    public func updateUnitRule(id: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUnitRuleResponse {
+        try await self.updateUnitRule(UpdateUnitRuleRequest(id: id, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 }

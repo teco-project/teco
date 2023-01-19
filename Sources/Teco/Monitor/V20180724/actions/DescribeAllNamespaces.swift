@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Monitor {
 
     /// 查询所有名字空间
     @inlinable
-    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllNamespacesResponse> {
-        self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllNamespacesResponse> {
+        self.client.execute(action: "DescribeAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有名字空间
     @inlinable
-    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
-        try await self.client.execute(action: "DescribeAllNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllNamespaces(_ input: DescribeAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
+        try await self.client.execute(action: "DescribeAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有名字空间
     @inlinable
-    public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllNamespacesResponse> {
-        self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), logger: logger, on: eventLoop)
+    public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllNamespacesResponse> {
+        self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有名字空间
     @inlinable
-    public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
-        try await self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), logger: logger, on: eventLoop)
+    public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
+        try await self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

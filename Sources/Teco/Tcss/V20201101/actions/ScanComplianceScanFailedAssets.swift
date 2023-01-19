@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcss {
     ///
     /// 重新检测选定的检测失败的资产下的所有失败的检测项，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceScanFailedAssets(_ input: ScanComplianceScanFailedAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceScanFailedAssetsResponse> {
-        self.client.execute(action: "ScanComplianceScanFailedAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanComplianceScanFailedAssets(_ input: ScanComplianceScanFailedAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceScanFailedAssetsResponse> {
+        self.client.execute(action: "ScanComplianceScanFailedAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规重新检测上次检测失败的资产
     ///
     /// 重新检测选定的检测失败的资产下的所有失败的检测项，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceScanFailedAssets(_ input: ScanComplianceScanFailedAssetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceScanFailedAssetsResponse {
-        try await self.client.execute(action: "ScanComplianceScanFailedAssets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanComplianceScanFailedAssets(_ input: ScanComplianceScanFailedAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceScanFailedAssetsResponse {
+        try await self.client.execute(action: "ScanComplianceScanFailedAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规重新检测上次检测失败的资产
     ///
     /// 重新检测选定的检测失败的资产下的所有失败的检测项，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceScanFailedAssets(customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceScanFailedAssetsResponse> {
-        self.scanComplianceScanFailedAssets(ScanComplianceScanFailedAssetsRequest(customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    public func scanComplianceScanFailedAssets(customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceScanFailedAssetsResponse> {
+        self.scanComplianceScanFailedAssets(ScanComplianceScanFailedAssetsRequest(customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规重新检测上次检测失败的资产
     ///
     /// 重新检测选定的检测失败的资产下的所有失败的检测项，返回创建的合规检查任务的ID。
     @inlinable
-    public func scanComplianceScanFailedAssets(customerAssetIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceScanFailedAssetsResponse {
-        try await self.scanComplianceScanFailedAssets(ScanComplianceScanFailedAssetsRequest(customerAssetIdSet: customerAssetIdSet), logger: logger, on: eventLoop)
+    public func scanComplianceScanFailedAssets(customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceScanFailedAssetsResponse {
+        try await self.scanComplianceScanFailedAssets(ScanComplianceScanFailedAssetsRequest(customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

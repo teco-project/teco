@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 删除告警规则
     @inlinable
-    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
-        self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
+        self.client.execute(action: "DeletePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警规则
     @inlinable
-    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
-        try await self.client.execute(action: "DeletePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
+        try await self.client.execute(action: "DeletePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警规则
     @inlinable
-    public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
-        self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), logger: logger, on: eventLoop)
+    public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
+        self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警规则
     @inlinable
-    public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
-        try await self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), logger: logger, on: eventLoop)
+    public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
+        try await self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), region: region, logger: logger, on: eventLoop)
     }
 }

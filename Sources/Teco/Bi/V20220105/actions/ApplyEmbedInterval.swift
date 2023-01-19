@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Bi {
     ///
     /// 申请延长Token可用时间接口-强鉴权
     @inlinable
-    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyEmbedIntervalResponse> {
-        self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyEmbedIntervalResponse> {
+        self.client.execute(action: "ApplyEmbedInterval", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请延长Token可用时间接口
     ///
     /// 申请延长Token可用时间接口-强鉴权
     @inlinable
-    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
-        try await self.client.execute(action: "ApplyEmbedInterval", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyEmbedInterval(_ input: ApplyEmbedIntervalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
+        try await self.client.execute(action: "ApplyEmbedInterval", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请延长Token可用时间接口
     ///
     /// 申请延长Token可用时间接口-强鉴权
     @inlinable
-    public func applyEmbedInterval(projectId: UInt64? = nil, pageId: UInt64? = nil, biToken: String? = nil, extraParam: String? = nil, scope: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyEmbedIntervalResponse> {
-        self.applyEmbedInterval(ApplyEmbedIntervalRequest(projectId: projectId, pageId: pageId, biToken: biToken, extraParam: extraParam, scope: scope), logger: logger, on: eventLoop)
+    public func applyEmbedInterval(projectId: UInt64? = nil, pageId: UInt64? = nil, biToken: String? = nil, extraParam: String? = nil, scope: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyEmbedIntervalResponse> {
+        self.applyEmbedInterval(ApplyEmbedIntervalRequest(projectId: projectId, pageId: pageId, biToken: biToken, extraParam: extraParam, scope: scope), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请延长Token可用时间接口
     ///
     /// 申请延长Token可用时间接口-强鉴权
     @inlinable
-    public func applyEmbedInterval(projectId: UInt64? = nil, pageId: UInt64? = nil, biToken: String? = nil, extraParam: String? = nil, scope: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
-        try await self.applyEmbedInterval(ApplyEmbedIntervalRequest(projectId: projectId, pageId: pageId, biToken: biToken, extraParam: extraParam, scope: scope), logger: logger, on: eventLoop)
+    public func applyEmbedInterval(projectId: UInt64? = nil, pageId: UInt64? = nil, biToken: String? = nil, extraParam: String? = nil, scope: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyEmbedIntervalResponse {
+        try await self.applyEmbedInterval(ApplyEmbedIntervalRequest(projectId: projectId, pageId: pageId, biToken: biToken, extraParam: extraParam, scope: scope), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,8 +85,8 @@ extension Mps {
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
     @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
-        self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
+        self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑视频
@@ -96,8 +96,8 @@ extension Mps {
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
     @inlinable
-    public func editMedia(_ input: EditMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.client.execute(action: "EditMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editMedia(_ input: EditMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.client.execute(action: "EditMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑视频
@@ -107,8 +107,8 @@ extension Mps {
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
     @inlinable
-    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
-        self.editMedia(EditMediaRequest(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditMediaResponse> {
+        self.editMedia(EditMediaRequest(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑视频
@@ -118,7 +118,7 @@ extension Mps {
     /// 2. 对多个文件进行拼接，生成一个新的视频；
     /// 3. 对多个文件进行剪辑，然后再拼接，生成一个新的视频。
     @inlinable
-    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
-        try await self.editMedia(EditMediaRequest(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), logger: logger, on: eventLoop)
+    public func editMedia(fileInfos: [EditMediaFileInfo], outputStorage: TaskOutputStorage, outputObjectPath: String, outputConfig: EditMediaOutputConfig? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditMediaResponse {
+        try await self.editMedia(EditMediaRequest(fileInfos: fileInfos, outputStorage: outputStorage, outputObjectPath: outputObjectPath, outputConfig: outputConfig, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
     }
 }

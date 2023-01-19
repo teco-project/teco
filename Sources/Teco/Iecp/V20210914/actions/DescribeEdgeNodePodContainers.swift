@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iecp {
 
     /// 查询节点Pod内的容器列表
     @inlinable
-    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodePodContainersResponse> {
-        self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodePodContainersResponse> {
+        self.client.execute(action: "DescribeEdgeNodePodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询节点Pod内的容器列表
     @inlinable
-    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
-        try await self.client.execute(action: "DescribeEdgeNodePodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeNodePodContainers(_ input: DescribeEdgeNodePodContainersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
+        try await self.client.execute(action: "DescribeEdgeNodePodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询节点Pod内的容器列表
     @inlinable
-    public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodePodContainersResponse> {
-        self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodePodContainersResponse> {
+        self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点Pod内的容器列表
     @inlinable
-    public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
-        try await self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
+        try await self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

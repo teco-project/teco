@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 运行任务
     @inlinable
-    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTaskResponse> {
-        self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runTask(_ input: RunTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTaskResponse> {
+        self.client.execute(action: "RunTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行任务【Beta版本】
@@ -62,8 +62,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 运行任务
     @inlinable
-    public func runTask(_ input: RunTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
-        try await self.client.execute(action: "RunTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runTask(_ input: RunTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
+        try await self.client.execute(action: "RunTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行任务【Beta版本】
@@ -71,8 +71,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 运行任务
     @inlinable
-    public func runTask(projectId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTaskResponse> {
-        self.runTask(RunTaskRequest(projectId: projectId, taskId: taskId), logger: logger, on: eventLoop)
+    public func runTask(projectId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTaskResponse> {
+        self.runTask(RunTaskRequest(projectId: projectId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行任务【Beta版本】
@@ -80,7 +80,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 运行任务
     @inlinable
-    public func runTask(projectId: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
-        try await self.runTask(RunTaskRequest(projectId: projectId, taskId: taskId), logger: logger, on: eventLoop)
+    public func runTask(projectId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTaskResponse {
+        try await self.runTask(RunTaskRequest(projectId: projectId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

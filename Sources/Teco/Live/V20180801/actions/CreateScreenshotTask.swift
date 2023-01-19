@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Live {
     /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createScreenshotTask(_ input: CreateScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScreenshotTaskResponse> {
-        self.client.execute(action: "CreateScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScreenshotTask(_ input: CreateScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScreenshotTaskResponse> {
+        self.client.execute(action: "CreateScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建截图任务
@@ -104,8 +104,8 @@ extension Live {
     /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createScreenshotTask(_ input: CreateScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
-        try await self.client.execute(action: "CreateScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScreenshotTask(_ input: CreateScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
+        try await self.client.execute(action: "CreateScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建截图任务
@@ -118,8 +118,8 @@ extension Live {
     /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScreenshotTaskResponse> {
-        self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), logger: logger, on: eventLoop)
+    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScreenshotTaskResponse> {
+        self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建截图任务
@@ -132,7 +132,7 @@ extension Live {
     /// 4. 当前截图任务管理API（CreateScreenshotTask/StopScreenshotTask/DeleteScreenshotTask）与旧API（CreateLiveInstantSnapshot/StopLiveInstantSnapshot）不兼容，两套接口不能混用。
     /// 5. 避免 创建截图任务 与 推流 操作同时进行，可能导致因截图任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
-        try await self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), logger: logger, on: eventLoop)
+    public func createScreenshotTask(streamName: String, domainName: String, appName: String, endTime: UInt64, templateId: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScreenshotTaskResponse {
+        try await self.createScreenshotTask(CreateScreenshotTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, templateId: templateId, startTime: startTime, streamType: streamType, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 }

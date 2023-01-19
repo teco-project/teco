@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
     @inlinable
-    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
-        self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
+        self.client.execute(action: "ResolveAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取别名当前指向的fleetId
@@ -58,8 +58,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
     @inlinable
-    public func resolveAlias(_ input: ResolveAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
-        try await self.client.execute(action: "ResolveAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
+        try await self.client.execute(action: "ResolveAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取别名当前指向的fleetId
@@ -67,8 +67,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
     @inlinable
-    public func resolveAlias(aliasId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
-        self.resolveAlias(ResolveAliasRequest(aliasId: aliasId), logger: logger, on: eventLoop)
+    public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
+        self.resolveAlias(ResolveAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取别名当前指向的fleetId
@@ -76,7 +76,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
     @inlinable
-    public func resolveAlias(aliasId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
-        try await self.resolveAlias(ResolveAliasRequest(aliasId: aliasId), logger: logger, on: eventLoop)
+    public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
+        try await self.resolveAlias(ResolveAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)
     }
 }

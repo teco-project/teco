@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
-        self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
+        self.client.execute(action: "ModifySmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改短信模板
@@ -90,8 +90,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
-        try await self.client.execute(action: "ModifySmsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySmsTemplate(_ input: ModifySmsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
+        try await self.client.execute(action: "ModifySmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改短信模板
@@ -102,8 +102,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsTemplate(templateId: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
-        self.modifySmsTemplate(ModifySmsTemplateRequest(templateId: templateId, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark), logger: logger, on: eventLoop)
+    public func modifySmsTemplate(templateId: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
+        self.modifySmsTemplate(ModifySmsTemplateRequest(templateId: templateId, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改短信模板
@@ -114,7 +114,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsTemplate(templateId: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
-        try await self.modifySmsTemplate(ModifySmsTemplateRequest(templateId: templateId, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark), logger: logger, on: eventLoop)
+    public func modifySmsTemplate(templateId: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
+        try await self.modifySmsTemplate(ModifySmsTemplateRequest(templateId: templateId, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

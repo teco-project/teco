@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Ckafka {
 
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
-        self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
+        self.client.execute(action: "ModifyInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
-        try await self.client.execute(action: "ModifyInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceAttributes(_ input: ModifyInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
+        try await self.client.execute(action: "ModifyInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
-        self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), logger: logger, on: eventLoop)
+    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
+        self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置实例属性
     @inlinable
-    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
-        try await self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), logger: logger, on: eventLoop)
+    public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
+        try await self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Tcss {
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
-        self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
+        self.client.execute(action: "DescribeAssetImageRegistryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageRegistryList(_ input: DescribeAssetImageRegistryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库查询镜像仓库列表
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
-        self.describeAssetImageRegistryList(DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryListResponse> {
+        self.describeAssetImageRegistryList(DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像仓库列表
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
-        try await self.describeAssetImageRegistryList(DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryListResponse {
+        try await self.describeAssetImageRegistryList(DescribeAssetImageRegistryListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 }

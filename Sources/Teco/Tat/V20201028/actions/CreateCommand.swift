@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,31 +112,31 @@ extension Tat {
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
-        self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCommand(_ input: CreateCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
+        self.client.execute(action: "CreateCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建命令
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(_ input: CreateCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
-        try await self.client.execute(action: "CreateCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCommand(_ input: CreateCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
+        try await self.client.execute(action: "CreateCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建命令
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
-        self.createCommand(CreateCommandRequest(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommandResponse> {
+        self.createCommand(CreateCommandRequest(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建命令
     ///
     /// 此接口用于创建命令。
     @inlinable
-    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
-        try await self.createCommand(CreateCommandRequest(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func createCommand(commandName: String, content: String, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommandResponse {
+        try await self.createCommand(CreateCommandRequest(commandName: commandName, content: content, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, enableParameter: enableParameter, defaultParameters: defaultParameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

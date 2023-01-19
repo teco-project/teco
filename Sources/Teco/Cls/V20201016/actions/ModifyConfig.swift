@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Cls {
 
     /// 修改采集规则配置
     @inlinable
-    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
-        self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyConfig(_ input: ModifyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
+        self.client.execute(action: "ModifyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改采集规则配置
     @inlinable
-    public func modifyConfig(_ input: ModifyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
-        try await self.client.execute(action: "ModifyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyConfig(_ input: ModifyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
+        try await self.client.execute(action: "ModifyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改采集规则配置
     @inlinable
-    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
-        self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
+        self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改采集规则配置
     @inlinable
-    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
-        try await self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), logger: logger, on: eventLoop)
+    public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
+        try await self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
     }
 }

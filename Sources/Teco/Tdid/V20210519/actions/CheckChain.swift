@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Tdid {
 
     /// 检查区块链信息
     @inlinable
-    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
+        self.client.execute(action: "CheckChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查区块链信息
     @inlinable
-    public func checkChain(_ input: CheckChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        try await self.client.execute(action: "CheckChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkChain(_ input: CheckChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
+        try await self.client.execute(action: "CheckChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查区块链信息
     @inlinable
-    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
-        self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), logger: logger, on: eventLoop)
+    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckChainResponse> {
+        self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查区块链信息
     @inlinable
-    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
-        try await self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), logger: logger, on: eventLoop)
+    public func checkChain(groupId: Int64, clusterId: String, agencyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckChainResponse {
+        try await self.checkChain(CheckChainRequest(groupId: groupId, clusterId: clusterId, agencyName: agencyName), region: region, logger: logger, on: eventLoop)
     }
 }

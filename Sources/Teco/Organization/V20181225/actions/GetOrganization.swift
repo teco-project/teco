@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Organization {
 
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(_ input: GetOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
-        self.client.execute(action: "GetOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getOrganization(_ input: GetOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
+        self.client.execute(action: "GetOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(_ input: GetOrganizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
-        try await self.client.execute(action: "GetOrganization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getOrganization(_ input: GetOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
+        try await self.client.execute(action: "GetOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
-        self.getOrganization(GetOrganizationRequest(), logger: logger, on: eventLoop)
+    public func getOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationResponse> {
+        self.getOrganization(GetOrganizationRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织信息
     @inlinable
-    public func getOrganization(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
-        try await self.getOrganization(GetOrganizationRequest(), logger: logger, on: eventLoop)
+    public func getOrganization(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationResponse {
+        try await self.getOrganization(GetOrganizationRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

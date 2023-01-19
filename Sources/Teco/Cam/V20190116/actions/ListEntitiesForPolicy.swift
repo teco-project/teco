@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cam {
     ///
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
-    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEntitiesForPolicyResponse> {
-        self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEntitiesForPolicyResponse> {
+        self.client.execute(action: "ListEntitiesForPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询策略关联的实体列表
     ///
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
-    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
-        try await self.client.execute(action: "ListEntitiesForPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listEntitiesForPolicy(_ input: ListEntitiesForPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
+        try await self.client.execute(action: "ListEntitiesForPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询策略关联的实体列表
     ///
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
-    public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEntitiesForPolicyResponse> {
-        self.listEntitiesForPolicy(ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), logger: logger, on: eventLoop)
+    public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEntitiesForPolicyResponse> {
+        self.listEntitiesForPolicy(ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询策略关联的实体列表
     ///
     /// 本接口（ListEntitiesForPolicy）可用于查询策略关联的实体列表。
     @inlinable
-    public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
-        try await self.listEntitiesForPolicy(ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), logger: logger, on: eventLoop)
+    public func listEntitiesForPolicy(policyId: UInt64, page: UInt64? = nil, rp: UInt64? = nil, entityFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEntitiesForPolicyResponse {
+        try await self.listEntitiesForPolicy(ListEntitiesForPolicyRequest(policyId: policyId, page: page, rp: rp, entityFilter: entityFilter), region: region, logger: logger, on: eventLoop)
     }
 }

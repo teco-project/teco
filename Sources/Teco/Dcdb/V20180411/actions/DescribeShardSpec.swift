@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Dcdb {
     ///
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
-    public func describeShardSpec(_ input: DescribeShardSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShardSpecResponse> {
-        self.client.execute(action: "DescribeShardSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeShardSpec(_ input: DescribeShardSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShardSpecResponse> {
+        self.client.execute(action: "DescribeShardSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖分片规格
     ///
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
-    public func describeShardSpec(_ input: DescribeShardSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShardSpecResponse {
-        try await self.client.execute(action: "DescribeShardSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeShardSpec(_ input: DescribeShardSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShardSpecResponse {
+        try await self.client.execute(action: "DescribeShardSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询分布式数据库可售卖分片规格
     ///
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
-    public func describeShardSpec(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShardSpecResponse> {
-        self.describeShardSpec(DescribeShardSpecRequest(), logger: logger, on: eventLoop)
+    public func describeShardSpec(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShardSpecResponse> {
+        self.describeShardSpec(DescribeShardSpecRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖分片规格
     ///
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
-    public func describeShardSpec(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShardSpecResponse {
-        try await self.describeShardSpec(DescribeShardSpecRequest(), logger: logger, on: eventLoop)
+    public func describeShardSpec(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShardSpecResponse {
+        try await self.describeShardSpec(DescribeShardSpecRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

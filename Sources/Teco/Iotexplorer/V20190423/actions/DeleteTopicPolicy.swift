@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotexplorer {
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
     @inlinable
-    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
-        self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
+        self.client.execute(action: "DeleteTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
     @inlinable
-    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
-        try await self.client.execute(action: "DeleteTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
+        try await self.client.execute(action: "DeleteTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
     @inlinable
-    public func deleteTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
-        self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func deleteTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
+        self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
     @inlinable
-    public func deleteTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
-        try await self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func deleteTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
+        try await self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

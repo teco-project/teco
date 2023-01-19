@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Eiam {
 
     /// 加入用户到用户组
     @inlinable
-    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToUserGroupResponse> {
-        self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToUserGroupResponse> {
+        self.client.execute(action: "AddUserToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 加入用户到用户组
     @inlinable
-    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
-        try await self.client.execute(action: "AddUserToUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addUserToUserGroup(_ input: AddUserToUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
+        try await self.client.execute(action: "AddUserToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 加入用户到用户组
     @inlinable
-    public func addUserToUserGroup(userIds: [String], userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToUserGroupResponse> {
-        self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), logger: logger, on: eventLoop)
+    public func addUserToUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToUserGroupResponse> {
+        self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 加入用户到用户组
     @inlinable
-    public func addUserToUserGroup(userIds: [String], userGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
-        try await self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), logger: logger, on: eventLoop)
+    public func addUserToUserGroup(userIds: [String], userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToUserGroupResponse {
+        try await self.addUserToUserGroup(AddUserToUserGroupRequest(userIds: userIds, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

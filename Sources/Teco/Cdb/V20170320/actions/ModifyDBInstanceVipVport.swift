@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
-    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceVipVportResponse> {
-        self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceVipVportResponse> {
+        self.client.execute(action: "ModifyDBInstanceVipVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的IP和端口号
     ///
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
-    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
-        try await self.client.execute(action: "ModifyDBInstanceVipVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceVipVport(_ input: ModifyDBInstanceVipVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
+        try await self.client.execute(action: "ModifyDBInstanceVipVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例的IP和端口号
     ///
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
-    public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceVipVportResponse> {
-        self.modifyDBInstanceVipVport(ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), logger: logger, on: eventLoop)
+    public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceVipVportResponse> {
+        self.modifyDBInstanceVipVport(ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的IP和端口号
     ///
     /// 本接口(ModifyDBInstanceVipVport)用于修改云数据库实例的IP和端口号，也可进行基础网络转 VPC 网络和 VPC 网络下的子网变更。
     @inlinable
-    public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
-        try await self.modifyDBInstanceVipVport(ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), logger: logger, on: eventLoop)
+    public func modifyDBInstanceVipVport(instanceId: String, dstIp: String? = nil, dstPort: Int64? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, releaseDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceVipVportResponse {
+        try await self.modifyDBInstanceVipVport(ModifyDBInstanceVipVportRequest(instanceId: instanceId, dstIp: dstIp, dstPort: dstPort, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }
 }

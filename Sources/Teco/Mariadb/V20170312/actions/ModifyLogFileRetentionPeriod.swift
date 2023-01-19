@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mariadb {
     ///
     /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
     @inlinable
-    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogFileRetentionPeriodResponse> {
-        self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogFileRetentionPeriodResponse> {
+        self.client.execute(action: "ModifyLogFileRetentionPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份日志保存天数
     ///
     /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
     @inlinable
-    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
-        try await self.client.execute(action: "ModifyLogFileRetentionPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLogFileRetentionPeriod(_ input: ModifyLogFileRetentionPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
+        try await self.client.execute(action: "ModifyLogFileRetentionPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改备份日志保存天数
     ///
     /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
     @inlinable
-    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogFileRetentionPeriodResponse> {
-        self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), logger: logger, on: eventLoop)
+    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogFileRetentionPeriodResponse> {
+        self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份日志保存天数
     ///
     /// 本接口(ModifyLogFileRetentionPeriod)用于修改数据库备份日志保存天数。
     @inlinable
-    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
-        try await self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), logger: logger, on: eventLoop)
+    public func modifyLogFileRetentionPeriod(instanceId: String, days: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogFileRetentionPeriodResponse {
+        try await self.modifyLogFileRetentionPeriod(ModifyLogFileRetentionPeriodRequest(instanceId: instanceId, days: days), region: region, logger: logger, on: eventLoop)
     }
 }

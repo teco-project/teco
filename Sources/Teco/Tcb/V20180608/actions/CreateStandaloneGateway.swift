@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Tcb {
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
-        self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
+        self.client.execute(action: "CreateStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
-        try await self.client.execute(action: "CreateStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStandaloneGateway(_ input: CreateStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
+        try await self.client.execute(action: "CreateStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
-        self.createStandaloneGateway(CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStandaloneGatewayResponse> {
+        self.createStandaloneGateway(CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建独立网关
     ///
     /// 本接口（CreateStandaloneGateway）用于创建独立网关。
     @inlinable
-    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
-        try await self.createStandaloneGateway(CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), logger: logger, on: eventLoop)
+    public func createStandaloneGateway(envId: String, gatewayAlias: String, vpcId: String, subnetIds: [String], gatewayDesc: String, packageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStandaloneGatewayResponse {
+        try await self.createStandaloneGateway(CreateStandaloneGatewayRequest(envId: envId, gatewayAlias: gatewayAlias, vpcId: vpcId, subnetIds: subnetIds, gatewayDesc: gatewayDesc, packageVersion: packageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cfw {
 
     /// 企业安全组规则快速排序
     @inlinable
-    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupSequenceRulesResponse> {
-        self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupSequenceRulesResponse> {
+        self.client.execute(action: "ModifySecurityGroupSequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业安全组规则快速排序
     @inlinable
-    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
-        try await self.client.execute(action: "ModifySecurityGroupSequenceRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityGroupSequenceRules(_ input: ModifySecurityGroupSequenceRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
+        try await self.client.execute(action: "ModifySecurityGroupSequenceRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 企业安全组规则快速排序
     @inlinable
-    public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupSequenceRulesResponse> {
-        self.modifySecurityGroupSequenceRules(ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data), logger: logger, on: eventLoop)
+    public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupSequenceRulesResponse> {
+        self.modifySecurityGroupSequenceRules(ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业安全组规则快速排序
     @inlinable
-    public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
-        try await self.modifySecurityGroupSequenceRules(ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data), logger: logger, on: eventLoop)
+    public func modifySecurityGroupSequenceRules(direction: UInt64, data: [SecurityGroupOrderIndexData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupSequenceRulesResponse {
+        try await self.modifySecurityGroupSequenceRules(ModifySecurityGroupSequenceRulesRequest(direction: direction, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

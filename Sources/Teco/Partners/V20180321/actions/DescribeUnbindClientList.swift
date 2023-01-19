@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Partners {
 
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
-        self.client.execute(action: "DescribeUnbindClientList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
+        self.client.execute(action: "DescribeUnbindClientList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {
-        try await self.client.execute(action: "DescribeUnbindClientList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUnbindClientList(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {
+        try await self.client.execute(action: "DescribeUnbindClientList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
-        self.describeUnbindClientList(DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnbindClientListResponse> {
+        self.describeUnbindClientList(DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {
-        try await self.describeUnbindClientList(DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeUnbindClientList(status: UInt64, offset: UInt64, limit: UInt64, unbindUin: String? = nil, applyTimeStart: Date? = nil, applyTimeEnd: Date? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnbindClientListResponse {
+        try await self.describeUnbindClientList(DescribeUnbindClientListRequest(status: status, offset: offset, limit: limit, unbindUin: unbindUin, applyTimeStart: applyTimeStart, applyTimeEnd: applyTimeEnd, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

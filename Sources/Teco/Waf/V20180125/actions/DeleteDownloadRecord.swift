@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Waf {
 
     /// 删除访问日志下载记录
     @inlinable
-    public func deleteDownloadRecord(_ input: DeleteDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDownloadRecordResponse> {
-        self.client.execute(action: "DeleteDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDownloadRecord(_ input: DeleteDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDownloadRecordResponse> {
+        self.client.execute(action: "DeleteDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除访问日志下载记录
     @inlinable
-    public func deleteDownloadRecord(_ input: DeleteDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
-        try await self.client.execute(action: "DeleteDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDownloadRecord(_ input: DeleteDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
+        try await self.client.execute(action: "DeleteDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除访问日志下载记录
     @inlinable
-    public func deleteDownloadRecord(flow: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDownloadRecordResponse> {
-        self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), logger: logger, on: eventLoop)
+    public func deleteDownloadRecord(flow: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDownloadRecordResponse> {
+        self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除访问日志下载记录
     @inlinable
-    public func deleteDownloadRecord(flow: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
-        try await self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), logger: logger, on: eventLoop)
+    public func deleteDownloadRecord(flow: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDownloadRecordResponse {
+        try await self.deleteDownloadRecord(DeleteDownloadRecordRequest(flow: flow), region: region, logger: logger, on: eventLoop)
     }
 }

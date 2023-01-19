@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Dbbrain {
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
-        self.client.execute(action: "DescribeUserSqlAdvice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
+        self.client.execute(action: "DescribeUserSqlAdvice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
-        try await self.client.execute(action: "DescribeUserSqlAdvice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserSqlAdvice(_ input: DescribeUserSqlAdviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
+        try await self.client.execute(action: "DescribeUserSqlAdvice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
-        self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema), logger: logger, on: eventLoop)
+    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
+        self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL优化建议
     ///
     /// 获取SQL优化建议。
     @inlinable
-    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
-        try await self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema), logger: logger, on: eventLoop)
+    public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
+        try await self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema), region: region, logger: logger, on: eventLoop)
     }
 }

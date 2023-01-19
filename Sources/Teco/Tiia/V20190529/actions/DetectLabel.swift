@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,8 +105,8 @@ extension Tiia {
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(_ input: DetectLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
-        self.client.execute(action: "DetectLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectLabel(_ input: DetectLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
+        self.client.execute(action: "DetectLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图像标签
@@ -126,8 +126,8 @@ extension Tiia {
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(_ input: DetectLabelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelResponse {
-        try await self.client.execute(action: "DetectLabel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectLabel(_ input: DetectLabelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelResponse {
+        try await self.client.execute(action: "DetectLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 图像标签
@@ -147,8 +147,8 @@ extension Tiia {
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
-        self.detectLabel(DetectLabelRequest(imageBase64: imageBase64, imageUrl: imageUrl, scenes: scenes), logger: logger, on: eventLoop)
+    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelResponse> {
+        self.detectLabel(DetectLabelRequest(imageBase64: imageBase64, imageUrl: imageUrl, scenes: scenes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图像标签
@@ -168,7 +168,7 @@ extension Tiia {
     /// - 可前往 [图像标签](https://cloud.tencent.com/document/product/1588) 产品文档中查看更多产品信息。
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelResponse {
-        try await self.detectLabel(DetectLabelRequest(imageBase64: imageBase64, imageUrl: imageUrl, scenes: scenes), logger: logger, on: eventLoop)
+    public func detectLabel(imageBase64: String? = nil, imageUrl: String? = nil, scenes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelResponse {
+        try await self.detectLabel(DetectLabelRequest(imageBase64: imageBase64, imageUrl: imageUrl, scenes: scenes), region: region, logger: logger, on: eventLoop)
     }
 }

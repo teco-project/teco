@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
-    public func describeDestRegions(_ input: DescribeDestRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDestRegionsResponse> {
-        self.client.execute(action: "DescribeDestRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDestRegions(_ input: DescribeDestRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDestRegionsResponse> {
+        self.client.execute(action: "DescribeDestRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询源站区域
     ///
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
-    public func describeDestRegions(_ input: DescribeDestRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDestRegionsResponse {
-        try await self.client.execute(action: "DescribeDestRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDestRegions(_ input: DescribeDestRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDestRegionsResponse {
+        try await self.client.execute(action: "DescribeDestRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询源站区域
     ///
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
-    public func describeDestRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDestRegionsResponse> {
-        self.describeDestRegions(DescribeDestRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeDestRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDestRegionsResponse> {
+        self.describeDestRegions(DescribeDestRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询源站区域
     ///
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
-    public func describeDestRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDestRegionsResponse {
-        try await self.describeDestRegions(DescribeDestRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeDestRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDestRegionsResponse {
+        try await self.describeDestRegions(DescribeDestRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

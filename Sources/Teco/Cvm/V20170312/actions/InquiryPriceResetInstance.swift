@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
-    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstanceResponse> {
-        self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstanceResponse> {
+        self.client.execute(action: "InquiryPriceResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装实例询价
@@ -81,8 +81,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
-    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceResetInstance(_ input: InquiryPriceResetInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重装实例询价
@@ -92,8 +92,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
-    public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstanceResponse> {
-        self.inquiryPriceResetInstance(InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstanceResponse> {
+        self.inquiryPriceResetInstance(InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重装实例询价
@@ -103,7 +103,7 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/api/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     /// * 目前不支持境外地域的实例使用该接口实现`Linux`和`Windows`操作系统切换的重装询价。
     @inlinable
-    public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
-        try await self.inquiryPriceResetInstance(InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstanceResponse {
+        try await self.inquiryPriceResetInstance(InquiryPriceResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Bmeip {
 
     /// 黑石EIP绑定VPCIP
     @inlinable
-    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
-        self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindVpcIp(_ input: BindVpcIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
+        self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP绑定VPCIP
     @inlinable
-    public func bindVpcIp(_ input: BindVpcIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
-        try await self.client.execute(action: "BindVpcIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindVpcIp(_ input: BindVpcIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
+        try await self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石EIP绑定VPCIP
     @inlinable
-    public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
-        self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), logger: logger, on: eventLoop)
+    public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
+        self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP绑定VPCIP
     @inlinable
-    public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
-        try await self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), logger: logger, on: eventLoop)
+    public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
+        try await self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
     }
 }

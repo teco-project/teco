@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建工作流
     @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
-        self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWorkflow(_ input: CreateWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
+        self.client.execute(action: "CreateWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流【Beta版本】
@@ -68,8 +68,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建工作流
     @inlinable
-    public func createWorkflow(_ input: CreateWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
-        try await self.client.execute(action: "CreateWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWorkflow(_ input: CreateWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
+        try await self.client.execute(action: "CreateWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建工作流【Beta版本】
@@ -77,8 +77,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建工作流
     @inlinable
-    public func createWorkflow(projectId: String, workflowName: String? = nil, folderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
-        self.createWorkflow(CreateWorkflowRequest(projectId: projectId, workflowName: workflowName, folderId: folderId), logger: logger, on: eventLoop)
+    public func createWorkflow(projectId: String, workflowName: String? = nil, folderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
+        self.createWorkflow(CreateWorkflowRequest(projectId: projectId, workflowName: workflowName, folderId: folderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流【Beta版本】
@@ -86,7 +86,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建工作流
     @inlinable
-    public func createWorkflow(projectId: String, workflowName: String? = nil, folderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
-        try await self.createWorkflow(CreateWorkflowRequest(projectId: projectId, workflowName: workflowName, folderId: folderId), logger: logger, on: eventLoop)
+    public func createWorkflow(projectId: String, workflowName: String? = nil, folderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
+        try await self.createWorkflow(CreateWorkflowRequest(projectId: projectId, workflowName: workflowName, folderId: folderId), region: region, logger: logger, on: eventLoop)
     }
 }

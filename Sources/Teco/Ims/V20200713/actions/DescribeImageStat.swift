@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ims {
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageStatResponse> {
-        self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageStat(_ input: DescribeImageStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageStatResponse> {
+        self.client.execute(action: "DescribeImageStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeImageStat(_ input: DescribeImageStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
-        try await self.client.execute(action: "DescribeImageStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageStat(_ input: DescribeImageStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
+        try await self.client.execute(action: "DescribeImageStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeImageStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageStatResponse> {
-        self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeImageStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageStatResponse> {
+        self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeImageStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
-        try await self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeImageStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageStatResponse {
+        try await self.describeImageStat(DescribeImageStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

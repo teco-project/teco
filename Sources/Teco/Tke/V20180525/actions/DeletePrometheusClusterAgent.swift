@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 解除TMP实例的集群关联
     @inlinable
-    public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusClusterAgentResponse> {
-        self.client.execute(action: "DeletePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusClusterAgentResponse> {
+        self.client.execute(action: "DeletePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除TMP实例的集群关联
     @inlinable
-    public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
-        try await self.client.execute(action: "DeletePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusClusterAgent(_ input: DeletePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
+        try await self.client.execute(action: "DeletePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除TMP实例的集群关联
     @inlinable
-    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusClusterAgentResponse> {
-        self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusClusterAgentResponse> {
+        self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除TMP实例的集群关联
     @inlinable
-    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
-        try await self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deletePrometheusClusterAgent(agents: [PrometheusAgentInfo], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusClusterAgentResponse {
+        try await self.deletePrometheusClusterAgent(DeletePrometheusClusterAgentRequest(agents: agents, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

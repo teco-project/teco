@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vod {
     ///
     /// 删除用户自定义音视频内容审核模板。
     @inlinable
-    public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
-        self.client.execute(action: "DeleteContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
+        self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除音视频内容审核模板
     ///
     /// 删除用户自定义音视频内容审核模板。
     @inlinable
-    public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
-        try await self.client.execute(action: "DeleteContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
+        try await self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除音视频内容审核模板
     ///
     /// 删除用户自定义音视频内容审核模板。
     @inlinable
-    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
-        self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
+        self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除音视频内容审核模板
     ///
     /// 删除用户自定义音视频内容审核模板。
     @inlinable
-    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
-        try await self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func deleteContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
+        try await self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

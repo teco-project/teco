@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -121,31 +121,31 @@ extension Scf {
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     @inlinable
-    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionLogsResponse> {
-        self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFunctionLogs(_ input: GetFunctionLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionLogsResponse> {
+        self.client.execute(action: "GetFunctionLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数运行日志
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     @inlinable
-    public func getFunctionLogs(_ input: GetFunctionLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
-        try await self.client.execute(action: "GetFunctionLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFunctionLogs(_ input: GetFunctionLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
+        try await self.client.execute(action: "GetFunctionLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数运行日志
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     @inlinable
-    public func getFunctionLogs(functionName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, filter: LogFilter? = nil, namespace: String? = nil, qualifier: String? = nil, functionRequestId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, searchContext: LogSearchContext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionLogsResponse> {
-        self.getFunctionLogs(GetFunctionLogsRequest(functionName: functionName, offset: offset, limit: limit, order: order, orderBy: orderBy, filter: filter, namespace: namespace, qualifier: qualifier, functionRequestId: functionRequestId, startTime: startTime, endTime: endTime, searchContext: searchContext), logger: logger, on: eventLoop)
+    public func getFunctionLogs(functionName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, filter: LogFilter? = nil, namespace: String? = nil, qualifier: String? = nil, functionRequestId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, searchContext: LogSearchContext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionLogsResponse> {
+        self.getFunctionLogs(GetFunctionLogsRequest(functionName: functionName, offset: offset, limit: limit, order: order, orderBy: orderBy, filter: filter, namespace: namespace, qualifier: qualifier, functionRequestId: functionRequestId, startTime: startTime, endTime: endTime, searchContext: searchContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数运行日志
     ///
     /// 该接口根据指定的日志查询条件返回函数运行日志。该接口已下线，查询函数请求运行的返回信息，请使用 [GetRequestStatus](https://cloud.tencent.com/document/product/583/65348)。查询函数运行日志，请参考[日志检索教程](https://cloud.tencent.com/document/product/583/52637)。
     @inlinable
-    public func getFunctionLogs(functionName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, filter: LogFilter? = nil, namespace: String? = nil, qualifier: String? = nil, functionRequestId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, searchContext: LogSearchContext? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
-        try await self.getFunctionLogs(GetFunctionLogsRequest(functionName: functionName, offset: offset, limit: limit, order: order, orderBy: orderBy, filter: filter, namespace: namespace, qualifier: qualifier, functionRequestId: functionRequestId, startTime: startTime, endTime: endTime, searchContext: searchContext), logger: logger, on: eventLoop)
+    public func getFunctionLogs(functionName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, filter: LogFilter? = nil, namespace: String? = nil, qualifier: String? = nil, functionRequestId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, searchContext: LogSearchContext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionLogsResponse {
+        try await self.getFunctionLogs(GetFunctionLogsRequest(functionName: functionName, offset: offset, limit: limit, order: order, orderBy: orderBy, filter: filter, namespace: namespace, qualifier: qualifier, functionRequestId: functionRequestId, startTime: startTime, endTime: endTime, searchContext: searchContext), region: region, logger: logger, on: eventLoop)
     }
 }

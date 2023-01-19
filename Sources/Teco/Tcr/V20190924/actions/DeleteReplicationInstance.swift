@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tcr {
 
     /// 删除从实例
     @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
+        self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除从实例
     @inlinable
-    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.client.execute(action: "DeleteReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReplicationInstance(_ input: DeleteReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除从实例
     @inlinable
-    public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
+        self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除从实例
     @inlinable
-    public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
+        try await self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
     }
 }

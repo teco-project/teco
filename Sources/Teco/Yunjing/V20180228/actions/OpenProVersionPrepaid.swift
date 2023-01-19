@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Yunjing {
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
-        self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
+        self.client.execute(action: "OpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
-        try await self.client.execute(action: "OpenProVersionPrepaid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openProVersionPrepaid(_ input: OpenProVersionPrepaidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
+        try await self.client.execute(action: "OpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
-        self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
+        self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版(包年包月)
     ///
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
-    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
-        try await self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), logger: logger, on: eventLoop)
+    public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
+        try await self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
     }
 }

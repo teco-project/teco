@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Tdmq {
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
-        self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCluster(_ input: CreateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
+        self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(_ input: CreateClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.client.execute(action: "CreateCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCluster(_ input: CreateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.client.execute(action: "CreateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集群
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
-        self.createCluster(CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterResponse> {
+        self.createCluster(CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群
     ///
     /// 创建用户的集群
     @inlinable
-    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
-        try await self.createCluster(CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), logger: logger, on: eventLoop)
+    public func createCluster(clusterName: String, bindClusterId: UInt64? = nil, remark: String? = nil, tags: [Tag]? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterResponse {
+        try await self.createCluster(CreateClusterRequest(clusterName: clusterName, bindClusterId: bindClusterId, remark: remark, tags: tags, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
     }
 }

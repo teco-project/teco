@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 修改告警设置
     @inlinable
-    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWarningSettingResponse> {
-        self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWarningSettingResponse> {
+        self.client.execute(action: "ModifyWarningSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警设置
     @inlinable
-    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
-        try await self.client.execute(action: "ModifyWarningSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWarningSetting(_ input: ModifyWarningSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
+        try await self.client.execute(action: "ModifyWarningSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警设置
     @inlinable
-    public func modifyWarningSetting(warningObjects: [WarningObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWarningSettingResponse> {
-        self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    public func modifyWarningSetting(warningObjects: [WarningObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWarningSettingResponse> {
+        self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警设置
     @inlinable
-    public func modifyWarningSetting(warningObjects: [WarningObject], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
-        try await self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    public func modifyWarningSetting(warningObjects: [WarningObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWarningSettingResponse {
+        try await self.modifyWarningSetting(ModifyWarningSettingRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
     }
 }

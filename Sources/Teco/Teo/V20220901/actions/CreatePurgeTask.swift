@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Teo {
 
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
-        self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPurgeTask(_ input: CreatePurgeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
+        self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(_ input: CreatePurgeTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
-        try await self.client.execute(action: "CreatePurgeTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPurgeTask(_ input: CreatePurgeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
+        try await self.client.execute(action: "CreatePurgeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
-        self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), logger: logger, on: eventLoop)
+    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePurgeTaskResponse> {
+        self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建清除缓存任务
     @inlinable
-    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
-        try await self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), logger: logger, on: eventLoop)
+    public func createPurgeTask(zoneId: String, type: String, targets: [String]? = nil, encodeUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePurgeTaskResponse {
+        try await self.createPurgeTask(CreatePurgeTaskRequest(zoneId: zoneId, type: type, targets: targets, encodeUrl: encodeUrl), region: region, logger: logger, on: eventLoop)
     }
 }

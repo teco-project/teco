@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Wedata {
 
     /// 获取项目信息
     @inlinable
-    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
-        self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProject(_ input: DescribeProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
+        self.client.execute(action: "DescribeProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取项目信息
     @inlinable
-    public func describeProject(_ input: DescribeProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
-        try await self.client.execute(action: "DescribeProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProject(_ input: DescribeProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
+        try await self.client.execute(action: "DescribeProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取项目信息
     @inlinable
-    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
-        self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), logger: logger, on: eventLoop)
+    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectResponse> {
+        self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取项目信息
     @inlinable
-    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
-        try await self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), logger: logger, on: eventLoop)
+    public func describeProject(projectId: String? = nil, describeClusters: Bool? = nil, describeExecutors: Bool? = nil, describeAdminUsers: Bool? = nil, describeMemberCount: Bool? = nil, describeCreator: Bool? = nil, projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectResponse {
+        try await self.describeProject(DescribeProjectRequest(projectId: projectId, describeClusters: describeClusters, describeExecutors: describeExecutors, describeAdminUsers: describeAdminUsers, describeMemberCount: describeMemberCount, describeCreator: describeCreator, projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 }

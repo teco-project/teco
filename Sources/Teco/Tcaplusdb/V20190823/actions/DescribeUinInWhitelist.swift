@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Tcaplusdb {
     ///
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
-    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUinInWhitelistResponse> {
-        self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUinInWhitelistResponse> {
+        self.client.execute(action: "DescribeUinInWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本用户是否在白名单中
     ///
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
-    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
-        try await self.client.execute(action: "DescribeUinInWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUinInWhitelist(_ input: DescribeUinInWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
+        try await self.client.execute(action: "DescribeUinInWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询本用户是否在白名单中
     ///
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
-    public func describeUinInWhitelist(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUinInWhitelistResponse> {
-        self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), logger: logger, on: eventLoop)
+    public func describeUinInWhitelist(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUinInWhitelistResponse> {
+        self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询本用户是否在白名单中
     ///
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
-    public func describeUinInWhitelist(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
-        try await self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), logger: logger, on: eventLoop)
+    public func describeUinInWhitelist(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
+        try await self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

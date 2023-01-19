@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Dayu {
 
     /// IP解封操作
     @inlinable
-    public func createUnblockIp(_ input: CreateUnblockIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnblockIpResponse> {
-        self.client.execute(action: "CreateUnblockIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUnblockIp(_ input: CreateUnblockIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnblockIpResponse> {
+        self.client.execute(action: "CreateUnblockIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// IP解封操作
     @inlinable
-    public func createUnblockIp(_ input: CreateUnblockIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnblockIpResponse {
-        try await self.client.execute(action: "CreateUnblockIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUnblockIp(_ input: CreateUnblockIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnblockIpResponse {
+        try await self.client.execute(action: "CreateUnblockIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// IP解封操作
     @inlinable
-    public func createUnblockIp(ip: String, actionType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnblockIpResponse> {
-        self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), logger: logger, on: eventLoop)
+    public func createUnblockIp(ip: String, actionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnblockIpResponse> {
+        self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// IP解封操作
     @inlinable
-    public func createUnblockIp(ip: String, actionType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnblockIpResponse {
-        try await self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), logger: logger, on: eventLoop)
+    public func createUnblockIp(ip: String, actionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnblockIpResponse {
+        try await self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 }

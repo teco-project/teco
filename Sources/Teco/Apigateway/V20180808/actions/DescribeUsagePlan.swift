@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
     @inlinable
-    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlanResponse> {
-        self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlanResponse> {
+        self.client.execute(action: "DescribeUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划详情
     ///
     /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
     @inlinable
-    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
-        try await self.client.execute(action: "DescribeUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsagePlan(_ input: DescribeUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
+        try await self.client.execute(action: "DescribeUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询使用计划详情
     ///
     /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
     @inlinable
-    public func describeUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlanResponse> {
-        self.describeUsagePlan(DescribeUsagePlanRequest(usagePlanId: usagePlanId), logger: logger, on: eventLoop)
+    public func describeUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlanResponse> {
+        self.describeUsagePlan(DescribeUsagePlanRequest(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划详情
     ///
     /// 本接口（DescribeUsagePlan）用于查询一个使用计划的详细信息，包括名称、QPS、创建时间绑定的环境等。
     @inlinable
-    public func describeUsagePlan(usagePlanId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
-        try await self.describeUsagePlan(DescribeUsagePlanRequest(usagePlanId: usagePlanId), logger: logger, on: eventLoop)
+    public func describeUsagePlan(usagePlanId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanResponse {
+        try await self.describeUsagePlan(DescribeUsagePlanRequest(usagePlanId: usagePlanId), region: region, logger: logger, on: eventLoop)
     }
 }

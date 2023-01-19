@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ssa {
 
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
-        self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
+        self.client.execute(action: "DescribeCheckConfigDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
-        try await self.client.execute(action: "DescribeCheckConfigDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCheckConfigDetail(_ input: DescribeCheckConfigDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
+        try await self.client.execute(action: "DescribeCheckConfigDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
-        self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), logger: logger, on: eventLoop)
+    public func describeCheckConfigDetail(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigDetailResponse> {
+        self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置检查项详情
     @inlinable
-    public func describeCheckConfigDetail(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
-        try await self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), logger: logger, on: eventLoop)
+    public func describeCheckConfigDetail(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigDetailResponse {
+        try await self.describeCheckConfigDetail(DescribeCheckConfigDetailRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

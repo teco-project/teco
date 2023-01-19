@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tan {
 
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
-        self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
+        self.client.execute(action: "CreateBlockNodeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
-        try await self.client.execute(action: "CreateBlockNodeRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBlockNodeRecords(_ input: CreateBlockNodeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
+        try await self.client.execute(action: "CreateBlockNodeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
-        self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), logger: logger, on: eventLoop)
+    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
+        self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), region: region, logger: logger, on: eventLoop)
     }
 
     /// 推送节点数据
     @inlinable
-    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
-        try await self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), logger: logger, on: eventLoop)
+    public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
+        try await self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), region: region, logger: logger, on: eventLoop)
     }
 }

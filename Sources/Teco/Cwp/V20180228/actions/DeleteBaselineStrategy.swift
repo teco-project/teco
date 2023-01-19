@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 根据基线策略id删除策略
     @inlinable
-    public func deleteBaselineStrategy(_ input: DeleteBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselineStrategyResponse> {
-        self.client.execute(action: "DeleteBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBaselineStrategy(_ input: DeleteBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselineStrategyResponse> {
+        self.client.execute(action: "DeleteBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略
     ///
     /// 根据基线策略id删除策略
     @inlinable
-    public func deleteBaselineStrategy(_ input: DeleteBaselineStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselineStrategyResponse {
-        try await self.client.execute(action: "DeleteBaselineStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBaselineStrategy(_ input: DeleteBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselineStrategyResponse {
+        try await self.client.execute(action: "DeleteBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除基线策略
     ///
     /// 根据基线策略id删除策略
     @inlinable
-    public func deleteBaselineStrategy(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselineStrategyResponse> {
-        self.deleteBaselineStrategy(DeleteBaselineStrategyRequest(strategyId: strategyId), logger: logger, on: eventLoop)
+    public func deleteBaselineStrategy(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselineStrategyResponse> {
+        self.deleteBaselineStrategy(DeleteBaselineStrategyRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略
     ///
     /// 根据基线策略id删除策略
     @inlinable
-    public func deleteBaselineStrategy(strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselineStrategyResponse {
-        try await self.deleteBaselineStrategy(DeleteBaselineStrategyRequest(strategyId: strategyId), logger: logger, on: eventLoop)
+    public func deleteBaselineStrategy(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselineStrategyResponse {
+        try await self.deleteBaselineStrategy(DeleteBaselineStrategyRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Tke {
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
-        self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVersions(_ input: DescribeVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
+        self.client.execute(action: "DescribeVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群版本信息
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(_ input: DescribeVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
-        try await self.client.execute(action: "DescribeVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVersions(_ input: DescribeVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
+        try await self.client.execute(action: "DescribeVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群版本信息
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
-        self.describeVersions(DescribeVersionsRequest(), logger: logger, on: eventLoop)
+    public func describeVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
+        self.describeVersions(DescribeVersionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群版本信息
     ///
     /// 获取集群版本信息
     @inlinable
-    public func describeVersions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
-        try await self.describeVersions(DescribeVersionsRequest(), logger: logger, on: eventLoop)
+    public func describeVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
+        try await self.describeVersions(DescribeVersionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

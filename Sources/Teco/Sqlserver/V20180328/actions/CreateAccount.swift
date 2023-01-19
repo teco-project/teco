@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
-        self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccount(_ input: CreateAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
+        self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例账号
     ///
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
-    public func createAccount(_ input: CreateAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        try await self.client.execute(action: "CreateAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccount(_ input: CreateAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.client.execute(action: "CreateAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例账号
     ///
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
-    public func createAccount(instanceId: String, accounts: [AccountCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
-        self.createAccount(CreateAccountRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func createAccount(instanceId: String, accounts: [AccountCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountResponse> {
+        self.createAccount(CreateAccountRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例账号
     ///
     /// 本接口（CreateAccount）用于创建实例账号
     @inlinable
-    public func createAccount(instanceId: String, accounts: [AccountCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
-        try await self.createAccount(CreateAccountRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func createAccount(instanceId: String, accounts: [AccountCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountResponse {
+        try await self.createAccount(CreateAccountRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

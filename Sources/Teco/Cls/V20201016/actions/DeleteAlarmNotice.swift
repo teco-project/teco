@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cls {
     ///
     /// 该接口用于删除通知渠道组
     @inlinable
-    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
-        self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
+        self.client.execute(action: "DeleteAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
     @inlinable
-    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
-        try await self.client.execute(action: "DeleteAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
+        try await self.client.execute(action: "DeleteAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
     @inlinable
-    public func deleteAlarmNotice(alarmNoticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
-        self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), logger: logger, on: eventLoop)
+    public func deleteAlarmNotice(alarmNoticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
+        self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
     @inlinable
-    public func deleteAlarmNotice(alarmNoticeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
-        try await self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), logger: logger, on: eventLoop)
+    public func deleteAlarmNotice(alarmNoticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
+        try await self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), region: region, logger: logger, on: eventLoop)
     }
 }

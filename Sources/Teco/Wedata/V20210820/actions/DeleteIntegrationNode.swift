@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 删除集成节点
     @inlinable
-    public func deleteIntegrationNode(_ input: DeleteIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationNodeResponse> {
-        self.client.execute(action: "DeleteIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIntegrationNode(_ input: DeleteIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationNodeResponse> {
+        self.client.execute(action: "DeleteIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集成节点
     @inlinable
-    public func deleteIntegrationNode(_ input: DeleteIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationNodeResponse {
-        try await self.client.execute(action: "DeleteIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIntegrationNode(_ input: DeleteIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationNodeResponse {
+        try await self.client.execute(action: "DeleteIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集成节点
     @inlinable
-    public func deleteIntegrationNode(id: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationNodeResponse> {
-        self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteIntegrationNode(id: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationNodeResponse> {
+        self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集成节点
     @inlinable
-    public func deleteIntegrationNode(id: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationNodeResponse {
-        try await self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), logger: logger, on: eventLoop)
+    public func deleteIntegrationNode(id: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationNodeResponse {
+        try await self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

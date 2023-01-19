@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cme {
     ///
     /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
     @inlinable
-    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaterialResponse> {
-        self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMaterial(_ input: ModifyMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaterialResponse> {
+        self.client.execute(action: "ModifyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体信息
     ///
     /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
     @inlinable
-    public func modifyMaterial(_ input: ModifyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
-        try await self.client.execute(action: "ModifyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMaterial(_ input: ModifyMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
+        try await self.client.execute(action: "ModifyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改媒体信息
     ///
     /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
     @inlinable
-    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaterialResponse> {
-        self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaterialResponse> {
+        self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体信息
     ///
     /// 修改媒体信息，支持修改媒体名称、分类路径、标签等信息。
     @inlinable
-    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
-        try await self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func modifyMaterial(platform: String, materialId: String, owner: Entity? = nil, name: String? = nil, classPath: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaterialResponse {
+        try await self.modifyMaterial(ModifyMaterialRequest(platform: platform, materialId: materialId, owner: owner, name: name, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

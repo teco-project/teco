@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Essbasic {
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable
-    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
-        self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
+        self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable
-    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
-        try await self.client.execute(action: "ModifyUserDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
+        try await self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable
-    public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
-        self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
+        self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
     @inlinable
-    public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
-        try await self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
+        try await self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 }

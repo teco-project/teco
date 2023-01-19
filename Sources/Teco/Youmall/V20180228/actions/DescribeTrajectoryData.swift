@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Youmall {
 
     /// 获取动线轨迹信息
     @inlinable
-    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrajectoryDataResponse> {
-        self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrajectoryDataResponse> {
+        self.client.execute(action: "DescribeTrajectoryData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取动线轨迹信息
     @inlinable
-    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
-        try await self.client.execute(action: "DescribeTrajectoryData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrajectoryData(_ input: DescribeTrajectoryDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
+        try await self.client.execute(action: "DescribeTrajectoryData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取动线轨迹信息
     @inlinable
-    public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrajectoryDataResponse> {
-        self.describeTrajectoryData(DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), logger: logger, on: eventLoop)
+    public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrajectoryDataResponse> {
+        self.describeTrajectoryData(DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取动线轨迹信息
     @inlinable
-    public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
-        try await self.describeTrajectoryData(DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), logger: logger, on: eventLoop)
+    public func describeTrajectoryData(companyId: String, shopId: Int64, startDate: String, endDate: String, limit: Int64, gender: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrajectoryDataResponse {
+        try await self.describeTrajectoryData(DescribeTrajectoryDataRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, limit: limit, gender: gender), region: region, logger: logger, on: eventLoop)
     }
 }

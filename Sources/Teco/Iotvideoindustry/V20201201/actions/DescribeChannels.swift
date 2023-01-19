@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
-        self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeChannels(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
+        self.client.execute(action: "DescribeChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(_ input: DescribeChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
-        try await self.client.execute(action: "DescribeChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeChannels(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
+        try await self.client.execute(action: "DescribeChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
-        self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), logger: logger, on: eventLoop)
+    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
+        self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
-    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
-        try await self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), logger: logger, on: eventLoop)
+    public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
+        try await self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
     }
 }

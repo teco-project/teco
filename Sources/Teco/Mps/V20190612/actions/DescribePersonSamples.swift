@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Mps {
     ///
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonSamplesResponse> {
-        self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonSamplesResponse> {
+        self.client.execute(action: "DescribePersonSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取素材样本列表
     ///
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
-    public func describePersonSamples(_ input: DescribePersonSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
-        try await self.client.execute(action: "DescribePersonSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePersonSamples(_ input: DescribePersonSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
+        try await self.client.execute(action: "DescribePersonSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取素材样本列表
     ///
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
-    public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonSamplesResponse> {
-        self.describePersonSamples(DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonSamplesResponse> {
+        self.describePersonSamples(DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取素材样本列表
     ///
     /// 该接口用于查询素材样本信息，支持根据素材 ID、名称、标签，分页查询。
     @inlinable
-    public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
-        try await self.describePersonSamples(DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePersonSamples(type: String? = nil, personIds: [String]? = nil, names: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonSamplesResponse {
+        try await self.describePersonSamples(DescribePersonSamplesRequest(type: type, personIds: personIds, names: names, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,8 +127,8 @@ extension Tms {
     /// - 文本审核语言支持：目前支持中文、英文、阿拉伯数字的检测；
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
-    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
-        self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textModeration(_ input: TextModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
+        self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本内容安全
@@ -148,8 +148,8 @@ extension Tms {
     /// - 文本审核语言支持：目前支持中文、英文、阿拉伯数字的检测；
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
-    public func textModeration(_ input: TextModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
-        try await self.client.execute(action: "TextModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textModeration(_ input: TextModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
+        try await self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文本内容安全
@@ -169,8 +169,8 @@ extension Tms {
     /// - 文本审核语言支持：目前支持中文、英文、阿拉伯数字的检测；
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
-    public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
-        self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), logger: logger, on: eventLoop)
+    public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
+        self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本内容安全
@@ -190,7 +190,7 @@ extension Tms {
     /// - 文本审核语言支持：目前支持中文、英文、阿拉伯数字的检测；
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
-    public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
-        try await self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), logger: logger, on: eventLoop)
+    public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
+        try await self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
     }
 }

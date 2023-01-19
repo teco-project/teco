@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ckafka {
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchDatahubMessageByOffsetResponse> {
-        self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchDatahubMessageByOffsetResponse> {
+        self.client.execute(action: "FetchDatahubMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
-        try await self.client.execute(action: "FetchDatahubMessageByOffset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func fetchDatahubMessageByOffset(_ input: FetchDatahubMessageByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
+        try await self.client.execute(action: "FetchDatahubMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Datahub Topic消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchDatahubMessageByOffsetResponse> {
-        self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchDatahubMessageByOffsetResponse> {
+        self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic消息
     ///
     /// 根据指定offset位置的消息
     @inlinable
-    public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
-        try await self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), logger: logger, on: eventLoop)
+    public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
+        try await self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

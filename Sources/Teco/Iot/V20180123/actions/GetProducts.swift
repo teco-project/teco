@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Iot {
     ///
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
-    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductsResponse> {
-        self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getProducts(_ input: GetProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductsResponse> {
+        self.client.execute(action: "GetProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
     ///
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
-    public func getProducts(_ input: GetProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
-        try await self.client.execute(action: "GetProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getProducts(_ input: GetProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
+        try await self.client.execute(action: "GetProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品列表
     ///
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
-    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductsResponse> {
-        self.getProducts(GetProductsRequest(offset: offset, length: length), logger: logger, on: eventLoop)
+    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProductsResponse> {
+        self.getProducts(GetProductsRequest(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
     ///
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
-    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
-        try await self.getProducts(GetProductsRequest(offset: offset, length: length), logger: logger, on: eventLoop)
+    public func getProducts(offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProductsResponse {
+        try await self.getProducts(GetProductsRequest(offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 }

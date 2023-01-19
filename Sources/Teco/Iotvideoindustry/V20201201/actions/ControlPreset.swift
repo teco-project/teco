@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Iotvideoindustry {
 
     /// 预置位控制
     @inlinable
-    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlPresetResponse> {
-        self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func controlPreset(_ input: ControlPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlPresetResponse> {
+        self.client.execute(action: "ControlPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预置位控制
     @inlinable
-    public func controlPreset(_ input: ControlPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
-        try await self.client.execute(action: "ControlPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func controlPreset(_ input: ControlPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
+        try await self.client.execute(action: "ControlPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 预置位控制
     @inlinable
-    public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlPresetResponse> {
-        self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlPresetResponse> {
+        self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预置位控制
     @inlinable
-    public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
-        try await self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
+        try await self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Iecp {
 
     /// 获取边缘节点信息
     @inlinable
-    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeResponse> {
-        self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeResponse> {
+        self.client.execute(action: "DescribeEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘节点信息
     @inlinable
-    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
-        try await self.client.execute(action: "DescribeEdgeNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeNode(_ input: DescribeEdgeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
+        try await self.client.execute(action: "DescribeEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取边缘节点信息
     @inlinable
-    public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeResponse> {
-        self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeResponse> {
+        self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘节点信息
     @inlinable
-    public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
-        try await self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
+        try await self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }
 }

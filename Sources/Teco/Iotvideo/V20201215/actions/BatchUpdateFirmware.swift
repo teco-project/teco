@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Iotvideo {
     ///
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
-    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateFirmwareResponse> {
-        self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateFirmwareResponse> {
+        self.client.execute(action: "BatchUpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量更新固件
     ///
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
-    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
-        try await self.client.execute(action: "BatchUpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchUpdateFirmware(_ input: BatchUpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
+        try await self.client.execute(action: "BatchUpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量更新固件
     ///
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
-    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateFirmwareResponse> {
-        self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchUpdateFirmwareResponse> {
+        self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量更新固件
     ///
     /// 本接口（BatchUpdateFirmware）用于批量更新设备固件
     @inlinable
-    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
-        try await self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func batchUpdateFirmware(productID: String, firmwareVersion: String, firmwareOriVersion: String? = nil, upgradeMethod: UInt64? = nil, fileName: String? = nil, fileMd5: String? = nil, fileSize: UInt64? = nil, deviceNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchUpdateFirmwareResponse {
+        try await self.batchUpdateFirmware(BatchUpdateFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod, fileName: fileName, fileMd5: fileMd5, fileSize: fileSize, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

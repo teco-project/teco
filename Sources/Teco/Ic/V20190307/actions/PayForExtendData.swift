@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Ic {
 
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
-        self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func payForExtendData(_ input: PayForExtendDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
+        self.client.execute(action: "PayForExtendData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(_ input: PayForExtendDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
-        try await self.client.execute(action: "PayForExtendData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func payForExtendData(_ input: PayForExtendDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
+        try await self.client.execute(action: "PayForExtendData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
-        self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), logger: logger, on: eventLoop)
+    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
+        self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买套外流量包
     @inlinable
-    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
-        try await self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), logger: logger, on: eventLoop)
+    public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
+        try await self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
     }
 }

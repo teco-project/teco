@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Bma {
 
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
-        self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
+        self.client.execute(action: "CreateBPFalseTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
-        try await self.client.execute(action: "CreateBPFalseTicket", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
+        try await self.client.execute(action: "CreateBPFalseTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(fakeURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
-        self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), logger: logger, on: eventLoop)
+    public func createBPFalseTicket(fakeURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
+        self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加误报工单
     @inlinable
-    public func createBPFalseTicket(fakeURL: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
-        try await self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), logger: logger, on: eventLoop)
+    public func createBPFalseTicket(fakeURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
+        try await self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), region: region, logger: logger, on: eventLoop)
     }
 }

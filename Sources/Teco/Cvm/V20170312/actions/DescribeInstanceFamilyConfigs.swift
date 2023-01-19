@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cvm {
     ///
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
-    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceFamilyConfigsResponse> {
-        self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceFamilyConfigsResponse> {
+        self.client.execute(action: "DescribeInstanceFamilyConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所支持的实例机型族信息
     ///
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
-    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
-        try await self.client.execute(action: "DescribeInstanceFamilyConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceFamilyConfigs(_ input: DescribeInstanceFamilyConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
+        try await self.client.execute(action: "DescribeInstanceFamilyConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所支持的实例机型族信息
     ///
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
-    public func describeInstanceFamilyConfigs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceFamilyConfigsResponse> {
-        self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceFamilyConfigs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceFamilyConfigsResponse> {
+        self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所支持的实例机型族信息
     ///
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
-    public func describeInstanceFamilyConfigs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
-        try await self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceFamilyConfigs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
+        try await self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

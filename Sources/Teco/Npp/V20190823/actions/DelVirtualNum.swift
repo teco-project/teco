@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Npp {
 
     /// 直拨解绑中间号
     @inlinable
-    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelVirtualNumResponse> {
-        self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func delVirtualNum(_ input: DelVirtualNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelVirtualNumResponse> {
+        self.client.execute(action: "DelVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直拨解绑中间号
     @inlinable
-    public func delVirtualNum(_ input: DelVirtualNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
-        try await self.client.execute(action: "DelVirtualNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func delVirtualNum(_ input: DelVirtualNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
+        try await self.client.execute(action: "DelVirtualNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直拨解绑中间号
     @inlinable
-    public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelVirtualNumResponse> {
-        self.delVirtualNum(DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId), logger: logger, on: eventLoop)
+    public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelVirtualNumResponse> {
+        self.delVirtualNum(DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直拨解绑中间号
     @inlinable
-    public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
-        try await self.delVirtualNum(DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId), logger: logger, on: eventLoop)
+    public func delVirtualNum(bizAppId: String, bindId: String, bizId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelVirtualNumResponse {
+        try await self.delVirtualNum(DelVirtualNumRequest(bizAppId: bizAppId, bindId: bindId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

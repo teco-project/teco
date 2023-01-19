@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Dayu {
 
     /// 获取基础防护黑洞阈值
     @inlinable
-    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceThresholdResponse> {
-        self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceThresholdResponse> {
+        self.client.execute(action: "DescribeBasicDeviceThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护黑洞阈值
     @inlinable
-    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
-        try await self.client.execute(action: "DescribeBasicDeviceThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBasicDeviceThreshold(_ input: DescribeBasicDeviceThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
+        try await self.client.execute(action: "DescribeBasicDeviceThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础防护黑洞阈值
     @inlinable
-    public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceThresholdResponse> {
-        self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), logger: logger, on: eventLoop)
+    public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceThresholdResponse> {
+        self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护黑洞阈值
     @inlinable
-    public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
-        try await self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), logger: logger, on: eventLoop)
+    public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
+        try await self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
     }
 }

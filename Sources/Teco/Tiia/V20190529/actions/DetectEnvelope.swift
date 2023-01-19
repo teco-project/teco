@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectEnvelopeResponse> {
-        self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectEnvelope(_ input: DetectEnvelopeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectEnvelopeResponse> {
+        self.client.execute(action: "DetectEnvelope", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件封识别
@@ -74,8 +74,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectEnvelope(_ input: DetectEnvelopeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
-        try await self.client.execute(action: "DetectEnvelope", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectEnvelope(_ input: DetectEnvelopeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
+        try await self.client.execute(action: "DetectEnvelope", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文件封识别
@@ -84,8 +84,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectEnvelope(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectEnvelopeResponse> {
-        self.detectEnvelope(DetectEnvelopeRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func detectEnvelope(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectEnvelopeResponse> {
+        self.detectEnvelope(DetectEnvelopeRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件封识别
@@ -94,7 +94,7 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectEnvelope(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
-        try await self.detectEnvelope(DetectEnvelopeRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func detectEnvelope(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectEnvelopeResponse {
+        try await self.detectEnvelope(DetectEnvelopeRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 }

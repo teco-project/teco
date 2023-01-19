@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交工作流
     @inlinable
-    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
-        self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitWorkflow(_ input: SubmitWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
+        self.client.execute(action: "SubmitWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交工作流【Beta版本】
@@ -72,8 +72,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交工作流
     @inlinable
-    public func submitWorkflow(_ input: SubmitWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
-        try await self.client.execute(action: "SubmitWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitWorkflow(_ input: SubmitWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
+        try await self.client.execute(action: "SubmitWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交工作流【Beta版本】
@@ -81,8 +81,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交工作流
     @inlinable
-    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
-        self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
+        self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交工作流【Beta版本】
@@ -90,7 +90,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交工作流
     @inlinable
-    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
-        try await self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
+        try await self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 }

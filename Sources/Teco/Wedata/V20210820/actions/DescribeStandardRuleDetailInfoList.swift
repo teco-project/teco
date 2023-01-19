@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 获取数据标准规则详情
     @inlinable
-    public func describeStandardRuleDetailInfoList(_ input: DescribeStandardRuleDetailInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandardRuleDetailInfoListResponse> {
-        self.client.execute(action: "DescribeStandardRuleDetailInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStandardRuleDetailInfoList(_ input: DescribeStandardRuleDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandardRuleDetailInfoListResponse> {
+        self.client.execute(action: "DescribeStandardRuleDetailInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据标准规则详情
     @inlinable
-    public func describeStandardRuleDetailInfoList(_ input: DescribeStandardRuleDetailInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandardRuleDetailInfoListResponse {
-        try await self.client.execute(action: "DescribeStandardRuleDetailInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStandardRuleDetailInfoList(_ input: DescribeStandardRuleDetailInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandardRuleDetailInfoListResponse {
+        try await self.client.execute(action: "DescribeStandardRuleDetailInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据标准规则详情
     @inlinable
-    public func describeStandardRuleDetailInfoList(projectId: String, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandardRuleDetailInfoListResponse> {
-        self.describeStandardRuleDetailInfoList(DescribeStandardRuleDetailInfoListRequest(projectId: projectId, type: type), logger: logger, on: eventLoop)
+    public func describeStandardRuleDetailInfoList(projectId: String, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandardRuleDetailInfoListResponse> {
+        self.describeStandardRuleDetailInfoList(DescribeStandardRuleDetailInfoListRequest(projectId: projectId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据标准规则详情
     @inlinable
-    public func describeStandardRuleDetailInfoList(projectId: String, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandardRuleDetailInfoListResponse {
-        try await self.describeStandardRuleDetailInfoList(DescribeStandardRuleDetailInfoListRequest(projectId: projectId, type: type), logger: logger, on: eventLoop)
+    public func describeStandardRuleDetailInfoList(projectId: String, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandardRuleDetailInfoListResponse {
+        try await self.describeStandardRuleDetailInfoList(DescribeStandardRuleDetailInfoListRequest(projectId: projectId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

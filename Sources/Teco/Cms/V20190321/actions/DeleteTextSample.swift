@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Cms {
     /// <br>
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
-    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTextSampleResponse> {
-        self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTextSample(_ input: DeleteTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTextSampleResponse> {
+        self.client.execute(action: "DeleteTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文本样本库
@@ -61,8 +61,8 @@ extension Cms {
     /// <br>
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
-    public func deleteTextSample(_ input: DeleteTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
-        try await self.client.execute(action: "DeleteTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTextSample(_ input: DeleteTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
+        try await self.client.execute(action: "DeleteTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除文本样本库
@@ -71,8 +71,8 @@ extension Cms {
     /// <br>
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
-    public func deleteTextSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTextSampleResponse> {
-        self.deleteTextSample(DeleteTextSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteTextSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTextSampleResponse> {
+        self.deleteTextSample(DeleteTextSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文本样本库
@@ -81,7 +81,7 @@ extension Cms {
     /// <br>
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
-    public func deleteTextSample(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
-        try await self.deleteTextSample(DeleteTextSampleRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteTextSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
+        try await self.deleteTextSample(DeleteTextSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iotcloud {
 
     /// 查询私有化CA信息
     @inlinable
-    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCAResponse> {
-        self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrivateCA(_ input: DescribePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCAResponse> {
+        self.client.execute(action: "DescribePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有化CA信息
     @inlinable
-    public func describePrivateCA(_ input: DescribePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
-        try await self.client.execute(action: "DescribePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrivateCA(_ input: DescribePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
+        try await self.client.execute(action: "DescribePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询私有化CA信息
     @inlinable
-    public func describePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCAResponse> {
-        self.describePrivateCA(DescribePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    public func describePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCAResponse> {
+        self.describePrivateCA(DescribePrivateCARequest(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询私有化CA信息
     @inlinable
-    public func describePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
-        try await self.describePrivateCA(DescribePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    public func describePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAResponse {
+        try await self.describePrivateCA(DescribePrivateCARequest(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 }

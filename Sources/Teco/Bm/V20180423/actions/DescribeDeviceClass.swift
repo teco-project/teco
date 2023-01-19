@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bm {
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
-        self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
+        self.client.execute(action: "DescribeDeviceClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备型号
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
-        try await self.client.execute(action: "DescribeDeviceClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceClass(_ input: DescribeDeviceClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
+        try await self.client.execute(action: "DescribeDeviceClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备型号
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
-        self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), logger: logger, on: eventLoop)
+    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
+        self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备型号
     ///
     /// 获取设备类型
     @inlinable
-    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
-        try await self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), logger: logger, on: eventLoop)
+    public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
+        try await self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), region: region, logger: logger, on: eventLoop)
     }
 }

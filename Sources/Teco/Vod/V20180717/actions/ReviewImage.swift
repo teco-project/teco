@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
-        self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reviewImage(_ input: ReviewImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
+        self.client.execute(action: "ReviewImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片审核
@@ -71,8 +71,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func reviewImage(_ input: ReviewImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
-        try await self.client.execute(action: "ReviewImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reviewImage(_ input: ReviewImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
+        try await self.client.execute(action: "ReviewImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 图片审核
@@ -82,8 +82,8 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
-        self.reviewImage(ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewImageResponse> {
+        self.reviewImage(ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片审核
@@ -93,7 +93,7 @@ extension Vod {
     /// ><li>图片文件分辨率支持：建议分辨率大于256x256，否则可能会影响审核效果；</li>
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
-    public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
-        try await self.reviewImage(ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func reviewImage(fileId: String, definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewImageResponse {
+        try await self.reviewImage(ReviewImageRequest(fileId: fileId, definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

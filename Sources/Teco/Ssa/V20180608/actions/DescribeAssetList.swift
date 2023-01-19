@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Ssa {
 
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
-        self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetList(_ input: DescribeAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
+        self.client.execute(action: "DescribeAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(_ input: DescribeAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
-        try await self.client.execute(action: "DescribeAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetList(_ input: DescribeAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
+        try await self.client.execute(action: "DescribeAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
-        self.describeAssetList(DescribeAssetListRequest(params: params), logger: logger, on: eventLoop)
+    public func describeAssetList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetListResponse> {
+        self.describeAssetList(DescribeAssetListRequest(params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产安全资产列表
     @inlinable
-    public func describeAssetList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
-        try await self.describeAssetList(DescribeAssetListRequest(params: params), logger: logger, on: eventLoop)
+    public func describeAssetList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetListResponse {
+        try await self.describeAssetList(DescribeAssetListRequest(params: params), region: region, logger: logger, on: eventLoop)
     }
 }

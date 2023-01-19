@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Dlc {
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTasks(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
+        self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(_ input: DescribeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.client.execute(action: "DescribeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTasks(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), logger: logger, on: eventLoop)
+    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
+        self.describeTasks(DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), logger: logger, on: eventLoop)
+    public func describeTasks(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, sortBy: String? = nil, sorting: String? = nil, startTime: String? = nil, endTime: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
+        try await self.describeTasks(DescribeTasksRequest(limit: limit, offset: offset, filters: filters, sortBy: sortBy, sorting: sorting, startTime: startTime, endTime: endTime, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 }

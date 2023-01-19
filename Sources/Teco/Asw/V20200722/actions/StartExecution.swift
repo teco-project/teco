@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Asw {
     ///
     /// 为指定的状态机启动一次执行
     @inlinable
-    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartExecutionResponse> {
-        self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startExecution(_ input: StartExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartExecutionResponse> {
+        self.client.execute(action: "StartExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动执行
     ///
     /// 为指定的状态机启动一次执行
     @inlinable
-    public func startExecution(_ input: StartExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
-        try await self.client.execute(action: "StartExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startExecution(_ input: StartExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
+        try await self.client.execute(action: "StartExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动执行
     ///
     /// 为指定的状态机启动一次执行
     @inlinable
-    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartExecutionResponse> {
-        self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), logger: logger, on: eventLoop)
+    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartExecutionResponse> {
+        self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动执行
     ///
     /// 为指定的状态机启动一次执行
     @inlinable
-    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
-        try await self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), logger: logger, on: eventLoop)
+    public func startExecution(stateMachineResourceName: String, input: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartExecutionResponse {
+        try await self.startExecution(StartExecutionRequest(stateMachineResourceName: stateMachineResourceName, input: input, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

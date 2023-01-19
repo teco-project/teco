@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Tke {
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
-        self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
+        self.client.execute(action: "DescribeClusterReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
-        try await self.client.execute(action: "DescribeClusterReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterReleases(_ input: DescribeClusterReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
+        try await self.client.execute(action: "DescribeClusterReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群已安装应用列表
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
-        self.describeClusterReleases(DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), logger: logger, on: eventLoop)
+    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleasesResponse> {
+        self.describeClusterReleases(DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用列表
     ///
     /// 查询集群在应用市场中已安装应用列表
     @inlinable
-    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
-        try await self.describeClusterReleases(DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), logger: logger, on: eventLoop)
+    public func describeClusterReleases(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, releaseName: String? = nil, chartName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleasesResponse {
+        try await self.describeClusterReleases(DescribeClusterReleasesRequest(clusterId: clusterId, limit: limit, offset: offset, namespace: namespace, releaseName: releaseName, chartName: chartName), region: region, logger: logger, on: eventLoop)
     }
 }

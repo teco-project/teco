@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,31 +101,31 @@ extension Cwp {
     ///
     /// 获取安全概览相关事件统计数据接口
     @inlinable
-    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventsCntResponse> {
-        self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventsCntResponse> {
+        self.client.execute(action: "DescribeSecurityEventsCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件数统计数据
     ///
     /// 获取安全概览相关事件统计数据接口
     @inlinable
-    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
-        try await self.client.execute(action: "DescribeSecurityEventsCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityEventsCnt(_ input: DescribeSecurityEventsCntRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
+        try await self.client.execute(action: "DescribeSecurityEventsCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全事件数统计数据
     ///
     /// 获取安全概览相关事件统计数据接口
     @inlinable
-    public func describeSecurityEventsCnt(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventsCntResponse> {
-        self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityEventsCnt(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventsCntResponse> {
+        self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件数统计数据
     ///
     /// 获取安全概览相关事件统计数据接口
     @inlinable
-    public func describeSecurityEventsCnt(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
-        try await self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityEventsCnt(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
+        try await self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

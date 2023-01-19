@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Iotvideo {
 
     /// 更新AI推理结果推送配置
     @inlinable
-    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAIModelChannelResponse> {
-        self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAIModelChannelResponse> {
+        self.client.execute(action: "UpdateAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新AI推理结果推送配置
     @inlinable
-    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
-        try await self.client.execute(action: "UpdateAIModelChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateAIModelChannel(_ input: UpdateAIModelChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
+        try await self.client.execute(action: "UpdateAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新AI推理结果推送配置
     @inlinable
-    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAIModelChannelResponse> {
-        self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAIModelChannelResponse> {
+        self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新AI推理结果推送配置
     @inlinable
-    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
-        try await self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
+        try await self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 }

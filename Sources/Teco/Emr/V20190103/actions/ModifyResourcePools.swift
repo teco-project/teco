@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Emr {
 
     /// 刷新YARN的动态资源池
     @inlinable
-    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcePoolsResponse> {
-        self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcePoolsResponse> {
+        self.client.execute(action: "ModifyResourcePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新YARN的动态资源池
     @inlinable
-    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
-        try await self.client.execute(action: "ModifyResourcePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourcePools(_ input: ModifyResourcePoolsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
+        try await self.client.execute(action: "ModifyResourcePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新YARN的动态资源池
     @inlinable
-    public func modifyResourcePools(instanceId: String, key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcePoolsResponse> {
-        self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), logger: logger, on: eventLoop)
+    public func modifyResourcePools(instanceId: String, key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcePoolsResponse> {
+        self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新YARN的动态资源池
     @inlinable
-    public func modifyResourcePools(instanceId: String, key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
-        try await self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), logger: logger, on: eventLoop)
+    public func modifyResourcePools(instanceId: String, key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcePoolsResponse {
+        try await self.modifyResourcePools(ModifyResourcePoolsRequest(instanceId: instanceId, key: key), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cfw {
 
     /// 单个修改互联网边界防火墙开关
     @inlinable
-    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
-        self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
+        self.client.execute(action: "ModifyPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 单个修改互联网边界防火墙开关
     @inlinable
-    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
-        try await self.client.execute(action: "ModifyPublicIPSwitchStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPublicIPSwitchStatus(_ input: ModifyPublicIPSwitchStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
+        try await self.client.execute(action: "ModifyPublicIPSwitchStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 单个修改互联网边界防火墙开关
     @inlinable
-    public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
-        self.modifyPublicIPSwitchStatus(ModifyPublicIPSwitchStatusRequest(fireWallPublicIP: fireWallPublicIP, status: status), logger: logger, on: eventLoop)
+    public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPublicIPSwitchStatusResponse> {
+        self.modifyPublicIPSwitchStatus(ModifyPublicIPSwitchStatusRequest(fireWallPublicIP: fireWallPublicIP, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 单个修改互联网边界防火墙开关
     @inlinable
-    public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
-        try await self.modifyPublicIPSwitchStatus(ModifyPublicIPSwitchStatusRequest(fireWallPublicIP: fireWallPublicIP, status: status), logger: logger, on: eventLoop)
+    public func modifyPublicIPSwitchStatus(fireWallPublicIP: String, status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPublicIPSwitchStatusResponse {
+        try await self.modifyPublicIPSwitchStatus(ModifyPublicIPSwitchStatusRequest(fireWallPublicIP: fireWallPublicIP, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

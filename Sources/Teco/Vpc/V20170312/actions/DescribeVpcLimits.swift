@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
-        self.client.execute(action: "DescribeVpcLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
+        self.client.execute(action: "DescribeVpcLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取私有网络配额
@@ -113,8 +113,8 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
-        try await self.client.execute(action: "DescribeVpcLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcLimits(_ input: DescribeVpcLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
+        try await self.client.execute(action: "DescribeVpcLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取私有网络配额
@@ -150,8 +150,8 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(limitTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
-        self.describeVpcLimits(DescribeVpcLimitsRequest(limitTypes: limitTypes), logger: logger, on: eventLoop)
+    public func describeVpcLimits(limitTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcLimitsResponse> {
+        self.describeVpcLimits(DescribeVpcLimitsRequest(limitTypes: limitTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有网络配额
@@ -187,7 +187,7 @@ extension Vpc {
     /// * eni-max-ipv6s（每个ENI可分配的IPv6地址数）
     /// * vpc-max-assistant_cidrs（每个VPC可分配的辅助CIDR数）
     @inlinable
-    public func describeVpcLimits(limitTypes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
-        try await self.describeVpcLimits(DescribeVpcLimitsRequest(limitTypes: limitTypes), logger: logger, on: eventLoop)
+    public func describeVpcLimits(limitTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcLimitsResponse {
+        try await self.describeVpcLimits(DescribeVpcLimitsRequest(limitTypes: limitTypes), region: region, logger: logger, on: eventLoop)
     }
 }

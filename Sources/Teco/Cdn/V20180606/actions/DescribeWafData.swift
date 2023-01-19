@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,25 +113,25 @@ extension Cdn {
 
     /// Waf统计数据查询
     @inlinable
-    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafDataResponse> {
-        self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWafData(_ input: DescribeWafDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafDataResponse> {
+        self.client.execute(action: "DescribeWafData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Waf统计数据查询
     @inlinable
-    public func describeWafData(_ input: DescribeWafDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
-        try await self.client.execute(action: "DescribeWafData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWafData(_ input: DescribeWafDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
+        try await self.client.execute(action: "DescribeWafData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Waf统计数据查询
     @inlinable
-    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafDataResponse> {
-        self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafDataResponse> {
+        self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf统计数据查询
     @inlinable
-    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
-        try await self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), logger: logger, on: eventLoop)
+    public func describeWafData(startTime: String, endTime: String, interval: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, area: String? = nil, attackTypes: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafDataResponse {
+        try await self.describeWafData(DescribeWafDataRequest(startTime: startTime, endTime: endTime, interval: interval, domain: domain, attackType: attackType, defenceMode: defenceMode, area: area, attackTypes: attackTypes, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tem {
 
     /// 修改服务基本信息
     @inlinable
-    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceInfoResponse> {
-        self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceInfoResponse> {
+        self.client.execute(action: "ModifyServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务基本信息
     @inlinable
-    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
-        try await self.client.execute(action: "ModifyServiceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyServiceInfo(_ input: ModifyServiceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
+        try await self.client.execute(action: "ModifyServiceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改服务基本信息
     @inlinable
-    public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceInfoResponse> {
-        self.modifyServiceInfo(ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceInfoResponse> {
+        self.modifyServiceInfo(ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务基本信息
     @inlinable
-    public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
-        try await self.modifyServiceInfo(ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func modifyServiceInfo(serviceId: String, description: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceInfoResponse {
+        try await self.modifyServiceInfo(ModifyServiceInfoRequest(serviceId: serviceId, description: description, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

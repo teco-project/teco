@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Mps {
     ///
     /// 修改用户自定义内容审核模板。
     @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
-        self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
+        self.client.execute(action: "ModifyContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改内容审核模板
     ///
     /// 修改用户自定义内容审核模板。
     @inlinable
-    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
-        try await self.client.execute(action: "ModifyContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyContentReviewTemplate(_ input: ModifyContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
+        try await self.client.execute(action: "ModifyContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改内容审核模板
     ///
     /// 修改用户自定义内容审核模板。
     @inlinable
-    public func modifyContentReviewTemplate(definition: Int64, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
-        self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), logger: logger, on: eventLoop)
+    public func modifyContentReviewTemplate(definition: Int64, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
+        self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改内容审核模板
     ///
     /// 修改用户自定义内容审核模板。
     @inlinable
-    public func modifyContentReviewTemplate(definition: Int64, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
-        try await self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), logger: logger, on: eventLoop)
+    public func modifyContentReviewTemplate(definition: Int64, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
+        try await self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

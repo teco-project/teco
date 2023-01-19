@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tdmq {
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
-        self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
+        self.client.execute(action: "DescribePublisherSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
-        try await self.client.execute(action: "DescribePublisherSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePublisherSummary(_ input: DescribePublisherSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
+        try await self.client.execute(action: "DescribePublisherSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
-        self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), logger: logger, on: eventLoop)
+    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublisherSummaryResponse> {
+        self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消息生产概览
     ///
     /// 获取消息生产概览信息
     @inlinable
-    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
-        try await self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), logger: logger, on: eventLoop)
+    public func describePublisherSummary(clusterId: String, namespace: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublisherSummaryResponse {
+        try await self.describePublisherSummary(DescribePublisherSummaryRequest(clusterId: clusterId, namespace: namespace, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 }

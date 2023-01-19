@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -176,8 +176,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func generalBasicOCR(_ input: GeneralBasicOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
-        self.client.execute(action: "GeneralBasicOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generalBasicOCR(_ input: GeneralBasicOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
+        self.client.execute(action: "GeneralBasicOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别
@@ -242,8 +242,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func generalBasicOCR(_ input: GeneralBasicOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
-        try await self.client.execute(action: "GeneralBasicOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generalBasicOCR(_ input: GeneralBasicOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
+        try await self.client.execute(action: "GeneralBasicOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通用印刷体识别
@@ -308,8 +308,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
-        self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), logger: logger, on: eventLoop)
+    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
+        self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别
@@ -374,7 +374,7 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
-        try await self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), logger: logger, on: eventLoop)
+    public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
+        try await self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), region: region, logger: logger, on: eventLoop)
     }
 }

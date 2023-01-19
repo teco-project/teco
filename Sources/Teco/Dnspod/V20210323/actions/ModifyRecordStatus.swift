@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dnspod {
     ///
     /// 修改解析记录的状态
     @inlinable
-    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordStatusResponse> {
-        self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordStatusResponse> {
+        self.client.execute(action: "ModifyRecordStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置记录状态
     ///
     /// 修改解析记录的状态
     @inlinable
-    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
-        try await self.client.execute(action: "ModifyRecordStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordStatus(_ input: ModifyRecordStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
+        try await self.client.execute(action: "ModifyRecordStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置记录状态
     ///
     /// 修改解析记录的状态
     @inlinable
-    public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordStatusResponse> {
-        self.modifyRecordStatus(ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordStatusResponse> {
+        self.modifyRecordStatus(ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置记录状态
     ///
     /// 修改解析记录的状态
     @inlinable
-    public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
-        try await self.modifyRecordStatus(ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordStatus(domain: String, recordId: UInt64, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordStatusResponse {
+        try await self.modifyRecordStatus(ModifyRecordStatusRequest(domain: domain, recordId: recordId, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

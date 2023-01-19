@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cr {
 
     /// 查询产品列表
     @inlinable
-    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryProductsResponse> {
-        self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryProducts(_ input: QueryProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryProductsResponse> {
+        self.client.execute(action: "QueryProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品列表
     @inlinable
-    public func queryProducts(_ input: QueryProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
-        try await self.client.execute(action: "QueryProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryProducts(_ input: QueryProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
+        try await self.client.execute(action: "QueryProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询产品列表
     @inlinable
-    public func queryProducts(module: String, operation: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryProductsResponse> {
-        self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func queryProducts(module: String, operation: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryProductsResponse> {
+        self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品列表
     @inlinable
-    public func queryProducts(module: String, operation: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
-        try await self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func queryProducts(module: String, operation: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
+        try await self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

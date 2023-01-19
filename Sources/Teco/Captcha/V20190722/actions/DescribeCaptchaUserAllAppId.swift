@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,25 +47,25 @@ extension Captcha {
 
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
-        self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
+        self.client.execute(action: "DescribeCaptchaUserAllAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
-        try await self.client.execute(action: "DescribeCaptchaUserAllAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCaptchaUserAllAppId(_ input: DescribeCaptchaUserAllAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
+        try await self.client.execute(action: "DescribeCaptchaUserAllAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
-        self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), logger: logger, on: eventLoop)
+    public func describeCaptchaUserAllAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
+        self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
-    public func describeCaptchaUserAllAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
-        try await self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), logger: logger, on: eventLoop)
+    public func describeCaptchaUserAllAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
+        try await self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

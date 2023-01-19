@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable
-    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
-        self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
+        self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置实例密码
@@ -73,8 +73,8 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable
-    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
-        try await self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
+        try await self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置实例密码
@@ -86,8 +86,8 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable
-    public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
-        self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), logger: logger, on: eventLoop)
+    public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
+        self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置实例密码
@@ -99,7 +99,7 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable
-    public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
-        try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), logger: logger, on: eventLoop)
+    public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
+        try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), region: region, logger: logger, on: eventLoop)
     }
 }

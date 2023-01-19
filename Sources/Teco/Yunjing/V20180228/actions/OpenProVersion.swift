@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Yunjing {
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
     @inlinable
-    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
-        self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openProVersion(_ input: OpenProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
+        self.client.execute(action: "OpenProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
     @inlinable
-    public func openProVersion(_ input: OpenProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
-        try await self.client.execute(action: "OpenProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openProVersion(_ input: OpenProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
+        try await self.client.execute(action: "OpenProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
     @inlinable
-    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
-        self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), logger: logger, on: eventLoop)
+    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
+        self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
     @inlinable
-    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
-        try await self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), logger: logger, on: eventLoop)
+    public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
+        try await self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
 }

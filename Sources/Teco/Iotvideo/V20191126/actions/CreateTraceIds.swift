@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
     @inlinable
-    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceIdsResponse> {
-        self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTraceIds(_ input: CreateTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceIdsResponse> {
+        self.client.execute(action: "CreateTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将设备加到白名单
     ///
     /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
     @inlinable
-    public func createTraceIds(_ input: CreateTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
-        try await self.client.execute(action: "CreateTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTraceIds(_ input: CreateTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
+        try await self.client.execute(action: "CreateTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将设备加到白名单
     ///
     /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
     @inlinable
-    public func createTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceIdsResponse> {
-        self.createTraceIds(CreateTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    public func createTraceIds(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceIdsResponse> {
+        self.createTraceIds(CreateTraceIdsRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将设备加到白名单
     ///
     /// 本接口（CreateTraceIds）用于将设备加到日志跟踪白名单。
     @inlinable
-    public func createTraceIds(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
-        try await self.createTraceIds(CreateTraceIdsRequest(tids: tids), logger: logger, on: eventLoop)
+    public func createTraceIds(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceIdsResponse {
+        try await self.createTraceIds(CreateTraceIdsRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 }

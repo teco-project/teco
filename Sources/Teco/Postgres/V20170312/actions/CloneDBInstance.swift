@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -143,31 +143,31 @@ extension Postgres {
     ///
     /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
     @inlinable
-    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBInstanceResponse> {
-        self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cloneDBInstance(_ input: CloneDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBInstanceResponse> {
+        self.client.execute(action: "CloneDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆实例
     ///
     /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
     @inlinable
-    public func cloneDBInstance(_ input: CloneDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
-        try await self.client.execute(action: "CloneDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cloneDBInstance(_ input: CloneDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
+        try await self.client.execute(action: "CloneDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 克隆实例
     ///
     /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
     @inlinable
-    public func cloneDBInstance(dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String? = nil, instanceChargeType: String? = nil, securityGroupIds: [String]? = nil, projectId: Int64? = nil, tagList: [Tag]? = nil, dbNodeSet: [DBNode]? = nil, autoVoucher: Int64? = nil, voucherIds: String? = nil, activityId: Int64? = nil, backupSetId: String? = nil, recoveryTargetTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBInstanceResponse> {
-        self.cloneDBInstance(CloneDBInstanceRequest(dbInstanceId: dbInstanceId, specCode: specCode, storage: storage, period: period, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, name: name, instanceChargeType: instanceChargeType, securityGroupIds: securityGroupIds, projectId: projectId, tagList: tagList, dbNodeSet: dbNodeSet, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), logger: logger, on: eventLoop)
+    public func cloneDBInstance(dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String? = nil, instanceChargeType: String? = nil, securityGroupIds: [String]? = nil, projectId: Int64? = nil, tagList: [Tag]? = nil, dbNodeSet: [DBNode]? = nil, autoVoucher: Int64? = nil, voucherIds: String? = nil, activityId: Int64? = nil, backupSetId: String? = nil, recoveryTargetTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBInstanceResponse> {
+        self.cloneDBInstance(CloneDBInstanceRequest(dbInstanceId: dbInstanceId, specCode: specCode, storage: storage, period: period, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, name: name, instanceChargeType: instanceChargeType, securityGroupIds: securityGroupIds, projectId: projectId, tagList: tagList, dbNodeSet: dbNodeSet, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 克隆实例
     ///
     /// 用于克隆实例，支持指定备份集、指定时间点进行克隆。
     @inlinable
-    public func cloneDBInstance(dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String? = nil, instanceChargeType: String? = nil, securityGroupIds: [String]? = nil, projectId: Int64? = nil, tagList: [Tag]? = nil, dbNodeSet: [DBNode]? = nil, autoVoucher: Int64? = nil, voucherIds: String? = nil, activityId: Int64? = nil, backupSetId: String? = nil, recoveryTargetTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
-        try await self.cloneDBInstance(CloneDBInstanceRequest(dbInstanceId: dbInstanceId, specCode: specCode, storage: storage, period: period, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, name: name, instanceChargeType: instanceChargeType, securityGroupIds: securityGroupIds, projectId: projectId, tagList: tagList, dbNodeSet: dbNodeSet, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), logger: logger, on: eventLoop)
+    public func cloneDBInstance(dbInstanceId: String, specCode: String, storage: Int64, period: Int64, autoRenewFlag: Int64, vpcId: String, subnetId: String, name: String? = nil, instanceChargeType: String? = nil, securityGroupIds: [String]? = nil, projectId: Int64? = nil, tagList: [Tag]? = nil, dbNodeSet: [DBNode]? = nil, autoVoucher: Int64? = nil, voucherIds: String? = nil, activityId: Int64? = nil, backupSetId: String? = nil, recoveryTargetTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBInstanceResponse {
+        try await self.cloneDBInstance(CloneDBInstanceRequest(dbInstanceId: dbInstanceId, specCode: specCode, storage: storage, period: period, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, name: name, instanceChargeType: instanceChargeType, securityGroupIds: securityGroupIds, projectId: projectId, tagList: tagList, dbNodeSet: dbNodeSet, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), region: region, logger: logger, on: eventLoop)
     }
 }

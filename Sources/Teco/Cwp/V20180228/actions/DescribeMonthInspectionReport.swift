@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cwp {
     ///
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
-    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthInspectionReportResponse> {
-        self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthInspectionReportResponse> {
+        self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全管家月巡检报告下载
     ///
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
-    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
-        try await self.client.execute(action: "DescribeMonthInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMonthInspectionReport(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
+        try await self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全管家月巡检报告下载
     ///
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
-    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthInspectionReportResponse> {
-        self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthInspectionReportResponse> {
+        self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全管家月巡检报告下载
     ///
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
-    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
-        try await self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
+        try await self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

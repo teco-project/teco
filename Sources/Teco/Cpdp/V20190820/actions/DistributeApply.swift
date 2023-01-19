@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Cpdp {
 
     /// 云支付-分账请求接口
     @inlinable
-    public func distributeApply(_ input: DistributeApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeApplyResponse> {
-        self.client.execute(action: "DistributeApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func distributeApply(_ input: DistributeApplyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeApplyResponse> {
+        self.client.execute(action: "DistributeApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账请求接口
     @inlinable
-    public func distributeApply(_ input: DistributeApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
-        try await self.client.execute(action: "DistributeApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func distributeApply(_ input: DistributeApplyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
+        try await self.client.execute(action: "DistributeApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-分账请求接口
     @inlinable
-    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeApplyResponse> {
-        self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeApplyResponse> {
+        self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账请求接口
     @inlinable
-    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
-        try await self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func distributeApply(openId: String, openKey: String, outDistributeNo: String, details: [MultiApplyDetail], developerNo: String? = nil, orderNo: String? = nil, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeApplyResponse {
+        try await self.distributeApply(DistributeApplyRequest(openId: openId, openKey: openKey, outDistributeNo: outDistributeNo, details: details, developerNo: developerNo, orderNo: orderNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

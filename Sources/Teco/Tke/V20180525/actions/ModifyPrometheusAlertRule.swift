@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 修改告警规则
     @inlinable
-    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
-        self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
+        self.client.execute(action: "ModifyPrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警规则
     ///
     /// 修改告警规则
     @inlinable
-    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
-        try await self.client.execute(action: "ModifyPrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
+        try await self.client.execute(action: "ModifyPrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警规则
     ///
     /// 修改告警规则
     @inlinable
-    public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
-        self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
+        self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警规则
     ///
     /// 修改告警规则
     @inlinable
-    public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
-        try await self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
+        try await self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tcss {
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
-        self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
+        self.client.execute(action: "DescribeTaskResultSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
-        try await self.client.execute(action: "DescribeTaskResultSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskResultSummary(_ input: DescribeTaskResultSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
+        try await self.client.execute(action: "DescribeTaskResultSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
-        self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeTaskResultSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
+        self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询检查结果总览
     ///
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
-    public func describeTaskResultSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
-        try await self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeTaskResultSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
+        try await self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

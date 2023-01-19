@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcr {
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
     @inlinable
-    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
-        self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
+        self.client.execute(action: "CreateNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
     @inlinable
-    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
-        try await self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
+        try await self.client.execute(action: "CreateNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
     @inlinable
-    public func createNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
-        self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func createNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
+        self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
     @inlinable
-    public func createNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
-        try await self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func createNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
+        try await self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Mongodb {
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
     @inlinable
-    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
-        self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renameInstance(_ input: RenameInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
+        self.client.execute(action: "RenameInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
     @inlinable
-    public func renameInstance(_ input: RenameInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
-        try await self.client.execute(action: "RenameInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renameInstance(_ input: RenameInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
+        try await self.client.execute(action: "RenameInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
     @inlinable
-    public func renameInstance(instanceId: String, newName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
-        self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), logger: logger, on: eventLoop)
+    public func renameInstance(instanceId: String, newName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
+        self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
     @inlinable
-    public func renameInstance(instanceId: String, newName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
-        try await self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), logger: logger, on: eventLoop)
+    public func renameInstance(instanceId: String, newName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
+        try await self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), region: region, logger: logger, on: eventLoop)
     }
 }

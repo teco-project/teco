@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Live {
     /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
     /// 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(_ input: AddLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
-        self.client.execute(action: "AddLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addLiveWatermark(_ input: AddLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
+        self.client.execute(action: "AddLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加水印
@@ -85,8 +85,8 @@ extension Live {
     /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
     /// 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(_ input: AddLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
-        try await self.client.execute(action: "AddLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addLiveWatermark(_ input: AddLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
+        try await self.client.execute(action: "AddLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加水印
@@ -94,8 +94,8 @@ extension Live {
     /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
     /// 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
-        self.addLiveWatermark(AddLiveWatermarkRequest(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), logger: logger, on: eventLoop)
+    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLiveWatermarkResponse> {
+        self.addLiveWatermark(AddLiveWatermarkRequest(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加水印
@@ -103,7 +103,7 @@ extension Live {
     /// 添加水印，成功返回水印 ID 后，需要调用[CreateLiveWatermarkRule](/document/product/267/32629)接口将水印 ID 绑定到流使用。
     /// 水印数量上限 100，超过后需要先删除，再添加。
     @inlinable
-    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
-        try await self.addLiveWatermark(AddLiveWatermarkRequest(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), logger: logger, on: eventLoop)
+    public func addLiveWatermark(pictureUrl: String, watermarkName: String, xPosition: Int64? = nil, yPosition: Int64? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLiveWatermarkResponse {
+        try await self.addLiveWatermark(AddLiveWatermarkRequest(pictureUrl: pictureUrl, watermarkName: watermarkName, xPosition: xPosition, yPosition: yPosition, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
 }

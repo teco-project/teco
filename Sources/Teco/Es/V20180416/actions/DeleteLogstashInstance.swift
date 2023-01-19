@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Es {
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
-        self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
+        self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
-        try await self.client.execute(action: "DeleteLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
+        try await self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
-        self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
+        self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
     @inlinable
-    public func deleteLogstashInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
-        try await self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
+        try await self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

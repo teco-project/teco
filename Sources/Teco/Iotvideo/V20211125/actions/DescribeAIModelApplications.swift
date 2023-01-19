@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iotvideo {
 
     /// 用户AI模型申请记录
     @inlinable
-    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelApplicationsResponse> {
-        self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelApplicationsResponse> {
+        self.client.execute(action: "DescribeAIModelApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户AI模型申请记录
     @inlinable
-    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
-        try await self.client.execute(action: "DescribeAIModelApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAIModelApplications(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
+        try await self.client.execute(action: "DescribeAIModelApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户AI模型申请记录
     @inlinable
-    public func describeAIModelApplications(modelId: String, limit: UInt64, offset: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelApplicationsResponse> {
-        self.describeAIModelApplications(DescribeAIModelApplicationsRequest(modelId: modelId, limit: limit, offset: offset, productId: productId), logger: logger, on: eventLoop)
+    public func describeAIModelApplications(modelId: String, limit: UInt64, offset: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIModelApplicationsResponse> {
+        self.describeAIModelApplications(DescribeAIModelApplicationsRequest(modelId: modelId, limit: limit, offset: offset, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户AI模型申请记录
     @inlinable
-    public func describeAIModelApplications(modelId: String, limit: UInt64, offset: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
-        try await self.describeAIModelApplications(DescribeAIModelApplicationsRequest(modelId: modelId, limit: limit, offset: offset, productId: productId), logger: logger, on: eventLoop)
+    public func describeAIModelApplications(modelId: String, limit: UInt64, offset: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIModelApplicationsResponse {
+        try await self.describeAIModelApplications(DescribeAIModelApplicationsRequest(modelId: modelId, limit: limit, offset: offset, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

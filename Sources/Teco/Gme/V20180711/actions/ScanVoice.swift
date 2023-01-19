@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -207,8 +207,8 @@ extension Gme {
     /// }
     /// </code></pre>
     @inlinable
-    public func scanVoice(_ input: ScanVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
-        self.client.execute(action: "ScanVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanVoice(_ input: ScanVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
+        self.client.execute(action: "ScanVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交语音检测任务
@@ -347,8 +347,8 @@ extension Gme {
     /// }
     /// </code></pre>
     @inlinable
-    public func scanVoice(_ input: ScanVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
-        try await self.client.execute(action: "ScanVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanVoice(_ input: ScanVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
+        try await self.client.execute(action: "ScanVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交语音检测任务
@@ -487,8 +487,8 @@ extension Gme {
     /// }
     /// </code></pre>
     @inlinable
-    public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
-        self.scanVoice(ScanVoiceRequest(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), logger: logger, on: eventLoop)
+    public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVoiceResponse> {
+        self.scanVoice(ScanVoiceRequest(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交语音检测任务
@@ -627,7 +627,7 @@ extension Gme {
     /// }
     /// </code></pre>
     @inlinable
-    public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
-        try await self.scanVoice(ScanVoiceRequest(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), logger: logger, on: eventLoop)
+    public func scanVoice(bizId: UInt64, scenes: [String], live: Bool, tasks: [Task], callback: String? = nil, lang: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVoiceResponse {
+        try await self.scanVoice(ScanVoiceRequest(bizId: bizId, scenes: scenes, live: live, tasks: tasks, callback: callback, lang: lang), region: region, logger: logger, on: eventLoop)
     }
 }

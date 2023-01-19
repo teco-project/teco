@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 修改弹性网卡服务质量。
     @inlinable
-    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
-        self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
+        self.client.execute(action: "ModifyNetworkInterfaceQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
     @inlinable
-    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
-        try await self.client.execute(action: "ModifyNetworkInterfaceQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
+        try await self.client.execute(action: "ModifyNetworkInterfaceQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
     @inlinable
-    public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
-        self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), logger: logger, on: eventLoop)
+    public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
+        self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
     @inlinable
-    public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
-        try await self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), logger: logger, on: eventLoop)
+    public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
+        try await self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), region: region, logger: logger, on: eventLoop)
     }
 }

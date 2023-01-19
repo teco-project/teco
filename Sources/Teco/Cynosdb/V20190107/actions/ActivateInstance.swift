@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cynosdb {
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
-        self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func activateInstance(_ input: ActivateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
+        self.client.execute(action: "ActivateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(_ input: ActivateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
-        try await self.client.execute(action: "ActivateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func activateInstance(_ input: ActivateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
+        try await self.client.execute(action: "ActivateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
-        self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func activateInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
+        self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例访问
     ///
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
-    public func activateInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
-        try await self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func activateInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
+        try await self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

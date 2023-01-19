@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tsf {
 
     /// 创建泳道
     @inlinable
-    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
-        self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLane(_ input: CreateLaneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
+        self.client.execute(action: "CreateLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建泳道
     @inlinable
-    public func createLane(_ input: CreateLaneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
-        try await self.client.execute(action: "CreateLane", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLane(_ input: CreateLaneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
+        try await self.client.execute(action: "CreateLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建泳道
     @inlinable
-    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
-        self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
+        self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建泳道
     @inlinable
-    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
-        try await self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
+        try await self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

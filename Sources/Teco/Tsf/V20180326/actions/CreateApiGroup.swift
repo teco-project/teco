@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,25 +91,25 @@ extension Tsf {
 
     /// 创建API分组
     @inlinable
-    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiGroupResponse> {
-        self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApiGroup(_ input: CreateApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiGroupResponse> {
+        self.client.execute(action: "CreateApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建API分组
     @inlinable
-    public func createApiGroup(_ input: CreateApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
-        try await self.client.execute(action: "CreateApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApiGroup(_ input: CreateApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
+        try await self.client.execute(action: "CreateApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建API分组
     @inlinable
-    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiGroupResponse> {
-        self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiGroupResponse> {
+        self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建API分组
     @inlinable
-    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
-        try await self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), logger: logger, on: eventLoop)
+    public func createApiGroup(groupName: String, groupContext: String, authType: String? = nil, description: String? = nil, groupType: String? = nil, gatewayInstanceId: String? = nil, namespaceNameKey: String? = nil, serviceNameKey: String? = nil, namespaceNameKeyPosition: String? = nil, serviceNameKeyPosition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiGroupResponse {
+        try await self.createApiGroup(CreateApiGroupRequest(groupName: groupName, groupContext: groupContext, authType: authType, description: description, groupType: groupType, gatewayInstanceId: gatewayInstanceId, namespaceNameKey: namespaceNameKey, serviceNameKey: serviceNameKey, namespaceNameKeyPosition: namespaceNameKeyPosition, serviceNameKeyPosition: serviceNameKeyPosition), region: region, logger: logger, on: eventLoop)
     }
 }

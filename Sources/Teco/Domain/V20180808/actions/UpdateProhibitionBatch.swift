@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Domain {
     ///
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
-    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProhibitionBatchResponse> {
-        self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProhibitionBatchResponse> {
+        self.client.execute(action: "UpdateProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止更新锁
     ///
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
-    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
-        try await self.client.execute(action: "UpdateProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProhibitionBatch(_ input: UpdateProhibitionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
+        try await self.client.execute(action: "UpdateProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量禁止更新锁
     ///
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
-    public func updateProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProhibitionBatchResponse> {
-        self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    public func updateProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProhibitionBatchResponse> {
+        self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止更新锁
     ///
     /// 本接口 ( UpdateProhibitionBatch ) 用于批量禁止更新锁。
     @inlinable
-    public func updateProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
-        try await self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    public func updateProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProhibitionBatchResponse {
+        try await self.updateProhibitionBatch(UpdateProhibitionBatchRequest(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

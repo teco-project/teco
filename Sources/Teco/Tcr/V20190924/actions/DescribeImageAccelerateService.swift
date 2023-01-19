@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Tcr {
 
     /// 查询镜像加速服务状态
     @inlinable
-    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAccelerateServiceResponse> {
-        self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAccelerateServiceResponse> {
+        self.client.execute(action: "DescribeImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像加速服务状态
     @inlinable
-    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
-        try await self.client.execute(action: "DescribeImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageAccelerateService(_ input: DescribeImageAccelerateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
+        try await self.client.execute(action: "DescribeImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像加速服务状态
     @inlinable
-    public func describeImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAccelerateServiceResponse> {
-        self.describeImageAccelerateService(DescribeImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func describeImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAccelerateServiceResponse> {
+        self.describeImageAccelerateService(DescribeImageAccelerateServiceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像加速服务状态
     @inlinable
-    public func describeImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
-        try await self.describeImageAccelerateService(DescribeImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func describeImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAccelerateServiceResponse {
+        try await self.describeImageAccelerateService(DescribeImageAccelerateServiceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

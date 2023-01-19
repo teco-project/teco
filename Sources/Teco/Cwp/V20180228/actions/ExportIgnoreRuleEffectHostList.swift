@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Cwp {
     ///
     /// 根据检测项id导出忽略检测项影响主机列表
     @inlinable
-    public func exportIgnoreRuleEffectHostList(_ input: ExportIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreRuleEffectHostListResponse> {
-        self.client.execute(action: "ExportIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportIgnoreRuleEffectHostList(_ input: ExportIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreRuleEffectHostListResponse> {
+        self.client.execute(action: "ExportIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 忽略检测项影响主机列表导出
     ///
     /// 根据检测项id导出忽略检测项影响主机列表
     @inlinable
-    public func exportIgnoreRuleEffectHostList(_ input: ExportIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreRuleEffectHostListResponse {
-        try await self.client.execute(action: "ExportIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportIgnoreRuleEffectHostList(_ input: ExportIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreRuleEffectHostListResponse {
+        try await self.client.execute(action: "ExportIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 忽略检测项影响主机列表导出
     ///
     /// 根据检测项id导出忽略检测项影响主机列表
     @inlinable
-    public func exportIgnoreRuleEffectHostList(ruleId: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreRuleEffectHostListResponse> {
-        self.exportIgnoreRuleEffectHostList(ExportIgnoreRuleEffectHostListRequest(ruleId: ruleId, filters: filters), logger: logger, on: eventLoop)
+    public func exportIgnoreRuleEffectHostList(ruleId: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportIgnoreRuleEffectHostListResponse> {
+        self.exportIgnoreRuleEffectHostList(ExportIgnoreRuleEffectHostListRequest(ruleId: ruleId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 忽略检测项影响主机列表导出
     ///
     /// 根据检测项id导出忽略检测项影响主机列表
     @inlinable
-    public func exportIgnoreRuleEffectHostList(ruleId: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreRuleEffectHostListResponse {
-        try await self.exportIgnoreRuleEffectHostList(ExportIgnoreRuleEffectHostListRequest(ruleId: ruleId, filters: filters), logger: logger, on: eventLoop)
+    public func exportIgnoreRuleEffectHostList(ruleId: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportIgnoreRuleEffectHostListResponse {
+        try await self.exportIgnoreRuleEffectHostList(ExportIgnoreRuleEffectHostListRequest(ruleId: ruleId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Dbbrain {
     ///
     /// 查询redis实例top key前缀列表。
     @inlinable
-    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopKeyPrefixListResponse> {
-        self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopKeyPrefixListResponse> {
+        self.client.execute(action: "DescribeRedisTopKeyPrefixList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询redis实例top key前缀列表
     ///
     /// 查询redis实例top key前缀列表。
     @inlinable
-    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
-        try await self.client.execute(action: "DescribeRedisTopKeyPrefixList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRedisTopKeyPrefixList(_ input: DescribeRedisTopKeyPrefixListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
+        try await self.client.execute(action: "DescribeRedisTopKeyPrefixList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询redis实例top key前缀列表
     ///
     /// 查询redis实例top key前缀列表。
     @inlinable
-    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopKeyPrefixListResponse> {
-        self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), logger: logger, on: eventLoop)
+    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRedisTopKeyPrefixListResponse> {
+        self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询redis实例top key前缀列表
     ///
     /// 查询redis实例top key前缀列表。
     @inlinable
-    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
-        try await self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), logger: logger, on: eventLoop)
+    public func describeRedisTopKeyPrefixList(instanceId: String, date: Date, product: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRedisTopKeyPrefixListResponse {
+        try await self.describeRedisTopKeyPrefixList(DescribeRedisTopKeyPrefixListRequest(instanceId: instanceId, date: date, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

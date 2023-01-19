@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Apigateway {
 
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
-        self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func buildAPIDoc(_ input: BuildAPIDocRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
+        self.client.execute(action: "BuildAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(_ input: BuildAPIDocRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
-        try await self.client.execute(action: "BuildAPIDoc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func buildAPIDoc(_ input: BuildAPIDocRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
+        try await self.client.execute(action: "BuildAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
-        self.buildAPIDoc(BuildAPIDocRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    public func buildAPIDoc(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildAPIDocResponse> {
+        self.buildAPIDoc(BuildAPIDocRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 构建 API 文档
     @inlinable
-    public func buildAPIDoc(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
-        try await self.buildAPIDoc(BuildAPIDocRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    public func buildAPIDoc(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildAPIDocResponse {
+        try await self.buildAPIDoc(BuildAPIDocRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 }

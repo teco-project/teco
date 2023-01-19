@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable
-    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
-        self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
+        self.client.execute(action: "UnassignIpv6SubnetCidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6子网段
@@ -58,8 +58,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable
-    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
-        try await self.client.execute(action: "UnassignIpv6SubnetCidrBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unassignIpv6SubnetCidrBlock(_ input: UnassignIpv6SubnetCidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
+        try await self.client.execute(action: "UnassignIpv6SubnetCidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放IPv6子网段
@@ -67,8 +67,8 @@ extension Vpc {
     /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable
-    public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
-        self.unassignIpv6SubnetCidrBlock(UnassignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), logger: logger, on: eventLoop)
+    public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6SubnetCidrBlockResponse> {
+        self.unassignIpv6SubnetCidrBlock(UnassignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6子网段
@@ -76,7 +76,7 @@ extension Vpc {
     /// 本接口（UnassignIpv6SubnetCidrBlock）用于释放IPv6子网段。<br />
     /// 子网段如果还有IP占用且未回收，则子网段无法释放。
     @inlinable
-    public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
-        try await self.unassignIpv6SubnetCidrBlock(UnassignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), logger: logger, on: eventLoop)
+    public func unassignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6SubnetCidrBlockResponse {
+        try await self.unassignIpv6SubnetCidrBlock(UnassignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 }

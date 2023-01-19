@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
-        self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMigrations(_ input: DescribeMigrationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
+        self.client.execute(action: "DescribeMigrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(_ input: DescribeMigrationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
-        try await self.client.execute(action: "DescribeMigrations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMigrations(_ input: DescribeMigrationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
+        try await self.client.execute(action: "DescribeMigrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
-        self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
+        self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询迁移任务列表
     ///
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
-    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
-        try await self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
+        try await self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

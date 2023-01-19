@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ckafka {
 
     /// 删除Datahub连接源
     @inlinable
-    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectResourceResponse> {
-        self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectResourceResponse> {
+        self.client.execute(action: "DeleteConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Datahub连接源
     @inlinable
-    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
-        try await self.client.execute(action: "DeleteConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteConnectResource(_ input: DeleteConnectResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
+        try await self.client.execute(action: "DeleteConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Datahub连接源
     @inlinable
-    public func deleteConnectResource(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectResourceResponse> {
-        self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), logger: logger, on: eventLoop)
+    public func deleteConnectResource(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectResourceResponse> {
+        self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Datahub连接源
     @inlinable
-    public func deleteConnectResource(resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
-        try await self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), logger: logger, on: eventLoop)
+    public func deleteConnectResource(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectResourceResponse {
+        try await self.deleteConnectResource(DeleteConnectResourceRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

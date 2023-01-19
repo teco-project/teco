@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Youmall {
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
-        self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeShopInfo(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
+        self.client.execute(action: "DescribeShopInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(_ input: DescribeShopInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
-        try await self.client.execute(action: "DescribeShopInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeShopInfo(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
+        try await self.client.execute(action: "DescribeShopInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
-        self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeShopInfo(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopInfoResponse> {
+        self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取客户所属门店列表
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfo(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
-        try await self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeShopInfo(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopInfoResponse {
+        try await self.describeShopInfo(DescribeShopInfoRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

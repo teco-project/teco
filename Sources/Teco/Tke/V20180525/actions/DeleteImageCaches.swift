@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tke {
     ///
     /// 批量删除镜像缓存
     @inlinable
-    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageCachesResponse> {
-        self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteImageCaches(_ input: DeleteImageCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageCachesResponse> {
+        self.client.execute(action: "DeleteImageCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像缓存
     ///
     /// 批量删除镜像缓存
     @inlinable
-    public func deleteImageCaches(_ input: DeleteImageCachesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
-        try await self.client.execute(action: "DeleteImageCaches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteImageCaches(_ input: DeleteImageCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
+        try await self.client.execute(action: "DeleteImageCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除镜像缓存
     ///
     /// 批量删除镜像缓存
     @inlinable
-    public func deleteImageCaches(imageCacheIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageCachesResponse> {
-        self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), logger: logger, on: eventLoop)
+    public func deleteImageCaches(imageCacheIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageCachesResponse> {
+        self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像缓存
     ///
     /// 批量删除镜像缓存
     @inlinable
-    public func deleteImageCaches(imageCacheIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
-        try await self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), logger: logger, on: eventLoop)
+    public func deleteImageCaches(imageCacheIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageCachesResponse {
+        try await self.deleteImageCaches(DeleteImageCachesRequest(imageCacheIds: imageCacheIds), region: region, logger: logger, on: eventLoop)
     }
 }

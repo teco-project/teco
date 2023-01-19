@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Monitor {
 
     /// 获取已绑定对象列表
     @inlinable
-    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindingPolicyObjectListResponse> {
-        self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindingPolicyObjectListResponse> {
+        self.client.execute(action: "DescribeBindingPolicyObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取已绑定对象列表
     @inlinable
-    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
-        try await self.client.execute(action: "DescribeBindingPolicyObjectList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBindingPolicyObjectList(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
+        try await self.client.execute(action: "DescribeBindingPolicyObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取已绑定对象列表
     @inlinable
-    public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindingPolicyObjectListResponse> {
-        self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindingPolicyObjectListResponse> {
+        self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取已绑定对象列表
     @inlinable
-    public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
-        try await self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
+        try await self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 }

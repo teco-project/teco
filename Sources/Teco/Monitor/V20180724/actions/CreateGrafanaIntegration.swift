@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Monitor {
 
     /// 创建 Grafana 集成配置
     @inlinable
-    public func createGrafanaIntegration(_ input: CreateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaIntegrationResponse> {
-        self.client.execute(action: "CreateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGrafanaIntegration(_ input: CreateGrafanaIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaIntegrationResponse> {
+        self.client.execute(action: "CreateGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 集成配置
     @inlinable
-    public func createGrafanaIntegration(_ input: CreateGrafanaIntegrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaIntegrationResponse {
-        try await self.client.execute(action: "CreateGrafanaIntegration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGrafanaIntegration(_ input: CreateGrafanaIntegrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaIntegrationResponse {
+        try await self.client.execute(action: "CreateGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 Grafana 集成配置
     @inlinable
-    public func createGrafanaIntegration(instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaIntegrationResponse> {
-        self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), logger: logger, on: eventLoop)
+    public func createGrafanaIntegration(instanceId: String, kind: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaIntegrationResponse> {
+        self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 集成配置
     @inlinable
-    public func createGrafanaIntegration(instanceId: String, kind: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaIntegrationResponse {
-        try await self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), logger: logger, on: eventLoop)
+    public func createGrafanaIntegration(instanceId: String, kind: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaIntegrationResponse {
+        try await self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

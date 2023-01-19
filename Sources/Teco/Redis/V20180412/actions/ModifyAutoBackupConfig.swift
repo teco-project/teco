@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Redis {
 
     /// 设置自动备份配置
     @inlinable
-    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
-        self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
+        self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动备份配置
     @inlinable
-    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
-        try await self.client.execute(action: "ModifyAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAutoBackupConfig(_ input: ModifyAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
+        try await self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置自动备份配置
     @inlinable
-    public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
-        self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), logger: logger, on: eventLoop)
+    public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
+        self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动备份配置
     @inlinable
-    public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
-        try await self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), logger: logger, on: eventLoop)
+    public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
+        try await self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)
     }
 }

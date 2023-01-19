@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Rum {
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProjects(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
+        self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProjects(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
+        self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), logger: logger, on: eventLoop)
+    public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
     }
 }

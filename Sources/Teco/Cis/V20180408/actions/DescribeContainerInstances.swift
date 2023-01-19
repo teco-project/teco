@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Cis {
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
-    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstancesResponse> {
-        self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstancesResponse> {
+        self.client.execute(action: "DescribeContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例列表
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
-    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
-        try await self.client.execute(action: "DescribeContainerInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContainerInstances(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
+        try await self.client.execute(action: "DescribeContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器实例列表
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
-    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstancesResponse> {
-        self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstancesResponse> {
+        self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例列表
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
-    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
-        try await self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
+        try await self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

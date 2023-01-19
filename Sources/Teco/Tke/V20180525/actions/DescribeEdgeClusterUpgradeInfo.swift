@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tke {
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
-        self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
+        self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
-        try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeClusterUpgradeInfo(_ input: DescribeEdgeClusterUpgradeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
+        try await self.client.execute(action: "DescribeEdgeClusterUpgradeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
-        self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), logger: logger, on: eventLoop)
+    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterUpgradeInfoResponse> {
+        self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群升级信息
     ///
     /// 可以查询边缘集群升级信息，包含可以升级的组件，当前升级状态和升级错误信息
     @inlinable
-    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
-        try await self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), logger: logger, on: eventLoop)
+    public func describeEdgeClusterUpgradeInfo(clusterId: String, edgeVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterUpgradeInfoResponse {
+        try await self.describeEdgeClusterUpgradeInfo(DescribeEdgeClusterUpgradeInfoRequest(clusterId: clusterId, edgeVersion: edgeVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Monitor {
     ///
     /// Grafana实例授权其他腾讯云用户
     @inlinable
-    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSOAccountResponse> {
-        self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSSOAccount(_ input: CreateSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSOAccountResponse> {
+        self.client.execute(action: "CreateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 授权腾讯云用户
     ///
     /// Grafana实例授权其他腾讯云用户
     @inlinable
-    public func createSSOAccount(_ input: CreateSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
-        try await self.client.execute(action: "CreateSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSSOAccount(_ input: CreateSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
+        try await self.client.execute(action: "CreateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 授权腾讯云用户
     ///
     /// Grafana实例授权其他腾讯云用户
     @inlinable
-    public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSOAccountResponse> {
-        self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), logger: logger, on: eventLoop)
+    public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSOAccountResponse> {
+        self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 授权腾讯云用户
     ///
     /// Grafana实例授权其他腾讯云用户
     @inlinable
-    public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
-        try await self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), logger: logger, on: eventLoop)
+    public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
+        try await self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
     }
 }

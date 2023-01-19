@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cws {
     ///
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable
-    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsMisinformationResponse> {
-        self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsMisinformationResponse> {
+        self.client.execute(action: "CreateVulsMisinformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞误报信息
     ///
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable
-    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
-        try await self.client.execute(action: "CreateVulsMisinformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVulsMisinformation(_ input: CreateVulsMisinformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
+        try await self.client.execute(action: "CreateVulsMisinformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增漏洞误报信息
     ///
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable
-    public func createVulsMisinformation(vulIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsMisinformationResponse> {
-        self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), logger: logger, on: eventLoop)
+    public func createVulsMisinformation(vulIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsMisinformationResponse> {
+        self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞误报信息
     ///
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable
-    public func createVulsMisinformation(vulIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
-        try await self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), logger: logger, on: eventLoop)
+    public func createVulsMisinformation(vulIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
+        try await self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), region: region, logger: logger, on: eventLoop)
     }
 }

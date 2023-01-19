@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tcss {
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
-        self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
+        self.client.execute(action: "DescribeAgentDaemonSetCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
-        try await self.client.execute(action: "DescribeAgentDaemonSetCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentDaemonSetCmd(_ input: DescribeAgentDaemonSetCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
+        try await self.client.execute(action: "DescribeAgentDaemonSetCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
-        self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), logger: logger, on: eventLoop)
+    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
+        self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询平行容器安装命令
     @inlinable
-    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
-        try await self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), logger: logger, on: eventLoop)
+    public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
+        try await self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
     }
 }

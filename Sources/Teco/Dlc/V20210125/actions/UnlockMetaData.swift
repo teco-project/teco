@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dlc {
 
     /// 元数据解锁
     @inlinable
-    public func unlockMetaData(_ input: UnlockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockMetaDataResponse> {
-        self.client.execute(action: "UnlockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unlockMetaData(_ input: UnlockMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockMetaDataResponse> {
+        self.client.execute(action: "UnlockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 元数据解锁
     @inlinable
-    public func unlockMetaData(_ input: UnlockMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockMetaDataResponse {
-        try await self.client.execute(action: "UnlockMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unlockMetaData(_ input: UnlockMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockMetaDataResponse {
+        try await self.client.execute(action: "UnlockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 元数据解锁
     @inlinable
-    public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockMetaDataResponse> {
-        self.unlockMetaData(UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockMetaDataResponse> {
+        self.unlockMetaData(UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 元数据解锁
     @inlinable
-    public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockMetaDataResponse {
-        try await self.unlockMetaData(UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    public func unlockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockMetaDataResponse {
+        try await self.unlockMetaData(UnlockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 }

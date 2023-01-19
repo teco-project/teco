@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ame {
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
-    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerMusicsResponse> {
-        self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerMusicsResponse> {
+        self.client.execute(action: "DescribeKTVSingerMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取歌手下歌曲列表
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
-    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
-        try await self.client.execute(action: "DescribeKTVSingerMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVSingerMusics(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
+        try await self.client.execute(action: "DescribeKTVSingerMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取歌手下歌曲列表
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
-    public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerMusicsResponse> {
-        self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerMusicsResponse> {
+        self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌手下歌曲列表
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
-    public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
-        try await self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
+        try await self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

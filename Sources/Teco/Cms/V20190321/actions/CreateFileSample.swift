@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,8 +75,8 @@ extension Cms {
     /// <br>
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
-    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSampleResponse> {
-        self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFileSample(_ input: CreateFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSampleResponse> {
+        self.client.execute(action: "CreateFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增图片样本库
@@ -85,8 +85,8 @@ extension Cms {
     /// <br>
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
-    public func createFileSample(_ input: CreateFileSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
-        try await self.client.execute(action: "CreateFileSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFileSample(_ input: CreateFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
+        try await self.client.execute(action: "CreateFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增图片样本库
@@ -95,8 +95,8 @@ extension Cms {
     /// <br>
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
-    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSampleResponse> {
-        self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), logger: logger, on: eventLoop)
+    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSampleResponse> {
+        self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增图片样本库
@@ -105,7 +105,7 @@ extension Cms {
     /// <br>
     /// 通过该接口可以将图片新增到样本库。
     @inlinable
-    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
-        try await self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), logger: logger, on: eventLoop)
+    public func createFileSample(contents: [FileSample], evilType: Int64, fileType: String, label: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSampleResponse {
+        try await self.createFileSample(CreateFileSampleRequest(contents: contents, evilType: evilType, fileType: fileType, label: label), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -38,25 +38,25 @@ extension Iotvideoindustry {
 
     /// 告警等级列表
     @inlinable
-    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarnModResponse> {
-        self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWarnMod(_ input: DescribeWarnModRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarnModResponse> {
+        self.client.execute(action: "DescribeWarnMod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警等级列表
     @inlinable
-    public func describeWarnMod(_ input: DescribeWarnModRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
-        try await self.client.execute(action: "DescribeWarnMod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWarnMod(_ input: DescribeWarnModRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
+        try await self.client.execute(action: "DescribeWarnMod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 告警等级列表
     @inlinable
-    public func describeWarnMod(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarnModResponse> {
-        self.describeWarnMod(DescribeWarnModRequest(), logger: logger, on: eventLoop)
+    public func describeWarnMod(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarnModResponse> {
+        self.describeWarnMod(DescribeWarnModRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警等级列表
     @inlinable
-    public func describeWarnMod(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
-        try await self.describeWarnMod(DescribeWarnModRequest(), logger: logger, on: eventLoop)
+    public func describeWarnMod(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
+        try await self.describeWarnMod(DescribeWarnModRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改玩家自定义状态
     @inlinable
-    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
-        self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
+        self.client.execute(action: "ChangeRoomPlayerStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改玩家自定义状态
@@ -67,8 +67,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改玩家自定义状态
     @inlinable
-    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
-        try await self.client.execute(action: "ChangeRoomPlayerStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
+        try await self.client.execute(action: "ChangeRoomPlayerStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改玩家自定义状态
@@ -76,8 +76,8 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改玩家自定义状态
     @inlinable
-    public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
-        self.changeRoomPlayerStatus(ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId), logger: logger, on: eventLoop)
+    public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
+        self.changeRoomPlayerStatus(ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改玩家自定义状态
@@ -85,7 +85,7 @@ extension Mgobe {
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
     /// 修改玩家自定义状态
     @inlinable
-    public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
-        try await self.changeRoomPlayerStatus(ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId), logger: logger, on: eventLoop)
+    public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
+        try await self.changeRoomPlayerStatus(ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId), region: region, logger: logger, on: eventLoop)
     }
 }

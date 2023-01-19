@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Dnspod {
 
     /// 批量修改记录
     @inlinable
-    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordBatchResponse> {
-        self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordBatchResponse> {
+        self.client.execute(action: "ModifyRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改记录
     @inlinable
-    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
-        try await self.client.execute(action: "ModifyRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordBatch(_ input: ModifyRecordBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
+        try await self.client.execute(action: "ModifyRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改记录
     @inlinable
-    public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordBatchResponse> {
-        self.modifyRecordBatch(ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), logger: logger, on: eventLoop)
+    public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordBatchResponse> {
+        self.modifyRecordBatch(ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改记录
     @inlinable
-    public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
-        try await self.modifyRecordBatch(ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), logger: logger, on: eventLoop)
+    public func modifyRecordBatch(recordIdList: [UInt64], change: String, changeTo: String, value: String? = nil, mx: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordBatchResponse {
+        try await self.modifyRecordBatch(ModifyRecordBatchRequest(recordIdList: recordIdList, change: change, changeTo: changeTo, value: value, mx: mx), region: region, logger: logger, on: eventLoop)
     }
 }

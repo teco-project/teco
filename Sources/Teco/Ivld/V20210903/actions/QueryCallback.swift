@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ivld {
     ///
     /// 查询用户回调设置
     @inlinable
-    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallbackResponse> {
-        self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCallback(_ input: QueryCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallbackResponse> {
+        self.client.execute(action: "QueryCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询回调设置
     ///
     /// 查询用户回调设置
     @inlinable
-    public func queryCallback(_ input: QueryCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
-        try await self.client.execute(action: "QueryCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCallback(_ input: QueryCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
+        try await self.client.execute(action: "QueryCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询回调设置
     ///
     /// 查询用户回调设置
     @inlinable
-    public func queryCallback(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallbackResponse> {
-        self.queryCallback(QueryCallbackRequest(), logger: logger, on: eventLoop)
+    public func queryCallback(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallbackResponse> {
+        self.queryCallback(QueryCallbackRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询回调设置
     ///
     /// 查询用户回调设置
     @inlinable
-    public func queryCallback(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
-        try await self.queryCallback(QueryCallbackRequest(), logger: logger, on: eventLoop)
+    public func queryCallback(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
+        try await self.queryCallback(QueryCallbackRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

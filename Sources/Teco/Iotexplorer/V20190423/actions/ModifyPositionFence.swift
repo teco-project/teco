@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Iotexplorer {
 
     /// 更新围栏
     @inlinable
-    public func modifyPositionFence(_ input: ModifyPositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionFenceResponse> {
-        self.client.execute(action: "ModifyPositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPositionFence(_ input: ModifyPositionFenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionFenceResponse> {
+        self.client.execute(action: "ModifyPositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新围栏
     @inlinable
-    public func modifyPositionFence(_ input: ModifyPositionFenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
-        try await self.client.execute(action: "ModifyPositionFence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPositionFence(_ input: ModifyPositionFenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
+        try await self.client.execute(action: "ModifyPositionFence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新围栏
     @inlinable
-    public func modifyPositionFence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionFenceResponse> {
-        self.modifyPositionFence(ModifyPositionFenceRequest(), logger: logger, on: eventLoop)
+    public func modifyPositionFence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPositionFenceResponse> {
+        self.modifyPositionFence(ModifyPositionFenceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新围栏
     @inlinable
-    public func modifyPositionFence(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
-        try await self.modifyPositionFence(ModifyPositionFenceRequest(), logger: logger, on: eventLoop)
+    public func modifyPositionFence(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPositionFenceResponse {
+        try await self.modifyPositionFence(ModifyPositionFenceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Tbp {
     ///
     /// 对当前机器人的会话状态进行复位
     @inlinable
-    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetResponse> {
-        self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reset(_ input: ResetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetResponse> {
+        self.client.execute(action: "Reset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复位
     ///
     /// 对当前机器人的会话状态进行复位
     @inlinable
-    public func reset(_ input: ResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
-        try await self.client.execute(action: "Reset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reset(_ input: ResetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
+        try await self.client.execute(action: "Reset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复位
     ///
     /// 对当前机器人的会话状态进行复位
     @inlinable
-    public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetResponse> {
-        self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), logger: logger, on: eventLoop)
+    public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetResponse> {
+        self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复位
     ///
     /// 对当前机器人的会话状态进行复位
     @inlinable
-    public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
-        try await self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), logger: logger, on: eventLoop)
+    public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
+        try await self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), region: region, logger: logger, on: eventLoop)
     }
 }

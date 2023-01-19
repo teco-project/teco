@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dlc {
 
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
-        self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
+        self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
-        try await self.client.execute(action: "UnbindWorkGroupsFromUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
+        try await self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
-        self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
+        self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户上的用户组
     @inlinable
-    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
-        try await self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
+        try await self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 }

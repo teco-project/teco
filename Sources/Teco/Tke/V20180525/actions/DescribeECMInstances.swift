@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tke {
 
     /// 获取ECM实例相关信息
     @inlinable
-    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeECMInstancesResponse> {
-        self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeECMInstances(_ input: DescribeECMInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeECMInstancesResponse> {
+        self.client.execute(action: "DescribeECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ECM实例相关信息
     @inlinable
-    public func describeECMInstances(_ input: DescribeECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
-        try await self.client.execute(action: "DescribeECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeECMInstances(_ input: DescribeECMInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
+        try await self.client.execute(action: "DescribeECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取ECM实例相关信息
     @inlinable
-    public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeECMInstancesResponse> {
-        self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), logger: logger, on: eventLoop)
+    public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeECMInstancesResponse> {
+        self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ECM实例相关信息
     @inlinable
-    public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
-        try await self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), logger: logger, on: eventLoop)
+    public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
+        try await self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

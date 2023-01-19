@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,25 +83,25 @@ extension Dayu {
 
     /// 获取CC的IP黑白名单
     @inlinable
-    public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCIpAllowDenyResponse> {
-        self.client.execute(action: "DescribeCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCIpAllowDenyResponse> {
+        self.client.execute(action: "DescribeCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC的IP黑白名单
     @inlinable
-    public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCIpAllowDenyResponse {
-        try await self.client.execute(action: "DescribeCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCIpAllowDeny(_ input: DescribeCCIpAllowDenyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCIpAllowDenyResponse {
+        try await self.client.execute(action: "DescribeCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC的IP黑白名单
     @inlinable
-    public func describeCCIpAllowDeny(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCIpAllowDenyResponse> {
-        self.describeCCIpAllowDeny(DescribeCCIpAllowDenyRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCIpAllowDeny(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCIpAllowDenyResponse> {
+        self.describeCCIpAllowDeny(DescribeCCIpAllowDenyRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC的IP黑白名单
     @inlinable
-    public func describeCCIpAllowDeny(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCIpAllowDenyResponse {
-        try await self.describeCCIpAllowDeny(DescribeCCIpAllowDenyRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCIpAllowDeny(business: String, id: String, type: [String], limit: UInt64? = nil, offset: UInt64? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCIpAllowDenyResponse {
+        try await self.describeCCIpAllowDeny(DescribeCCIpAllowDenyRequest(business: business, id: id, type: type, limit: limit, offset: offset, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

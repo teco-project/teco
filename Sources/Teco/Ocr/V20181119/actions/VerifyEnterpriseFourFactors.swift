@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Ocr {
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
-    public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
-        self.client.execute(action: "VerifyEnterpriseFourFactors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
+        self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
-    public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
-        try await self.client.execute(action: "VerifyEnterpriseFourFactors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyEnterpriseFourFactors(_ input: VerifyEnterpriseFourFactorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
+        try await self.client.execute(action: "VerifyEnterpriseFourFactors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
-    public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
-        self.verifyEnterpriseFourFactors(VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), logger: logger, on: eventLoop)
+    public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEnterpriseFourFactorsResponse> {
+        self.verifyEnterpriseFourFactors(VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 企业四要素核验
     ///
     /// 此接口基于企业四要素授权“姓名、证件号码、企业标识、企业全称”，验证企业信息是否一致。
     @inlinable
-    public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
-        try await self.verifyEnterpriseFourFactors(VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), logger: logger, on: eventLoop)
+    public func verifyEnterpriseFourFactors(realName: String, idCard: String, enterpriseName: String, enterpriseMark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEnterpriseFourFactorsResponse {
+        try await self.verifyEnterpriseFourFactors(VerifyEnterpriseFourFactorsRequest(realName: realName, idCard: idCard, enterpriseName: enterpriseName, enterpriseMark: enterpriseMark), region: region, logger: logger, on: eventLoop)
     }
 }

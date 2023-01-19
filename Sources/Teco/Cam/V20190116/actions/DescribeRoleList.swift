@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cam {
     ///
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
-    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoleListResponse> {
-        self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoleList(_ input: DescribeRoleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoleListResponse> {
+        self.client.execute(action: "DescribeRoleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     ///
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
-    public func describeRoleList(_ input: DescribeRoleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
-        try await self.client.execute(action: "DescribeRoleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoleList(_ input: DescribeRoleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
+        try await self.client.execute(action: "DescribeRoleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取角色列表
     ///
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
-    public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoleListResponse> {
-        self.describeRoleList(DescribeRoleListRequest(page: page, rp: rp, tags: tags), logger: logger, on: eventLoop)
+    public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoleListResponse> {
+        self.describeRoleList(DescribeRoleListRequest(page: page, rp: rp, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     ///
     /// 本接口（DescribeRoleList）用于获取账号下的角色列表。
     @inlinable
-    public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
-        try await self.describeRoleList(DescribeRoleListRequest(page: page, rp: rp, tags: tags), logger: logger, on: eventLoop)
+    public func describeRoleList(page: UInt64, rp: UInt64, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoleListResponse {
+        try await self.describeRoleList(DescribeRoleListRequest(page: page, rp: rp, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Sqlserver {
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
-        self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
+        self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
-        try await self.client.execute(action: "DescribeInstanceParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceParams(_ input: DescribeInstanceParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
+        try await self.client.execute(action: "DescribeInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
-        self.describeInstanceParams(DescribeInstanceParamsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamsResponse> {
+        self.describeInstanceParams(DescribeInstanceParamsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例的可设置参数列表
     ///
     /// 该接口（DescribeInstanceParams）用于查询实例的参数列表。
     @inlinable
-    public func describeInstanceParams(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
-        try await self.describeInstanceParams(DescribeInstanceParamsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceParams(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamsResponse {
+        try await self.describeInstanceParams(DescribeInstanceParamsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

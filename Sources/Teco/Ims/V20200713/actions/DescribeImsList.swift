@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ims {
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
-        self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImsList(_ input: DescribeImsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
+        self.client.execute(action: "DescribeImsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(_ input: DescribeImsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
-        try await self.client.execute(action: "DescribeImsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImsList(_ input: DescribeImsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
+        try await self.client.execute(action: "DescribeImsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
-        self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImsListResponse> {
+        self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片审核明细数据
     ///
     /// 图片机器审核明细
     @inlinable
-    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
-        try await self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeImsList(pageIndex: Int64, pageSize: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImsListResponse {
+        try await self.describeImsList(DescribeImsListRequest(pageIndex: pageIndex, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

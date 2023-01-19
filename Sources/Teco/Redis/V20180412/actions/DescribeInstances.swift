@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -179,25 +179,25 @@ extension Redis {
 
     /// 查询Redis实例列表
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
+        self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
     @inlinable
-    public func describeInstances(_ input: DescribeInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.client.execute(action: "DescribeInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstances(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Redis实例列表
     @inlinable
-    public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), logger: logger, on: eventLoop)
+    public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
+        self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例列表
     @inlinable
-    public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), logger: logger, on: eventLoop)
+    public func describeInstances(limit: UInt64? = nil, offset: UInt64? = nil, instanceId: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, vpcIds: [String]? = nil, subnetIds: [String]? = nil, searchKey: String? = nil, projectIds: [Int64]? = nil, instanceName: String? = nil, uniqVpcIds: [String]? = nil, uniqSubnetIds: [String]? = nil, regionIds: [Int64]? = nil, status: [Int64]? = nil, typeVersion: Int64? = nil, engineName: String? = nil, autoRenew: [Int64]? = nil, billingMode: String? = nil, type: Int64? = nil, searchKeys: [String]? = nil, typeList: [Int64]? = nil, monitorVersion: String? = nil, instanceTags: [InstanceTagInfo]? = nil, tagKeys: [String]? = nil, productVersions: [String]? = nil, instanceIds: [String]? = nil, azMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
+        try await self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, instanceId: instanceId, orderBy: orderBy, orderType: orderType, vpcIds: vpcIds, subnetIds: subnetIds, searchKey: searchKey, projectIds: projectIds, instanceName: instanceName, uniqVpcIds: uniqVpcIds, uniqSubnetIds: uniqSubnetIds, regionIds: regionIds, status: status, typeVersion: typeVersion, engineName: engineName, autoRenew: autoRenew, billingMode: billingMode, type: type, searchKeys: searchKeys, typeList: typeList, monitorVersion: monitorVersion, instanceTags: instanceTags, tagKeys: tagKeys, productVersions: productVersions, instanceIds: instanceIds, azMode: azMode), region: region, logger: logger, on: eventLoop)
     }
 }

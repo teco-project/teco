@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Wedata {
 
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
-        self.client.execute(action: "DescribeInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
+        self.client.execute(action: "DescribeInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
-        try await self.client.execute(action: "DescribeInstanceLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceLog(_ input: DescribeInstanceLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
+        try await self.client.execute(action: "DescribeInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
-        self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), logger: logger, on: eventLoop)
+    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
+        self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例运行日志
     @inlinable
-    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
-        try await self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), logger: logger, on: eventLoop)
+    public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
+        try await self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), region: region, logger: logger, on: eventLoop)
     }
 }

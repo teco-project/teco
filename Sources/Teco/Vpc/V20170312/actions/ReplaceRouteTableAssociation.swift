@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Vpc {
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
-        self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
+        self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换路由表绑定关系
@@ -58,8 +58,8 @@ extension Vpc {
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
-        try await self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
+        try await self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 替换路由表绑定关系
@@ -67,8 +67,8 @@ extension Vpc {
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
-        self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
+        self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换路由表绑定关系
@@ -76,7 +76,7 @@ extension Vpc {
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
-        try await self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
+        try await self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }
 }

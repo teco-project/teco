@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -145,8 +145,8 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(_ input: RunCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
-        self.client.execute(action: "RunCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runCommand(_ input: RunCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
+        self.client.execute(action: "RunCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行命令
@@ -158,8 +158,8 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(_ input: RunCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
-        try await self.client.execute(action: "RunCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runCommand(_ input: RunCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
+        try await self.client.execute(action: "RunCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 执行命令
@@ -171,8 +171,8 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
-        self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
+        self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行命令
@@ -184,7 +184,7 @@ extension Tat {
     /// * 指定的实例需要处于 `RUNNING` 状态
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
-    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
-        try await self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
+        try await self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

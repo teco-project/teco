@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cvm {
 
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable
-    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcAssistVpcResponse> {
-        self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcAssistVpcResponse> {
+        self.client.execute(action: "RemoveChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable
-    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
-        try await self.client.execute(action: "RemoveChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeChcAssistVpc(_ input: RemoveChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
+        try await self.client.execute(action: "RemoveChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable
-    public func removeChcAssistVpc(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcAssistVpcResponse> {
-        self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    public func removeChcAssistVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcAssistVpcResponse> {
+        self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable
-    public func removeChcAssistVpc(chcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
-        try await self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), logger: logger, on: eventLoop)
+    public func removeChcAssistVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
+        try await self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Iotexplorer {
 
     /// 创建设备
     @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDevice(_ input: CreateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
+        self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
     @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDevice(_ input: CreateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建设备
     @inlinable
-    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), logger: logger, on: eventLoop)
+    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
+        self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
     @inlinable
-    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), logger: logger, on: eventLoop)
+    public func createDevice(productId: String, deviceName: String, devAddr: String? = nil, appKey: String? = nil, devEUI: String? = nil, appSKey: String? = nil, nwkSKey: String? = nil, definedPsk: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, devAddr: devAddr, appKey: appKey, devEUI: devEUI, appSKey: appSKey, nwkSKey: nwkSKey, definedPsk: definedPsk), region: region, logger: logger, on: eventLoop)
     }
 }

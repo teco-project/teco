@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,8 +111,8 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func createAudit(_ input: CreateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditResponse> {
-        self.client.execute(action: "CreateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAudit(_ input: CreateAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditResponse> {
+        self.client.execute(action: "CreateAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建跟踪集
@@ -123,8 +123,8 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func createAudit(_ input: CreateAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditResponse {
-        try await self.client.execute(action: "CreateAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAudit(_ input: CreateAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditResponse {
+        try await self.client.execute(action: "CreateAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建跟踪集
@@ -135,8 +135,8 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func createAudit(isEnableCmqNotify: Int64, readWriteAttribute: Int64, auditName: String, cosRegion: String, isCreateNewBucket: Int64, cosBucketName: String, keyId: String? = nil, cmqQueueName: String? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditResponse> {
-        self.createAudit(CreateAuditRequest(isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, auditName: auditName, cosRegion: cosRegion, isCreateNewBucket: isCreateNewBucket, cosBucketName: cosBucketName, keyId: keyId, cmqQueueName: cmqQueueName, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), logger: logger, on: eventLoop)
+    public func createAudit(isEnableCmqNotify: Int64, readWriteAttribute: Int64, auditName: String, cosRegion: String, isCreateNewBucket: Int64, cosBucketName: String, keyId: String? = nil, cmqQueueName: String? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditResponse> {
+        self.createAudit(CreateAuditRequest(isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, auditName: auditName, cosRegion: cosRegion, isCreateNewBucket: isCreateNewBucket, cosBucketName: cosBucketName, keyId: keyId, cmqQueueName: cmqQueueName, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建跟踪集
@@ -147,7 +147,7 @@ extension Cloudaudit {
     /// 3、如果IsEnableCmqNotify的值是0的话，IsCreateNewQueue、CmqRegion和CmqQueueName都不能传。
     /// 4、如果IsEnableKmsEncry的值是1的话，KmsRegion和KeyId属于必填项
     @inlinable
-    public func createAudit(isEnableCmqNotify: Int64, readWriteAttribute: Int64, auditName: String, cosRegion: String, isCreateNewBucket: Int64, cosBucketName: String, keyId: String? = nil, cmqQueueName: String? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditResponse {
-        try await self.createAudit(CreateAuditRequest(isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, auditName: auditName, cosRegion: cosRegion, isCreateNewBucket: isCreateNewBucket, cosBucketName: cosBucketName, keyId: keyId, cmqQueueName: cmqQueueName, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), logger: logger, on: eventLoop)
+    public func createAudit(isEnableCmqNotify: Int64, readWriteAttribute: Int64, auditName: String, cosRegion: String, isCreateNewBucket: Int64, cosBucketName: String, keyId: String? = nil, cmqQueueName: String? = nil, kmsRegion: String? = nil, isEnableKmsEncry: Int64? = nil, cmqRegion: String? = nil, logFilePrefix: String? = nil, isCreateNewQueue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditResponse {
+        try await self.createAudit(CreateAuditRequest(isEnableCmqNotify: isEnableCmqNotify, readWriteAttribute: readWriteAttribute, auditName: auditName, cosRegion: cosRegion, isCreateNewBucket: isCreateNewBucket, cosBucketName: cosBucketName, keyId: keyId, cmqQueueName: cmqQueueName, kmsRegion: kmsRegion, isEnableKmsEncry: isEnableKmsEncry, cmqRegion: cmqRegion, logFilePrefix: logFilePrefix, isCreateNewQueue: isCreateNewQueue), region: region, logger: logger, on: eventLoop)
     }
 }

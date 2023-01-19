@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Bmeip {
 
     /// 删除弹性公网IP ACL
     @inlinable
-    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
-        self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEipAcl(_ input: DeleteEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
+        self.client.execute(action: "DeleteEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性公网IP ACL
     @inlinable
-    public func deleteEipAcl(_ input: DeleteEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
-        try await self.client.execute(action: "DeleteEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEipAcl(_ input: DeleteEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
+        try await self.client.execute(action: "DeleteEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除弹性公网IP ACL
     @inlinable
-    public func deleteEipAcl(aclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
-        self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), logger: logger, on: eventLoop)
+    public func deleteEipAcl(aclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
+        self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性公网IP ACL
     @inlinable
-    public func deleteEipAcl(aclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
-        try await self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), logger: logger, on: eventLoop)
+    public func deleteEipAcl(aclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
+        try await self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), region: region, logger: logger, on: eventLoop)
     }
 }

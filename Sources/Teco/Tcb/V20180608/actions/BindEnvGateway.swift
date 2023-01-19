@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcb {
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
-        self.client.execute(action: "BindEnvGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindEnvGateway(_ input: BindEnvGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
+        self.client.execute(action: "BindEnvGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(_ input: BindEnvGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
-        try await self.client.execute(action: "BindEnvGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindEnvGateway(_ input: BindEnvGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
+        try await self.client.execute(action: "BindEnvGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
-        self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), logger: logger, on: eventLoop)
+    public func bindEnvGateway(subEnvId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
+        self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
     @inlinable
-    public func bindEnvGateway(subEnvId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
-        try await self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), logger: logger, on: eventLoop)
+    public func bindEnvGateway(subEnvId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
+        try await self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Yunjing {
     ///
     /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
     @inlinable
-    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntrustMaliciousRequestResponse> {
-        self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntrustMaliciousRequestResponse> {
+        self.client.execute(action: "UntrustMaliciousRequest", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消信任恶意请求
     ///
     /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
     @inlinable
-    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
-        try await self.client.execute(action: "UntrustMaliciousRequest", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func untrustMaliciousRequest(_ input: UntrustMaliciousRequestRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
+        try await self.client.execute(action: "UntrustMaliciousRequest", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消信任恶意请求
     ///
     /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
     @inlinable
-    public func untrustMaliciousRequest(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntrustMaliciousRequestResponse> {
-        self.untrustMaliciousRequest(UntrustMaliciousRequestRequest(id: id), logger: logger, on: eventLoop)
+    public func untrustMaliciousRequest(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntrustMaliciousRequestResponse> {
+        self.untrustMaliciousRequest(UntrustMaliciousRequestRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消信任恶意请求
     ///
     /// 本接口 (UntrustMaliciousRequest) 用于取消信任恶意请求。
     @inlinable
-    public func untrustMaliciousRequest(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
-        try await self.untrustMaliciousRequest(UntrustMaliciousRequestRequest(id: id), logger: logger, on: eventLoop)
+    public func untrustMaliciousRequest(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntrustMaliciousRequestResponse {
+        try await self.untrustMaliciousRequest(UntrustMaliciousRequestRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Eiam {
 
     /// 从账号组中移除账号
     @inlinable
-    public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
-        self.client.execute(action: "RemoveAccountFromAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
+        self.client.execute(action: "RemoveAccountFromAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从账号组中移除账号
     @inlinable
-    public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
-        try await self.client.execute(action: "RemoveAccountFromAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
+        try await self.client.execute(action: "RemoveAccountFromAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从账号组中移除账号
     @inlinable
-    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
-        self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), logger: logger, on: eventLoop)
+    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
+        self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从账号组中移除账号
     @inlinable
-    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
-        try await self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), logger: logger, on: eventLoop)
+    public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
+        try await self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 }

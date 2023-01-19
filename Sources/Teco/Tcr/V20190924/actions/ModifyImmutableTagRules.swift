@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcr {
 
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
-        self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
+        self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
-        try await self.client.execute(action: "ModifyImmutableTagRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
+        try await self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
-        self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), logger: logger, on: eventLoop)
+    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
+        self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像不可变规则
     @inlinable
-    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
-        try await self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), logger: logger, on: eventLoop)
+    public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
+        try await self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 }

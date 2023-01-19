@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ump {
     ///
     /// 上报当前场内所有相机的当前状态
     @inlinable
-    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
-        self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCameraState(_ input: CreateCameraStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
+        self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
     @inlinable
-    public func createCameraState(_ input: CreateCameraStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
-        try await self.client.execute(action: "CreateCameraState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCameraState(_ input: CreateCameraStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
+        try await self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
     @inlinable
-    public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
-        self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), logger: logger, on: eventLoop)
+    public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
+        self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }
 
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
     @inlinable
-    public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
-        try await self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), logger: logger, on: eventLoop)
+    public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
+        try await self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }
 }

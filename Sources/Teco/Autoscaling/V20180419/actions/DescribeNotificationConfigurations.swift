@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension As {
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
-    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotificationConfigurationsResponse> {
-        self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotificationConfigurationsResponse> {
+        self.client.execute(action: "DescribeNotificationConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通知
@@ -81,8 +81,8 @@ extension As {
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
-    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
-        try await self.client.execute(action: "DescribeNotificationConfigurations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNotificationConfigurations(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
+        try await self.client.execute(action: "DescribeNotificationConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通知
@@ -91,8 +91,8 @@ extension As {
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
-    public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotificationConfigurationsResponse> {
-        self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotificationConfigurationsResponse> {
+        self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通知
@@ -101,7 +101,7 @@ extension As {
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
-    public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
-        try await self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
+        try await self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

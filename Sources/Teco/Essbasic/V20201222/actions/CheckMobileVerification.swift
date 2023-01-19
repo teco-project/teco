@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Essbasic {
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
-        self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
+        self.client.execute(action: "CheckMobileVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
-        try await self.client.execute(action: "CheckMobileVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkMobileVerification(_ input: CheckMobileVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
+        try await self.client.execute(action: "CheckMobileVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
-        self.checkMobileVerification(CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileVerificationResponse> {
+        self.checkMobileVerification(CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号三要素
     @inlinable
-    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
-        try await self.checkMobileVerification(CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), logger: logger, on: eventLoop)
+    public func checkMobileVerification(caller: Caller, mobile: String, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileVerificationResponse {
+        try await self.checkMobileVerification(CheckMobileVerificationRequest(caller: caller, mobile: mobile, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
     }
 }

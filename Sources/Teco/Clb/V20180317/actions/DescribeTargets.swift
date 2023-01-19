@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Clb {
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(_ input: DescribeTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
-        self.client.execute(action: "DescribeTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTargets(_ input: DescribeTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
+        self.client.execute(action: "DescribeTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡绑定的后端服务列表
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(_ input: DescribeTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
-        try await self.client.execute(action: "DescribeTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTargets(_ input: DescribeTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
+        try await self.client.execute(action: "DescribeTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询负载均衡绑定的后端服务列表
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
-        self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetsResponse> {
+        self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡绑定的后端服务列表
     ///
     /// DescribeTargets 接口用来查询负载均衡实例的某些监听器绑定的后端服务列表。
     @inlinable
-    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
-        try await self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), logger: logger, on: eventLoop)
+    public func describeTargets(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetsResponse {
+        try await self.describeTargets(DescribeTargetsRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iot {
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
-        self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
+        self.client.execute(action: "AppUpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
-        try await self.client.execute(action: "AppUpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appUpdateDevice(_ input: AppUpdateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
+        try await self.client.execute(action: "AppUpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
-        self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), logger: logger, on: eventLoop)
+    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateDeviceResponse> {
+        self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备别名
     ///
     /// 修改设备别名，便于用户个性化定义设备的名称
     @inlinable
-    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
-        try await self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), logger: logger, on: eventLoop)
+    public func appUpdateDevice(accessToken: String, productId: String, deviceName: String, aliasName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateDeviceResponse {
+        try await self.appUpdateDevice(AppUpdateDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName, aliasName: aliasName), region: region, logger: logger, on: eventLoop)
     }
 }

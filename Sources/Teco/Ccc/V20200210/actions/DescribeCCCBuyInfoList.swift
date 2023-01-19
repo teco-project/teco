@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Ccc {
 
     /// 获取用户购买信息列表
     @inlinable
-    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCCBuyInfoListResponse> {
-        self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCCBuyInfoListResponse> {
+        self.client.execute(action: "DescribeCCCBuyInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户购买信息列表
     @inlinable
-    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
-        try await self.client.execute(action: "DescribeCCCBuyInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCCBuyInfoList(_ input: DescribeCCCBuyInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
+        try await self.client.execute(action: "DescribeCCCBuyInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户购买信息列表
     @inlinable
-    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCCBuyInfoListResponse> {
-        self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), logger: logger, on: eventLoop)
+    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCCBuyInfoListResponse> {
+        self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户购买信息列表
     @inlinable
-    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
-        try await self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), logger: logger, on: eventLoop)
+    public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
+        try await self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), region: region, logger: logger, on: eventLoop)
     }
 }

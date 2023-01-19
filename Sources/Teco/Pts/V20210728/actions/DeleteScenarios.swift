@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Pts {
 
     /// 删除场景
     @inlinable
-    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
-        self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScenarios(_ input: DeleteScenariosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
+        self.client.execute(action: "DeleteScenarios", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
     @inlinable
-    public func deleteScenarios(_ input: DeleteScenariosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
-        try await self.client.execute(action: "DeleteScenarios", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScenarios(_ input: DeleteScenariosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
+        try await self.client.execute(action: "DeleteScenarios", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除场景
     @inlinable
-    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
-        self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), logger: logger, on: eventLoop)
+    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
+        self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
     @inlinable
-    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
-        try await self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), logger: logger, on: eventLoop)
+    public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
+        try await self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }
 }

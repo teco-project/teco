@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,8 +98,8 @@ extension Ecc {
     /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
     /// 多图像识别批改接口
     @inlinable
-    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CorrectMultiImageResponse> {
-        self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func correctMultiImage(_ input: CorrectMultiImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CorrectMultiImageResponse> {
+        self.client.execute(action: "CorrectMultiImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 多图像识别批改
@@ -107,8 +107,8 @@ extension Ecc {
     /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
     /// 多图像识别批改接口
     @inlinable
-    public func correctMultiImage(_ input: CorrectMultiImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
-        try await self.client.execute(action: "CorrectMultiImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func correctMultiImage(_ input: CorrectMultiImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
+        try await self.client.execute(action: "CorrectMultiImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 多图像识别批改
@@ -116,8 +116,8 @@ extension Ecc {
     /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
     /// 多图像识别批改接口
     @inlinable
-    public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CorrectMultiImageResponse> {
-        self.correctMultiImage(CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), logger: logger, on: eventLoop)
+    public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CorrectMultiImageResponse> {
+        self.correctMultiImage(CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多图像识别批改
@@ -125,7 +125,7 @@ extension Ecc {
     /// https://ecc.tencentcloudapi.com/?Action=CorrectMultiImage
     /// 多图像识别批改接口
     @inlinable
-    public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
-        try await self.correctMultiImage(CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), logger: logger, on: eventLoop)
+    public func correctMultiImage(image: [String], inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CorrectMultiImageResponse {
+        try await self.correctMultiImage(CorrectMultiImageRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
     }
 }

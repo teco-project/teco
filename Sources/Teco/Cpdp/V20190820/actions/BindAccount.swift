@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Cpdp {
 
     /// 灵云-绑定账号
     @inlinable
-    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAccountResponse> {
-        self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindAccount(_ input: BindAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAccountResponse> {
+        self.client.execute(action: "BindAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-绑定账号
     @inlinable
-    public func bindAccount(_ input: BindAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
-        try await self.client.execute(action: "BindAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindAccount(_ input: BindAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
+        try await self.client.execute(action: "BindAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-绑定账号
     @inlinable
-    public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAccountResponse> {
-        self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAccountResponse> {
+        self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-绑定账号
     @inlinable
-    public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
-        try await self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
+        try await self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 停用任务
     @inlinable
-    public func disableTask(_ input: DisableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
-        self.client.execute(action: "DisableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableTask(_ input: DisableTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
+        self.client.execute(action: "DisableTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用任务
     @inlinable
-    public func disableTask(_ input: DisableTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
-        try await self.client.execute(action: "DisableTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableTask(_ input: DisableTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
+        try await self.client.execute(action: "DisableTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停用任务
     @inlinable
-    public func disableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
-        self.disableTask(DisableTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func disableTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
+        self.disableTask(DisableTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停用任务
     @inlinable
-    public func disableTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
-        try await self.disableTask(DisableTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func disableTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
+        try await self.disableTask(DisableTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

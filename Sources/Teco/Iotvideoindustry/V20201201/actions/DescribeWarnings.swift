@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Iotvideoindustry {
 
     /// 获取告警列表
     @inlinable
-    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningsResponse> {
-        self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWarnings(_ input: DescribeWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningsResponse> {
+        self.client.execute(action: "DescribeWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警列表
     @inlinable
-    public func describeWarnings(_ input: DescribeWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
-        try await self.client.execute(action: "DescribeWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWarnings(_ input: DescribeWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
+        try await self.client.execute(action: "DescribeWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取告警列表
     @inlinable
-    public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningsResponse> {
-        self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), logger: logger, on: eventLoop)
+    public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningsResponse> {
+        self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警列表
     @inlinable
-    public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
-        try await self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), logger: logger, on: eventLoop)
+    public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
+        try await self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), region: region, logger: logger, on: eventLoop)
     }
 }

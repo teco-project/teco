@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Monitor {
 
     /// 列出 Grafana 告警通道
     @inlinable
-    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaNotificationChannelsResponse> {
-        self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaNotificationChannelsResponse> {
+        self.client.execute(action: "DescribeGrafanaNotificationChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 告警通道
     @inlinable
-    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
-        try await self.client.execute(action: "DescribeGrafanaNotificationChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGrafanaNotificationChannels(_ input: DescribeGrafanaNotificationChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
+        try await self.client.execute(action: "DescribeGrafanaNotificationChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Grafana 告警通道
     @inlinable
-    public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaNotificationChannelsResponse> {
-        self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), logger: logger, on: eventLoop)
+    public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaNotificationChannelsResponse> {
+        self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 告警通道
     @inlinable
-    public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
-        try await self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), logger: logger, on: eventLoop)
+    public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
+        try await self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), region: region, logger: logger, on: eventLoop)
     }
 }

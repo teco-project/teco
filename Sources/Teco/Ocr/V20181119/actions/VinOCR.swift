@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Ocr {
     ///
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
-    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VinOCRResponse> {
-        self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func vinOCR(_ input: VinOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VinOCRResponse> {
+        self.client.execute(action: "VinOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 车辆VIN码识别
     ///
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
-    public func vinOCR(_ input: VinOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
-        try await self.client.execute(action: "VinOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func vinOCR(_ input: VinOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
+        try await self.client.execute(action: "VinOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 车辆VIN码识别
     ///
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
-    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VinOCRResponse> {
-        self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VinOCRResponse> {
+        self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 车辆VIN码识别
     ///
     /// 本接口支持图片内车辆识别代号（VIN）的检测和识别。
     @inlinable
-    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
-        try await self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func vinOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VinOCRResponse {
+        try await self.vinOCR(VinOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

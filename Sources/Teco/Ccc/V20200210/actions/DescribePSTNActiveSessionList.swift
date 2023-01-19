@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ccc {
     ///
     /// 获取当前正在通话的会话列表
     @inlinable
-    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePSTNActiveSessionListResponse> {
-        self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePSTNActiveSessionListResponse> {
+        self.client.execute(action: "DescribePSTNActiveSessionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 活动会话列表
     ///
     /// 获取当前正在通话的会话列表
     @inlinable
-    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
-        try await self.client.execute(action: "DescribePSTNActiveSessionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePSTNActiveSessionList(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
+        try await self.client.execute(action: "DescribePSTNActiveSessionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取 PSTN 活动会话列表
     ///
     /// 获取当前正在通话的会话列表
     @inlinable
-    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePSTNActiveSessionListResponse> {
-        self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePSTNActiveSessionListResponse> {
+        self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 活动会话列表
     ///
     /// 获取当前正在通话的会话列表
     @inlinable
-    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
-        try await self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePSTNActiveSessionList(sdkAppId: Int64, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePSTNActiveSessionListResponse {
+        try await self.describePSTNActiveSessionList(DescribePSTNActiveSessionListRequest(sdkAppId: sdkAppId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

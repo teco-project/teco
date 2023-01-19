@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Yunjing {
 
     /// 新增或修改本地提权规则
     @inlinable
-    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditPrivilegeRuleResponse> {
-        self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditPrivilegeRuleResponse> {
+        self.client.execute(action: "EditPrivilegeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改本地提权规则
     @inlinable
-    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
-        try await self.client.execute(action: "EditPrivilegeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editPrivilegeRule(_ input: EditPrivilegeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
+        try await self.client.execute(action: "EditPrivilegeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增或修改本地提权规则
     @inlinable
-    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditPrivilegeRuleResponse> {
-        self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditPrivilegeRuleResponse> {
+        self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改本地提权规则
     @inlinable
-    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
-        try await self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editPrivilegeRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, processName: String? = nil, sMode: UInt64? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditPrivilegeRuleResponse {
+        try await self.editPrivilegeRule(EditPrivilegeRuleRequest(id: id, uuid: uuid, hostip: hostip, processName: processName, sMode: sMode, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

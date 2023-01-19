@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bm {
 
     /// 查询自定义镜像制作进度
     @inlinable
-    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageProcessResponse> {
-        self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageProcessResponse> {
+        self.client.execute(action: "DescribeCustomImageProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义镜像制作进度
     @inlinable
-    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
-        try await self.client.execute(action: "DescribeCustomImageProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomImageProcess(_ input: DescribeCustomImageProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
+        try await self.client.execute(action: "DescribeCustomImageProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询自定义镜像制作进度
     @inlinable
-    public func describeCustomImageProcess(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageProcessResponse> {
-        self.describeCustomImageProcess(DescribeCustomImageProcessRequest(imageId: imageId), logger: logger, on: eventLoop)
+    public func describeCustomImageProcess(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImageProcessResponse> {
+        self.describeCustomImageProcess(DescribeCustomImageProcessRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义镜像制作进度
     @inlinable
-    public func describeCustomImageProcess(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
-        try await self.describeCustomImageProcess(DescribeCustomImageProcessRequest(imageId: imageId), logger: logger, on: eventLoop)
+    public func describeCustomImageProcess(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImageProcessResponse {
+        try await self.describeCustomImageProcess(DescribeCustomImageProcessRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

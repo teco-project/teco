@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable
-    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
-        self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
+        self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable
-    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
-        try await self.client.execute(action: "DeleteBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
+        try await self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable
-    public func deleteBruteAttacks(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
-        self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
+        self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
     @inlinable
-    public func deleteBruteAttacks(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
-        try await self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
+        try await self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

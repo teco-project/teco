@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tcr {
 
     /// 删除实例公网访问白名单策略
     @inlinable
-    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
-        self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
+        self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问白名单策略
     @inlinable
-    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
-        try await self.client.execute(action: "DeleteSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSecurityPolicy(_ input: DeleteSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
+        try await self.client.execute(action: "DeleteSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例公网访问白名单策略
     @inlinable
-    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
-        self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), logger: logger, on: eventLoop)
+    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityPolicyResponse> {
+        self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问白名单策略
     @inlinable
-    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
-        try await self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), logger: logger, on: eventLoop)
+    public func deleteSecurityPolicy(registryId: String, policyIndex: Int64, policyVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityPolicyResponse {
+        try await self.deleteSecurityPolicy(DeleteSecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, policyVersion: policyVersion), region: region, logger: logger, on: eventLoop)
     }
 }

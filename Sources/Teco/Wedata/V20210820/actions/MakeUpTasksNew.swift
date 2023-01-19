@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
-        self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
+        self.client.execute(action: "MakeUpTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量补录任务【Beta版本】
@@ -82,8 +82,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
-        try await self.client.execute(action: "MakeUpTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func makeUpTasksNew(_ input: MakeUpTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
+        try await self.client.execute(action: "MakeUpTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量补录任务【Beta版本】
@@ -91,8 +91,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
-        self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), logger: logger, on: eventLoop)
+    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpTasksNewResponse> {
+        self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量补录任务【Beta版本】
@@ -100,7 +100,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 任务批量补录，调度状态任务才可以补录；
     @inlinable
-    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
-        try await self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), logger: logger, on: eventLoop)
+    public func makeUpTasksNew(taskIdList: [String], startTime: String, endTime: String, makeUpType: UInt64, projectId: String, checkParent: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpTasksNewResponse {
+        try await self.makeUpTasksNew(MakeUpTasksNewRequest(taskIdList: taskIdList, startTime: startTime, endTime: endTime, makeUpType: makeUpType, projectId: projectId, checkParent: checkParent), region: region, logger: logger, on: eventLoop)
     }
 }

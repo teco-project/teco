@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Ecm {
 
     /// 删除业务模块
     @inlinable
-    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
-        self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteModule(_ input: DeleteModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
+        self.client.execute(action: "DeleteModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除业务模块
     @inlinable
-    public func deleteModule(_ input: DeleteModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
-        try await self.client.execute(action: "DeleteModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteModule(_ input: DeleteModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
+        try await self.client.execute(action: "DeleteModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除业务模块
     @inlinable
-    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
-        self.deleteModule(DeleteModuleRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    public func deleteModule(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModuleResponse> {
+        self.deleteModule(DeleteModuleRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除业务模块
     @inlinable
-    public func deleteModule(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
-        try await self.deleteModule(DeleteModuleRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    public func deleteModule(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModuleResponse {
+        try await self.deleteModule(DeleteModuleRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,31 +101,31 @@ extension Cdn {
     ///
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
-    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportDataResponse> {
-        self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReportData(_ input: DescribeReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportDataResponse> {
+        self.client.execute(action: "DescribeReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询报表数据
     ///
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
-    public func describeReportData(_ input: DescribeReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
-        try await self.client.execute(action: "DescribeReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReportData(_ input: DescribeReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
+        try await self.client.execute(action: "DescribeReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询报表数据
     ///
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
-    public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportDataResponse> {
-        self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), logger: logger, on: eventLoop)
+    public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportDataResponse> {
+        self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询报表数据
     ///
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
-    public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
-        try await self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), logger: logger, on: eventLoop)
+    public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
+        try await self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), region: region, logger: logger, on: eventLoop)
     }
 }

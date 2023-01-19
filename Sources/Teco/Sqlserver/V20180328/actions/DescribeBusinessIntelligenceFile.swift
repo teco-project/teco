@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
-        self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
+        self.client.execute(action: "DescribeBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
-        try await self.client.execute(action: "DescribeBusinessIntelligenceFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBusinessIntelligenceFile(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
+        try await self.client.execute(action: "DescribeBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
-        self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessIntelligenceFileResponse> {
+        self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商业智能服务需要的文件
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
-        try await self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeBusinessIntelligenceFile(instanceId: String, fileName: String? = nil, statusSet: [Int64]? = nil, fileType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessIntelligenceFileResponse {
+        try await self.describeBusinessIntelligenceFile(DescribeBusinessIntelligenceFileRequest(instanceId: instanceId, fileName: fileName, statusSet: statusSet, fileType: fileType, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cloudstudio {
 
     /// 获取所有模板列表
     @inlinable
-    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesResponse> {
-        self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesResponse> {
+        self.client.execute(action: "DescribeCustomizeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有模板列表
     @inlinable
-    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
-        try await self.client.execute(action: "DescribeCustomizeTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomizeTemplates(_ input: DescribeCustomizeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
+        try await self.client.execute(action: "DescribeCustomizeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取所有模板列表
     @inlinable
-    public func describeCustomizeTemplates(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesResponse> {
-        self.describeCustomizeTemplates(DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func describeCustomizeTemplates(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesResponse> {
+        self.describeCustomizeTemplates(DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有模板列表
     @inlinable
-    public func describeCustomizeTemplates(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
-        try await self.describeCustomizeTemplates(DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func describeCustomizeTemplates(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesResponse {
+        try await self.describeCustomizeTemplates(DescribeCustomizeTemplatesRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

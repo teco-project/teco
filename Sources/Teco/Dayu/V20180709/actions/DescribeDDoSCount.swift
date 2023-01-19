@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -121,25 +121,25 @@ extension Dayu {
 
     /// 获取DDoS攻击占比分析
     @inlinable
-    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSCountResponse> {
-        self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSCountResponse> {
+        self.client.execute(action: "DescribeDDoSCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击占比分析
     @inlinable
-    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
-        try await self.client.execute(action: "DescribeDDoSCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSCount(_ input: DescribeDDoSCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
+        try await self.client.execute(action: "DescribeDDoSCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS攻击占比分析
     @inlinable
-    public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSCountResponse> {
-        self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), logger: logger, on: eventLoop)
+    public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSCountResponse> {
+        self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击占比分析
     @inlinable
-    public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
-        try await self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), logger: logger, on: eventLoop)
+    public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
+        try await self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
     }
 }

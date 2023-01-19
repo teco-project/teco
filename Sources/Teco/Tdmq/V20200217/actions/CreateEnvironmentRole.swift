@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tdmq {
 
     /// 创建环境角色授权
     @inlinable
-    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
-        self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
+        self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建环境角色授权
     @inlinable
-    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
-        try await self.client.execute(action: "CreateEnvironmentRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
+        try await self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建环境角色授权
     @inlinable
-    public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
-        self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
+        self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建环境角色授权
     @inlinable
-    public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
-        try await self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
+        try await self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

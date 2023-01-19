@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Dnspod {
 
     /// 暂停子域名的解析记录
     @inlinable
-    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
-        self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
+        self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停子域名的解析记录
     @inlinable
-    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
-        try await self.client.execute(action: "ModifySubdomainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
+        try await self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 暂停子域名的解析记录
     @inlinable
-    public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
-        self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
+        self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 暂停子域名的解析记录
     @inlinable
-    public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
-        try await self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
+        try await self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 }

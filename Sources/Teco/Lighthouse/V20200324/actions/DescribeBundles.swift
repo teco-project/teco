@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
-        self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBundles(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
+        self.client.execute(action: "DescribeBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(_ input: DescribeBundlesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
-        try await self.client.execute(action: "DescribeBundles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBundles(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
+        try await self.client.execute(action: "DescribeBundles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
-        self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), logger: logger, on: eventLoop)
+    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundlesResponse> {
+        self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
-        try await self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), logger: logger, on: eventLoop)
+    public func describeBundles(bundleIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundlesResponse {
+        try await self.describeBundles(DescribeBundlesRequest(bundleIds: bundleIds, offset: offset, limit: limit, filters: filters, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 }

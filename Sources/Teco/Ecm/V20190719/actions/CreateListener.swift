@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Ecm {
     ///
     /// 创建负载均衡监听器。
     @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createListener(_ input: CreateListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
+        self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
     ///
     /// 创建负载均衡监听器。
     @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createListener(_ input: CreateListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建负载均衡监听器
     ///
     /// 创建负载均衡监听器。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
+        self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
     ///
     /// 创建负载均衡监听器。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), region: region, logger: logger, on: eventLoop)
     }
 }

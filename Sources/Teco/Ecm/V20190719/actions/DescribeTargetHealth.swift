@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ecm {
     ///
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
-    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
-        self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
+        self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
-    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
-        try await self.client.execute(action: "DescribeTargetHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTargetHealth(_ input: DescribeTargetHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
+        try await self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
-    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
-        self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
+        self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡后端服务的健康检查状态
     ///
     /// 获取负载均衡后端服务的健康检查状态。
     @inlinable
-    public func describeTargetHealth(loadBalancerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
-        try await self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
+        try await self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 }

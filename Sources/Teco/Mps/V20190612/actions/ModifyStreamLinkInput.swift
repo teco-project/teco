@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mps {
     ///
     /// 修改媒体传输流的输入信息。
     @inlinable
-    public func modifyStreamLinkInput(_ input: ModifyStreamLinkInputRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkInputResponse> {
-        self.client.execute(action: "ModifyStreamLinkInput", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyStreamLinkInput(_ input: ModifyStreamLinkInputRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkInputResponse> {
+        self.client.execute(action: "ModifyStreamLinkInput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体传输输入
     ///
     /// 修改媒体传输流的输入信息。
     @inlinable
-    public func modifyStreamLinkInput(_ input: ModifyStreamLinkInputRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkInputResponse {
-        try await self.client.execute(action: "ModifyStreamLinkInput", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyStreamLinkInput(_ input: ModifyStreamLinkInputRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkInputResponse {
+        try await self.client.execute(action: "ModifyStreamLinkInput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改媒体传输输入
     ///
     /// 修改媒体传输流的输入信息。
     @inlinable
-    public func modifyStreamLinkInput(flowId: String, input: ModifyInput, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkInputResponse> {
-        self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), logger: logger, on: eventLoop)
+    public func modifyStreamLinkInput(flowId: String, input: ModifyInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkInputResponse> {
+        self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体传输输入
     ///
     /// 修改媒体传输流的输入信息。
     @inlinable
-    public func modifyStreamLinkInput(flowId: String, input: ModifyInput, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkInputResponse {
-        try await self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), logger: logger, on: eventLoop)
+    public func modifyStreamLinkInput(flowId: String, input: ModifyInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkInputResponse {
+        try await self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), region: region, logger: logger, on: eventLoop)
     }
 }

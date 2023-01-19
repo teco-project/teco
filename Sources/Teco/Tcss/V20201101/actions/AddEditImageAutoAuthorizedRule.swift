@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcss {
 
     /// 新增或编辑本地镜像自动授权规则
     @inlinable
-    public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditImageAutoAuthorizedRuleResponse> {
-        self.client.execute(action: "AddEditImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditImageAutoAuthorizedRuleResponse> {
+        self.client.execute(action: "AddEditImageAutoAuthorizedRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑本地镜像自动授权规则
     @inlinable
-    public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {
-        try await self.client.execute(action: "AddEditImageAutoAuthorizedRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addEditImageAutoAuthorizedRule(_ input: AddEditImageAutoAuthorizedRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {
+        try await self.client.execute(action: "AddEditImageAutoAuthorizedRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增或编辑本地镜像自动授权规则
     @inlinable
-    public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditImageAutoAuthorizedRuleResponse> {
-        self.addEditImageAutoAuthorizedRule(AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), logger: logger, on: eventLoop)
+    public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditImageAutoAuthorizedRuleResponse> {
+        self.addEditImageAutoAuthorizedRule(AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑本地镜像自动授权规则
     @inlinable
-    public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {
-        try await self.addEditImageAutoAuthorizedRule(AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), logger: logger, on: eventLoop)
+    public func addEditImageAutoAuthorizedRule(rangeType: String, maxDailyCount: Int64, isEnabled: Int64, hostIdSet: [String]? = nil, ruleId: Int64? = nil, hostIdFilters: [AssetFilters]? = nil, excludeHostIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditImageAutoAuthorizedRuleResponse {
+        try await self.addEditImageAutoAuthorizedRule(AddEditImageAutoAuthorizedRuleRequest(rangeType: rangeType, maxDailyCount: maxDailyCount, isEnabled: isEnabled, hostIdSet: hostIdSet, ruleId: ruleId, hostIdFilters: hostIdFilters, excludeHostIdSet: excludeHostIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

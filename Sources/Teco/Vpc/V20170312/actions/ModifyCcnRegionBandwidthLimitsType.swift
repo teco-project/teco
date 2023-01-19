@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
     @inlinable
-    public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
-        self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
+        self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
     @inlinable
-    public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
-        try await self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
+        try await self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
     @inlinable
-    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
-        self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), logger: logger, on: eventLoop)
+    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
+        self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
     @inlinable
-    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
-        try await self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), logger: logger, on: eventLoop)
+    public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
+        try await self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), region: region, logger: logger, on: eventLoop)
     }
 }

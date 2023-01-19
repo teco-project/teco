@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Gme {
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
     @inlinable
-    public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
-        self.client.execute(action: "CreateAgeDetectTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
+        self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交年龄语音识别任务
@@ -87,8 +87,8 @@ extension Gme {
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
     @inlinable
-    public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
-        try await self.client.execute(action: "CreateAgeDetectTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAgeDetectTask(_ input: CreateAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
+        try await self.client.execute(action: "CreateAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交年龄语音识别任务
@@ -105,8 +105,8 @@ extension Gme {
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
     @inlinable
-    public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
-        self.createAgeDetectTask(CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback), logger: logger, on: eventLoop)
+    public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgeDetectTaskResponse> {
+        self.createAgeDetectTask(CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交年龄语音识别任务
@@ -123,7 +123,7 @@ extension Gme {
     /// <li>音频文件格式支持的类型：.wav、.m4a、.amr、.mp3、.aac、.wma、.ogg</li>
     /// </br>
     @inlinable
-    public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
-        try await self.createAgeDetectTask(CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback), logger: logger, on: eventLoop)
+    public func createAgeDetectTask(bizId: Int64, tasks: [AgeDetectTask], callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgeDetectTaskResponse {
+        try await self.createAgeDetectTask(CreateAgeDetectTaskRequest(bizId: bizId, tasks: tasks, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

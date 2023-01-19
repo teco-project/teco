@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Vpc {
     /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
-    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIp6RulesResponse> {
-        self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addIp6Rules(_ input: AddIp6RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIp6RulesResponse> {
+        self.client.execute(action: "AddIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加IPV6转换规则
@@ -69,8 +69,8 @@ extension Vpc {
     /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
-    public func addIp6Rules(_ input: AddIp6RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
-        try await self.client.execute(action: "AddIp6Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addIp6Rules(_ input: AddIp6RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
+        try await self.client.execute(action: "AddIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加IPV6转换规则
@@ -79,8 +79,8 @@ extension Vpc {
     /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
-    public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIp6RulesResponse> {
-        self.addIp6Rules(AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), logger: logger, on: eventLoop)
+    public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIp6RulesResponse> {
+        self.addIp6Rules(AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加IPV6转换规则
@@ -89,7 +89,7 @@ extension Vpc {
     /// 2. 支持在同一个转换实例下批量添加转换规则，一个账户在一个地域最多50个。
     /// 3. 一个完整的转换规则包括vip6:vport6:protocol:vip:vport，其中vip6:vport6:protocol必须是唯一。
     @inlinable
-    public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
-        try await self.addIp6Rules(AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), logger: logger, on: eventLoop)
+    public func addIp6Rules(ip6TranslatorId: String, ip6RuleInfos: [Ip6RuleInfo], ip6RuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIp6RulesResponse {
+        try await self.addIp6Rules(AddIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleInfos: ip6RuleInfos, ip6RuleName: ip6RuleName), region: region, logger: logger, on: eventLoop)
     }
 }

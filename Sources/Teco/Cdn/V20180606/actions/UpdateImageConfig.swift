@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cdn {
     ///
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func updateImageConfig(_ input: UpdateImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageConfigResponse> {
-        self.client.execute(action: "UpdateImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateImageConfig(_ input: UpdateImageConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageConfigResponse> {
+        self.client.execute(action: "UpdateImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新图片优化配置
     ///
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func updateImageConfig(_ input: UpdateImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageConfigResponse {
-        try await self.client.execute(action: "UpdateImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateImageConfig(_ input: UpdateImageConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageConfigResponse {
+        try await self.client.execute(action: "UpdateImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新图片优化配置
     ///
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageConfigResponse> {
-        self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), logger: logger, on: eventLoop)
+    public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageConfigResponse> {
+        self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新图片优化配置
     ///
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageConfigResponse {
-        try await self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), logger: logger, on: eventLoop)
+    public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageConfigResponse {
+        try await self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), region: region, logger: logger, on: eventLoop)
     }
 }

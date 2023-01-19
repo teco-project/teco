@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Scf {
     ///
     /// 该接口用于用户发布新版本函数。
     @inlinable
-    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishVersionResponse> {
-        self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishVersion(_ input: PublishVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishVersionResponse> {
+        self.client.execute(action: "PublishVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布新版本
     ///
     /// 该接口用于用户发布新版本函数。
     @inlinable
-    public func publishVersion(_ input: PublishVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
-        try await self.client.execute(action: "PublishVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishVersion(_ input: PublishVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
+        try await self.client.execute(action: "PublishVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布新版本
     ///
     /// 该接口用于用户发布新版本函数。
     @inlinable
-    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishVersionResponse> {
-        self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), logger: logger, on: eventLoop)
+    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishVersionResponse> {
+        self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布新版本
     ///
     /// 该接口用于用户发布新版本函数。
     @inlinable
-    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
-        try await self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), logger: logger, on: eventLoop)
+    public func publishVersion(functionName: String, description: String? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishVersionResponse {
+        try await self.publishVersion(PublishVersionRequest(functionName: functionName, description: description, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

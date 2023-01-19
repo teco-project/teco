@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
-        self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
+        self.client.execute(action: "DescribeTemplateDimCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
-        try await self.client.execute(action: "DescribeTemplateDimCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTemplateDimCount(_ input: DescribeTemplateDimCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
+        try await self.client.execute(action: "DescribeTemplateDimCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
-        self.describeTemplateDimCount(DescribeTemplateDimCountRequest(type: type, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateDimCountResponse> {
+        self.describeTemplateDimCount(DescribeTemplateDimCountRequest(type: type, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则模版维度分布情况
     @inlinable
-    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
-        try await self.describeTemplateDimCount(DescribeTemplateDimCountRequest(type: type, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeTemplateDimCount(type: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateDimCountResponse {
+        try await self.describeTemplateDimCount(DescribeTemplateDimCountRequest(type: type, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

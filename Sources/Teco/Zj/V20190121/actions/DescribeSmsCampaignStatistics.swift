@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Zj {
 
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
-        self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
+        self.client.execute(action: "DescribeSmsCampaignStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
-        try await self.client.execute(action: "DescribeSmsCampaignStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmsCampaignStatistics(_ input: DescribeSmsCampaignStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
+        try await self.client.execute(action: "DescribeSmsCampaignStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
-        self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), logger: logger, on: eventLoop)
+    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
+        self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取短信超短活动统计数据
     @inlinable
-    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
-        try await self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), logger: logger, on: eventLoop)
+    public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
+        try await self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Redis {
 
     /// 修改实例子账号
     @inlinable
-    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAccountResponse> {
-        self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAccountResponse> {
+        self.client.execute(action: "ModifyInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例子账号
     @inlinable
-    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
-        try await self.client.execute(action: "ModifyInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceAccount(_ input: ModifyInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
+        try await self.client.execute(action: "ModifyInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例子账号
     @inlinable
-    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAccountResponse> {
-        self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), logger: logger, on: eventLoop)
+    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAccountResponse> {
+        self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例子账号
     @inlinable
-    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
-        try await self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), logger: logger, on: eventLoop)
+    public func modifyInstanceAccount(instanceId: String, accountName: String, accountPassword: String? = nil, remark: String? = nil, readonlyPolicy: [String]? = nil, privilege: String? = nil, noAuth: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAccountResponse {
+        try await self.modifyInstanceAccount(ModifyInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, remark: remark, readonlyPolicy: readonlyPolicy, privilege: privilege, noAuth: noAuth), region: region, logger: logger, on: eventLoop)
     }
 }

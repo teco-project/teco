@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotcloud {
     ///
     /// 启用或者禁用设备
     @inlinable
-    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
-        self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
+        self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
     @inlinable
-    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
-        try await self.client.execute(action: "UpdateDeviceAvailableState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
+        try await self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
     @inlinable
-    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
-        self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), logger: logger, on: eventLoop)
+    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
+        self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
     @inlinable
-    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
-        try await self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), logger: logger, on: eventLoop)
+    public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
+        try await self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }
 }

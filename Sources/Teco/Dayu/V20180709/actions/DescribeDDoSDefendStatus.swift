@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,31 +110,31 @@ extension Dayu {
     ///
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
-    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDefendStatusResponse> {
-        self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDefendStatusResponse> {
+        self.client.execute(action: "DescribeDDoSDefendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护状态
     ///
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
-    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
-        try await self.client.execute(action: "DescribeDDoSDefendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSDefendStatus(_ input: DescribeDDoSDefendStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
+        try await self.client.execute(action: "DescribeDDoSDefendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护状态
     ///
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
-    public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDefendStatusResponse> {
-        self.describeDDoSDefendStatus(DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), logger: logger, on: eventLoop)
+    public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDefendStatusResponse> {
+        self.describeDDoSDefendStatus(DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护状态
     ///
     /// 获取DDoS防护状态（临时关闭状态），支持产品：基础防护，独享包，共享包，高防IP，高防IP专业版；调用此接口是获取当前是否有设置临时关闭DDoS防护状态，如果有设置会返回临时关闭的时长等参数。
     @inlinable
-    public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
-        try await self.describeDDoSDefendStatus(DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), logger: logger, on: eventLoop)
+    public func describeDDoSDefendStatus(business: String, id: String? = nil, ip: String? = nil, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ipRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDefendStatusResponse {
+        try await self.describeDDoSDefendStatus(DescribeDDoSDefendStatusRequest(business: business, id: id, ip: ip, bizType: bizType, deviceType: deviceType, instanceId: instanceId, ipRegion: ipRegion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,8 +83,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListAliases）用于检索帐户下的所有别名。
     @inlinable
-    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAliases(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
+        self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检索帐户下的所有别名
@@ -92,8 +92,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListAliases）用于检索帐户下的所有别名。
     @inlinable
-    public func listAliases(_ input: ListAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        try await self.client.execute(action: "ListAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAliases(_ input: ListAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
+        try await self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检索帐户下的所有别名
@@ -101,8 +101,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListAliases）用于检索帐户下的所有别名。
     @inlinable
-    public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), logger: logger, on: eventLoop)
+    public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
+        self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索帐户下的所有别名
@@ -110,7 +110,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListAliases）用于检索帐户下的所有别名。
     @inlinable
-    public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        try await self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), logger: logger, on: eventLoop)
+    public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
+        try await self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

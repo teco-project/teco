@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
-    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceSpanResponse> {
-        self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceSpanResponse> {
+        self.client.execute(action: "DescribeMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询该实例的可维护时间窗
     ///
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
-    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
-        try await self.client.execute(action: "DescribeMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMaintenanceSpan(_ input: DescribeMaintenanceSpanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
+        try await self.client.execute(action: "DescribeMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询该实例的可维护时间窗
     ///
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
-    public func describeMaintenanceSpan(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceSpanResponse> {
-        self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMaintenanceSpan(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceSpanResponse> {
+        self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询该实例的可维护时间窗
     ///
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
-    public func describeMaintenanceSpan(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
-        try await self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMaintenanceSpan(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
+        try await self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

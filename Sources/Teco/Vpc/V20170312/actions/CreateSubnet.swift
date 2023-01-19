@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubnet(_ input: CreateSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
+        self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子网
@@ -92,8 +92,8 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnet(_ input: CreateSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.client.execute(action: "CreateSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubnet(_ input: CreateSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建子网
@@ -106,8 +106,8 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), logger: logger, on: eventLoop)
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
+        self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子网
@@ -120,7 +120,7 @@ extension Vpc {
     /// * 子网创建后会自动关联到默认路由表。
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
-    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), logger: logger, on: eventLoop)
+    public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
+        try await self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 }

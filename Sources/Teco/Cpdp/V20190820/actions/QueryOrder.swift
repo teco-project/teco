@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,31 +111,31 @@ extension Cpdp {
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
-    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderResponse> {
-        self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOrder(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderResponse> {
+        self.client.execute(action: "QueryOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询订单接口
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
-    public func queryOrder(_ input: QueryOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
-        try await self.client.execute(action: "QueryOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOrder(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
+        try await self.client.execute(action: "QueryOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-查询订单接口
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
-    public func queryOrder(midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64? = nil, offset: Int64? = nil, startTime: String? = nil, endTime: String? = nil, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderResponse> {
-        self.queryOrder(QueryOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasSecretId: midasSecretId, midasSignature: midasSignature, count: count, offset: offset, startTime: startTime, endTime: endTime, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryOrder(midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64? = nil, offset: Int64? = nil, startTime: String? = nil, endTime: String? = nil, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderResponse> {
+        self.queryOrder(QueryOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasSecretId: midasSecretId, midasSignature: midasSignature, count: count, offset: offset, startTime: startTime, endTime: endTime, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询订单接口
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
-    public func queryOrder(midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64? = nil, offset: Int64? = nil, startTime: String? = nil, endTime: String? = nil, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
-        try await self.queryOrder(QueryOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasSecretId: midasSecretId, midasSignature: midasSignature, count: count, offset: offset, startTime: startTime, endTime: endTime, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryOrder(midasAppId: String, userId: String, type: String, midasSecretId: String, midasSignature: String, count: Int64? = nil, offset: Int64? = nil, startTime: String? = nil, endTime: String? = nil, outTradeNo: String? = nil, transactionId: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderResponse {
+        try await self.queryOrder(QueryOrderRequest(midasAppId: midasAppId, userId: userId, type: type, midasSecretId: midasSecretId, midasSignature: midasSignature, count: count, offset: offset, startTime: startTime, endTime: endTime, outTradeNo: outTradeNo, transactionId: transactionId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

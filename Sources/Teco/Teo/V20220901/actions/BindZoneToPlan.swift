@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Teo {
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable
-    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindZoneToPlanResponse> {
-        self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindZoneToPlanResponse> {
+        self.client.execute(action: "BindZoneToPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable
-    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
-        try await self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindZoneToPlan(_ input: BindZoneToPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
+        try await self.client.execute(action: "BindZoneToPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable
-    public func bindZoneToPlan(zoneId: String, planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindZoneToPlanResponse> {
-        self.bindZoneToPlan(BindZoneToPlanRequest(zoneId: zoneId, planId: planId), logger: logger, on: eventLoop)
+    public func bindZoneToPlan(zoneId: String, planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindZoneToPlanResponse> {
+        self.bindZoneToPlan(BindZoneToPlanRequest(zoneId: zoneId, planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
     @inlinable
-    public func bindZoneToPlan(zoneId: String, planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
-        try await self.bindZoneToPlan(BindZoneToPlanRequest(zoneId: zoneId, planId: planId), logger: logger, on: eventLoop)
+    public func bindZoneToPlan(zoneId: String, planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
+        try await self.bindZoneToPlan(BindZoneToPlanRequest(zoneId: zoneId, planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdmq {
 
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
-        self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishCmqMsg(_ input: PublishCmqMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
+        self.client.execute(action: "PublishCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(_ input: PublishCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
-        try await self.client.execute(action: "PublishCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishCmqMsg(_ input: PublishCmqMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
+        try await self.client.execute(action: "PublishCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
-        self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), logger: logger, on: eventLoop)
+    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
+        self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq主题消息
     @inlinable
-    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
-        try await self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), logger: logger, on: eventLoop)
+    public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
+        try await self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), region: region, logger: logger, on: eventLoop)
     }
 }

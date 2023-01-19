@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,31 +119,31 @@ extension Ocr {
     ///
     /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
     @inlinable
-    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOfdVatInvoiceOCRResponse> {
-        self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOfdVatInvoiceOCRResponse> {
+        self.client.execute(action: "VerifyOfdVatInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// OFD发票识别
     ///
     /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
     @inlinable
-    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
-        try await self.client.execute(action: "VerifyOfdVatInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyOfdVatInvoiceOCR(_ input: VerifyOfdVatInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
+        try await self.client.execute(action: "VerifyOfdVatInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// OFD发票识别
     ///
     /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
     @inlinable
-    public func verifyOfdVatInvoiceOCR(ofdFileUrl: String? = nil, ofdFileBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOfdVatInvoiceOCRResponse> {
-        self.verifyOfdVatInvoiceOCR(VerifyOfdVatInvoiceOCRRequest(ofdFileUrl: ofdFileUrl, ofdFileBase64: ofdFileBase64), logger: logger, on: eventLoop)
+    public func verifyOfdVatInvoiceOCR(ofdFileUrl: String? = nil, ofdFileBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOfdVatInvoiceOCRResponse> {
+        self.verifyOfdVatInvoiceOCR(VerifyOfdVatInvoiceOCRRequest(ofdFileUrl: ofdFileUrl, ofdFileBase64: ofdFileBase64), region: region, logger: logger, on: eventLoop)
     }
 
     /// OFD发票识别
     ///
     /// 本接口支持OFD格式的增值税电子普通发票和增值税电子专用发票的识别，返回发票代码、发票号码、开票日期、验证码、机器编号、密码区，购买方和销售方信息，包括名称、纳税人识别号、地址电话、开户行及账号，以及价税合计、开票人、收款人、复核人、税额、不含税金额等字段信息。
     @inlinable
-    public func verifyOfdVatInvoiceOCR(ofdFileUrl: String? = nil, ofdFileBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
-        try await self.verifyOfdVatInvoiceOCR(VerifyOfdVatInvoiceOCRRequest(ofdFileUrl: ofdFileUrl, ofdFileBase64: ofdFileBase64), logger: logger, on: eventLoop)
+    public func verifyOfdVatInvoiceOCR(ofdFileUrl: String? = nil, ofdFileBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOfdVatInvoiceOCRResponse {
+        try await self.verifyOfdVatInvoiceOCR(VerifyOfdVatInvoiceOCRRequest(ofdFileUrl: ofdFileUrl, ofdFileBase64: ofdFileBase64), region: region, logger: logger, on: eventLoop)
     }
 }

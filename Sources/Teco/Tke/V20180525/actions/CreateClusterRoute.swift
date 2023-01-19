@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tke {
 
     /// 创建集群路由
     @inlinable
-    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
-        self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createClusterRoute(_ input: CreateClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
+        self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由
     @inlinable
-    public func createClusterRoute(_ input: CreateClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
-        try await self.client.execute(action: "CreateClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createClusterRoute(_ input: CreateClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
+        try await self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集群路由
     @inlinable
-    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
-        self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), logger: logger, on: eventLoop)
+    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
+        self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由
     @inlinable
-    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
-        try await self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), logger: logger, on: eventLoop)
+    public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
+        try await self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }
 }

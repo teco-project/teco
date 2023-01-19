@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Teo {
     ///
     /// 本接口（CreateClsLog）用于创建CLS日志集。
     @inlinable
-    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogSetResponse> {
-        self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLogSet(_ input: CreateLogSetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogSetResponse> {
+        self.client.execute(action: "CreateLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建日志集
     ///
     /// 本接口（CreateClsLog）用于创建CLS日志集。
     @inlinable
-    public func createLogSet(_ input: CreateLogSetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
-        try await self.client.execute(action: "CreateLogSet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLogSet(_ input: CreateLogSetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
+        try await self.client.execute(action: "CreateLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建日志集
     ///
     /// 本接口（CreateClsLog）用于创建CLS日志集。
     @inlinable
-    public func createLogSet(logSetName: String, logSetRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogSetResponse> {
-        self.createLogSet(CreateLogSetRequest(logSetName: logSetName, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    public func createLogSet(logSetName: String, logSetRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogSetResponse> {
+        self.createLogSet(CreateLogSetRequest(logSetName: logSetName, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建日志集
     ///
     /// 本接口（CreateClsLog）用于创建CLS日志集。
     @inlinable
-    public func createLogSet(logSetName: String, logSetRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
-        try await self.createLogSet(CreateLogSetRequest(logSetName: logSetName, logSetRegion: logSetRegion), logger: logger, on: eventLoop)
+    public func createLogSet(logSetName: String, logSetRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogSetResponse {
+        try await self.createLogSet(CreateLogSetRequest(logSetName: logSetName, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }
 }

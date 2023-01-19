@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Live {
 
     /// 修改播放鉴权key
     @inlinable
-    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayAuthKeyResponse> {
-        self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayAuthKeyResponse> {
+        self.client.execute(action: "ModifyLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改播放鉴权key
     @inlinable
-    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
-        try await self.client.execute(action: "ModifyLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLivePlayAuthKey(_ input: ModifyLivePlayAuthKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
+        try await self.client.execute(action: "ModifyLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改播放鉴权key
     @inlinable
-    public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayAuthKeyResponse> {
-        self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), logger: logger, on: eventLoop)
+    public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayAuthKeyResponse> {
+        self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改播放鉴权key
     @inlinable
-    public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
-        try await self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), logger: logger, on: eventLoop)
+    public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
+        try await self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
-        self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
+        self.client.execute(action: "CreateAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
-        try await self.client.execute(action: "CreateAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAssistantCidr(_ input: CreateAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
+        try await self.client.execute(action: "CreateAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
-        self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssistantCidrResponse> {
+        self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建辅助CIDR
     ///
     /// 本接口(CreateAssistantCidr)用于批量创建辅助CIDR。
     @inlinable
-    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
-        try await self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    public func createAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssistantCidrResponse {
+        try await self.createAssistantCidr(CreateAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 }

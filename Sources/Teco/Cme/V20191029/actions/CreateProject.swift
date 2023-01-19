@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -128,8 +128,8 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
+        self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建项目
@@ -142,8 +142,8 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(_ input: CreateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.client.execute(action: "CreateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建项目
@@ -156,8 +156,8 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), logger: logger, on: eventLoop)
+    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
+        self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建项目
@@ -170,7 +170,7 @@ extension Cme {
     /// <li>录制回放项目：用于直播录制回放；</li>
     /// <li>云转推项目：用于直播云转推。</li>
     @inlinable
-    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), logger: logger, on: eventLoop)
+    public func createProject(platform: String, name: String, owner: Entity, category: String, mode: String? = nil, aspectRatio: String? = nil, description: String? = nil, switcherProjectInput: SwitcherProjectInput? = nil, liveStreamClipProjectInput: LiveStreamClipProjectInput? = nil, videoEditProjectInput: VideoEditProjectInput? = nil, videoSegmentationProjectInput: VideoSegmentationProjectInput? = nil, streamConnectProjectInput: StreamConnectProjectInput? = nil, recordReplayProjectInput: RecordReplayProjectInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
+        try await self.createProject(CreateProjectRequest(platform: platform, name: name, owner: owner, category: category, mode: mode, aspectRatio: aspectRatio, description: description, switcherProjectInput: switcherProjectInput, liveStreamClipProjectInput: liveStreamClipProjectInput, videoEditProjectInput: videoEditProjectInput, videoSegmentationProjectInput: videoSegmentationProjectInput, streamConnectProjectInput: streamConnectProjectInput, recordReplayProjectInput: recordReplayProjectInput), region: region, logger: logger, on: eventLoop)
     }
 }

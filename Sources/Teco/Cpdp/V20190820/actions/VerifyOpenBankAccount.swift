@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Cpdp {
     ///
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
-    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOpenBankAccountResponse> {
-        self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOpenBankAccountResponse> {
+        self.client.execute(action: "VerifyOpenBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡打款验证
     ///
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
-    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
-        try await self.client.execute(action: "VerifyOpenBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyOpenBankAccount(_ input: VerifyOpenBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
+        try await self.client.execute(action: "VerifyOpenBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户银行卡打款验证
     ///
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
-    public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOpenBankAccountResponse> {
-        self.verifyOpenBankAccount(VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyOpenBankAccountResponse> {
+        self.verifyOpenBankAccount(VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡打款验证
     ///
     /// 云企付-子商户银行卡打款验证，在接入TENPAY渠道EBANK_PAYMENT付款时，若客户期望接入担保支付，需在接入前先完成，收款商户绑定的银行卡进行打款验证。验证成功后，才可以调用CreateOpenBankPaymentOrder接口进行担保支付下单。
     @inlinable
-    public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
-        try await self.verifyOpenBankAccount(VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func verifyOpenBankAccount(channelMerchantId: String, channelName: String, payeeInfo: OpenBankPayeeInfo, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyOpenBankAccountResponse {
+        try await self.verifyOpenBankAccount(VerifyOpenBankAccountRequest(channelMerchantId: channelMerchantId, channelName: channelName, payeeInfo: payeeInfo, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Tcss {
 
     /// 运行时文件查杀事件列表导出
     @inlinable
-    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVirusListResponse> {
-        self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVirusList(_ input: ExportVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVirusListResponse> {
+        self.client.execute(action: "ExportVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀事件列表导出
     @inlinable
-    public func exportVirusList(_ input: ExportVirusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
-        try await self.client.execute(action: "ExportVirusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVirusList(_ input: ExportVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
+        try await self.client.execute(action: "ExportVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时文件查杀事件列表导出
     @inlinable
-    public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVirusListResponse> {
-        self.exportVirusList(ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVirusListResponse> {
+        self.exportVirusList(ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀事件列表导出
     @inlinable
-    public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
-        try await self.exportVirusList(ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func exportVirusList(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVirusListResponse {
+        try await self.exportVirusList(ExportVirusListRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

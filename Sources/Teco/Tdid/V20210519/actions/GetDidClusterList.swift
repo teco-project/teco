@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Tdid {
     ///
     /// 获取用户的DID网络列表
     @inlinable
-    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
-        self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidClusterList(_ input: GetDidClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
+        self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
     @inlinable
-    public func getDidClusterList(_ input: GetDidClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.client.execute(action: "GetDidClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidClusterList(_ input: GetDidClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
+        try await self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
     @inlinable
-    public func getDidClusterList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
-        self.getDidClusterList(GetDidClusterListRequest(), logger: logger, on: eventLoop)
+    public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
+        self.getDidClusterList(GetDidClusterListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络列表
     ///
     /// 获取用户的DID网络列表
     @inlinable
-    public func getDidClusterList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.getDidClusterList(GetDidClusterListRequest(), logger: logger, on: eventLoop)
+    public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
+        try await self.getDidClusterList(GetDidClusterListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Essbasic {
 
     /// 生成企业电子印章
     @inlinable
-    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateOrganizationSealResponse> {
-        self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateOrganizationSealResponse> {
+        self.client.execute(action: "GenerateOrganizationSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成企业电子印章
     @inlinable
-    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
-        try await self.client.execute(action: "GenerateOrganizationSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateOrganizationSeal(_ input: GenerateOrganizationSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
+        try await self.client.execute(action: "GenerateOrganizationSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成企业电子印章
     @inlinable
-    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateOrganizationSealResponse> {
-        self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), logger: logger, on: eventLoop)
+    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateOrganizationSealResponse> {
+        self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成企业电子印章
     @inlinable
-    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
-        try await self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), logger: logger, on: eventLoop)
+    public func generateOrganizationSeal(caller: Caller, sealType: String, sourceIp: String, sealName: String? = nil, sealHorizontalText: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateOrganizationSealResponse {
+        try await self.generateOrganizationSeal(GenerateOrganizationSealRequest(caller: caller, sealType: sealType, sourceIp: sourceIp, sealName: sealName, sealHorizontalText: sealHorizontalText, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 }

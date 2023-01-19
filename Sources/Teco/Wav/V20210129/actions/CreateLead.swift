@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,25 +119,25 @@ extension Wav {
 
     /// 线索回收接口
     @inlinable
-    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
-        self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLead(_ input: CreateLeadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
+        self.client.execute(action: "CreateLead", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 线索回收接口
     @inlinable
-    public func createLead(_ input: CreateLeadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
-        try await self.client.execute(action: "CreateLead", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLead(_ input: CreateLeadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
+        try await self.client.execute(action: "CreateLead", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 线索回收接口
     @inlinable
-    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
-        self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), logger: logger, on: eventLoop)
+    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLeadResponse> {
+        self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 线索回收接口
     @inlinable
-    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
-        try await self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), logger: logger, on: eventLoop)
+    public func createLead(channelId: UInt64, channelName: String, createTime: UInt64, sourceType: Int64, dealerId: UInt64, brandId: UInt64, seriesId: UInt64, customerName: String, customerPhone: String, modelId: UInt64? = nil, customerSex: Int64? = nil, salesName: String? = nil, salesPhone: String? = nil, ccName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLeadResponse {
+        try await self.createLead(CreateLeadRequest(channelId: channelId, channelName: channelName, createTime: createTime, sourceType: sourceType, dealerId: dealerId, brandId: brandId, seriesId: seriesId, customerName: customerName, customerPhone: customerPhone, modelId: modelId, customerSex: customerSex, salesName: salesName, salesPhone: salesPhone, ccName: ccName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

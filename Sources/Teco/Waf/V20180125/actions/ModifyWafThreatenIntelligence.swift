@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Waf {
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
-        self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
+        self.client.execute(action: "ModifyWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
-        try await self.client.execute(action: "ModifyWafThreatenIntelligence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWafThreatenIntelligence(_ input: ModifyWafThreatenIntelligenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
+        try await self.client.execute(action: "ModifyWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
-        self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), logger: logger, on: eventLoop)
+    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
+        self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
-    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
-        try await self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), logger: logger, on: eventLoop)
+    public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
+        try await self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
     }
 }

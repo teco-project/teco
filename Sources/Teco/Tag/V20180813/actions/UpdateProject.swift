@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tag {
 
     /// 修改项目
     @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
-        self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProject(_ input: UpdateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
+        self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable
-    public func updateProject(_ input: UpdateProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        try await self.client.execute(action: "UpdateProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProject(_ input: UpdateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
+        try await self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改项目
     @inlinable
-    public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
-        self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), logger: logger, on: eventLoop)
+    public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
+        self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable
-    public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        try await self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), logger: logger, on: eventLoop)
+    public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
+        try await self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), region: region, logger: logger, on: eventLoop)
     }
 }

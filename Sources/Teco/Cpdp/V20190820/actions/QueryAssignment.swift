@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Cpdp {
 
     /// 直播平台-查询分配关系
     @inlinable
-    public func queryAssignment(_ input: QueryAssignmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAssignmentResponse> {
-        self.client.execute(action: "QueryAssignment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryAssignment(_ input: QueryAssignmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAssignmentResponse> {
+        self.client.execute(action: "QueryAssignment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询分配关系
     @inlinable
-    public func queryAssignment(_ input: QueryAssignmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
-        try await self.client.execute(action: "QueryAssignment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryAssignment(_ input: QueryAssignmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
+        try await self.client.execute(action: "QueryAssignment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-查询分配关系
     @inlinable
-    public func queryAssignment(anchorId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAssignmentResponse> {
-        self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), logger: logger, on: eventLoop)
+    public func queryAssignment(anchorId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAssignmentResponse> {
+        self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询分配关系
     @inlinable
-    public func queryAssignment(anchorId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
-        try await self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), logger: logger, on: eventLoop)
+    public func queryAssignment(anchorId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAssignmentResponse {
+        try await self.queryAssignment(QueryAssignmentRequest(anchorId: anchorId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Cwp {
 
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
-        self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
+        self.client.execute(action: "ExportAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(_ input: ExportAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
-        try await self.client.execute(action: "ExportAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportAttackLogs(_ input: ExportAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
+        try await self.client.execute(action: "ExportAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
-        self.exportAttackLogs(ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAttackLogsResponse> {
+        self.exportAttackLogs(ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出网络攻击日志
     @inlinable
-    public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
-        try await self.exportAttackLogs(ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func exportAttackLogs(filters: [Filters]? = nil, uuid: String? = nil, quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAttackLogsResponse {
+        try await self.exportAttackLogs(ExportAttackLogsRequest(filters: filters, uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

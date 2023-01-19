@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmeip {
     ///
     /// UnbindHosted接口用于解绑托管机器上的EIP
     @inlinable
-    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindHostedResponse> {
-        self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindHosted(_ input: UnbindHostedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindHostedResponse> {
+        self.client.execute(action: "UnbindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器解绑EIP
     ///
     /// UnbindHosted接口用于解绑托管机器上的EIP
     @inlinable
-    public func unbindHosted(_ input: UnbindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
-        try await self.client.execute(action: "UnbindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindHosted(_ input: UnbindHostedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
+        try await self.client.execute(action: "UnbindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石托管机器解绑EIP
     ///
     /// UnbindHosted接口用于解绑托管机器上的EIP
     @inlinable
-    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindHostedResponse> {
-        self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), logger: logger, on: eventLoop)
+    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindHostedResponse> {
+        self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器解绑EIP
     ///
     /// UnbindHosted接口用于解绑托管机器上的EIP
     @inlinable
-    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
-        try await self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), logger: logger, on: eventLoop)
+    public func unbindHosted(instanceId: String, eipId: String? = nil, eip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindHostedResponse {
+        try await self.unbindHosted(UnbindHostedRequest(instanceId: instanceId, eipId: eipId, eip: eip), region: region, logger: logger, on: eventLoop)
     }
 }

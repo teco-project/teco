@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Sslpod {
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
-        self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainTags(_ input: DescribeDomainTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
+        self.client.execute(action: "DescribeDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(_ input: DescribeDomainTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
-        try await self.client.execute(action: "DescribeDomainTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainTags(_ input: DescribeDomainTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
+        try await self.client.execute(action: "DescribeDomainTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
-        self.describeDomainTags(DescribeDomainTagsRequest(), logger: logger, on: eventLoop)
+    public func describeDomainTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainTagsResponse> {
+        self.describeDomainTags(DescribeDomainTagsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号的tags
     ///
     /// 获取账号下所有tag
     @inlinable
-    public func describeDomainTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
-        try await self.describeDomainTags(DescribeDomainTagsRequest(), logger: logger, on: eventLoop)
+    public func describeDomainTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainTagsResponse {
+        try await self.describeDomainTags(DescribeDomainTagsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Chdfs {
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
-        self.client.execute(action: "ModifyLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
+        self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
-        try await self.client.execute(action: "ModifyLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
+        try await self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
-        self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
+    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
+        self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
     @inlinable
-    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
-        try await self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
+    public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
+        try await self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Redis {
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
+        self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组详情
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        try await self.client.execute(action: "DescribeProjectSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProjectSecurityGroups(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
+        try await self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询项目安全组详情
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(product: String, projectId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId, offset: offset, limit: limit, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroups(product: String, projectId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
+        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId, offset: offset, limit: limit, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组详情
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroups(product: String, projectId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId, offset: offset, limit: limit, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroups(product: String, projectId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
+        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId, offset: offset, limit: limit, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Yinsuda {
     ///
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
-    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMatchMusicsResponse> {
-        self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMatchMusicsResponse> {
+        self.client.execute(action: "DescribeKTVMatchMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 匹配歌曲
     ///
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
-    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
-        try await self.client.execute(action: "DescribeKTVMatchMusics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVMatchMusics(_ input: DescribeKTVMatchMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
+        try await self.client.execute(action: "DescribeKTVMatchMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 匹配歌曲
     ///
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
-    public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMatchMusicsResponse> {
-        self.describeKTVMatchMusics(DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules), logger: logger, on: eventLoop)
+    public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMatchMusicsResponse> {
+        self.describeKTVMatchMusics(DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 匹配歌曲
     ///
     /// 根据输入的规则匹配曲库中的歌曲。
     @inlinable
-    public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
-        try await self.describeKTVMatchMusics(DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules), logger: logger, on: eventLoop)
+    public func describeKTVMatchMusics(appName: String, userId: String, rules: [KTVMatchRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMatchMusicsResponse {
+        try await self.describeKTVMatchMusics(DescribeKTVMatchMusicsRequest(appName: appName, userId: userId, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

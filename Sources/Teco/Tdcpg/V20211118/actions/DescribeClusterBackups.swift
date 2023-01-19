@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdcpg {
 
     /// 查询集群的备份集
     @inlinable
-    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterBackupsResponse> {
-        self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterBackupsResponse> {
+        self.client.execute(action: "DescribeClusterBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群的备份集
     @inlinable
-    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
-        try await self.client.execute(action: "DescribeClusterBackups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterBackups(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
+        try await self.client.execute(action: "DescribeClusterBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群的备份集
     @inlinable
-    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterBackupsResponse> {
-        self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterBackupsResponse> {
+        self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群的备份集
     @inlinable
-    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
-        try await self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeClusterBackups(clusterId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterBackupsResponse {
+        try await self.describeClusterBackups(DescribeClusterBackupsRequest(clusterId: clusterId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

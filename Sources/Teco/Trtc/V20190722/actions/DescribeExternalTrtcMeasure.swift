@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,8 +66,8 @@ extension Trtc {
     /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
-    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalTrtcMeasureResponse> {
-        self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalTrtcMeasureResponse> {
+        self.client.execute(action: "DescribeExternalTrtcMeasure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询音视频用量计费时长（旧）
@@ -75,8 +75,8 @@ extension Trtc {
     /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
-    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
-        try await self.client.execute(action: "DescribeExternalTrtcMeasure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExternalTrtcMeasure(_ input: DescribeExternalTrtcMeasureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
+        try await self.client.execute(action: "DescribeExternalTrtcMeasure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询音视频用量计费时长（旧）
@@ -84,8 +84,8 @@ extension Trtc {
     /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
-    public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalTrtcMeasureResponse> {
-        self.describeExternalTrtcMeasure(DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalTrtcMeasureResponse> {
+        self.describeExternalTrtcMeasure(DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询音视频用量计费时长（旧）
@@ -93,7 +93,7 @@ extension Trtc {
     /// 获取Trtc的用量统计数据。走计费渠道二期 只允许查两天的数据。
     /// 当前接口已不再更新维护，请使用新版音视频用量接口：DescribeTrtcUsage （https://cloud.tencent.com/document/product/647/81425）
     @inlinable
-    public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
-        try await self.describeExternalTrtcMeasure(DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeExternalTrtcMeasure(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalTrtcMeasureResponse {
+        try await self.describeExternalTrtcMeasure(DescribeExternalTrtcMeasureRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

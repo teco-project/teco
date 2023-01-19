@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Cdc {
 
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
-        self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
+        self.client.execute(action: "ModifyDedicatedClusterInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
-        try await self.client.execute(action: "ModifyDedicatedClusterInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDedicatedClusterInfo(_ input: ModifyDedicatedClusterInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
+        try await self.client.execute(action: "ModifyDedicatedClusterInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
-        self.modifyDedicatedClusterInfo(ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), logger: logger, on: eventLoop)
+    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDedicatedClusterInfoResponse> {
+        self.modifyDedicatedClusterInfo(ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改本地专用集群信息
     @inlinable
-    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
-        try await self.modifyDedicatedClusterInfo(ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), logger: logger, on: eventLoop)
+    public func modifyDedicatedClusterInfo(dedicatedClusterId: String, name: String? = nil, zone: String? = nil, description: String? = nil, siteId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDedicatedClusterInfoResponse {
+        try await self.modifyDedicatedClusterInfo(ModifyDedicatedClusterInfoRequest(dedicatedClusterId: dedicatedClusterId, name: name, zone: zone, description: description, siteId: siteId), region: region, logger: logger, on: eventLoop)
     }
 }

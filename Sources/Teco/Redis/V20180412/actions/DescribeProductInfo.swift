@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Redis {
     ///
     /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
     @inlinable
-    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
-        self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductInfo(_ input: DescribeProductInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
+        self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品售卖规格
     ///
     /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
     @inlinable
-    public func describeProductInfo(_ input: DescribeProductInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
-        try await self.client.execute(action: "DescribeProductInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductInfo(_ input: DescribeProductInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
+        try await self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询产品售卖规格
     ///
     /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
     @inlinable
-    public func describeProductInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
-        self.describeProductInfo(DescribeProductInfoRequest(), logger: logger, on: eventLoop)
+    public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
+        self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询产品售卖规格
     ///
     /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
     @inlinable
-    public func describeProductInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
-        try await self.describeProductInfo(DescribeProductInfoRequest(), logger: logger, on: eventLoop)
+    public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
+        try await self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

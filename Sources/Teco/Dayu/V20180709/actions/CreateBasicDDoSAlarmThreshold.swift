@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Dayu {
     ///
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
-    public func createBasicDDoSAlarmThreshold(_ input: CreateBasicDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDDoSAlarmThresholdResponse> {
-        self.client.execute(action: "CreateBasicDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBasicDDoSAlarmThreshold(_ input: CreateBasicDDoSAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDDoSAlarmThresholdResponse> {
+        self.client.execute(action: "CreateBasicDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置基础防护的DDoS告警阈值
     ///
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
-    public func createBasicDDoSAlarmThreshold(_ input: CreateBasicDDoSAlarmThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDDoSAlarmThresholdResponse {
-        try await self.client.execute(action: "CreateBasicDDoSAlarmThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBasicDDoSAlarmThreshold(_ input: CreateBasicDDoSAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDDoSAlarmThresholdResponse {
+        try await self.client.execute(action: "CreateBasicDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置基础防护的DDoS告警阈值
     ///
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
-    public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDDoSAlarmThresholdResponse> {
-        self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), logger: logger, on: eventLoop)
+    public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDDoSAlarmThresholdResponse> {
+        self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置基础防护的DDoS告警阈值
     ///
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
-    public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDDoSAlarmThresholdResponse {
-        try await self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), logger: logger, on: eventLoop)
+    public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDDoSAlarmThresholdResponse {
+        try await self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Iotexplorer {
     ///
     /// 获取量产详情信息。
     @inlinable
-    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchProductionResponse> {
-        self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchProductionResponse> {
+        self.client.execute(action: "DescribeBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取量产详情
     ///
     /// 获取量产详情信息。
     @inlinable
-    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
-        try await self.client.execute(action: "DescribeBatchProduction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBatchProduction(_ input: DescribeBatchProductionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
+        try await self.client.execute(action: "DescribeBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取量产详情
     ///
     /// 获取量产详情信息。
     @inlinable
-    public func describeBatchProduction(productId: String, batchProductionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchProductionResponse> {
-        self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), logger: logger, on: eventLoop)
+    public func describeBatchProduction(productId: String, batchProductionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchProductionResponse> {
+        self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取量产详情
     ///
     /// 获取量产详情信息。
     @inlinable
-    public func describeBatchProduction(productId: String, batchProductionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
-        try await self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), logger: logger, on: eventLoop)
+    public func describeBatchProduction(productId: String, batchProductionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchProductionResponse {
+        try await self.describeBatchProduction(DescribeBatchProductionRequest(productId: productId, batchProductionId: batchProductionId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -137,31 +137,31 @@ extension Oceanus {
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
-        self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createJobConfig(_ input: CreateJobConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
+        self.client.execute(action: "CreateJobConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(_ input: CreateJobConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
-        try await self.client.execute(action: "CreateJobConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createJobConfig(_ input: CreateJobConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
+        try await self.client.execute(action: "CreateJobConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
-        self.createJobConfig(CreateJobConfigRequest(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), logger: logger, on: eventLoop)
+    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobConfigResponse> {
+        self.createJobConfig(CreateJobConfigRequest(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建作业配置
     ///
     /// 创建作业配置，一个作业最多有100个配置版本
     @inlinable
-    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
-        try await self.createJobConfig(CreateJobConfigRequest(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), logger: logger, on: eventLoop)
+    public func createJobConfig(jobId: String, entrypointClass: String? = nil, programArgs: String? = nil, remark: String? = nil, resourceRefs: [ResourceRef]? = nil, defaultParallelism: UInt64? = nil, properties: [Property]? = nil, autoDelete: Int64? = nil, cosBucket: String? = nil, logCollect: Bool? = nil, jobManagerSpec: Float? = nil, taskManagerSpec: Float? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, logCollectType: Int64? = nil, pythonVersion: String? = nil, workSpaceId: String? = nil, logLevel: String? = nil, autoRecover: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobConfigResponse {
+        try await self.createJobConfig(CreateJobConfigRequest(jobId: jobId, entrypointClass: entrypointClass, programArgs: programArgs, remark: remark, resourceRefs: resourceRefs, defaultParallelism: defaultParallelism, properties: properties, autoDelete: autoDelete, cosBucket: cosBucket, logCollect: logCollect, jobManagerSpec: jobManagerSpec, taskManagerSpec: taskManagerSpec, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, logCollectType: logCollectType, pythonVersion: pythonVersion, workSpaceId: workSpaceId, logLevel: logLevel, autoRecover: autoRecover), region: region, logger: logger, on: eventLoop)
     }
 }

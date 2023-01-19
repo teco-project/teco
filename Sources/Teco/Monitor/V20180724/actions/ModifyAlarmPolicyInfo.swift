@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Monitor {
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
     @inlinable
-    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
-        self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
+        self.client.execute(action: "ModifyAlarmPolicyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
     @inlinable
-    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
-        try await self.client.execute(action: "ModifyAlarmPolicyInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
+        try await self.client.execute(action: "ModifyAlarmPolicyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
     @inlinable
-    public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
-        self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
+        self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
     @inlinable
-    public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
-        try await self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
+        try await self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }
 }

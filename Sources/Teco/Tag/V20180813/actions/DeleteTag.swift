@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tag {
     ///
     /// 本接口用于删除一对标签键和标签值
     @inlinable
-    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
-        self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTag(_ input: DeleteTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
+        self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
     @inlinable
-    public func deleteTag(_ input: DeleteTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
-        try await self.client.execute(action: "DeleteTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTag(_ input: DeleteTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
+        try await self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
     @inlinable
-    public func deleteTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
-        self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func deleteTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
+        self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
     @inlinable
-    public func deleteTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
-        try await self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func deleteTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
+        try await self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 }

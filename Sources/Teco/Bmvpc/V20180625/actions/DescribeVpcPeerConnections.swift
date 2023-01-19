@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Bmvpc {
 
     /// 获取对等连接列表
     @inlinable
-    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeerConnectionsResponse> {
-        self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeerConnectionsResponse> {
+        self.client.execute(action: "DescribeVpcPeerConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取对等连接列表
     @inlinable
-    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
-        try await self.client.execute(action: "DescribeVpcPeerConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcPeerConnections(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
+        try await self.client.execute(action: "DescribeVpcPeerConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取对等连接列表
     @inlinable
-    public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeerConnectionsResponse> {
-        self.describeVpcPeerConnections(DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), logger: logger, on: eventLoop)
+    public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPeerConnectionsResponse> {
+        self.describeVpcPeerConnections(DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取对等连接列表
     @inlinable
-    public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
-        try await self.describeVpcPeerConnections(DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), logger: logger, on: eventLoop)
+    public func describeVpcPeerConnections(vpcPeerConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPeerConnectionsResponse {
+        try await self.describeVpcPeerConnections(DescribeVpcPeerConnectionsRequest(vpcPeerConnectionIds: vpcPeerConnectionIds, filters: filters, offset: offset, limit: limit, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcaplusdb {
 
     /// 更新申请单状态
     @inlinable
-    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
-        self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateApply(_ input: UpdateApplyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
+        self.client.execute(action: "UpdateApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新申请单状态
     @inlinable
-    public func updateApply(_ input: UpdateApplyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
-        try await self.client.execute(action: "UpdateApply", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateApply(_ input: UpdateApplyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
+        try await self.client.execute(action: "UpdateApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新申请单状态
     @inlinable
-    public func updateApply(applyStatus: [ApplyStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
-        self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), logger: logger, on: eventLoop)
+    public func updateApply(applyStatus: [ApplyStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
+        self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新申请单状态
     @inlinable
-    public func updateApply(applyStatus: [ApplyStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
-        try await self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), logger: logger, on: eventLoop)
+    public func updateApply(applyStatus: [ApplyStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
+        try await self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), region: region, logger: logger, on: eventLoop)
     }
 }

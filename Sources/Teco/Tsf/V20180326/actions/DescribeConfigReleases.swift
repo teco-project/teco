@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Tsf {
 
     /// 查询配置发布信息
     @inlinable
-    public func describeConfigReleases(_ input: DescribeConfigReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleasesResponse> {
-        self.client.execute(action: "DescribeConfigReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigReleases(_ input: DescribeConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleasesResponse> {
+        self.client.execute(action: "DescribeConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配置发布信息
     @inlinable
-    public func describeConfigReleases(_ input: DescribeConfigReleasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleasesResponse {
-        try await self.client.execute(action: "DescribeConfigReleases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigReleases(_ input: DescribeConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleasesResponse {
+        try await self.client.execute(action: "DescribeConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询配置发布信息
     @inlinable
-    public func describeConfigReleases(configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleasesResponse> {
-        self.describeConfigReleases(DescribeConfigReleasesRequest(configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, limit: limit, offset: offset, configId: configId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeConfigReleases(configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigReleasesResponse> {
+        self.describeConfigReleases(DescribeConfigReleasesRequest(configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, limit: limit, offset: offset, configId: configId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置发布信息
     @inlinable
-    public func describeConfigReleases(configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleasesResponse {
-        try await self.describeConfigReleases(DescribeConfigReleasesRequest(configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, limit: limit, offset: offset, configId: configId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeConfigReleases(configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigReleasesResponse {
+        try await self.describeConfigReleases(DescribeConfigReleasesRequest(configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, limit: limit, offset: offset, configId: configId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

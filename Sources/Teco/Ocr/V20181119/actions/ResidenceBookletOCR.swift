@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -167,31 +167,31 @@ extension Ocr {
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
-        self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
+        self.client.execute(action: "ResidenceBookletOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
-        try await self.client.execute(action: "ResidenceBookletOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func residenceBookletOCR(_ input: ResidenceBookletOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
+        try await self.client.execute(action: "ResidenceBookletOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
-        self.residenceBookletOCR(ResidenceBookletOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResidenceBookletOCRResponse> {
+        self.residenceBookletOCR(ResidenceBookletOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 户口本识别
     ///
     /// 本接口支持居民户口簿户主页及成员页关键字段的识别，包括姓名、户别、地址、籍贯、身份证号码等。
     @inlinable
-    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
-        try await self.residenceBookletOCR(ResidenceBookletOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func residenceBookletOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResidenceBookletOCRResponse {
+        try await self.residenceBookletOCR(ResidenceBookletOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

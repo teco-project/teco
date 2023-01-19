@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Monitor {
 
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
-        self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
+        self.client.execute(action: "DescribeAlarmMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
-        try await self.client.execute(action: "DescribeAlarmMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmMetrics(_ input: DescribeAlarmMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
+        try await self.client.execute(action: "DescribeAlarmMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
-        self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmMetricsResponse> {
+        self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询告警指标列表
     @inlinable
-    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
-        try await self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeAlarmMetrics(module: String, monitorType: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmMetricsResponse {
+        try await self.describeAlarmMetrics(DescribeAlarmMetricsRequest(module: module, monitorType: monitorType, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

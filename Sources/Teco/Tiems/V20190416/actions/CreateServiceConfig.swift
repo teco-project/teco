@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(_ input: CreateServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
-        self.client.execute(action: "CreateServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createServiceConfig(_ input: CreateServiceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
+        self.client.execute(action: "CreateServiceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建服务配置
@@ -72,8 +72,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(_ input: CreateServiceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceConfigResponse {
-        try await self.client.execute(action: "CreateServiceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createServiceConfig(_ input: CreateServiceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceConfigResponse {
+        try await self.client.execute(action: "CreateServiceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建服务配置
@@ -81,8 +81,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
-        self.createServiceConfig(CreateServiceConfigRequest(name: name, runtime: runtime, modelUri: modelUri, description: description), logger: logger, on: eventLoop)
+    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceConfigResponse> {
+        self.createServiceConfig(CreateServiceConfigRequest(name: name, runtime: runtime, modelUri: modelUri, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建服务配置
@@ -90,7 +90,7 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 创建服务配置
     @inlinable
-    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceConfigResponse {
-        try await self.createServiceConfig(CreateServiceConfigRequest(name: name, runtime: runtime, modelUri: modelUri, description: description), logger: logger, on: eventLoop)
+    public func createServiceConfig(name: String, runtime: String, modelUri: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceConfigResponse {
+        try await self.createServiceConfig(CreateServiceConfigRequest(name: name, runtime: runtime, modelUri: modelUri, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

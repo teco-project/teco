@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Bmvpc {
     ///
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayAttributeResponse> {
-        self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayAttributeResponse> {
+        self.client.execute(action: "ModifyVpnGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN网关属性
     ///
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable
-    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyVpnGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVpnGatewayAttribute(_ input: ModifyVpnGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyVpnGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改VPN网关属性
     ///
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable
-    public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayAttributeResponse> {
-        self.modifyVpnGatewayAttribute(ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName), logger: logger, on: eventLoop)
+    public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnGatewayAttributeResponse> {
+        self.modifyVpnGatewayAttribute(ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPN网关属性
     ///
     /// 本接口（ModifyVpnGatewayAttribute）用于修改VPN网关属性。
     @inlinable
-    public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
-        try await self.modifyVpnGatewayAttribute(ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName), logger: logger, on: eventLoop)
+    public func modifyVpnGatewayAttribute(vpnGatewayId: String, vpnGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnGatewayAttributeResponse {
+        try await self.modifyVpnGatewayAttribute(ModifyVpnGatewayAttributeRequest(vpnGatewayId: vpnGatewayId, vpnGatewayName: vpnGatewayName), region: region, logger: logger, on: eventLoop)
     }
 }

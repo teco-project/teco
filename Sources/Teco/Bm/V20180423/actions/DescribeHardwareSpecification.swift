@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bm {
     ///
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
-    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHardwareSpecificationResponse> {
-        self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHardwareSpecificationResponse> {
+        self.client.execute(action: "DescribeHardwareSpecification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义机型部件信息
     ///
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
-    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
-        try await self.client.execute(action: "DescribeHardwareSpecification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHardwareSpecification(_ input: DescribeHardwareSpecificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
+        try await self.client.execute(action: "DescribeHardwareSpecification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询自定义机型部件信息
     ///
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
-    public func describeHardwareSpecification(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHardwareSpecificationResponse> {
-        self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), logger: logger, on: eventLoop)
+    public func describeHardwareSpecification(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHardwareSpecificationResponse> {
+        self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义机型部件信息
     ///
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
-    public func describeHardwareSpecification(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
-        try await self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), logger: logger, on: eventLoop)
+    public func describeHardwareSpecification(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
+        try await self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

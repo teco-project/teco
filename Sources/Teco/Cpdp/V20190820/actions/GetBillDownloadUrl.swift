@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Cpdp {
     /// 调用该接口返回对账单下载地址，对账单下载URL通过GET方式访问，返回zip包，解压后为csv格式文件。文件首行如下：
     /// 订单号,订单归属日期,机构编号,订单描述,交易类型,订单状态,支付场景,原始金额,折扣金额,实际交易金额,支付渠道优惠金额,抹零金额,币种,下单时间,付款成功时间,商户编号,门店编号,付款方式编号,付款方式名称,商户手续费T1,商户扣率,是否信用卡交易,原始订单号,用户账号,外部订单号,订单备注
     @inlinable
-    public func getBillDownloadUrl(_ input: GetBillDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBillDownloadUrlResponse> {
-        self.client.execute(action: "GetBillDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBillDownloadUrl(_ input: GetBillDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBillDownloadUrlResponse> {
+        self.client.execute(action: "GetBillDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-获取机构账单文件下载地址
@@ -77,8 +77,8 @@ extension Cpdp {
     /// 调用该接口返回对账单下载地址，对账单下载URL通过GET方式访问，返回zip包，解压后为csv格式文件。文件首行如下：
     /// 订单号,订单归属日期,机构编号,订单描述,交易类型,订单状态,支付场景,原始金额,折扣金额,实际交易金额,支付渠道优惠金额,抹零金额,币种,下单时间,付款成功时间,商户编号,门店编号,付款方式编号,付款方式名称,商户手续费T1,商户扣率,是否信用卡交易,原始订单号,用户账号,外部订单号,订单备注
     @inlinable
-    public func getBillDownloadUrl(_ input: GetBillDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBillDownloadUrlResponse {
-        try await self.client.execute(action: "GetBillDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBillDownloadUrl(_ input: GetBillDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBillDownloadUrlResponse {
+        try await self.client.execute(action: "GetBillDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-获取机构账单文件下载地址
@@ -86,8 +86,8 @@ extension Cpdp {
     /// 调用该接口返回对账单下载地址，对账单下载URL通过GET方式访问，返回zip包，解压后为csv格式文件。文件首行如下：
     /// 订单号,订单归属日期,机构编号,订单描述,交易类型,订单状态,支付场景,原始金额,折扣金额,实际交易金额,支付渠道优惠金额,抹零金额,币种,下单时间,付款成功时间,商户编号,门店编号,付款方式编号,付款方式名称,商户手续费T1,商户扣率,是否信用卡交易,原始订单号,用户账号,外部订单号,订单备注
     @inlinable
-    public func getBillDownloadUrl(openId: String, openKey: String, day: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBillDownloadUrlResponse> {
-        self.getBillDownloadUrl(GetBillDownloadUrlRequest(openId: openId, openKey: openKey, day: day), logger: logger, on: eventLoop)
+    public func getBillDownloadUrl(openId: String, openKey: String, day: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBillDownloadUrlResponse> {
+        self.getBillDownloadUrl(GetBillDownloadUrlRequest(openId: openId, openKey: openKey, day: day), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-获取机构账单文件下载地址
@@ -95,7 +95,7 @@ extension Cpdp {
     /// 调用该接口返回对账单下载地址，对账单下载URL通过GET方式访问，返回zip包，解压后为csv格式文件。文件首行如下：
     /// 订单号,订单归属日期,机构编号,订单描述,交易类型,订单状态,支付场景,原始金额,折扣金额,实际交易金额,支付渠道优惠金额,抹零金额,币种,下单时间,付款成功时间,商户编号,门店编号,付款方式编号,付款方式名称,商户手续费T1,商户扣率,是否信用卡交易,原始订单号,用户账号,外部订单号,订单备注
     @inlinable
-    public func getBillDownloadUrl(openId: String, openKey: String, day: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBillDownloadUrlResponse {
-        try await self.getBillDownloadUrl(GetBillDownloadUrlRequest(openId: openId, openKey: openKey, day: day), logger: logger, on: eventLoop)
+    public func getBillDownloadUrl(openId: String, openKey: String, day: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBillDownloadUrlResponse {
+        try await self.getBillDownloadUrl(GetBillDownloadUrlRequest(openId: openId, openKey: openKey, day: day), region: region, logger: logger, on: eventLoop)
     }
 }

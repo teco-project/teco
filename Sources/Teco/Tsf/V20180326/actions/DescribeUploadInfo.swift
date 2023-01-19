@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Tsf {
     /// TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
-    public func describeUploadInfo(_ input: DescribeUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadInfoResponse> {
-        self.client.execute(action: "DescribeUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUploadInfo(_ input: DescribeUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadInfoResponse> {
+        self.client.execute(action: "DescribeUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取上传程序包信息
@@ -87,8 +87,8 @@ extension Tsf {
     /// TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
-    public func describeUploadInfo(_ input: DescribeUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadInfoResponse {
-        try await self.client.execute(action: "DescribeUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUploadInfo(_ input: DescribeUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadInfoResponse {
+        try await self.client.execute(action: "DescribeUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取上传程序包信息
@@ -96,8 +96,8 @@ extension Tsf {
     /// TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
-    public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadInfoResponse> {
-        self.describeUploadInfo(DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadInfoResponse> {
+        self.describeUploadInfo(DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取上传程序包信息
@@ -105,7 +105,7 @@ extension Tsf {
     /// TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
     /// COS相关文档请查阅：https://cloud.tencent.com/document/product/436
     @inlinable
-    public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadInfoResponse {
-        try await self.describeUploadInfo(DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func describeUploadInfo(applicationId: String, pkgName: String, pkgVersion: String, pkgType: String, pkgDesc: String? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadInfoResponse {
+        try await self.describeUploadInfo(DescribeUploadInfoRequest(applicationId: applicationId, pkgName: pkgName, pkgVersion: pkgVersion, pkgType: pkgType, pkgDesc: pkgDesc, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

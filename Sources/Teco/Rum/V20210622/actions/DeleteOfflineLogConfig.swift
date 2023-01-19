@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Rum {
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
-        self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
+        self.client.execute(action: "DeleteOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
-        try await self.client.execute(action: "DeleteOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteOfflineLogConfig(_ input: DeleteOfflineLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
+        try await self.client.execute(action: "DeleteOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
-        self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineLogConfigResponse> {
+        self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 rum 离线日志监听
     ///
     /// 删除 rum 离线日志监听 - 对应用户的离线日志将不会上报
     @inlinable
-    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
-        try await self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    public func deleteOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineLogConfigResponse {
+        try await self.deleteOfflineLogConfig(DeleteOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
     }
 }

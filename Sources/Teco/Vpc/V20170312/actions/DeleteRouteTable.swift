@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Vpc {
 
     /// 删除路由表
     @inlinable
-    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTableResponse> {
-        self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRouteTable(_ input: DeleteRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTableResponse> {
+        self.client.execute(action: "DeleteRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除路由表
     @inlinable
-    public func deleteRouteTable(_ input: DeleteRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
-        try await self.client.execute(action: "DeleteRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRouteTable(_ input: DeleteRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
+        try await self.client.execute(action: "DeleteRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除路由表
     @inlinable
-    public func deleteRouteTable(routeTableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTableResponse> {
-        self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), logger: logger, on: eventLoop)
+    public func deleteRouteTable(routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTableResponse> {
+        self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除路由表
     @inlinable
-    public func deleteRouteTable(routeTableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
-        try await self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), logger: logger, on: eventLoop)
+    public func deleteRouteTable(routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
+        try await self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
-        self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
+        self.client.execute(action: "DescribeVulScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
-        try await self.client.execute(action: "DescribeVulScanResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulScanResult(_ input: DescribeVulScanResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
+        try await self.client.execute(action: "DescribeVulScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
-        self.describeVulScanResult(DescribeVulScanResultRequest(), logger: logger, on: eventLoop)
+    public func describeVulScanResult(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanResultResponse> {
+        self.describeVulScanResult(DescribeVulScanResultRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞检测结果
     ///
     /// 本接口 (DescribeVulScanResult) 用于获取漏洞检测结果。
     @inlinable
-    public func describeVulScanResult(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
-        try await self.describeVulScanResult(DescribeVulScanResultRequest(), logger: logger, on: eventLoop)
+    public func describeVulScanResult(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanResultResponse {
+        try await self.describeVulScanResult(DescribeVulScanResultRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

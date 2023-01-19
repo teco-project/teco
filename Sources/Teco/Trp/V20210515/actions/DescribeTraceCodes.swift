@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Trp {
 
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
-        self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
+        self.client.execute(action: "DescribeTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
-        try await self.client.execute(action: "DescribeTraceCodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTraceCodes(_ input: DescribeTraceCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
+        try await self.client.execute(action: "DescribeTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
-        self.describeTraceCodes(DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodesResponse> {
+        self.describeTraceCodes(DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询二维码列表
     @inlinable
-    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
-        try await self.describeTraceCodes(DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeTraceCodes(keyword: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, batchId: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodesResponse {
+        try await self.describeTraceCodes(DescribeTraceCodesRequest(keyword: keyword, pageNumber: pageNumber, pageSize: pageSize, batchId: batchId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

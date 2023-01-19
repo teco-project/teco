@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Tbaas {
 
     /// 实例化合约
     @inlinable
-    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeChaincodeForUserResponse> {
-        self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeChaincodeForUserResponse> {
+        self.client.execute(action: "InitializeChaincodeForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例化合约
     @inlinable
-    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
-        try await self.client.execute(action: "InitializeChaincodeForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func initializeChaincodeForUser(_ input: InitializeChaincodeForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
+        try await self.client.execute(action: "InitializeChaincodeForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例化合约
     @inlinable
-    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeChaincodeForUserResponse> {
-        self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), logger: logger, on: eventLoop)
+    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeChaincodeForUserResponse> {
+        self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例化合约
     @inlinable
-    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
-        try await self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), logger: logger, on: eventLoop)
+    public func initializeChaincodeForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, channelName: String, peerName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeChaincodeForUserResponse {
+        try await self.initializeChaincodeForUser(InitializeChaincodeForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, channelName: channelName, peerName: peerName, args: args), region: region, logger: logger, on: eventLoop)
     }
 }

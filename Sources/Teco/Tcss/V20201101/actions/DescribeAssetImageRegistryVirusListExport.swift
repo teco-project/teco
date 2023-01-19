@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,25 +73,25 @@ extension Tcss {
 
     /// 镜像仓库木马信息列表导出
     @inlinable
-    public func describeAssetImageRegistryVirusListExport(_ input: DescribeAssetImageRegistryVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVirusListExportResponse> {
-        self.client.execute(action: "DescribeAssetImageRegistryVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryVirusListExport(_ input: DescribeAssetImageRegistryVirusListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVirusListExportResponse> {
+        self.client.execute(action: "DescribeAssetImageRegistryVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库木马信息列表导出
     @inlinable
-    public func describeAssetImageRegistryVirusListExport(_ input: DescribeAssetImageRegistryVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVirusListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageRegistryVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageRegistryVirusListExport(_ input: DescribeAssetImageRegistryVirusListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVirusListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageRegistryVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库木马信息列表导出
     @inlinable
-    public func describeAssetImageRegistryVirusListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVirusListExportResponse> {
-        self.describeAssetImageRegistryVirusListExport(DescribeAssetImageRegistryVirusListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryVirusListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVirusListExportResponse> {
+        self.describeAssetImageRegistryVirusListExport(DescribeAssetImageRegistryVirusListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库木马信息列表导出
     @inlinable
-    public func describeAssetImageRegistryVirusListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVirusListExportResponse {
-        try await self.describeAssetImageRegistryVirusListExport(DescribeAssetImageRegistryVirusListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), logger: logger, on: eventLoop)
+    public func describeAssetImageRegistryVirusListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVirusListExportResponse {
+        try await self.describeAssetImageRegistryVirusListExport(DescribeAssetImageRegistryVirusListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

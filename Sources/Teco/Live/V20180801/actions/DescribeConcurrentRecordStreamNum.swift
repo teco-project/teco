@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Live {
     ///
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
-    public func describeConcurrentRecordStreamNum(_ input: DescribeConcurrentRecordStreamNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConcurrentRecordStreamNumResponse> {
-        self.client.execute(action: "DescribeConcurrentRecordStreamNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConcurrentRecordStreamNum(_ input: DescribeConcurrentRecordStreamNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConcurrentRecordStreamNumResponse> {
+        self.client.execute(action: "DescribeConcurrentRecordStreamNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询并发录制路数
     ///
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
-    public func describeConcurrentRecordStreamNum(_ input: DescribeConcurrentRecordStreamNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
-        try await self.client.execute(action: "DescribeConcurrentRecordStreamNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConcurrentRecordStreamNum(_ input: DescribeConcurrentRecordStreamNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
+        try await self.client.execute(action: "DescribeConcurrentRecordStreamNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询并发录制路数
     ///
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
-    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConcurrentRecordStreamNumResponse> {
-        self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConcurrentRecordStreamNumResponse> {
+        self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询并发录制路数
     ///
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
-    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
-        try await self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
+        try await self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 }

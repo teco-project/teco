@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Scf {
     ///
     /// 返回指定层的全部版本的信息
     @inlinable
-    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayerVersionsResponse> {
-        self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listLayerVersions(_ input: ListLayerVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayerVersionsResponse> {
+        self.client.execute(action: "ListLayerVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取层版本列表
     ///
     /// 返回指定层的全部版本的信息
     @inlinable
-    public func listLayerVersions(_ input: ListLayerVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
-        try await self.client.execute(action: "ListLayerVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listLayerVersions(_ input: ListLayerVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
+        try await self.client.execute(action: "ListLayerVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取层版本列表
     ///
     /// 返回指定层的全部版本的信息
     @inlinable
-    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayerVersionsResponse> {
-        self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), logger: logger, on: eventLoop)
+    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayerVersionsResponse> {
+        self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取层版本列表
     ///
     /// 返回指定层的全部版本的信息
     @inlinable
-    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
-        try await self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), logger: logger, on: eventLoop)
+    public func listLayerVersions(layerName: String, compatibleRuntime: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayerVersionsResponse {
+        try await self.listLayerVersions(ListLayerVersionsRequest(layerName: layerName, compatibleRuntime: compatibleRuntime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcaplusdb {
 
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
-        self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setTableDataFlow(_ input: SetTableDataFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
+        self.client.execute(action: "SetTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(_ input: SetTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
-        try await self.client.execute(action: "SetTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setTableDataFlow(_ input: SetTableDataFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
+        try await self.client.execute(action: "SetTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
-        self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTableDataFlowResponse> {
+        self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改表格数据订阅
     @inlinable
-    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
-        try await self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func setTableDataFlow(clusterId: String, selectedTables: [SelectedTableWithField], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTableDataFlowResponse {
+        try await self.setTableDataFlow(SetTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

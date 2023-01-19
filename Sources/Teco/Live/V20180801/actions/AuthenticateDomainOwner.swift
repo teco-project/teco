@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Live {
     ///
     /// 验证用户是否拥有特定直播域名。
     @inlinable
-    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthenticateDomainOwnerResponse> {
-        self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthenticateDomainOwnerResponse> {
+        self.client.execute(action: "AuthenticateDomainOwner", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证直播域名所有权
     ///
     /// 验证用户是否拥有特定直播域名。
     @inlinable
-    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
-        try await self.client.execute(action: "AuthenticateDomainOwner", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func authenticateDomainOwner(_ input: AuthenticateDomainOwnerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
+        try await self.client.execute(action: "AuthenticateDomainOwner", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证直播域名所有权
     ///
     /// 验证用户是否拥有特定直播域名。
     @inlinable
-    public func authenticateDomainOwner(domainName: String, verifyType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthenticateDomainOwnerResponse> {
-        self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), logger: logger, on: eventLoop)
+    public func authenticateDomainOwner(domainName: String, verifyType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthenticateDomainOwnerResponse> {
+        self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证直播域名所有权
     ///
     /// 验证用户是否拥有特定直播域名。
     @inlinable
-    public func authenticateDomainOwner(domainName: String, verifyType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
-        try await self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), logger: logger, on: eventLoop)
+    public func authenticateDomainOwner(domainName: String, verifyType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthenticateDomainOwnerResponse {
+        try await self.authenticateDomainOwner(AuthenticateDomainOwnerRequest(domainName: domainName, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 }

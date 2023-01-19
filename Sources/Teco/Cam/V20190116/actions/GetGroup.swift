@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cam {
 
     /// 查询用户组详情
     @inlinable
-    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupResponse> {
-        self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getGroup(_ input: GetGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupResponse> {
+        self.client.execute(action: "GetGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户组详情
     @inlinable
-    public func getGroup(_ input: GetGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
-        try await self.client.execute(action: "GetGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getGroup(_ input: GetGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
+        try await self.client.execute(action: "GetGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户组详情
     @inlinable
-    public func getGroup(groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupResponse> {
-        self.getGroup(GetGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func getGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupResponse> {
+        self.getGroup(GetGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户组详情
     @inlinable
-    public func getGroup(groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
-        try await self.getGroup(GetGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func getGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupResponse {
+        try await self.getGroup(GetGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

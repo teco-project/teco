@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Redis {
 
     /// Proxy模拟故障接口
     @inlinable
-    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
-        self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchProxy(_ input: SwitchProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
+        self.client.execute(action: "SwitchProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Proxy模拟故障接口
     @inlinable
-    public func switchProxy(_ input: SwitchProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
-        try await self.client.execute(action: "SwitchProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchProxy(_ input: SwitchProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
+        try await self.client.execute(action: "SwitchProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Proxy模拟故障接口
     @inlinable
-    public func switchProxy(instanceId: String, proxyID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
-        self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), logger: logger, on: eventLoop)
+    public func switchProxy(instanceId: String, proxyID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
+        self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), region: region, logger: logger, on: eventLoop)
     }
 
     /// Proxy模拟故障接口
     @inlinable
-    public func switchProxy(instanceId: String, proxyID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
-        try await self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), logger: logger, on: eventLoop)
+    public func switchProxy(instanceId: String, proxyID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
+        try await self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Essbasic {
     ///
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
-    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignFlowResponse> {
-        self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func signFlow(_ input: SignFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignFlowResponse> {
+        self.client.execute(action: "SignFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 签署流程
     ///
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
-    public func signFlow(_ input: SignFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
-        try await self.client.execute(action: "SignFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func signFlow(_ input: SignFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
+        try await self.client.execute(action: "SignFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 签署流程
     ///
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
-    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignFlowResponse> {
-        self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), logger: logger, on: eventLoop)
+    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignFlowResponse> {
+        self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 签署流程
     ///
     /// 此接口（SignFlow）可用于对流程文件进行签署。
     @inlinable
-    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
-        try await self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), logger: logger, on: eventLoop)
+    public func signFlow(caller: Caller, flowId: String, verifyResult: String, verifyChannel: String, sourceIp: String, signSeals: [SignSeal], approveMessage: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignFlowResponse {
+        try await self.signFlow(SignFlowRequest(caller: caller, flowId: flowId, verifyResult: verifyResult, verifyChannel: verifyChannel, sourceIp: sourceIp, signSeals: signSeals, approveMessage: approveMessage, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

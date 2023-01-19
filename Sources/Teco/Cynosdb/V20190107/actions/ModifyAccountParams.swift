@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cynosdb {
 
     /// 修改账号参数
     @inlinable
-    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountParamsResponse> {
-        self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountParamsResponse> {
+        self.client.execute(action: "ModifyAccountParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账号参数
     @inlinable
-    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
-        try await self.client.execute(action: "ModifyAccountParams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountParams(_ input: ModifyAccountParamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
+        try await self.client.execute(action: "ModifyAccountParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改账号参数
     @inlinable
-    public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountParamsResponse> {
-        self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), logger: logger, on: eventLoop)
+    public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountParamsResponse> {
+        self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号参数
     @inlinable
-    public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
-        try await self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), logger: logger, on: eventLoop)
+    public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
+        try await self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), region: region, logger: logger, on: eventLoop)
     }
 }

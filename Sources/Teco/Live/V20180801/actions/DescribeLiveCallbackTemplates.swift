@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Live {
 
     /// 获取回调模板列表
     @inlinable
-    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplatesResponse> {
-        self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplatesResponse> {
+        self.client.execute(action: "DescribeLiveCallbackTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取回调模板列表
     @inlinable
-    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveCallbackTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveCallbackTemplates(_ input: DescribeLiveCallbackTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveCallbackTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取回调模板列表
     @inlinable
-    public func describeLiveCallbackTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplatesResponse> {
-        self.describeLiveCallbackTemplates(DescribeLiveCallbackTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveCallbackTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplatesResponse> {
+        self.describeLiveCallbackTemplates(DescribeLiveCallbackTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取回调模板列表
     @inlinable
-    public func describeLiveCallbackTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
-        try await self.describeLiveCallbackTemplates(DescribeLiveCallbackTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveCallbackTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplatesResponse {
+        try await self.describeLiveCallbackTemplates(DescribeLiveCallbackTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

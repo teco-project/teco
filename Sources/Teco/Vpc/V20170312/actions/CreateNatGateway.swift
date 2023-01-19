@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,8 +107,8 @@ extension Vpc {
     /// 本接口(CreateNatGateway)用于创建NAT网关。
     /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
     @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
-        self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNatGateway(_ input: CreateNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
+        self.client.execute(action: "CreateNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关
@@ -116,8 +116,8 @@ extension Vpc {
     /// 本接口(CreateNatGateway)用于创建NAT网关。
     /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
     @inlinable
-    public func createNatGateway(_ input: CreateNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.client.execute(action: "CreateNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNatGateway(_ input: CreateNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.client.execute(action: "CreateNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建NAT网关
@@ -125,8 +125,8 @@ extension Vpc {
     /// 本接口(CreateNatGateway)用于创建NAT网关。
     /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
     @inlinable
-    public func createNatGateway(natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64? = nil, maxConcurrentConnection: UInt64? = nil, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, tags: [Tag]? = nil, subnetId: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
-        self.createNatGateway(CreateNatGatewayRequest(natGatewayName: natGatewayName, vpcId: vpcId, internetMaxBandwidthOut: internetMaxBandwidthOut, maxConcurrentConnection: maxConcurrentConnection, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, tags: tags, subnetId: subnetId, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), logger: logger, on: eventLoop)
+    public func createNatGateway(natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64? = nil, maxConcurrentConnection: UInt64? = nil, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, tags: [Tag]? = nil, subnetId: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewayResponse> {
+        self.createNatGateway(CreateNatGatewayRequest(natGatewayName: natGatewayName, vpcId: vpcId, internetMaxBandwidthOut: internetMaxBandwidthOut, maxConcurrentConnection: maxConcurrentConnection, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, tags: tags, subnetId: subnetId, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关
@@ -134,7 +134,7 @@ extension Vpc {
     /// 本接口(CreateNatGateway)用于创建NAT网关。
     /// 在对新建的NAT网关做其他操作前，需先确认此网关已被创建完成（DescribeNatGateway接口返回的实例State字段为AVAILABLE）。
     @inlinable
-    public func createNatGateway(natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64? = nil, maxConcurrentConnection: UInt64? = nil, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, tags: [Tag]? = nil, subnetId: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
-        try await self.createNatGateway(CreateNatGatewayRequest(natGatewayName: natGatewayName, vpcId: vpcId, internetMaxBandwidthOut: internetMaxBandwidthOut, maxConcurrentConnection: maxConcurrentConnection, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, tags: tags, subnetId: subnetId, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), logger: logger, on: eventLoop)
+    public func createNatGateway(natGatewayName: String, vpcId: String, internetMaxBandwidthOut: UInt64? = nil, maxConcurrentConnection: UInt64? = nil, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, tags: [Tag]? = nil, subnetId: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewayResponse {
+        try await self.createNatGateway(CreateNatGatewayRequest(natGatewayName: natGatewayName, vpcId: vpcId, internetMaxBandwidthOut: internetMaxBandwidthOut, maxConcurrentConnection: maxConcurrentConnection, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, tags: tags, subnetId: subnetId, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 }

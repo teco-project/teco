@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Trp {
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
-        self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomPack(_ input: CreateCustomPackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
+        self.client.execute(action: "CreateCustomPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(_ input: CreateCustomPackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
-        try await self.client.execute(action: "CreateCustomPack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomPack(_ input: CreateCustomPackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
+        try await self.client.execute(action: "CreateCustomPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
-        self.createCustomPack(CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId), logger: logger, on: eventLoop)
+    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPackResponse> {
+        self.createCustomPack(CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成自定义码包
     @inlinable
-    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
-        try await self.createCustomPack(CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId), logger: logger, on: eventLoop)
+    public func createCustomPack(merchantId: String, amount: UInt64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, customId: String? = nil, codeParts: [CodePart]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPackResponse {
+        try await self.createCustomPack(CreateCustomPackRequest(merchantId: merchantId, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, customId: customId, codeParts: codeParts, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

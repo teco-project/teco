@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Gme {
 
     /// 删除自定义送检用户
     @inlinable
-    public func deleteScanUser(_ input: DeleteScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
-        self.client.execute(action: "DeleteScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScanUser(_ input: DeleteScanUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
+        self.client.execute(action: "DeleteScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义送检用户
     @inlinable
-    public func deleteScanUser(_ input: DeleteScanUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
-        try await self.client.execute(action: "DeleteScanUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScanUser(_ input: DeleteScanUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
+        try await self.client.execute(action: "DeleteScanUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义送检用户
     @inlinable
-    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
-        self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanUserResponse> {
+        self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义送检用户
     @inlinable
-    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
-        try await self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), logger: logger, on: eventLoop)
+    public func deleteScanUser(bizId: UInt64, userId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanUserResponse {
+        try await self.deleteScanUser(DeleteScanUserRequest(bizId: bizId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

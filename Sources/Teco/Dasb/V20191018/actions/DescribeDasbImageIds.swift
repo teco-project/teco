@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dasb {
     ///
     /// 获取镜像列表
     @inlinable
-    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDasbImageIdsResponse> {
-        self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDasbImageIdsResponse> {
+        self.client.execute(action: "DescribeDasbImageIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数盾-DASB-获取镜像列表
     ///
     /// 获取镜像列表
     @inlinable
-    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
-        try await self.client.execute(action: "DescribeDasbImageIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDasbImageIds(_ input: DescribeDasbImageIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
+        try await self.client.execute(action: "DescribeDasbImageIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数盾-DASB-获取镜像列表
     ///
     /// 获取镜像列表
     @inlinable
-    public func describeDasbImageIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDasbImageIdsResponse> {
-        self.describeDasbImageIds(DescribeDasbImageIdsRequest(), logger: logger, on: eventLoop)
+    public func describeDasbImageIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDasbImageIdsResponse> {
+        self.describeDasbImageIds(DescribeDasbImageIdsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数盾-DASB-获取镜像列表
     ///
     /// 获取镜像列表
     @inlinable
-    public func describeDasbImageIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
-        try await self.describeDasbImageIds(DescribeDasbImageIdsRequest(), logger: logger, on: eventLoop)
+    public func describeDasbImageIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
+        try await self.describeDasbImageIds(DescribeDasbImageIdsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

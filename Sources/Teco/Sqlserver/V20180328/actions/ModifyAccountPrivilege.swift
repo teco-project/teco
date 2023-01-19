@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
-    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegeResponse> {
-        self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegeResponse> {
+        self.client.execute(action: "ModifyAccountPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例账户权限
     ///
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
-    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
-        try await self.client.execute(action: "ModifyAccountPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountPrivilege(_ input: ModifyAccountPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
+        try await self.client.execute(action: "ModifyAccountPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例账户权限
     ///
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
-    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegeResponse> {
-        self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegeResponse> {
+        self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例账户权限
     ///
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
-    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
-        try await self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
+        try await self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

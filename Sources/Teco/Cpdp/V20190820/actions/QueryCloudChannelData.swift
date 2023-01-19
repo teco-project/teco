@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,31 +113,31 @@ extension Cpdp {
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
-        self.client.execute(action: "QueryCloudChannelData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
+        self.client.execute(action: "QueryCloudChannelData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
-        try await self.client.execute(action: "QueryCloudChannelData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCloudChannelData(_ input: QueryCloudChannelDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
+        try await self.client.execute(action: "QueryCloudChannelData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
-        self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), logger: logger, on: eventLoop)
+    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
+        self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询第三方渠道数据
     ///
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
-    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
-        try await self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), logger: logger, on: eventLoop)
+    public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
+        try await self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

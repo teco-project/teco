@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
-    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiEnvironmentStrategyResponse> {
-        self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiEnvironmentStrategyResponse> {
+        self.client.execute(action: "DescribeApiEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示API绑定的限流策略
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
-    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
-        try await self.client.execute(action: "DescribeApiEnvironmentStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiEnvironmentStrategy(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
+        try await self.client.execute(action: "DescribeApiEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 展示API绑定的限流策略
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
-    public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiEnvironmentStrategyResponse> {
-        self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiEnvironmentStrategyResponse> {
+        self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示API绑定的限流策略
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
-    public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
-        try await self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
+        try await self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tdmq {
 
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
-        self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
+        self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
-        try await self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCmqDeadLetterSourceQueues(_ input: DescribeCmqDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
+        try await self.client.execute(action: "DescribeCmqDeadLetterSourceQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
-        self.describeCmqDeadLetterSourceQueues(DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), logger: logger, on: eventLoop)
+    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqDeadLetterSourceQueuesResponse> {
+        self.describeCmqDeadLetterSourceQueues(DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举cmq死信队列源队列
     @inlinable
-    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
-        try await self.describeCmqDeadLetterSourceQueues(DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), logger: logger, on: eventLoop)
+    public func describeCmqDeadLetterSourceQueues(deadLetterQueueName: String, limit: UInt64? = nil, offset: UInt64? = nil, sourceQueueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqDeadLetterSourceQueuesResponse {
+        try await self.describeCmqDeadLetterSourceQueues(DescribeCmqDeadLetterSourceQueuesRequest(deadLetterQueueName: deadLetterQueueName, limit: limit, offset: offset, sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Vpc {
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
-        self.client.execute(action: "MigratePrivateIpAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
+        self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡内网IP迁移
@@ -67,8 +67,8 @@ extension Vpc {
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
-        try await self.client.execute(action: "MigratePrivateIpAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
+        try await self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 弹性网卡内网IP迁移
@@ -78,8 +78,8 @@ extension Vpc {
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
-        self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
+        self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡内网IP迁移
@@ -89,7 +89,7 @@ extension Vpc {
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable
-    public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
-        try await self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
+        try await self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }
 }

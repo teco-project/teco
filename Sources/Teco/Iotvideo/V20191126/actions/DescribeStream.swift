@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Iotvideo {
 
     /// 请求设备直播流地址
     @inlinable
-    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamResponse> {
-        self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStream(_ input: DescribeStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamResponse> {
+        self.client.execute(action: "DescribeStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 请求设备直播流地址
     @inlinable
-    public func describeStream(_ input: DescribeStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
-        try await self.client.execute(action: "DescribeStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStream(_ input: DescribeStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
+        try await self.client.execute(action: "DescribeStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 请求设备直播流地址
     @inlinable
-    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamResponse> {
-        self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), logger: logger, on: eventLoop)
+    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamResponse> {
+        self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 请求设备直播流地址
     @inlinable
-    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
-        try await self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), logger: logger, on: eventLoop)
+    public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
+        try await self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 }

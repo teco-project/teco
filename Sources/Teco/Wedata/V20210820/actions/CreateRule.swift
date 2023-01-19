@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -156,25 +156,25 @@ extension Wedata {
 
     /// 创建质量规则接口
     @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRule(_ input: CreateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
+        self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建质量规则接口
     @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRule(_ input: CreateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建质量规则接口
     @inlinable
-    public func createRule(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, datasourceId: String? = nil, databaseId: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, datasourceId: datasourceId, databaseId: databaseId, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), logger: logger, on: eventLoop)
+    public func createRule(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, datasourceId: String? = nil, databaseId: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
+        self.createRule(CreateRuleRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, datasourceId: datasourceId, databaseId: databaseId, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建质量规则接口
     @inlinable
-    public func createRule(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, datasourceId: String? = nil, databaseId: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, datasourceId: datasourceId, databaseId: databaseId, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), logger: logger, on: eventLoop)
+    public func createRule(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, tableId: String? = nil, ruleTemplateId: UInt64? = nil, type: UInt64? = nil, qualityDim: UInt64? = nil, sourceObjectDataTypeName: String? = nil, sourceObjectValue: String? = nil, conditionType: UInt64? = nil, conditionExpression: String? = nil, customSql: String? = nil, compareRule: CompareRule? = nil, alarmLevel: UInt64? = nil, description: String? = nil, datasourceId: String? = nil, databaseId: String? = nil, targetDatabaseId: String? = nil, targetTableId: String? = nil, targetConditionExpr: String? = nil, relConditionExpr: String? = nil, fieldConfig: RuleFieldConfig? = nil, targetObjectValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.createRule(CreateRuleRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, tableId: tableId, ruleTemplateId: ruleTemplateId, type: type, qualityDim: qualityDim, sourceObjectDataTypeName: sourceObjectDataTypeName, sourceObjectValue: sourceObjectValue, conditionType: conditionType, conditionExpression: conditionExpression, customSql: customSql, compareRule: compareRule, alarmLevel: alarmLevel, description: description, datasourceId: datasourceId, databaseId: databaseId, targetDatabaseId: targetDatabaseId, targetTableId: targetTableId, targetConditionExpr: targetConditionExpr, relConditionExpr: relConditionExpr, fieldConfig: fieldConfig, targetObjectValue: targetObjectValue), region: region, logger: logger, on: eventLoop)
     }
 }

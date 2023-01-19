@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Chdfs {
     ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
-    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
-        self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMountPoint(_ input: CreateMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
+        self.client.execute(action: "CreateMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建挂载点
     ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
-    public func createMountPoint(_ input: CreateMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
-        try await self.client.execute(action: "CreateMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMountPoint(_ input: CreateMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
+        try await self.client.execute(action: "CreateMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建挂载点
     ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
-    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
-        self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
+        self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建挂载点
     ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
-    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
-        try await self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    public func createMountPoint(mountPointName: String, fileSystemId: String, mountPointStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
+        try await self.createMountPoint(CreateMountPointRequest(mountPointName: mountPointName, fileSystemId: fileSystemId, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ecm {
     ///
     /// 查询EIP异步任务执行结果
     @inlinable
-    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
-        self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskResult(_ input: DescribeTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
+        self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务执行结果
     ///
     /// 查询EIP异步任务执行结果
     @inlinable
-    public func describeTaskResult(_ input: DescribeTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
-        try await self.client.execute(action: "DescribeTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskResult(_ input: DescribeTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
+        try await self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询异步任务执行结果
     ///
     /// 查询EIP异步任务执行结果
     @inlinable
-    public func describeTaskResult(ecmRegion: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
-        self.describeTaskResult(DescribeTaskResultRequest(ecmRegion: ecmRegion, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskResult(ecmRegion: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
+        self.describeTaskResult(DescribeTaskResultRequest(ecmRegion: ecmRegion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务执行结果
     ///
     /// 查询EIP异步任务执行结果
     @inlinable
-    public func describeTaskResult(ecmRegion: String, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
-        try await self.describeTaskResult(DescribeTaskResultRequest(ecmRegion: ecmRegion, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskResult(ecmRegion: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
+        try await self.describeTaskResult(DescribeTaskResultRequest(ecmRegion: ecmRegion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

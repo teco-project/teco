@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Ic {
     ///
     /// 群发短信
     @inlinable
-    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMultiSmsResponse> {
-        self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendMultiSms(_ input: SendMultiSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMultiSmsResponse> {
+        self.client.execute(action: "SendMultiSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 群发短信接口
     ///
     /// 群发短信
     @inlinable
-    public func sendMultiSms(_ input: SendMultiSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
-        try await self.client.execute(action: "SendMultiSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendMultiSms(_ input: SendMultiSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
+        try await self.client.execute(action: "SendMultiSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 群发短信接口
     ///
     /// 群发短信
     @inlinable
-    public func sendMultiSms(sdkappid: String, iccids: [String], content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMultiSmsResponse> {
-        self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), logger: logger, on: eventLoop)
+    public func sendMultiSms(sdkappid: String, iccids: [String], content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMultiSmsResponse> {
+        self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 群发短信接口
     ///
     /// 群发短信
     @inlinable
-    public func sendMultiSms(sdkappid: String, iccids: [String], content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
-        try await self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), logger: logger, on: eventLoop)
+    public func sendMultiSms(sdkappid: String, iccids: [String], content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
+        try await self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

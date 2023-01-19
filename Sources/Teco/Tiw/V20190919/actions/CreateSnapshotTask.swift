@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Tiw {
     ///
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
-    public func createSnapshotTask(_ input: CreateSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotTaskResponse> {
-        self.client.execute(action: "CreateSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSnapshotTask(_ input: CreateSnapshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotTaskResponse> {
+        self.client.execute(action: "CreateSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建白板板书生成任务
     ///
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
-    public func createSnapshotTask(_ input: CreateSnapshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotTaskResponse {
-        try await self.client.execute(action: "CreateSnapshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSnapshotTask(_ input: CreateSnapshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotTaskResponse {
+        try await self.client.execute(action: "CreateSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建白板板书生成任务
     ///
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
-    public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotTaskResponse> {
-        self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), logger: logger, on: eventLoop)
+    public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotTaskResponse> {
+        self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建白板板书生成任务
     ///
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
-    public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotTaskResponse {
-        try await self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), logger: logger, on: eventLoop)
+    public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotTaskResponse {
+        try await self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), region: region, logger: logger, on: eventLoop)
     }
 }

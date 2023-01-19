@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Iotvideo {
 
     /// 删除转发规则
     @inlinable
-    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteForwardRuleResponse> {
-        self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteForwardRuleResponse> {
+        self.client.execute(action: "DeleteForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转发规则
     @inlinable
-    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
-        try await self.client.execute(action: "DeleteForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteForwardRule(_ input: DeleteForwardRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
+        try await self.client.execute(action: "DeleteForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除转发规则
     @inlinable
-    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteForwardRuleResponse> {
-        self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), logger: logger, on: eventLoop)
+    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteForwardRuleResponse> {
+        self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转发规则
     @inlinable
-    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
-        try await self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), logger: logger, on: eventLoop)
+    public func deleteForwardRule(productID: String, skey: String, queueType: UInt64, queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteForwardRuleResponse {
+        try await self.deleteForwardRule(DeleteForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

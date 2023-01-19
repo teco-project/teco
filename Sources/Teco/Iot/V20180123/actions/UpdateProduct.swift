@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iot {
     ///
     /// 提供修改产品信息及数据模板的能力。
     @inlinable
-    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductResponse> {
-        self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProduct(_ input: UpdateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductResponse> {
+        self.client.execute(action: "UpdateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新产品信息
     ///
     /// 提供修改产品信息及数据模板的能力。
     @inlinable
-    public func updateProduct(_ input: UpdateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
-        try await self.client.execute(action: "UpdateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProduct(_ input: UpdateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
+        try await self.client.execute(action: "UpdateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新产品信息
     ///
     /// 提供修改产品信息及数据模板的能力。
     @inlinable
-    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductResponse> {
-        self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), logger: logger, on: eventLoop)
+    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductResponse> {
+        self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新产品信息
     ///
     /// 提供修改产品信息及数据模板的能力。
     @inlinable
-    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
-        try await self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), logger: logger, on: eventLoop)
+    public func updateProduct(productId: String, name: String? = nil, description: String? = nil, dataTemplate: [DataTemplate]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductResponse {
+        try await self.updateProduct(UpdateProductRequest(productId: productId, name: name, description: description, dataTemplate: dataTemplate), region: region, logger: logger, on: eventLoop)
     }
 }

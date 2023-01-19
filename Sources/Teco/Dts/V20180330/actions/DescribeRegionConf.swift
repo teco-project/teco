@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
-        self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRegionConf(_ input: DescribeRegionConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
+        self.client.execute(action: "DescribeRegionConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(_ input: DescribeRegionConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
-        try await self.client.execute(action: "DescribeRegionConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRegionConf(_ input: DescribeRegionConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
+        try await self.client.execute(action: "DescribeRegionConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
-        self.describeRegionConf(DescribeRegionConfRequest(), logger: logger, on: eventLoop)
+    public func describeRegionConf(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
+        self.describeRegionConf(DescribeRegionConfRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖订阅地域
     ///
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
-    public func describeRegionConf(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
-        try await self.describeRegionConf(DescribeRegionConfRequest(), logger: logger, on: eventLoop)
+    public func describeRegionConf(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
+        try await self.describeRegionConf(DescribeRegionConfRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

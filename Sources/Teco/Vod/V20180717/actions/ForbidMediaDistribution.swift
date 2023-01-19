@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Vod {
     /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
-    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidMediaDistributionResponse> {
-        self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidMediaDistributionResponse> {
+        self.client.execute(action: "ForbidMediaDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁播媒体
@@ -67,8 +67,8 @@ extension Vod {
     /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
-    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
-        try await self.client.execute(action: "ForbidMediaDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func forbidMediaDistribution(_ input: ForbidMediaDistributionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
+        try await self.client.execute(action: "ForbidMediaDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁播媒体
@@ -76,8 +76,8 @@ extension Vod {
     /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
-    public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidMediaDistributionResponse> {
-        self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidMediaDistributionResponse> {
+        self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁播媒体
@@ -85,7 +85,7 @@ extension Vod {
     /// * 对媒体禁播后，除了点播控制台预览，其他场景访问视频各种资源的 URL（原始文件、转码输出文件、截图等）均会返回 403。
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
-    public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
-        try await self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
+        try await self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

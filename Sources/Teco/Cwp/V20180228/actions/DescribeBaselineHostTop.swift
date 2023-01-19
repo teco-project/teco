@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cwp {
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
-        self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
+        self.client.execute(action: "DescribeBaselineHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
-        try await self.client.execute(action: "DescribeBaselineHostTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineHostTop(_ input: DescribeBaselineHostTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
+        try await self.client.execute(action: "DescribeBaselineHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
-        self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
+        self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务器风险top接口
     ///
     /// 接口返回TopN的风险服务器
     @inlinable
-    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
-        try await self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
+        try await self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Antiddos {
 
     /// 获取DDoS防护的访问限速配置列表
     @inlinable
-    public func describeListDDoSSpeedLimitConfig(_ input: DescribeListDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSSpeedLimitConfigResponse> {
-        self.client.execute(action: "DescribeListDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListDDoSSpeedLimitConfig(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSSpeedLimitConfigResponse> {
+        self.client.execute(action: "DescribeListDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的访问限速配置列表
     @inlinable
-    public func describeListDDoSSpeedLimitConfig(_ input: DescribeListDDoSSpeedLimitConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSSpeedLimitConfigResponse {
-        try await self.client.execute(action: "DescribeListDDoSSpeedLimitConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListDDoSSpeedLimitConfig(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSSpeedLimitConfigResponse {
+        try await self.client.execute(action: "DescribeListDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护的访问限速配置列表
     @inlinable
-    public func describeListDDoSSpeedLimitConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSSpeedLimitConfigResponse> {
-        self.describeListDDoSSpeedLimitConfig(DescribeListDDoSSpeedLimitConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListDDoSSpeedLimitConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSSpeedLimitConfigResponse> {
+        self.describeListDDoSSpeedLimitConfig(DescribeListDDoSSpeedLimitConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的访问限速配置列表
     @inlinable
-    public func describeListDDoSSpeedLimitConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSSpeedLimitConfigResponse {
-        try await self.describeListDDoSSpeedLimitConfig(DescribeListDDoSSpeedLimitConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListDDoSSpeedLimitConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSSpeedLimitConfigResponse {
+        try await self.describeListDDoSSpeedLimitConfig(DescribeListDDoSSpeedLimitConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 }

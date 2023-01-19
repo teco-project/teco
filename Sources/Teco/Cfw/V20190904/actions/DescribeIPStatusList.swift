@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cfw {
 
     /// ip防护状态查询
     @inlinable
-    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStatusListResponse> {
-        self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStatusListResponse> {
+        self.client.execute(action: "DescribeIPStatusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// ip防护状态查询
     @inlinable
-    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
-        try await self.client.execute(action: "DescribeIPStatusList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIPStatusList(_ input: DescribeIPStatusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
+        try await self.client.execute(action: "DescribeIPStatusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// ip防护状态查询
     @inlinable
-    public func describeIPStatusList(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStatusListResponse> {
-        self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), logger: logger, on: eventLoop)
+    public func describeIPStatusList(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStatusListResponse> {
+        self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 
     /// ip防护状态查询
     @inlinable
-    public func describeIPStatusList(ipList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
-        try await self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), logger: logger, on: eventLoop)
+    public func describeIPStatusList(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
+        try await self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
     }
 }

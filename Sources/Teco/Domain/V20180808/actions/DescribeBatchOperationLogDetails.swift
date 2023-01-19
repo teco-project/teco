@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Domain {
     ///
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
-    public func describeBatchOperationLogDetails(_ input: DescribeBatchOperationLogDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogDetailsResponse> {
-        self.client.execute(action: "DescribeBatchOperationLogDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBatchOperationLogDetails(_ input: DescribeBatchOperationLogDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogDetailsResponse> {
+        self.client.execute(action: "DescribeBatchOperationLogDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志详情
     ///
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
-    public func describeBatchOperationLogDetails(_ input: DescribeBatchOperationLogDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogDetailsResponse {
-        try await self.client.execute(action: "DescribeBatchOperationLogDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBatchOperationLogDetails(_ input: DescribeBatchOperationLogDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogDetailsResponse {
+        try await self.client.execute(action: "DescribeBatchOperationLogDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量操作日志详情
     ///
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
-    public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogDetailsResponse> {
-        self.describeBatchOperationLogDetails(DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogDetailsResponse> {
+        self.describeBatchOperationLogDetails(DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志详情
     ///
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
     @inlinable
-    public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogDetailsResponse {
-        try await self.describeBatchOperationLogDetails(DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBatchOperationLogDetails(logId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogDetailsResponse {
+        try await self.describeBatchOperationLogDetails(DescribeBatchOperationLogDetailsRequest(logId: logId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

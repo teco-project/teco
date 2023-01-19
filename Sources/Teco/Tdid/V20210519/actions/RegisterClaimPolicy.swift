@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tdid {
 
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
-        self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
+        self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.client.execute(action: "RegisterClaimPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerClaimPolicy(_ input: RegisterClaimPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
+        try await self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(cptIndex: UInt64, policy: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
-        self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), logger: logger, on: eventLoop)
+    public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
+        self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy注册
     @inlinable
-    public func registerClaimPolicy(cptIndex: UInt64, policy: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), logger: logger, on: eventLoop)
+    public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
+        try await self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
     }
 }

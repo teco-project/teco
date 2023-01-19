@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tke {
 
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
-    public func describeEdgeAvailableExtraArgs(_ input: DescribeEdgeAvailableExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAvailableExtraArgsResponse> {
-        self.client.execute(action: "DescribeEdgeAvailableExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeAvailableExtraArgs(_ input: DescribeEdgeAvailableExtraArgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAvailableExtraArgsResponse> {
+        self.client.execute(action: "DescribeEdgeAvailableExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
-    public func describeEdgeAvailableExtraArgs(_ input: DescribeEdgeAvailableExtraArgsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAvailableExtraArgsResponse {
-        try await self.client.execute(action: "DescribeEdgeAvailableExtraArgs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeAvailableExtraArgs(_ input: DescribeEdgeAvailableExtraArgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAvailableExtraArgsResponse {
+        try await self.client.execute(action: "DescribeEdgeAvailableExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
-    public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAvailableExtraArgsResponse> {
-        self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), logger: logger, on: eventLoop)
+    public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAvailableExtraArgsResponse> {
+        self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
-    public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAvailableExtraArgsResponse {
-        try await self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), logger: logger, on: eventLoop)
+    public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAvailableExtraArgsResponse {
+        try await self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), region: region, logger: logger, on: eventLoop)
     }
 }

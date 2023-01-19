@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Tat {
     ///
     /// 此接口用于修改命令。
     @inlinable
-    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
-        self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCommand(_ input: ModifyCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
+        self.client.execute(action: "ModifyCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改命令
     ///
     /// 此接口用于修改命令。
     @inlinable
-    public func modifyCommand(_ input: ModifyCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
-        try await self.client.execute(action: "ModifyCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCommand(_ input: ModifyCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
+        try await self.client.execute(action: "ModifyCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改命令
     ///
     /// 此接口用于修改命令。
     @inlinable
-    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
-        self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCommandResponse> {
+        self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命令
     ///
     /// 此接口用于修改命令。
     @inlinable
-    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
-        try await self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), logger: logger, on: eventLoop)
+    public func modifyCommand(commandId: String, commandName: String? = nil, description: String? = nil, content: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, defaultParameters: String? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCommandResponse {
+        try await self.modifyCommand(ModifyCommandRequest(commandId: commandId, commandName: commandName, description: description, content: content, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, defaultParameters: defaultParameters, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
     }
 }

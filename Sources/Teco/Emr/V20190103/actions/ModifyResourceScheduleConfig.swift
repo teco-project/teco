@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Emr {
 
     /// 修改YARN资源调度的资源配置
     @inlinable
-    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceScheduleConfigResponse> {
-        self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceScheduleConfigResponse> {
+        self.client.execute(action: "ModifyResourceScheduleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改YARN资源调度的资源配置
     @inlinable
-    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
-        try await self.client.execute(action: "ModifyResourceScheduleConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyResourceScheduleConfig(_ input: ModifyResourceScheduleConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
+        try await self.client.execute(action: "ModifyResourceScheduleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改YARN资源调度的资源配置
     @inlinable
-    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceScheduleConfigResponse> {
-        self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), logger: logger, on: eventLoop)
+    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceScheduleConfigResponse> {
+        self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改YARN资源调度的资源配置
     @inlinable
-    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
-        try await self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), logger: logger, on: eventLoop)
+    public func modifyResourceScheduleConfig(instanceId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceScheduleConfigResponse {
+        try await self.modifyResourceScheduleConfig(ModifyResourceScheduleConfigRequest(instanceId: instanceId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }
 }

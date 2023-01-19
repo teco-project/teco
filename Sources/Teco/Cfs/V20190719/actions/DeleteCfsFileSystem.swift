@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cfs {
     ///
     /// 用于删除文件系统
     @inlinable
-    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
-        self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
+        self.client.execute(action: "DeleteCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统
     ///
     /// 用于删除文件系统
     @inlinable
-    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
-        try await self.client.execute(action: "DeleteCfsFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
+        try await self.client.execute(action: "DeleteCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除文件系统
     ///
     /// 用于删除文件系统
     @inlinable
-    public func deleteCfsFileSystem(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
-        self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func deleteCfsFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
+        self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除文件系统
     ///
     /// 用于删除文件系统
     @inlinable
-    public func deleteCfsFileSystem(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
-        try await self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func deleteCfsFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
+        try await self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

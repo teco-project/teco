@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Batch {
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
-        self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
+        self.client.execute(action: "DescribeComputeEnvCreateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
-        try await self.client.execute(action: "DescribeComputeEnvCreateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComputeEnvCreateInfo(_ input: DescribeComputeEnvCreateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
+        try await self.client.execute(action: "DescribeComputeEnvCreateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
-        self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
+        self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境的创建信息
     ///
     /// 查看计算环境的创建信息。
     @inlinable
-    public func describeComputeEnvCreateInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
-        try await self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
+        try await self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

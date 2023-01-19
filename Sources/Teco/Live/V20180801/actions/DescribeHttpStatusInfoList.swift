@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,8 +61,8 @@ extension Live {
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
-        self.client.execute(action: "DescribeHttpStatusInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
+        self.client.execute(action: "DescribeHttpStatusInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http状态码明细数据
@@ -70,8 +70,8 @@ extension Live {
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
-        try await self.client.execute(action: "DescribeHttpStatusInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHttpStatusInfoList(_ input: DescribeHttpStatusInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
+        try await self.client.execute(action: "DescribeHttpStatusInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询播放http状态码明细数据
@@ -79,8 +79,8 @@ extension Live {
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
-        self.describeHttpStatusInfoList(DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHttpStatusInfoListResponse> {
+        self.describeHttpStatusInfoList(DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http状态码明细数据
@@ -88,7 +88,7 @@ extension Live {
     /// 查询某段时间内5分钟粒度的各播放http状态码的个数。
     /// 备注：数据延迟1小时，如10:00-10:59点的数据12点才能查到。
     @inlinable
-    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
-        try await self.describeHttpStatusInfoList(DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeHttpStatusInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHttpStatusInfoListResponse {
+        try await self.describeHttpStatusInfoList(DescribeHttpStatusInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Iotcloud {
     ///
     /// 更新产品动态注册的配置
     @inlinable
-    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductDynamicRegisterResponse> {
-        self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductDynamicRegisterResponse> {
+        self.client.execute(action: "UpdateProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新产品动态注册
     ///
     /// 更新产品动态注册的配置
     @inlinable
-    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
-        try await self.client.execute(action: "UpdateProductDynamicRegister", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProductDynamicRegister(_ input: UpdateProductDynamicRegisterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
+        try await self.client.execute(action: "UpdateProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新产品动态注册
     ///
     /// 更新产品动态注册的配置
     @inlinable
-    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductDynamicRegisterResponse> {
-        self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductDynamicRegisterResponse> {
+        self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新产品动态注册
     ///
     /// 更新产品动态注册的配置
     @inlinable
-    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
-        try await self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), logger: logger, on: eventLoop)
+    public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
+        try await self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Cdc {
 
     /// 专用集群概览信息
     @inlinable
-    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOverviewResponse> {
-        self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOverviewResponse> {
+        self.client.execute(action: "DescribeDedicatedClusterOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 专用集群概览信息
     @inlinable
-    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDedicatedClusterOverview(_ input: DescribeDedicatedClusterOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 专用集群概览信息
     @inlinable
-    public func describeDedicatedClusterOverview(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOverviewResponse> {
-        self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterOverview(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOverviewResponse> {
+        self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 专用集群概览信息
     @inlinable
-    public func describeDedicatedClusterOverview(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
-        try await self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterOverview(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
+        try await self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

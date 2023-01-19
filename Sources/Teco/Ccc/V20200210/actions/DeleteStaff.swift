@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Ccc {
 
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
-        self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteStaff(_ input: DeleteStaffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
+        self.client.execute(action: "DeleteStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(_ input: DeleteStaffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
-        try await self.client.execute(action: "DeleteStaff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteStaff(_ input: DeleteStaffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
+        try await self.client.execute(action: "DeleteStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
-        self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    public func deleteStaff(sdkAppId: Int64, staffList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
+        self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除坐席信息
     @inlinable
-    public func deleteStaff(sdkAppId: Int64, staffList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
-        try await self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    public func deleteStaff(sdkAppId: Int64, staffList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
+        try await self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 }

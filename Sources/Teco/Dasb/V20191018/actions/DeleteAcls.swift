@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dasb {
 
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
-        self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAcls(_ input: DeleteAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
+        self.client.execute(action: "DeleteAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(_ input: DeleteAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
-        try await self.client.execute(action: "DeleteAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAcls(_ input: DeleteAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
+        try await self.client.execute(action: "DeleteAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
-        self.deleteAcls(DeleteAclsRequest(idSet: idSet), logger: logger, on: eventLoop)
+    public func deleteAcls(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclsResponse> {
+        self.deleteAcls(DeleteAclsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除访问权限
     @inlinable
-    public func deleteAcls(idSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
-        try await self.deleteAcls(DeleteAclsRequest(idSet: idSet), logger: logger, on: eventLoop)
+    public func deleteAcls(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclsResponse {
+        try await self.deleteAcls(DeleteAclsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 }

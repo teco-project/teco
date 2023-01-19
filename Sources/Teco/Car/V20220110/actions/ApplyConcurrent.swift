@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Car {
 
     /// 申请并发
     @inlinable
-    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
-        self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
+        self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
     @inlinable
-    public func applyConcurrent(_ input: ApplyConcurrentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
-        try await self.client.execute(action: "ApplyConcurrent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
+        try await self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请并发
     @inlinable
-    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
-        self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), logger: logger, on: eventLoop)
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
+        self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
     @inlinable
-    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
-        try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), logger: logger, on: eventLoop)
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
+        try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,8 +79,8 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
-        self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
+        self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡实例的属性
@@ -88,8 +88,8 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
-        try await self.client.execute(action: "ModifyLoadBalancerAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
+        try await self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡实例的属性
@@ -97,8 +97,8 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
-        self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
+        self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡实例的属性
@@ -106,7 +106,7 @@ extension Clb {
     /// 修改负载均衡实例的属性。支持修改负载均衡实例的名称、设置负载均衡的跨域属性。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
-        try await self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, targetRegionInfo: TargetRegionInfo? = nil, internetChargeInfo: InternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, snatPro: Bool? = nil, deleteProtect: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
+        try await self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, targetRegionInfo: targetRegionInfo, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget, snatPro: snatPro, deleteProtect: deleteProtect), region: region, logger: logger, on: eventLoop)
     }
 }

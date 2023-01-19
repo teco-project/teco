@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Wedata {
 
     /// 实时任务同步速度趋势
     @inlinable
-    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskSpeedResponse> {
-        self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskSpeedResponse> {
+        self.client.execute(action: "DescribeRealTimeTaskSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实时任务同步速度趋势
     @inlinable
-    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
-        try await self.client.execute(action: "DescribeRealTimeTaskSpeed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRealTimeTaskSpeed(_ input: DescribeRealTimeTaskSpeedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
+        try await self.client.execute(action: "DescribeRealTimeTaskSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实时任务同步速度趋势
     @inlinable
-    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskSpeedResponse> {
-        self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskSpeedResponse> {
+        self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时任务同步速度趋势
     @inlinable
-    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
-        try await self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRealTimeTaskSpeed(taskId: String, startTime: UInt64, endTime: UInt64, granularity: UInt64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskSpeedResponse {
+        try await self.describeRealTimeTaskSpeed(DescribeRealTimeTaskSpeedRequest(taskId: taskId, startTime: startTime, endTime: endTime, granularity: granularity, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

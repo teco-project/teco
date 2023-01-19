@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Live {
     /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
-    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePullStreamTasksResponse> {
-        self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePullStreamTasksResponse> {
+        self.client.execute(action: "DescribeLivePullStreamTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播拉流任务
@@ -90,8 +90,8 @@ extension Live {
     /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
-    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
-        try await self.client.execute(action: "DescribeLivePullStreamTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLivePullStreamTasks(_ input: DescribeLivePullStreamTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
+        try await self.client.execute(action: "DescribeLivePullStreamTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询直播拉流任务
@@ -99,8 +99,8 @@ extension Live {
     /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
-    public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePullStreamTasksResponse> {
-        self.describeLivePullStreamTasks(DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePullStreamTasksResponse> {
+        self.describeLivePullStreamTasks(DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询直播拉流任务
@@ -108,7 +108,7 @@ extension Live {
     /// 查询使用 CreateLivePullStreamTask 接口创建的直播拉流任务。
     /// 排序方式：默认按更新时间 倒序排列。
     @inlinable
-    public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
-        try await self.describeLivePullStreamTasks(DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeLivePullStreamTasks(taskId: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePullStreamTasksResponse {
+        try await self.describeLivePullStreamTasks(DescribeLivePullStreamTasksRequest(taskId: taskId, pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

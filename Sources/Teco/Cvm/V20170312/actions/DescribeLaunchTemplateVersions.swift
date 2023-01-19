@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Cvm {
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
-    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchTemplateVersionsResponse> {
-        self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchTemplateVersionsResponse> {
+        self.client.execute(action: "DescribeLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例模板版本信息
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
-    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
-        try await self.client.execute(action: "DescribeLaunchTemplateVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLaunchTemplateVersions(_ input: DescribeLaunchTemplateVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
+        try await self.client.execute(action: "DescribeLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例模板版本信息
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
-    public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchTemplateVersionsResponse> {
-        self.describeLaunchTemplateVersions(DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), logger: logger, on: eventLoop)
+    public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchTemplateVersionsResponse> {
+        self.describeLaunchTemplateVersions(DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例模板版本信息
     ///
     /// 本接口（DescribeLaunchTemplateVersions）用于查询实例模板版本信息。
     @inlinable
-    public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
-        try await self.describeLaunchTemplateVersions(DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), logger: logger, on: eventLoop)
+    public func describeLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [UInt64]? = nil, minVersion: UInt64? = nil, maxVersion: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, defaultVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchTemplateVersionsResponse {
+        try await self.describeLaunchTemplateVersions(DescribeLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions, minVersion: minVersion, maxVersion: maxVersion, offset: offset, limit: limit, defaultVersion: defaultVersion), region: region, logger: logger, on: eventLoop)
     }
 }

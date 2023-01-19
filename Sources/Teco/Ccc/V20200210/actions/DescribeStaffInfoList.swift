@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Ccc {
 
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
-        self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
+        self.client.execute(action: "DescribeStaffInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
-        try await self.client.execute(action: "DescribeStaffInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStaffInfoList(_ input: DescribeStaffInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
+        try await self.client.execute(action: "DescribeStaffInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
-        self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), logger: logger, on: eventLoop)
+    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffInfoListResponse> {
+        self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
-        try await self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), logger: logger, on: eventLoop)
+    public func describeStaffInfoList(sdkAppId: Int64, pageSize: Int64, pageNumber: Int64, staffMail: String? = nil, modifiedTime: Int64? = nil, skillGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffInfoListResponse {
+        try await self.describeStaffInfoList(DescribeStaffInfoListRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber, staffMail: staffMail, modifiedTime: modifiedTime, skillGroupId: skillGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

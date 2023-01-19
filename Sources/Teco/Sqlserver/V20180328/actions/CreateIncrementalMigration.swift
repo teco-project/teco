@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
     @inlinable
-    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIncrementalMigrationResponse> {
-        self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIncrementalMigrationResponse> {
+        self.client.execute(action: "CreateIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建增量备份导入任务
     ///
     /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
     @inlinable
-    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
-        try await self.client.execute(action: "CreateIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIncrementalMigration(_ input: CreateIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
+        try await self.client.execute(action: "CreateIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建增量备份导入任务
     ///
     /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
     @inlinable
-    public func createIncrementalMigration(instanceId: String, backupMigrationId: String, backupFiles: [String]? = nil, isRecovery: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIncrementalMigrationResponse> {
-        self.createIncrementalMigration(CreateIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, backupFiles: backupFiles, isRecovery: isRecovery), logger: logger, on: eventLoop)
+    public func createIncrementalMigration(instanceId: String, backupMigrationId: String, backupFiles: [String]? = nil, isRecovery: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIncrementalMigrationResponse> {
+        self.createIncrementalMigration(CreateIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, backupFiles: backupFiles, isRecovery: isRecovery), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建增量备份导入任务
     ///
     /// 本接口（CreateIncrementalMigration）用于创建增量备份导入任务。
     @inlinable
-    public func createIncrementalMigration(instanceId: String, backupMigrationId: String, backupFiles: [String]? = nil, isRecovery: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
-        try await self.createIncrementalMigration(CreateIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, backupFiles: backupFiles, isRecovery: isRecovery), logger: logger, on: eventLoop)
+    public func createIncrementalMigration(instanceId: String, backupMigrationId: String, backupFiles: [String]? = nil, isRecovery: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIncrementalMigrationResponse {
+        try await self.createIncrementalMigration(CreateIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, backupFiles: backupFiles, isRecovery: isRecovery), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
-        self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
+        self.client.execute(action: "DescribeProxyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
-        try await self.client.execute(action: "DescribeProxyGroupDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxyGroupDetails(_ input: DescribeProxyGroupDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
+        try await self.client.execute(action: "DescribeProxyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
-        self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeProxyGroupDetails(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
+        self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组详情
     ///
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
-    public func describeProxyGroupDetails(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
-        try await self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeProxyGroupDetails(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
+        try await self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

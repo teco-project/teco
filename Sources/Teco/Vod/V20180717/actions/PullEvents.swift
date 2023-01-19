@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Vod {
     /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
-    public func pullEvents(_ input: PullEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
-        self.client.execute(action: "PullEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func pullEvents(_ input: PullEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
+        self.client.execute(action: "PullEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取事件通知
@@ -71,8 +71,8 @@ extension Vod {
     /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
-    public func pullEvents(_ input: PullEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
-        try await self.client.execute(action: "PullEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func pullEvents(_ input: PullEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
+        try await self.client.execute(action: "PullEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取事件通知
@@ -84,8 +84,8 @@ extension Vod {
     /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
-    public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
-        self.pullEvents(PullEventsRequest(extInfo: extInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullEventsResponse> {
+        self.pullEvents(PullEventsRequest(extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取事件通知
@@ -97,7 +97,7 @@ extension Vod {
     /// * 若该接口有事件返回，调用方必须在<font color="red">30秒</font>内调用 [确认事件通知](https://cloud.tencent.com/document/product/266/33434) 接口，确认事件通知已经处理，否则该事件通知在<font color="red">30秒</font>后会再次被拉取到。
     /// * 当前，API 每次最多可以获取16个事件通知。
     @inlinable
-    public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
-        try await self.pullEvents(PullEventsRequest(extInfo: extInfo, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func pullEvents(extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullEventsResponse {
+        try await self.pullEvents(PullEventsRequest(extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

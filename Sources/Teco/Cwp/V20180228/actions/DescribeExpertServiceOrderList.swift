@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cwp {
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
-        self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
+        self.client.execute(action: "DescribeExpertServiceOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
-        try await self.client.execute(action: "DescribeExpertServiceOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExpertServiceOrderList(_ input: DescribeExpertServiceOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
+        try await self.client.execute(action: "DescribeExpertServiceOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
-        self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
+        self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 专家服务订单列表
     ///
     /// 专家服务-专家服务订单列表
     @inlinable
-    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
-        try await self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
+        try await self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

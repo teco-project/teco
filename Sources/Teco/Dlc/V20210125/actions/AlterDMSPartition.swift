@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Dlc {
 
     /// DMS元数据更新分区
     @inlinable
-    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSPartitionResponse> {
-        self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSPartitionResponse> {
+        self.client.execute(action: "AlterDMSPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新分区
     @inlinable
-    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
-        try await self.client.execute(action: "AlterDMSPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func alterDMSPartition(_ input: AlterDMSPartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
+        try await self.client.execute(action: "AlterDMSPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据更新分区
     @inlinable
-    public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSPartitionResponse> {
-        self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), logger: logger, on: eventLoop)
+    public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSPartitionResponse> {
+        self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新分区
     @inlinable
-    public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
-        try await self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), logger: logger, on: eventLoop)
+    public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
+        try await self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 }

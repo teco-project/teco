@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Bm {
 
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
-        self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
+        self.client.execute(action: "DescribeDeviceInventory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
-        try await self.client.execute(action: "DescribeDeviceInventory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceInventory(_ input: DescribeDeviceInventoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
+        try await self.client.execute(action: "DescribeDeviceInventory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
-        self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceInventoryResponse> {
+        self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备库存
     @inlinable
-    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
-        try await self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), logger: logger, on: eventLoop)
+    public func describeDeviceInventory(zone: String, deviceClassCode: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cpuId: UInt64? = nil, memSize: UInt64? = nil, containRaidCard: UInt64? = nil, systemDiskTypeId: UInt64? = nil, systemDiskCount: UInt64? = nil, dataDiskTypeId: UInt64? = nil, dataDiskCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceInventoryResponse {
+        try await self.describeDeviceInventory(DescribeDeviceInventoryRequest(zone: zone, deviceClassCode: deviceClassCode, vpcId: vpcId, subnetId: subnetId, cpuId: cpuId, memSize: memSize, containRaidCard: containRaidCard, systemDiskTypeId: systemDiskTypeId, systemDiskCount: systemDiskCount, dataDiskTypeId: dataDiskTypeId, dataDiskCount: dataDiskCount), region: region, logger: logger, on: eventLoop)
     }
 }

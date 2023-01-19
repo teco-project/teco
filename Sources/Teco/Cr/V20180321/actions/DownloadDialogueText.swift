@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cr {
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
-        self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
+        self.client.execute(action: "DownloadDialogueText", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
-        try await self.client.execute(action: "DownloadDialogueText", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadDialogueText(_ input: DownloadDialogueTextRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
+        try await self.client.execute(action: "DownloadDialogueText", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
-        self.downloadDialogueText(DownloadDialogueTextRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
+    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDialogueTextResponse> {
+        self.downloadDialogueText(DownloadDialogueTextRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 对话文本下载
     ///
     /// 用于获取指定案件的对话文本内容，次日早上8:00后可查询前日对话文本内容。
     @inlinable
-    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
-        try await self.downloadDialogueText(DownloadDialogueTextRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), logger: logger, on: eventLoop)
+    public func downloadDialogueText(module: String, operation: String, reportDate: Date, instId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDialogueTextResponse {
+        try await self.downloadDialogueText(DownloadDialogueTextRequest(module: module, operation: operation, reportDate: reportDate, instId: instId), region: region, logger: logger, on: eventLoop)
     }
 }

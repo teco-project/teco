@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Asw {
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
-        self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFlowService(_ input: ModifyFlowServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
+        self.client.execute(action: "ModifyFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(_ input: ModifyFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
-        try await self.client.execute(action: "ModifyFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFlowService(_ input: ModifyFlowServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
+        try await self.client.execute(action: "ModifyFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
-        self.modifyFlowService(ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), logger: logger, on: eventLoop)
+    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowServiceResponse> {
+        self.modifyFlowService(ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改状态机
     ///
     /// 该接口用于修改状态机
     @inlinable
-    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
-        try await self.modifyFlowService(ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), logger: logger, on: eventLoop)
+    public func modifyFlowService(flowServiceResource: String, definition: String, flowServiceName: String, flowServiceChineseName: String, isNewRole: Bool, type: String, roleResource: String, description: String? = nil, enableCLS: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowServiceResponse {
+        try await self.modifyFlowService(ModifyFlowServiceRequest(flowServiceResource: flowServiceResource, definition: definition, flowServiceName: flowServiceName, flowServiceChineseName: flowServiceChineseName, isNewRole: isNewRole, type: type, roleResource: roleResource, description: description, enableCLS: enableCLS), region: region, logger: logger, on: eventLoop)
     }
 }

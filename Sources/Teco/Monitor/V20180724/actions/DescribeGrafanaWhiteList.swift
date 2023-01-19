@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Monitor {
 
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
-        self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
+        self.client.execute(action: "DescribeGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
-        try await self.client.execute(action: "DescribeGrafanaWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGrafanaWhiteList(_ input: DescribeGrafanaWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
+        try await self.client.execute(action: "DescribeGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
-        self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeGrafanaWhiteList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaWhiteListResponse> {
+        self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 白名单
     @inlinable
-    public func describeGrafanaWhiteList(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
-        try await self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeGrafanaWhiteList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaWhiteListResponse {
+        try await self.describeGrafanaWhiteList(DescribeGrafanaWhiteListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Youmall {
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
-        self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePersonInfo(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
+        self.client.execute(action: "DescribePersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(_ input: DescribePersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
-        try await self.client.execute(action: "DescribePersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePersonInfo(_ input: DescribePersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
+        try await self.client.execute(action: "DescribePersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
-        self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), logger: logger, on: eventLoop)
+    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
+        self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取顾客详情列表
     ///
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
-    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
-        try await self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), logger: logger, on: eventLoop)
+    public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
+        try await self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), region: region, logger: logger, on: eventLoop)
     }
 }

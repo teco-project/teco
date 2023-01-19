@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Antiddos {
 
     /// 修改CC精准防护策略
     @inlinable
-    public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
-        self.client.execute(action: "ModifyCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
+        self.client.execute(action: "ModifyCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC精准防护策略
     @inlinable
-    public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
-        try await self.client.execute(action: "ModifyCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
+        try await self.client.execute(action: "ModifyCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC精准防护策略
     @inlinable
-    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
-        self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
+        self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC精准防护策略
     @inlinable
-    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
-        try await self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
+        try await self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }
 }

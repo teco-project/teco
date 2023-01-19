@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -122,8 +122,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectFace(_ input: DetectFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
-        self.client.execute(action: "DetectFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectFace(_ input: DetectFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
+        self.client.execute(action: "DetectFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸检测与分析
@@ -138,8 +138,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectFace(_ input: DetectFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {
-        try await self.client.execute(action: "DetectFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectFace(_ input: DetectFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {
+        try await self.client.execute(action: "DetectFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸检测与分析
@@ -154,8 +154,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
-        self.detectFace(DetectFaceRequest(maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, image: image, url: url, needFaceAttributes: needFaceAttributes, needQualityDetection: needQualityDetection, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceResponse> {
+        self.detectFace(DetectFaceRequest(maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, image: image, url: url, needFaceAttributes: needFaceAttributes, needQualityDetection: needQualityDetection, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸检测与分析
@@ -170,7 +170,7 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {
-        try await self.detectFace(DetectFaceRequest(maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, image: image, url: url, needFaceAttributes: needFaceAttributes, needQualityDetection: needQualityDetection, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func detectFace(maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, image: String? = nil, url: String? = nil, needFaceAttributes: UInt64? = nil, needQualityDetection: UInt64? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceResponse {
+        try await self.detectFace(DetectFaceRequest(maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, image: image, url: url, needFaceAttributes: needFaceAttributes, needQualityDetection: needQualityDetection, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

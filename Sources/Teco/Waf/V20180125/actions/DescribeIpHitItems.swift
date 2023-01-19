@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Waf {
 
     /// Waf  IP封堵状态查询
     @inlinable
-    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpHitItemsResponse> {
-        self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpHitItemsResponse> {
+        self.client.execute(action: "DescribeIpHitItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Waf  IP封堵状态查询
     @inlinable
-    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
-        try await self.client.execute(action: "DescribeIpHitItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpHitItems(_ input: DescribeIpHitItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
+        try await self.client.execute(action: "DescribeIpHitItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Waf  IP封堵状态查询
     @inlinable
-    public func describeIpHitItems(domain: String, count: Int64, category: String, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpHitItemsResponse> {
-        self.describeIpHitItems(DescribeIpHitItemsRequest(domain: domain, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort, ip: ip), logger: logger, on: eventLoop)
+    public func describeIpHitItems(domain: String, count: Int64, category: String, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpHitItemsResponse> {
+        self.describeIpHitItems(DescribeIpHitItemsRequest(domain: domain, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf  IP封堵状态查询
     @inlinable
-    public func describeIpHitItems(domain: String, count: Int64, category: String, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
-        try await self.describeIpHitItems(DescribeIpHitItemsRequest(domain: domain, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort, ip: ip), logger: logger, on: eventLoop)
+    public func describeIpHitItems(domain: String, count: Int64, category: String, vtsMin: UInt64? = nil, vtsMax: UInt64? = nil, ctsMin: UInt64? = nil, ctsMax: UInt64? = nil, skip: UInt64? = nil, limit: UInt64? = nil, name: String? = nil, sort: String? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpHitItemsResponse {
+        try await self.describeIpHitItems(DescribeIpHitItemsRequest(domain: domain, count: count, category: category, vtsMin: vtsMin, vtsMax: vtsMax, ctsMin: ctsMin, ctsMax: ctsMax, skip: skip, limit: limit, name: name, sort: sort, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

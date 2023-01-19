@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Organization {
 
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
-        self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
+        self.client.execute(action: "MoveOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
-        try await self.client.execute(action: "MoveOrganizationNodeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func moveOrganizationNodeMembers(_ input: MoveOrganizationNodeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
+        try await self.client.execute(action: "MoveOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
-        self.moveOrganizationNodeMembers(MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin), logger: logger, on: eventLoop)
+    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationNodeMembersResponse> {
+        self.moveOrganizationNodeMembers(MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动成员到指定企业组织节点
     @inlinable
-    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
-        try await self.moveOrganizationNodeMembers(MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin), logger: logger, on: eventLoop)
+    public func moveOrganizationNodeMembers(nodeId: Int64, memberUin: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationNodeMembersResponse {
+        try await self.moveOrganizationNodeMembers(MoveOrganizationNodeMembersRequest(nodeId: nodeId, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 }

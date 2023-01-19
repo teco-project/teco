@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Bmlb {
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
-        self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
+        self.client.execute(action: "DescribeL7ListenersEx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
-        try await self.client.execute(action: "DescribeL7ListenersEx", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeL7ListenersEx(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
+        try await self.client.execute(action: "DescribeL7ListenersEx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
-        self.describeL7ListenersEx(DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersExResponse> {
+        self.describeL7ListenersEx(DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
     @inlinable
-    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
-        try await self.describeL7ListenersEx(DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeL7ListenersEx(trafficMirrorId: String, vpcId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersExResponse {
+        try await self.describeL7ListenersEx(DescribeL7ListenersExRequest(trafficMirrorId: trafficMirrorId, vpcId: vpcId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

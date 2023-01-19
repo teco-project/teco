@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,31 +109,31 @@ extension Lcic {
     ///
     /// 获取房间信息
     @inlinable
-    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
-        self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
+        self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 房间信息
     ///
     /// 获取房间信息
     @inlinable
-    public func describeRoom(_ input: DescribeRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
-        try await self.client.execute(action: "DescribeRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
+        try await self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 房间信息
     ///
     /// 获取房间信息
     @inlinable
-    public func describeRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
-        self.describeRoom(DescribeRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
+        self.describeRoom(DescribeRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 房间信息
     ///
     /// 获取房间信息
     @inlinable
-    public func describeRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
-        try await self.describeRoom(DescribeRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
+        try await self.describeRoom(DescribeRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

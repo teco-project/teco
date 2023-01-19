@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
-    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
-        self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
+        self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩展信息列表
@@ -78,8 +78,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
-    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        try await self.client.execute(action: "DescribeInstancesExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
+        try await self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例扩展信息列表
@@ -87,8 +87,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
-    public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
-        self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), logger: logger, on: eventLoop)
+    public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
+        self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩展信息列表
@@ -96,7 +96,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
-    public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        try await self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), logger: logger, on: eventLoop)
+    public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
+        try await self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Wedata {
 
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
-        self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
+        self.client.execute(action: "DescribeTaskLockStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
-        try await self.client.execute(action: "DescribeTaskLockStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskLockStatus(_ input: DescribeTaskLockStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
+        try await self.client.execute(action: "DescribeTaskLockStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
-        self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLockStatusResponse> {
+        self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看任务锁状态信息
     @inlinable
-    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
-        try await self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeTaskLockStatus(taskId: String, projectId: String, taskType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLockStatusResponse {
+        try await self.describeTaskLockStatus(DescribeTaskLockStatusRequest(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

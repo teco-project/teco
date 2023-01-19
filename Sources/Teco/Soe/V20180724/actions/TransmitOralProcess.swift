@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -142,31 +142,31 @@ extension Soe {
     ///
     /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
     @inlinable
-    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitOralProcessResponse> {
-        self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transmitOralProcess(_ input: TransmitOralProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitOralProcessResponse> {
+        self.client.execute(action: "TransmitOralProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发音数据传输接口
     ///
     /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
     @inlinable
-    public func transmitOralProcess(_ input: TransmitOralProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
-        try await self.client.execute(action: "TransmitOralProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transmitOralProcess(_ input: TransmitOralProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
+        try await self.client.execute(action: "TransmitOralProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发音数据传输接口
     ///
     /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
     @inlinable
-    public func transmitOralProcess(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, isQuery: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitOralProcessResponse> {
-        self.transmitOralProcess(TransmitOralProcessRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, isQuery: isQuery), logger: logger, on: eventLoop)
+    public func transmitOralProcess(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, isQuery: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitOralProcessResponse> {
+        self.transmitOralProcess(TransmitOralProcessRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, isQuery: isQuery), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发音数据传输接口
     ///
     /// 本接口可用于中英文发音评测数据传输。在使用本接口时需要注意：传输音频数据，必须在完成发音评估初始化接口之后调用，且SessonId要与初始化接口保持一致。分片传输时，尽量保证SeqId顺序传输（请确认SeqId由1开始）。音频源目前仅支持16k采样率16bit单声道编码方式，如有不一致可能导致评估不准确或失败。
     @inlinable
-    public func transmitOralProcess(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, isQuery: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
-        try await self.transmitOralProcess(TransmitOralProcessRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, isQuery: isQuery), logger: logger, on: eventLoop)
+    public func transmitOralProcess(seqId: Int64, isEnd: Int64, voiceFileType: Int64, voiceEncodeType: Int64, userVoiceData: String, sessionId: String, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, isQuery: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitOralProcessResponse {
+        try await self.transmitOralProcess(TransmitOralProcessRequest(seqId: seqId, isEnd: isEnd, voiceFileType: voiceFileType, voiceEncodeType: voiceEncodeType, userVoiceData: userVoiceData, sessionId: sessionId, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, isQuery: isQuery), region: region, logger: logger, on: eventLoop)
     }
 }

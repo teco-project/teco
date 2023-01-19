@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Ssa {
 
     /// 云安全配置检查项结果列表
     @inlinable
-    public func describeSocCheckResultList(_ input: DescribeSocCheckResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckResultListResponse> {
-        self.client.execute(action: "DescribeSocCheckResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSocCheckResultList(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckResultListResponse> {
+        self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置检查项结果列表
     @inlinable
-    public func describeSocCheckResultList(_ input: DescribeSocCheckResultListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckResultListResponse {
-        try await self.client.execute(action: "DescribeSocCheckResultList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSocCheckResultList(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckResultListResponse {
+        try await self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云安全配置检查项结果列表
     @inlinable
-    public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckResultListResponse> {
-        self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), logger: logger, on: eventLoop)
+    public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckResultListResponse> {
+        self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置检查项结果列表
     @inlinable
-    public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckResultListResponse {
-        try await self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), logger: logger, on: eventLoop)
+    public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckResultListResponse {
+        try await self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), region: region, logger: logger, on: eventLoop)
     }
 }

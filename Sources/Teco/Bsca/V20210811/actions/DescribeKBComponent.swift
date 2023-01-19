@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bsca {
     ///
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
-    public func describeKBComponent(_ input: DescribeKBComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBComponentResponse> {
-        self.client.execute(action: "DescribeKBComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKBComponent(_ input: DescribeKBComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBComponentResponse> {
+        self.client.execute(action: "DescribeKBComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询知识库组件信息
     ///
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
-    public func describeKBComponent(_ input: DescribeKBComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBComponentResponse {
-        try await self.client.execute(action: "DescribeKBComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKBComponent(_ input: DescribeKBComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBComponentResponse {
+        try await self.client.execute(action: "DescribeKBComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询知识库组件信息
     ///
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
-    public func describeKBComponent(purl: PURL, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBComponentResponse> {
-        self.describeKBComponent(DescribeKBComponentRequest(purl: purl), logger: logger, on: eventLoop)
+    public func describeKBComponent(purl: PURL, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBComponentResponse> {
+        self.describeKBComponent(DescribeKBComponentRequest(purl: purl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询知识库组件信息
     ///
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
-    public func describeKBComponent(purl: PURL, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBComponentResponse {
-        try await self.describeKBComponent(DescribeKBComponentRequest(purl: purl), logger: logger, on: eventLoop)
+    public func describeKBComponent(purl: PURL, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBComponentResponse {
+        try await self.describeKBComponent(DescribeKBComponentRequest(purl: purl), region: region, logger: logger, on: eventLoop)
     }
 }

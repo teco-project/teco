@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Tcss {
 
     /// 镜像仓库资产刷新
     @inlinable
-    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetImageRegistryAssetResponse> {
-        self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetImageRegistryAssetResponse> {
+        self.client.execute(action: "SyncAssetImageRegistryAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库资产刷新
     @inlinable
-    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
-        try await self.client.execute(action: "SyncAssetImageRegistryAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncAssetImageRegistryAsset(_ input: SyncAssetImageRegistryAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
+        try await self.client.execute(action: "SyncAssetImageRegistryAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库资产刷新
     @inlinable
-    public func syncAssetImageRegistryAsset(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetImageRegistryAssetResponse> {
-        self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), logger: logger, on: eventLoop)
+    public func syncAssetImageRegistryAsset(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetImageRegistryAssetResponse> {
+        self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库资产刷新
     @inlinable
-    public func syncAssetImageRegistryAsset(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
-        try await self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), logger: logger, on: eventLoop)
+    public func syncAssetImageRegistryAsset(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
+        try await self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

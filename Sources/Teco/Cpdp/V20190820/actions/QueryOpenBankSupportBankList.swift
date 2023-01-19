@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cpdp {
 
     /// 云企付-查询支持银行列表
     @inlinable
-    public func queryOpenBankSupportBankList(_ input: QueryOpenBankSupportBankListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSupportBankListResponse> {
-        self.client.execute(action: "QueryOpenBankSupportBankList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankSupportBankList(_ input: QueryOpenBankSupportBankListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSupportBankListResponse> {
+        self.client.execute(action: "QueryOpenBankSupportBankList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询支持银行列表
     @inlinable
-    public func queryOpenBankSupportBankList(_ input: QueryOpenBankSupportBankListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
-        try await self.client.execute(action: "QueryOpenBankSupportBankList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankSupportBankList(_ input: QueryOpenBankSupportBankListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
+        try await self.client.execute(action: "QueryOpenBankSupportBankList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-查询支持银行列表
     @inlinable
-    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSupportBankListResponse> {
-        self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSupportBankListResponse> {
+        self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询支持银行列表
     @inlinable
-    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
-        try await self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSupportBankList(channelMerchantId: String, channelName: String, paymentMethod: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSupportBankListResponse {
+        try await self.queryOpenBankSupportBankList(QueryOpenBankSupportBankListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

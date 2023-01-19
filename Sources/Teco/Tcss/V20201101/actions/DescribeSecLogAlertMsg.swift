@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcss {
 
     /// 查询安全日志告警信息
     @inlinable
-    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogAlertMsgResponse> {
-        self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogAlertMsgResponse> {
+        self.client.execute(action: "DescribeSecLogAlertMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志告警信息
     @inlinable
-    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
-        try await self.client.execute(action: "DescribeSecLogAlertMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecLogAlertMsg(_ input: DescribeSecLogAlertMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
+        try await self.client.execute(action: "DescribeSecLogAlertMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全日志告警信息
     @inlinable
-    public func describeSecLogAlertMsg(type: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogAlertMsgResponse> {
-        self.describeSecLogAlertMsg(DescribeSecLogAlertMsgRequest(type: type), logger: logger, on: eventLoop)
+    public func describeSecLogAlertMsg(type: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogAlertMsgResponse> {
+        self.describeSecLogAlertMsg(DescribeSecLogAlertMsgRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志告警信息
     @inlinable
-    public func describeSecLogAlertMsg(type: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
-        try await self.describeSecLogAlertMsg(DescribeSecLogAlertMsgRequest(type: type), logger: logger, on: eventLoop)
+    public func describeSecLogAlertMsg(type: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogAlertMsgResponse {
+        try await self.describeSecLogAlertMsg(DescribeSecLogAlertMsgRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 }

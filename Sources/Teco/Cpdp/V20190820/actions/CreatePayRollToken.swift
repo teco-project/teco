@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Cpdp {
 
     /// 务工卡-生成授权令牌
     @inlinable
-    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollTokenResponse> {
-        self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPayRollToken(_ input: CreatePayRollTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollTokenResponse> {
+        self.client.execute(action: "CreatePayRollToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-生成授权令牌
     @inlinable
-    public func createPayRollToken(_ input: CreatePayRollTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
-        try await self.client.execute(action: "CreatePayRollToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPayRollToken(_ input: CreatePayRollTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
+        try await self.client.execute(action: "CreatePayRollToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 务工卡-生成授权令牌
     @inlinable
-    public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollTokenResponse> {
-        self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollTokenResponse> {
+        self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-生成授权令牌
     @inlinable
-    public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
-        try await self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), logger: logger, on: eventLoop)
+    public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
+        try await self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
     }
 }

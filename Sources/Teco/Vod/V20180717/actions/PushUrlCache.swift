@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable
-    public func pushUrlCache(_ input: PushUrlCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
-        self.client.execute(action: "PushUrlCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func pushUrlCache(_ input: PushUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
+        self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预热URL
@@ -62,8 +62,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable
-    public func pushUrlCache(_ input: PushUrlCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
-        try await self.client.execute(action: "PushUrlCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func pushUrlCache(_ input: PushUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
+        try await self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 预热URL
@@ -73,8 +73,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable
-    public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
-        self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
+        self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预热URL
@@ -84,7 +84,7 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable
-    public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
-        try await self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
+        try await self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dc {
 
     /// 接受专用通道申请
     @inlinable
-    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptDirectConnectTunnelResponse> {
-        self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptDirectConnectTunnelResponse> {
+        self.client.execute(action: "AcceptDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受专用通道申请
     @inlinable
-    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
-        try await self.client.execute(action: "AcceptDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func acceptDirectConnectTunnel(_ input: AcceptDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
+        try await self.client.execute(action: "AcceptDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 接受专用通道申请
     @inlinable
-    public func acceptDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptDirectConnectTunnelResponse> {
-        self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func acceptDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptDirectConnectTunnelResponse> {
+        self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 接受专用通道申请
     @inlinable
-    public func acceptDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
-        try await self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func acceptDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
+        try await self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 }

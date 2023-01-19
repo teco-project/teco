@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Ecm {
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
-        self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
+        self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        try await self.client.execute(action: "AssignIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func assignIpv6Addresses(_ input: AssignIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
+        try await self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
-        self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), logger: logger, on: eventLoop)
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
+        self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6地址
     ///
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
-    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        try await self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), logger: logger, on: eventLoop)
+    public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
+        try await self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
     }
 }

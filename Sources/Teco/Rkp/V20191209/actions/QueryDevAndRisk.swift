@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -172,31 +172,31 @@ extension Rkp {
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
-        self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
+        self.client.execute(action: "QueryDevAndRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
-        try await self.client.execute(action: "QueryDevAndRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryDevAndRisk(_ input: QueryDevAndRiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
+        try await self.client.execute(action: "QueryDevAndRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
-        self.queryDevAndRisk(QueryDevAndRiskRequest(devType: devType, imei: imei, mac: mac, aid: aid, cid: cid, imsi: imsi, df: df, kernelVer: kernelVer, storage: storage, dfp: dfp, bootTime: bootTime, resolution: resolution, ringList: ringList, fontList: fontList, sensorList: sensorList, cpuType: cpuType, battery: battery, oaid: oaid, idfa: idfa, idfv: idfv, deviceName: deviceName, iphoneModel: iphoneModel, fingerprint: fingerprint, serialId: serialId), logger: logger, on: eventLoop)
+    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDevAndRiskResponse> {
+        self.queryDevAndRisk(QueryDevAndRiskRequest(devType: devType, imei: imei, mac: mac, aid: aid, cid: cid, imsi: imsi, df: df, kernelVer: kernelVer, storage: storage, dfp: dfp, bootTime: bootTime, resolution: resolution, ringList: ringList, fontList: fontList, sensorList: sensorList, cpuType: cpuType, battery: battery, oaid: oaid, idfa: idfa, idfv: idfv, deviceName: deviceName, iphoneModel: iphoneModel, fingerprint: fingerprint, serialId: serialId), region: region, logger: logger, on: eventLoop)
     }
 
     /// Devid及风险查询
     ///
     /// 腾讯天御设备风险查询接口，输入由客户应用自主采集的设备信息， 通过腾讯大数据风控能力，可以准确根据输入设备信息，还原设备库中的设备ID，并且识别设备的风险，解决客户业务过程中的设备风险，降低企业损失。
     @inlinable
-    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
-        try await self.queryDevAndRisk(QueryDevAndRiskRequest(devType: devType, imei: imei, mac: mac, aid: aid, cid: cid, imsi: imsi, df: df, kernelVer: kernelVer, storage: storage, dfp: dfp, bootTime: bootTime, resolution: resolution, ringList: ringList, fontList: fontList, sensorList: sensorList, cpuType: cpuType, battery: battery, oaid: oaid, idfa: idfa, idfv: idfv, deviceName: deviceName, iphoneModel: iphoneModel, fingerprint: fingerprint, serialId: serialId), logger: logger, on: eventLoop)
+    public func queryDevAndRisk(devType: Int64, imei: String? = nil, mac: String? = nil, aid: String? = nil, cid: String? = nil, imsi: String? = nil, df: String? = nil, kernelVer: String? = nil, storage: String? = nil, dfp: String? = nil, bootTime: String? = nil, resolution: String? = nil, ringList: String? = nil, fontList: String? = nil, sensorList: String? = nil, cpuType: String? = nil, battery: String? = nil, oaid: String? = nil, idfa: String? = nil, idfv: String? = nil, deviceName: String? = nil, iphoneModel: String? = nil, fingerprint: String? = nil, serialId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDevAndRiskResponse {
+        try await self.queryDevAndRisk(QueryDevAndRiskRequest(devType: devType, imei: imei, mac: mac, aid: aid, cid: cid, imsi: imsi, df: df, kernelVer: kernelVer, storage: storage, dfp: dfp, bootTime: bootTime, resolution: resolution, ringList: ringList, fontList: fontList, sensorList: sensorList, cpuType: cpuType, battery: battery, oaid: oaid, idfa: idfa, idfv: idfv, deviceName: deviceName, iphoneModel: iphoneModel, fingerprint: fingerprint, serialId: serialId), region: region, logger: logger, on: eventLoop)
     }
 }

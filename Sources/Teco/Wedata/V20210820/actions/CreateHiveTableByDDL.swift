@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Wedata {
     ///
     /// 创建hive表，返回表名称
     @inlinable
-    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableByDDLResponse> {
-        self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableByDDLResponse> {
+        self.client.execute(action: "CreateHiveTableByDDL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建hive表
     ///
     /// 创建hive表，返回表名称
     @inlinable
-    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
-        try await self.client.execute(action: "CreateHiveTableByDDL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHiveTableByDDL(_ input: CreateHiveTableByDDLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
+        try await self.client.execute(action: "CreateHiveTableByDDL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建hive表
     ///
     /// 创建hive表，返回表名称
     @inlinable
-    public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableByDDLResponse> {
-        self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), logger: logger, on: eventLoop)
+    public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableByDDLResponse> {
+        self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建hive表
     ///
     /// 创建hive表，返回表名称
     @inlinable
-    public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
-        try await self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), logger: logger, on: eventLoop)
+    public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
+        try await self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), region: region, logger: logger, on: eventLoop)
     }
 }

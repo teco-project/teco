@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Gme {
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
-        self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApp(_ input: CreateAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
+        self.client.execute(action: "CreateApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(_ input: CreateAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
-        try await self.client.execute(action: "CreateApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApp(_ input: CreateAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
+        try await self.client.execute(action: "CreateApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
-        self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), logger: logger, on: eventLoop)
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppResponse> {
+        self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建GME应用
     ///
     /// 本接口(CreateApp)用于创建一个GME应用。
     @inlinable
-    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
-        try await self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), logger: logger, on: eventLoop)
+    public func createApp(appName: String, projectId: UInt64? = nil, engineList: [String]? = nil, regionList: [String]? = nil, realtimeSpeechConf: RealtimeSpeechConf? = nil, voiceMessageConf: VoiceMessageConf? = nil, voiceFilterConf: VoiceFilterConf? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppResponse {
+        try await self.createApp(CreateAppRequest(appName: appName, projectId: projectId, engineList: engineList, regionList: regionList, realtimeSpeechConf: realtimeSpeechConf, voiceMessageConf: voiceMessageConf, voiceFilterConf: voiceFilterConf, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

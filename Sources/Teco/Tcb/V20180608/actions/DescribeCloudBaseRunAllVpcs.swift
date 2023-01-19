@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcb {
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunAllVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunAllVpcs(_ input: DescribeCloudBaseRunAllVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunAllVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
-        self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunAllVpcs(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunAllVpcsResponse> {
+        self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看环境下的所有vpc
     ///
     /// 查询环境下所有的vpc列表
     @inlinable
-    public func describeCloudBaseRunAllVpcs(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
-        try await self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunAllVpcs(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunAllVpcsResponse {
+        try await self.describeCloudBaseRunAllVpcs(DescribeCloudBaseRunAllVpcsRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

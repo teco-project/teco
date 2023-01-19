@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Drm {
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
-        self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllKeys(_ input: DescribeAllKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
+        self.client.execute(action: "DescribeAllKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(_ input: DescribeAllKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
-        try await self.client.execute(action: "DescribeAllKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllKeys(_ input: DescribeAllKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
+        try await self.client.execute(action: "DescribeAllKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
-        self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), logger: logger, on: eventLoop)
+    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllKeysResponse> {
+        self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有加密密钥列表
     ///
     /// 本接口用来查询指定DRM类型、ContentType的所有加密密钥
     @inlinable
-    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
-        try await self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), logger: logger, on: eventLoop)
+    public func describeAllKeys(drmType: String, rsaPublicKey: String? = nil, contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllKeysResponse {
+        try await self.describeAllKeys(DescribeAllKeysRequest(drmType: drmType, rsaPublicKey: rsaPublicKey, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
     }
 }

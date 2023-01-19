@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
-    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadIncrementalInfoResponse> {
-        self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadIncrementalInfoResponse> {
+        self.client.execute(action: "DescribeUploadIncrementalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询增量备份上传权限
     ///
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
-    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
-        try await self.client.execute(action: "DescribeUploadIncrementalInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUploadIncrementalInfo(_ input: DescribeUploadIncrementalInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
+        try await self.client.execute(action: "DescribeUploadIncrementalInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询增量备份上传权限
     ///
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
-    public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadIncrementalInfoResponse> {
-        self.describeUploadIncrementalInfo(DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadIncrementalInfoResponse> {
+        self.describeUploadIncrementalInfo(DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询增量备份上传权限
     ///
     /// 本接口（DescribeUploadIncrementalInfo）用于查询增量备份上传权限。
     @inlinable
-    public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
-        try await self.describeUploadIncrementalInfo(DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func describeUploadIncrementalInfo(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadIncrementalInfoResponse {
+        try await self.describeUploadIncrementalInfo(DescribeUploadIncrementalInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

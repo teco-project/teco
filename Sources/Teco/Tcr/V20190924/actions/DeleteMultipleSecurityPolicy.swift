@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcr {
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
-        self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
+        self.client.execute(action: "DeleteMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
-        try await self.client.execute(action: "DeleteMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMultipleSecurityPolicy(_ input: DeleteMultipleSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
+        try await self.client.execute(action: "DeleteMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
-        self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
+        self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问多白名单策略
     ///
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
-    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
-        try await self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
+        try await self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

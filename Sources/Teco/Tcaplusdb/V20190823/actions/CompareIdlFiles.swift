@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Tcaplusdb {
     ///
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
-    public func compareIdlFiles(_ input: CompareIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareIdlFilesResponse> {
-        self.client.execute(action: "CompareIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func compareIdlFiles(_ input: CompareIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareIdlFilesResponse> {
+        self.client.execute(action: "CompareIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验改表文件
     ///
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
-    public func compareIdlFiles(_ input: CompareIdlFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareIdlFilesResponse {
-        try await self.client.execute(action: "CompareIdlFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func compareIdlFiles(_ input: CompareIdlFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareIdlFilesResponse {
+        try await self.client.execute(action: "CompareIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传并校验改表文件
     ///
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
-    public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareIdlFilesResponse> {
-        self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), logger: logger, on: eventLoop)
+    public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareIdlFilesResponse> {
+        self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验改表文件
     ///
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
-    public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareIdlFilesResponse {
-        try await self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), logger: logger, on: eventLoop)
+    public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareIdlFilesResponse {
+        try await self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
     }
 }

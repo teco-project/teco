@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Vpc {
     ///
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
-    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
-        self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
+        self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务的服务白名单列表
     ///
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
-    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
-        try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcEndPointServiceWhiteList(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
+        try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询终端节点服务的服务白名单列表
     ///
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
-    public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
-        self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
+        self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务的服务白名单列表
     ///
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
-    public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
-        try await self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
+        try await self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Rkp {
     ///
     /// 根据DevicceToken查询OpenID。
     @inlinable
-    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOpenIdResponse> {
-        self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getOpenId(_ input: GetOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOpenIdResponse> {
+        self.client.execute(action: "GetOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// RPopenID查询
     ///
     /// 根据DevicceToken查询OpenID。
     @inlinable
-    public func getOpenId(_ input: GetOpenIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
-        try await self.client.execute(action: "GetOpenId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getOpenId(_ input: GetOpenIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
+        try await self.client.execute(action: "GetOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// RPopenID查询
     ///
     /// 根据DevicceToken查询OpenID。
     @inlinable
-    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOpenIdResponse> {
-        self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), logger: logger, on: eventLoop)
+    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOpenIdResponse> {
+        self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), region: region, logger: logger, on: eventLoop)
     }
 
     /// RPopenID查询
     ///
     /// 根据DevicceToken查询OpenID。
     @inlinable
-    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
-        try await self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), logger: logger, on: eventLoop)
+    public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
+        try await self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Teo {
 
     /// 创建负载均衡
     @inlinable
-    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancingResponse> {
-        self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancingResponse> {
+        self.client.execute(action: "CreateLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡
     @inlinable
-    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
-        try await self.client.execute(action: "CreateLoadBalancing", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoadBalancing(_ input: CreateLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
+        try await self.client.execute(action: "CreateLoadBalancing", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建负载均衡
     @inlinable
-    public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancingResponse> {
-        self.createLoadBalancing(CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), logger: logger, on: eventLoop)
+    public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancingResponse> {
+        self.createLoadBalancing(CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡
     @inlinable
-    public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
-        try await self.createLoadBalancing(CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), logger: logger, on: eventLoop)
+    public func createLoadBalancing(zoneId: String, host: String, type: String, originId: [String], ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancingResponse {
+        try await self.createLoadBalancing(CreateLoadBalancingRequest(zoneId: zoneId, host: host, type: type, originId: originId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

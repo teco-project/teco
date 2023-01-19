@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tke {
 
     /// 删除集群路由
     @inlinable
-    public func deleteClusterRoute(_ input: DeleteClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteResponse> {
-        self.client.execute(action: "DeleteClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteClusterRoute(_ input: DeleteClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteResponse> {
+        self.client.execute(action: "DeleteClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由
     @inlinable
-    public func deleteClusterRoute(_ input: DeleteClusterRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteResponse {
-        try await self.client.execute(action: "DeleteClusterRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteClusterRoute(_ input: DeleteClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteResponse {
+        try await self.client.execute(action: "DeleteClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集群路由
     @inlinable
-    public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteResponse> {
-        self.deleteClusterRoute(DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), logger: logger, on: eventLoop)
+    public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteResponse> {
+        self.deleteClusterRoute(DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由
     @inlinable
-    public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteResponse {
-        try await self.deleteClusterRoute(DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), logger: logger, on: eventLoop)
+    public func deleteClusterRoute(routeTableName: String, gatewayIp: String, destinationCidrBlock: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteResponse {
+        try await self.deleteClusterRoute(DeleteClusterRouteRequest(routeTableName: routeTableName, gatewayIp: gatewayIp, destinationCidrBlock: destinationCidrBlock), region: region, logger: logger, on: eventLoop)
     }
 }

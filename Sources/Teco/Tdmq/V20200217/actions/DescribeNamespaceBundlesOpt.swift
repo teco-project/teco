@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Tdmq {
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
-        self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
+        self.client.execute(action: "DescribeNamespaceBundlesOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
-        try await self.client.execute(action: "DescribeNamespaceBundlesOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNamespaceBundlesOpt(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
+        try await self.client.execute(action: "DescribeNamespaceBundlesOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
-        self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespaceBundlesOptResponse> {
+        self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
-        try await self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNamespaceBundlesOpt(clusterName: String, tenantId: String, namespaceName: String, needMetrics: Bool, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespaceBundlesOptResponse {
+        try await self.describeNamespaceBundlesOpt(DescribeNamespaceBundlesOptRequest(clusterName: clusterName, tenantId: tenantId, namespaceName: namespaceName, needMetrics: needMetrics, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

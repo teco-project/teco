@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcm {
 
     /// 关联集群
     @inlinable
-    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkClusterListResponse> {
-        self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func linkClusterList(_ input: LinkClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkClusterListResponse> {
+        self.client.execute(action: "LinkClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联集群
     @inlinable
-    public func linkClusterList(_ input: LinkClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
-        try await self.client.execute(action: "LinkClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func linkClusterList(_ input: LinkClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
+        try await self.client.execute(action: "LinkClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联集群
     @inlinable
-    public func linkClusterList(meshId: String, clusterList: [Cluster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkClusterListResponse> {
-        self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), logger: logger, on: eventLoop)
+    public func linkClusterList(meshId: String, clusterList: [Cluster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkClusterListResponse> {
+        self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联集群
     @inlinable
-    public func linkClusterList(meshId: String, clusterList: [Cluster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
-        try await self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), logger: logger, on: eventLoop)
+    public func linkClusterList(meshId: String, clusterList: [Cluster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
+        try await self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
     }
 }

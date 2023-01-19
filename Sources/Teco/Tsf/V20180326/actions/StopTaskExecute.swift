@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tsf {
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
-        self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopTaskExecute(_ input: StopTaskExecuteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
+        self.client.execute(action: "StopTaskExecute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(_ input: StopTaskExecuteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
-        try await self.client.execute(action: "StopTaskExecute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopTaskExecute(_ input: StopTaskExecuteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
+        try await self.client.execute(action: "StopTaskExecute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
-        self.stopTaskExecute(StopTaskExecuteRequest(executeId: executeId, batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
+    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopTaskExecuteResponse> {
+        self.stopTaskExecute(StopTaskExecuteRequest(executeId: executeId, batchId: batchId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止正在执行的任务
     ///
     /// 停止正在某个节点上执行的任务
     @inlinable
-    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
-        try await self.stopTaskExecute(StopTaskExecuteRequest(executeId: executeId, batchId: batchId, taskId: taskId), logger: logger, on: eventLoop)
+    public func stopTaskExecute(executeId: String, batchId: String? = nil, taskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopTaskExecuteResponse {
+        try await self.stopTaskExecute(StopTaskExecuteRequest(executeId: executeId, batchId: batchId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

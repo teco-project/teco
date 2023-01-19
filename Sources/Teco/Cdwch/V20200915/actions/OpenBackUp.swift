@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cdwch {
 
     /// 开启或者关闭策略
     @inlinable
-    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenBackUpResponse> {
-        self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openBackUp(_ input: OpenBackUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenBackUpResponse> {
+        self.client.execute(action: "OpenBackUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或者关闭策略
     @inlinable
-    public func openBackUp(_ input: OpenBackUpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
-        try await self.client.execute(action: "OpenBackUp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openBackUp(_ input: OpenBackUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
+        try await self.client.execute(action: "OpenBackUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或者关闭策略
     @inlinable
-    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenBackUpResponse> {
-        self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), logger: logger, on: eventLoop)
+    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenBackUpResponse> {
+        self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或者关闭策略
     @inlinable
-    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
-        try await self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), logger: logger, on: eventLoop)
+    public func openBackUp(instanceId: String, operationType: String, cosBucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenBackUpResponse {
+        try await self.openBackUp(OpenBackUpRequest(instanceId: instanceId, operationType: operationType, cosBucketName: cosBucketName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
-        self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
+        self.client.execute(action: "DescribeRollbackRangeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可回档时间
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
-        try await self.client.execute(action: "DescribeRollbackRangeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRollbackRangeTime(_ input: DescribeRollbackRangeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
+        try await self.client.execute(action: "DescribeRollbackRangeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询可回档时间
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
-        self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackRangeTimeResponse> {
+        self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可回档时间
     ///
     /// 本接口(DescribeRollbackRangeTime)用于查询云数据库实例可回档的时间范围。
     @inlinable
-    public func describeRollbackRangeTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
-        try await self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeRollbackRangeTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackRangeTimeResponse {
+        try await self.describeRollbackRangeTime(DescribeRollbackRangeTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

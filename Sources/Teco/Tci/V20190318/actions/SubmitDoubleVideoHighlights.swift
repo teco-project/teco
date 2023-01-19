@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,8 +87,8 @@ extension Tci {
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
-        self.client.execute(action: "SubmitDoubleVideoHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
+        self.client.execute(action: "SubmitDoubleVideoHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起双路视频生成精彩集锦接口
@@ -96,8 +96,8 @@ extension Tci {
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
-        try await self.client.execute(action: "SubmitDoubleVideoHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitDoubleVideoHighlights(_ input: SubmitDoubleVideoHighlightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
+        try await self.client.execute(action: "SubmitDoubleVideoHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起双路视频生成精彩集锦接口
@@ -105,8 +105,8 @@ extension Tci {
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
-        self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), logger: logger, on: eventLoop)
+    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
+        self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起双路视频生成精彩集锦接口
@@ -114,7 +114,7 @@ extension Tci {
     /// 发起双路视频生成精彩集锦接口。该接口可以通过客户传入的学生音视频及老师视频两路Url，自动生成一堂课程的精彩集锦。需要通过DescribeHighlightResult
     /// 接口获取生成结果。
     @inlinable
-    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
-        try await self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), logger: logger, on: eventLoop)
+    public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
+        try await self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), region: region, logger: logger, on: eventLoop)
     }
 }

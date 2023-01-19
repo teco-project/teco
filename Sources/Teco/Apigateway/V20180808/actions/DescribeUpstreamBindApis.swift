@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Apigateway {
 
     /// 查询后端通道所绑定的API列表
     @inlinable
-    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamBindApisResponse> {
-        self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamBindApisResponse> {
+        self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道所绑定的API列表
     @inlinable
-    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
-        try await self.client.execute(action: "DescribeUpstreamBindApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUpstreamBindApis(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
+        try await self.client.execute(action: "DescribeUpstreamBindApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询后端通道所绑定的API列表
     @inlinable
-    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamBindApisResponse> {
-        self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), logger: logger, on: eventLoop)
+    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUpstreamBindApisResponse> {
+        self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后端通道所绑定的API列表
     @inlinable
-    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
-        try await self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), logger: logger, on: eventLoop)
+    public func describeUpstreamBindApis(limit: UInt64, offset: UInt64, upstreamId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUpstreamBindApisResponse {
+        try await self.describeUpstreamBindApis(DescribeUpstreamBindApisRequest(limit: limit, offset: offset, upstreamId: upstreamId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

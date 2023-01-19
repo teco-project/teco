@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Vod {
 
     /// 智能去除水印
     @inlinable
-    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWatermarkResponse> {
-        self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeWatermark(_ input: RemoveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWatermarkResponse> {
+        self.client.execute(action: "RemoveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能去除水印
     @inlinable
-    public func removeWatermark(_ input: RemoveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
-        try await self.client.execute(action: "RemoveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeWatermark(_ input: RemoveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
+        try await self.client.execute(action: "RemoveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能去除水印
     @inlinable
-    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWatermarkResponse> {
-        self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), logger: logger, on: eventLoop)
+    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWatermarkResponse> {
+        self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能去除水印
     @inlinable
-    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
-        try await self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), logger: logger, on: eventLoop)
+    public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
+        try await self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), region: region, logger: logger, on: eventLoop)
     }
 }

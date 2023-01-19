@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
-    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingPlanResponse> {
-        self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingPlanResponse> {
+        self.client.execute(action: "CreateRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划
     ///
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
-    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
-        try await self.client.execute(action: "CreateRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecordingPlan(_ input: CreateRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
+        try await self.client.execute(action: "CreateRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建录制计划
     ///
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
-    public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingPlanResponse> {
-        self.createRecordingPlan(CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), logger: logger, on: eventLoop)
+    public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingPlanResponse> {
+        self.createRecordingPlan(CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制计划
     ///
     /// 本接口(CreateRecordingPlan) 用于创建录制计划，使通道与时间模板绑定，以便及时启动录制
     @inlinable
-    public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
-        try await self.createRecordingPlan(CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), logger: logger, on: eventLoop)
+    public func createRecordingPlan(name: String, timeTemplateId: String, channels: [ChannelItem]? = nil, recordStorageTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingPlanResponse {
+        try await self.createRecordingPlan(CreateRecordingPlanRequest(name: name, timeTemplateId: timeTemplateId, channels: channels, recordStorageTime: recordStorageTime), region: region, logger: logger, on: eventLoop)
     }
 }

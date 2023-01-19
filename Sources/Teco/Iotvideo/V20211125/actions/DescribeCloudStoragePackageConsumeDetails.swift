@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iotvideo {
 
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
-        self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
+        self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
-        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
+        try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
-        self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
+        self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云存套餐包消耗详细记录
     @inlinable
-    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
-        try await self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
+        try await self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

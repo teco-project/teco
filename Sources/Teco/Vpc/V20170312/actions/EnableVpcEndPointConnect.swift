@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 是否接受终端节点连接请求。
     @inlinable
-    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
-        self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
+        self.client.execute(action: "EnableVpcEndPointConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 是否接受终端节点连接请求
     ///
     /// 是否接受终端节点连接请求。
     @inlinable
-    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
-        try await self.client.execute(action: "EnableVpcEndPointConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableVpcEndPointConnect(_ input: EnableVpcEndPointConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
+        try await self.client.execute(action: "EnableVpcEndPointConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 是否接受终端节点连接请求
     ///
     /// 是否接受终端节点连接请求。
     @inlinable
-    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
-        self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), logger: logger, on: eventLoop)
+    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableVpcEndPointConnectResponse> {
+        self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 是否接受终端节点连接请求
     ///
     /// 是否接受终端节点连接请求。
     @inlinable
-    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
-        try await self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), logger: logger, on: eventLoop)
+    public func enableVpcEndPointConnect(endPointServiceId: String, endPointId: [String], acceptFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableVpcEndPointConnectResponse {
+        try await self.enableVpcEndPointConnect(EnableVpcEndPointConnectRequest(endPointServiceId: endPointServiceId, endPointId: endPointId, acceptFlag: acceptFlag), region: region, logger: logger, on: eventLoop)
     }
 }

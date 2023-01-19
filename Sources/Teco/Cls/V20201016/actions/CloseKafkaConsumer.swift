@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cls {
 
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
-        self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
+        self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
-        try await self.client.execute(action: "CloseKafkaConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
+        try await self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(fromTopicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
-        self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), logger: logger, on: eventLoop)
+    public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
+        self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭Kafka协议消费
     @inlinable
-    public func closeKafkaConsumer(fromTopicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
-        try await self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), logger: logger, on: eventLoop)
+    public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
+        try await self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }
 }

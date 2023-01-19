@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Redis {
     ///
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
-    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
-        self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
+        self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 副本组提主
     ///
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
-    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
-        try await self.client.execute(action: "ChangeReplicaToMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeReplicaToMaster(_ input: ChangeReplicaToMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
+        try await self.client.execute(action: "ChangeReplicaToMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 副本组提主
     ///
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
-    public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
-        self.changeReplicaToMaster(ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId), logger: logger, on: eventLoop)
+    public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeReplicaToMasterResponse> {
+        self.changeReplicaToMaster(ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 副本组提主
     ///
     /// 该接口仅支持多AZ实例副本组提主和单AZ副本提主
     @inlinable
-    public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
-        try await self.changeReplicaToMaster(ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId), logger: logger, on: eventLoop)
+    public func changeReplicaToMaster(instanceId: String, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeReplicaToMasterResponse {
+        try await self.changeReplicaToMaster(ChangeReplicaToMasterRequest(instanceId: instanceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

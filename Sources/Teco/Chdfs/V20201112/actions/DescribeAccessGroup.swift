@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Chdfs {
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
-        self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
+        self.client.execute(action: "DescribeAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
-        try await self.client.execute(action: "DescribeAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccessGroup(_ input: DescribeAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
+        try await self.client.execute(action: "DescribeAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
-        self.describeAccessGroup(DescribeAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    public func describeAccessGroup(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupResponse> {
+        self.describeAccessGroup(DescribeAccessGroupRequest(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看权限组详细信息
     ///
     /// 查看权限组详细信息。
     @inlinable
-    public func describeAccessGroup(accessGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
-        try await self.describeAccessGroup(DescribeAccessGroupRequest(accessGroupId: accessGroupId), logger: logger, on: eventLoop)
+    public func describeAccessGroup(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupResponse {
+        try await self.describeAccessGroup(DescribeAccessGroupRequest(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

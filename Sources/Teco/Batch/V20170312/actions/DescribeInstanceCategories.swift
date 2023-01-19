@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Batch {
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
-        self.client.execute(action: "DescribeInstanceCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
+        self.client.execute(action: "DescribeInstanceCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
-        try await self.client.execute(action: "DescribeInstanceCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceCategories(_ input: DescribeInstanceCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
+        try await self.client.execute(action: "DescribeInstanceCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
-        self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceCategoriesResponse> {
+        self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例分类信息
     ///
     /// 目前对CVM现有实例族分类，每一类包含若干实例族。该接口用于查询实例分类信息。
     @inlinable
-    public func describeInstanceCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
-        try await self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), logger: logger, on: eventLoop)
+    public func describeInstanceCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceCategoriesResponse {
+        try await self.describeInstanceCategories(DescribeInstanceCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

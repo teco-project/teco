@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,8 +50,8 @@ extension Cbs {
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable
-    public func renewDisk(_ input: RenewDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
-        self.client.execute(action: "RenewDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewDisk(_ input: RenewDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
+        self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘
@@ -60,8 +60,8 @@ extension Cbs {
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable
-    public func renewDisk(_ input: RenewDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
-        try await self.client.execute(action: "RenewDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewDisk(_ input: RenewDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
+        try await self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费云硬盘
@@ -70,8 +70,8 @@ extension Cbs {
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable
-    public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
-        self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), logger: logger, on: eventLoop)
+    public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
+        self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘
@@ -80,7 +80,7 @@ extension Cbs {
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
     @inlinable
-    public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
-        try await self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), logger: logger, on: eventLoop)
+    public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
+        try await self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 }

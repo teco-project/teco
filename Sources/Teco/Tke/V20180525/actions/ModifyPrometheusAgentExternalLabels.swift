@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tke {
 
     /// 修改被关联集群的external labels
     @inlinable
-    public func modifyPrometheusAgentExternalLabels(_ input: ModifyPrometheusAgentExternalLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAgentExternalLabelsResponse> {
-        self.client.execute(action: "ModifyPrometheusAgentExternalLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrometheusAgentExternalLabels(_ input: ModifyPrometheusAgentExternalLabelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAgentExternalLabelsResponse> {
+        self.client.execute(action: "ModifyPrometheusAgentExternalLabels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改被关联集群的external labels
     @inlinable
-    public func modifyPrometheusAgentExternalLabels(_ input: ModifyPrometheusAgentExternalLabelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
-        try await self.client.execute(action: "ModifyPrometheusAgentExternalLabels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrometheusAgentExternalLabels(_ input: ModifyPrometheusAgentExternalLabelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
+        try await self.client.execute(action: "ModifyPrometheusAgentExternalLabels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改被关联集群的external labels
     @inlinable
-    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAgentExternalLabelsResponse> {
-        self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), logger: logger, on: eventLoop)
+    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAgentExternalLabelsResponse> {
+        self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改被关联集群的external labels
     @inlinable
-    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
-        try await self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), logger: logger, on: eventLoop)
+    public func modifyPrometheusAgentExternalLabels(instanceId: String, clusterId: String, externalLabels: [Label], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAgentExternalLabelsResponse {
+        try await self.modifyPrometheusAgentExternalLabels(ModifyPrometheusAgentExternalLabelsRequest(instanceId: instanceId, clusterId: clusterId, externalLabels: externalLabels), region: region, logger: logger, on: eventLoop)
     }
 }

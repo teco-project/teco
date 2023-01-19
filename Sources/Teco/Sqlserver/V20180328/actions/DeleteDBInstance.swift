@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Sqlserver {
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable
-    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
-        self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
+        self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable
-    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
-        try await self.client.execute(action: "DeleteDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDBInstance(_ input: DeleteDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
+        try await self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable
-    public func deleteDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
-        self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
+        self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
     @inlinable
-    public func deleteDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
-        try await self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
+        try await self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

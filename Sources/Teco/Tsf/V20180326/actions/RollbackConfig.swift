@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tsf {
 
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
-        self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rollbackConfig(_ input: RollbackConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
+        self.client.execute(action: "RollbackConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(_ input: RollbackConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
-        try await self.client.execute(action: "RollbackConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rollbackConfig(_ input: RollbackConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
+        try await self.client.execute(action: "RollbackConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
-        self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
+        self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回滚配置
     @inlinable
-    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
-        try await self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), logger: logger, on: eventLoop)
+    public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
+        try await self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
     }
 }

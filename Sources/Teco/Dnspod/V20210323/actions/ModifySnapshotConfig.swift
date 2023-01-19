@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dnspod {
 
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
-        self.client.execute(action: "ModifySnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
+        self.client.execute(action: "ModifySnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
-        try await self.client.execute(action: "ModifySnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySnapshotConfig(_ input: ModifySnapshotConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
+        try await self.client.execute(action: "ModifySnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
-        self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
+        self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改快照配置
     @inlinable
-    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
-        try await self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
+        try await self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

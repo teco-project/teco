@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Wedata {
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
-        self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
+        self.client.execute(action: "DescribeRealTimeTaskMetricOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
-        try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRealTimeTaskMetricOverview(_ input: DescribeRealTimeTaskMetricOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
+        try await self.client.execute(action: "DescribeRealTimeTaskMetricOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
-        self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskMetricOverviewResponse> {
+        self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实时任务运行指标概览
     @inlinable
-    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
-        try await self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRealTimeTaskMetricOverview(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskMetricOverviewResponse {
+        try await self.describeRealTimeTaskMetricOverview(DescribeRealTimeTaskMetricOverviewRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

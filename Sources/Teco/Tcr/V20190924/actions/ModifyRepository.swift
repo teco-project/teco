@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tcr {
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable
-    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
-        self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRepository(_ input: ModifyRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
+        self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable
-    public func modifyRepository(_ input: ModifyRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
-        try await self.client.execute(action: "ModifyRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRepository(_ input: ModifyRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
+        try await self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable
-    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
-        self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), logger: logger, on: eventLoop)
+    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
+        self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
     @inlinable
-    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
-        try await self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), logger: logger, on: eventLoop)
+    public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
+        try await self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

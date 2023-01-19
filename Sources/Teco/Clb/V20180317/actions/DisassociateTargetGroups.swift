@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Clb {
     /// 解除规则的目标组关联关系。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateTargetGroupsResponse> {
-        self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateTargetGroupsResponse> {
+        self.client.execute(action: "DisassociateTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除规则的目标组关联关系
@@ -53,8 +53,8 @@ extension Clb {
     /// 解除规则的目标组关联关系。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
-        try await self.client.execute(action: "DisassociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateTargetGroups(_ input: DisassociateTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
+        try await self.client.execute(action: "DisassociateTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除规则的目标组关联关系
@@ -62,8 +62,8 @@ extension Clb {
     /// 解除规则的目标组关联关系。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func disassociateTargetGroups(associations: [TargetGroupAssociation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateTargetGroupsResponse> {
-        self.disassociateTargetGroups(DisassociateTargetGroupsRequest(associations: associations), logger: logger, on: eventLoop)
+    public func disassociateTargetGroups(associations: [TargetGroupAssociation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateTargetGroupsResponse> {
+        self.disassociateTargetGroups(DisassociateTargetGroupsRequest(associations: associations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除规则的目标组关联关系
@@ -71,7 +71,7 @@ extension Clb {
     /// 解除规则的目标组关联关系。
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func disassociateTargetGroups(associations: [TargetGroupAssociation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
-        try await self.disassociateTargetGroups(DisassociateTargetGroupsRequest(associations: associations), logger: logger, on: eventLoop)
+    public func disassociateTargetGroups(associations: [TargetGroupAssociation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateTargetGroupsResponse {
+        try await self.disassociateTargetGroups(DisassociateTargetGroupsRequest(associations: associations), region: region, logger: logger, on: eventLoop)
     }
 }

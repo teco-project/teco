@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Lighthouse {
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
-        self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBlueprint(_ input: CreateBlueprintRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
+        self.client.execute(action: "CreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(_ input: CreateBlueprintRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
-        try await self.client.execute(action: "CreateBlueprint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBlueprint(_ input: CreateBlueprintRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
+        try await self.client.execute(action: "CreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
-        self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
+        self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
     ///
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
-    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
-        try await self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
+        try await self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

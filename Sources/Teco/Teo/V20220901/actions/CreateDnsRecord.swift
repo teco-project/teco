@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Teo {
 
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
-        self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
+        self.client.execute(action: "CreateDnsRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(_ input: CreateDnsRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
-        try await self.client.execute(action: "CreateDnsRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDnsRecord(_ input: CreateDnsRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
+        try await self.client.execute(action: "CreateDnsRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
-        self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), logger: logger, on: eventLoop)
+    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDnsRecordResponse> {
+        self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 DNS 记录
     @inlinable
-    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
-        try await self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), logger: logger, on: eventLoop)
+    public func createDnsRecord(zoneId: String, type: String, name: String, content: String, mode: String, ttl: Int64? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDnsRecordResponse {
+        try await self.createDnsRecord(CreateDnsRecordRequest(zoneId: zoneId, type: type, name: name, content: content, mode: mode, ttl: ttl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

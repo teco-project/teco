@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Domain {
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
-        self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
+        self.client.execute(action: "DescribeDomainSimpleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
-        try await self.client.execute(action: "DescribeDomainSimpleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainSimpleInfo(_ input: DescribeDomainSimpleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
+        try await self.client.execute(action: "DescribeDomainSimpleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
-        self.describeDomainSimpleInfo(DescribeDomainSimpleInfoRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeDomainSimpleInfo(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainSimpleInfoResponse> {
+        self.describeDomainSimpleInfo(DescribeDomainSimpleInfoRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名实名信息
     ///
     /// 获取域名实名信息详情
     @inlinable
-    public func describeDomainSimpleInfo(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
-        try await self.describeDomainSimpleInfo(DescribeDomainSimpleInfoRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeDomainSimpleInfo(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainSimpleInfoResponse {
+        try await self.describeDomainSimpleInfo(DescribeDomainSimpleInfoRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

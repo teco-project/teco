@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 获取字段类型列表
     @inlinable
-    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataTypesResponse> {
-        self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataTypes(_ input: DescribeDataTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataTypesResponse> {
+        self.client.execute(action: "DescribeDataTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取字段类型列表
     @inlinable
-    public func describeDataTypes(_ input: DescribeDataTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
-        try await self.client.execute(action: "DescribeDataTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataTypes(_ input: DescribeDataTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
+        try await self.client.execute(action: "DescribeDataTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取字段类型列表
     @inlinable
-    public func describeDataTypes(datasourceType: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataTypesResponse> {
-        self.describeDataTypes(DescribeDataTypesRequest(datasourceType: datasourceType, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeDataTypes(datasourceType: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataTypesResponse> {
+        self.describeDataTypes(DescribeDataTypesRequest(datasourceType: datasourceType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取字段类型列表
     @inlinable
-    public func describeDataTypes(datasourceType: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
-        try await self.describeDataTypes(DescribeDataTypesRequest(datasourceType: datasourceType, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeDataTypes(datasourceType: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataTypesResponse {
+        try await self.describeDataTypes(DescribeDataTypesRequest(datasourceType: datasourceType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

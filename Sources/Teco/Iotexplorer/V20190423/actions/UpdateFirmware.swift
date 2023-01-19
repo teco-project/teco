@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotexplorer {
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
     @inlinable
-    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
-        self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateFirmware(_ input: UpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
+        self.client.execute(action: "UpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
     @inlinable
-    public func updateFirmware(_ input: UpdateFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
-        try await self.client.execute(action: "UpdateFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateFirmware(_ input: UpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
+        try await self.client.execute(action: "UpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
     @inlinable
-    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
-        self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), logger: logger, on: eventLoop)
+    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
+        self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
     @inlinable
-    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
-        try await self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), logger: logger, on: eventLoop)
+    public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
+        try await self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), region: region, logger: logger, on: eventLoop)
     }
 }

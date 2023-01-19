@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bda {
     ///
     /// 获取人体库汇总信息。
     @inlinable
-    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSummaryInfoResponse> {
-        self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getSummaryInfo(_ input: GetSummaryInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSummaryInfoResponse> {
+        self.client.execute(action: "GetSummaryInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人体库汇总信息
     ///
     /// 获取人体库汇总信息。
     @inlinable
-    public func getSummaryInfo(_ input: GetSummaryInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
-        try await self.client.execute(action: "GetSummaryInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getSummaryInfo(_ input: GetSummaryInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
+        try await self.client.execute(action: "GetSummaryInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人体库汇总信息
     ///
     /// 获取人体库汇总信息。
     @inlinable
-    public func getSummaryInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSummaryInfoResponse> {
-        self.getSummaryInfo(GetSummaryInfoRequest(), logger: logger, on: eventLoop)
+    public func getSummaryInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSummaryInfoResponse> {
+        self.getSummaryInfo(GetSummaryInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人体库汇总信息
     ///
     /// 获取人体库汇总信息。
     @inlinable
-    public func getSummaryInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
-        try await self.getSummaryInfo(GetSummaryInfoRequest(), logger: logger, on: eventLoop)
+    public func getSummaryInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
+        try await self.getSummaryInfo(GetSummaryInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

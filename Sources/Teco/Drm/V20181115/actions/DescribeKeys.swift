@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,8 +85,8 @@ extension Drm {
     /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
-        self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKeys(_ input: DescribeKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
+        self.client.execute(action: "DescribeKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询加密密钥列表
@@ -94,8 +94,8 @@ extension Drm {
     /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
-    public func describeKeys(_ input: DescribeKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
-        try await self.client.execute(action: "DescribeKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKeys(_ input: DescribeKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
+        try await self.client.execute(action: "DescribeKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询加密密钥列表
@@ -103,8 +103,8 @@ extension Drm {
     /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
-    public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
-        self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), logger: logger, on: eventLoop)
+    public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
+        self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询加密密钥列表
@@ -112,7 +112,7 @@ extension Drm {
     /// 开发者需要指定使用的DRM类型、和需要加密的Track类型，后台返回加密使用的密钥
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
-    public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
-        try await self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), logger: logger, on: eventLoop)
+    public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
+        try await self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), region: region, logger: logger, on: eventLoop)
     }
 }

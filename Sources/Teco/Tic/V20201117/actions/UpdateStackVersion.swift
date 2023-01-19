@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tic {
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable
-    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
-        self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateStackVersion(_ input: UpdateStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
+        self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable
-    public func updateStackVersion(_ input: UpdateStackVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
-        try await self.client.execute(action: "UpdateStackVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateStackVersion(_ input: UpdateStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
+        try await self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable
-    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
-        self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
+        self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
     @inlinable
-    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
-        try await self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), logger: logger, on: eventLoop)
+    public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
+        try await self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

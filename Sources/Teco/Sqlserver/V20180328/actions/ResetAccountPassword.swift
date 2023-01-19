@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Sqlserver {
     ///
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
-        self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
+        self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置账户密码
     ///
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
-    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.client.execute(action: "ResetAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置账户密码
     ///
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
-    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
-        self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
+        self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置账户密码
     ///
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
-    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
+        try await self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

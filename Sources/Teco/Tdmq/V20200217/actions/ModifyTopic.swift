@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tdmq {
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTopic(_ input: ModifyTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改主题
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTopic(_ input: ModifyTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改主题
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改主题
     ///
     /// 修改主题备注和分区数
     @inlinable
-    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

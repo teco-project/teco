@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cam {
 
     /// 查询SAML身份提供商列表
     @inlinable
-    public func listSAMLProviders(_ input: ListSAMLProvidersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSAMLProvidersResponse> {
-        self.client.execute(action: "ListSAMLProviders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listSAMLProviders(_ input: ListSAMLProvidersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSAMLProvidersResponse> {
+        self.client.execute(action: "ListSAMLProviders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SAML身份提供商列表
     @inlinable
-    public func listSAMLProviders(_ input: ListSAMLProvidersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSAMLProvidersResponse {
-        try await self.client.execute(action: "ListSAMLProviders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listSAMLProviders(_ input: ListSAMLProvidersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSAMLProvidersResponse {
+        try await self.client.execute(action: "ListSAMLProviders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询SAML身份提供商列表
     @inlinable
-    public func listSAMLProviders(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSAMLProvidersResponse> {
-        self.listSAMLProviders(ListSAMLProvidersRequest(), logger: logger, on: eventLoop)
+    public func listSAMLProviders(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSAMLProvidersResponse> {
+        self.listSAMLProviders(ListSAMLProvidersRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SAML身份提供商列表
     @inlinable
-    public func listSAMLProviders(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSAMLProvidersResponse {
-        try await self.listSAMLProviders(ListSAMLProvidersRequest(), logger: logger, on: eventLoop)
+    public func listSAMLProviders(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSAMLProvidersResponse {
+        try await self.listSAMLProviders(ListSAMLProvidersRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

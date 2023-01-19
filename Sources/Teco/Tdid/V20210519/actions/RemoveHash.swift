@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdid {
 
     /// 删除合约
     @inlinable
-    public func removeHash(_ input: RemoveHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
-        self.client.execute(action: "RemoveHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
+        self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除合约
     @inlinable
-    public func removeHash(_ input: RemoveHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
-        try await self.client.execute(action: "RemoveHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
+        try await self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除合约
     @inlinable
-    public func removeHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
-        self.removeHash(RemoveHashRequest(hash: hash), logger: logger, on: eventLoop)
+    public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
+        self.removeHash(RemoveHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除合约
     @inlinable
-    public func removeHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
-        try await self.removeHash(RemoveHashRequest(hash: hash), logger: logger, on: eventLoop)
+    public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
+        try await self.removeHash(RemoveHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 }

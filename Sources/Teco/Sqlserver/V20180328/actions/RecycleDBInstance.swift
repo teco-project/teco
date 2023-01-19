@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
-        self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
+        self.client.execute(action: "RecycleDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
-        try await self.client.execute(action: "RecycleDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recycleDBInstance(_ input: RecycleDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
+        try await self.client.execute(action: "RecycleDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
-        self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func recycleDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleDBInstanceResponse> {
+        self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 主动回收实例
     ///
     /// 本接口（RecycleDBInstance）用于主动回收已下线的SQLSERVER实例
     @inlinable
-    public func recycleDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
-        try await self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func recycleDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleDBInstanceResponse {
+        try await self.recycleDBInstance(RecycleDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

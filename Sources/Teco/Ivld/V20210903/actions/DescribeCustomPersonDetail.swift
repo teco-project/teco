@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ivld {
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
-        self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
+        self.client.execute(action: "DescribeCustomPersonDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
-        try await self.client.execute(action: "DescribeCustomPersonDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomPersonDetail(_ input: DescribeCustomPersonDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
+        try await self.client.execute(action: "DescribeCustomPersonDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
-        self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), logger: logger, on: eventLoop)
+    public func describeCustomPersonDetail(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
+        self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述自定义人物详细信息
     ///
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
-    public func describeCustomPersonDetail(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
-        try await self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), logger: logger, on: eventLoop)
+    public func describeCustomPersonDetail(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
+        try await self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

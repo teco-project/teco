@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tcr {
 
     /// 查询版本保留执行任务
     @inlinable
-    public func describeTagRetentionExecutionTask(_ input: DescribeTagRetentionExecutionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionExecutionTaskResponse> {
-        self.client.execute(action: "DescribeTagRetentionExecutionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagRetentionExecutionTask(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionExecutionTaskResponse> {
+        self.client.execute(action: "DescribeTagRetentionExecutionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留执行任务
     @inlinable
-    public func describeTagRetentionExecutionTask(_ input: DescribeTagRetentionExecutionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionTaskResponse {
-        try await self.client.execute(action: "DescribeTagRetentionExecutionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagRetentionExecutionTask(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionTaskResponse {
+        try await self.client.execute(action: "DescribeTagRetentionExecutionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询版本保留执行任务
     @inlinable
-    public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionExecutionTaskResponse> {
-        self.describeTagRetentionExecutionTask(DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionExecutionTaskResponse> {
+        self.describeTagRetentionExecutionTask(DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留执行任务
     @inlinable
-    public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionTaskResponse {
-        try await self.describeTagRetentionExecutionTask(DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagRetentionExecutionTask(registryId: String, retentionId: Int64, executionId: Int64, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionExecutionTaskResponse {
+        try await self.describeTagRetentionExecutionTask(DescribeTagRetentionExecutionTaskRequest(registryId: registryId, retentionId: retentionId, executionId: executionId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

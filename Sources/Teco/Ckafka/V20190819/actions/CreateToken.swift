@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ckafka {
     ///
     /// 创建最高权限的token
     @inlinable
-    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTokenResponse> {
-        self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createToken(_ input: CreateTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTokenResponse> {
+        self.client.execute(action: "CreateToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建token
     ///
     /// 创建最高权限的token
     @inlinable
-    public func createToken(_ input: CreateTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
-        try await self.client.execute(action: "CreateToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createToken(_ input: CreateTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
+        try await self.client.execute(action: "CreateToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建token
     ///
     /// 创建最高权限的token
     @inlinable
-    public func createToken(instanceId: String, user: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTokenResponse> {
-        self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), logger: logger, on: eventLoop)
+    public func createToken(instanceId: String, user: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTokenResponse> {
+        self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建token
     ///
     /// 创建最高权限的token
     @inlinable
-    public func createToken(instanceId: String, user: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
-        try await self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), logger: logger, on: eventLoop)
+    public func createToken(instanceId: String, user: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTokenResponse {
+        try await self.createToken(CreateTokenRequest(instanceId: instanceId, user: user), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,25 +92,25 @@ extension Bpaas {
 
     /// 查看审批详情
     @inlinable
-    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBpaasApproveDetailResponse> {
-        self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBpaasApproveDetailResponse> {
+        self.client.execute(action: "GetBpaasApproveDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看审批详情
     @inlinable
-    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
-        try await self.client.execute(action: "GetBpaasApproveDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBpaasApproveDetail(_ input: GetBpaasApproveDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
+        try await self.client.execute(action: "GetBpaasApproveDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看审批详情
     @inlinable
-    public func getBpaasApproveDetail(approveId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBpaasApproveDetailResponse> {
-        self.getBpaasApproveDetail(GetBpaasApproveDetailRequest(approveId: approveId), logger: logger, on: eventLoop)
+    public func getBpaasApproveDetail(approveId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBpaasApproveDetailResponse> {
+        self.getBpaasApproveDetail(GetBpaasApproveDetailRequest(approveId: approveId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看审批详情
     @inlinable
-    public func getBpaasApproveDetail(approveId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
-        try await self.getBpaasApproveDetail(GetBpaasApproveDetailRequest(approveId: approveId), logger: logger, on: eventLoop)
+    public func getBpaasApproveDetail(approveId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBpaasApproveDetailResponse {
+        try await self.getBpaasApproveDetail(GetBpaasApproveDetailRequest(approveId: approveId), region: region, logger: logger, on: eventLoop)
     }
 }

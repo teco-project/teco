@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,31 +109,31 @@ extension Cme {
     ///
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProjects(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
+        self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
     ///
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
-    public func describeProjects(_ input: DescribeProjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.client.execute(action: "DescribeProjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProjects(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取项目列表
     ///
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
-    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
+        self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
     ///
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
-    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
+        try await self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

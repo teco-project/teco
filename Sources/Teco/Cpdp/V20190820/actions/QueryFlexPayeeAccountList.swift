@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Cpdp {
 
     /// 灵云V2-收款用户账户列表查询
     @inlinable
-    public func queryFlexPayeeAccountList(_ input: QueryFlexPayeeAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountListResponse> {
-        self.client.execute(action: "QueryFlexPayeeAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountList(_ input: QueryFlexPayeeAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountListResponse> {
+        self.client.execute(action: "QueryFlexPayeeAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户列表查询
     @inlinable
-    public func queryFlexPayeeAccountList(_ input: QueryFlexPayeeAccountListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountListResponse {
-        try await self.client.execute(action: "QueryFlexPayeeAccountList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexPayeeAccountList(_ input: QueryFlexPayeeAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountListResponse {
+        try await self.client.execute(action: "QueryFlexPayeeAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-收款用户账户列表查询
     @inlinable
-    public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountListResponse> {
-        self.queryFlexPayeeAccountList(QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountListResponse> {
+        self.queryFlexPayeeAccountList(QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户列表查询
     @inlinable
-    public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountListResponse {
-        try await self.queryFlexPayeeAccountList(QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountList(propertyInfo: PayeeAccountPropertyInfo, startTime: String? = nil, endTime: String? = nil, pageNumber: Paging? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountListResponse {
+        try await self.queryFlexPayeeAccountList(QueryFlexPayeeAccountListRequest(propertyInfo: propertyInfo, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

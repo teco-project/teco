@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
-        self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
+        self.client.execute(action: "CreateAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
-        try await self.client.execute(action: "CreateAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAgentTaxPaymentInfos(_ input: CreateAgentTaxPaymentInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
+        try await self.client.execute(action: "CreateAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
-        self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), logger: logger, on: eventLoop)
+    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAgentTaxPaymentInfosResponse> {
+        self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-代理商完税信息录入
     @inlinable
-    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
-        try await self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), logger: logger, on: eventLoop)
+    public func createAgentTaxPaymentInfos(agentId: String, channel: Int64, type: Int64, rawElectronicCertUrl: String, fileName: String, agentTaxPaymentInfos: [AgentTaxPayment], profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAgentTaxPaymentInfosResponse {
+        try await self.createAgentTaxPaymentInfos(CreateAgentTaxPaymentInfosRequest(agentId: agentId, channel: channel, type: type, rawElectronicCertUrl: rawElectronicCertUrl, fileName: fileName, agentTaxPaymentInfos: agentTaxPaymentInfos, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

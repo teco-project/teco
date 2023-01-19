@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Monitor {
 
     /// 列出 Grafana DNS 配置
     @inlinable
-    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDNSConfigResponse> {
-        self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDNSConfigResponse> {
+        self.client.execute(action: "DescribeDNSConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana DNS 配置
     @inlinable
-    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
-        try await self.client.execute(action: "DescribeDNSConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDNSConfig(_ input: DescribeDNSConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
+        try await self.client.execute(action: "DescribeDNSConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Grafana DNS 配置
     @inlinable
-    public func describeDNSConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDNSConfigResponse> {
-        self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDNSConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDNSConfigResponse> {
+        self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana DNS 配置
     @inlinable
-    public func describeDNSConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
-        try await self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDNSConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDNSConfigResponse {
+        try await self.describeDNSConfig(DescribeDNSConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

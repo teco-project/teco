@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Kms {
 
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
-        self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAlgorithms(_ input: ListAlgorithmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
+        self.client.execute(action: "ListAlgorithms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(_ input: ListAlgorithmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
-        try await self.client.execute(action: "ListAlgorithms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAlgorithms(_ input: ListAlgorithmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
+        try await self.client.execute(action: "ListAlgorithms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
-        self.listAlgorithms(ListAlgorithmsRequest(), logger: logger, on: eventLoop)
+    public func listAlgorithms(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAlgorithmsResponse> {
+        self.listAlgorithms(ListAlgorithmsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出当前Region支持的加密方式
     @inlinable
-    public func listAlgorithms(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
-        try await self.listAlgorithms(ListAlgorithmsRequest(), logger: logger, on: eventLoop)
+    public func listAlgorithms(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAlgorithmsResponse {
+        try await self.listAlgorithms(ListAlgorithmsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Es {
 
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
-        self.client.execute(action: "DescribeIndexMeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
+        self.client.execute(action: "DescribeIndexMeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
-        try await self.client.execute(action: "DescribeIndexMeta", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIndexMeta(_ input: DescribeIndexMetaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
+        try await self.client.execute(action: "DescribeIndexMeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
-        self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), logger: logger, on: eventLoop)
+    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
+        self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取索引元数据
     @inlinable
-    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
-        try await self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), logger: logger, on: eventLoop)
+    public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
+        try await self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

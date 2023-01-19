@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Vpc {
 
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
-    public func describeVpnGatewaySslClients(_ input: DescribeVpnGatewaySslClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslClientsResponse> {
-        self.client.execute(action: "DescribeVpnGatewaySslClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslClients(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslClientsResponse> {
+        self.client.execute(action: "DescribeVpnGatewaySslClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
-    public func describeVpnGatewaySslClients(_ input: DescribeVpnGatewaySslClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
-        try await self.client.execute(action: "DescribeVpnGatewaySslClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpnGatewaySslClients(_ input: DescribeVpnGatewaySslClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
+        try await self.client.execute(action: "DescribeVpnGatewaySslClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
-    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslClientsResponse> {
-        self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslClientsResponse> {
+        self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
-    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
-        try await self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
+        try await self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 }

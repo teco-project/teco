@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tsf {
     ///
     /// 查询工作流最新一个批次的状态信息
     @inlinable
-    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLastBatchStateResponse> {
-        self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLastBatchStateResponse> {
+        self.client.execute(action: "DescribeFlowLastBatchState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询工作流最近一个批次的执行状态
     ///
     /// 查询工作流最新一个批次的状态信息
     @inlinable
-    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
-        try await self.client.execute(action: "DescribeFlowLastBatchState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowLastBatchState(_ input: DescribeFlowLastBatchStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
+        try await self.client.execute(action: "DescribeFlowLastBatchState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询工作流最近一个批次的执行状态
     ///
     /// 查询工作流最新一个批次的状态信息
     @inlinable
-    public func describeFlowLastBatchState(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLastBatchStateResponse> {
-        self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowLastBatchState(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLastBatchStateResponse> {
+        self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询工作流最近一个批次的执行状态
     ///
     /// 查询工作流最新一个批次的状态信息
     @inlinable
-    public func describeFlowLastBatchState(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
-        try await self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowLastBatchState(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
+        try await self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcaplusdb {
     ///
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
-    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverRecycleTablesResponse> {
-        self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverRecycleTablesResponse> {
+        self.client.execute(action: "RecoverRecycleTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复回收站中的表
     ///
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
-    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
-        try await self.client.execute(action: "RecoverRecycleTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recoverRecycleTables(_ input: RecoverRecycleTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
+        try await self.client.execute(action: "RecoverRecycleTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复回收站中的表
     ///
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
-    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverRecycleTablesResponse> {
-        self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverRecycleTablesResponse> {
+        self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复回收站中的表
     ///
     /// 恢复回收站中，用户自行删除的表。对欠费待释放的表无效。
     @inlinable
-    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
-        try await self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func recoverRecycleTables(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverRecycleTablesResponse {
+        try await self.recoverRecycleTables(RecoverRecycleTablesRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

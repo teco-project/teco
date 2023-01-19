@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Iotexplorer {
     ///
     /// 用于查询某个产品下的设备列表
     @inlinable
-    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceListResponse> {
-        self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDeviceList(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceListResponse> {
+        self.client.execute(action: "GetDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品的设备列表
     ///
     /// 用于查询某个产品下的设备列表
     @inlinable
-    public func getDeviceList(_ input: GetDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
-        try await self.client.execute(action: "GetDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDeviceList(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
+        try await self.client.execute(action: "GetDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品的设备列表
     ///
     /// 用于查询某个产品下的设备列表
     @inlinable
-    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceListResponse> {
-        self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), logger: logger, on: eventLoop)
+    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceListResponse> {
+        self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品的设备列表
     ///
     /// 用于查询某个产品下的设备列表
     @inlinable
-    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
-        try await self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), logger: logger, on: eventLoop)
+    public func getDeviceList(productId: String, offset: Int64? = nil, limit: Int64? = nil, firmwareVersion: String? = nil, deviceName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceListResponse {
+        try await self.getDeviceList(GetDeviceListRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

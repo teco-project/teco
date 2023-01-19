@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Sslpod {
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
-        self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
+        self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加域名
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(_ input: CreateDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.client.execute(action: "CreateDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加域名
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
-        self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), logger: logger, on: eventLoop)
+    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
+        self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名
     ///
     /// 通过域名端口添加监控
     @inlinable
-    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), logger: logger, on: eventLoop)
+    public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
+        try await self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

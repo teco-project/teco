@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,8 +97,8 @@ extension Ocr {
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
-        self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
+        self.client.execute(action: "MixedInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 混贴票据识别
@@ -106,8 +106,8 @@ extension Ocr {
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
-        try await self.client.execute(action: "MixedInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
+        try await self.client.execute(action: "MixedInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 混贴票据识别
@@ -115,8 +115,8 @@ extension Ocr {
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
-        self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
+        self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 混贴票据识别
@@ -124,7 +124,7 @@ extension Ocr {
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
-        try await self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
+        try await self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

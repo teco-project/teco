@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,25 +73,25 @@ extension Tcss {
 
     /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
-    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelImageSummaryResponse> {
-        self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelImageSummaryResponse> {
+        self.client.execute(action: "DescribeVulLevelImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
-    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
-        try await self.client.execute(action: "DescribeVulLevelImageSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulLevelImageSummary(_ input: DescribeVulLevelImageSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
+        try await self.client.execute(action: "DescribeVulLevelImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
-    public func describeVulLevelImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelImageSummaryResponse> {
-        self.describeVulLevelImageSummary(DescribeVulLevelImageSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeVulLevelImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelImageSummaryResponse> {
+        self.describeVulLevelImageSummary(DescribeVulLevelImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应急漏洞各威胁等级统计镜像数
     @inlinable
-    public func describeVulLevelImageSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
-        try await self.describeVulLevelImageSummary(DescribeVulLevelImageSummaryRequest(), logger: logger, on: eventLoop)
+    public func describeVulLevelImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelImageSummaryResponse {
+        try await self.describeVulLevelImageSummary(DescribeVulLevelImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ms {
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
-        self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResourceInstances(_ input: CreateResourceInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
+        self.client.execute(action: "CreateResourceInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(_ input: CreateResourceInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
-        try await self.client.execute(action: "CreateResourceInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResourceInstances(_ input: CreateResourceInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
+        try await self.client.execute(action: "CreateResourceInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
-        self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), logger: logger, on: eventLoop)
+    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
+        self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建资源
     ///
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
-    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
-        try await self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), logger: logger, on: eventLoop)
+    public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
+        try await self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), region: region, logger: logger, on: eventLoop)
     }
 }

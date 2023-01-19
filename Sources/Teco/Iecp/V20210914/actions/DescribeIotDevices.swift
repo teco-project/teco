@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Iecp {
 
     /// 获取设备列表信息
     @inlinable
-    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDevicesResponse> {
-        self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIotDevices(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDevicesResponse> {
+        self.client.execute(action: "DescribeIotDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表信息
     @inlinable
-    public func describeIotDevices(_ input: DescribeIotDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
-        try await self.client.execute(action: "DescribeIotDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIotDevices(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
+        try await self.client.execute(action: "DescribeIotDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备列表信息
     @inlinable
-    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDevicesResponse> {
-        self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), logger: logger, on: eventLoop)
+    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIotDevicesResponse> {
+        self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表信息
     @inlinable
-    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
-        try await self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), logger: logger, on: eventLoop)
+    public func describeIotDevices(offset: Int64, limit: Int64, productId: String? = nil, namePattern: String? = nil, versions: [String]? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIotDevicesResponse {
+        try await self.describeIotDevices(DescribeIotDevicesRequest(offset: offset, limit: limit, productId: productId, namePattern: namePattern, versions: versions, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcss {
 
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
-        self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
+        self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
-        try await self.client.execute(action: "StopVirusScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
+        try await self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
-        self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), logger: logger, on: eventLoop)
+    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
+        self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时停止木马查杀任务
     @inlinable
-    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
-        try await self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), logger: logger, on: eventLoop)
+    public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
+        try await self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcss {
 
     /// 查询安全日志投递cls可选项
     @inlinable
-    public func describeSecLogDeliveryClsOptions(_ input: DescribeSecLogDeliveryClsOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryClsOptionsResponse> {
-        self.client.execute(action: "DescribeSecLogDeliveryClsOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryClsOptions(_ input: DescribeSecLogDeliveryClsOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryClsOptionsResponse> {
+        self.client.execute(action: "DescribeSecLogDeliveryClsOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志投递cls可选项
     @inlinable
-    public func describeSecLogDeliveryClsOptions(_ input: DescribeSecLogDeliveryClsOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsOptionsResponse {
-        try await self.client.execute(action: "DescribeSecLogDeliveryClsOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecLogDeliveryClsOptions(_ input: DescribeSecLogDeliveryClsOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsOptionsResponse {
+        try await self.client.execute(action: "DescribeSecLogDeliveryClsOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全日志投递cls可选项
     @inlinable
-    public func describeSecLogDeliveryClsOptions(clsRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryClsOptionsResponse> {
-        self.describeSecLogDeliveryClsOptions(DescribeSecLogDeliveryClsOptionsRequest(clsRegion: clsRegion), logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryClsOptions(clsRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryClsOptionsResponse> {
+        self.describeSecLogDeliveryClsOptions(DescribeSecLogDeliveryClsOptionsRequest(clsRegion: clsRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志投递cls可选项
     @inlinable
-    public func describeSecLogDeliveryClsOptions(clsRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsOptionsResponse {
-        try await self.describeSecLogDeliveryClsOptions(DescribeSecLogDeliveryClsOptionsRequest(clsRegion: clsRegion), logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryClsOptions(clsRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryClsOptionsResponse {
+        try await self.describeSecLogDeliveryClsOptions(DescribeSecLogDeliveryClsOptionsRequest(clsRegion: clsRegion), region: region, logger: logger, on: eventLoop)
     }
 }

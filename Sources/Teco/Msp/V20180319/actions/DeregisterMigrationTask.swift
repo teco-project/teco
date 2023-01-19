@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Msp {
 
     /// 取消注册迁移任务
     @inlinable
-    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterMigrationTaskResponse> {
-        self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterMigrationTaskResponse> {
+        self.client.execute(action: "DeregisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消注册迁移任务
     @inlinable
-    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
-        try await self.client.execute(action: "DeregisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deregisterMigrationTask(_ input: DeregisterMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
+        try await self.client.execute(action: "DeregisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消注册迁移任务
     @inlinable
-    public func deregisterMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterMigrationTaskResponse> {
-        self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func deregisterMigrationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterMigrationTaskResponse> {
+        self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消注册迁移任务
     @inlinable
-    public func deregisterMigrationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
-        try await self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func deregisterMigrationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterMigrationTaskResponse {
+        try await self.deregisterMigrationTask(DeregisterMigrationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcss {
 
     /// 停止漏洞扫描任务
     @inlinable
-    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVulScanTaskResponse> {
-        self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopVulScanTask(_ input: StopVulScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVulScanTaskResponse> {
+        self.client.execute(action: "StopVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止漏洞扫描任务
     @inlinable
-    public func stopVulScanTask(_ input: StopVulScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
-        try await self.client.execute(action: "StopVulScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopVulScanTask(_ input: StopVulScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
+        try await self.client.execute(action: "StopVulScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止漏洞扫描任务
     @inlinable
-    public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVulScanTaskResponse> {
-        self.stopVulScanTask(StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), logger: logger, on: eventLoop)
+    public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVulScanTaskResponse> {
+        self.stopVulScanTask(StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止漏洞扫描任务
     @inlinable
-    public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
-        try await self.stopVulScanTask(StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), logger: logger, on: eventLoop)
+    public func stopVulScanTask(localTaskID: Int64? = nil, localImageIDs: [String]? = nil, registryImageIDs: [UInt64]? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVulScanTaskResponse {
+        try await self.stopVulScanTask(StopVulScanTaskRequest(localTaskID: localTaskID, localImageIDs: localImageIDs, registryImageIDs: registryImageIDs, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
     }
 }

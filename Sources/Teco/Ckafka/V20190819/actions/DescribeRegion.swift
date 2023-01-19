@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Ckafka {
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
-        self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRegion(_ input: DescribeRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
+        self.client.execute(action: "DescribeRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(_ input: DescribeRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
-        try await self.client.execute(action: "DescribeRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRegion(_ input: DescribeRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
+        try await self.client.execute(action: "DescribeRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
-        self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), logger: logger, on: eventLoop)
+    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionResponse> {
+        self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举地域
     ///
     /// 枚举地域,只支持广州地域
     @inlinable
-    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
-        try await self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), logger: logger, on: eventLoop)
+    public func describeRegion(offset: Int64? = nil, limit: Int64? = nil, business: String? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionResponse {
+        try await self.describeRegion(DescribeRegionRequest(offset: offset, limit: limit, business: business, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
     }
 }

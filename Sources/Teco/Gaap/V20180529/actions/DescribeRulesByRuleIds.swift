@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
-        self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
+        self.client.execute(action: "DescribeRulesByRuleIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
-        try await self.client.execute(action: "DescribeRulesByRuleIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRulesByRuleIds(_ input: DescribeRulesByRuleIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
+        try await self.client.execute(action: "DescribeRulesByRuleIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
-        self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func describeRulesByRuleIds(ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
+        self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据规则ID拉取规则信息列表
     ///
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
-    public func describeRulesByRuleIds(ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
-        try await self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func describeRulesByRuleIds(ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
+        try await self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 }

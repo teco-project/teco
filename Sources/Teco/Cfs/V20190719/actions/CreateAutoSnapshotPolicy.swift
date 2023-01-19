@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cfs {
 
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
-        self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
+        self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "CreateAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAutoSnapshotPolicy(_ input: CreateAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
-        self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), logger: logger, on: eventLoop)
+    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
+        self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定期快照策略
     @inlinable
-    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
-        try await self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), logger: logger, on: eventLoop)
+    public func createAutoSnapshotPolicy(dayOfWeek: String, hour: String, policyName: String? = nil, aliveDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
+        try await self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(dayOfWeek: dayOfWeek, hour: hour, policyName: policyName, aliveDays: aliveDays), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Ecm {
 
     /// 创建安全组
     @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupResponse> {
-        self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupResponse> {
+        self.client.execute(action: "CreateSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组
     @inlinable
-    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
-        try await self.client.execute(action: "CreateSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityGroup(_ input: CreateSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
+        try await self.client.execute(action: "CreateSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建安全组
     @inlinable
-    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupResponse> {
-        self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), logger: logger, on: eventLoop)
+    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupResponse> {
+        self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组
     @inlinable
-    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
-        try await self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), logger: logger, on: eventLoop)
+    public func createSecurityGroup(groupName: String, groupDescription: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
+        try await self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

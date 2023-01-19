@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ses {
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
     @inlinable
-    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
-        self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReceiver(_ input: DeleteReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
+        self.client.execute(action: "DeleteReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
     @inlinable
-    public func deleteReceiver(_ input: DeleteReceiverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
-        try await self.client.execute(action: "DeleteReceiver", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReceiver(_ input: DeleteReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
+        try await self.client.execute(action: "DeleteReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
     @inlinable
-    public func deleteReceiver(receiverId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
-        self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), logger: logger, on: eventLoop)
+    public func deleteReceiver(receiverId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
+        self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
     @inlinable
-    public func deleteReceiver(receiverId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
-        try await self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), logger: logger, on: eventLoop)
+    public func deleteReceiver(receiverId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
+        try await self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), region: region, logger: logger, on: eventLoop)
     }
 }

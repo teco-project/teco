@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Tke {
 
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
-        self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
+        self.client.execute(action: "DescribeResourceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
-        try await self.client.execute(action: "DescribeResourceUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceUsage(_ input: DescribeResourceUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
+        try await self.client.execute(action: "DescribeResourceUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
-        self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeResourceUsage(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUsageResponse> {
+        self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群资源使用量
     @inlinable
-    public func describeResourceUsage(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
-        try await self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeResourceUsage(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUsageResponse {
+        try await self.describeResourceUsage(DescribeResourceUsageRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

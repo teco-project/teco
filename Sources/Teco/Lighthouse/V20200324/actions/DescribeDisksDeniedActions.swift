@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
-        self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
+        self.client.execute(action: "DescribeDisksDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeDisksDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDisksDeniedActions(_ input: DescribeDisksDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeDisksDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
-        self.describeDisksDeniedActions(DescribeDisksDeniedActionsRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func describeDisksDeniedActions(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksDeniedActionsResponse> {
+        self.describeDisksDeniedActions(DescribeDisksDeniedActionsRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘操作限制列表信息
     ///
     /// 本接口（DescribeDisksDeniedActions）用于查询一个或多个云硬盘的操作限制列表信息。
     @inlinable
-    public func describeDisksDeniedActions(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
-        try await self.describeDisksDeniedActions(DescribeDisksDeniedActionsRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func describeDisksDeniedActions(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksDeniedActionsResponse {
+        try await self.describeDisksDeniedActions(DescribeDisksDeniedActionsRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

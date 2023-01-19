@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Live {
     ///
     /// 海外分区直播播放带宽和流量数据查询。
     @inlinable
-    public func describeAreaBillBandwidthAndFluxList(_ input: DescribeAreaBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAreaBillBandwidthAndFluxListResponse> {
-        self.client.execute(action: "DescribeAreaBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAreaBillBandwidthAndFluxList(_ input: DescribeAreaBillBandwidthAndFluxListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAreaBillBandwidthAndFluxListResponse> {
+        self.client.execute(action: "DescribeAreaBillBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 海外分区直播播放带宽和流量数据查询
     ///
     /// 海外分区直播播放带宽和流量数据查询。
     @inlinable
-    public func describeAreaBillBandwidthAndFluxList(_ input: DescribeAreaBillBandwidthAndFluxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
-        try await self.client.execute(action: "DescribeAreaBillBandwidthAndFluxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAreaBillBandwidthAndFluxList(_ input: DescribeAreaBillBandwidthAndFluxListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
+        try await self.client.execute(action: "DescribeAreaBillBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 海外分区直播播放带宽和流量数据查询
     ///
     /// 海外分区直播播放带宽和流量数据查询。
     @inlinable
-    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAreaBillBandwidthAndFluxListResponse> {
-        self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAreaBillBandwidthAndFluxListResponse> {
+        self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 海外分区直播播放带宽和流量数据查询
     ///
     /// 海外分区直播播放带宽和流量数据查询。
     @inlinable
-    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
-        try await self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeAreaBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAreaBillBandwidthAndFluxListResponse {
+        try await self.describeAreaBillBandwidthAndFluxList(DescribeAreaBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 }

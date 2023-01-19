@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
     @inlinable
-    public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
-        self.client.execute(action: "DeleteTimerScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
+        self.client.execute(action: "DeleteTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除定时器
@@ -63,8 +63,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
     @inlinable
-    public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
-        try await self.client.execute(action: "DeleteTimerScalingPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
+        try await self.client.execute(action: "DeleteTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除定时器
@@ -72,8 +72,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
     @inlinable
-    public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
-        self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), logger: logger, on: eventLoop)
+    public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
+        self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除定时器
@@ -81,7 +81,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
     @inlinable
-    public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
-        try await self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), logger: logger, on: eventLoop)
+    public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
+        try await self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tcss {
     ///
     /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
     @inlinable
-    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventsExportResponse> {
-        self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventsExportResponse> {
+        self.client.execute(action: "DescribeEscapeEventsExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸事件列表导出
     ///
     /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
     @inlinable
-    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
-        try await self.client.execute(action: "DescribeEscapeEventsExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEscapeEventsExport(_ input: DescribeEscapeEventsExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
+        try await self.client.execute(action: "DescribeEscapeEventsExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器逃逸事件列表导出
     ///
     /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
     @inlinable
-    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventsExportResponse> {
-        self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventsExportResponse> {
+        self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器逃逸事件列表导出
     ///
     /// DescribeEscapeEventsExport  查询容器逃逸事件列表导出
     @inlinable
-    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
-        try await self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeEscapeEventsExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventsExportResponse {
+        try await self.describeEscapeEventsExport(DescribeEscapeEventsExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

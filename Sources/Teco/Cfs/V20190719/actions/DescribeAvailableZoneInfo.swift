@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cfs {
     ///
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
-    public func describeAvailableZoneInfo(_ input: DescribeAvailableZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableZoneInfoResponse> {
-        self.client.execute(action: "DescribeAvailableZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableZoneInfo(_ input: DescribeAvailableZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableZoneInfoResponse> {
+        self.client.execute(action: "DescribeAvailableZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询区域可用情况
     ///
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
-    public func describeAvailableZoneInfo(_ input: DescribeAvailableZoneInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
-        try await self.client.execute(action: "DescribeAvailableZoneInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableZoneInfo(_ input: DescribeAvailableZoneInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
+        try await self.client.execute(action: "DescribeAvailableZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询区域可用情况
     ///
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
-    public func describeAvailableZoneInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableZoneInfoResponse> {
-        self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), logger: logger, on: eventLoop)
+    public func describeAvailableZoneInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableZoneInfoResponse> {
+        self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询区域可用情况
     ///
     /// 本接口（DescribeAvailableZoneInfo）用于查询区域的可用情况。
     @inlinable
-    public func describeAvailableZoneInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
-        try await self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), logger: logger, on: eventLoop)
+    public func describeAvailableZoneInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableZoneInfoResponse {
+        try await self.describeAvailableZoneInfo(DescribeAvailableZoneInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

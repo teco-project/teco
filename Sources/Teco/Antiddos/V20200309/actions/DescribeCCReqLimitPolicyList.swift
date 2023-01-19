@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Antiddos {
 
     /// 获取CC频率限制策略列表
     @inlinable
-    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCReqLimitPolicyListResponse> {
-        self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCReqLimitPolicyListResponse> {
+        self.client.execute(action: "DescribeCCReqLimitPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC频率限制策略列表
     @inlinable
-    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
-        try await self.client.execute(action: "DescribeCCReqLimitPolicyList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCReqLimitPolicyList(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
+        try await self.client.execute(action: "DescribeCCReqLimitPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC频率限制策略列表
     @inlinable
-    public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCReqLimitPolicyListResponse> {
-        self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCReqLimitPolicyListResponse> {
+        self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC频率限制策略列表
     @inlinable
-    public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
-        try await self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
+        try await self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

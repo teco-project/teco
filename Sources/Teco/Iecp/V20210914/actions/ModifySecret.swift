@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 修改Secret
     @inlinable
-    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecretResponse> {
-        self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecret(_ input: ModifySecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecretResponse> {
+        self.client.execute(action: "ModifySecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Secret
     @inlinable
-    public func modifySecret(_ input: ModifySecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
-        try await self.client.execute(action: "ModifySecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecret(_ input: ModifySecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
+        try await self.client.execute(action: "ModifySecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改Secret
     @inlinable
-    public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecretResponse> {
-        self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecretResponse> {
+        self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Secret
     @inlinable
-    public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
-        try await self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), logger: logger, on: eventLoop)
+    public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
+        try await self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), region: region, logger: logger, on: eventLoop)
     }
 }

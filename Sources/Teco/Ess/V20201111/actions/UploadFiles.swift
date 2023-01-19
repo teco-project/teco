@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,8 +89,8 @@ extension Ess {
     /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 多文件上传
@@ -99,8 +99,8 @@ extension Ess {
     /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 多文件上传
@@ -109,8 +109,8 @@ extension Ess {
     /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.uploadFiles(UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多文件上传
@@ -119,7 +119,7 @@ extension Ess {
     /// 适用场景：用于生成pdf资源编号（FileIds）来配合“用PDF创建流程”接口使用，使用场景可详见“用PDF创建流程”接口说明。
     /// 调用时需要设置Domain/接口请求域名为 file.ess.tencent.cn，并设置参数Version/版本号为2020-12-22
     @inlinable
-    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.uploadFiles(UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), logger: logger, on: eventLoop)
+    public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), region: region, logger: logger, on: eventLoop)
     }
 }

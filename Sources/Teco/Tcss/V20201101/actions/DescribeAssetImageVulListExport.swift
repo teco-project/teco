@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Tcss {
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
-        self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
+        self.client.execute(action: "DescribeAssetImageVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageVulListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageVulListExport(_ input: DescribeAssetImageVulListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
-        self.describeAssetImageVulListExport(DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListExportResponse> {
+        self.describeAssetImageVulListExport(DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像漏洞列表导出
     ///
     /// 容器安全搜索查询镜像漏洞列表导出
     @inlinable
-    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
-        try await self.describeAssetImageVulListExport(DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageVulListExport(exportField: [String], imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListExportResponse {
+        try await self.describeAssetImageVulListExport(DescribeAssetImageVulListExportRequest(exportField: exportField, imageID: imageID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

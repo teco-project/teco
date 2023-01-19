@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Cpdp {
 
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
-    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexPayeeAccountRightStatusResponse> {
-        self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexPayeeAccountRightStatusResponse> {
+        self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
-    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
-        try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFlexPayeeAccountRightStatus(_ input: ModifyFlexPayeeAccountRightStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
+        try await self.client.execute(action: "ModifyFlexPayeeAccountRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
-    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexPayeeAccountRightStatusResponse> {
-        self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), logger: logger, on: eventLoop)
+    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexPayeeAccountRightStatusResponse> {
+        self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户权益状态修改
     @inlinable
-    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
-        try await self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), logger: logger, on: eventLoop)
+    public func modifyFlexPayeeAccountRightStatus(payeeId: String, accountRightType: String, accountRightStatus: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexPayeeAccountRightStatusResponse {
+        try await self.modifyFlexPayeeAccountRightStatus(ModifyFlexPayeeAccountRightStatusRequest(payeeId: payeeId, accountRightType: accountRightType, accountRightStatus: accountRightStatus, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

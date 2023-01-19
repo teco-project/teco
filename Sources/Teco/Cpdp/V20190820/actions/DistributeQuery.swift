@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Cpdp {
 
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
-        self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func distributeQuery(_ input: DistributeQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
+        self.client.execute(action: "DistributeQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(_ input: DistributeQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
-        try await self.client.execute(action: "DistributeQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func distributeQuery(_ input: DistributeQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
+        try await self.client.execute(action: "DistributeQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
-        self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryResponse> {
+        self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账结果查询接口
     @inlinable
-    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
-        try await self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    public func distributeQuery(openId: String, openKey: String, type: String, outDistributeNo: String? = nil, distributeNo: String? = nil, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryResponse {
+        try await self.distributeQuery(DistributeQueryRequest(openId: openId, openKey: openKey, type: type, outDistributeNo: outDistributeNo, distributeNo: distributeNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
-        self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func draftApiGroup(_ input: DraftApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
+        self.client.execute(action: "DraftApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(_ input: DraftApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
-        try await self.client.execute(action: "DraftApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func draftApiGroup(_ input: DraftApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
+        try await self.client.execute(action: "DraftApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
-        self.draftApiGroup(DraftApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func draftApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DraftApiGroupResponse> {
+        self.draftApiGroup(DraftApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线Api分组
     @inlinable
-    public func draftApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
-        try await self.draftApiGroup(DraftApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func draftApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DraftApiGroupResponse {
+        try await self.draftApiGroup(DraftApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

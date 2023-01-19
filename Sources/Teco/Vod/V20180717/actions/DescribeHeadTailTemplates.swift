@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Vod {
     ///
     /// 获取片头片尾模板列表。
     @inlinable
-    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHeadTailTemplatesResponse> {
-        self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHeadTailTemplatesResponse> {
+        self.client.execute(action: "DescribeHeadTailTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取片头片尾模板列表
     ///
     /// 获取片头片尾模板列表。
     @inlinable
-    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
-        try await self.client.execute(action: "DescribeHeadTailTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHeadTailTemplates(_ input: DescribeHeadTailTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
+        try await self.client.execute(action: "DescribeHeadTailTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取片头片尾模板列表
     ///
     /// 获取片头片尾模板列表。
     @inlinable
-    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHeadTailTemplatesResponse> {
-        self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHeadTailTemplatesResponse> {
+        self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取片头片尾模板列表
     ///
     /// 获取片头片尾模板列表。
     @inlinable
-    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
-        try await self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeHeadTailTemplates(subAppId: UInt64? = nil, definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHeadTailTemplatesResponse {
+        try await self.describeHeadTailTemplates(DescribeHeadTailTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

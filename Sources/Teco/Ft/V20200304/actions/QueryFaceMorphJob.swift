@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ft {
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
-        self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
+        self.client.execute(action: "QueryFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
-        try await self.client.execute(action: "QueryFaceMorphJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFaceMorphJob(_ input: QueryFaceMorphJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
+        try await self.client.execute(action: "QueryFaceMorphJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
-        self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func queryFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFaceMorphJobResponse> {
+        self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询人像渐变任务
     ///
     /// 查询人像渐变处理进度
     @inlinable
-    public func queryFaceMorphJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
-        try await self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func queryFaceMorphJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFaceMorphJobResponse {
+        try await self.queryFaceMorphJob(QueryFaceMorphJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

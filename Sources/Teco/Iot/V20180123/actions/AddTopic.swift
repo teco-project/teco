@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
-    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTopicResponse> {
-        self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addTopic(_ input: AddTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTopicResponse> {
+        self.client.execute(action: "AddTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增Topic
     ///
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
-    public func addTopic(_ input: AddTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
-        try await self.client.execute(action: "AddTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addTopic(_ input: AddTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
+        try await self.client.execute(action: "AddTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增Topic
     ///
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
-    public func addTopic(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTopicResponse> {
-        self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func addTopic(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTopicResponse> {
+        self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增Topic
     ///
     /// 新增Topic，用于设备或应用发布消息至该Topic或订阅该Topic的消息。
     @inlinable
-    public func addTopic(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
-        try await self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func addTopic(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTopicResponse {
+        try await self.addTopic(AddTopicRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

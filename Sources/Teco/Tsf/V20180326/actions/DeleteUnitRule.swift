@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
-        self.client.execute(action: "DeleteUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
+        self.client.execute(action: "DeleteUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
-        try await self.client.execute(action: "DeleteUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUnitRule(_ input: DeleteUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
+        try await self.client.execute(action: "DeleteUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
-        self.deleteUnitRule(DeleteUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
+        self.deleteUnitRule(DeleteUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化规则
     @inlinable
-    public func deleteUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
-        try await self.deleteUnitRule(DeleteUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
+        try await self.deleteUnitRule(DeleteUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

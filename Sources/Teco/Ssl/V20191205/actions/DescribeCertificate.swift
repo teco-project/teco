@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -203,31 +203,31 @@ extension Ssl {
     ///
     /// 本接口（DescribeCertificate）用于获取证书信息。
     @inlinable
-    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateResponse> {
-        self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCertificate(_ input: DescribeCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateResponse> {
+        self.client.execute(action: "DescribeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取证书信息
     ///
     /// 本接口（DescribeCertificate）用于获取证书信息。
     @inlinable
-    public func describeCertificate(_ input: DescribeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
-        try await self.client.execute(action: "DescribeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCertificate(_ input: DescribeCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
+        try await self.client.execute(action: "DescribeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取证书信息
     ///
     /// 本接口（DescribeCertificate）用于获取证书信息。
     @inlinable
-    public func describeCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateResponse> {
-        self.describeCertificate(DescribeCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func describeCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateResponse> {
+        self.describeCertificate(DescribeCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书信息
     ///
     /// 本接口（DescribeCertificate）用于获取证书信息。
     @inlinable
-    public func describeCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
-        try await self.describeCertificate(DescribeCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func describeCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateResponse {
+        try await self.describeCertificate(DescribeCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Tione {
 
     /// 创建Notebook生命周期脚本
     @inlinable
-    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookLifecycleScriptResponse> {
-        self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookLifecycleScriptResponse> {
+        self.client.execute(action: "CreateNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook生命周期脚本
     @inlinable
-    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
-        try await self.client.execute(action: "CreateNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNotebookLifecycleScript(_ input: CreateNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
+        try await self.client.execute(action: "CreateNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Notebook生命周期脚本
     @inlinable
-    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookLifecycleScriptResponse> {
-        self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), logger: logger, on: eventLoop)
+    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookLifecycleScriptResponse> {
+        self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook生命周期脚本
     @inlinable
-    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
-        try await self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), logger: logger, on: eventLoop)
+    public func createNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookLifecycleScriptResponse {
+        try await self.createNotebookLifecycleScript(CreateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), region: region, logger: logger, on: eventLoop)
     }
 }

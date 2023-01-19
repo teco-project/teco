@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -154,25 +154,25 @@ extension Cpdp {
 
     /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeRechargeByThirdPayResponse> {
-        self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeRechargeByThirdPayResponse> {
+        self.client.execute(action: "RevokeRechargeByThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
-        try await self.client.execute(action: "RevokeRechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revokeRechargeByThirdPay(_ input: RevokeRechargeByThirdPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
+        try await self.client.execute(action: "RevokeRechargeByThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func revokeRechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeRechargeByThirdPayResponse> {
-        self.revokeRechargeByThirdPay(RevokeRechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelOrderId: thirdPayChannelOrderId, oldFrontSequenceNumber: oldFrontSequenceNumber, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), logger: logger, on: eventLoop)
+    public func revokeRechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeRechargeByThirdPayResponse> {
+        self.revokeRechargeByThirdPay(RevokeRechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelOrderId: thirdPayChannelOrderId, oldFrontSequenceNumber: oldFrontSequenceNumber, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func revokeRechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
-        try await self.revokeRechargeByThirdPay(RevokeRechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelOrderId: thirdPayChannelOrderId, oldFrontSequenceNumber: oldFrontSequenceNumber, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), logger: logger, on: eventLoop)
+    public func revokeRechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelOrderId: String, oldFrontSequenceNumber: String, currencyAmount: String, currencyUnit: String, currencyType: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeRechargeByThirdPayResponse {
+        try await self.revokeRechargeByThirdPay(RevokeRechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelOrderId: thirdPayChannelOrderId, oldFrontSequenceNumber: oldFrontSequenceNumber, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

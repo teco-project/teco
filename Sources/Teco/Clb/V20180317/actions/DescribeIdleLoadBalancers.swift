@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Clb {
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
-    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdleLoadBalancersResponse> {
-        self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdleLoadBalancersResponse> {
+        self.client.execute(action: "DescribeIdleLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡闲置实例
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
-    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
-        try await self.client.execute(action: "DescribeIdleLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIdleLoadBalancers(_ input: DescribeIdleLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
+        try await self.client.execute(action: "DescribeIdleLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询负载均衡闲置实例
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
-    public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdleLoadBalancersResponse> {
-        self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), logger: logger, on: eventLoop)
+    public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdleLoadBalancersResponse> {
+        self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡闲置实例
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
-    public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
-        try await self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), logger: logger, on: eventLoop)
+    public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
+        try await self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
     }
 }

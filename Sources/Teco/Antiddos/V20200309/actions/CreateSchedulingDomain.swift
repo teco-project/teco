@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Antiddos {
     ///
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
-    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulingDomainResponse> {
-        self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulingDomainResponse> {
+        self.client.execute(action: "CreateSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建调度的域名
     ///
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
-    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
-        try await self.client.execute(action: "CreateSchedulingDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSchedulingDomain(_ input: CreateSchedulingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
+        try await self.client.execute(action: "CreateSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建调度的域名
     ///
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
-    public func createSchedulingDomain(product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulingDomainResponse> {
-        self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), logger: logger, on: eventLoop)
+    public func createSchedulingDomain(product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulingDomainResponse> {
+        self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建调度的域名
     ///
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
-    public func createSchedulingDomain(product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
-        try await self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), logger: logger, on: eventLoop)
+    public func createSchedulingDomain(product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
+        try await self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

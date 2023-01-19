@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cwp {
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
-        self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
+        self.client.execute(action: "DescribeBaselineEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
-        try await self.client.execute(action: "DescribeBaselineEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineEffectHostList(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
+        try await self.client.execute(action: "DescribeBaselineEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
-        self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), logger: logger, on: eventLoop)
+    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineEffectHostListResponse> {
+        self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
-        try await self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), logger: logger, on: eventLoop)
+    public func describeBaselineEffectHostList(limit: UInt64, offset: UInt64, baselineId: UInt64, filters: [Filters]? = nil, strategyId: UInt64? = nil, uuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineEffectHostListResponse {
+        try await self.describeBaselineEffectHostList(DescribeBaselineEffectHostListRequest(limit: limit, offset: offset, baselineId: baselineId, filters: filters, strategyId: strategyId, uuidList: uuidList), region: region, logger: logger, on: eventLoop)
     }
 }

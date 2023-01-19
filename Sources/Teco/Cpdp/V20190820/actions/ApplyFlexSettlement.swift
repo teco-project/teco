@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Cpdp {
 
     /// 灵云V2-结算
     @inlinable
-    public func applyFlexSettlement(_ input: ApplyFlexSettlementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexSettlementResponse> {
-        self.client.execute(action: "ApplyFlexSettlement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyFlexSettlement(_ input: ApplyFlexSettlementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexSettlementResponse> {
+        self.client.execute(action: "ApplyFlexSettlement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-结算
     @inlinable
-    public func applyFlexSettlement(_ input: ApplyFlexSettlementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexSettlementResponse {
-        try await self.client.execute(action: "ApplyFlexSettlement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyFlexSettlement(_ input: ApplyFlexSettlementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexSettlementResponse {
+        try await self.client.execute(action: "ApplyFlexSettlement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-结算
     @inlinable
-    public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexSettlementResponse> {
-        self.applyFlexSettlement(ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexSettlementResponse> {
+        self.applyFlexSettlement(ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-结算
     @inlinable
-    public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexSettlementResponse {
-        try await self.applyFlexSettlement(ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    public func applyFlexSettlement(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, remark: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexSettlementResponse {
+        try await self.applyFlexSettlement(ApplyFlexSettlementRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

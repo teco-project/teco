@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dlc {
 
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
-        self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResultDownload(_ input: CreateResultDownloadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
+        self.client.execute(action: "CreateResultDownload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(_ input: CreateResultDownloadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
-        try await self.client.execute(action: "CreateResultDownload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResultDownload(_ input: CreateResultDownloadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
+        try await self.client.execute(action: "CreateResultDownload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
-        self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), logger: logger, on: eventLoop)
+    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResultDownloadResponse> {
+        self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建查询结果下载任务
     @inlinable
-    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
-        try await self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), logger: logger, on: eventLoop)
+    public func createResultDownload(taskId: String, format: String, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResultDownloadResponse {
+        try await self.createResultDownload(CreateResultDownloadRequest(taskId: taskId, format: format, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

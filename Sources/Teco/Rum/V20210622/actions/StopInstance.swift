@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Rum {
 
     /// 停止实例
     @inlinable
-    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
-        self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopInstance(_ input: StopInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
+        self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止实例
     @inlinable
-    public func stopInstance(_ input: StopInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
-        try await self.client.execute(action: "StopInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopInstance(_ input: StopInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
+        try await self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止实例
     @inlinable
-    public func stopInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
-        self.stopInstance(StopInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
+        self.stopInstance(StopInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止实例
     @inlinable
-    public func stopInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
-        try await self.stopInstance(StopInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
+        try await self.stopInstance(StopInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Mariadb {
     ///
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupTimeResponse> {
-        self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupTimeResponse> {
+        self.client.execute(action: "ModifyBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份时间
     ///
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
-        try await self.client.execute(action: "ModifyBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBackupTime(_ input: ModifyBackupTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
+        try await self.client.execute(action: "ModifyBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改备份时间
     ///
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupTimeResponse> {
-        self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), logger: logger, on: eventLoop)
+    public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupTimeResponse> {
+        self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份时间
     ///
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
-        try await self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), logger: logger, on: eventLoop)
+    public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
+        try await self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), region: region, logger: logger, on: eventLoop)
     }
 }

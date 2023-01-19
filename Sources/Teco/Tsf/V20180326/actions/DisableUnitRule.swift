@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 禁用单元化规则
     @inlinable
-    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUnitRuleResponse> {
-        self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableUnitRule(_ input: DisableUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUnitRuleResponse> {
+        self.client.execute(action: "DisableUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用单元化规则
     @inlinable
-    public func disableUnitRule(_ input: DisableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
-        try await self.client.execute(action: "DisableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableUnitRule(_ input: DisableUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
+        try await self.client.execute(action: "DisableUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用单元化规则
     @inlinable
-    public func disableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUnitRuleResponse> {
-        self.disableUnitRule(DisableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func disableUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableUnitRuleResponse> {
+        self.disableUnitRule(DisableUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用单元化规则
     @inlinable
-    public func disableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
-        try await self.disableUnitRule(DisableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func disableUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableUnitRuleResponse {
+        try await self.disableUnitRule(DisableUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

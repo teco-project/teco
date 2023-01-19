@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable
-    public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
-        self.client.execute(action: "UpdateBucketCORSOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
+        self.client.execute(action: "UpdateBucketCORSOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置cos跨域访问
@@ -73,8 +73,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable
-    public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
-        try await self.client.execute(action: "UpdateBucketCORSOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
+        try await self.client.execute(action: "UpdateBucketCORSOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置cos跨域访问
@@ -82,8 +82,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable
-    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
-        self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), logger: logger, on: eventLoop)
+    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
+        self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置cos跨域访问
@@ -91,7 +91,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable
-    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
-        try await self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), logger: logger, on: eventLoop)
+    public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
+        try await self.updateBucketCORSOpt(UpdateBucketCORSOptRequest(allowedOrigins: allowedOrigins, allowedMethods: allowedMethods, allowedHeaders: allowedHeaders, maxAgeSeconds: maxAgeSeconds, exposeHeaders: exposeHeaders), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Gs {
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
-        self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
+        self.client.execute(action: "DescribeInstancesCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
-        try await self.client.execute(action: "DescribeInstancesCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesCount(_ input: DescribeInstancesCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
+        try await self.client.execute(action: "DescribeInstancesCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
-        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), logger: logger, on: eventLoop)
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
+        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
-        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), logger: logger, on: eventLoop)
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
+        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), region: region, logger: logger, on: eventLoop)
     }
 }

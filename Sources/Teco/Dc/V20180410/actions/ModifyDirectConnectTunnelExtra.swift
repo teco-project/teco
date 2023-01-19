@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -121,31 +121,31 @@ extension Dc {
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
     @inlinable
-    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
-        self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
+        self.client.execute(action: "ModifyDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
     @inlinable
-    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
-        try await self.client.execute(action: "ModifyDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
+        try await self.client.execute(action: "ModifyDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
     @inlinable
-    public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
-        self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), logger: logger, on: eventLoop)
+    public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
+        self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
     @inlinable
-    public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
-        try await self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), logger: logger, on: eventLoop)
+    public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
+        try await self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tcr {
     ///
     /// 用于校验企业版实例信息
     @inlinable
-    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceResponse> {
-        self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkInstance(_ input: CheckInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceResponse> {
+        self.client.execute(action: "CheckInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验实例信息
     ///
     /// 用于校验企业版实例信息
     @inlinable
-    public func checkInstance(_ input: CheckInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
-        try await self.client.execute(action: "CheckInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkInstance(_ input: CheckInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
+        try await self.client.execute(action: "CheckInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 校验实例信息
     ///
     /// 用于校验企业版实例信息
     @inlinable
-    public func checkInstance(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceResponse> {
-        self.checkInstance(CheckInstanceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func checkInstance(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceResponse> {
+        self.checkInstance(CheckInstanceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验实例信息
     ///
     /// 用于校验企业版实例信息
     @inlinable
-    public func checkInstance(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
-        try await self.checkInstance(CheckInstanceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func checkInstance(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
+        try await self.checkInstance(CheckInstanceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

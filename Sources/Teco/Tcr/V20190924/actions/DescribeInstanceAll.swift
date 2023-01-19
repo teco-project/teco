@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcr {
 
     /// 查询全部实例信息
     @inlinable
-    public func describeInstanceAll(_ input: DescribeInstanceAllRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllResponse> {
-        self.client.execute(action: "DescribeInstanceAll", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceAll(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllResponse> {
+        self.client.execute(action: "DescribeInstanceAll", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部实例信息
     @inlinable
-    public func describeInstanceAll(_ input: DescribeInstanceAllRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllResponse {
-        try await self.client.execute(action: "DescribeInstanceAll", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceAll(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllResponse {
+        try await self.client.execute(action: "DescribeInstanceAll", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询全部实例信息
     @inlinable
-    public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllResponse> {
-        self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), logger: logger, on: eventLoop)
+    public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllResponse> {
+        self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全部实例信息
     @inlinable
-    public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllResponse {
-        try await self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), logger: logger, on: eventLoop)
+    public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllResponse {
+        try await self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcss {
     ///
     /// 修改反弹shell事件的状态信息
     @inlinable
-    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
-        self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
+        self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
     @inlinable
-    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
-        try await self.client.execute(action: "ModifyReverseShellStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
+        try await self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
     @inlinable
-    public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
-        self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
+        self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
     @inlinable
-    public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
-        try await self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
+        try await self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

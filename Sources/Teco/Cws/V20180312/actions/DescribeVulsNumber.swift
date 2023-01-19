@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cws {
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
-        self.client.execute(action: "DescribeVulsNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
+        self.client.execute(action: "DescribeVulsNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
-        try await self.client.execute(action: "DescribeVulsNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulsNumber(_ input: DescribeVulsNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
+        try await self.client.execute(action: "DescribeVulsNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
-        self.describeVulsNumber(DescribeVulsNumberRequest(), logger: logger, on: eventLoop)
+    public func describeVulsNumber(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
+        self.describeVulsNumber(DescribeVulsNumberRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看当前漏洞总计数量
     ///
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
-    public func describeVulsNumber(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
-        try await self.describeVulsNumber(DescribeVulsNumberRequest(), logger: logger, on: eventLoop)
+    public func describeVulsNumber(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
+        try await self.describeVulsNumber(DescribeVulsNumberRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

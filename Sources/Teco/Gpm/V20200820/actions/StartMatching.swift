@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,8 +62,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
-        self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startMatching(_ input: StartMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
+        self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起匹配
@@ -71,8 +71,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(_ input: StartMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
-        try await self.client.execute(action: "StartMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startMatching(_ input: StartMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
+        try await self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起匹配
@@ -80,8 +80,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
-        self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
+        self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起匹配
@@ -89,7 +89,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
     @inlinable
-    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
-        try await self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
+        try await self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 }

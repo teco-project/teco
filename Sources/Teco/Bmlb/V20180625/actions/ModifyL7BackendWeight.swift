@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Bmlb {
     ///
     /// 修改黑石负载均衡七层转发路径后端实例权重。
     @inlinable
-    public func modifyL7BackendWeight(_ input: ModifyL7BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7BackendWeightResponse> {
-        self.client.execute(action: "ModifyL7BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyL7BackendWeight(_ input: ModifyL7BackendWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7BackendWeightResponse> {
+        self.client.execute(action: "ModifyL7BackendWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径后端实例权重
     ///
     /// 修改黑石负载均衡七层转发路径后端实例权重。
     @inlinable
-    public func modifyL7BackendWeight(_ input: ModifyL7BackendWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendWeightResponse {
-        try await self.client.execute(action: "ModifyL7BackendWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyL7BackendWeight(_ input: ModifyL7BackendWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendWeightResponse {
+        try await self.client.execute(action: "ModifyL7BackendWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改黑石负载均衡七层转发路径后端实例权重
     ///
     /// 修改黑石负载均衡七层转发路径后端实例权重。
     @inlinable
-    public func modifyL7BackendWeight(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7BackendWeightResponse> {
-        self.modifyL7BackendWeight(ModifyL7BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), logger: logger, on: eventLoop)
+    public func modifyL7BackendWeight(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7BackendWeightResponse> {
+        self.modifyL7BackendWeight(ModifyL7BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径后端实例权重
     ///
     /// 修改黑石负载均衡七层转发路径后端实例权重。
     @inlinable
-    public func modifyL7BackendWeight(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendWeightResponse {
-        try await self.modifyL7BackendWeight(ModifyL7BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), logger: logger, on: eventLoop)
+    public func modifyL7BackendWeight(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, instanceId: String, weight: Int64, port: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7BackendWeightResponse {
+        try await self.modifyL7BackendWeight(ModifyL7BackendWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, instanceId: instanceId, weight: weight, port: port, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

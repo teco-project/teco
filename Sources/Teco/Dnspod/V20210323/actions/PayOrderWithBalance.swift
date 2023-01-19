@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Dnspod {
 
     /// DNSPod商品余额支付
     @inlinable
-    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayOrderWithBalanceResponse> {
-        self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayOrderWithBalanceResponse> {
+        self.client.execute(action: "PayOrderWithBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DNSPod商品余额支付
     @inlinable
-    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
-        try await self.client.execute(action: "PayOrderWithBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func payOrderWithBalance(_ input: PayOrderWithBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
+        try await self.client.execute(action: "PayOrderWithBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DNSPod商品余额支付
     @inlinable
-    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayOrderWithBalanceResponse> {
-        self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), logger: logger, on: eventLoop)
+    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayOrderWithBalanceResponse> {
+        self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// DNSPod商品余额支付
     @inlinable
-    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
-        try await self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), logger: logger, on: eventLoop)
+    public func payOrderWithBalance(bigDealIdList: [String], voucherIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayOrderWithBalanceResponse {
+        try await self.payOrderWithBalance(PayOrderWithBalanceRequest(bigDealIdList: bigDealIdList, voucherIdList: voucherIdList), region: region, logger: logger, on: eventLoop)
     }
 }

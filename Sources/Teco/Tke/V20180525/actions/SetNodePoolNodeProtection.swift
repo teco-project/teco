@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tke {
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
-        self.client.execute(action: "SetNodePoolNodeProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
+        self.client.execute(action: "SetNodePoolNodeProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
-        try await self.client.execute(action: "SetNodePoolNodeProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setNodePoolNodeProtection(_ input: SetNodePoolNodeProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
+        try await self.client.execute(action: "SetNodePoolNodeProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
-        self.setNodePoolNodeProtection(SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), logger: logger, on: eventLoop)
+    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNodePoolNodeProtectionResponse> {
+        self.setNodePoolNodeProtection(SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 节点池节点设置移出保护
     ///
     /// 仅能设置节点池中处于伸缩组的节点
     @inlinable
-    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
-        try await self.setNodePoolNodeProtection(SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), logger: logger, on: eventLoop)
+    public func setNodePoolNodeProtection(clusterId: String, nodePoolId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNodePoolNodeProtectionResponse {
+        try await self.setNodePoolNodeProtection(SetNodePoolNodeProtectionRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 }

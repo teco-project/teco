@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Apcas {
     ///
     /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
     @inlinable
-    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PredictRatingResponse> {
-        self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func predictRating(_ input: PredictRatingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PredictRatingResponse> {
+        self.client.execute(action: "PredictRating", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购车意向评级接口
     ///
     /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
     @inlinable
-    public func predictRating(_ input: PredictRatingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
-        try await self.client.execute(action: "PredictRating", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func predictRating(_ input: PredictRatingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
+        try await self.client.execute(action: "PredictRating", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 购车意向评级接口
     ///
     /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
     @inlinable
-    public func predictRating(type: Int64, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PredictRatingResponse> {
-        self.predictRating(PredictRatingRequest(type: type, id: id), logger: logger, on: eventLoop)
+    public func predictRating(type: Int64, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PredictRatingResponse> {
+        self.predictRating(PredictRatingRequest(type: type, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购车意向评级接口
     ///
     /// 根据传入的设备号（IMEI、IDFA、手机号、手机号MD5），返回意向评级结果
     @inlinable
-    public func predictRating(type: Int64, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
-        try await self.predictRating(PredictRatingRequest(type: type, id: id), logger: logger, on: eventLoop)
+    public func predictRating(type: Int64, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PredictRatingResponse {
+        try await self.predictRating(PredictRatingRequest(type: type, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

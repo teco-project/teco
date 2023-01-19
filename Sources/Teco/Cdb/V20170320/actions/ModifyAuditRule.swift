@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable
-    public func modifyAuditRule(_ input: ModifyAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleResponse> {
-        self.client.execute(action: "ModifyAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAuditRule(_ input: ModifyAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleResponse> {
+        self.client.execute(action: "ModifyAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改审计规则
     ///
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable
-    public func modifyAuditRule(_ input: ModifyAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleResponse {
-        try await self.client.execute(action: "ModifyAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAuditRule(_ input: ModifyAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleResponse {
+        try await self.client.execute(action: "ModifyAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改审计规则
     ///
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable
-    public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleResponse> {
-        self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), logger: logger, on: eventLoop)
+    public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleResponse> {
+        self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改审计规则
     ///
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable
-    public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleResponse {
-        try await self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), logger: logger, on: eventLoop)
+    public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleResponse {
+        try await self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
     }
 }

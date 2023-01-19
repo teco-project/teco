@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Teo {
 
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
-        self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
+        self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
-        try await self.client.execute(action: "DescribeOriginGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOriginGroup(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
+        try await self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
-        self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
+        self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组列表
     @inlinable
-    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
-        try await self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
+        try await self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

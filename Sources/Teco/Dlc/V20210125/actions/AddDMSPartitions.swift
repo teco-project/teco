@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Dlc {
 
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
-        self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
+        self.client.execute(action: "AddDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
-        try await self.client.execute(action: "AddDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addDMSPartitions(_ input: AddDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
+        try await self.client.execute(action: "AddDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
-        self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), logger: logger, on: eventLoop)
+    public func addDMSPartitions(partitions: [DMSPartition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDMSPartitionsResponse> {
+        self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据新增分区
     @inlinable
-    public func addDMSPartitions(partitions: [DMSPartition]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
-        try await self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), logger: logger, on: eventLoop)
+    public func addDMSPartitions(partitions: [DMSPartition]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDMSPartitionsResponse {
+        try await self.addDMSPartitions(AddDMSPartitionsRequest(partitions: partitions), region: region, logger: logger, on: eventLoop)
     }
 }

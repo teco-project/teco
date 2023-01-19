@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cr {
 
     /// 查询机器人文件模板
     @inlinable
-    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileModelResponse> {
-        self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFileModel(_ input: DescribeFileModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileModelResponse> {
+        self.client.execute(action: "DescribeFileModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人文件模板
     @inlinable
-    public func describeFileModel(_ input: DescribeFileModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
-        try await self.client.execute(action: "DescribeFileModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFileModel(_ input: DescribeFileModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
+        try await self.client.execute(action: "DescribeFileModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询机器人文件模板
     @inlinable
-    public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileModelResponse> {
-        self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileModelResponse> {
+        self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人文件模板
     @inlinable
-    public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
-        try await self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
+        try await self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cfs {
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
-    public func describeMountTargets(_ input: DescribeMountTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountTargetsResponse> {
-        self.client.execute(action: "DescribeMountTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMountTargets(_ input: DescribeMountTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountTargetsResponse> {
+        self.client.execute(action: "DescribeMountTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
-    public func describeMountTargets(_ input: DescribeMountTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
-        try await self.client.execute(action: "DescribeMountTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMountTargets(_ input: DescribeMountTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
+        try await self.client.execute(action: "DescribeMountTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
-    public func describeMountTargets(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountTargetsResponse> {
-        self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeMountTargets(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountTargetsResponse> {
+        self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
     @inlinable
-    public func describeMountTargets(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
-        try await self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeMountTargets(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
+        try await self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

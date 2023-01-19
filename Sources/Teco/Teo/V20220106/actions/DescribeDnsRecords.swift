@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Teo {
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeDnsRecords(_ input: DescribeDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsRecordsResponse> {
-        self.client.execute(action: "DescribeDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDnsRecords(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsRecordsResponse> {
+        self.client.execute(action: "DescribeDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNS 记录列表
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeDnsRecords(_ input: DescribeDnsRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
-        try await self.client.execute(action: "DescribeDnsRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDnsRecords(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
+        try await self.client.execute(action: "DescribeDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 DNS 记录列表
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsRecordsResponse> {
-        self.describeDnsRecords(DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsRecordsResponse> {
+        self.describeDnsRecords(DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNS 记录列表
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
-        try await self.describeDnsRecords(DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeDnsRecords(filters: [DnsRecordFilter]? = nil, order: String? = nil, direction: String? = nil, match: String? = nil, limit: Int64? = nil, offset: Int64? = nil, zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsRecordsResponse {
+        try await self.describeDnsRecords(DescribeDnsRecordsRequest(filters: filters, order: order, direction: direction, match: match, limit: limit, offset: offset, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

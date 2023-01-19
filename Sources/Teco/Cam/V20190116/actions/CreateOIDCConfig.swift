@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Cam {
 
     /// 创建角色OIDC配置
     @inlinable
-    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
-        self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
+        self.client.execute(action: "CreateOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建角色OIDC配置
     @inlinable
-    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
-        try await self.client.execute(action: "CreateOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOIDCConfig(_ input: CreateOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
+        try await self.client.execute(action: "CreateOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建角色OIDC配置
     @inlinable
-    public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
-        self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), logger: logger, on: eventLoop)
+    public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
+        self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建角色OIDC配置
     @inlinable
-    public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
-        try await self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), logger: logger, on: eventLoop)
+    public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
+        try await self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

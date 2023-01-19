@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cpdp {
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
-        self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
+        self.client.execute(action: "ReviseMbrProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
-        try await self.client.execute(action: "ReviseMbrProperty", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reviseMbrProperty(_ input: ReviseMbrPropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
+        try await self.client.execute(action: "ReviseMbrProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
-        self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
+        self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-修改会员属性-普通商户子账户
     ///
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
-    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
-        try await self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
+        try await self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

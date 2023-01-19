@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cwp {
     ///
     /// 查询防护目录关联服务器列表信息
     @inlinable
-    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectDirRelatedServerResponse> {
-        self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectDirRelatedServerResponse> {
+        self.client.execute(action: "DescribeProtectDirRelatedServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询防护目录关联服务器
     ///
     /// 查询防护目录关联服务器列表信息
     @inlinable
-    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
-        try await self.client.execute(action: "DescribeProtectDirRelatedServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProtectDirRelatedServer(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
+        try await self.client.execute(action: "DescribeProtectDirRelatedServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询防护目录关联服务器
     ///
     /// 查询防护目录关联服务器列表信息
     @inlinable
-    public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectDirRelatedServerResponse> {
-        self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectDirRelatedServerResponse> {
+        self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询防护目录关联服务器
     ///
     /// 查询防护目录关联服务器列表信息
     @inlinable
-    public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
-        try await self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
+        try await self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

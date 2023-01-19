@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -165,25 +165,25 @@ extension Cpdp {
 
     /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeByThirdPayResponse> {
-        self.client.execute(action: "RechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeByThirdPayResponse> {
+        self.client.execute(action: "RechargeByThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeByThirdPayResponse {
-        try await self.client.execute(action: "RechargeByThirdPay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rechargeByThirdPay(_ input: RechargeByThirdPayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeByThirdPayResponse {
+        try await self.client.execute(action: "RechargeByThirdPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func rechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, bankSubAccountNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelMerchantCode: String, thirdPayChannelOrderId: String, currencyAmount: String, currencyUnit: String, currencyType: String, transNetMemberCode: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeByThirdPayResponse> {
-        self.rechargeByThirdPay(RechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, bankSubAccountNumber: bankSubAccountNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelMerchantCode: thirdPayChannelMerchantCode, thirdPayChannelOrderId: thirdPayChannelOrderId, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, transNetMemberCode: transNetMemberCode, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), logger: logger, on: eventLoop)
+    public func rechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, bankSubAccountNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelMerchantCode: String, thirdPayChannelOrderId: String, currencyAmount: String, currencyUnit: String, currencyType: String, transNetMemberCode: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RechargeByThirdPayResponse> {
+        self.rechargeByThirdPay(RechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, bankSubAccountNumber: bankSubAccountNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelMerchantCode: thirdPayChannelMerchantCode, thirdPayChannelOrderId: thirdPayChannelOrderId, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, transNetMemberCode: transNetMemberCode, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 会员在途充值(经第三方支付渠道)接口
     @inlinable
-    public func rechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, bankSubAccountNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelMerchantCode: String, thirdPayChannelOrderId: String, currencyAmount: String, currencyUnit: String, currencyType: String, transNetMemberCode: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeByThirdPayResponse {
-        try await self.rechargeByThirdPay(RechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, bankSubAccountNumber: bankSubAccountNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelMerchantCode: thirdPayChannelMerchantCode, thirdPayChannelOrderId: thirdPayChannelOrderId, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, transNetMemberCode: transNetMemberCode, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), logger: logger, on: eventLoop)
+    public func rechargeByThirdPay(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, midasSecretId: String, midasAppId: String, midasSignature: String, transSequenceNumber: String, bankSubAccountNumber: String, transFee: String, thirdPayChannel: String, thirdPayChannelMerchantCode: String, thirdPayChannelOrderId: String, currencyAmount: String, currencyUnit: String, currencyType: String, transNetMemberCode: String, midasEnvironment: String, reservedMessage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RechargeByThirdPayResponse {
+        try await self.rechargeByThirdPay(RechargeByThirdPayRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, midasSecretId: midasSecretId, midasAppId: midasAppId, midasSignature: midasSignature, transSequenceNumber: transSequenceNumber, bankSubAccountNumber: bankSubAccountNumber, transFee: transFee, thirdPayChannel: thirdPayChannel, thirdPayChannelMerchantCode: thirdPayChannelMerchantCode, thirdPayChannelOrderId: thirdPayChannelOrderId, currencyAmount: currencyAmount, currencyUnit: currencyUnit, currencyType: currencyType, transNetMemberCode: transNetMemberCode, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

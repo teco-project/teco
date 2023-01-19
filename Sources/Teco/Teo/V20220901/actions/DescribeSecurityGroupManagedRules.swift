@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,25 +73,25 @@ extension Teo {
 
     /// 获取托管规则组
     @inlinable
-    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupManagedRulesResponse> {
-        self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupManagedRulesResponse> {
+        self.client.execute(action: "DescribeSecurityGroupManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取托管规则组
     @inlinable
-    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupManagedRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupManagedRules(_ input: DescribeSecurityGroupManagedRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取托管规则组
     @inlinable
-    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupManagedRulesResponse> {
-        self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupManagedRulesResponse> {
+        self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取托管规则组
     @inlinable
-    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
-        try await self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), logger: logger, on: eventLoop)
+    public func describeSecurityGroupManagedRules(zoneId: String? = nil, entity: String? = nil, offset: Int64? = nil, limit: Int64? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupManagedRulesResponse {
+        try await self.describeSecurityGroupManagedRules(DescribeSecurityGroupManagedRulesRequest(zoneId: zoneId, entity: entity, offset: offset, limit: limit, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

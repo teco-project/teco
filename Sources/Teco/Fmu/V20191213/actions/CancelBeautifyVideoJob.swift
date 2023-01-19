@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Fmu {
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
-        self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
+        self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
-        try await self.client.execute(action: "CancelBeautifyVideoJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
+        try await self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
-        self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
+        self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
     @inlinable
-    public func cancelBeautifyVideoJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
-        try await self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
+        try await self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

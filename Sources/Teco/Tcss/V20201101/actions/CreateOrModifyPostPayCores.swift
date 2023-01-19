@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable
-    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrModifyPostPayCoresResponse> {
-        self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrModifyPostPayCoresResponse> {
+        self.client.execute(action: "CreateOrModifyPostPayCores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或者编辑弹性计费上限
     ///
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable
-    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
-        try await self.client.execute(action: "CreateOrModifyPostPayCores", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOrModifyPostPayCores(_ input: CreateOrModifyPostPayCoresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
+        try await self.client.execute(action: "CreateOrModifyPostPayCores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建或者编辑弹性计费上限
     ///
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable
-    public func createOrModifyPostPayCores(coresCnt: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrModifyPostPayCoresResponse> {
-        self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), logger: logger, on: eventLoop)
+    public func createOrModifyPostPayCores(coresCnt: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrModifyPostPayCoresResponse> {
+        self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建或者编辑弹性计费上限
     ///
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable
-    public func createOrModifyPostPayCores(coresCnt: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
-        try await self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), logger: logger, on: eventLoop)
+    public func createOrModifyPostPayCores(coresCnt: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
+        try await self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tsf {
 
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
-        self.client.execute(action: "ExpandGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func expandGroup(_ input: ExpandGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
+        self.client.execute(action: "ExpandGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(_ input: ExpandGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
-        try await self.client.execute(action: "ExpandGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func expandGroup(_ input: ExpandGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
+        try await self.client.execute(action: "ExpandGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
-        self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func expandGroup(groupId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpandGroupResponse> {
+        self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 虚拟机部署组添加实例
     @inlinable
-    public func expandGroup(groupId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
-        try await self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func expandGroup(groupId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpandGroupResponse {
+        try await self.expandGroup(ExpandGroupRequest(groupId: groupId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

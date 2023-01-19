@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdb {
     ///
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
-    public func startBatchRollback(_ input: StartBatchRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBatchRollbackResponse> {
-        self.client.execute(action: "StartBatchRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startBatchRollback(_ input: StartBatchRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBatchRollbackResponse> {
+        self.client.execute(action: "StartBatchRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回档数据库表
     ///
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
-    public func startBatchRollback(_ input: StartBatchRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBatchRollbackResponse {
-        try await self.client.execute(action: "StartBatchRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startBatchRollback(_ input: StartBatchRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBatchRollbackResponse {
+        try await self.client.execute(action: "StartBatchRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回档数据库表
     ///
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
-    public func startBatchRollback(instances: [RollbackInstancesInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBatchRollbackResponse> {
-        self.startBatchRollback(StartBatchRollbackRequest(instances: instances), logger: logger, on: eventLoop)
+    public func startBatchRollback(instances: [RollbackInstancesInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBatchRollbackResponse> {
+        self.startBatchRollback(StartBatchRollbackRequest(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回档数据库表
     ///
     /// 该接口（StartBatchRollback）用于批量回档云数据库实例的库表。
     @inlinable
-    public func startBatchRollback(instances: [RollbackInstancesInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBatchRollbackResponse {
-        try await self.startBatchRollback(StartBatchRollbackRequest(instances: instances), logger: logger, on: eventLoop)
+    public func startBatchRollback(instances: [RollbackInstancesInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBatchRollbackResponse {
+        try await self.startBatchRollback(StartBatchRollbackRequest(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

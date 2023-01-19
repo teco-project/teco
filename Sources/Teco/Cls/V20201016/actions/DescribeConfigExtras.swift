@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cls {
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigExtrasResponse> {
-        self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigExtrasResponse> {
+        self.client.execute(action: "DescribeConfigExtras", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取特殊采集配置
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
-        try await self.client.execute(action: "DescribeConfigExtras", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigExtras(_ input: DescribeConfigExtrasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
+        try await self.client.execute(action: "DescribeConfigExtras", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取特殊采集配置
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func describeConfigExtras(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigExtrasResponse> {
-        self.describeConfigExtras(DescribeConfigExtrasRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeConfigExtras(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigExtrasResponse> {
+        self.describeConfigExtras(DescribeConfigExtrasRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取特殊采集配置
     ///
     /// 本接口用于获取特殊采集配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func describeConfigExtras(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
-        try await self.describeConfigExtras(DescribeConfigExtrasRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeConfigExtras(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigExtrasResponse {
+        try await self.describeConfigExtras(DescribeConfigExtrasRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

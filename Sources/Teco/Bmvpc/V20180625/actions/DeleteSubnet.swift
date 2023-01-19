@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Bmvpc {
     /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
-        self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
+        self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除子网
@@ -62,8 +62,8 @@ extension Bmvpc {
     /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
-    public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
-        try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
+        try await self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除子网
@@ -71,8 +71,8 @@ extension Bmvpc {
     /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
-    public func deleteSubnet(vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
-        self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deleteSubnet(vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
+        self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除子网
@@ -80,7 +80,7 @@ extension Bmvpc {
     /// 本接口（DeleteSubnet）用于删除黑石私有网络子网。
     /// 删除子网前，请清理该子网下所有资源，包括物理机、负载均衡、黑石数据库、弹性IP、NAT网关等资源
     @inlinable
-    public func deleteSubnet(vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
-        try await self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func deleteSubnet(vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
+        try await self.deleteSubnet(DeleteSubnetRequest(vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

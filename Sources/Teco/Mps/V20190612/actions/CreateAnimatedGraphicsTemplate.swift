@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Mps {
     ///
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
-    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnimatedGraphicsTemplateResponse> {
-        self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnimatedGraphicsTemplateResponse> {
+        self.client.execute(action: "CreateAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转动图模板
     ///
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
-    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
-        try await self.client.execute(action: "CreateAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAnimatedGraphicsTemplate(_ input: CreateAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
+        try await self.client.execute(action: "CreateAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建转动图模板
     ///
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
-    public func createAnimatedGraphicsTemplate(fps: UInt64, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnimatedGraphicsTemplateResponse> {
-        self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), logger: logger, on: eventLoop)
+    public func createAnimatedGraphicsTemplate(fps: UInt64, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnimatedGraphicsTemplateResponse> {
+        self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转动图模板
     ///
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
-    public func createAnimatedGraphicsTemplate(fps: UInt64, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
-        try await self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), logger: logger, on: eventLoop)
+    public func createAnimatedGraphicsTemplate(fps: UInt64, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
+        try await self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

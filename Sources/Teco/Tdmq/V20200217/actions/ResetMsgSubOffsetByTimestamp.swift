@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tdmq {
     ///
     /// 根据时间戳进行消息回溯，精确到毫秒
     @inlinable
-    public func resetMsgSubOffsetByTimestamp(_ input: ResetMsgSubOffsetByTimestampRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetMsgSubOffsetByTimestampResponse> {
-        self.client.execute(action: "ResetMsgSubOffsetByTimestamp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetMsgSubOffsetByTimestamp(_ input: ResetMsgSubOffsetByTimestampRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetMsgSubOffsetByTimestampResponse> {
+        self.client.execute(action: "ResetMsgSubOffsetByTimestamp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 消息回溯
     ///
     /// 根据时间戳进行消息回溯，精确到毫秒
     @inlinable
-    public func resetMsgSubOffsetByTimestamp(_ input: ResetMsgSubOffsetByTimestampRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
-        try await self.client.execute(action: "ResetMsgSubOffsetByTimestamp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetMsgSubOffsetByTimestamp(_ input: ResetMsgSubOffsetByTimestampRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
+        try await self.client.execute(action: "ResetMsgSubOffsetByTimestamp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 消息回溯
     ///
     /// 根据时间戳进行消息回溯，精确到毫秒
     @inlinable
-    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetMsgSubOffsetByTimestampResponse> {
-        self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetMsgSubOffsetByTimestampResponse> {
+        self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 消息回溯
     ///
     /// 根据时间戳进行消息回溯，精确到毫秒
     @inlinable
-    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
-        try await self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func resetMsgSubOffsetByTimestamp(environmentId: String, topicName: String, subscription: String, toTimestamp: UInt64, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetMsgSubOffsetByTimestampResponse {
+        try await self.resetMsgSubOffsetByTimestamp(ResetMsgSubOffsetByTimestampRequest(environmentId: environmentId, topicName: topicName, subscription: subscription, toTimestamp: toTimestamp, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

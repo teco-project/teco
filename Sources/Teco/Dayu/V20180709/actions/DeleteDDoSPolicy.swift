@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dayu {
 
     /// 删除DDoS高级策略
     @inlinable
-    public func deleteDDoSPolicy(_ input: DeleteDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSPolicyResponse> {
-        self.client.execute(action: "DeleteDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDDoSPolicy(_ input: DeleteDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSPolicyResponse> {
+        self.client.execute(action: "DeleteDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS高级策略
     @inlinable
-    public func deleteDDoSPolicy(_ input: DeleteDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyResponse {
-        try await self.client.execute(action: "DeleteDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDDoSPolicy(_ input: DeleteDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyResponse {
+        try await self.client.execute(action: "DeleteDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除DDoS高级策略
     @inlinable
-    public func deleteDDoSPolicy(business: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSPolicyResponse> {
-        self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), logger: logger, on: eventLoop)
+    public func deleteDDoSPolicy(business: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSPolicyResponse> {
+        self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS高级策略
     @inlinable
-    public func deleteDDoSPolicy(business: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyResponse {
-        try await self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), logger: logger, on: eventLoop)
+    public func deleteDDoSPolicy(business: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyResponse {
+        try await self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

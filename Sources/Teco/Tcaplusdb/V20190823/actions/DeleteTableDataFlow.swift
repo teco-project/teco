@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcaplusdb {
 
     /// 删除表格的数据订阅
     @inlinable
-    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableDataFlowResponse> {
-        self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableDataFlowResponse> {
+        self.client.execute(action: "DeleteTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除表格的数据订阅
     @inlinable
-    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
-        try await self.client.execute(action: "DeleteTableDataFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTableDataFlow(_ input: DeleteTableDataFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
+        try await self.client.execute(action: "DeleteTableDataFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除表格的数据订阅
     @inlinable
-    public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableDataFlowResponse> {
-        self.deleteTableDataFlow(DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableDataFlowResponse> {
+        self.deleteTableDataFlow(DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除表格的数据订阅
     @inlinable
-    public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
-        try await self.deleteTableDataFlow(DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func deleteTableDataFlow(clusterId: String, selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableDataFlowResponse {
+        try await self.deleteTableDataFlow(DeleteTableDataFlowRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

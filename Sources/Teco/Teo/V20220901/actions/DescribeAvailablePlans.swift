@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -40,31 +40,31 @@ extension Teo {
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
-        self.client.execute(action: "DescribeAvailablePlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
+        self.client.execute(action: "DescribeAvailablePlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
-        try await self.client.execute(action: "DescribeAvailablePlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailablePlans(_ input: DescribeAvailablePlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
+        try await self.client.execute(action: "DescribeAvailablePlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
-        self.describeAvailablePlans(DescribeAvailablePlansRequest(), logger: logger, on: eventLoop)
+    public func describeAvailablePlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailablePlansResponse> {
+        self.describeAvailablePlans(DescribeAvailablePlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询当前账户可购买套餐信息列表
     ///
     /// 查询当前账户可用套餐信息列表
     @inlinable
-    public func describeAvailablePlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
-        try await self.describeAvailablePlans(DescribeAvailablePlansRequest(), logger: logger, on: eventLoop)
+    public func describeAvailablePlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailablePlansResponse {
+        try await self.describeAvailablePlans(DescribeAvailablePlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

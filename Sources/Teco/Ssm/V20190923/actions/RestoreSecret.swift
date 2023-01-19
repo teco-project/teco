@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ssm {
     ///
     /// 该接口用于恢复计划删除（PendingDelete状态）中的凭据，取消计划删除。取消计划删除的凭据将处于Disabled 状态，如需恢复使用，通过EnableSecret 接口开启凭据。
     @inlinable
-    public func restoreSecret(_ input: RestoreSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreSecretResponse> {
-        self.client.execute(action: "RestoreSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restoreSecret(_ input: RestoreSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreSecretResponse> {
+        self.client.execute(action: "RestoreSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复计划删除中的凭据
     ///
     /// 该接口用于恢复计划删除（PendingDelete状态）中的凭据，取消计划删除。取消计划删除的凭据将处于Disabled 状态，如需恢复使用，通过EnableSecret 接口开启凭据。
     @inlinable
-    public func restoreSecret(_ input: RestoreSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreSecretResponse {
-        try await self.client.execute(action: "RestoreSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restoreSecret(_ input: RestoreSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreSecretResponse {
+        try await self.client.execute(action: "RestoreSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复计划删除中的凭据
     ///
     /// 该接口用于恢复计划删除（PendingDelete状态）中的凭据，取消计划删除。取消计划删除的凭据将处于Disabled 状态，如需恢复使用，通过EnableSecret 接口开启凭据。
     @inlinable
-    public func restoreSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreSecretResponse> {
-        self.restoreSecret(RestoreSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func restoreSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreSecretResponse> {
+        self.restoreSecret(RestoreSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复计划删除中的凭据
     ///
     /// 该接口用于恢复计划删除（PendingDelete状态）中的凭据，取消计划删除。取消计划删除的凭据将处于Disabled 状态，如需恢复使用，通过EnableSecret 接口开启凭据。
     @inlinable
-    public func restoreSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreSecretResponse {
-        try await self.restoreSecret(RestoreSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func restoreSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreSecretResponse {
+        try await self.restoreSecret(RestoreSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 }

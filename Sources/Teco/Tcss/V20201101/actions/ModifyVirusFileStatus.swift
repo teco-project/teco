@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Tcss {
 
     /// 运行时更新木马文件事件状态
     @inlinable
-    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
-        self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
+        self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新木马文件事件状态
     @inlinable
-    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
-        try await self.client.execute(action: "ModifyVirusFileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
+        try await self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时更新木马文件事件状态
     @inlinable
-    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
-        self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), logger: logger, on: eventLoop)
+    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
+        self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新木马文件事件状态
     @inlinable
-    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
-        try await self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), logger: logger, on: eventLoop)
+    public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
+        try await self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,8 +111,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createNotificationConfiguration(_ input: CreateNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotificationConfigurationResponse> {
-        self.client.execute(action: "CreateNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNotificationConfiguration(_ input: CreateNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotificationConfigurationResponse> {
+        self.client.execute(action: "CreateNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通知
@@ -146,8 +146,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createNotificationConfiguration(_ input: CreateNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
-        try await self.client.execute(action: "CreateNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNotificationConfiguration(_ input: CreateNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
+        try await self.client.execute(action: "CreateNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建通知
@@ -181,8 +181,8 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotificationConfigurationResponse> {
-        self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), logger: logger, on: eventLoop)
+    public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotificationConfigurationResponse> {
+        self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通知
@@ -216,7 +216,7 @@ extension As {
     /// }
     /// ```
     @inlinable
-    public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
-        try await self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), logger: logger, on: eventLoop)
+    public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
+        try await self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cpdp {
 
     /// 跨境-付款人查询
     @inlinable
-    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPayerInfoResponse> {
-        self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryPayerInfo(_ input: QueryPayerInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPayerInfoResponse> {
+        self.client.execute(action: "QueryPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-付款人查询
     @inlinable
-    public func queryPayerInfo(_ input: QueryPayerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
-        try await self.client.execute(action: "QueryPayerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryPayerInfo(_ input: QueryPayerInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
+        try await self.client.execute(action: "QueryPayerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-付款人查询
     @inlinable
-    public func queryPayerInfo(payerId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPayerInfoResponse> {
-        self.queryPayerInfo(QueryPayerInfoRequest(payerId: payerId, profile: profile), logger: logger, on: eventLoop)
+    public func queryPayerInfo(payerId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryPayerInfoResponse> {
+        self.queryPayerInfo(QueryPayerInfoRequest(payerId: payerId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-付款人查询
     @inlinable
-    public func queryPayerInfo(payerId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
-        try await self.queryPayerInfo(QueryPayerInfoRequest(payerId: payerId, profile: profile), logger: logger, on: eventLoop)
+    public func queryPayerInfo(payerId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryPayerInfoResponse {
+        try await self.queryPayerInfo(QueryPayerInfoRequest(payerId: payerId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

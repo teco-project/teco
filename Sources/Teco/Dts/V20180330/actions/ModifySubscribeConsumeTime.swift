@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dts {
     ///
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable
-    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeConsumeTimeResponse> {
-        self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeConsumeTimeResponse> {
+        self.client.execute(action: "ModifySubscribeConsumeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅实例通道的消费时间点
     ///
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable
-    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
-        try await self.client.execute(action: "ModifySubscribeConsumeTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubscribeConsumeTime(_ input: ModifySubscribeConsumeTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
+        try await self.client.execute(action: "ModifySubscribeConsumeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据订阅实例通道的消费时间点
     ///
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable
-    public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeConsumeTimeResponse> {
-        self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), logger: logger, on: eventLoop)
+    public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeConsumeTimeResponse> {
+        self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅实例通道的消费时间点
     ///
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable
-    public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
-        try await self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), logger: logger, on: eventLoop)
+    public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
+        try await self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), region: region, logger: logger, on: eventLoop)
     }
 }

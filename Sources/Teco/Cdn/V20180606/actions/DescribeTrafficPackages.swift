@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Cdn {
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
-        self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
+        self.client.execute(action: "DescribeTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 流量包查询
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
-    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
-        try await self.client.execute(action: "DescribeTrafficPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrafficPackages(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.client.execute(action: "DescribeTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 流量包查询
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
-    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
-        self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficPackagesResponse> {
+        self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流量包查询
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
-    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
-        try await self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeTrafficPackages(offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficPackagesResponse {
+        try await self.describeTrafficPackages(DescribeTrafficPackagesRequest(offset: offset, limit: limit, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 }

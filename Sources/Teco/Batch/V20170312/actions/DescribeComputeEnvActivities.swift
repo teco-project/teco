@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Batch {
     ///
     /// 用于查询计算环境的活动信息
     @inlinable
-    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvActivitiesResponse> {
-        self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvActivitiesResponse> {
+        self.client.execute(action: "DescribeComputeEnvActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境活动信息
     ///
     /// 用于查询计算环境的活动信息
     @inlinable
-    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
-        try await self.client.execute(action: "DescribeComputeEnvActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComputeEnvActivities(_ input: DescribeComputeEnvActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
+        try await self.client.execute(action: "DescribeComputeEnvActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看计算环境活动信息
     ///
     /// 用于查询计算环境的活动信息
     @inlinable
-    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvActivitiesResponse> {
-        self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvActivitiesResponse> {
+        self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境活动信息
     ///
     /// 用于查询计算环境的活动信息
     @inlinable
-    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
-        try await self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
+        try await self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

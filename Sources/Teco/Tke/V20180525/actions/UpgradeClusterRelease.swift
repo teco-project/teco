@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Tke {
     ///
     /// 升级集群中已安装的应用
     @inlinable
-    public func upgradeClusterRelease(_ input: UpgradeClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterReleaseResponse> {
-        self.client.execute(action: "UpgradeClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeClusterRelease(_ input: UpgradeClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterReleaseResponse> {
+        self.client.execute(action: "UpgradeClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群升级应用
     ///
     /// 升级集群中已安装的应用
     @inlinable
-    public func upgradeClusterRelease(_ input: UpgradeClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterReleaseResponse {
-        try await self.client.execute(action: "UpgradeClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeClusterRelease(_ input: UpgradeClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterReleaseResponse {
+        try await self.client.execute(action: "UpgradeClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群升级应用
     ///
     /// 升级集群中已安装的应用
     @inlinable
-    public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterReleaseResponse> {
-        self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterReleaseResponse> {
+        self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群升级应用
     ///
     /// 升级集群中已安装的应用
     @inlinable
-    public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterReleaseResponse {
-        try await self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterReleaseResponse {
+        try await self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

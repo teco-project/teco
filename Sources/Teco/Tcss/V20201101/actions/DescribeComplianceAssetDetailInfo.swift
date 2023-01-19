@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Tcss {
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
-        self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
+        self.client.execute(action: "DescribeComplianceAssetDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
-        try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComplianceAssetDetailInfo(_ input: DescribeComplianceAssetDetailInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
+        try await self.client.execute(action: "DescribeComplianceAssetDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
-        self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), logger: logger, on: eventLoop)
+    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetDetailInfoResponse> {
+        self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某个资产的详情
     ///
     /// 查询某个资产的详情
     @inlinable
-    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
-        try await self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), logger: logger, on: eventLoop)
+    public func describeComplianceAssetDetailInfo(customerAssetId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetDetailInfoResponse {
+        try await self.describeComplianceAssetDetailInfo(DescribeComplianceAssetDetailInfoRequest(customerAssetId: customerAssetId), region: region, logger: logger, on: eventLoop)
     }
 }

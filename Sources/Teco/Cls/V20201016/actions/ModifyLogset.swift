@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cls {
     ///
     /// 本接口用于修改日志集信息
     @inlinable
-    public func modifyLogset(_ input: ModifyLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
-        self.client.execute(action: "ModifyLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLogset(_ input: ModifyLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
+        self.client.execute(action: "ModifyLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
     @inlinable
-    public func modifyLogset(_ input: ModifyLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
-        try await self.client.execute(action: "ModifyLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLogset(_ input: ModifyLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
+        try await self.client.execute(action: "ModifyLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
     @inlinable
-    public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
-        self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), logger: logger, on: eventLoop)
+    public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
+        self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
     @inlinable
-    public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
-        try await self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), logger: logger, on: eventLoop)
+    public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
+        try await self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

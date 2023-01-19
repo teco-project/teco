@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cdb {
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(_ input: ResetRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
-        self.client.execute(action: "ResetRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetRootAccount(_ input: ResetRootAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
+        self.client.execute(action: "ResetRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(_ input: ResetRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
-        try await self.client.execute(action: "ResetRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetRootAccount(_ input: ResetRootAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
+        try await self.client.execute(action: "ResetRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
-        self.resetRootAccount(ResetRootAccountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func resetRootAccount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRootAccountResponse> {
+        self.resetRootAccount(ResetRootAccountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置ROOT账号
     ///
     /// 重置实例ROOT账号，初始化账号权限
     @inlinable
-    public func resetRootAccount(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
-        try await self.resetRootAccount(ResetRootAccountRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func resetRootAccount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRootAccountResponse {
+        try await self.resetRootAccount(ResetRootAccountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

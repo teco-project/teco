@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 关闭SSL
     @inlinable
-    public func closeSSL(_ input: CloseSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
-        self.client.execute(action: "CloseSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeSSL(_ input: CloseSSLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
+        self.client.execute(action: "CloseSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭SSL
     @inlinable
-    public func closeSSL(_ input: CloseSSLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
-        try await self.client.execute(action: "CloseSSL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeSSL(_ input: CloseSSLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
+        try await self.client.execute(action: "CloseSSL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭SSL
     @inlinable
-    public func closeSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
-        self.closeSSL(CloseSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func closeSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseSSLResponse> {
+        self.closeSSL(CloseSSLRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭SSL
     @inlinable
-    public func closeSSL(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
-        try await self.closeSSL(CloseSSLRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func closeSSL(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseSSLResponse {
+        try await self.closeSSL(CloseSSLRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

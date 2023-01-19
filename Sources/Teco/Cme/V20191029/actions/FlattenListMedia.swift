@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cme {
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
-        self.client.execute(action: "FlattenListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func flattenListMedia(_ input: FlattenListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
+        self.client.execute(action: "FlattenListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(_ input: FlattenListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
-        try await self.client.execute(action: "FlattenListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func flattenListMedia(_ input: FlattenListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
+        try await self.client.execute(action: "FlattenListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
-        self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
+        self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 平铺浏览媒体
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
-        try await self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
+        try await self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

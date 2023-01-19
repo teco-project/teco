@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Iotcloud {
     ///
     /// 获取lora类型设备的详细信息
     @inlinable
-    public func describeLoraDevice(_ input: DescribeLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoraDeviceResponse> {
-        self.client.execute(action: "DescribeLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLoraDevice(_ input: DescribeLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoraDeviceResponse> {
+        self.client.execute(action: "DescribeLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取lora设备详情
     ///
     /// 获取lora类型设备的详细信息
     @inlinable
-    public func describeLoraDevice(_ input: DescribeLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoraDeviceResponse {
-        try await self.client.execute(action: "DescribeLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLoraDevice(_ input: DescribeLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoraDeviceResponse {
+        try await self.client.execute(action: "DescribeLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取lora设备详情
     ///
     /// 获取lora类型设备的详细信息
     @inlinable
-    public func describeLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoraDeviceResponse> {
-        self.describeLoraDevice(DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoraDeviceResponse> {
+        self.describeLoraDevice(DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取lora设备详情
     ///
     /// 获取lora类型设备的详细信息
     @inlinable
-    public func describeLoraDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoraDeviceResponse {
-        try await self.describeLoraDevice(DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoraDeviceResponse {
+        try await self.describeLoraDevice(DescribeLoraDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

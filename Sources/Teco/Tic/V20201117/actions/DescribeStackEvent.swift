@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Tic {
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
-        self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStackEvent(_ input: DescribeStackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
+        self.client.execute(action: "DescribeStackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(_ input: DescribeStackEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
-        try await self.client.execute(action: "DescribeStackEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStackEvent(_ input: DescribeStackEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
+        try await self.client.execute(action: "DescribeStackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
-        self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeStackEvent(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
+        self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单个事件详情
     ///
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
-    public func describeStackEvent(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
-        try await self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeStackEvent(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
+        try await self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

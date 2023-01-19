@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,8 +110,8 @@ extension Ecm {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
-        self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDisks(_ input: CreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
+        self.client.execute(action: "CreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云硬盘
@@ -121,8 +121,8 @@ extension Ecm {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(_ input: CreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
-        try await self.client.execute(action: "CreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDisks(_ input: CreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
+        try await self.client.execute(action: "CreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云硬盘
@@ -132,8 +132,8 @@ extension Ecm {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, snapshotId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
-        self.createDisks(CreateDisksRequest(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, snapshotId: snapshotId), logger: logger, on: eventLoop)
+    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, snapshotId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDisksResponse> {
+        self.createDisks(CreateDisksRequest(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云硬盘
@@ -143,7 +143,7 @@ extension Ecm {
     /// * 本接口支持传入数据盘快照来创建云盘，实现将快照数据复制到新购云盘上。
     /// * 本接口为异步接口，当创建请求下发成功后会返回一个新建的云盘ID列表，此时云盘的创建并未立即完成。可以通过调用[DescribeDisks](/document/product/362/16315)接口根据DiskId查询对应云盘，如果能查到云盘，且状态为'UNATTACHED'或'ATTACHED'，则表示创建成功。
     @inlinable
-    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, snapshotId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
-        try await self.createDisks(CreateDisksRequest(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, snapshotId: snapshotId), logger: logger, on: eventLoop)
+    public func createDisks(placement: Placement, diskChargeType: String, diskType: String, diskName: String? = nil, tags: [Tag]? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskSize: UInt64? = nil, shareable: Bool? = nil, clientToken: String? = nil, encrypt: String? = nil, snapshotId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDisksResponse {
+        try await self.createDisks(CreateDisksRequest(placement: placement, diskChargeType: diskChargeType, diskType: diskType, diskName: diskName, tags: tags, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, throughputPerformance: throughputPerformance, diskSize: diskSize, shareable: shareable, clientToken: clientToken, encrypt: encrypt, snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 }

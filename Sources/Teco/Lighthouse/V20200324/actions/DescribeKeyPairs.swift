@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Lighthouse {
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
-        self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
+        self.client.execute(action: "DescribeKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
-        try await self.client.execute(action: "DescribeKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKeyPairs(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
+        try await self.client.execute(action: "DescribeKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
-        self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
+        self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
-        try await self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
+        try await self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

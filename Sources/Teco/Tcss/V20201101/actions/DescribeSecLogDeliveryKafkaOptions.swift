@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcss {
 
     /// 查询安全日志投递kafka可选项
     @inlinable
-    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaOptionsResponse> {
-        self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaOptionsResponse> {
+        self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志投递kafka可选项
     @inlinable
-    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
-        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecLogDeliveryKafkaOptions(_ input: DescribeSecLogDeliveryKafkaOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
+        try await self.client.execute(action: "DescribeSecLogDeliveryKafkaOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全日志投递kafka可选项
     @inlinable
-    public func describeSecLogDeliveryKafkaOptions(regionID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaOptionsResponse> {
-        self.describeSecLogDeliveryKafkaOptions(DescribeSecLogDeliveryKafkaOptionsRequest(regionID: regionID), logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryKafkaOptions(regionID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogDeliveryKafkaOptionsResponse> {
+        self.describeSecLogDeliveryKafkaOptions(DescribeSecLogDeliveryKafkaOptionsRequest(regionID: regionID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志投递kafka可选项
     @inlinable
-    public func describeSecLogDeliveryKafkaOptions(regionID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
-        try await self.describeSecLogDeliveryKafkaOptions(DescribeSecLogDeliveryKafkaOptionsRequest(regionID: regionID), logger: logger, on: eventLoop)
+    public func describeSecLogDeliveryKafkaOptions(regionID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogDeliveryKafkaOptionsResponse {
+        try await self.describeSecLogDeliveryKafkaOptions(DescribeSecLogDeliveryKafkaOptionsRequest(regionID: regionID), region: region, logger: logger, on: eventLoop)
     }
 }

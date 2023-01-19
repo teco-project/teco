@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Cdn {
 
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
-        self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
+        self.client.execute(action: "DescribeScdnBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
-        try await self.client.execute(action: "DescribeScdnBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScdnBotData(_ input: DescribeScdnBotDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
+        try await self.client.execute(action: "DescribeScdnBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
-        self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), logger: logger, on: eventLoop)
+    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
+        self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取BOT统计数据列表
     @inlinable
-    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
-        try await self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), logger: logger, on: eventLoop)
+    public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
+        try await self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

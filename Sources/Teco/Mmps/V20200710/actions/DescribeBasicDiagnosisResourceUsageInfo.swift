@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Mmps {
     ///
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDiagnosisResourceUsageInfoResponse> {
-        self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDiagnosisResourceUsageInfoResponse> {
+        self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基础诊断资源使用情况
     ///
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
-        try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBasicDiagnosisResourceUsageInfo(_ input: DescribeBasicDiagnosisResourceUsageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
+        try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询基础诊断资源使用情况
     ///
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDiagnosisResourceUsageInfoResponse> {
-        self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), logger: logger, on: eventLoop)
+    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDiagnosisResourceUsageInfoResponse> {
+        self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基础诊断资源使用情况
     ///
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
-    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
-        try await self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), logger: logger, on: eventLoop)
+    public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
+        try await self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), region: region, logger: logger, on: eventLoop)
     }
 }

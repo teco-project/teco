@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Rum {
     ///
     /// 删除用户名下的星标项目
     @inlinable
-    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStarProjectResponse> {
-        self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteStarProject(_ input: DeleteStarProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStarProjectResponse> {
+        self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除星标项目
     ///
     /// 删除用户名下的星标项目
     @inlinable
-    public func deleteStarProject(_ input: DeleteStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
-        try await self.client.execute(action: "DeleteStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteStarProject(_ input: DeleteStarProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
+        try await self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除星标项目
     ///
     /// 删除用户名下的星标项目
     @inlinable
-    public func deleteStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStarProjectResponse> {
-        self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func deleteStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStarProjectResponse> {
+        self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除星标项目
     ///
     /// 删除用户名下的星标项目
     @inlinable
-    public func deleteStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
-        try await self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func deleteStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
+        try await self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable
-    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelLocalRecordResponse> {
-        self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelLocalRecordResponse> {
+        self.client.execute(action: "ControlChannelLocalRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流
     ///
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable
-    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
-        try await self.client.execute(action: "ControlChannelLocalRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func controlChannelLocalRecord(_ input: ControlChannelLocalRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
+        try await self.client.execute(action: "ControlChannelLocalRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 控制通道本地回放流
     ///
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable
-    public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelLocalRecordResponse> {
-        self.controlChannelLocalRecord(ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), logger: logger, on: eventLoop)
+    public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelLocalRecordResponse> {
+        self.controlChannelLocalRecord(ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), region: region, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流
     ///
     /// 本接口（ControlChannelLocalRecord）用于对通道本地回放流进行控制，包括暂停、播放、拉动、结束等
     @inlinable
-    public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
-        try await self.controlChannelLocalRecord(ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), logger: logger, on: eventLoop)
+    public func controlChannelLocalRecord(deviceId: String, channelId: String, streamId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelLocalRecordResponse {
+        try await self.controlChannelLocalRecord(ControlChannelLocalRecordRequest(deviceId: deviceId, channelId: channelId, streamId: streamId, command: command), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideo {
 
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
-        self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
+        self.client.execute(action: "CancelAIModelApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
-        try await self.client.execute(action: "CancelAIModelApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelAIModelApplication(_ input: CancelAIModelApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
+        try await self.client.execute(action: "CancelAIModelApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
-        self.cancelAIModelApplication(CancelAIModelApplicationRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func cancelAIModelApplication(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAIModelApplicationResponse> {
+        self.cancelAIModelApplication(CancelAIModelApplicationRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消AI模型申请
     @inlinable
-    public func cancelAIModelApplication(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
-        try await self.cancelAIModelApplication(CancelAIModelApplicationRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func cancelAIModelApplication(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAIModelApplicationResponse {
+        try await self.cancelAIModelApplication(CancelAIModelApplicationRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

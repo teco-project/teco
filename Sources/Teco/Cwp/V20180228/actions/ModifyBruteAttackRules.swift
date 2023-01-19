@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 修改暴力破解规则
     @inlinable
-    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
-        self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
+        self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改暴力破解规则
     @inlinable
-    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
-        try await self.client.execute(action: "ModifyBruteAttackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
+        try await self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改暴力破解规则
     @inlinable
-    public func modifyBruteAttackRules(rules: [BruteAttackRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
-        self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), logger: logger, on: eventLoop)
+    public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
+        self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改暴力破解规则
     @inlinable
-    public func modifyBruteAttackRules(rules: [BruteAttackRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
-        try await self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), logger: logger, on: eventLoop)
+    public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
+        try await self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

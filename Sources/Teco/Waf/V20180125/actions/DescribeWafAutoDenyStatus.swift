@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Waf {
 
     /// 描述WAF自动封禁模块详情
     @inlinable
-    public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyStatusResponse> {
-        self.client.execute(action: "DescribeWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyStatusResponse> {
+        self.client.execute(action: "DescribeWafAutoDenyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF自动封禁模块详情
     @inlinable
-    public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {
-        try await self.client.execute(action: "DescribeWafAutoDenyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWafAutoDenyStatus(_ input: DescribeWafAutoDenyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {
+        try await self.client.execute(action: "DescribeWafAutoDenyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 描述WAF自动封禁模块详情
     @inlinable
-    public func describeWafAutoDenyStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyStatusResponse> {
-        self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), logger: logger, on: eventLoop)
+    public func describeWafAutoDenyStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyStatusResponse> {
+        self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF自动封禁模块详情
     @inlinable
-    public func describeWafAutoDenyStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {
-        try await self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), logger: logger, on: eventLoop)
+    public func describeWafAutoDenyStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {
+        try await self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

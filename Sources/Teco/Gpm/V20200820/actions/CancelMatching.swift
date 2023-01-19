@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 取消匹配。
     @inlinable
-    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
-        self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
+        self.client.execute(action: "CancelMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消匹配
@@ -62,8 +62,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 取消匹配。
     @inlinable
-    public func cancelMatching(_ input: CancelMatchingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
-        try await self.client.execute(action: "CancelMatching", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
+        try await self.client.execute(action: "CancelMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消匹配
@@ -71,8 +71,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 取消匹配。
     @inlinable
-    public func cancelMatching(matchCode: String, matchTicketId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
-        self.cancelMatching(CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
+        self.cancelMatching(CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消匹配
@@ -80,7 +80,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 取消匹配。
     @inlinable
-    public func cancelMatching(matchCode: String, matchTicketId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
-        try await self.cancelMatching(CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId), logger: logger, on: eventLoop)
+    public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
+        try await self.cancelMatching(CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
     }
 }

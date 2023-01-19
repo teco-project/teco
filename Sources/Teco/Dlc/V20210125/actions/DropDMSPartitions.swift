@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Dlc {
 
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
-        self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
+        self.client.execute(action: "DropDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
-        try await self.client.execute(action: "DropDMSPartitions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dropDMSPartitions(_ input: DropDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
+        try await self.client.execute(action: "DropDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
-        self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), logger: logger, on: eventLoop)
+    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
+        self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除分区
     @inlinable
-    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
-        try await self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), logger: logger, on: eventLoop)
+    public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
+        try await self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), region: region, logger: logger, on: eventLoop)
     }
 }

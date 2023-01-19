@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Mna {
     ///
     /// 移动网络停止Qos加速过程
     @inlinable
-    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQosResponse> {
-        self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteQos(_ input: DeleteQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQosResponse> {
+        self.client.execute(action: "DeleteQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Qos加速过程
     ///
     /// 移动网络停止Qos加速过程
     @inlinable
-    public func deleteQos(_ input: DeleteQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
-        try await self.client.execute(action: "DeleteQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteQos(_ input: DeleteQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
+        try await self.client.execute(action: "DeleteQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止Qos加速过程
     ///
     /// 移动网络停止Qos加速过程
     @inlinable
-    public func deleteQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQosResponse> {
-        self.deleteQos(DeleteQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func deleteQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQosResponse> {
+        self.deleteQos(DeleteQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止Qos加速过程
     ///
     /// 移动网络停止Qos加速过程
     @inlinable
-    public func deleteQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
-        try await self.deleteQos(DeleteQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func deleteQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
+        try await self.deleteQos(DeleteQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

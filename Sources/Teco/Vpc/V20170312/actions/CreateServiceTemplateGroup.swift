@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Vpc {
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
-        self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
+        self.client.execute(action: "CreateServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
-        try await self.client.execute(action: "CreateServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createServiceTemplateGroup(_ input: CreateServiceTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
+        try await self.client.execute(action: "CreateServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
-        self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
+    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateGroupResponse> {
+        self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建协议端口模板集合
     ///
     /// 本接口（CreateServiceTemplateGroup）用于创建协议端口模板集合
     @inlinable
-    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
-        try await self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), logger: logger, on: eventLoop)
+    public func createServiceTemplateGroup(serviceTemplateGroupName: String, serviceTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateGroupResponse {
+        try await self.createServiceTemplateGroup(CreateServiceTemplateGroupRequest(serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

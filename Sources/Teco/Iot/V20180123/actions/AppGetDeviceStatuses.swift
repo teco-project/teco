@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
-        self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
+        self.client.execute(action: "AppGetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
-        try await self.client.execute(action: "AppGetDeviceStatuses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appGetDeviceStatuses(_ input: AppGetDeviceStatusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
+        try await self.client.execute(action: "AppGetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
-        self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), logger: logger, on: eventLoop)
+    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
+        self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备状态
     ///
     /// 获取绑定设备的上下线状态
     @inlinable
-    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
-        try await self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), logger: logger, on: eventLoop)
+    public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
+        try await self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Faceid {
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
-        self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getLiveCode(_ input: GetLiveCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
+        self.client.execute(action: "GetLiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(_ input: GetLiveCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
-        try await self.client.execute(action: "GetLiveCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getLiveCode(_ input: GetLiveCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
+        try await self.client.execute(action: "GetLiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
-        self.getLiveCode(GetLiveCodeRequest(), logger: logger, on: eventLoop)
+    public func getLiveCode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLiveCodeResponse> {
+        self.getLiveCode(GetLiveCodeRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数字验证码
     ///
     /// 使用数字活体检测模式前，需调用本接口获取数字验证码。
     @inlinable
-    public func getLiveCode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
-        try await self.getLiveCode(GetLiveCodeRequest(), logger: logger, on: eventLoop)
+    public func getLiveCode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLiveCodeResponse {
+        try await self.getLiveCode(GetLiveCodeRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Tci {
 
     /// 拉取任务详情
     @inlinable
-    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTaskResponse> {
-        self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageTask(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTaskResponse> {
+        self.client.execute(action: "DescribeImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取任务详情
     @inlinable
-    public func describeImageTask(_ input: DescribeImageTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
-        try await self.client.execute(action: "DescribeImageTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageTask(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
+        try await self.client.execute(action: "DescribeImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取任务详情
     @inlinable
-    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTaskResponse> {
-        self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTaskResponse> {
+        self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取任务详情
     @inlinable
-    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
-        try await self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeImageTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTaskResponse {
+        try await self.describeImageTask(DescribeImageTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cfs {
     ///
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
-    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsRulesResponse> {
-        self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCfsRules(_ input: DescribeCfsRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsRulesResponse> {
+        self.client.execute(action: "DescribeCfsRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询权限组规则
     ///
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
-    public func describeCfsRules(_ input: DescribeCfsRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
-        try await self.client.execute(action: "DescribeCfsRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCfsRules(_ input: DescribeCfsRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
+        try await self.client.execute(action: "DescribeCfsRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询权限组规则
     ///
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
-    public func describeCfsRules(pGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsRulesResponse> {
-        self.describeCfsRules(DescribeCfsRulesRequest(pGroupId: pGroupId), logger: logger, on: eventLoop)
+    public func describeCfsRules(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsRulesResponse> {
+        self.describeCfsRules(DescribeCfsRulesRequest(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询权限组规则
     ///
     /// 本接口（DescribeCfsRules）用于查询权限组规则列表。
     @inlinable
-    public func describeCfsRules(pGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
-        try await self.describeCfsRules(DescribeCfsRulesRequest(pGroupId: pGroupId), logger: logger, on: eventLoop)
+    public func describeCfsRules(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsRulesResponse {
+        try await self.describeCfsRules(DescribeCfsRulesRequest(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

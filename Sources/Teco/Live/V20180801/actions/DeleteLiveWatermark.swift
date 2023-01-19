@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Live {
     ///
     /// 删除水印。
     @inlinable
-    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
-        self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
+        self.client.execute(action: "DeleteLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除水印
     ///
     /// 删除水印。
     @inlinable
-    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
-        try await self.client.execute(action: "DeleteLiveWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
+        try await self.client.execute(action: "DeleteLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除水印
     ///
     /// 删除水印。
     @inlinable
-    public func deleteLiveWatermark(watermarkId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
-        self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), logger: logger, on: eventLoop)
+    public func deleteLiveWatermark(watermarkId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
+        self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除水印
     ///
     /// 删除水印。
     @inlinable
-    public func deleteLiveWatermark(watermarkId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
-        try await self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), logger: logger, on: eventLoop)
+    public func deleteLiveWatermark(watermarkId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
+        try await self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
 }

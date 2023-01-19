@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
-    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCountryAreaMappingResponse> {
-        self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCountryAreaMappingResponse> {
+        self.client.execute(action: "DescribeCountryAreaMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取国家地区编码映射表
     ///
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
-    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
-        try await self.client.execute(action: "DescribeCountryAreaMapping", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCountryAreaMapping(_ input: DescribeCountryAreaMappingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
+        try await self.client.execute(action: "DescribeCountryAreaMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取国家地区编码映射表
     ///
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
-    public func describeCountryAreaMapping(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCountryAreaMappingResponse> {
-        self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), logger: logger, on: eventLoop)
+    public func describeCountryAreaMapping(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCountryAreaMappingResponse> {
+        self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取国家地区编码映射表
     ///
     /// 本接口（DescribeCountryAreaMapping）用于获取国家地区编码映射表。
     @inlinable
-    public func describeCountryAreaMapping(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
-        try await self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), logger: logger, on: eventLoop)
+    public func describeCountryAreaMapping(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCountryAreaMappingResponse {
+        try await self.describeCountryAreaMapping(DescribeCountryAreaMappingRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

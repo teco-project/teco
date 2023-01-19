@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Tdmq {
     ///
     /// 获取生产者信息列表
     @inlinable
-    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishersResponse> {
-        self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePublishers(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishersResponse> {
+        self.client.execute(action: "DescribePublishers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取生产者信息
     ///
     /// 获取生产者信息列表
     @inlinable
-    public func describePublishers(_ input: DescribePublishersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
-        try await self.client.execute(action: "DescribePublishers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePublishers(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
+        try await self.client.execute(action: "DescribePublishers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取生产者信息
     ///
     /// 获取生产者信息列表
     @inlinable
-    public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishersResponse> {
-        self.describePublishers(DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishersResponse> {
+        self.describePublishers(DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取生产者信息
     ///
     /// 获取生产者信息列表
     @inlinable
-    public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
-        try await self.describePublishers(DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), logger: logger, on: eventLoop)
+    public func describePublishers(clusterId: String, namespace: String, topic: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishersResponse {
+        try await self.describePublishers(DescribePublishersRequest(clusterId: clusterId, namespace: namespace, topic: topic, filters: filters, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

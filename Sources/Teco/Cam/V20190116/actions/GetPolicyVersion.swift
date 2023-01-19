@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cam {
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
-        self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPolicyVersion(_ input: GetPolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
+        self.client.execute(action: "GetPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(_ input: GetPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
-        try await self.client.execute(action: "GetPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPolicyVersion(_ input: GetPolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
+        try await self.client.execute(action: "GetPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
-        self.getPolicyVersion(GetPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyVersionResponse> {
+        self.getPolicyVersion(GetPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询策略版本详情
     ///
     /// 该接口（GetPolicyVersion）用于查询策略版本详情
     @inlinable
-    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
-        try await self.getPolicyVersion(GetPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func getPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyVersionResponse {
+        try await self.getPolicyVersion(GetPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

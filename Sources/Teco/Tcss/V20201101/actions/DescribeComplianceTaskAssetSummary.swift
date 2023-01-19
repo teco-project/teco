@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tcss {
     ///
     /// 查询上次任务的资产通过率汇总信息
     @inlinable
-    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceTaskAssetSummaryResponse> {
-        self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceTaskAssetSummaryResponse> {
+        self.client.execute(action: "DescribeComplianceTaskAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询上次任务的资产通过率汇总信息
     ///
     /// 查询上次任务的资产通过率汇总信息
     @inlinable
-    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
-        try await self.client.execute(action: "DescribeComplianceTaskAssetSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComplianceTaskAssetSummary(_ input: DescribeComplianceTaskAssetSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
+        try await self.client.execute(action: "DescribeComplianceTaskAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规查询上次任务的资产通过率汇总信息
     ///
     /// 查询上次任务的资产通过率汇总信息
     @inlinable
-    public func describeComplianceTaskAssetSummary(assetTypeSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceTaskAssetSummaryResponse> {
-        self.describeComplianceTaskAssetSummary(DescribeComplianceTaskAssetSummaryRequest(assetTypeSet: assetTypeSet), logger: logger, on: eventLoop)
+    public func describeComplianceTaskAssetSummary(assetTypeSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceTaskAssetSummaryResponse> {
+        self.describeComplianceTaskAssetSummary(DescribeComplianceTaskAssetSummaryRequest(assetTypeSet: assetTypeSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询上次任务的资产通过率汇总信息
     ///
     /// 查询上次任务的资产通过率汇总信息
     @inlinable
-    public func describeComplianceTaskAssetSummary(assetTypeSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
-        try await self.describeComplianceTaskAssetSummary(DescribeComplianceTaskAssetSummaryRequest(assetTypeSet: assetTypeSet), logger: logger, on: eventLoop)
+    public func describeComplianceTaskAssetSummary(assetTypeSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceTaskAssetSummaryResponse {
+        try await self.describeComplianceTaskAssetSummary(DescribeComplianceTaskAssetSummaryRequest(assetTypeSet: assetTypeSet), region: region, logger: logger, on: eventLoop)
     }
 }

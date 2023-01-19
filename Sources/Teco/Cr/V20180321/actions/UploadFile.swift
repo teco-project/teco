@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cr {
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadFile(_ input: UploadFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
+        self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadFile(_ input: UploadFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), logger: logger, on: eventLoop)
+    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
+        self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传数据文件
     ///
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
-    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), logger: logger, on: eventLoop)
+    public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
     }
 }

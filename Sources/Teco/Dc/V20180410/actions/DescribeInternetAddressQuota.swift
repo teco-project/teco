@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Dc {
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
-        self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
+        self.client.execute(action: "DescribeInternetAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
-        try await self.client.execute(action: "DescribeInternetAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInternetAddressQuota(_ input: DescribeInternetAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
+        try await self.client.execute(action: "DescribeInternetAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
-        self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeInternetAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
+        self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取互联网公网地址配额
     ///
     /// 获取用户互联网公网地址配额
     @inlinable
-    public func describeInternetAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
-        try await self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeInternetAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
+        try await self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Ticm {
     ///
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
-    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoTaskResponse> {
-        self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVideoTask(_ input: DescribeVideoTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoTaskResponse> {
+        self.client.execute(action: "DescribeVideoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询视频内容审核的结果
     ///
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
-    public func describeVideoTask(_ input: DescribeVideoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
-        try await self.client.execute(action: "DescribeVideoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVideoTask(_ input: DescribeVideoTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
+        try await self.client.execute(action: "DescribeVideoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询视频内容审核的结果
     ///
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
-    public func describeVideoTask(vodTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoTaskResponse> {
-        self.describeVideoTask(DescribeVideoTaskRequest(vodTaskId: vodTaskId), logger: logger, on: eventLoop)
+    public func describeVideoTask(vodTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoTaskResponse> {
+        self.describeVideoTask(DescribeVideoTaskRequest(vodTaskId: vodTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视频内容审核的结果
     ///
     /// 提交完视频审核任务后，可以通过本接口来获取当前处理的进度和结果
     @inlinable
-    public func describeVideoTask(vodTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
-        try await self.describeVideoTask(DescribeVideoTaskRequest(vodTaskId: vodTaskId), logger: logger, on: eventLoop)
+    public func describeVideoTask(vodTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoTaskResponse {
+        try await self.describeVideoTask(DescribeVideoTaskRequest(vodTaskId: vodTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

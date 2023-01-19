@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 修改任务脚本
     @inlinable
-    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskScriptResponse> {
-        self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskScriptResponse> {
+        self.client.execute(action: "ModifyTaskScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务脚本【Beta版本】
@@ -73,8 +73,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 修改任务脚本
     @inlinable
-    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
-        try await self.client.execute(action: "ModifyTaskScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTaskScript(_ input: ModifyTaskScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
+        try await self.client.execute(action: "ModifyTaskScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改任务脚本【Beta版本】
@@ -82,8 +82,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 修改任务脚本
     @inlinable
-    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskScriptResponse> {
-        self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), logger: logger, on: eventLoop)
+    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskScriptResponse> {
+        self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务脚本【Beta版本】
@@ -91,7 +91,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 修改任务脚本
     @inlinable
-    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
-        try await self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), logger: logger, on: eventLoop)
+    public func modifyTaskScript(projectId: String, taskId: String, scriptContent: String? = nil, integrationNodeDetails: [IntegrationNodeDetail]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskScriptResponse {
+        try await self.modifyTaskScript(ModifyTaskScriptRequest(projectId: projectId, taskId: taskId, scriptContent: scriptContent, integrationNodeDetails: integrationNodeDetails), region: region, logger: logger, on: eventLoop)
     }
 }

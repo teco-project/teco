@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,25 +62,25 @@ extension Cr {
 
     /// 更新机器人任务状态
     @inlinable
-    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
-        self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
+        self.client.execute(action: "ChangeBotTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务状态
     @inlinable
-    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
-        try await self.client.execute(action: "ChangeBotTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
+        try await self.client.execute(action: "ChangeBotTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新机器人任务状态
     @inlinable
-    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
-        self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
+        self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务状态
     @inlinable
-    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
-        try await self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
+        try await self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 }

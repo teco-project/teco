@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,31 +107,31 @@ extension Faceid {
     ///
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDetectInfoResponse> {
-        self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDetectInfo(_ input: GetDetectInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDetectInfoResponse> {
+        self.client.execute(action: "GetDetectInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实名核身结果信息
     ///
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getDetectInfo(_ input: GetDetectInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
-        try await self.client.execute(action: "GetDetectInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDetectInfo(_ input: GetDetectInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
+        try await self.client.execute(action: "GetDetectInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实名核身结果信息
     ///
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getDetectInfo(bizToken: String, ruleId: String, infoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDetectInfoResponse> {
-        self.getDetectInfo(GetDetectInfoRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType), logger: logger, on: eventLoop)
+    public func getDetectInfo(bizToken: String, ruleId: String, infoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDetectInfoResponse> {
+        self.getDetectInfo(GetDetectInfoRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实名核身结果信息
     ///
     /// 完成验证后，用BizToken调用本接口获取结果信息，BizToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
-    public func getDetectInfo(bizToken: String, ruleId: String, infoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
-        try await self.getDetectInfo(GetDetectInfoRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType), logger: logger, on: eventLoop)
+    public func getDetectInfo(bizToken: String, ruleId: String, infoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDetectInfoResponse {
+        try await self.getDetectInfo(GetDetectInfoRequest(bizToken: bizToken, ruleId: ruleId, infoType: infoType), region: region, logger: logger, on: eventLoop)
     }
 }

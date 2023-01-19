@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,8 +67,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func recognizeCar(_ input: RecognizeCarRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCarResponse> {
-        self.client.execute(action: "RecognizeCar", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeCar(_ input: RecognizeCarRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCarResponse> {
+        self.client.execute(action: "RecognizeCar", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 车辆识别
@@ -77,8 +77,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func recognizeCar(_ input: RecognizeCarRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCarResponse {
-        try await self.client.execute(action: "RecognizeCar", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeCar(_ input: RecognizeCarRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCarResponse {
+        try await self.client.execute(action: "RecognizeCar", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 车辆识别
@@ -87,8 +87,8 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func recognizeCar(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCarResponse> {
-        self.recognizeCar(RecognizeCarRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func recognizeCar(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCarResponse> {
+        self.recognizeCar(RecognizeCarRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 
     /// 车辆识别
@@ -97,7 +97,7 @@ extension Tiia {
     /// >?
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func recognizeCar(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCarResponse {
-        try await self.recognizeCar(RecognizeCarRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
+    public func recognizeCar(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCarResponse {
+        try await self.recognizeCar(RecognizeCarRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
     }
 }

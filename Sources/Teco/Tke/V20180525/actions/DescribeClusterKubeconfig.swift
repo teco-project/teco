@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tke {
     ///
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
-    public func describeClusterKubeconfig(_ input: DescribeClusterKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterKubeconfigResponse> {
-        self.client.execute(action: "DescribeClusterKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterKubeconfig(_ input: DescribeClusterKubeconfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterKubeconfigResponse> {
+        self.client.execute(action: "DescribeClusterKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群kubeconfig文件
     ///
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
-    public func describeClusterKubeconfig(_ input: DescribeClusterKubeconfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterKubeconfigResponse {
-        try await self.client.execute(action: "DescribeClusterKubeconfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterKubeconfig(_ input: DescribeClusterKubeconfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterKubeconfigResponse {
+        try await self.client.execute(action: "DescribeClusterKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群kubeconfig文件
     ///
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
-    public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterKubeconfigResponse> {
-        self.describeClusterKubeconfig(DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterKubeconfigResponse> {
+        self.describeClusterKubeconfig(DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群kubeconfig文件
     ///
     /// 获取集群的kubeconfig文件，不同子账户获取自己的kubeconfig文件，该文件中有每个子账户自己的kube-apiserver的客户端证书，默认首次调此接口时候创建客户端证书，时效20年，未授予任何权限，如果是集群所有者或者主账户，则默认是cluster-admin权限。
     @inlinable
-    public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterKubeconfigResponse {
-        try await self.describeClusterKubeconfig(DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func describeClusterKubeconfig(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterKubeconfigResponse {
+        try await self.describeClusterKubeconfig(DescribeClusterKubeconfigRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 }

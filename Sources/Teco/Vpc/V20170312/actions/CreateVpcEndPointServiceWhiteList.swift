@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 创建终端服务白名单。
     @inlinable
-    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
-        self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
+        self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
     @inlinable
-    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
-        try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
+        try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
     @inlinable
-    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
-        self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), logger: logger, on: eventLoop)
+    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
+        self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
     @inlinable
-    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
-        try await self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), logger: logger, on: eventLoop)
+    public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
+        try await self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

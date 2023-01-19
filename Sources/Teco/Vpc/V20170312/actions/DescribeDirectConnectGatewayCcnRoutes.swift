@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
-        self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
+        self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDirectConnectGatewayCcnRoutes(_ input: DescribeDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "DescribeDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
-        self.describeDirectConnectGatewayCcnRoutes(DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectGatewayCcnRoutesResponse> {
+        self.describeDirectConnectGatewayCcnRoutes(DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专线网关云联网路由
     ///
     /// 本接口（DescribeDirectConnectGatewayCcnRoutes）用于查询专线网关的云联网路由（IDC网段）
     @inlinable
-    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
-        try await self.describeDirectConnectGatewayCcnRoutes(DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, ccnRouteType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectGatewayCcnRoutesResponse {
+        try await self.describeDirectConnectGatewayCcnRoutes(DescribeDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, ccnRouteType: ccnRouteType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

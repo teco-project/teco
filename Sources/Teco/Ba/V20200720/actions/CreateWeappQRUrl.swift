@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ba {
 
     /// 创建渠道备案小程序二维码
     @inlinable
-    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWeappQRUrlResponse> {
-        self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWeappQRUrlResponse> {
+        self.client.execute(action: "CreateWeappQRUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道备案小程序二维码
     @inlinable
-    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
-        try await self.client.execute(action: "CreateWeappQRUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWeappQRUrl(_ input: CreateWeappQRUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
+        try await self.client.execute(action: "CreateWeappQRUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建渠道备案小程序二维码
     @inlinable
-    public func createWeappQRUrl(sessionKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWeappQRUrlResponse> {
-        self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), logger: logger, on: eventLoop)
+    public func createWeappQRUrl(sessionKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWeappQRUrlResponse> {
+        self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道备案小程序二维码
     @inlinable
-    public func createWeappQRUrl(sessionKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
-        try await self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), logger: logger, on: eventLoop)
+    public func createWeappQRUrl(sessionKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
+        try await self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), region: region, logger: logger, on: eventLoop)
     }
 }

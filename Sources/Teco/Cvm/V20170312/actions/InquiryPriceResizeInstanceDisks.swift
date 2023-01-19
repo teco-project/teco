@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Cvm {
     /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
-    public func inquiryPriceResizeInstanceDisks(_ input: InquiryPriceResizeInstanceDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeInstanceDisksResponse> {
-        self.client.execute(action: "InquiryPriceResizeInstanceDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceResizeInstanceDisks(_ input: InquiryPriceResizeInstanceDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeInstanceDisksResponse> {
+        self.client.execute(action: "InquiryPriceResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容实例磁盘询价
@@ -69,8 +69,8 @@ extension Cvm {
     /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
-    public func inquiryPriceResizeInstanceDisks(_ input: InquiryPriceResizeInstanceDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
-        try await self.client.execute(action: "InquiryPriceResizeInstanceDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceResizeInstanceDisks(_ input: InquiryPriceResizeInstanceDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
+        try await self.client.execute(action: "InquiryPriceResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 扩容实例磁盘询价
@@ -79,8 +79,8 @@ extension Cvm {
     /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
-    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeInstanceDisksResponse> {
-        self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), logger: logger, on: eventLoop)
+    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeInstanceDisksResponse> {
+        self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容实例磁盘询价
@@ -89,7 +89,7 @@ extension Cvm {
     /// * 目前只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性）询价，且[数据盘类型](https://cloud.tencent.com/document/product/213/15753#DataDisk)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口扩容数据盘询价。* 仅支持包年包月实例随机器购买的数据盘。* 目前只支持扩容一块数据盘询价。
     @inlinable
-    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
-        try await self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), logger: logger, on: eventLoop)
+    public func inquiryPriceResizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeInstanceDisksResponse {
+        try await self.inquiryPriceResizeInstanceDisks(InquiryPriceResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
 }

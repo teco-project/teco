@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cvm {
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
     @inlinable
-    public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
-        self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
+        self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
     @inlinable
-    public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
-        try await self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
+        try await self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
     @inlinable
-    public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
-        self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), logger: logger, on: eventLoop)
+    public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
+        self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
     @inlinable
-    public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
-        try await self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), logger: logger, on: eventLoop)
+    public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
+        try await self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

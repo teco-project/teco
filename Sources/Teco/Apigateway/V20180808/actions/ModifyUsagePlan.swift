@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
-    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUsagePlanResponse> {
-        self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUsagePlanResponse> {
+        self.client.execute(action: "ModifyUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改使用计划
     ///
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
-    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
-        try await self.client.execute(action: "ModifyUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUsagePlan(_ input: ModifyUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
+        try await self.client.execute(action: "ModifyUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改使用计划
     ///
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
-    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUsagePlanResponse> {
-        self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUsagePlanResponse> {
+        self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改使用计划
     ///
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
-    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
-        try await self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), logger: logger, on: eventLoop)
+    public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
+        try await self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
     }
 }

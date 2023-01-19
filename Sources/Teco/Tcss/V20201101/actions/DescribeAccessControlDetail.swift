@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tcss {
     ///
     /// 查询运行时访问控制事件的详细信息
     @inlinable
-    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlDetailResponse> {
-        self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlDetailResponse> {
+        self.client.execute(action: "DescribeAccessControlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时访问控制事件详细信息
     ///
     /// 查询运行时访问控制事件的详细信息
     @inlinable
-    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
-        try await self.client.execute(action: "DescribeAccessControlDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccessControlDetail(_ input: DescribeAccessControlDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
+        try await self.client.execute(action: "DescribeAccessControlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时访问控制事件详细信息
     ///
     /// 查询运行时访问控制事件的详细信息
     @inlinable
-    public func describeAccessControlDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlDetailResponse> {
-        self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeAccessControlDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessControlDetailResponse> {
+        self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时访问控制事件详细信息
     ///
     /// 查询运行时访问控制事件的详细信息
     @inlinable
-    public func describeAccessControlDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
-        try await self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeAccessControlDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessControlDetailResponse {
+        try await self.describeAccessControlDetail(DescribeAccessControlDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

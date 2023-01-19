@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Iot {
 
     /// 获取Topic列表
     @inlinable
-    public func getTopics(_ input: GetTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTopicsResponse> {
-        self.client.execute(action: "GetTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTopics(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTopicsResponse> {
+        self.client.execute(action: "GetTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic列表
     @inlinable
-    public func getTopics(_ input: GetTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicsResponse {
-        try await self.client.execute(action: "GetTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTopics(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicsResponse {
+        try await self.client.execute(action: "GetTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Topic列表
     @inlinable
-    public func getTopics(productId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTopicsResponse> {
-        self.getTopics(GetTopicsRequest(productId: productId, offset: offset, length: length), logger: logger, on: eventLoop)
+    public func getTopics(productId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTopicsResponse> {
+        self.getTopics(GetTopicsRequest(productId: productId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic列表
     @inlinable
-    public func getTopics(productId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicsResponse {
-        try await self.getTopics(GetTopicsRequest(productId: productId, offset: offset, length: length), logger: logger, on: eventLoop)
+    public func getTopics(productId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTopicsResponse {
+        try await self.getTopics(GetTopicsRequest(productId: productId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 }

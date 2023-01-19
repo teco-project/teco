@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Live {
     /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
-        self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
+        self.client.execute(action: "CreateLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转码规则
@@ -68,8 +68,8 @@ extension Live {
     /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
-        try await self.client.execute(action: "CreateLiveTranscodeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveTranscodeRule(_ input: CreateLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
+        try await self.client.execute(action: "CreateLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建转码规则
@@ -77,8 +77,8 @@ extension Live {
     /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
-        self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), logger: logger, on: eventLoop)
+    public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
+        self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转码规则
@@ -86,7 +86,7 @@ extension Live {
     /// 创建转码规则，需要先调用[CreateLiveTranscodeTemplate](/document/product/267/32646)接口创建转码模板，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
-        try await self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), logger: logger, on: eventLoop)
+    public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
+        try await self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Rum {
 
     /// 获取白名单列表
     @inlinable
-    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhitelistsResponse> {
-        self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWhitelists(_ input: DescribeWhitelistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhitelistsResponse> {
+        self.client.execute(action: "DescribeWhitelists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取白名单列表
     @inlinable
-    public func describeWhitelists(_ input: DescribeWhitelistsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
-        try await self.client.execute(action: "DescribeWhitelists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWhitelists(_ input: DescribeWhitelistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
+        try await self.client.execute(action: "DescribeWhitelists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取白名单列表
     @inlinable
-    public func describeWhitelists(instanceID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhitelistsResponse> {
-        self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), logger: logger, on: eventLoop)
+    public func describeWhitelists(instanceID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhitelistsResponse> {
+        self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取白名单列表
     @inlinable
-    public func describeWhitelists(instanceID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
-        try await self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), logger: logger, on: eventLoop)
+    public func describeWhitelists(instanceID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhitelistsResponse {
+        try await self.describeWhitelists(DescribeWhitelistsRequest(instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 }

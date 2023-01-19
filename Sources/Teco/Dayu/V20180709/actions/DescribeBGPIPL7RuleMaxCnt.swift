@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dayu {
 
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
-    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBGPIPL7RuleMaxCntResponse> {
-        self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBGPIPL7RuleMaxCntResponse> {
+        self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
-    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
-        try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBGPIPL7RuleMaxCnt(_ input: DescribeBGPIPL7RuleMaxCntRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
+        try await self.client.execute(action: "DescribeBGPIPL7RuleMaxCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
-    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBGPIPL7RuleMaxCntResponse> {
-        self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBGPIPL7RuleMaxCntResponse> {
+        self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP可添加的最多7层规则数量
     @inlinable
-    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
-        try await self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeBGPIPL7RuleMaxCnt(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBGPIPL7RuleMaxCntResponse {
+        try await self.describeBGPIPL7RuleMaxCnt(DescribeBGPIPL7RuleMaxCntRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

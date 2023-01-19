@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotvideoindustry {
 
     /// 获取直播录制计划详情
     @inlinable
-    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanByIdResponse> {
-        self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanByIdResponse> {
+        self.client.execute(action: "DescribeLiveRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播录制计划详情
     @inlinable
-    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
-        try await self.client.execute(action: "DescribeLiveRecordPlanById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveRecordPlanById(_ input: DescribeLiveRecordPlanByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
+        try await self.client.execute(action: "DescribeLiveRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播录制计划详情
     @inlinable
-    public func describeLiveRecordPlanById(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanByIdResponse> {
-        self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), logger: logger, on: eventLoop)
+    public func describeLiveRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanByIdResponse> {
+        self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播录制计划详情
     @inlinable
-    public func describeLiveRecordPlanById(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
-        try await self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), logger: logger, on: eventLoop)
+    public func describeLiveRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
+        try await self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

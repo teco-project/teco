@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Apcas {
     ///
     /// 获取日/月/周/总调用量统计数据
     @inlinable
-    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryGeneralStatResponse> {
-        self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryGeneralStat(_ input: QueryGeneralStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryGeneralStatResponse> {
+        self.client.execute(action: "QueryGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 总统计数据
     ///
     /// 获取日/月/周/总调用量统计数据
     @inlinable
-    public func queryGeneralStat(_ input: QueryGeneralStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
-        try await self.client.execute(action: "QueryGeneralStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryGeneralStat(_ input: QueryGeneralStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
+        try await self.client.execute(action: "QueryGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 总统计数据
     ///
     /// 获取日/月/周/总调用量统计数据
     @inlinable
-    public func queryGeneralStat(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryGeneralStatResponse> {
-        self.queryGeneralStat(QueryGeneralStatRequest(type: type), logger: logger, on: eventLoop)
+    public func queryGeneralStat(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryGeneralStatResponse> {
+        self.queryGeneralStat(QueryGeneralStatRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 总统计数据
     ///
     /// 获取日/月/周/总调用量统计数据
     @inlinable
-    public func queryGeneralStat(type: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
-        try await self.queryGeneralStat(QueryGeneralStatRequest(type: type), logger: logger, on: eventLoop)
+    public func queryGeneralStat(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryGeneralStatResponse {
+        try await self.queryGeneralStat(QueryGeneralStatRequest(type: type), region: region, logger: logger, on: eventLoop)
     }
 }

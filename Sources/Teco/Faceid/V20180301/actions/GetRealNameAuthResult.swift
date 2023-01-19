@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Faceid {
 
     /// 获取微信实名认证结果
     @inlinable
-    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthResultResponse> {
-        self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthResultResponse> {
+        self.client.execute(action: "GetRealNameAuthResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取微信实名认证结果
     @inlinable
-    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
-        try await self.client.execute(action: "GetRealNameAuthResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRealNameAuthResult(_ input: GetRealNameAuthResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
+        try await self.client.execute(action: "GetRealNameAuthResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取微信实名认证结果
     @inlinable
-    public func getRealNameAuthResult(authToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthResultResponse> {
-        self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), logger: logger, on: eventLoop)
+    public func getRealNameAuthResult(authToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthResultResponse> {
+        self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取微信实名认证结果
     @inlinable
-    public func getRealNameAuthResult(authToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
-        try await self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), logger: logger, on: eventLoop)
+    public func getRealNameAuthResult(authToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthResultResponse {
+        try await self.getRealNameAuthResult(GetRealNameAuthResultRequest(authToken: authToken), region: region, logger: logger, on: eventLoop)
     }
 }

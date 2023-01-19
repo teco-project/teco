@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Bma {
 
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
-        self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
+        self.client.execute(action: "ModifyBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
-        try await self.client.execute(action: "ModifyBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBPOfflineAttachment(_ input: ModifyBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
+        try await self.client.execute(action: "ModifyBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
-        self.modifyBPOfflineAttachment(ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), logger: logger, on: eventLoop)
+    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBPOfflineAttachmentResponse> {
+        self.modifyBPOfflineAttachment(ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改下线材料
     @inlinable
-    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
-        try await self.modifyBPOfflineAttachment(ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), logger: logger, on: eventLoop)
+    public func modifyBPOfflineAttachment(licenseName: String? = nil, authorizationName: String? = nil, brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBPOfflineAttachmentResponse {
+        try await self.modifyBPOfflineAttachment(ModifyBPOfflineAttachmentRequest(licenseName: licenseName, authorizationName: authorizationName, brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName), region: region, logger: logger, on: eventLoop)
     }
 }

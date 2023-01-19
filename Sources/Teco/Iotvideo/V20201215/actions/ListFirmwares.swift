@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Iotvideo {
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
-    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFirmwaresResponse> {
-        self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listFirmwares(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFirmwaresResponse> {
+        self.client.execute(action: "ListFirmwares", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取固件列表
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
-    public func listFirmwares(_ input: ListFirmwaresRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
-        try await self.client.execute(action: "ListFirmwares", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listFirmwares(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
+        try await self.client.execute(action: "ListFirmwares", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取固件列表
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
-    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFirmwaresResponse> {
-        self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), logger: logger, on: eventLoop)
+    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFirmwaresResponse> {
+        self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取固件列表
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
-    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
-        try await self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), logger: logger, on: eventLoop)
+    public func listFirmwares(pageNum: UInt64, pageSize: UInt64, productID: String? = nil, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFirmwaresResponse {
+        try await self.listFirmwares(ListFirmwaresRequest(pageNum: pageNum, pageSize: pageSize, productID: productID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

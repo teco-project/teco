@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Tbaas {
 
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
-        self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadUserCert(_ input: DownloadUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
+        self.client.execute(action: "DownloadUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(_ input: DownloadUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
-        try await self.client.execute(action: "DownloadUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadUserCert(_ input: DownloadUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
+        try await self.client.execute(action: "DownloadUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
-        self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
+        self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载用户证书
     @inlinable
-    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
-        try await self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), logger: logger, on: eventLoop)
+    public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
+        try await self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 }

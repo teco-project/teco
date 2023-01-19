@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询木马自动隔离样本下载链接
     @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleDownloadURLResponse> {
-        self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleDownloadURLResponse> {
+        self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询木马自动隔离样本下载链接
     @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
-        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVirusAutoIsolateSampleDownloadURL(_ input: DescribeVirusAutoIsolateSampleDownloadURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
+        try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询木马自动隔离样本下载链接
     @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleDownloadURLResponse> {
-        self.describeVirusAutoIsolateSampleDownloadURL(DescribeVirusAutoIsolateSampleDownloadURLRequest(md5: md5), logger: logger, on: eventLoop)
+    public func describeVirusAutoIsolateSampleDownloadURL(md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleDownloadURLResponse> {
+        self.describeVirusAutoIsolateSampleDownloadURL(DescribeVirusAutoIsolateSampleDownloadURLRequest(md5: md5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马自动隔离样本下载链接
     @inlinable
-    public func describeVirusAutoIsolateSampleDownloadURL(md5: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
-        try await self.describeVirusAutoIsolateSampleDownloadURL(DescribeVirusAutoIsolateSampleDownloadURLRequest(md5: md5), logger: logger, on: eventLoop)
+    public func describeVirusAutoIsolateSampleDownloadURL(md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDownloadURLResponse {
+        try await self.describeVirusAutoIsolateSampleDownloadURL(DescribeVirusAutoIsolateSampleDownloadURLRequest(md5: md5), region: region, logger: logger, on: eventLoop)
     }
 }

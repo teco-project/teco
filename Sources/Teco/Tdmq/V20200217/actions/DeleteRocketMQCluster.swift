@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdmq {
 
     /// 删除RocketMQ集群
     @inlinable
-    public func deleteRocketMQCluster(_ input: DeleteRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQClusterResponse> {
-        self.client.execute(action: "DeleteRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRocketMQCluster(_ input: DeleteRocketMQClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQClusterResponse> {
+        self.client.execute(action: "DeleteRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ集群
     @inlinable
-    public func deleteRocketMQCluster(_ input: DeleteRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
-        try await self.client.execute(action: "DeleteRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRocketMQCluster(_ input: DeleteRocketMQClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
+        try await self.client.execute(action: "DeleteRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除RocketMQ集群
     @inlinable
-    public func deleteRocketMQCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQClusterResponse> {
-        self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteRocketMQCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQClusterResponse> {
+        self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ集群
     @inlinable
-    public func deleteRocketMQCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
-        try await self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func deleteRocketMQCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQClusterResponse {
+        try await self.deleteRocketMQCluster(DeleteRocketMQClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

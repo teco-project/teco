@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Antiddos {
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
-        self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
+        self.client.execute(action: "DescribeOverviewDDoSTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
-        try await self.client.execute(action: "DescribeOverviewDDoSTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewDDoSTrend(_ input: DescribeOverviewDDoSTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
+        try await self.client.execute(action: "DescribeOverviewDDoSTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
-        self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSTrendResponse> {
+        self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览DDoS攻击流量带宽和攻击包速率数据
     @inlinable
-    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
-        try await self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    public func describeOverviewDDoSTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSTrendResponse {
+        try await self.describeOverviewDDoSTrend(DescribeOverviewDDoSTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

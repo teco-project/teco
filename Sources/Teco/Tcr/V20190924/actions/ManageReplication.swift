@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tcr {
 
     /// 管理实例同步
     @inlinable
-    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
-        self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func manageReplication(_ input: ManageReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
+        self.client.execute(action: "ManageReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管理实例同步
     @inlinable
-    public func manageReplication(_ input: ManageReplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
-        try await self.client.execute(action: "ManageReplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func manageReplication(_ input: ManageReplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
+        try await self.client.execute(action: "ManageReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 管理实例同步
     @inlinable
-    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
-        self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), logger: logger, on: eventLoop)
+    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
+        self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 管理实例同步
     @inlinable
-    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
-        try await self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), logger: logger, on: eventLoop)
+    public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
+        try await self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), region: region, logger: logger, on: eventLoop)
     }
 }

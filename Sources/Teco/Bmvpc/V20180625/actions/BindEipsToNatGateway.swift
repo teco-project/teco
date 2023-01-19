@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Bmvpc {
     ///
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
-    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipsToNatGatewayResponse> {
-        self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipsToNatGatewayResponse> {
+        self.client.execute(action: "BindEipsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定EIP
     ///
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
-    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
-        try await self.client.execute(action: "BindEipsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindEipsToNatGateway(_ input: BindEipsToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
+        try await self.client.execute(action: "BindEipsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// NAT网关绑定EIP
     ///
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
-    public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipsToNatGatewayResponse> {
-        self.bindEipsToNatGateway(BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), logger: logger, on: eventLoop)
+    public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipsToNatGatewayResponse> {
+        self.bindEipsToNatGateway(BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定EIP
     ///
     /// NAT网关绑定EIP接口，可将EIP绑定到NAT网关，该EIP作为访问外网的源IP地址，将流量发送到Internet
     @inlinable
-    public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
-        try await self.bindEipsToNatGateway(BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), logger: logger, on: eventLoop)
+    public func bindEipsToNatGateway(natId: String, vpcId: String, assignedEips: [String]? = nil, autoAllocEipNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipsToNatGatewayResponse {
+        try await self.bindEipsToNatGateway(BindEipsToNatGatewayRequest(natId: natId, vpcId: vpcId, assignedEips: assignedEips, autoAllocEipNum: autoAllocEipNum), region: region, logger: logger, on: eventLoop)
     }
 }

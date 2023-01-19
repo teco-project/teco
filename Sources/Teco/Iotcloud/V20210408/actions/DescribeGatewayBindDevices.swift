@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
-        self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
+        self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表
     ///
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
-        try await self.client.execute(action: "DescribeGatewayBindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGatewayBindDevices(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
+        try await self.client.execute(action: "DescribeGatewayBindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取网关绑定的子设备列表
     ///
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
-        self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)
+    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayBindDevicesResponse> {
+        self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网关绑定的子设备列表
     ///
     /// 本接口（DescribeGatewayBindDevices）用于获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
-        try await self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), logger: logger, on: eventLoop)
+    public func describeGatewayBindDevices(gatewayProductId: String, gatewayDeviceName: String, offset: UInt64, limit: UInt64, productId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayBindDevicesResponse {
+        try await self.describeGatewayBindDevices(DescribeGatewayBindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, offset: offset, limit: limit, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

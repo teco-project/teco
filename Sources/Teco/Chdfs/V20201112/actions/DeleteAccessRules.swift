@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Chdfs {
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
-        self.client.execute(action: "DeleteAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
+        self.client.execute(action: "DeleteAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
-        try await self.client.execute(action: "DeleteAccessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAccessRules(_ input: DeleteAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
+        try await self.client.execute(action: "DeleteAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(accessRuleIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
-        self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), logger: logger, on: eventLoop)
+    public func deleteAccessRules(accessRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
+        self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除权限规则
     ///
     /// 批量删除权限规则。
     @inlinable
-    public func deleteAccessRules(accessRuleIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
-        try await self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), logger: logger, on: eventLoop)
+    public func deleteAccessRules(accessRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
+        try await self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), region: region, logger: logger, on: eventLoop)
     }
 }

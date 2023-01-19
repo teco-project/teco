@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProducts(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
+        self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
     ///
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
-    public func describeProducts(_ input: DescribeProductsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.client.execute(action: "DescribeProducts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProducts(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品列表
     ///
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
-    public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
+        self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
     ///
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
     @inlinable
-    public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeProducts(limit: UInt64, offset: UInt64, productModel: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
+        try await self.describeProducts(DescribeProductsRequest(limit: limit, offset: offset, productModel: productModel, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

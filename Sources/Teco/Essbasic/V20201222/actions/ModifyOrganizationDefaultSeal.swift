@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Essbasic {
     ///
     /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
     @inlinable
-    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrganizationDefaultSealResponse> {
-        self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrganizationDefaultSealResponse> {
+        self.client.execute(action: "ModifyOrganizationDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改企业默认印章
     ///
     /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
     @inlinable
-    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
-        try await self.client.execute(action: "ModifyOrganizationDefaultSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyOrganizationDefaultSeal(_ input: ModifyOrganizationDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
+        try await self.client.execute(action: "ModifyOrganizationDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改企业默认印章
     ///
     /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
     @inlinable
-    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrganizationDefaultSealResponse> {
-        self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrganizationDefaultSealResponse> {
+        self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改企业默认印章
     ///
     /// 此接口 (ModifyOrganizationDefaultSeal) 用于重新指定企业默认印章。
     @inlinable
-    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
-        try await self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), logger: logger, on: eventLoop)
+    public func modifyOrganizationDefaultSeal(caller: Caller, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrganizationDefaultSealResponse {
+        try await self.modifyOrganizationDefaultSeal(ModifyOrganizationDefaultSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
 }

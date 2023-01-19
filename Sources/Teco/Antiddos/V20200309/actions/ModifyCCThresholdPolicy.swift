@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Antiddos {
 
     /// 修改CC清洗阈值
     @inlinable
-    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCThresholdPolicyResponse> {
-        self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCThresholdPolicyResponse> {
+        self.client.execute(action: "ModifyCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC清洗阈值
     @inlinable
-    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
-        try await self.client.execute(action: "ModifyCCThresholdPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCThresholdPolicy(_ input: ModifyCCThresholdPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
+        try await self.client.execute(action: "ModifyCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC清洗阈值
     @inlinable
-    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCThresholdPolicyResponse> {
-        self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), logger: logger, on: eventLoop)
+    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCThresholdPolicyResponse> {
+        self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC清洗阈值
     @inlinable
-    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
-        try await self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), logger: logger, on: eventLoop)
+    public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
+        try await self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), region: region, logger: logger, on: eventLoop)
     }
 }

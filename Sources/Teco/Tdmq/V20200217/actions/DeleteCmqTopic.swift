@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdmq {
 
     /// 删除cmq主题
     @inlinable
-    public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqTopicResponse> {
-        self.client.execute(action: "DeleteCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqTopicResponse> {
+        self.client.execute(action: "DeleteCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq主题
     @inlinable
-    public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {
-        try await self.client.execute(action: "DeleteCmqTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCmqTopic(_ input: DeleteCmqTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {
+        try await self.client.execute(action: "DeleteCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除cmq主题
     @inlinable
-    public func deleteCmqTopic(topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqTopicResponse> {
-        self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), logger: logger, on: eventLoop)
+    public func deleteCmqTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqTopicResponse> {
+        self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq主题
     @inlinable
-    public func deleteCmqTopic(topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {
-        try await self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), logger: logger, on: eventLoop)
+    public func deleteCmqTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {
+        try await self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

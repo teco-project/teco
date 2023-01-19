@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Rum {
 
     /// 获取首页错误信息
     @inlinable
-    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
-        self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeError(_ input: DescribeErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
+        self.client.execute(action: "DescribeError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取首页错误信息
     @inlinable
-    public func describeError(_ input: DescribeErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
-        try await self.client.execute(action: "DescribeError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeError(_ input: DescribeErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
+        try await self.client.execute(action: "DescribeError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取首页错误信息
     @inlinable
-    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
-        self.describeError(DescribeErrorRequest(date: date, id: id), logger: logger, on: eventLoop)
+    public func describeError(date: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
+        self.describeError(DescribeErrorRequest(date: date, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取首页错误信息
     @inlinable
-    public func describeError(date: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
-        try await self.describeError(DescribeErrorRequest(date: date, id: id), logger: logger, on: eventLoop)
+    public func describeError(date: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
+        try await self.describeError(DescribeErrorRequest(date: date, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

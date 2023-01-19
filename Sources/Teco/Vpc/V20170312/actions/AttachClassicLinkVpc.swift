@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,8 +52,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
-        self.client.execute(action: "AttachClassicLinkVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
+        self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建基础网络互通
@@ -64,8 +64,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
-        try await self.client.execute(action: "AttachClassicLinkVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
+        try await self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建基础网络互通
@@ -76,8 +76,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
-        self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
+        self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建基础网络互通
@@ -88,7 +88,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
-        try await self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
+        try await self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

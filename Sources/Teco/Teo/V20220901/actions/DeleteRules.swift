@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Teo {
     ///
     /// 批量删除规则引擎规则。
     @inlinable
-    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRulesResponse> {
-        self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRules(_ input: DeleteRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRulesResponse> {
+        self.client.execute(action: "DeleteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除规则引擎规则
     ///
     /// 批量删除规则引擎规则。
     @inlinable
-    public func deleteRules(_ input: DeleteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
-        try await self.client.execute(action: "DeleteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRules(_ input: DeleteRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
+        try await self.client.execute(action: "DeleteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除规则引擎规则
     ///
     /// 批量删除规则引擎规则。
     @inlinable
-    public func deleteRules(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRulesResponse> {
-        self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func deleteRules(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRulesResponse> {
+        self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除规则引擎规则
     ///
     /// 批量删除规则引擎规则。
     @inlinable
-    public func deleteRules(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
-        try await self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func deleteRules(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRulesResponse {
+        try await self.deleteRules(DeleteRulesRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Rum {
 
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
-        self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWhitelist(_ input: DeleteWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
+        self.client.execute(action: "DeleteWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(_ input: DeleteWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
-        try await self.client.execute(action: "DeleteWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWhitelist(_ input: DeleteWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
+        try await self.client.execute(action: "DeleteWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(instanceID: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
-        self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func deleteWhitelist(instanceID: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
+        self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除白名单
     @inlinable
-    public func deleteWhitelist(instanceID: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
-        try await self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func deleteWhitelist(instanceID: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
+        try await self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Waf {
 
     /// 查询单个saas域名详情
     @inlinable
-    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
-        self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
+        self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个saas域名详情
     @inlinable
-    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
-        try await self.client.execute(action: "DescribeDomainDetailsSaas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainDetailsSaas(_ input: DescribeDomainDetailsSaasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
+        try await self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单个saas域名详情
     @inlinable
-    public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
-        self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
+        self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个saas域名详情
     @inlinable
-    public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
-        try await self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
+        try await self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

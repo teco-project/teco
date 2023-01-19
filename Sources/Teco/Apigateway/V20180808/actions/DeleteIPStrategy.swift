@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Apigateway {
     ///
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
-    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIPStrategyResponse> {
-        self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIPStrategyResponse> {
+        self.client.execute(action: "DeleteIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务IP策略
     ///
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
-    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
-        try await self.client.execute(action: "DeleteIPStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIPStrategy(_ input: DeleteIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
+        try await self.client.execute(action: "DeleteIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除服务IP策略
     ///
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
-    public func deleteIPStrategy(serviceId: String, strategyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIPStrategyResponse> {
-        self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func deleteIPStrategy(serviceId: String, strategyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIPStrategyResponse> {
+        self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务IP策略
     ///
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
-    public func deleteIPStrategy(serviceId: String, strategyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
-        try await self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func deleteIPStrategy(serviceId: String, strategyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
+        try await self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

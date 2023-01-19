@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Cvm {
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
     @inlinable
-    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
-        self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
+        self.client.execute(action: "ModifyKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改密钥对属性
@@ -67,8 +67,8 @@ extension Cvm {
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
     @inlinable
-    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
-        try await self.client.execute(action: "ModifyKeyPairAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
+        try await self.client.execute(action: "ModifyKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改密钥对属性
@@ -78,8 +78,8 @@ extension Cvm {
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
     @inlinable
-    public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
-        self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), logger: logger, on: eventLoop)
+    public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
+        self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改密钥对属性
@@ -89,7 +89,7 @@ extension Cvm {
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
     @inlinable
-    public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
-        try await self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), logger: logger, on: eventLoop)
+    public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
+        try await self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

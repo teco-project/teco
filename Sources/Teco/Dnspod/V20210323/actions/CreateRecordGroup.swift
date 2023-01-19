@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dnspod {
 
     /// 添加记录分组
     @inlinable
-    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordGroupResponse> {
-        self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecordGroup(_ input: CreateRecordGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordGroupResponse> {
+        self.client.execute(action: "CreateRecordGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加记录分组
     @inlinable
-    public func createRecordGroup(_ input: CreateRecordGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
-        try await self.client.execute(action: "CreateRecordGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecordGroup(_ input: CreateRecordGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
+        try await self.client.execute(action: "CreateRecordGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加记录分组
     @inlinable
-    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordGroupResponse> {
-        self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), logger: logger, on: eventLoop)
+    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordGroupResponse> {
+        self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加记录分组
     @inlinable
-    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
-        try await self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), logger: logger, on: eventLoop)
+    public func createRecordGroup(domain: String, groupName: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordGroupResponse {
+        try await self.createRecordGroup(CreateRecordGroupRequest(domain: domain, groupName: groupName, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tke {
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
-        self.client.execute(action: "UninstallClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
+        self.client.execute(action: "UninstallClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
-        try await self.client.execute(action: "UninstallClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uninstallClusterRelease(_ input: UninstallClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
+        try await self.client.execute(action: "UninstallClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
-        self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
+        self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群删除应用
     ///
     /// 在应用市场中集群删除某个应用
     @inlinable
-    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
-        try await self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
+        try await self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dasb {
 
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
-        self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindDeviceResource(_ input: BindDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
+        self.client.execute(action: "BindDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(_ input: BindDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
-        try await self.client.execute(action: "BindDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindDeviceResource(_ input: BindDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
+        try await self.client.execute(action: "BindDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
-        self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDeviceResourceResponse> {
+        self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改资产绑定的堡垒机服务
     @inlinable
-    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
-        try await self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func bindDeviceResource(deviceIdSet: [UInt64], resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDeviceResourceResponse {
+        try await self.bindDeviceResource(BindDeviceResourceRequest(deviceIdSet: deviceIdSet, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

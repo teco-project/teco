@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Clb {
     ///
     /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
     @inlinable
-    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveClustersResponse> {
-        self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveClustersResponse> {
+        self.client.execute(action: "DescribeExclusiveClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     ///
     /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
     @inlinable
-    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
-        try await self.client.execute(action: "DescribeExclusiveClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExclusiveClusters(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
+        try await self.client.execute(action: "DescribeExclusiveClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群列表
     ///
     /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
     @inlinable
-    public func describeExclusiveClusters(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveClustersResponse> {
-        self.describeExclusiveClusters(DescribeExclusiveClustersRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeExclusiveClusters(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveClustersResponse> {
+        self.describeExclusiveClusters(DescribeExclusiveClustersRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     ///
     /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
     @inlinable
-    public func describeExclusiveClusters(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
-        try await self.describeExclusiveClusters(DescribeExclusiveClustersRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeExclusiveClusters(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveClustersResponse {
+        try await self.describeExclusiveClusters(DescribeExclusiveClustersRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

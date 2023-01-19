@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
     @inlinable
-    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoRenewFlagResponse> {
-        self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoRenewFlagResponse> {
+        self.client.execute(action: "ModifyAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的自动续费标记
     ///
     /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
     @inlinable
-    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifyAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAutoRenewFlag(_ input: ModifyAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifyAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例的自动续费标记
     ///
     /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
     @inlinable
-    public func modifyAutoRenewFlag(instanceIds: [String], autoRenew: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoRenewFlagResponse> {
-        self.modifyAutoRenewFlag(ModifyAutoRenewFlagRequest(instanceIds: instanceIds, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    public func modifyAutoRenewFlag(instanceIds: [String], autoRenew: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoRenewFlagResponse> {
+        self.modifyAutoRenewFlag(ModifyAutoRenewFlagRequest(instanceIds: instanceIds, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的自动续费标记
     ///
     /// 本接口(ModifyAutoRenewFlag)用于修改云数据库实例的自动续费标记。仅支持包年包月的实例设置自动续费标记。
     @inlinable
-    public func modifyAutoRenewFlag(instanceIds: [String], autoRenew: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
-        try await self.modifyAutoRenewFlag(ModifyAutoRenewFlagRequest(instanceIds: instanceIds, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    public func modifyAutoRenewFlag(instanceIds: [String], autoRenew: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoRenewFlagResponse {
+        try await self.modifyAutoRenewFlag(ModifyAutoRenewFlagRequest(instanceIds: instanceIds, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
 }

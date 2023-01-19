@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable
-    public func resumeSyncJob(_ input: ResumeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSyncJobResponse> {
-        self.client.execute(action: "ResumeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeSyncJob(_ input: ResumeSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSyncJobResponse> {
+        self.client.execute(action: "ResumeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重试同步任务
     ///
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable
-    public func resumeSyncJob(_ input: ResumeSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
-        try await self.client.execute(action: "ResumeSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeSyncJob(_ input: ResumeSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
+        try await self.client.execute(action: "ResumeSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重试同步任务
     ///
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable
-    public func resumeSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSyncJobResponse> {
-        self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func resumeSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSyncJobResponse> {
+        self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试同步任务
     ///
     /// 重试同步任务，部分可恢复报错情况下，可通过该接口重试同步任务，可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
     @inlinable
-    public func resumeSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
-        try await self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func resumeSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSyncJobResponse {
+        try await self.resumeSyncJob(ResumeSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Dlc {
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
-        self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
+        self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
-        try await self.client.execute(action: "ListTaskJobLogDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTaskJobLogDetail(_ input: ListTaskJobLogDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
+        try await self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
-        self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), logger: logger, on: eventLoop)
+    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
+        self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 日志列表
     ///
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
-    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
-        try await self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), logger: logger, on: eventLoop)
+    public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
+        try await self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

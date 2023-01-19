@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Ame {
     ///
     /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
     @inlinable
-    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKTVRobotResponse> {
-        self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createKTVRobot(_ input: CreateKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKTVRobotResponse> {
+        self.client.execute(action: "CreateKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建直播互动机器人
     ///
     /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
     @inlinable
-    public func createKTVRobot(_ input: CreateKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
-        try await self.client.execute(action: "CreateKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createKTVRobot(_ input: CreateKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
+        try await self.client.execute(action: "CreateKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建直播互动机器人
     ///
     /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
     @inlinable
-    public func createKTVRobot(rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput? = nil, syncRobotCommands: [SyncRobotCommand]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKTVRobotResponse> {
-        self.createKTVRobot(CreateKTVRobotRequest(rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, applicationLicenseInput: applicationLicenseInput, syncRobotCommands: syncRobotCommands), logger: logger, on: eventLoop)
+    public func createKTVRobot(rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput? = nil, syncRobotCommands: [SyncRobotCommand]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKTVRobotResponse> {
+        self.createKTVRobot(CreateKTVRobotRequest(rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, applicationLicenseInput: applicationLicenseInput, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建直播互动机器人
     ///
     /// 创建机器人，支持进入 RTC 房间，播放直播互动曲库歌曲。
     @inlinable
-    public func createKTVRobot(rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput? = nil, syncRobotCommands: [SyncRobotCommand]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
-        try await self.createKTVRobot(CreateKTVRobotRequest(rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, applicationLicenseInput: applicationLicenseInput, syncRobotCommands: syncRobotCommands), logger: logger, on: eventLoop)
+    public func createKTVRobot(rtcSystem: String, joinRoomInput: JoinRoomInput, applicationLicenseInput: ApplicationLicenseInput? = nil, syncRobotCommands: [SyncRobotCommand]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKTVRobotResponse {
+        try await self.createKTVRobot(CreateKTVRobotRequest(rtcSystem: rtcSystem, joinRoomInput: joinRoomInput, applicationLicenseInput: applicationLicenseInput, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
-        self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
+        self.client.execute(action: "ScaleInClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
-        try await self.client.execute(action: "ScaleInClusterMaster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scaleInClusterMaster(_ input: ScaleInClusterMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
+        try await self.client.execute(action: "ScaleInClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
-        self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), logger: logger, on: eventLoop)
+    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
+        self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 缩容独立集群master节点
     @inlinable
-    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
-        try await self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), logger: logger, on: eventLoop)
+    public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
+        try await self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), region: region, logger: logger, on: eventLoop)
     }
 }

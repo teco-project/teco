@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询木马样本下载url
     @inlinable
-    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSampleDownloadUrlResponse> {
-        self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSampleDownloadUrlResponse> {
+        self.client.execute(action: "DescribeVirusSampleDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询木马样本下载url
     @inlinable
-    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
-        try await self.client.execute(action: "DescribeVirusSampleDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVirusSampleDownloadUrl(_ input: DescribeVirusSampleDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
+        try await self.client.execute(action: "DescribeVirusSampleDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询木马样本下载url
     @inlinable
-    public func describeVirusSampleDownloadUrl(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSampleDownloadUrlResponse> {
-        self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), logger: logger, on: eventLoop)
+    public func describeVirusSampleDownloadUrl(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSampleDownloadUrlResponse> {
+        self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马样本下载url
     @inlinable
-    public func describeVirusSampleDownloadUrl(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
-        try await self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), logger: logger, on: eventLoop)
+    public func describeVirusSampleDownloadUrl(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
+        try await self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

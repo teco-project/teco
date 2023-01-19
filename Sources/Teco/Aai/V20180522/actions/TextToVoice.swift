@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,8 +100,8 @@ extension Aai {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     @inlinable
-    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
-        self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textToVoice(_ input: TextToVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
+        self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音合成
@@ -110,8 +110,8 @@ extension Aai {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     @inlinable
-    public func textToVoice(_ input: TextToVoiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
-        try await self.client.execute(action: "TextToVoice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textToVoice(_ input: TextToVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
+        try await self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 语音合成
@@ -120,8 +120,8 @@ extension Aai {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     @inlinable
-    public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
-        self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), logger: logger, on: eventLoop)
+    public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
+        self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音合成
@@ -130,7 +130,7 @@ extension Aai {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     @inlinable
-    public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
-        try await self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), logger: logger, on: eventLoop)
+    public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
+        try await self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), region: region, logger: logger, on: eventLoop)
     }
 }

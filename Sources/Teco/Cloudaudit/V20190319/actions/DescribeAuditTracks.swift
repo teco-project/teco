@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Cloudaudit {
 
     /// 查询云审计跟踪集列表
     @inlinable
-    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditTracksResponse> {
-        self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditTracksResponse> {
+        self.client.execute(action: "DescribeAuditTracks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云审计跟踪集列表
     @inlinable
-    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
-        try await self.client.execute(action: "DescribeAuditTracks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAuditTracks(_ input: DescribeAuditTracksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
+        try await self.client.execute(action: "DescribeAuditTracks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云审计跟踪集列表
     @inlinable
-    public func describeAuditTracks(pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditTracksResponse> {
-        self.describeAuditTracks(DescribeAuditTracksRequest(pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeAuditTracks(pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditTracksResponse> {
+        self.describeAuditTracks(DescribeAuditTracksRequest(pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云审计跟踪集列表
     @inlinable
-    public func describeAuditTracks(pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
-        try await self.describeAuditTracks(DescribeAuditTracksRequest(pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeAuditTracks(pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditTracksResponse {
+        try await self.describeAuditTracks(DescribeAuditTracksRequest(pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

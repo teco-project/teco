@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Tcaplusdb {
     ///
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
-    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTablesResponse> {
-        self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTables(_ input: ModifyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTablesResponse> {
+        self.client.execute(action: "ModifyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改表结构
     ///
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
-    public func modifyTables(_ input: ModifyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
-        try await self.client.execute(action: "ModifyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTables(_ input: ModifyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
+        try await self.client.execute(action: "ModifyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改表结构
     ///
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
-    public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTablesResponse> {
-        self.modifyTables(ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTablesResponse> {
+        self.modifyTables(ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改表结构
     ///
     /// 根据用户选定的表定义IDL文件，批量修改指定的表
     @inlinable
-    public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
-        try await self.modifyTables(ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func modifyTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTablesResponse {
+        try await self.modifyTables(ModifyTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

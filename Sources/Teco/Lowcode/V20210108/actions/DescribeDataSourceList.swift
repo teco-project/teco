@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,25 +105,25 @@ extension Lowcode {
 
     /// 获取数据源详情列表
     @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
-        self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
+        self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据源详情列表
     @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        try await self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
+        try await self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据源详情列表
     @inlinable
-    public func describeDataSourceList(pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]? = nil, dataSourceIds: [String]? = nil, dataSourceNames: [String]? = nil, dataSourceType: String? = nil, queryOption: DataSourceQueryOption? = nil, viewIds: [String]? = nil, appLinkStatus: Int64? = nil, queryBindToApp: Int64? = nil, queryConnector: Int64? = nil, notQuerySubTypeList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
-        self.describeDataSourceList(DescribeDataSourceListRequest(pageSize: pageSize, pageIndex: pageIndex, envId: envId, appids: appids, dataSourceIds: dataSourceIds, dataSourceNames: dataSourceNames, dataSourceType: dataSourceType, queryOption: queryOption, viewIds: viewIds, appLinkStatus: appLinkStatus, queryBindToApp: queryBindToApp, queryConnector: queryConnector, notQuerySubTypeList: notQuerySubTypeList), logger: logger, on: eventLoop)
+    public func describeDataSourceList(pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]? = nil, dataSourceIds: [String]? = nil, dataSourceNames: [String]? = nil, dataSourceType: String? = nil, queryOption: DataSourceQueryOption? = nil, viewIds: [String]? = nil, appLinkStatus: Int64? = nil, queryBindToApp: Int64? = nil, queryConnector: Int64? = nil, notQuerySubTypeList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
+        self.describeDataSourceList(DescribeDataSourceListRequest(pageSize: pageSize, pageIndex: pageIndex, envId: envId, appids: appids, dataSourceIds: dataSourceIds, dataSourceNames: dataSourceNames, dataSourceType: dataSourceType, queryOption: queryOption, viewIds: viewIds, appLinkStatus: appLinkStatus, queryBindToApp: queryBindToApp, queryConnector: queryConnector, notQuerySubTypeList: notQuerySubTypeList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据源详情列表
     @inlinable
-    public func describeDataSourceList(pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]? = nil, dataSourceIds: [String]? = nil, dataSourceNames: [String]? = nil, dataSourceType: String? = nil, queryOption: DataSourceQueryOption? = nil, viewIds: [String]? = nil, appLinkStatus: Int64? = nil, queryBindToApp: Int64? = nil, queryConnector: Int64? = nil, notQuerySubTypeList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        try await self.describeDataSourceList(DescribeDataSourceListRequest(pageSize: pageSize, pageIndex: pageIndex, envId: envId, appids: appids, dataSourceIds: dataSourceIds, dataSourceNames: dataSourceNames, dataSourceType: dataSourceType, queryOption: queryOption, viewIds: viewIds, appLinkStatus: appLinkStatus, queryBindToApp: queryBindToApp, queryConnector: queryConnector, notQuerySubTypeList: notQuerySubTypeList), logger: logger, on: eventLoop)
+    public func describeDataSourceList(pageSize: Int64, pageIndex: Int64, envId: String, appids: [String]? = nil, dataSourceIds: [String]? = nil, dataSourceNames: [String]? = nil, dataSourceType: String? = nil, queryOption: DataSourceQueryOption? = nil, viewIds: [String]? = nil, appLinkStatus: Int64? = nil, queryBindToApp: Int64? = nil, queryConnector: Int64? = nil, notQuerySubTypeList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
+        try await self.describeDataSourceList(DescribeDataSourceListRequest(pageSize: pageSize, pageIndex: pageIndex, envId: envId, appids: appids, dataSourceIds: dataSourceIds, dataSourceNames: dataSourceNames, dataSourceType: dataSourceType, queryOption: queryOption, viewIds: viewIds, appLinkStatus: appLinkStatus, queryBindToApp: queryBindToApp, queryConnector: queryConnector, notQuerySubTypeList: notQuerySubTypeList), region: region, logger: logger, on: eventLoop)
     }
 }

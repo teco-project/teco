@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Live {
     ///
     /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
     @inlinable
-    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePullStreamConfigResponse> {
-        self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePullStreamConfigResponse> {
+        self.client.execute(action: "DeletePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
     ///
     /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
     @inlinable
-    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
-        try await self.client.execute(action: "DeletePullStreamConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePullStreamConfig(_ input: DeletePullStreamConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
+        try await self.client.execute(action: "DeletePullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
     ///
     /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
     @inlinable
-    public func deletePullStreamConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePullStreamConfigResponse> {
-        self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deletePullStreamConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePullStreamConfigResponse> {
+        self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除拉流配置(该接口已下线,请使用新接口 DeleteLivePullStreamTask)
     ///
     /// 删除直播拉流配置。该接口已下线,请使用新接口 DeleteLivePullStreamTask。
     @inlinable
-    public func deletePullStreamConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
-        try await self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deletePullStreamConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePullStreamConfigResponse {
+        try await self.deletePullStreamConfig(DeletePullStreamConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Monitor {
 
     /// 删除 Grafana 实例
     @inlinable
-    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
-        self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
+        self.client.execute(action: "DeleteGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 实例
     @inlinable
-    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
-        try await self.client.execute(action: "DeleteGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteGrafanaInstance(_ input: DeleteGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
+        try await self.client.execute(action: "DeleteGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Grafana 实例
     @inlinable
-    public func deleteGrafanaInstance(instanceIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
-        self.deleteGrafanaInstance(DeleteGrafanaInstanceRequest(instanceIDs: instanceIDs), logger: logger, on: eventLoop)
+    public func deleteGrafanaInstance(instanceIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaInstanceResponse> {
+        self.deleteGrafanaInstance(DeleteGrafanaInstanceRequest(instanceIDs: instanceIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 实例
     @inlinable
-    public func deleteGrafanaInstance(instanceIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
-        try await self.deleteGrafanaInstance(DeleteGrafanaInstanceRequest(instanceIDs: instanceIDs), logger: logger, on: eventLoop)
+    public func deleteGrafanaInstance(instanceIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaInstanceResponse {
+        try await self.deleteGrafanaInstance(DeleteGrafanaInstanceRequest(instanceIDs: instanceIDs), region: region, logger: logger, on: eventLoop)
     }
 }

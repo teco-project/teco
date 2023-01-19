@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Tcss {
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
-        self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
+        self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规忽略资产+检测项列表
@@ -53,8 +53,8 @@ extension Tcss {
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
-        try await self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addComplianceAssetPolicySetToWhitelist(_ input: AddComplianceAssetPolicySetToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
+        try await self.client.execute(action: "AddComplianceAssetPolicySetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规忽略资产+检测项列表
@@ -62,8 +62,8 @@ extension Tcss {
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
-        self.addComplianceAssetPolicySetToWhitelist(AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList), logger: logger, on: eventLoop)
+    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddComplianceAssetPolicySetToWhitelistResponse> {
+        self.addComplianceAssetPolicySetToWhitelist(AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规忽略资产+检测项列表
@@ -71,7 +71,7 @@ extension Tcss {
     /// 新增安全合规忽略(资产+检测项列表)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable
-    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
-        try await self.addComplianceAssetPolicySetToWhitelist(AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList), logger: logger, on: eventLoop)
+    public func addComplianceAssetPolicySetToWhitelist(assetPolicySetList: [ComplianceAssetPolicySetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddComplianceAssetPolicySetToWhitelistResponse {
+        try await self.addComplianceAssetPolicySetToWhitelist(AddComplianceAssetPolicySetToWhitelistRequest(assetPolicySetList: assetPolicySetList), region: region, logger: logger, on: eventLoop)
     }
 }

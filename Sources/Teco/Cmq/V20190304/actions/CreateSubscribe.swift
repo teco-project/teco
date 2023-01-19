@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cmq {
 
     /// 创建订阅接口
     @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
-        self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSubscribe(_ input: CreateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
+        self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅接口
     @inlinable
-    public func createSubscribe(_ input: CreateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.client.execute(action: "CreateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSubscribe(_ input: CreateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.client.execute(action: "CreateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建订阅接口
     @inlinable
-    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
-        self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), logger: logger, on: eventLoop)
+    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscribeResponse> {
+        self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅接口
     @inlinable
-    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
-        try await self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), logger: logger, on: eventLoop)
+    public func createSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscribeResponse {
+        try await self.createSubscribe(CreateSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
     }
 }

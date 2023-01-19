@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ame {
     ///
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
-    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMusicOnTheShelvesResponse> {
-        self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMusicOnTheShelvesResponse> {
+        self.client.execute(action: "PutMusicOnTheShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上架歌曲
     ///
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
-    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
-        try await self.client.execute(action: "PutMusicOnTheShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putMusicOnTheShelves(_ input: PutMusicOnTheShelvesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
+        try await self.client.execute(action: "PutMusicOnTheShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上架歌曲
     ///
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
-    public func putMusicOnTheShelves(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMusicOnTheShelvesResponse> {
-        self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    public func putMusicOnTheShelves(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMusicOnTheShelvesResponse> {
+        self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上架歌曲
     ///
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
-    public func putMusicOnTheShelves(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
-        try await self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    public func putMusicOnTheShelves(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
+        try await self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 }

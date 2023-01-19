@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -160,25 +160,25 @@ extension Dayu {
 
     /// 添加策略场景
     @inlinable
-    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyCaseResponse> {
-        self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyCaseResponse> {
+        self.client.execute(action: "CreateDDoSPolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加策略场景
     @inlinable
-    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
-        try await self.client.execute(action: "CreateDDoSPolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDDoSPolicyCase(_ input: CreateDDoSPolicyCaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
+        try await self.client.execute(action: "CreateDDoSPolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加策略场景
     @inlinable
-    public func createDDoSPolicyCase(business: String, caseName: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyCaseResponse> {
-        self.createDDoSPolicyCase(CreateDDoSPolicyCaseRequest(business: business, caseName: caseName, platformTypes: platformTypes, appType: appType, appProtocols: appProtocols, tcpSportStart: tcpSportStart, tcpSportEnd: tcpSportEnd, udpSportStart: udpSportStart, udpSportEnd: udpSportEnd, hasAbroad: hasAbroad, hasInitiateTcp: hasInitiateTcp, hasInitiateUdp: hasInitiateUdp, peerTcpPort: peerTcpPort, peerUdpPort: peerUdpPort, tcpFootprint: tcpFootprint, udpFootprint: udpFootprint, webApiUrl: webApiUrl, minTcpPackageLen: minTcpPackageLen, maxTcpPackageLen: maxTcpPackageLen, minUdpPackageLen: minUdpPackageLen, maxUdpPackageLen: maxUdpPackageLen, hasVPN: hasVPN, tcpPortList: tcpPortList, udpPortList: udpPortList), logger: logger, on: eventLoop)
+    public func createDDoSPolicyCase(business: String, caseName: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyCaseResponse> {
+        self.createDDoSPolicyCase(CreateDDoSPolicyCaseRequest(business: business, caseName: caseName, platformTypes: platformTypes, appType: appType, appProtocols: appProtocols, tcpSportStart: tcpSportStart, tcpSportEnd: tcpSportEnd, udpSportStart: udpSportStart, udpSportEnd: udpSportEnd, hasAbroad: hasAbroad, hasInitiateTcp: hasInitiateTcp, hasInitiateUdp: hasInitiateUdp, peerTcpPort: peerTcpPort, peerUdpPort: peerUdpPort, tcpFootprint: tcpFootprint, udpFootprint: udpFootprint, webApiUrl: webApiUrl, minTcpPackageLen: minTcpPackageLen, maxTcpPackageLen: maxTcpPackageLen, minUdpPackageLen: minUdpPackageLen, maxUdpPackageLen: maxUdpPackageLen, hasVPN: hasVPN, tcpPortList: tcpPortList, udpPortList: udpPortList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加策略场景
     @inlinable
-    public func createDDoSPolicyCase(business: String, caseName: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
-        try await self.createDDoSPolicyCase(CreateDDoSPolicyCaseRequest(business: business, caseName: caseName, platformTypes: platformTypes, appType: appType, appProtocols: appProtocols, tcpSportStart: tcpSportStart, tcpSportEnd: tcpSportEnd, udpSportStart: udpSportStart, udpSportEnd: udpSportEnd, hasAbroad: hasAbroad, hasInitiateTcp: hasInitiateTcp, hasInitiateUdp: hasInitiateUdp, peerTcpPort: peerTcpPort, peerUdpPort: peerUdpPort, tcpFootprint: tcpFootprint, udpFootprint: udpFootprint, webApiUrl: webApiUrl, minTcpPackageLen: minTcpPackageLen, maxTcpPackageLen: maxTcpPackageLen, minUdpPackageLen: minUdpPackageLen, maxUdpPackageLen: maxUdpPackageLen, hasVPN: hasVPN, tcpPortList: tcpPortList, udpPortList: udpPortList), logger: logger, on: eventLoop)
+    public func createDDoSPolicyCase(business: String, caseName: String, platformTypes: [String]? = nil, appType: String? = nil, appProtocols: [String]? = nil, tcpSportStart: String? = nil, tcpSportEnd: String? = nil, udpSportStart: String? = nil, udpSportEnd: String? = nil, hasAbroad: String? = nil, hasInitiateTcp: String? = nil, hasInitiateUdp: String? = nil, peerTcpPort: String? = nil, peerUdpPort: String? = nil, tcpFootprint: String? = nil, udpFootprint: String? = nil, webApiUrl: [String]? = nil, minTcpPackageLen: String? = nil, maxTcpPackageLen: String? = nil, minUdpPackageLen: String? = nil, maxUdpPackageLen: String? = nil, hasVPN: String? = nil, tcpPortList: String? = nil, udpPortList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyCaseResponse {
+        try await self.createDDoSPolicyCase(CreateDDoSPolicyCaseRequest(business: business, caseName: caseName, platformTypes: platformTypes, appType: appType, appProtocols: appProtocols, tcpSportStart: tcpSportStart, tcpSportEnd: tcpSportEnd, udpSportStart: udpSportStart, udpSportEnd: udpSportEnd, hasAbroad: hasAbroad, hasInitiateTcp: hasInitiateTcp, hasInitiateUdp: hasInitiateUdp, peerTcpPort: peerTcpPort, peerUdpPort: peerUdpPort, tcpFootprint: tcpFootprint, udpFootprint: udpFootprint, webApiUrl: webApiUrl, minTcpPackageLen: minTcpPackageLen, maxTcpPackageLen: maxTcpPackageLen, minUdpPackageLen: minUdpPackageLen, maxUdpPackageLen: maxUdpPackageLen, hasVPN: hasVPN, tcpPortList: tcpPortList, udpPortList: udpPortList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tke {
     ///
     /// 创建一个云原生Prometheus模板
     @inlinable
-    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusTempResponse> {
-        self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusTempResponse> {
+        self.client.execute(action: "CreatePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建模板
     ///
     /// 创建一个云原生Prometheus模板
     @inlinable
-    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
-        try await self.client.execute(action: "CreatePrometheusTemp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusTemp(_ input: CreatePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
+        try await self.client.execute(action: "CreatePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建模板
     ///
     /// 创建一个云原生Prometheus模板
     @inlinable
-    public func createPrometheusTemp(template: PrometheusTemp, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusTempResponse> {
-        self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), logger: logger, on: eventLoop)
+    public func createPrometheusTemp(template: PrometheusTemp, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusTempResponse> {
+        self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建模板
     ///
     /// 创建一个云原生Prometheus模板
     @inlinable
-    public func createPrometheusTemp(template: PrometheusTemp, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
-        try await self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), logger: logger, on: eventLoop)
+    public func createPrometheusTemp(template: PrometheusTemp, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
+        try await self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Nlp {
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
-        self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWordItems(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
+        self.client.execute(action: "DescribeWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(_ input: DescribeWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
-        try await self.client.execute(action: "DescribeWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWordItems(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
+        try await self.client.execute(action: "DescribeWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
-        self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), logger: logger, on: eventLoop)
+    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
+        self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
-        try await self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), logger: logger, on: eventLoop)
+    public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
+        try await self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), region: region, logger: logger, on: eventLoop)
     }
 }

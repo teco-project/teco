@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 查询泳道列表
     @inlinable
-    public func describeLanes(_ input: DescribeLanesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLanesResponse> {
-        self.client.execute(action: "DescribeLanes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLanes(_ input: DescribeLanesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLanesResponse> {
+        self.client.execute(action: "DescribeLanes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询泳道列表
     @inlinable
-    public func describeLanes(_ input: DescribeLanesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
-        try await self.client.execute(action: "DescribeLanes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLanes(_ input: DescribeLanesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
+        try await self.client.execute(action: "DescribeLanes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询泳道列表
     @inlinable
-    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLanesResponse> {
-        self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLanesResponse> {
+        self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询泳道列表
     @inlinable
-    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
-        try await self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeLanes(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, laneIdList: [String]? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLanesResponse {
+        try await self.describeLanes(DescribeLanesRequest(limit: limit, offset: offset, searchWord: searchWord, laneIdList: laneIdList, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 }

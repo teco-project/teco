@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Apcas {
 
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
-        self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCallDetails(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
+        self.client.execute(action: "QueryCallDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(_ input: QueryCallDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
-        try await self.client.execute(action: "QueryCallDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCallDetails(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
+        try await self.client.execute(action: "QueryCallDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
-        self.queryCallDetails(QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallDetailsResponse> {
+        self.queryCallDetails(QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询调用明细
     @inlinable
-    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
-        try await self.queryCallDetails(QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func queryCallDetails(type: UInt64, startTime: UInt64, endTime: UInt64, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallDetailsResponse {
+        try await self.queryCallDetails(QueryCallDetailsRequest(type: type, startTime: startTime, endTime: endTime, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

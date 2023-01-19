@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcr {
     ///
     /// 用于在TCR实例中，创建多个白名单策略
     @inlinable
-    public func createMultipleSecurityPolicy(_ input: CreateMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultipleSecurityPolicyResponse> {
-        self.client.execute(action: "CreateMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMultipleSecurityPolicy(_ input: CreateMultipleSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultipleSecurityPolicyResponse> {
+        self.client.execute(action: "CreateMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例公网访问多白名单策略
     ///
     /// 用于在TCR实例中，创建多个白名单策略
     @inlinable
-    public func createMultipleSecurityPolicy(_ input: CreateMultipleSecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultipleSecurityPolicyResponse {
-        try await self.client.execute(action: "CreateMultipleSecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMultipleSecurityPolicy(_ input: CreateMultipleSecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultipleSecurityPolicyResponse {
+        try await self.client.execute(action: "CreateMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例公网访问多白名单策略
     ///
     /// 用于在TCR实例中，创建多个白名单策略
     @inlinable
-    public func createMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultipleSecurityPolicyResponse> {
-        self.createMultipleSecurityPolicy(CreateMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func createMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultipleSecurityPolicyResponse> {
+        self.createMultipleSecurityPolicy(CreateMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例公网访问多白名单策略
     ///
     /// 用于在TCR实例中，创建多个白名单策略
     @inlinable
-    public func createMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultipleSecurityPolicyResponse {
-        try await self.createMultipleSecurityPolicy(CreateMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func createMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultipleSecurityPolicyResponse {
+        try await self.createMultipleSecurityPolicy(CreateMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

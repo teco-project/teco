@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cloudstudio {
 
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
-        self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
+        self.client.execute(action: "CreateWorkspaceByVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
-        try await self.client.execute(action: "CreateWorkspaceByVersionControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWorkspaceByVersionControl(_ input: CreateWorkspaceByVersionControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
+        try await self.client.execute(action: "CreateWorkspaceByVersionControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
-        self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByVersionControlResponse> {
+        self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据模板创建工作空间
     @inlinable
-    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
-        try await self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func createWorkspaceByVersionControl(workspaceDTO: WorkspaceDTO, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByVersionControlResponse {
+        try await self.createWorkspaceByVersionControl(CreateWorkspaceByVersionControlRequest(workspaceDTO: workspaceDTO, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

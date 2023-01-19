@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,31 +94,31 @@ extension Tci {
     ///
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
-    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskPlusResponse> {
-        self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskPlusResponse> {
+        self.client.execute(action: "SubmitImageTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交高级图像分析任务
     ///
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
-    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
-        try await self.client.execute(action: "SubmitImageTaskPlus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitImageTaskPlus(_ input: SubmitImageTaskPlusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
+        try await self.client.execute(action: "SubmitImageTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交高级图像分析任务
     ///
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
-    public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskPlusResponse> {
-        self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskPlusResponse> {
+        self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交高级图像分析任务
     ///
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
-    public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
-        try await self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
+        try await self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

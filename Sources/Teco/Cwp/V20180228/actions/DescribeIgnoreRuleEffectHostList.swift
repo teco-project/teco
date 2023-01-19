@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cwp {
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
-    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreRuleEffectHostListResponse> {
-        self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreRuleEffectHostListResponse> {
+        self.client.execute(action: "DescribeIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询忽略检测项影响主机列表
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
-    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
-        try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIgnoreRuleEffectHostList(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
+        try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询忽略检测项影响主机列表
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
-    public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreRuleEffectHostListResponse> {
-        self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), logger: logger, on: eventLoop)
+    public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreRuleEffectHostListResponse> {
+        self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询忽略检测项影响主机列表
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
-    public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
-        try await self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), logger: logger, on: eventLoop)
+    public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
+        try await self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), region: region, logger: logger, on: eventLoop)
     }
 }

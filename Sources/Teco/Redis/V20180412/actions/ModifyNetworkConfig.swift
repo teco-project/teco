@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Redis {
 
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
-        self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
+        self.client.execute(action: "ModifyNetworkConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
-        try await self.client.execute(action: "ModifyNetworkConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNetworkConfig(_ input: ModifyNetworkConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
+        try await self.client.execute(action: "ModifyNetworkConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
-        self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), logger: logger, on: eventLoop)
+    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkConfigResponse> {
+        self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例网络配置
     @inlinable
-    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
-        try await self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), logger: logger, on: eventLoop)
+    public func modifyNetworkConfig(instanceId: String, operation: String, vip: String? = nil, vpcId: String? = nil, subnetId: String? = nil, recycle: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkConfigResponse {
+        try await self.modifyNetworkConfig(ModifyNetworkConfigRequest(instanceId: instanceId, operation: operation, vip: vip, vpcId: vpcId, subnetId: subnetId, recycle: recycle), region: region, logger: logger, on: eventLoop)
     }
 }

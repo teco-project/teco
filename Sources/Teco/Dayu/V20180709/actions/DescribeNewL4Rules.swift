@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Dayu {
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
-        self.client.execute(action: "DescribeNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
+        self.client.execute(action: "DescribeNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
-        try await self.client.execute(action: "DescribeNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNewL4Rules(_ input: DescribeNewL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
+        try await self.client.execute(action: "DescribeNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
-        self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesResponse> {
+        self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取四层转发规则
     ///
     /// 获取L4转发规则
     @inlinable
-    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
-        try await self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeNewL4Rules(business: String, ip: String? = nil, virtualPort: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesResponse {
+        try await self.describeNewL4Rules(DescribeNewL4RulesRequest(business: business, ip: ip, virtualPort: virtualPort, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

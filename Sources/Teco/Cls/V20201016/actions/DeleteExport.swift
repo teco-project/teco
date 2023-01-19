@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cls {
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
-        self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteExport(_ input: DeleteExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
+        self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(_ input: DeleteExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
-        try await self.client.execute(action: "DeleteExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteExport(_ input: DeleteExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
+        try await self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
-        self.deleteExport(DeleteExportRequest(exportId: exportId), logger: logger, on: eventLoop)
+    public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
+        self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
     @inlinable
-    public func deleteExport(exportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
-        try await self.deleteExport(DeleteExportRequest(exportId: exportId), logger: logger, on: eventLoop)
+    public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
+        try await self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
     }
 }

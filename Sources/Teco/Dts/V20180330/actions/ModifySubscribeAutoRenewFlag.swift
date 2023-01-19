@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dts {
 
     /// 修改订阅实例自动续费标识
     @inlinable
-    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
-        self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
+        self.client.execute(action: "ModifySubscribeAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅实例自动续费标识
     @inlinable
-    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
-        try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
+        try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改订阅实例自动续费标识
     @inlinable
-    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
-        self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
+        self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅实例自动续费标识
     @inlinable
-    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
-        try await self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
+        try await self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

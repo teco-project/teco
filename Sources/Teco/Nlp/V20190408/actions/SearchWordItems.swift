@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Nlp {
     ///
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
-    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchWordItemsResponse> {
-        self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchWordItems(_ input: SearchWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchWordItemsResponse> {
+        self.client.execute(action: "SearchWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检索词条
     ///
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
-    public func searchWordItems(_ input: SearchWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
-        try await self.client.execute(action: "SearchWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchWordItems(_ input: SearchWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
+        try await self.client.execute(action: "SearchWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检索词条
     ///
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
-    public func searchWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchWordItemsResponse> {
-        self.searchWordItems(SearchWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
+    public func searchWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchWordItemsResponse> {
+        self.searchWordItems(SearchWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索词条
     ///
     /// 查询指定自定义词库中的词条是否存在。
     @inlinable
-    public func searchWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
-        try await self.searchWordItems(SearchWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
+    public func searchWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchWordItemsResponse {
+        try await self.searchWordItems(SearchWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 }

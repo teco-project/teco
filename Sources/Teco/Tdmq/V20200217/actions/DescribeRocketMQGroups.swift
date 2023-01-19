@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Tdmq {
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
-        self.client.execute(action: "DescribeRocketMQGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
+        self.client.execute(action: "DescribeRocketMQGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
-        try await self.client.execute(action: "DescribeRocketMQGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRocketMQGroups(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
+        try await self.client.execute(action: "DescribeRocketMQGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
-        self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), logger: logger, on: eventLoop)
+    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
+        self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
-        try await self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), logger: logger, on: eventLoop)
+    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
+        try await self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), region: region, logger: logger, on: eventLoop)
     }
 }

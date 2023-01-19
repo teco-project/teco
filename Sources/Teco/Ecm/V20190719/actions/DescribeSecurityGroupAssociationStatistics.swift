@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ecm {
     ///
     /// 查询安全组关联实例统计
     @inlinable
-    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
-        self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
+        self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组关联统计
     ///
     /// 查询安全组关联实例统计
     @inlinable
-    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupAssociationStatistics(_ input: DescribeSecurityGroupAssociationStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全组关联统计
     ///
     /// 查询安全组关联实例统计
     @inlinable
-    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
-        self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
+        self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组关联统计
     ///
     /// 查询安全组关联实例统计
     @inlinable
-    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
-        try await self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
+        try await self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

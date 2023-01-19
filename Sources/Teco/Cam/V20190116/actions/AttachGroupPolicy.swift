@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable
-    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachGroupPolicyResponse> {
-        self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachGroupPolicyResponse> {
+        self.client.execute(action: "AttachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户组
     ///
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable
-    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
-        try await self.client.execute(action: "AttachGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachGroupPolicy(_ input: AttachGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
+        try await self.client.execute(action: "AttachGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定策略到用户组
     ///
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable
-    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachGroupPolicyResponse> {
-        self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), logger: logger, on: eventLoop)
+    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachGroupPolicyResponse> {
+        self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户组
     ///
     /// 本接口（AttachGroupPolicy）可用于绑定策略到用户组。
     @inlinable
-    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
-        try await self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), logger: logger, on: eventLoop)
+    public func attachGroupPolicy(policyId: UInt64, attachGroupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachGroupPolicyResponse {
+        try await self.attachGroupPolicy(AttachGroupPolicyRequest(policyId: policyId, attachGroupId: attachGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Tsf {
     ///
     /// 创建虚拟机部署组
     @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
+        self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建部署组
     ///
     /// 创建虚拟机部署组
     @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建部署组
     ///
     /// 创建虚拟机部署组
     @inlinable
-    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), logger: logger, on: eventLoop)
+    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
+        self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建部署组
     ///
     /// 创建虚拟机部署组
     @inlinable
-    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), logger: logger, on: eventLoop)
+    public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,31 +111,31 @@ extension Faceid {
     ///
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
-    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessCompareResponse> {
-        self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func livenessCompare(_ input: LivenessCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessCompareResponse> {
+        self.client.execute(action: "LivenessCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸比对
     ///
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
-    public func livenessCompare(_ input: LivenessCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
-        try await self.client.execute(action: "LivenessCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func livenessCompare(_ input: LivenessCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
+        try await self.client.execute(action: "LivenessCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 活体人脸比对
     ///
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
-    public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessCompareResponse> {
-        self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), logger: logger, on: eventLoop)
+    public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessCompareResponse> {
+        self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸比对
     ///
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
-    public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
-        try await self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), logger: logger, on: eventLoop)
+    public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
+        try await self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), region: region, logger: logger, on: eventLoop)
     }
 }

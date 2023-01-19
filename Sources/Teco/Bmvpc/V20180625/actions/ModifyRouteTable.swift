@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Bmvpc {
 
     /// 修改路由表
     @inlinable
-    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableResponse> {
-        self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRouteTable(_ input: ModifyRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableResponse> {
+        self.client.execute(action: "ModifyRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表
     @inlinable
-    public func modifyRouteTable(_ input: ModifyRouteTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
-        try await self.client.execute(action: "ModifyRouteTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRouteTable(_ input: ModifyRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
+        try await self.client.execute(action: "ModifyRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改路由表
     @inlinable
-    public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableResponse> {
-        self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), logger: logger, on: eventLoop)
+    public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableResponse> {
+        self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表
     @inlinable
-    public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
-        try await self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), logger: logger, on: eventLoop)
+    public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
+        try await self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 }

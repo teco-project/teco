@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询k8sapi异常事件趋势
     @inlinable
-    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalTendencyResponse> {
-        self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalTendencyResponse> {
+        self.client.execute(action: "DescribeK8sApiAbnormalTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常事件趋势
     @inlinable
-    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeK8sApiAbnormalTendency(_ input: DescribeK8sApiAbnormalTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询k8sapi异常事件趋势
     @inlinable
-    public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalTendencyResponse> {
-        self.describeK8sApiAbnormalTendency(DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalTendencyResponse> {
+        self.describeK8sApiAbnormalTendency(DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常事件趋势
     @inlinable
-    public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
-        try await self.describeK8sApiAbnormalTendency(DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalTendencyResponse {
+        try await self.describeK8sApiAbnormalTendency(DescribeK8sApiAbnormalTendencyRequest(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Antiddos {
 
     /// 删除CC分级策略
     @inlinable
-    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCLevelPolicyResponse> {
-        self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCLevelPolicyResponse> {
+        self.client.execute(action: "DeleteCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC分级策略
     @inlinable
-    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
-        try await self.client.execute(action: "DeleteCCLevelPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCCLevelPolicy(_ input: DeleteCCLevelPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
+        try await self.client.execute(action: "DeleteCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除CC分级策略
     @inlinable
-    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCLevelPolicyResponse> {
-        self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCLevelPolicyResponse> {
+        self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC分级策略
     @inlinable
-    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
-        try await self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), logger: logger, on: eventLoop)
+    public func deleteCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCLevelPolicyResponse {
+        try await self.deleteCCLevelPolicy(DeleteCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 }

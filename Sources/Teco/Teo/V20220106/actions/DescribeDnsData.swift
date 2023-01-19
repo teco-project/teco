@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Teo {
 
     /// 获取DNS请求数统计曲线
     @inlinable
-    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsDataResponse> {
-        self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDnsData(_ input: DescribeDnsDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsDataResponse> {
+        self.client.execute(action: "DescribeDnsData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DNS请求数统计曲线
     @inlinable
-    public func describeDnsData(_ input: DescribeDnsDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
-        try await self.client.execute(action: "DescribeDnsData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDnsData(_ input: DescribeDnsDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
+        try await self.client.execute(action: "DescribeDnsData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DNS请求数统计曲线
     @inlinable
-    public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsDataResponse> {
-        self.describeDnsData(DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval), logger: logger, on: eventLoop)
+    public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnsDataResponse> {
+        self.describeDnsData(DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DNS请求数统计曲线
     @inlinable
-    public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
-        try await self.describeDnsData(DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval), logger: logger, on: eventLoop)
+    public func describeDnsData(startTime: Date, endTime: Date, filters: [DnsDataFilter]? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnsDataResponse {
+        try await self.describeDnsData(DescribeDnsDataRequest(startTime: startTime, endTime: endTime, filters: filters, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

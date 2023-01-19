@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Youmall {
 
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
-        self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
+        self.client.execute(action: "DescribeZoneFlowAndStayTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
-        try await self.client.execute(action: "DescribeZoneFlowAndStayTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneFlowAndStayTime(_ input: DescribeZoneFlowAndStayTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
+        try await self.client.execute(action: "DescribeZoneFlowAndStayTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
-        self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
+        self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区域人流和停留时间
     @inlinable
-    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
-        try await self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
+        try await self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

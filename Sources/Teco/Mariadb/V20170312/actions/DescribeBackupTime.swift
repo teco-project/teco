@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mariadb {
     ///
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTimeResponse> {
-        self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupTime(_ input: DescribeBackupTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTimeResponse> {
+        self.client.execute(action: "DescribeBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份时间
     ///
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func describeBackupTime(_ input: DescribeBackupTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
-        try await self.client.execute(action: "DescribeBackupTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupTime(_ input: DescribeBackupTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
+        try await self.client.execute(action: "DescribeBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备份时间
     ///
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func describeBackupTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTimeResponse> {
-        self.describeBackupTime(DescribeBackupTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeBackupTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupTimeResponse> {
+        self.describeBackupTime(DescribeBackupTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份时间
     ///
     /// 本接口（DescribeBackupTime）用于获取云数据库的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
-    public func describeBackupTime(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
-        try await self.describeBackupTime(DescribeBackupTimeRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeBackupTime(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupTimeResponse {
+        try await self.describeBackupTime(DescribeBackupTimeRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

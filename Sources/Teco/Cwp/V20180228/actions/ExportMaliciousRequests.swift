@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cwp {
     ///
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
-    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
-        self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
+        self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出下载恶意请求文件
     ///
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
-    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
-        try await self.client.execute(action: "ExportMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportMaliciousRequests(_ input: ExportMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
+        try await self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出下载恶意请求文件
     ///
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
-    public func exportMaliciousRequests(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
-        self.exportMaliciousRequests(ExportMaliciousRequestsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportMaliciousRequests(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
+        self.exportMaliciousRequests(ExportMaliciousRequestsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出下载恶意请求文件
     ///
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
-    public func exportMaliciousRequests(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
-        try await self.exportMaliciousRequests(ExportMaliciousRequestsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportMaliciousRequests(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
+        try await self.exportMaliciousRequests(ExportMaliciousRequestsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Sqlserver {
     ///
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
-    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBResponse> {
-        self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cloneDB(_ input: CloneDBRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBResponse> {
+        self.client.execute(action: "CloneDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆数据库
     ///
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
-    public func cloneDB(_ input: CloneDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
-        try await self.client.execute(action: "CloneDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cloneDB(_ input: CloneDBRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
+        try await self.client.execute(action: "CloneDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 克隆数据库
     ///
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
-    public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBResponse> {
-        self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), logger: logger, on: eventLoop)
+    public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBResponse> {
+        self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
     }
 
     /// 克隆数据库
     ///
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
-    public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
-        try await self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), logger: logger, on: eventLoop)
+    public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
+        try await self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
     }
 }

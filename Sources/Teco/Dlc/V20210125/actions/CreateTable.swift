@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Dlc {
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
-        self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTable(_ input: CreateTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
+        self.client.execute(action: "CreateTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(_ input: CreateTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
-        try await self.client.execute(action: "CreateTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTable(_ input: CreateTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
+        try await self.client.execute(action: "CreateTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
-        self.createTable(CreateTableRequest(tableInfo: tableInfo), logger: logger, on: eventLoop)
+    public func createTable(tableInfo: TableInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableResponse> {
+        self.createTable(CreateTableRequest(tableInfo: tableInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成建表SQL
     ///
     /// 本接口（CreateTable）用于生成建表SQL。
     @inlinable
-    public func createTable(tableInfo: TableInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
-        try await self.createTable(CreateTableRequest(tableInfo: tableInfo), logger: logger, on: eventLoop)
+    public func createTable(tableInfo: TableInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableResponse {
+        try await self.createTable(CreateTableRequest(tableInfo: tableInfo), region: region, logger: logger, on: eventLoop)
     }
 }

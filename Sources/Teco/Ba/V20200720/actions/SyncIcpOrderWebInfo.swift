@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Ba {
     /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
     /// 只有指定的网站信息字段能被同步
     @inlinable
-    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncIcpOrderWebInfoResponse> {
-        self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncIcpOrderWebInfoResponse> {
+        self.client.execute(action: "SyncIcpOrderWebInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步备案ICP订单网站信息
@@ -73,8 +73,8 @@ extension Ba {
     /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
     /// 只有指定的网站信息字段能被同步
     @inlinable
-    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
-        try await self.client.execute(action: "SyncIcpOrderWebInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncIcpOrderWebInfo(_ input: SyncIcpOrderWebInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
+        try await self.client.execute(action: "SyncIcpOrderWebInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步备案ICP订单网站信息
@@ -82,8 +82,8 @@ extension Ba {
     /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
     /// 只有指定的网站信息字段能被同步
     @inlinable
-    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncIcpOrderWebInfoResponse> {
-        self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), logger: logger, on: eventLoop)
+    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncIcpOrderWebInfoResponse> {
+        self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步备案ICP订单网站信息
@@ -91,7 +91,7 @@ extension Ba {
     /// 将备案ICP订单下的一个网站信息 同步给订单下其他网站，需要被同步的网站被检查通过(isCheck:true)；
     /// 只有指定的网站信息字段能被同步
     @inlinable
-    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
-        try await self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), logger: logger, on: eventLoop)
+    public func syncIcpOrderWebInfo(icpOrderId: String, sourceWebId: String, targetWebIds: [String], syncFields: [String], checkSamePerson: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncIcpOrderWebInfoResponse {
+        try await self.syncIcpOrderWebInfo(SyncIcpOrderWebInfoRequest(icpOrderId: icpOrderId, sourceWebId: sourceWebId, targetWebIds: targetWebIds, syncFields: syncFields, checkSamePerson: checkSamePerson), region: region, logger: logger, on: eventLoop)
     }
 }

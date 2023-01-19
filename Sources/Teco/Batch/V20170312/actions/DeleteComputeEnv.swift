@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Batch {
     ///
     /// 用于删除计算环境
     @inlinable
-    public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComputeEnvResponse> {
-        self.client.execute(action: "DeleteComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComputeEnvResponse> {
+        self.client.execute(action: "DeleteComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除计算环境
     ///
     /// 用于删除计算环境
     @inlinable
-    public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
-        try await self.client.execute(action: "DeleteComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
+        try await self.client.execute(action: "DeleteComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除计算环境
     ///
     /// 用于删除计算环境
     @inlinable
-    public func deleteComputeEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComputeEnvResponse> {
-        self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    public func deleteComputeEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComputeEnvResponse> {
+        self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除计算环境
     ///
     /// 用于删除计算环境
     @inlinable
-    public func deleteComputeEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
-        try await self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    public func deleteComputeEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
+        try await self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

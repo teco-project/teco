@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Cloudhsm {
 
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
-        self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
+        self.client.execute(action: "DescribeHSMBySubnetId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
-        try await self.client.execute(action: "DescribeHSMBySubnetId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHSMBySubnetId(_ input: DescribeHSMBySubnetIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
+        try await self.client.execute(action: "DescribeHSMBySubnetId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
-        self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), logger: logger, on: eventLoop)
+    public func describeHSMBySubnetId(subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMBySubnetIdResponse> {
+        self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过SubnetId获取Hsm资源数
     @inlinable
-    public func describeHSMBySubnetId(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
-        try await self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), logger: logger, on: eventLoop)
+    public func describeHSMBySubnetId(subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMBySubnetIdResponse {
+        try await self.describeHSMBySubnetId(DescribeHSMBySubnetIdRequest(subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

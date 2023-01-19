@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Iotcloud {
     ///
     /// 重置设备的连接状态
     @inlinable
-    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceStateResponse> {
-        self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetDeviceState(_ input: ResetDeviceStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceStateResponse> {
+        self.client.execute(action: "ResetDeviceState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置设备状态
     ///
     /// 重置设备的连接状态
     @inlinable
-    public func resetDeviceState(_ input: ResetDeviceStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
-        try await self.client.execute(action: "ResetDeviceState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetDeviceState(_ input: ResetDeviceStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
+        try await self.client.execute(action: "ResetDeviceState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置设备状态
     ///
     /// 重置设备的连接状态
     @inlinable
-    public func resetDeviceState(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceStateResponse> {
-        self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func resetDeviceState(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetDeviceStateResponse> {
+        self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置设备状态
     ///
     /// 重置设备的连接状态
     @inlinable
-    public func resetDeviceState(productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
-        try await self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func resetDeviceState(productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetDeviceStateResponse {
+        try await self.resetDeviceState(ResetDeviceStateRequest(productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

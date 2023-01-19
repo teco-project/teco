@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Vpc {
 
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
-    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
-        self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
+        self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
-    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
-        try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadVpnGatewaySslClientCert(_ input: DownloadVpnGatewaySslClientCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
+        try await self.client.execute(action: "DownloadVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
-    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
-        self.downloadVpnGatewaySslClientCert(DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadVpnGatewaySslClientCertResponse> {
+        self.downloadVpnGatewaySslClientCert(DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载SSL-VPN-CLIENT 客户端证书
     @inlinable
-    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
-        try await self.downloadVpnGatewaySslClientCert(DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), logger: logger, on: eventLoop)
+    public func downloadVpnGatewaySslClientCert(sslVpnClientId: String, samlToken: String? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadVpnGatewaySslClientCertResponse {
+        try await self.downloadVpnGatewaySslClientCert(DownloadVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId, samlToken: samlToken, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
     }
 }

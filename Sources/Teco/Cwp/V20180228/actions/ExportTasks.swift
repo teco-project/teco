@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cwp {
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
-        self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportTasks(_ input: ExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
+        self.client.execute(action: "ExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(_ input: ExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
-        try await self.client.execute(action: "ExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportTasks(_ input: ExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
+        try await self.client.execute(action: "ExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
-        self.exportTasks(ExportTasksRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func exportTasks(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportTasksResponse> {
+        self.exportTasks(ExportTasksRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 异步导出任务
     ///
     /// 用于异步导出数据量大的日志文件
     @inlinable
-    public func exportTasks(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
-        try await self.exportTasks(ExportTasksRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func exportTasks(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportTasksResponse {
+        try await self.exportTasks(ExportTasksRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

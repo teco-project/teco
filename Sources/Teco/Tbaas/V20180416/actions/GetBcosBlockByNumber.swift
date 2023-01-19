@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tbaas {
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
-        self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
+        self.client.execute(action: "GetBcosBlockByNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
-        try await self.client.execute(action: "GetBcosBlockByNumber", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBcosBlockByNumber(_ input: GetBcosBlockByNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
+        try await self.client.execute(action: "GetBcosBlockByNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
-        self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), logger: logger, on: eventLoop)
+    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
+        self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用块高查询区块信息
     ///
     /// 使用块高查询Bcos区块信息
     @inlinable
-    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
-        try await self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), logger: logger, on: eventLoop)
+    public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
+        try await self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), region: region, logger: logger, on: eventLoop)
     }
 }

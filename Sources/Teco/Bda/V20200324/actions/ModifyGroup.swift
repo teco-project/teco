@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Bda {
     ///
     /// 修改人体库名称、备注。
     @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
-        self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGroup(_ input: ModifyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
+        self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
     @inlinable
-    public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
-        try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGroup(_ input: ModifyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
+        try await self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
     @inlinable
-    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
-        self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), logger: logger, on: eventLoop)
+    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
+        self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
     @inlinable
-    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
-        try await self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), logger: logger, on: eventLoop)
+    public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
+        try await self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

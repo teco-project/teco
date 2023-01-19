@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Antiddos {
 
     /// 获取DDoS防护的IP黑白名单列表
     @inlinable
-    public func describeListBlackWhiteIpList(_ input: DescribeListBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBlackWhiteIpListResponse> {
-        self.client.execute(action: "DescribeListBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListBlackWhiteIpList(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBlackWhiteIpListResponse> {
+        self.client.execute(action: "DescribeListBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的IP黑白名单列表
     @inlinable
-    public func describeListBlackWhiteIpList(_ input: DescribeListBlackWhiteIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
-        try await self.client.execute(action: "DescribeListBlackWhiteIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListBlackWhiteIpList(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
+        try await self.client.execute(action: "DescribeListBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护的IP黑白名单列表
     @inlinable
-    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBlackWhiteIpListResponse> {
-        self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBlackWhiteIpListResponse> {
+        self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的IP黑白名单列表
     @inlinable
-    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
-        try await self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListBlackWhiteIpList(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBlackWhiteIpListResponse {
+        try await self.describeListBlackWhiteIpList(DescribeListBlackWhiteIpListRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 }

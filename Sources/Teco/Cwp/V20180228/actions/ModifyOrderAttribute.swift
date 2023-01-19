@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cwp {
     ///
     /// 对订单属性编辑
     @inlinable
-    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
-        self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
+        self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
     @inlinable
-    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
-        try await self.client.execute(action: "ModifyOrderAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
+        try await self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
     @inlinable
-    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
-        self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), logger: logger, on: eventLoop)
+    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
+        self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
     @inlinable
-    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
-        try await self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), logger: logger, on: eventLoop)
+    public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
+        try await self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }
 }

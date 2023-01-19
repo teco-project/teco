@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tcr {
 
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
-        self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
+        self.client.execute(action: "CreateInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
-        try await self.client.execute(action: "CreateInstanceCustomizedDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstanceCustomizedDomain(_ input: CreateInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
+        try await self.client.execute(action: "CreateInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
-        self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
+        self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义域名
     @inlinable
-    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
-        try await self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), logger: logger, on: eventLoop)
+    public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
+        try await self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

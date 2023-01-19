@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tsf {
     ///
     /// 下线部署组所有机器实例
     @inlinable
-    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkGroupResponse> {
-        self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func shrinkGroup(_ input: ShrinkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkGroupResponse> {
+        self.client.execute(action: "ShrinkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 缩容虚拟机部署组
     ///
     /// 下线部署组所有机器实例
     @inlinable
-    public func shrinkGroup(_ input: ShrinkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
-        try await self.client.execute(action: "ShrinkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func shrinkGroup(_ input: ShrinkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
+        try await self.client.execute(action: "ShrinkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 缩容虚拟机部署组
     ///
     /// 下线部署组所有机器实例
     @inlinable
-    public func shrinkGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkGroupResponse> {
-        self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func shrinkGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkGroupResponse> {
+        self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 缩容虚拟机部署组
     ///
     /// 下线部署组所有机器实例
     @inlinable
-    public func shrinkGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
-        try await self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func shrinkGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
+        try await self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

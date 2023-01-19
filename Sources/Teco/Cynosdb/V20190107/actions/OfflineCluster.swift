@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cynosdb {
 
     /// 下线集群
     @inlinable
-    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineClusterResponse> {
-        self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offlineCluster(_ input: OfflineClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineClusterResponse> {
+        self.client.execute(action: "OfflineCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线集群
     @inlinable
-    public func offlineCluster(_ input: OfflineClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
-        try await self.client.execute(action: "OfflineCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offlineCluster(_ input: OfflineClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
+        try await self.client.execute(action: "OfflineCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线集群
     @inlinable
-    public func offlineCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineClusterResponse> {
-        self.offlineCluster(OfflineClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func offlineCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineClusterResponse> {
+        self.offlineCluster(OfflineClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线集群
     @inlinable
-    public func offlineCluster(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
-        try await self.offlineCluster(OfflineClusterRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func offlineCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineClusterResponse {
+        try await self.offlineCluster(OfflineClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

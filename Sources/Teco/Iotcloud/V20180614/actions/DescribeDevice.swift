@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -153,31 +153,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
-        self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevice(_ input: DescribeDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
+        self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(_ input: DescribeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.client.execute(action: "DescribeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevice(_ input: DescribeDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
+        try await self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(productID: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
-        self.describeDevice(DescribeDeviceRequest(productID: productID, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeDevice(productID: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
+        self.describeDevice(DescribeDeviceRequest(productID: productID, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看设备详情
     ///
     /// 本接口（DescribeDevice）用于查看设备信息
     @inlinable
-    public func describeDevice(productID: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.describeDevice(DescribeDeviceRequest(productID: productID, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeDevice(productID: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
+        try await self.describeDevice(DescribeDeviceRequest(productID: productID, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

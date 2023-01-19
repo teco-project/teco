@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tdid {
 
     /// 通过Name部署TDID合约
     @inlinable
-    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
-        self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deployByName(_ input: DeployByNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
+        self.client.execute(action: "DeployByName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过Name部署TDID合约
     @inlinable
-    public func deployByName(_ input: DeployByNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
-        try await self.client.execute(action: "DeployByName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deployByName(_ input: DeployByNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
+        try await self.client.execute(action: "DeployByName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过Name部署TDID合约
     @inlinable
-    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
-        self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployByNameResponse> {
+        self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过Name部署TDID合约
     @inlinable
-    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
-        try await self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func deployByName(applicationName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployByNameResponse {
+        try await self.deployByName(DeployByNameRequest(applicationName: applicationName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

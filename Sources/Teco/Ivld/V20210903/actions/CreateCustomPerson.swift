@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Ivld {
     /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
-    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPersonResponse> {
-        self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomPerson(_ input: CreateCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPersonResponse> {
+        self.client.execute(action: "CreateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物
@@ -83,8 +83,8 @@ extension Ivld {
     /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
-    public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
-        try await self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomPerson(_ input: CreateCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
+        try await self.client.execute(action: "CreateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义人物
@@ -93,8 +93,8 @@ extension Ivld {
     /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
-    public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPersonResponse> {
-        self.createCustomPerson(CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), logger: logger, on: eventLoop)
+    public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomPersonResponse> {
+        self.createCustomPerson(CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物
@@ -103,7 +103,7 @@ extension Ivld {
     /// 输入人物名称，基本信息，分类信息与人脸图片，创建自定义人物
     /// 人脸图片可使用图片数据(base64编码的图片数据)或者图片URL(推荐使用COS以减少下载时间，其他地址也支持)，原始图片优先，也即如果同时指定了图片数据和图片URL，接口将仅使用图片数据
     @inlinable
-    public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
-        try await self.createCustomPerson(CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), logger: logger, on: eventLoop)
+    public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
+        try await self.createCustomPerson(CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), region: region, logger: logger, on: eventLoop)
     }
 }

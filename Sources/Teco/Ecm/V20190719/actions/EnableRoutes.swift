@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Ecm {
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable
-    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
-        self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableRoutes(_ input: EnableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
+        self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用子网路由
@@ -58,8 +58,8 @@ extension Ecm {
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable
-    public func enableRoutes(_ input: EnableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
-        try await self.client.execute(action: "EnableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableRoutes(_ input: EnableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
+        try await self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用子网路由
@@ -67,8 +67,8 @@ extension Ecm {
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable
-    public func enableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
-        self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func enableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
+        self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用子网路由
@@ -76,7 +76,7 @@ extension Ecm {
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
     @inlinable
-    public func enableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
-        try await self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func enableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
+        try await self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

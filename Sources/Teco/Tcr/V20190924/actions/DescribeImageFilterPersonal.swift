@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcr {
     ///
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
-    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageFilterPersonalResponse> {
-        self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageFilterPersonalResponse> {
+        self.client.execute(action: "DescribeImageFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版中与指定tag镜像内容相同的tag列表
     ///
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
-    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
-        try await self.client.execute(action: "DescribeImageFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageFilterPersonal(_ input: DescribeImageFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
+        try await self.client.execute(action: "DescribeImageFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询个人版中与指定tag镜像内容相同的tag列表
     ///
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
-    public func describeImageFilterPersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageFilterPersonalResponse> {
-        self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), logger: logger, on: eventLoop)
+    public func describeImageFilterPersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageFilterPersonalResponse> {
+        self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版中与指定tag镜像内容相同的tag列表
     ///
     /// 用于在个人版中查询与指定tag镜像内容相同的tag列表
     @inlinable
-    public func describeImageFilterPersonal(repoName: String, tag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
-        try await self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), logger: logger, on: eventLoop)
+    public func describeImageFilterPersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageFilterPersonalResponse {
+        try await self.describeImageFilterPersonal(DescribeImageFilterPersonalRequest(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
+        self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
     ///
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性公网IP属性
     ///
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable
-    public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
+        self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
     ///
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable
-    public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 }

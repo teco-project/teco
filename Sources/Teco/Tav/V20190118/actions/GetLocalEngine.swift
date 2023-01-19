@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Tav {
     ///
     /// 获取TAV本地引擎
     @inlinable
-    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLocalEngineResponse> {
-        self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getLocalEngine(_ input: GetLocalEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLocalEngineResponse> {
+        self.client.execute(action: "GetLocalEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 本地引擎下载地址获取
     ///
     /// 获取TAV本地引擎
     @inlinable
-    public func getLocalEngine(_ input: GetLocalEngineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
-        try await self.client.execute(action: "GetLocalEngine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getLocalEngine(_ input: GetLocalEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
+        try await self.client.execute(action: "GetLocalEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 本地引擎下载地址获取
     ///
     /// 获取TAV本地引擎
     @inlinable
-    public func getLocalEngine(key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLocalEngineResponse> {
-        self.getLocalEngine(GetLocalEngineRequest(key: key), logger: logger, on: eventLoop)
+    public func getLocalEngine(key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLocalEngineResponse> {
+        self.getLocalEngine(GetLocalEngineRequest(key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 本地引擎下载地址获取
     ///
     /// 获取TAV本地引擎
     @inlinable
-    public func getLocalEngine(key: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
-        try await self.getLocalEngine(GetLocalEngineRequest(key: key), logger: logger, on: eventLoop)
+    public func getLocalEngine(key: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLocalEngineResponse {
+        try await self.getLocalEngine(GetLocalEngineRequest(key: key), region: region, logger: logger, on: eventLoop)
     }
 }

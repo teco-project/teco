@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Cfs {
     ///
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
-    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsPGroupResponse> {
-        self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsPGroupResponse> {
+        self.client.execute(action: "UpdateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组信息
     ///
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
-    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
-        try await self.client.execute(action: "UpdateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCfsPGroup(_ input: UpdateCfsPGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
+        try await self.client.execute(action: "UpdateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新权限组信息
     ///
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
-    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsPGroupResponse> {
-        self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsPGroupResponse> {
+        self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组信息
     ///
     /// 本接口（UpdateCfsPGroup）更新权限组信息。
     @inlinable
-    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
-        try await self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    public func updateCfsPGroup(pGroupId: String, name: String? = nil, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsPGroupResponse {
+        try await self.updateCfsPGroup(UpdateCfsPGroupRequest(pGroupId: pGroupId, name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 }

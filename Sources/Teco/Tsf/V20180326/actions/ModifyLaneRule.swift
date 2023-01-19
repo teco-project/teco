@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tsf {
 
     /// 更新泳道规则
     @inlinable
-    public func modifyLaneRule(_ input: ModifyLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneRuleResponse> {
-        self.client.execute(action: "ModifyLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLaneRule(_ input: ModifyLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneRuleResponse> {
+        self.client.execute(action: "ModifyLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新泳道规则
     @inlinable
-    public func modifyLaneRule(_ input: ModifyLaneRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
-        try await self.client.execute(action: "ModifyLaneRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLaneRule(_ input: ModifyLaneRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
+        try await self.client.execute(action: "ModifyLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新泳道规则
     @inlinable
-    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneRuleResponse> {
-        self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), logger: logger, on: eventLoop)
+    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLaneRuleResponse> {
+        self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新泳道规则
     @inlinable
-    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
-        try await self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), logger: logger, on: eventLoop)
+    public func modifyLaneRule(ruleId: String, ruleName: String, remark: String, ruleTagList: [LaneRuleTag], ruleTagRelationship: String, laneId: String, enable: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLaneRuleResponse {
+        try await self.modifyLaneRule(ModifyLaneRuleRequest(ruleId: ruleId, ruleName: ruleName, remark: remark, ruleTagList: ruleTagList, ruleTagRelationship: ruleTagRelationship, laneId: laneId, enable: enable), region: region, logger: logger, on: eventLoop)
     }
 }

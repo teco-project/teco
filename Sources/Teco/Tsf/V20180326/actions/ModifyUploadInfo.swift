@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Tsf {
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
-        self.client.execute(action: "ModifyUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
+        self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新上传程序包信息
@@ -83,8 +83,8 @@ extension Tsf {
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
-        try await self.client.execute(action: "ModifyUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
+        try await self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新上传程序包信息
@@ -92,8 +92,8 @@ extension Tsf {
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
-        self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
+        self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新上传程序包信息
@@ -101,7 +101,7 @@ extension Tsf {
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable
-    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
-        try await self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
+        try await self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

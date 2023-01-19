@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cwp {
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
-        self.client.execute(action: "DescribeVulTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulTop(_ input: DescribeVulTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
+        self.client.execute(action: "DescribeVulTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(_ input: DescribeVulTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
-        try await self.client.execute(action: "DescribeVulTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulTop(_ input: DescribeVulTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
+        try await self.client.execute(action: "DescribeVulTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
-        self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTopResponse> {
+        self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞top统计
     ///
     /// 漏洞top统计
     @inlinable
-    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
-        try await self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), logger: logger, on: eventLoop)
+    public func describeVulTop(top: UInt64, vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTopResponse {
+        try await self.describeVulTop(DescribeVulTopRequest(top: top, vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
     }
 }

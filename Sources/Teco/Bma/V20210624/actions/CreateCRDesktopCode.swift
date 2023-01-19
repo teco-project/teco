@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Bma {
 
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
-        self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
+        self.client.execute(action: "CreateCRDesktopCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
-        try await self.client.execute(action: "CreateCRDesktopCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRDesktopCode(_ input: CreateCRDesktopCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
+        try await self.client.execute(action: "CreateCRDesktopCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
-        self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), logger: logger, on: eventLoop)
+    public func createCRDesktopCode(tortId: Int64, desktopCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRDesktopCodeResponse> {
+        self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建过程取证码
     @inlinable
-    public func createCRDesktopCode(tortId: Int64, desktopCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
-        try await self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), logger: logger, on: eventLoop)
+    public func createCRDesktopCode(tortId: Int64, desktopCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRDesktopCodeResponse {
+        try await self.createCRDesktopCode(CreateCRDesktopCodeRequest(tortId: tortId, desktopCode: desktopCode), region: region, logger: logger, on: eventLoop)
     }
 }

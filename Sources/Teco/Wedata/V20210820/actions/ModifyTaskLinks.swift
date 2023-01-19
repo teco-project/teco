@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
-        self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
+        self.client.execute(action: "ModifyTaskLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加父任务依赖【Beta版本】
@@ -83,8 +83,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
-        try await self.client.execute(action: "ModifyTaskLinks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTaskLinks(_ input: ModifyTaskLinksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
+        try await self.client.execute(action: "ModifyTaskLinks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加父任务依赖【Beta版本】
@@ -92,8 +92,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
-        self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), logger: logger, on: eventLoop)
+    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskLinksResponse> {
+        self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加父任务依赖【Beta版本】
@@ -101,7 +101,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 添加父任务依赖
     @inlinable
-    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
-        try await self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), logger: logger, on: eventLoop)
+    public func modifyTaskLinks(projectId: String, taskFrom: String, taskTo: String, workflowId: String, realFromWorkflowId: String, linkDependencyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskLinksResponse {
+        try await self.modifyTaskLinks(ModifyTaskLinksRequest(projectId: projectId, taskFrom: taskFrom, taskTo: taskTo, workflowId: workflowId, realFromWorkflowId: realFromWorkflowId, linkDependencyType: linkDependencyType), region: region, logger: logger, on: eventLoop)
     }
 }

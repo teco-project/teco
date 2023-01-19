@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的素材；</li>
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable
-    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamResponse> {
-        self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTeam(_ input: DeleteTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamResponse> {
+        self.client.execute(action: "DeleteTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除团队
@@ -65,8 +65,8 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的素材；</li>
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable
-    public func deleteTeam(_ input: DeleteTeamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
-        try await self.client.execute(action: "DeleteTeam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTeam(_ input: DeleteTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
+        try await self.client.execute(action: "DeleteTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除团队
@@ -75,8 +75,8 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的素材；</li>
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable
-    public func deleteTeam(platform: String, teamId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamResponse> {
-        self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteTeam(platform: String, teamId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamResponse> {
+        self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除团队
@@ -85,7 +85,7 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的素材；</li>
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable
-    public func deleteTeam(platform: String, teamId: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
-        try await self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteTeam(platform: String, teamId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
+        try await self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

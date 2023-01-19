@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(_ input: DescribeTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
-        self.client.execute(action: "DescribeTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagValues(_ input: DescribeTagValuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
+        self.client.execute(action: "DescribeTagValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(_ input: DescribeTagValuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
-        try await self.client.execute(action: "DescribeTagValues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagValues(_ input: DescribeTagValuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
+        try await self.client.execute(action: "DescribeTagValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
-        self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagValuesResponse> {
+        self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
-        try await self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTagValues(tagKeys: [String], createUin: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagValuesResponse {
+        try await self.describeTagValues(DescribeTagValuesRequest(tagKeys: tagKeys, createUin: createUin, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Dayu {
 
     /// 获取保险包套餐列表
     @inlinable
-    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInsurePacksResponse> {
-        self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInsurePacksResponse> {
+        self.client.execute(action: "DescribeInsurePacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取保险包套餐列表
     @inlinable
-    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
-        try await self.client.execute(action: "DescribeInsurePacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInsurePacks(_ input: DescribeInsurePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
+        try await self.client.execute(action: "DescribeInsurePacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取保险包套餐列表
     @inlinable
-    public func describeInsurePacks(idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInsurePacksResponse> {
-        self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), logger: logger, on: eventLoop)
+    public func describeInsurePacks(idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInsurePacksResponse> {
+        self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取保险包套餐列表
     @inlinable
-    public func describeInsurePacks(idList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
-        try await self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), logger: logger, on: eventLoop)
+    public func describeInsurePacks(idList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInsurePacksResponse {
+        try await self.describeInsurePacks(DescribeInsurePacksRequest(idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

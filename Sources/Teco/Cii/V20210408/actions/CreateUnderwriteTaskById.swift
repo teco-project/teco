@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cii {
     ///
     /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
     @inlinable
-    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnderwriteTaskByIdResponse> {
-        self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnderwriteTaskByIdResponse> {
+        self.client.execute(action: "CreateUnderwriteTaskById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据结构化任务ID创建核保任务
     ///
     /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
     @inlinable
-    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
-        try await self.client.execute(action: "CreateUnderwriteTaskById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUnderwriteTaskById(_ input: CreateUnderwriteTaskByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
+        try await self.client.execute(action: "CreateUnderwriteTaskById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据结构化任务ID创建核保任务
     ///
     /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
     @inlinable
-    public func createUnderwriteTaskById(mainTaskIds: [String], callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnderwriteTaskByIdResponse> {
-        self.createUnderwriteTaskById(CreateUnderwriteTaskByIdRequest(mainTaskIds: mainTaskIds, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    public func createUnderwriteTaskById(mainTaskIds: [String], callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnderwriteTaskByIdResponse> {
+        self.createUnderwriteTaskById(CreateUnderwriteTaskByIdRequest(mainTaskIds: mainTaskIds, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据结构化任务ID创建核保任务
     ///
     /// 本接口(CreateUnderwriteTaskById)用于根据结构化任务ID创建核保任务
     @inlinable
-    public func createUnderwriteTaskById(mainTaskIds: [String], callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
-        try await self.createUnderwriteTaskById(CreateUnderwriteTaskByIdRequest(mainTaskIds: mainTaskIds, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    public func createUnderwriteTaskById(mainTaskIds: [String], callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnderwriteTaskByIdResponse {
+        try await self.createUnderwriteTaskById(CreateUnderwriteTaskByIdRequest(mainTaskIds: mainTaskIds, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

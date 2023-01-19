@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Teo {
 
     /// 修改安全配置托管规则
     @inlinable
-    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityWafGroupPolicyResponse> {
-        self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityWafGroupPolicyResponse> {
+        self.client.execute(action: "ModifySecurityWafGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全配置托管规则
     @inlinable
-    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
-        try await self.client.execute(action: "ModifySecurityWafGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityWafGroupPolicy(_ input: ModifySecurityWafGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
+        try await self.client.execute(action: "ModifySecurityWafGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全配置托管规则
     @inlinable
-    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityWafGroupPolicyResponse> {
-        self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityWafGroupPolicyResponse> {
+        self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全配置托管规则
     @inlinable
-    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
-        try await self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
+        try await self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

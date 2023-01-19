@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 查询服务关联的 Ingress 规则列表
     @inlinable
-    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedIngressesResponse> {
-        self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedIngressesResponse> {
+        self.client.execute(action: "DescribeRelatedIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务关联的 Ingress 规则列表
     @inlinable
-    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
-        try await self.client.execute(action: "DescribeRelatedIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRelatedIngresses(_ input: DescribeRelatedIngressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
+        try await self.client.execute(action: "DescribeRelatedIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询服务关联的 Ingress 规则列表
     @inlinable
-    public func describeRelatedIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, serviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedIngressesResponse> {
-        self.describeRelatedIngresses(DescribeRelatedIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeRelatedIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, serviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedIngressesResponse> {
+        self.describeRelatedIngresses(DescribeRelatedIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务关联的 Ingress 规则列表
     @inlinable
-    public func describeRelatedIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, serviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
-        try await self.describeRelatedIngresses(DescribeRelatedIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeRelatedIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, serviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
+        try await self.describeRelatedIngresses(DescribeRelatedIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 }

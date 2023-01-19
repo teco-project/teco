@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
-        self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
+        self.client.execute(action: "DescribeClientUploadAccelerationUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户端上传加速统计数据
@@ -79,8 +79,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
-        try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClientUploadAccelerationUsageData(_ input: DescribeClientUploadAccelerationUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
+        try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户端上传加速统计数据
@@ -90,8 +90,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
-        self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
+        self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户端上传加速统计数据
@@ -101,7 +101,7 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
-        try await self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), logger: logger, on: eventLoop)
+    public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
+        try await self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

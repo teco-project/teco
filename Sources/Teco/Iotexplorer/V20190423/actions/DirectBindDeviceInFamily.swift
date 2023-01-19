@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Iotexplorer {
 
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
-        self.client.execute(action: "DirectBindDeviceInFamily", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
+        self.client.execute(action: "DirectBindDeviceInFamily", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {
-        try await self.client.execute(action: "DirectBindDeviceInFamily", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func directBindDeviceInFamily(_ input: DirectBindDeviceInFamilyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {
+        try await self.client.execute(action: "DirectBindDeviceInFamily", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
-        self.directBindDeviceInFamily(DirectBindDeviceInFamilyRequest(iotAppID: iotAppID, userID: userID, familyId: familyId, productId: productId, deviceName: deviceName, roomId: roomId), logger: logger, on: eventLoop)
+    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DirectBindDeviceInFamilyResponse> {
+        self.directBindDeviceInFamily(DirectBindDeviceInFamilyRequest(iotAppID: iotAppID, userID: userID, familyId: familyId, productId: productId, deviceName: deviceName, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直接绑定设备和家庭
     @inlinable
-    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {
-        try await self.directBindDeviceInFamily(DirectBindDeviceInFamilyRequest(iotAppID: iotAppID, userID: userID, familyId: familyId, productId: productId, deviceName: deviceName, roomId: roomId), logger: logger, on: eventLoop)
+    public func directBindDeviceInFamily(iotAppID: String, userID: String, familyId: String, productId: String, deviceName: String, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DirectBindDeviceInFamilyResponse {
+        try await self.directBindDeviceInFamily(DirectBindDeviceInFamilyRequest(iotAppID: iotAppID, userID: userID, familyId: familyId, productId: productId, deviceName: deviceName, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

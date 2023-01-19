@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Billing {
 
     /// 获取按产品汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProduct(_ input: DescribeCostSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProductResponse> {
-        self.client.execute(action: "DescribeCostSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCostSummaryByProduct(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProductResponse> {
+        self.client.execute(action: "DescribeCostSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按产品汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProduct(_ input: DescribeCostSummaryByProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProductResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCostSummaryByProduct(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProductResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按产品汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProductResponse> {
-        self.describeCostSummaryByProduct(DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByProductResponse> {
+        self.describeCostSummaryByProduct(DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按产品汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProductResponse {
-        try await self.describeCostSummaryByProduct(DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByProduct(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByProductResponse {
+        try await self.describeCostSummaryByProduct(DescribeCostSummaryByProductRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 }

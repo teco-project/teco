@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cdwch {
 
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
-        self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
+        self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
-        try await self.client.execute(action: "DescribeInstanceShards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceShards(_ input: DescribeInstanceShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
+        try await self.client.execute(action: "DescribeInstanceShards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
-        self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceShards(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceShardsResponse> {
+        self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例shard信息列表
     @inlinable
-    public func describeInstanceShards(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
-        try await self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceShards(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceShardsResponse {
+        try await self.describeInstanceShards(DescribeInstanceShardsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

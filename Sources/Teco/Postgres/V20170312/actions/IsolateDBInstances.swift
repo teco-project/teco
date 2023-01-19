@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Postgres {
     ///
     /// 本接口（IsolateDBInstances）用于隔离实例
     @inlinable
-    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
-        self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
+        self.client.execute(action: "IsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
     ///
     /// 本接口（IsolateDBInstances）用于隔离实例
     @inlinable
-    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
-        try await self.client.execute(action: "IsolateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateDBInstances(_ input: IsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
+        try await self.client.execute(action: "IsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离实例
     ///
     /// 本接口（IsolateDBInstances）用于隔离实例
     @inlinable
-    public func isolateDBInstances(dbInstanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
-        self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), logger: logger, on: eventLoop)
+    public func isolateDBInstances(dbInstanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstancesResponse> {
+        self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
     ///
     /// 本接口（IsolateDBInstances）用于隔离实例
     @inlinable
-    public func isolateDBInstances(dbInstanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
-        try await self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), logger: logger, on: eventLoop)
+    public func isolateDBInstances(dbInstanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstancesResponse {
+        try await self.isolateDBInstances(IsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

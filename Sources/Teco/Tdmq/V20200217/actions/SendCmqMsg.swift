@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdmq {
 
     /// 发送cmq消息
     @inlinable
-    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCmqMsgResponse> {
-        self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendCmqMsg(_ input: SendCmqMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCmqMsgResponse> {
+        self.client.execute(action: "SendCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq消息
     @inlinable
-    public func sendCmqMsg(_ input: SendCmqMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
-        try await self.client.execute(action: "SendCmqMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendCmqMsg(_ input: SendCmqMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
+        try await self.client.execute(action: "SendCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送cmq消息
     @inlinable
-    public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCmqMsgResponse> {
-        self.sendCmqMsg(SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), logger: logger, on: eventLoop)
+    public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCmqMsgResponse> {
+        self.sendCmqMsg(SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq消息
     @inlinable
-    public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
-        try await self.sendCmqMsg(SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), logger: logger, on: eventLoop)
+    public func sendCmqMsg(queueName: String, msgContent: String, delaySeconds: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCmqMsgResponse {
+        try await self.sendCmqMsg(SendCmqMsgRequest(queueName: queueName, msgContent: msgContent, delaySeconds: delaySeconds), region: region, logger: logger, on: eventLoop)
     }
 }

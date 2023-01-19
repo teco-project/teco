@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Waf {
 
     /// 删除攻击日志下载任务记录
     @inlinable
-    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
-        self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
+        self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除攻击日志下载任务记录
     @inlinable
-    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
-        try await self.client.execute(action: "DeleteAttackDownloadRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
+        try await self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除攻击日志下载任务记录
     @inlinable
-    public func deleteAttackDownloadRecord(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
-        self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
+        self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除攻击日志下载任务记录
     @inlinable
-    public func deleteAttackDownloadRecord(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
-        try await self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
+        try await self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

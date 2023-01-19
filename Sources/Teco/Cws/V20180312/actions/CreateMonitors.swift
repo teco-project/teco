@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Cws {
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
-        self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMonitors(_ input: CreateMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
+        self.client.execute(action: "CreateMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(_ input: CreateMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
-        try await self.client.execute(action: "CreateMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMonitors(_ input: CreateMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
+        try await self.client.execute(action: "CreateMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
-        self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), logger: logger, on: eventLoop)
+    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMonitorsResponse> {
+        self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增监测任务
     ///
     /// 本接口（CreateMonitors）用于新增一个或多个站点的监测任务。
     @inlinable
-    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
-        try await self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), logger: logger, on: eventLoop)
+    public func createMonitors(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMonitorsResponse {
+        try await self.createMonitors(CreateMonitorsRequest(urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Essbasic {
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
-        self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSeal(_ input: CreateSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
+        self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建印章
@@ -99,8 +99,8 @@ extension Essbasic {
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(_ input: CreateSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        try await self.client.execute(action: "CreateSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSeal(_ input: CreateSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
+        try await self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建印章
@@ -108,8 +108,8 @@ extension Essbasic {
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
-        self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), logger: logger, on: eventLoop)
+    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
+        self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建印章
@@ -117,7 +117,7 @@ extension Essbasic {
     /// 此接口（CreateSeal）用于创建个人/企业印章。
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
-    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        try await self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), logger: logger, on: eventLoop)
+    public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
+        try await self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
 }

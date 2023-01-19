@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,31 +50,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
-        self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
+        self.client.execute(action: "DescribeDiskConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
-        try await self.client.execute(action: "DescribeDiskConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiskConfigs(_ input: DescribeDiskConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
+        try await self.client.execute(action: "DescribeDiskConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
-        self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeDiskConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
+        self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘配置
     ///
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
-    public func describeDiskConfigs(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
-        try await self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeDiskConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
+        try await self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

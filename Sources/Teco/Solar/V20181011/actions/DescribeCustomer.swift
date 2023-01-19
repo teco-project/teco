@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -186,25 +186,25 @@ extension Solar {
 
     /// 客户档案查询客户详情
     @inlinable
-    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerResponse> {
-        self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomer(_ input: DescribeCustomerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerResponse> {
+        self.client.execute(action: "DescribeCustomer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 客户档案查询客户详情
     @inlinable
-    public func describeCustomer(_ input: DescribeCustomerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
-        try await self.client.execute(action: "DescribeCustomer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomer(_ input: DescribeCustomerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
+        try await self.client.execute(action: "DescribeCustomer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 客户档案查询客户详情
     @inlinable
-    public func describeCustomer(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerResponse> {
-        self.describeCustomer(DescribeCustomerRequest(userId: userId), logger: logger, on: eventLoop)
+    public func describeCustomer(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerResponse> {
+        self.describeCustomer(DescribeCustomerRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 客户档案查询客户详情
     @inlinable
-    public func describeCustomer(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
-        try await self.describeCustomer(DescribeCustomerRequest(userId: userId), logger: logger, on: eventLoop)
+    public func describeCustomer(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerResponse {
+        try await self.describeCustomer(DescribeCustomerRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

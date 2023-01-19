@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
-        self.client.execute(action: "DescribeInstanceMonitorTopNCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
+        self.client.execute(action: "DescribeInstanceMonitorTopNCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorTopNCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceMonitorTopNCmd(_ input: DescribeInstanceMonitorTopNCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorTopNCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
-        self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
+        self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问命令
     @inlinable
-    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
-        try await self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
+        try await self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 }

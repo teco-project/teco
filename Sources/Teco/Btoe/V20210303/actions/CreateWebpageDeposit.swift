@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
     @inlinable
-    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
-        self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
+        self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网页快照存证
@@ -82,8 +82,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
     @inlinable
-    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        try await self.client.execute(action: "CreateWebpageDeposit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
+        try await self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 网页快照存证
@@ -91,8 +91,8 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
     @inlinable
-    public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
-        self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
+        self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网页快照存证
@@ -100,7 +100,7 @@ extension Btoe {
     /// 功能迭代，已上线更高版本的接口2021-05-14
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
     @inlinable
-    public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        try await self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), logger: logger, on: eventLoop)
+    public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
+        try await self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
     }
 }

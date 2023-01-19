@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Apigateway {
     ///
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
-    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUpstreamResponse> {
-        self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUpstream(_ input: DeleteUpstreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUpstreamResponse> {
+        self.client.execute(action: "DeleteUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除后端通道
     ///
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
-    public func deleteUpstream(_ input: DeleteUpstreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
-        try await self.client.execute(action: "DeleteUpstream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUpstream(_ input: DeleteUpstreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
+        try await self.client.execute(action: "DeleteUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除后端通道
     ///
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
-    public func deleteUpstream(upstreamId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUpstreamResponse> {
-        self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), logger: logger, on: eventLoop)
+    public func deleteUpstream(upstreamId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUpstreamResponse> {
+        self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除后端通道
     ///
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
-    public func deleteUpstream(upstreamId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
-        try await self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), logger: logger, on: eventLoop)
+    public func deleteUpstream(upstreamId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
+        try await self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), region: region, logger: logger, on: eventLoop)
     }
 }

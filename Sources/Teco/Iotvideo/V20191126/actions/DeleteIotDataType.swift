@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
-        self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
+        self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
-        try await self.client.execute(action: "DeleteIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
+        try await self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(typeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
-        self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
+        self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
     @inlinable
-    public func deleteIotDataType(typeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
-        try await self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), logger: logger, on: eventLoop)
+    public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
+        try await self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
 }

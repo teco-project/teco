@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
-        self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
+        self.client.execute(action: "DescribePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
-        try await self.client.execute(action: "DescribePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePublishSubscribe(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
+        try await self.client.execute(action: "DescribePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
-        self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
+        self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅发布
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
-        try await self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
+        try await self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

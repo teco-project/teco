@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Vod {
     ///
     /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
     @inlinable
-    public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
-        self.client.execute(action: "CreateImageProcessingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
+        self.client.execute(action: "CreateImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建图片即时处理模板
     ///
     /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
     @inlinable
-    public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
-        try await self.client.execute(action: "CreateImageProcessingTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageProcessingTemplate(_ input: CreateImageProcessingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
+        try await self.client.execute(action: "CreateImageProcessingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建图片即时处理模板
     ///
     /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
     @inlinable
-    public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
-        self.createImageProcessingTemplate(CreateImageProcessingTemplateRequest(operations: operations, subAppId: subAppId, name: name, comment: comment), logger: logger, on: eventLoop)
+    public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageProcessingTemplateResponse> {
+        self.createImageProcessingTemplate(CreateImageProcessingTemplateRequest(operations: operations, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建图片即时处理模板
     ///
     /// 创建一个用户自定义的图片处理模板，数量上限：16。最多支持三次操作，例如：裁剪-缩略-裁剪。
     @inlinable
-    public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
-        try await self.createImageProcessingTemplate(CreateImageProcessingTemplateRequest(operations: operations, subAppId: subAppId, name: name, comment: comment), logger: logger, on: eventLoop)
+    public func createImageProcessingTemplate(operations: [ImageOperation], subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageProcessingTemplateResponse {
+        try await self.createImageProcessingTemplate(CreateImageProcessingTemplateRequest(operations: operations, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
     }
 }

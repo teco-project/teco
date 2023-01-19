@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tcss {
 
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
-        self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
+        self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeK8sApiAbnormalRuleScopeList(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleScopeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
-        self.describeK8sApiAbnormalRuleScopeList(DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleScopeListResponse> {
+        self.describeK8sApiAbnormalRuleScopeList(DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8s api 异常规则中范围列表
     @inlinable
-    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {
-        try await self.describeK8sApiAbnormalRuleScopeList(DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleScopeList(ruleID: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleScopeListResponse {
+        try await self.describeK8sApiAbnormalRuleScopeList(DescribeK8sApiAbnormalRuleScopeListRequest(ruleID: ruleID, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -143,31 +143,31 @@ extension Teo {
     ///
     /// 用于修改站点配置
     @inlinable
-    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
-        self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
+        self.client.execute(action: "ModifyZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改站点配置
     ///
     /// 用于修改站点配置
     @inlinable
-    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
-        try await self.client.execute(action: "ModifyZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
+        try await self.client.execute(action: "ModifyZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改站点配置
     ///
     /// 用于修改站点配置
     @inlinable
-    public func modifyZoneSetting(zoneId: String, cache: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIp? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6Access? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
-        self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cache: cache, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6), logger: logger, on: eventLoop)
+    public func modifyZoneSetting(zoneId: String, cache: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIp? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6Access? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
+        self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cache: cache, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改站点配置
     ///
     /// 用于修改站点配置
     @inlinable
-    public func modifyZoneSetting(zoneId: String, cache: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIp? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6Access? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
-        try await self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cache: cache, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6), logger: logger, on: eventLoop)
+    public func modifyZoneSetting(zoneId: String, cache: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIp? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6Access? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
+        try await self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cache: cache, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }
 }

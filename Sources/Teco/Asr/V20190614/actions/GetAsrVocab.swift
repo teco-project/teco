@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Asr {
     ///
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
-    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabResponse> {
-        self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAsrVocab(_ input: GetAsrVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabResponse> {
+        self.client.execute(action: "GetAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取热词表
     ///
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
-    public func getAsrVocab(_ input: GetAsrVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
-        try await self.client.execute(action: "GetAsrVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAsrVocab(_ input: GetAsrVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
+        try await self.client.execute(action: "GetAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取热词表
     ///
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
-    public func getAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabResponse> {
-        self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    public func getAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabResponse> {
+        self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取热词表
     ///
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
-    public func getAsrVocab(vocabId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
-        try await self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), logger: logger, on: eventLoop)
+    public func getAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
+        try await self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Nlp {
     ///
     /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
     @inlinable
-    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoSummarizationResponse> {
-        self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func autoSummarization(_ input: AutoSummarizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoSummarizationResponse> {
+        self.client.execute(action: "AutoSummarization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自动摘要
     ///
     /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
     @inlinable
-    public func autoSummarization(_ input: AutoSummarizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
-        try await self.client.execute(action: "AutoSummarization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func autoSummarization(_ input: AutoSummarizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
+        try await self.client.execute(action: "AutoSummarization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 自动摘要
     ///
     /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
     @inlinable
-    public func autoSummarization(text: String, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoSummarizationResponse> {
-        self.autoSummarization(AutoSummarizationRequest(text: text, length: length), logger: logger, on: eventLoop)
+    public func autoSummarization(text: String, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoSummarizationResponse> {
+        self.autoSummarization(AutoSummarizationRequest(text: text, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 自动摘要
     ///
     /// 利用人工智能算法，自动抽取文本中的关键信息并生成指定长度的文本摘要。可用于新闻标题生成、科技文献摘要生成和商品评论摘要等。
     @inlinable
-    public func autoSummarization(text: String, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
-        try await self.autoSummarization(AutoSummarizationRequest(text: text, length: length), logger: logger, on: eventLoop)
+    public func autoSummarization(text: String, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoSummarizationResponse {
+        try await self.autoSummarization(AutoSummarizationRequest(text: text, length: length), region: region, logger: logger, on: eventLoop)
     }
 }

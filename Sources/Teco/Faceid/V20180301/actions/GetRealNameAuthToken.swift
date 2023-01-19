@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Faceid {
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
-        self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
+        self.client.execute(action: "GetRealNameAuthToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
-        try await self.client.execute(action: "GetRealNameAuthToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRealNameAuthToken(_ input: GetRealNameAuthTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
+        try await self.client.execute(action: "GetRealNameAuthToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
-        self.getRealNameAuthToken(GetRealNameAuthTokenRequest(name: name, idCard: idCard, callbackURL: callbackURL), logger: logger, on: eventLoop)
+    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRealNameAuthTokenResponse> {
+        self.getRealNameAuthToken(GetRealNameAuthTokenRequest(name: name, idCard: idCard, callbackURL: callbackURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 微信实名认证授权
     ///
     /// 该接口仅限微信公众号中使用，传入姓名和身份证号获取回调URL，在微信公众号中打开验证姓名和身份证号与微信实名的信息是否一致。
     @inlinable
-    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
-        try await self.getRealNameAuthToken(GetRealNameAuthTokenRequest(name: name, idCard: idCard, callbackURL: callbackURL), logger: logger, on: eventLoop)
+    public func getRealNameAuthToken(name: String, idCard: String, callbackURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRealNameAuthTokenResponse {
+        try await self.getRealNameAuthToken(GetRealNameAuthTokenRequest(name: name, idCard: idCard, callbackURL: callbackURL), region: region, logger: logger, on: eventLoop)
     }
 }

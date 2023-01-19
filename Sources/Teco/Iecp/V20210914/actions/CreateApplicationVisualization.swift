@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Iecp {
 
     /// 创建可视化创建应用模板
     @inlinable
-    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationVisualizationResponse> {
-        self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationVisualizationResponse> {
+        self.client.execute(action: "CreateApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建可视化创建应用模板
     @inlinable
-    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
-        try await self.client.execute(action: "CreateApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplicationVisualization(_ input: CreateApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
+        try await self.client.execute(action: "CreateApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建可视化创建应用模板
     @inlinable
-    public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationVisualizationResponse> {
-        self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), logger: logger, on: eventLoop)
+    public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationVisualizationResponse> {
+        self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建可视化创建应用模板
     @inlinable
-    public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
-        try await self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), logger: logger, on: eventLoop)
+    public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
+        try await self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Tag {
     ///
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
-    public func tagResources(_ input: TagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagResourcesResponse> {
-        self.client.execute(action: "TagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func tagResources(_ input: TagResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagResourcesResponse> {
+        self.client.execute(action: "TagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 为资源绑定标签
     ///
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
-    public func tagResources(_ input: TagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
-        try await self.client.execute(action: "TagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func tagResources(_ input: TagResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
+        try await self.client.execute(action: "TagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 为资源绑定标签
     ///
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
-    public func tagResources(resourceList: [String], tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagResourcesResponse> {
-        self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), logger: logger, on: eventLoop)
+    public func tagResources(resourceList: [String], tags: [Tag], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagResourcesResponse> {
+        self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为资源绑定标签
     ///
     /// 为指定的多个云产品的多个云资源统一创建并绑定标签。
     @inlinable
-    public func tagResources(resourceList: [String], tags: [Tag], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
-        try await self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), logger: logger, on: eventLoop)
+    public func tagResources(resourceList: [String], tags: [Tag], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagResourcesResponse {
+        try await self.tagResources(TagResourcesRequest(resourceList: resourceList, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

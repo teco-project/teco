@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Apigateway {
     ///
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
-    public func createApiApp(_ input: CreateApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiAppResponse> {
-        self.client.execute(action: "CreateApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApiApp(_ input: CreateApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiAppResponse> {
+        self.client.execute(action: "CreateApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用
     ///
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
-    public func createApiApp(_ input: CreateApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
-        try await self.client.execute(action: "CreateApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApiApp(_ input: CreateApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
+        try await self.client.execute(action: "CreateApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建应用
     ///
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
-    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiAppResponse> {
-        self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiAppResponse> {
+        self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用
     ///
     /// 本接口（CreateApiApp）用于创建应用。
     @inlinable
-    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
-        try await self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    public func createApiApp(apiAppName: String, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiAppResponse {
+        try await self.createApiApp(CreateApiAppRequest(apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 }

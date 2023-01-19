@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,31 +99,31 @@ extension Dnspod {
     ///
     /// DNSPod商品下单
     @inlinable
-    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDealResponse> {
-        self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDeal(_ input: CreateDealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDealResponse> {
+        self.client.execute(action: "CreateDeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 商品下单
     ///
     /// DNSPod商品下单
     @inlinable
-    public func createDeal(_ input: CreateDealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
-        try await self.client.execute(action: "CreateDeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDeal(_ input: CreateDealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
+        try await self.client.execute(action: "CreateDeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 商品下单
     ///
     /// DNSPod商品下单
     @inlinable
-    public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDealResponse> {
-        self.createDeal(CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), logger: logger, on: eventLoop)
+    public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDealResponse> {
+        self.createDeal(CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 商品下单
     ///
     /// DNSPod商品下单
     @inlinable
-    public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
-        try await self.createDeal(CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), logger: logger, on: eventLoop)
+    public func createDeal(dealType: UInt64, goodsType: UInt64, goodsChildType: String, goodsNum: UInt64, autoRenew: UInt64, domain: String? = nil, timeSpan: UInt64? = nil, newPackageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDealResponse {
+        try await self.createDeal(CreateDealRequest(dealType: dealType, goodsType: goodsType, goodsChildType: goodsChildType, goodsNum: goodsNum, autoRenew: autoRenew, domain: domain, timeSpan: timeSpan, newPackageType: newPackageType), region: region, logger: logger, on: eventLoop)
     }
 }

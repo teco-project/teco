@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Eb {
 
     /// 获取事件连接器列表
     @inlinable
-    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListConnectionsResponse> {
-        self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listConnections(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListConnectionsResponse> {
+        self.client.execute(action: "ListConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件连接器列表
     @inlinable
-    public func listConnections(_ input: ListConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
-        try await self.client.execute(action: "ListConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listConnections(_ input: ListConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
+        try await self.client.execute(action: "ListConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件连接器列表
     @inlinable
-    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListConnectionsResponse> {
-        self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), logger: logger, on: eventLoop)
+    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListConnectionsResponse> {
+        self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件连接器列表
     @inlinable
-    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
-        try await self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), logger: logger, on: eventLoop)
+    public func listConnections(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListConnectionsResponse {
+        try await self.listConnections(ListConnectionsRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, order: order, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

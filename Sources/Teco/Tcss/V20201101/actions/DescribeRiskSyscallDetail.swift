@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Tcss {
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
-        self.client.execute(action: "DescribeRiskSyscallDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
+        self.client.execute(action: "DescribeRiskSyscallDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRiskSyscallDetail(_ input: DescribeRiskSyscallDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
-        self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeRiskSyscallDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallDetailResponse> {
+        self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用事件详细信息
     ///
     /// 查询高危系统调用事件详细信息
     @inlinable
-    public func describeRiskSyscallDetail(eventId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
-        try await self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), logger: logger, on: eventLoop)
+    public func describeRiskSyscallDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallDetailResponse {
+        try await self.describeRiskSyscallDetail(DescribeRiskSyscallDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

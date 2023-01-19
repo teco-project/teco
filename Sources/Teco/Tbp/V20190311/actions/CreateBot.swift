@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tbp {
 
     /// 创建机器人
     @inlinable
-    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
-        self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBot(_ input: CreateBotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
+        self.client.execute(action: "CreateBot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建机器人
     @inlinable
-    public func createBot(_ input: CreateBotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
-        try await self.client.execute(action: "CreateBot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBot(_ input: CreateBotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
+        try await self.client.execute(action: "CreateBot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建机器人
     @inlinable
-    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
-        self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), logger: logger, on: eventLoop)
+    public func createBot(botName: String, botCnName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBotResponse> {
+        self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机器人
     @inlinable
-    public func createBot(botName: String, botCnName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
-        try await self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), logger: logger, on: eventLoop)
+    public func createBot(botName: String, botCnName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBotResponse {
+        try await self.createBot(CreateBotRequest(botName: botName, botCnName: botCnName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Eis {
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(_ input: ListRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
-        self.client.execute(action: "ListRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listRuntimesMC(_ input: ListRuntimesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
+        self.client.execute(action: "ListRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(_ input: ListRuntimesMCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
-        try await self.client.execute(action: "ListRuntimesMC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listRuntimesMC(_ input: ListRuntimesMCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
+        try await self.client.execute(action: "ListRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
-        self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), logger: logger, on: eventLoop)
+    public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
+        self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时列表
     ///
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
-    public func listRuntimesMC(runtimeClass: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
-        try await self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), logger: logger, on: eventLoop)
+    public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
+        try await self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
     }
 }

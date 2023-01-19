@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ckafka {
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
-        self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendMessage(_ input: SendMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
+        self.client.execute(action: "SendMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(_ input: SendMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
-        try await self.client.execute(action: "SendMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendMessage(_ input: SendMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.client.execute(action: "SendMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
-        self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    public func sendMessage(dataHubId: String, message: [BatchContent], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMessageResponse> {
+        self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), region: region, logger: logger, on: eventLoop)
     }
 
     /// HTTP发送消息
     ///
     /// 通过HTTP接入层发送消息
     @inlinable
-    public func sendMessage(dataHubId: String, message: [BatchContent], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
-        try await self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), logger: logger, on: eventLoop)
+    public func sendMessage(dataHubId: String, message: [BatchContent], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMessageResponse {
+        try await self.sendMessage(SendMessageRequest(dataHubId: dataHubId, message: message), region: region, logger: logger, on: eventLoop)
     }
 }

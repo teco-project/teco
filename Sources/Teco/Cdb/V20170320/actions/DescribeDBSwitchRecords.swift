@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
     @inlinable
-    public func describeDBSwitchRecords(_ input: DescribeDBSwitchRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSwitchRecordsResponse> {
-        self.client.execute(action: "DescribeDBSwitchRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBSwitchRecords(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSwitchRecordsResponse> {
+        self.client.execute(action: "DescribeDBSwitchRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库切换记录
     ///
     /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
     @inlinable
-    public func describeDBSwitchRecords(_ input: DescribeDBSwitchRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
-        try await self.client.execute(action: "DescribeDBSwitchRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBSwitchRecords(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
+        try await self.client.execute(action: "DescribeDBSwitchRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库切换记录
     ///
     /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
     @inlinable
-    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSwitchRecordsResponse> {
-        self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSwitchRecordsResponse> {
+        self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库切换记录
     ///
     /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
     @inlinable
-    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
-        try await self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBSwitchRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSwitchRecordsResponse {
+        try await self.describeDBSwitchRecords(DescribeDBSwitchRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

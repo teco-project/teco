@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcr {
     ///
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
-        self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewInstance(_ input: RenewInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
+        self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
     ///
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
-    public func renewInstance(_ input: RenewInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.client.execute(action: "RenewInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewInstance(_ input: RenewInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
+        try await self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例
     ///
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
-    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
-        self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), logger: logger, on: eventLoop)
+    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
+        self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
     ///
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
-    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), logger: logger, on: eventLoop)
+    public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
+        try await self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

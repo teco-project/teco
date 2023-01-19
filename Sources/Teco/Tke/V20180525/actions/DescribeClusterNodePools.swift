@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Tke {
 
     /// 查询节点池列表
     @inlinable
-    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodePoolsResponse> {
-        self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodePoolsResponse> {
+        self.client.execute(action: "DescribeClusterNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询节点池列表
     @inlinable
-    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
-        try await self.client.execute(action: "DescribeClusterNodePools", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterNodePools(_ input: DescribeClusterNodePoolsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
+        try await self.client.execute(action: "DescribeClusterNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询节点池列表
     @inlinable
-    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodePoolsResponse> {
-        self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodePoolsResponse> {
+        self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点池列表
     @inlinable
-    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
-        try await self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
+        try await self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

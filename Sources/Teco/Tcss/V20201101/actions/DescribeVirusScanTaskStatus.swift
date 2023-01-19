@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,25 +87,25 @@ extension Tcss {
 
     /// 运行时查询文件查杀任务状态
     @inlinable
-    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanTaskStatusResponse> {
-        self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanTaskStatusResponse> {
+        self.client.execute(action: "DescribeVirusScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀任务状态
     @inlinable
-    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
-        try await self.client.execute(action: "DescribeVirusScanTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVirusScanTaskStatus(_ input: DescribeVirusScanTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
+        try await self.client.execute(action: "DescribeVirusScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时查询文件查杀任务状态
     @inlinable
-    public func describeVirusScanTaskStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanTaskStatusResponse> {
-        self.describeVirusScanTaskStatus(DescribeVirusScanTaskStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeVirusScanTaskStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusScanTaskStatusResponse> {
+        self.describeVirusScanTaskStatus(DescribeVirusScanTaskStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀任务状态
     @inlinable
-    public func describeVirusScanTaskStatus(taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
-        try await self.describeVirusScanTaskStatus(DescribeVirusScanTaskStatusRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeVirusScanTaskStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusScanTaskStatusResponse {
+        try await self.describeVirusScanTaskStatus(DescribeVirusScanTaskStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -169,25 +169,25 @@ extension Mariadb {
 
     /// 创建独享集群Mariadb实例
     @inlinable
-    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterDBInstanceResponse> {
-        self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterDBInstanceResponse> {
+        self.client.execute(action: "CreateDedicatedClusterDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建独享集群Mariadb实例
     @inlinable
-    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
-        try await self.client.execute(action: "CreateDedicatedClusterDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDedicatedClusterDBInstance(_ input: CreateDedicatedClusterDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
+        try await self.client.execute(action: "CreateDedicatedClusterDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建独享集群Mariadb实例
     @inlinable
-    public func createDedicatedClusterDBInstance(goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String? = nil, projectId: Int64? = nil, pid: Int64? = nil, machine: String? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, manual: Int64? = nil, deviceNo: String? = nil, securityGroupIds: [String]? = nil, dcnInstanceId: String? = nil, dcnRegion: String? = nil, instanceName: String? = nil, resourceTags: [ResourceTag]? = nil, ipv6Flag: Int64? = nil, initParams: [DBParamValue]? = nil, nodeNum: Int64? = nil, masterHostId: String? = nil, slaveHostIds: [String]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterDBInstanceResponse> {
-        self.createDedicatedClusterDBInstance(CreateDedicatedClusterDBInstanceRequest(goodsNum: goodsNum, memory: memory, storage: storage, clusterId: clusterId, zone: zone, projectId: projectId, pid: pid, machine: machine, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, manual: manual, deviceNo: deviceNo, securityGroupIds: securityGroupIds, dcnInstanceId: dcnInstanceId, dcnRegion: dcnRegion, instanceName: instanceName, resourceTags: resourceTags, ipv6Flag: ipv6Flag, initParams: initParams, nodeNum: nodeNum, masterHostId: masterHostId, slaveHostIds: slaveHostIds, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    public func createDedicatedClusterDBInstance(goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String? = nil, projectId: Int64? = nil, pid: Int64? = nil, machine: String? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, manual: Int64? = nil, deviceNo: String? = nil, securityGroupIds: [String]? = nil, dcnInstanceId: String? = nil, dcnRegion: String? = nil, instanceName: String? = nil, resourceTags: [ResourceTag]? = nil, ipv6Flag: Int64? = nil, initParams: [DBParamValue]? = nil, nodeNum: Int64? = nil, masterHostId: String? = nil, slaveHostIds: [String]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterDBInstanceResponse> {
+        self.createDedicatedClusterDBInstance(CreateDedicatedClusterDBInstanceRequest(goodsNum: goodsNum, memory: memory, storage: storage, clusterId: clusterId, zone: zone, projectId: projectId, pid: pid, machine: machine, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, manual: manual, deviceNo: deviceNo, securityGroupIds: securityGroupIds, dcnInstanceId: dcnInstanceId, dcnRegion: dcnRegion, instanceName: instanceName, resourceTags: resourceTags, ipv6Flag: ipv6Flag, initParams: initParams, nodeNum: nodeNum, masterHostId: masterHostId, slaveHostIds: slaveHostIds, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建独享集群Mariadb实例
     @inlinable
-    public func createDedicatedClusterDBInstance(goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String? = nil, projectId: Int64? = nil, pid: Int64? = nil, machine: String? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, manual: Int64? = nil, deviceNo: String? = nil, securityGroupIds: [String]? = nil, dcnInstanceId: String? = nil, dcnRegion: String? = nil, instanceName: String? = nil, resourceTags: [ResourceTag]? = nil, ipv6Flag: Int64? = nil, initParams: [DBParamValue]? = nil, nodeNum: Int64? = nil, masterHostId: String? = nil, slaveHostIds: [String]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
-        try await self.createDedicatedClusterDBInstance(CreateDedicatedClusterDBInstanceRequest(goodsNum: goodsNum, memory: memory, storage: storage, clusterId: clusterId, zone: zone, projectId: projectId, pid: pid, machine: machine, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, manual: manual, deviceNo: deviceNo, securityGroupIds: securityGroupIds, dcnInstanceId: dcnInstanceId, dcnRegion: dcnRegion, instanceName: instanceName, resourceTags: resourceTags, ipv6Flag: ipv6Flag, initParams: initParams, nodeNum: nodeNum, masterHostId: masterHostId, slaveHostIds: slaveHostIds, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), logger: logger, on: eventLoop)
+    public func createDedicatedClusterDBInstance(goodsNum: Int64, memory: Int64, storage: Int64, clusterId: String, zone: String? = nil, projectId: Int64? = nil, pid: Int64? = nil, machine: String? = nil, vpcId: String? = nil, subnetId: String? = nil, dbVersionId: String? = nil, manual: Int64? = nil, deviceNo: String? = nil, securityGroupIds: [String]? = nil, dcnInstanceId: String? = nil, dcnRegion: String? = nil, instanceName: String? = nil, resourceTags: [ResourceTag]? = nil, ipv6Flag: Int64? = nil, initParams: [DBParamValue]? = nil, nodeNum: Int64? = nil, masterHostId: String? = nil, slaveHostIds: [String]? = nil, rollbackInstanceId: String? = nil, rollbackTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterDBInstanceResponse {
+        try await self.createDedicatedClusterDBInstance(CreateDedicatedClusterDBInstanceRequest(goodsNum: goodsNum, memory: memory, storage: storage, clusterId: clusterId, zone: zone, projectId: projectId, pid: pid, machine: machine, vpcId: vpcId, subnetId: subnetId, dbVersionId: dbVersionId, manual: manual, deviceNo: deviceNo, securityGroupIds: securityGroupIds, dcnInstanceId: dcnInstanceId, dcnRegion: dcnRegion, instanceName: instanceName, resourceTags: resourceTags, ipv6Flag: ipv6Flag, initParams: initParams, nodeNum: nodeNum, masterHostId: masterHostId, slaveHostIds: slaveHostIds, rollbackInstanceId: rollbackInstanceId, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Dnspod {
 
     /// 修改记录可选字段
     @inlinable
-    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordFieldsResponse> {
-        self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordFieldsResponse> {
+        self.client.execute(action: "ModifyRecordFields", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改记录可选字段
     @inlinable
-    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
-        try await self.client.execute(action: "ModifyRecordFields", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordFields(_ input: ModifyRecordFieldsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
+        try await self.client.execute(action: "ModifyRecordFields", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改记录可选字段
     @inlinable
-    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordFieldsResponse> {
-        self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordFieldsResponse> {
+        self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改记录可选字段
     @inlinable
-    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
-        try await self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
+        try await self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

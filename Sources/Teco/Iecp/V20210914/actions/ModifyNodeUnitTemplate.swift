@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 修改边缘单元NodeUnit模板
     @inlinable
-    public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
-        self.client.execute(action: "ModifyNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
+        self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元NodeUnit模板
     @inlinable
-    public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
-        try await self.client.execute(action: "ModifyNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
+        try await self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改边缘单元NodeUnit模板
     @inlinable
-    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
-        self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), logger: logger, on: eventLoop)
+    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
+        self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元NodeUnit模板
     @inlinable
-    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
-        try await self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), logger: logger, on: eventLoop)
+    public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
+        try await self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 }

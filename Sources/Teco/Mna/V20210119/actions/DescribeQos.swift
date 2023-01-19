@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Mna {
 
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
-        self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeQos(_ input: DescribeQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
+        self.client.execute(action: "DescribeQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(_ input: DescribeQosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
-        try await self.client.execute(action: "DescribeQos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeQos(_ input: DescribeQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
+        try await self.client.execute(action: "DescribeQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
-        self.describeQos(DescribeQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func describeQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
+        self.describeQos(DescribeQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Qos加速状态
     @inlinable
-    public func describeQos(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
-        try await self.describeQos(DescribeQosRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func describeQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
+        try await self.describeQos(DescribeQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

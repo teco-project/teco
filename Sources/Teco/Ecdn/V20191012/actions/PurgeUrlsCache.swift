@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Ecdn {
     /// PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
-        self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
+        self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新 URL
@@ -57,8 +57,8 @@ extension Ecdn {
     /// PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        try await self.client.execute(action: "PurgeUrlsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func purgeUrlsCache(_ input: PurgeUrlsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
+        try await self.client.execute(action: "PurgeUrlsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新 URL
@@ -66,8 +66,8 @@ extension Ecdn {
     /// PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func purgeUrlsCache(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
-        self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls), logger: logger, on: eventLoop)
+    public func purgeUrlsCache(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgeUrlsCacheResponse> {
+        self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新 URL
@@ -75,7 +75,7 @@ extension Ecdn {
     /// PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
-    public func purgeUrlsCache(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
-        try await self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls), logger: logger, on: eventLoop)
+    public func purgeUrlsCache(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgeUrlsCacheResponse {
+        try await self.purgeUrlsCache(PurgeUrlsCacheRequest(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,8 +79,8 @@ extension Cvm {
     /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
-    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChcHostsResponse> {
-        self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeChcHosts(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChcHostsResponse> {
+        self.client.execute(action: "DescribeChcHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CHC物理服务器
@@ -89,8 +89,8 @@ extension Cvm {
     /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
-    public func describeChcHosts(_ input: DescribeChcHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
-        try await self.client.execute(action: "DescribeChcHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeChcHosts(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
+        try await self.client.execute(action: "DescribeChcHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询CHC物理服务器
@@ -99,8 +99,8 @@ extension Cvm {
     /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
-    public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChcHostsResponse> {
-        self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChcHostsResponse> {
+        self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询CHC物理服务器
@@ -109,7 +109,7 @@ extension Cvm {
     /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
-    public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
-        try await self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
+        try await self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Dayu {
     ///
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesErrHealthResponse> {
-        self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesErrHealthResponse> {
+        self.client.execute(action: "DescribeNewL4RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取四层转发规则健康检查异常结果
     ///
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
-        try await self.client.execute(action: "DescribeNewL4RulesErrHealth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNewL4RulesErrHealth(_ input: DescribeNewL4RulesErrHealthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
+        try await self.client.execute(action: "DescribeNewL4RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取四层转发规则健康检查异常结果
     ///
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesErrHealthResponse> {
-        self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewL4RulesErrHealthResponse> {
+        self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取四层转发规则健康检查异常结果
     ///
     /// 获取L4转发规则健康检查异常结果
     @inlinable
-    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
-        try await self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeNewL4RulesErrHealth(business: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewL4RulesErrHealthResponse {
+        try await self.describeNewL4RulesErrHealth(DescribeNewL4RulesErrHealthRequest(business: business, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

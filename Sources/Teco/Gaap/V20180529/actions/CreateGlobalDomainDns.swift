@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Gaap {
 
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
-        self.client.execute(action: "CreateGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
+        self.client.execute(action: "CreateGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
-        try await self.client.execute(action: "CreateGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGlobalDomainDns(_ input: CreateGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
+        try await self.client.execute(action: "CreateGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
-        self.createGlobalDomainDns(CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), logger: logger, on: eventLoop)
+    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGlobalDomainDnsResponse> {
+        self.createGlobalDomainDns(CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建域名解析记录
     @inlinable
-    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
-        try await self.createGlobalDomainDns(CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), logger: logger, on: eventLoop)
+    public func createGlobalDomainDns(domainId: String, proxyIdList: [String], nationCountryInnerCodes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGlobalDomainDnsResponse {
+        try await self.createGlobalDomainDns(CreateGlobalDomainDnsRequest(domainId: domainId, proxyIdList: proxyIdList, nationCountryInnerCodes: nationCountryInnerCodes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Iotvideo {
 
     /// 获取视频防盗链播放URL
     @inlinable
-    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateSignedVideoURLResponse> {
-        self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateSignedVideoURLResponse> {
+        self.client.execute(action: "GenerateSignedVideoURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取视频防盗链播放URL
     @inlinable
-    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
-        try await self.client.execute(action: "GenerateSignedVideoURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateSignedVideoURL(_ input: GenerateSignedVideoURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
+        try await self.client.execute(action: "GenerateSignedVideoURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取视频防盗链播放URL
     @inlinable
-    public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateSignedVideoURLResponse> {
-        self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateSignedVideoURLResponse> {
+        self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取视频防盗链播放URL
     @inlinable
-    public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
-        try await self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
+        try await self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 }

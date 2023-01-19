@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Tdid {
 
     /// 验证凭证
     @inlinable
-    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
+        self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证凭证
     @inlinable
-    public func verifyCredential(_ input: VerifyCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.client.execute(action: "VerifyCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyCredential(_ input: VerifyCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
+        try await self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证凭证
     @inlinable
-    public func verifyCredential(functionArg: VerifyFunctionArg, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), logger: logger, on: eventLoop)
+    public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
+        self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证凭证
     @inlinable
-    public func verifyCredential(functionArg: VerifyFunctionArg, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), logger: logger, on: eventLoop)
+    public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
+        try await self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
     }
 }

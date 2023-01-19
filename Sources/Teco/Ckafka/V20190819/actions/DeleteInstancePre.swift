@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ckafka {
 
     /// 删除预付费实例
     @inlinable
-    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstancePreResponse> {
-        self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteInstancePre(_ input: DeleteInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstancePreResponse> {
+        self.client.execute(action: "DeleteInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除预付费实例
     @inlinable
-    public func deleteInstancePre(_ input: DeleteInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
-        try await self.client.execute(action: "DeleteInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteInstancePre(_ input: DeleteInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
+        try await self.client.execute(action: "DeleteInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除预付费实例
     @inlinable
-    public func deleteInstancePre(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstancePreResponse> {
-        self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteInstancePre(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstancePreResponse> {
+        self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除预付费实例
     @inlinable
-    public func deleteInstancePre(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
-        try await self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func deleteInstancePre(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstancePreResponse {
+        try await self.deleteInstancePre(DeleteInstancePreRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

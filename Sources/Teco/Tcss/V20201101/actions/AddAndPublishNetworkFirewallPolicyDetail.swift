@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Tcss {
 
     /// 容器网络创建网络策略添加并发布任务
     @inlinable
-    public func addAndPublishNetworkFirewallPolicyDetail(_ input: AddAndPublishNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAndPublishNetworkFirewallPolicyDetailResponse> {
-        self.client.execute(action: "AddAndPublishNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addAndPublishNetworkFirewallPolicyDetail(_ input: AddAndPublishNetworkFirewallPolicyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAndPublishNetworkFirewallPolicyDetailResponse> {
+        self.client.execute(action: "AddAndPublishNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略添加并发布任务
     @inlinable
-    public func addAndPublishNetworkFirewallPolicyDetail(_ input: AddAndPublishNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
-        try await self.client.execute(action: "AddAndPublishNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addAndPublishNetworkFirewallPolicyDetail(_ input: AddAndPublishNetworkFirewallPolicyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
+        try await self.client.execute(action: "AddAndPublishNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络创建网络策略添加并发布任务
     @inlinable
-    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAndPublishNetworkFirewallPolicyDetailResponse> {
-        self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAndPublishNetworkFirewallPolicyDetailResponse> {
+        self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略添加并发布任务
     @inlinable
-    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
-        try await self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), logger: logger, on: eventLoop)
+    public func addAndPublishNetworkFirewallPolicyDetail(clusterId: String, policyName: String, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAndPublishNetworkFirewallPolicyDetailResponse {
+        try await self.addAndPublishNetworkFirewallPolicyDetail(AddAndPublishNetworkFirewallPolicyDetailRequest(clusterId: clusterId, policyName: policyName, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension As {
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
-        self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
+        self.client.execute(action: "ModifyNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通知
@@ -79,8 +79,8 @@ extension As {
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
-        try await self.client.execute(action: "ModifyNotificationConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNotificationConfiguration(_ input: ModifyNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
+        try await self.client.execute(action: "ModifyNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改通知
@@ -88,8 +88,8 @@ extension As {
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
-        self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), logger: logger, on: eventLoop)
+    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
+        self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通知
@@ -97,7 +97,7 @@ extension As {
     /// 本接口（ModifyNotificationConfiguration）用于修改通知。
     /// * 通知的接收端类型不支持修改。
     @inlinable
-    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
-        try await self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), logger: logger, on: eventLoop)
+    public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
+        try await self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

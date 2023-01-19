@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Captcha {
     ///
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
-    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTotalTicketStatisticsResponse> {
-        self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTotalTicketStatisticsResponse> {
+        self.client.execute(action: "GetTotalTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部票据校验统计数据
     ///
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
-    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
-        try await self.client.execute(action: "GetTotalTicketStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTotalTicketStatistics(_ input: GetTotalTicketStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
+        try await self.client.execute(action: "GetTotalTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询全部票据校验统计数据
     ///
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
-    public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTotalTicketStatisticsResponse> {
-        self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), logger: logger, on: eventLoop)
+    public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTotalTicketStatisticsResponse> {
+        self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全部票据校验统计数据
     ///
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
-    public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
-        try await self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), logger: logger, on: eventLoop)
+    public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
+        try await self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 }

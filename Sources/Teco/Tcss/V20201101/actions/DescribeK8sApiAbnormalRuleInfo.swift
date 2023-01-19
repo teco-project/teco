@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询k8sapi异常请求规则详情
     @inlinable
-    public func describeK8sApiAbnormalRuleInfo(_ input: DescribeK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleInfoResponse> {
-        self.client.execute(action: "DescribeK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleInfo(_ input: DescribeK8sApiAbnormalRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleInfoResponse> {
+        self.client.execute(action: "DescribeK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常请求规则详情
     @inlinable
-    public func describeK8sApiAbnormalRuleInfo(_ input: DescribeK8sApiAbnormalRuleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleInfoResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeK8sApiAbnormalRuleInfo(_ input: DescribeK8sApiAbnormalRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleInfoResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询k8sapi异常请求规则详情
     @inlinable
-    public func describeK8sApiAbnormalRuleInfo(ruleID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleInfoResponse> {
-        self.describeK8sApiAbnormalRuleInfo(DescribeK8sApiAbnormalRuleInfoRequest(ruleID: ruleID), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleInfo(ruleID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalRuleInfoResponse> {
+        self.describeK8sApiAbnormalRuleInfo(DescribeK8sApiAbnormalRuleInfoRequest(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8sapi异常请求规则详情
     @inlinable
-    public func describeK8sApiAbnormalRuleInfo(ruleID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleInfoResponse {
-        try await self.describeK8sApiAbnormalRuleInfo(DescribeK8sApiAbnormalRuleInfoRequest(ruleID: ruleID), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalRuleInfo(ruleID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalRuleInfoResponse {
+        try await self.describeK8sApiAbnormalRuleInfo(DescribeK8sApiAbnormalRuleInfoRequest(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
     }
 }

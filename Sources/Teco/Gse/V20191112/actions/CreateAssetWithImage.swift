@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAssetWithImage）用于创建生成包镜像信息。
     @inlinable
-    public func createAssetWithImage(_ input: CreateAssetWithImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
-        self.client.execute(action: "CreateAssetWithImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAssetWithImage(_ input: CreateAssetWithImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
+        self.client.execute(action: "CreateAssetWithImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建生成包镜像信息
@@ -101,8 +101,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAssetWithImage）用于创建生成包镜像信息。
     @inlinable
-    public func createAssetWithImage(_ input: CreateAssetWithImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
-        try await self.client.execute(action: "CreateAssetWithImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAssetWithImage(_ input: CreateAssetWithImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
+        try await self.client.execute(action: "CreateAssetWithImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建生成包镜像信息
@@ -110,8 +110,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAssetWithImage）用于创建生成包镜像信息。
     @inlinable
-    public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
-        self.createAssetWithImage(CreateAssetWithImageRequest(assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, imageId: imageId, imageSize: imageSize, imageOs: imageOs, osType: osType, imageType: imageType, osBit: osBit), logger: logger, on: eventLoop)
+    public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetWithImageResponse> {
+        self.createAssetWithImage(CreateAssetWithImageRequest(assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, imageId: imageId, imageSize: imageSize, imageOs: imageOs, osType: osType, imageType: imageType, osBit: osBit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建生成包镜像信息
@@ -119,7 +119,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateAssetWithImage）用于创建生成包镜像信息。
     @inlinable
-    public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
-        try await self.createAssetWithImage(CreateAssetWithImageRequest(assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, imageId: imageId, imageSize: imageSize, imageOs: imageOs, osType: osType, imageType: imageType, osBit: osBit), logger: logger, on: eventLoop)
+    public func createAssetWithImage(assetName: String, assetVersion: String, assetRegion: String, imageId: String, imageSize: String, imageOs: String, osType: String, imageType: String, osBit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetWithImageResponse {
+        try await self.createAssetWithImage(CreateAssetWithImageRequest(assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, imageId: imageId, imageSize: imageSize, imageOs: imageOs, osType: osType, imageType: imageType, osBit: osBit), region: region, logger: logger, on: eventLoop)
     }
 }

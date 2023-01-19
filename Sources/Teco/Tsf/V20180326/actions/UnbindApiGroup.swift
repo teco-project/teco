@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// API分组批量与网关解绑
     @inlinable
-    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiGroupResponse> {
-        self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindApiGroup(_ input: UnbindApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiGroupResponse> {
+        self.client.execute(action: "UnbindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// API分组批量与网关解绑
     @inlinable
-    public func unbindApiGroup(_ input: UnbindApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
-        try await self.client.execute(action: "UnbindApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindApiGroup(_ input: UnbindApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
+        try await self.client.execute(action: "UnbindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// API分组批量与网关解绑
     @inlinable
-    public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiGroupResponse> {
-        self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), logger: logger, on: eventLoop)
+    public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiGroupResponse> {
+        self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
     }
 
     /// API分组批量与网关解绑
     @inlinable
-    public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
-        try await self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), logger: logger, on: eventLoop)
+    public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
+        try await self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Asr {
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
     @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
-        self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
+        self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
     @inlinable
-    public func modifyCustomization(_ input: ModifyCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
-        try await self.client.execute(action: "ModifyCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomization(_ input: ModifyCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
+        try await self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
     @inlinable
-    public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
-        self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), logger: logger, on: eventLoop)
+    public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
+        self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
     @inlinable
-    public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
-        try await self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), logger: logger, on: eventLoop)
+    public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
+        try await self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), region: region, logger: logger, on: eventLoop)
     }
 }

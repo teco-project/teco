@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
-    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStreamsResponse> {
-        self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStreamsResponse> {
+        self.client.execute(action: "DescribeDeviceStreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备实时流地址（旧）
@@ -67,8 +67,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
-    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
-        try await self.client.execute(action: "DescribeDeviceStreams", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceStreams(_ input: DescribeDeviceStreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
+        try await self.client.execute(action: "DescribeDeviceStreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备实时流地址（旧）
@@ -76,8 +76,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
-    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStreamsResponse> {
-        self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStreamsResponse> {
+        self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备实时流地址（旧）
@@ -85,7 +85,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDeviceStreams)用于获取设备实时流地址。
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
-    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
-        try await self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
+        try await self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

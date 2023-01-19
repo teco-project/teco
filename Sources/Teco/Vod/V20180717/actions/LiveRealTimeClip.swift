@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -148,8 +148,8 @@ extension Vod {
     /// 剪辑不固化，由于其剪辑结果不是一个独立的视频，因而也不会纳入点播媒资视频管理（例如控制台的视频总数不会统计这一片段）中，也无法单独针对这个片段做转码、微信发布等任何视频处理操作。
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
-    public func liveRealTimeClip(_ input: LiveRealTimeClipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LiveRealTimeClipResponse> {
-        self.client.execute(action: "LiveRealTimeClip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func liveRealTimeClip(_ input: LiveRealTimeClipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LiveRealTimeClipResponse> {
+        self.client.execute(action: "LiveRealTimeClip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播即时剪辑
@@ -171,8 +171,8 @@ extension Vod {
     /// 剪辑不固化，由于其剪辑结果不是一个独立的视频，因而也不会纳入点播媒资视频管理（例如控制台的视频总数不会统计这一片段）中，也无法单独针对这个片段做转码、微信发布等任何视频处理操作。
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
-    public func liveRealTimeClip(_ input: LiveRealTimeClipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LiveRealTimeClipResponse {
-        try await self.client.execute(action: "LiveRealTimeClip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func liveRealTimeClip(_ input: LiveRealTimeClipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LiveRealTimeClipResponse {
+        try await self.client.execute(action: "LiveRealTimeClip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播即时剪辑
@@ -194,8 +194,8 @@ extension Vod {
     /// 剪辑不固化，由于其剪辑结果不是一个独立的视频，因而也不会纳入点播媒资视频管理（例如控制台的视频总数不会统计这一片段）中，也无法单独针对这个片段做转码、微信发布等任何视频处理操作。
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
-    public func liveRealTimeClip(streamId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, metaDataRequired: UInt64? = nil, host: String? = nil, streamInfo: LiveRealTimeClipStreamInfo? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LiveRealTimeClipResponse> {
-        self.liveRealTimeClip(LiveRealTimeClipRequest(streamId: streamId, startTime: startTime, endTime: endTime, subAppId: subAppId, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, metaDataRequired: metaDataRequired, host: host, streamInfo: streamInfo, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func liveRealTimeClip(streamId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, metaDataRequired: UInt64? = nil, host: String? = nil, streamInfo: LiveRealTimeClipStreamInfo? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LiveRealTimeClipResponse> {
+        self.liveRealTimeClip(LiveRealTimeClipRequest(streamId: streamId, startTime: startTime, endTime: endTime, subAppId: subAppId, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, metaDataRequired: metaDataRequired, host: host, streamInfo: streamInfo, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播即时剪辑
@@ -217,7 +217,7 @@ extension Vod {
     /// 剪辑不固化，由于其剪辑结果不是一个独立的视频，因而也不会纳入点播媒资视频管理（例如控制台的视频总数不会统计这一片段）中，也无法单独针对这个片段做转码、微信发布等任何视频处理操作。
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
-    public func liveRealTimeClip(streamId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, metaDataRequired: UInt64? = nil, host: String? = nil, streamInfo: LiveRealTimeClipStreamInfo? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LiveRealTimeClipResponse {
-        try await self.liveRealTimeClip(LiveRealTimeClipRequest(streamId: streamId, startTime: startTime, endTime: endTime, subAppId: subAppId, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, metaDataRequired: metaDataRequired, host: host, streamInfo: streamInfo, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func liveRealTimeClip(streamId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, metaDataRequired: UInt64? = nil, host: String? = nil, streamInfo: LiveRealTimeClipStreamInfo? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LiveRealTimeClipResponse {
+        try await self.liveRealTimeClip(LiveRealTimeClipRequest(streamId: streamId, startTime: startTime, endTime: endTime, subAppId: subAppId, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, metaDataRequired: metaDataRequired, host: host, streamInfo: streamInfo, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

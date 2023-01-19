@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tcaplusdb {
 
     /// 修改独占集群机器
     @inlinable
-    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterMachineResponse> {
-        self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterMachineResponse> {
+        self.client.execute(action: "ModifyClusterMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改独占集群机器
     @inlinable
-    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
-        try await self.client.execute(action: "ModifyClusterMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterMachine(_ input: ModifyClusterMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
+        try await self.client.execute(action: "ModifyClusterMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改独占集群机器
     @inlinable
-    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterMachineResponse> {
-        self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterMachineResponse> {
+        self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改独占集群机器
     @inlinable
-    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
-        try await self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func modifyClusterMachine(clusterId: String, serverList: [MachineInfo], proxyList: [MachineInfo], clusterType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterMachineResponse {
+        try await self.modifyClusterMachine(ModifyClusterMachineRequest(clusterId: clusterId, serverList: serverList, proxyList: proxyList, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

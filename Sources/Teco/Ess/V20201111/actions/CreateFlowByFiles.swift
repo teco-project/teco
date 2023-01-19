@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -154,8 +154,8 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建签署流程
@@ -165,8 +165,8 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用PDF文件创建签署流程
@@ -176,8 +176,8 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.createFlowByFiles(CreateFlowByFilesRequest(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.createFlowByFiles(CreateFlowByFilesRequest(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建签署流程
@@ -187,7 +187,7 @@ extension Ess {
     /// 适用场景2：可通过该接口传入制式合同文件，同时在指定位置添加签署控件。可以起到接口创建临时模板的效果。如果是标准的制式文件，建议使用模板功能生成模板ID进行合同流程的生成。
     /// 注意事项：该接口需要依赖“多文件上传”接口生成pdf资源编号（FileIds）进行使用。
     @inlinable
-    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.createFlowByFiles(CreateFlowByFilesRequest(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), logger: logger, on: eventLoop)
+    public func createFlowByFiles(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.createFlowByFiles(CreateFlowByFilesRequest(operator: `operator`, flowName: flowName, approvers: approvers, fileIds: fileIds, flowType: flowType, components: components, ccInfos: ccInfos, needPreview: needPreview, previewType: previewType, deadline: deadline, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, userData: userData, agent: agent, approverVerifyType: approverVerifyType, flowDescription: flowDescription, signBeanTag: signBeanTag), region: region, logger: logger, on: eventLoop)
     }
 }

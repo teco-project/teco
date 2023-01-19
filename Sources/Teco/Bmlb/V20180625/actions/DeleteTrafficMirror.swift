@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bmlb {
     ///
     /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
     @inlinable
-    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrafficMirrorResponse> {
-        self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrafficMirrorResponse> {
+        self.client.execute(action: "DeleteTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除流量镜像实例
     ///
     /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
     @inlinable
-    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
-        try await self.client.execute(action: "DeleteTrafficMirror", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTrafficMirror(_ input: DeleteTrafficMirrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
+        try await self.client.execute(action: "DeleteTrafficMirror", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除流量镜像实例
     ///
     /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
     @inlinable
-    public func deleteTrafficMirror(trafficMirrorIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrafficMirrorResponse> {
-        self.deleteTrafficMirror(DeleteTrafficMirrorRequest(trafficMirrorIds: trafficMirrorIds), logger: logger, on: eventLoop)
+    public func deleteTrafficMirror(trafficMirrorIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrafficMirrorResponse> {
+        self.deleteTrafficMirror(DeleteTrafficMirrorRequest(trafficMirrorIds: trafficMirrorIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除流量镜像实例
     ///
     /// 删除已创建的黑石流量镜像实例，删除过程是异步执行的，因此需要使用查询任务接口获取删除的结果。
     @inlinable
-    public func deleteTrafficMirror(trafficMirrorIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
-        try await self.deleteTrafficMirror(DeleteTrafficMirrorRequest(trafficMirrorIds: trafficMirrorIds), logger: logger, on: eventLoop)
+    public func deleteTrafficMirror(trafficMirrorIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrafficMirrorResponse {
+        try await self.deleteTrafficMirror(DeleteTrafficMirrorRequest(trafficMirrorIds: trafficMirrorIds), region: region, logger: logger, on: eventLoop)
     }
 }

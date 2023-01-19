@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Redis {
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
-        self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
+        self.client.execute(action: "DescribeAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自动备份配置
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
-        try await self.client.execute(action: "DescribeAutoBackupConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAutoBackupConfig(_ input: DescribeAutoBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
+        try await self.client.execute(action: "DescribeAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取自动备份配置
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
-        self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeAutoBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
+        self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取自动备份配置
     ///
     /// 获取备份配置
     @inlinable
-    public func describeAutoBackupConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
-        try await self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeAutoBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
+        try await self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

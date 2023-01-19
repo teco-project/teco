@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Wedata {
 
     /// 数据集成大屏任务状态分布统计
     @inlinable
-    public func describeIntegrationStatisticsTaskStatus(_ input: DescribeIntegrationStatisticsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsTaskStatusResponse> {
-        self.client.execute(action: "DescribeIntegrationStatisticsTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIntegrationStatisticsTaskStatus(_ input: DescribeIntegrationStatisticsTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsTaskStatusResponse> {
+        self.client.execute(action: "DescribeIntegrationStatisticsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据集成大屏任务状态分布统计
     @inlinable
-    public func describeIntegrationStatisticsTaskStatus(_ input: DescribeIntegrationStatisticsTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
-        try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIntegrationStatisticsTaskStatus(_ input: DescribeIntegrationStatisticsTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
+        try await self.client.execute(action: "DescribeIntegrationStatisticsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据集成大屏任务状态分布统计
     @inlinable
-    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsTaskStatusResponse> {
-        self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsTaskStatusResponse> {
+        self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据集成大屏任务状态分布统计
     @inlinable
-    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
-        try await self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    public func describeIntegrationStatisticsTaskStatus(taskType: Int64, projectId: String, queryDate: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsTaskStatusResponse {
+        try await self.describeIntegrationStatisticsTaskStatus(DescribeIntegrationStatisticsTaskStatusRequest(taskType: taskType, projectId: projectId, queryDate: queryDate, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

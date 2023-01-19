@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Wedata {
 
     /// 建hive表
     @inlinable
-    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableResponse> {
-        self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHiveTable(_ input: CreateHiveTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableResponse> {
+        self.client.execute(action: "CreateHiveTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 建hive表
     @inlinable
-    public func createHiveTable(_ input: CreateHiveTableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
-        try await self.client.execute(action: "CreateHiveTable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHiveTable(_ input: CreateHiveTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
+        try await self.client.execute(action: "CreateHiveTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 建hive表
     @inlinable
-    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableResponse> {
-        self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), logger: logger, on: eventLoop)
+    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableResponse> {
+        self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), region: region, logger: logger, on: eventLoop)
     }
 
     /// 建hive表
     @inlinable
-    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
-        try await self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), logger: logger, on: eventLoop)
+    public func createHiveTable(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableResponse {
+        try await self.createHiveTable(CreateHiveTableRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, incharge: incharge), region: region, logger: logger, on: eventLoop)
     }
 }

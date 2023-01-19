@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
-    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
-        self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
+        self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
-    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
-        try await self.client.execute(action: "ModifyInstanceParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceParam(_ input: ModifyInstanceParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
+        try await self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
-    public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
-        self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), logger: logger, on: eventLoop)
+    public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
+        self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例参数
     ///
     /// 本接口(ModifyInstanceParam)用于修改云数据库实例的参数。
     @inlinable
-    public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
-        try await self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), logger: logger, on: eventLoop)
+    public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter]? = nil, templateId: Int64? = nil, waitSwitch: Int64? = nil, notSyncRo: Bool? = nil, notSyncDr: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
+        try await self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, templateId: templateId, waitSwitch: waitSwitch, notSyncRo: notSyncRo, notSyncDr: notSyncDr), region: region, logger: logger, on: eventLoop)
     }
 }

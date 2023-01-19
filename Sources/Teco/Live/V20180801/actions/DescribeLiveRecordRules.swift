@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Live {
 
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
-        self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
+        self.client.execute(action: "DescribeLiveRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
-        try await self.client.execute(action: "DescribeLiveRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveRecordRules(_ input: DescribeLiveRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
+        try await self.client.execute(action: "DescribeLiveRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
-        self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveRecordRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
+        self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取录制规则列表
     @inlinable
-    public func describeLiveRecordRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
-        try await self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveRecordRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
+        try await self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

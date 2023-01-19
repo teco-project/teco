@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Tiw {
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWDailyUsageResponse> {
-        self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWDailyUsageResponse> {
+        self.client.execute(action: "DescribeTIWDailyUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询天维度计费用量
@@ -88,8 +88,8 @@ extension Tiw {
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
-        try await self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
+        try await self.client.execute(action: "DescribeTIWDailyUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询天维度计费用量
@@ -98,8 +98,8 @@ extension Tiw {
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWDailyUsageResponse> {
-        self.describeTIWDailyUsage(DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTIWDailyUsageResponse> {
+        self.describeTIWDailyUsage(DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询天维度计费用量
@@ -108,7 +108,7 @@ extension Tiw {
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
-        try await self.describeTIWDailyUsage(DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
+        try await self.describeTIWDailyUsage(DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

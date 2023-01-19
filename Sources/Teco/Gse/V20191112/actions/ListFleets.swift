@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListFleets）用于获取服务器舰队列表。
     @inlinable
-    public func listFleets(_ input: ListFleetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
-        self.client.execute(action: "ListFleets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listFleets(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
+        self.client.execute(action: "ListFleets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取服务器舰队列表
@@ -77,8 +77,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListFleets）用于获取服务器舰队列表。
     @inlinable
-    public func listFleets(_ input: ListFleetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
-        try await self.client.execute(action: "ListFleets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listFleets(_ input: ListFleetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
+        try await self.client.execute(action: "ListFleets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取服务器舰队列表
@@ -86,8 +86,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListFleets）用于获取服务器舰队列表。
     @inlinable
-    public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
-        self.listFleets(ListFleetsRequest(assetId: assetId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFleetsResponse> {
+        self.listFleets(ListFleetsRequest(assetId: assetId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务器舰队列表
@@ -95,7 +95,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（ListFleets）用于获取服务器舰队列表。
     @inlinable
-    public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
-        try await self.listFleets(ListFleetsRequest(assetId: assetId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func listFleets(assetId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFleetsResponse {
+        try await self.listFleets(ListFleetsRequest(assetId: assetId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

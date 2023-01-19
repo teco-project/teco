@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Iotvideo {
 
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
-        self.client.execute(action: "CheckForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkForwardAuth(_ input: CheckForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
+        self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(_ input: CheckForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
-        try await self.client.execute(action: "CheckForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkForwardAuth(_ input: CheckForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
+        try await self.client.execute(action: "CheckForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
-        self.checkForwardAuth(CheckForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
+    public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckForwardAuthResponse> {
+        self.checkForwardAuth(CheckForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 判断是否开启的转发的权限
     @inlinable
-    public func checkForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
-        try await self.checkForwardAuth(CheckForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
+    public func checkForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckForwardAuthResponse {
+        try await self.checkForwardAuth(CheckForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 }

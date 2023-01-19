@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ic {
     ///
     /// 查询卡片详细信息
     @inlinable
-    public func describeCard(_ input: DescribeCardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardResponse> {
-        self.client.execute(action: "DescribeCard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCard(_ input: DescribeCardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardResponse> {
+        self.client.execute(action: "DescribeCard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询卡片详情
     ///
     /// 查询卡片详细信息
     @inlinable
-    public func describeCard(_ input: DescribeCardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardResponse {
-        try await self.client.execute(action: "DescribeCard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCard(_ input: DescribeCardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardResponse {
+        try await self.client.execute(action: "DescribeCard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询卡片详情
     ///
     /// 查询卡片详细信息
     @inlinable
-    public func describeCard(sdkappid: Int64, iccid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardResponse> {
-        self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), logger: logger, on: eventLoop)
+    public func describeCard(sdkappid: Int64, iccid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardResponse> {
+        self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询卡片详情
     ///
     /// 查询卡片详细信息
     @inlinable
-    public func describeCard(sdkappid: Int64, iccid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardResponse {
-        try await self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), logger: logger, on: eventLoop)
+    public func describeCard(sdkappid: Int64, iccid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardResponse {
+        try await self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), region: region, logger: logger, on: eventLoop)
     }
 }

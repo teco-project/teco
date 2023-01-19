@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,31 +100,31 @@ extension Partners {
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
-    public func describeAgentDealsCache(_ input: DescribeAgentDealsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsCacheResponse> {
-        self.client.execute(action: "DescribeAgentDealsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentDealsCache(_ input: DescribeAgentDealsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsCacheResponse> {
+        self.client.execute(action: "DescribeAgentDealsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 代理商缓存订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
-    public func describeAgentDealsCache(_ input: DescribeAgentDealsCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsCacheResponse {
-        try await self.client.execute(action: "DescribeAgentDealsCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentDealsCache(_ input: DescribeAgentDealsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsCacheResponse {
+        try await self.client.execute(action: "DescribeAgentDealsCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 代理商缓存订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
-    public func describeAgentDealsCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, payerMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsCacheResponse> {
-        self.describeAgentDealsCache(DescribeAgentDealsCacheRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), logger: logger, on: eventLoop)
+    public func describeAgentDealsCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, payerMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDealsCacheResponse> {
+        self.describeAgentDealsCache(DescribeAgentDealsCacheRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 代理商缓存订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
-    public func describeAgentDealsCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, payerMode: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsCacheResponse {
-        try await self.describeAgentDealsCache(DescribeAgentDealsCacheRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), logger: logger, on: eventLoop)
+    public func describeAgentDealsCache(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, payerMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDealsCacheResponse {
+        try await self.describeAgentDealsCache(DescribeAgentDealsCacheRequest(offset: offset, limit: limit, creatTimeRangeStart: creatTimeRangeStart, creatTimeRangeEnd: creatTimeRangeEnd, order: order, status: status, ownerUins: ownerUins, dealNames: dealNames, payerMode: payerMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcbr {
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
-        self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
+        self.client.execute(action: "CreateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
-        try await self.client.execute(action: "CreateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCloudRunServer(_ input: CreateCloudRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
+        try await self.client.execute(action: "CreateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
-        self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunServerResponse> {
+        self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云托管服务
     ///
     /// 创建云托管服务接口
     @inlinable
-    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
-        try await self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    public func createCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunServerResponse {
+        try await self.createCloudRunServer(CreateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 }

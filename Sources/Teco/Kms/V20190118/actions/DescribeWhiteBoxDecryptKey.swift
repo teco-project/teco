@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Kms {
 
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
-        self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
+        self.client.execute(action: "DescribeWhiteBoxDecryptKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
-        try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWhiteBoxDecryptKey(_ input: DescribeWhiteBoxDecryptKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
+        try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
-        self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func describeWhiteBoxDecryptKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
+        self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒解密密钥
     @inlinable
-    public func describeWhiteBoxDecryptKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
-        try await self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func describeWhiteBoxDecryptKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
+        try await self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

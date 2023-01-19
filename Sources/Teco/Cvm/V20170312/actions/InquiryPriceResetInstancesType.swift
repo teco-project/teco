@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
-    public func inquiryPriceResetInstancesType(_ input: InquiryPriceResetInstancesTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesTypeResponse> {
-        self.client.execute(action: "InquiryPriceResetInstancesType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesType(_ input: InquiryPriceResetInstancesTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesTypeResponse> {
+        self.client.execute(action: "InquiryPriceResetInstancesType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整实例配置询价
@@ -64,8 +64,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
-    public func inquiryPriceResetInstancesType(_ input: InquiryPriceResetInstancesTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesTypeResponse {
-        try await self.client.execute(action: "InquiryPriceResetInstancesType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceResetInstancesType(_ input: InquiryPriceResetInstancesTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesTypeResponse {
+        try await self.client.execute(action: "InquiryPriceResetInstancesType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调整实例配置询价
@@ -74,8 +74,8 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
-    public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesTypeResponse> {
-        self.inquiryPriceResetInstancesType(InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesTypeResponse> {
+        self.inquiryPriceResetInstancesType(InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整实例配置询价
@@ -84,7 +84,7 @@ extension Cvm {
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
-    public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesTypeResponse {
-        try await self.inquiryPriceResetInstancesType(InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType), logger: logger, on: eventLoop)
+    public func inquiryPriceResetInstancesType(instanceIds: [String], instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesTypeResponse {
+        try await self.inquiryPriceResetInstancesType(InquiryPriceResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bm {
     ///
     /// 查询指定机型所支持的操作系统
     @inlinable
-    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsInfoResponse> {
-        self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOsInfo(_ input: DescribeOsInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsInfoResponse> {
+        self.client.execute(action: "DescribeOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询操作系统信息
     ///
     /// 查询指定机型所支持的操作系统
     @inlinable
-    public func describeOsInfo(_ input: DescribeOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
-        try await self.client.execute(action: "DescribeOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOsInfo(_ input: DescribeOsInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
+        try await self.client.execute(action: "DescribeOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询操作系统信息
     ///
     /// 查询指定机型所支持的操作系统
     @inlinable
-    public func describeOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsInfoResponse> {
-        self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    public func describeOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsInfoResponse> {
+        self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询操作系统信息
     ///
     /// 查询指定机型所支持的操作系统
     @inlinable
-    public func describeOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
-        try await self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    public func describeOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsInfoResponse {
+        try await self.describeOsInfo(DescribeOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 }

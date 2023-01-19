@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Iotexplorer {
 
     /// 创建 LoRa 自定义频点
     @inlinable
-    public func createLoRaFrequency(_ input: CreateLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaFrequencyResponse> {
-        self.client.execute(action: "CreateLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoRaFrequency(_ input: CreateLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaFrequencyResponse> {
+        self.client.execute(action: "CreateLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 LoRa 自定义频点
     @inlinable
-    public func createLoRaFrequency(_ input: CreateLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaFrequencyResponse {
-        try await self.client.execute(action: "CreateLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoRaFrequency(_ input: CreateLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaFrequencyResponse {
+        try await self.client.execute(action: "CreateLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 LoRa 自定义频点
     @inlinable
-    public func createLoRaFrequency(freqName: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaFrequencyResponse> {
-        self.createLoRaFrequency(CreateLoRaFrequencyRequest(freqName: freqName, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2, description: description), logger: logger, on: eventLoop)
+    public func createLoRaFrequency(freqName: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaFrequencyResponse> {
+        self.createLoRaFrequency(CreateLoRaFrequencyRequest(freqName: freqName, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 LoRa 自定义频点
     @inlinable
-    public func createLoRaFrequency(freqName: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaFrequencyResponse {
-        try await self.createLoRaFrequency(CreateLoRaFrequencyRequest(freqName: freqName, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2, description: description), logger: logger, on: eventLoop)
+    public func createLoRaFrequency(freqName: String? = nil, channelsDataUp: [UInt64]? = nil, channelsDataRX1: [UInt64]? = nil, channelsDataRX2: [UInt64]? = nil, channelsJoinUp: [UInt64]? = nil, channelsJoinRX1: [UInt64]? = nil, channelsJoinRX2: [UInt64]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaFrequencyResponse {
+        try await self.createLoRaFrequency(CreateLoRaFrequencyRequest(freqName: freqName, channelsDataUp: channelsDataUp, channelsDataRX1: channelsDataRX1, channelsDataRX2: channelsDataRX2, channelsJoinUp: channelsJoinUp, channelsJoinRX1: channelsJoinRX1, channelsJoinRX2: channelsJoinRX2, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

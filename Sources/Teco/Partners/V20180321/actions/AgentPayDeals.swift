@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Partners {
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(_ input: AgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
-        self.client.execute(action: "AgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func agentPayDeals(_ input: AgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
+        self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(_ input: AgentPayDealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
-        try await self.client.execute(action: "AgentPayDeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func agentPayDeals(_ input: AgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
+        try await self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
-        self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), logger: logger, on: eventLoop)
+    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
+        self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
     @inlinable
-    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
-        try await self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), logger: logger, on: eventLoop)
+    public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
+        try await self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

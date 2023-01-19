@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cam {
 
     /// 设置用户权限边界
     @inlinable
-    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
-        self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
+        self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置用户权限边界
     @inlinable
-    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
-        try await self.client.execute(action: "PutUserPermissionsBoundary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
+        try await self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置用户权限边界
     @inlinable
-    public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
-        self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), logger: logger, on: eventLoop)
+    public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
+        self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置用户权限边界
     @inlinable
-    public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
-        try await self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), logger: logger, on: eventLoop)
+    public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
+        try await self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

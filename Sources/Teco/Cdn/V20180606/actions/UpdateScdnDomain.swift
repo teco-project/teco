@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cdn {
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
-        self.client.execute(action: "UpdateScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
+        self.client.execute(action: "UpdateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
-        try await self.client.execute(action: "UpdateScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateScdnDomain(_ input: UpdateScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
+        try await self.client.execute(action: "UpdateScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
-        self.updateScdnDomain(UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), logger: logger, on: eventLoop)
+    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScdnDomainResponse> {
+        self.updateScdnDomain(UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新SCDN域名配置
     ///
     /// UpdateScdnDomain 用于修改 SCDN 加速域名安全相关配置
     @inlinable
-    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
-        try await self.updateScdnDomain(UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), logger: logger, on: eventLoop)
+    public func updateScdnDomain(domain: String, waf: ScdnWafConfig? = nil, acl: ScdnAclConfig? = nil, cc: ScdnConfig? = nil, ddos: ScdnDdosConfig? = nil, bot: ScdnBotConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScdnDomainResponse {
+        try await self.updateScdnDomain(UpdateScdnDomainRequest(domain: domain, waf: waf, acl: acl, cc: cc, ddos: ddos, bot: bot), region: region, logger: logger, on: eventLoop)
     }
 }

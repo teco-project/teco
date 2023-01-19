@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,31 +99,31 @@ extension Ame {
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable
-    public func syncKTVRobotCommand(_ input: SyncKTVRobotCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
-        self.client.execute(action: "SyncKTVRobotCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncKTVRobotCommand(_ input: SyncKTVRobotCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
+        self.client.execute(action: "SyncKTVRobotCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步直播互动机器人指令
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable
-    public func syncKTVRobotCommand(_ input: SyncKTVRobotCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
-        try await self.client.execute(action: "SyncKTVRobotCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncKTVRobotCommand(_ input: SyncKTVRobotCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
+        try await self.client.execute(action: "SyncKTVRobotCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步直播互动机器人指令
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable
-    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
-        self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), logger: logger, on: eventLoop)
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
+        self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步直播互动机器人指令
     ///
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable
-    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
-        try await self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), logger: logger, on: eventLoop)
+    public func syncKTVRobotCommand(robotId: String, command: String, playCommandInput: PlayCommandInput? = nil, setPlaylistCommandInput: SetPlaylistCommandInput? = nil, seekCommandInput: SeekCommandInput? = nil, setAudioParamCommandInput: SetAudioParamCommandInput? = nil, sendMessageCommandInput: SendMessageCommandInput? = nil, setPlayModeCommandInput: SetPlayModeCommandInput? = nil, setDestroyModeCommandInput: SetDestroyModeCommandInput? = nil, setVolumeCommandInput: SetVolumeCommandInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
+        try await self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(robotId: robotId, command: command, playCommandInput: playCommandInput, setPlaylistCommandInput: setPlaylistCommandInput, seekCommandInput: seekCommandInput, setAudioParamCommandInput: setAudioParamCommandInput, sendMessageCommandInput: sendMessageCommandInput, setPlayModeCommandInput: setPlayModeCommandInput, setDestroyModeCommandInput: setDestroyModeCommandInput, setVolumeCommandInput: setVolumeCommandInput), region: region, logger: logger, on: eventLoop)
     }
 }

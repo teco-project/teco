@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cvm {
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
-        self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportImages(_ input: ExportImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
+        self.client.execute(action: "ExportImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(_ input: ExportImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
-        try await self.client.execute(action: "ExportImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportImages(_ input: ExportImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
+        try await self.client.execute(action: "ExportImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
-        self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), logger: logger, on: eventLoop)
+    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
+        self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出自定义镜像
     ///
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
-    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
-        try await self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), logger: logger, on: eventLoop)
+    public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
+        try await self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

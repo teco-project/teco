@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ckafka {
 
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
-        self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
+        self.client.execute(action: "BatchModifyTopicAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
-        try await self.client.execute(action: "BatchModifyTopicAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchModifyTopicAttributes(_ input: BatchModifyTopicAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
+        try await self.client.execute(action: "BatchModifyTopicAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
-        self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), logger: logger, on: eventLoop)
+    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyTopicAttributesResponse> {
+        self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量设置主题属性
     @inlinable
-    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
-        try await self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), logger: logger, on: eventLoop)
+    public func batchModifyTopicAttributes(instanceId: String, topic: [BatchModifyTopicInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyTopicAttributesResponse {
+        try await self.batchModifyTopicAttributes(BatchModifyTopicAttributesRequest(instanceId: instanceId, topic: topic), region: region, logger: logger, on: eventLoop)
     }
 }

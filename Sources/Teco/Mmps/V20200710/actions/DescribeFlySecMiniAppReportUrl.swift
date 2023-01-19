@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Mmps {
     ///
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
-    public func describeFlySecMiniAppReportUrl(_ input: DescribeFlySecMiniAppReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppReportUrlResponse> {
-        self.client.execute(action: "DescribeFlySecMiniAppReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppReportUrl(_ input: DescribeFlySecMiniAppReportUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppReportUrlResponse> {
+        self.client.execute(action: "DescribeFlySecMiniAppReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务报告链接
     ///
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
-    public func describeFlySecMiniAppReportUrl(_ input: DescribeFlySecMiniAppReportUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppReportUrlResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppReportUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlySecMiniAppReportUrl(_ input: DescribeFlySecMiniAppReportUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppReportUrlResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取诊断任务报告链接
     ///
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
-    public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppReportUrlResponse> {
-        self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppReportUrlResponse> {
+        self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务报告链接
     ///
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
-    public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppReportUrlResponse {
-        try await self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppReportUrlResponse {
+        try await self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), region: region, logger: logger, on: eventLoop)
     }
 }

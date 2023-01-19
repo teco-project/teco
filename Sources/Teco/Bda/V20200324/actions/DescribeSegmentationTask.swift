@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Bda {
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
-        self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
+        self.client.execute(action: "DescribeSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
-        try await self.client.execute(action: "DescribeSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSegmentationTask(_ input: DescribeSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
+        try await self.client.execute(action: "DescribeSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
-        self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
+        self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看视频人像分割处理任务信息
     ///
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
-    public func describeSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
-        try await self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func describeSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
+        try await self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tcss {
 
     /// 查询容器安全本地镜像风险趋势
     @inlinable
-    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskTendencyResponse> {
-        self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskTendencyResponse> {
+        self.client.execute(action: "DescribeImageRiskTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全本地镜像风险趋势
     @inlinable
-    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
-        try await self.client.execute(action: "DescribeImageRiskTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageRiskTendency(_ input: DescribeImageRiskTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
+        try await self.client.execute(action: "DescribeImageRiskTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器安全本地镜像风险趋势
     @inlinable
-    public func describeImageRiskTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskTendencyResponse> {
-        self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeImageRiskTendency(startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRiskTendencyResponse> {
+        self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全本地镜像风险趋势
     @inlinable
-    public func describeImageRiskTendency(startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
-        try await self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeImageRiskTendency(startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRiskTendencyResponse {
+        try await self.describeImageRiskTendency(DescribeImageRiskTendencyRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

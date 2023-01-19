@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,8 +45,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
-        self.client.execute(action: "DisassociateDhcpIpWithAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
+        self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp解绑EIP
@@ -55,8 +55,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
-        try await self.client.execute(action: "DisassociateDhcpIpWithAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateDhcpIpWithAddressIp(_ input: DisassociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
+        try await self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DhcpIp解绑EIP
@@ -65,8 +65,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
-        self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), logger: logger, on: eventLoop)
+    public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
+        self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp解绑EIP
@@ -75,7 +75,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
-        try await self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), logger: logger, on: eventLoop)
+    public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
+        try await self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }
 }

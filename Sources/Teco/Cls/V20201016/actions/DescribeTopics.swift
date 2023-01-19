@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cls {
     ///
     ///  本接口用于获取日志主题列表，支持分页
     @inlinable
-    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
-        self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopics(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
+        self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题列表
     ///
     ///  本接口用于获取日志主题列表，支持分页
     @inlinable
-    public func describeTopics(_ input: DescribeTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
-        try await self.client.execute(action: "DescribeTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopics(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
+        try await self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志主题列表
     ///
     ///  本接口用于获取日志主题列表，支持分页
     @inlinable
-    public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
-        self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
+        self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题列表
     ///
     ///  本接口用于获取日志主题列表，支持分页
     @inlinable
-    public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
-        try await self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
+        try await self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

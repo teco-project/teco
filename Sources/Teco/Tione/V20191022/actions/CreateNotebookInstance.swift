@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -121,25 +121,25 @@ extension Tione {
 
     /// 创建Notebook实例
     @inlinable
-    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookInstanceResponse> {
-        self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookInstanceResponse> {
+        self.client.execute(action: "CreateNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook实例
     @inlinable
-    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
-        try await self.client.execute(action: "CreateNotebookInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNotebookInstance(_ input: CreateNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
+        try await self.client.execute(action: "CreateNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Notebook实例
     @inlinable
-    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookInstanceResponse> {
-        self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotebookInstanceResponse> {
+        self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook实例
     @inlinable
-    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
-        try await self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), logger: logger, on: eventLoop)
+    public func createNotebookInstance(notebookInstanceName: String, instanceType: String, volumeSizeInGB: UInt64, directInternetAccess: String? = nil, rootAccess: String? = nil, subnetId: String? = nil, lifecycleScriptsName: String? = nil, defaultCodeRepository: String? = nil, additionalCodeRepositories: [String]? = nil, clsAccess: String? = nil, stoppingCondition: StoppingCondition? = nil, autoStopping: String? = nil, clsConfig: ClsConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotebookInstanceResponse {
+        try await self.createNotebookInstance(CreateNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, instanceType: instanceType, volumeSizeInGB: volumeSizeInGB, directInternetAccess: directInternetAccess, rootAccess: rootAccess, subnetId: subnetId, lifecycleScriptsName: lifecycleScriptsName, defaultCodeRepository: defaultCodeRepository, additionalCodeRepositories: additionalCodeRepositories, clsAccess: clsAccess, stoppingCondition: stoppingCondition, autoStopping: autoStopping, clsConfig: clsConfig), region: region, logger: logger, on: eventLoop)
     }
 }

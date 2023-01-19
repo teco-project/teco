@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Postgres {
     ///
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
-    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
-        self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
+        self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例Xlog列表
     ///
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
-    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
-        try await self.client.execute(action: "DescribeDBXlogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBXlogs(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
+        try await self.client.execute(action: "DescribeDBXlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例Xlog列表
     ///
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
-    public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
-        self.describeDBXlogs(DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBXlogsResponse> {
+        self.describeDBXlogs(DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例Xlog列表
     ///
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
-    public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
-        try await self.describeDBXlogs(DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDBXlogs(dbInstanceId: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBXlogsResponse {
+        try await self.describeDBXlogs(DescribeDBXlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

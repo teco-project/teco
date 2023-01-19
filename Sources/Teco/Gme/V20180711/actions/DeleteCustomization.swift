@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Gme {
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
-        self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
+        self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(_ input: DeleteCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
-        try await self.client.execute(action: "DeleteCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomization(_ input: DeleteCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
+        try await self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
-        self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), logger: logger, on: eventLoop)
+    public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
+        self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除语音消息转文本自学习模型
     ///
     /// 用户通过该接口可以删除语音消息转文本自学习模型
     @inlinable
-    public func deleteCustomization(modelId: String, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
-        try await self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), logger: logger, on: eventLoop)
+    public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
+        try await self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

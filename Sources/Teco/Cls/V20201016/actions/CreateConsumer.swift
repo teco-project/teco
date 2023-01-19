@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cls {
     ///
     /// 本接口用于创建投递任务
     @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConsumer(_ input: CreateConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
+        self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建投递任务
     ///
     /// 本接口用于创建投递任务
     @inlinable
-    public func createConsumer(_ input: CreateConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.client.execute(action: "CreateConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConsumer(_ input: CreateConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建投递任务
     ///
     /// 本接口用于创建投递任务
     @inlinable
-    public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        self.createConsumer(CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), logger: logger, on: eventLoop)
+    public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
+        self.createConsumer(CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建投递任务
     ///
     /// 本接口用于创建投递任务
     @inlinable
-    public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.createConsumer(CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), logger: logger, on: eventLoop)
+    public func createConsumer(topicId: String, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
+        try await self.createConsumer(CreateConsumerRequest(topicId: topicId, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
 }

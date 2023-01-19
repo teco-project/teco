@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Organization {
 
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
-    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationMemberAuthAccountResponse> {
-        self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationMemberAuthAccountResponse> {
+        self.client.execute(action: "CancelOrganizationMemberAuthAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
-    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
-        try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelOrganizationMemberAuthAccount(_ input: CancelOrganizationMemberAuthAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
+        try await self.client.execute(action: "CancelOrganizationMemberAuthAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
-    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationMemberAuthAccountResponse> {
-        self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), logger: logger, on: eventLoop)
+    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationMemberAuthAccountResponse> {
+        self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消组织成员和组织管理员子账号的授权关系
     @inlinable
-    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
-        try await self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), logger: logger, on: eventLoop)
+    public func cancelOrganizationMemberAuthAccount(memberUin: Int64, policyId: Int64, orgSubAccountUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationMemberAuthAccountResponse {
+        try await self.cancelOrganizationMemberAuthAccount(CancelOrganizationMemberAuthAccountRequest(memberUin: memberUin, policyId: policyId, orgSubAccountUin: orgSubAccountUin), region: region, logger: logger, on: eventLoop)
     }
 }

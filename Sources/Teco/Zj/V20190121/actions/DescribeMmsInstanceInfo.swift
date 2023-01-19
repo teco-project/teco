@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Zj {
 
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
-        self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
+        self.client.execute(action: "DescribeMmsInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
-        try await self.client.execute(action: "DescribeMmsInstanceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMmsInstanceInfo(_ input: DescribeMmsInstanceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
+        try await self.client.execute(action: "DescribeMmsInstanceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(license: String, instanceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
-        self.describeMmsInstanceInfo(DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMmsInstanceInfo(license: String, instanceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMmsInstanceInfoResponse> {
+        self.describeMmsInstanceInfo(DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取彩信实例信息
     @inlinable
-    public func describeMmsInstanceInfo(license: String, instanceId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
-        try await self.describeMmsInstanceInfo(DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMmsInstanceInfo(license: String, instanceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMmsInstanceInfoResponse {
+        try await self.describeMmsInstanceInfo(DescribeMmsInstanceInfoRequest(license: license, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

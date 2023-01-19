@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Mongodb {
     ///
     /// 本接口(SetPassword)用于设置云数据库账户的密码。
     @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
-        self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setPassword(_ input: SetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
+        self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的账户密码
     ///
     /// 本接口(SetPassword)用于设置云数据库账户的密码。
     @inlinable
-    public func setPassword(_ input: SetPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
-        try await self.client.execute(action: "SetPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setPassword(_ input: SetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
+        try await self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例的账户密码
     ///
     /// 本接口(SetPassword)用于设置云数据库账户的密码。
     @inlinable
-    public func setPassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
-        self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    public func setPassword(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
+        self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例的账户密码
     ///
     /// 本接口(SetPassword)用于设置云数据库账户的密码。
     @inlinable
-    public func setPassword(instanceId: String, userName: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
-        try await self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), logger: logger, on: eventLoop)
+    public func setPassword(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
+        try await self.setPassword(SetPasswordRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

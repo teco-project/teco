@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmeip {
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(_ input: BindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
-        self.client.execute(action: "BindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindHosted(_ input: BindHostedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
+        self.client.execute(action: "BindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(_ input: BindHostedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
-        try await self.client.execute(action: "BindHosted", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindHosted(_ input: BindHostedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
+        try await self.client.execute(action: "BindHosted", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
-        self.bindHosted(BindHostedRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func bindHosted(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindHostedResponse> {
+        self.bindHosted(BindHostedRequest(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器绑定EIP
     ///
     /// BindHosted接口用于绑定黑石弹性公网IP到黑石托管机器上
     @inlinable
-    public func bindHosted(eipId: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
-        try await self.bindHosted(BindHostedRequest(eipId: eipId, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func bindHosted(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindHostedResponse {
+        try await self.bindHosted(BindHostedRequest(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Sslpod {
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
-        self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDomain(_ input: DeleteDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
+        self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(_ input: DeleteDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.client.execute(action: "DeleteDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDomain(_ input: DeleteDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.client.execute(action: "DeleteDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
-        self.deleteDomain(DeleteDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainResponse> {
+        self.deleteDomain(DeleteDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
     ///
     /// 通过域名ID删除监控的域名
     @inlinable
-    public func deleteDomain(domainId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
-        try await self.deleteDomain(DeleteDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainResponse {
+        try await self.deleteDomain(DeleteDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

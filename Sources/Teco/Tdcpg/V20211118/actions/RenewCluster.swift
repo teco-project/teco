@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tdcpg {
 
     /// 续费集群
     @inlinable
-    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
-        self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewCluster(_ input: RenewClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
+        self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费集群
     @inlinable
-    public func renewCluster(_ input: RenewClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
-        try await self.client.execute(action: "RenewCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewCluster(_ input: RenewClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
+        try await self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费集群
     @inlinable
-    public func renewCluster(clusterId: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
-        self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), logger: logger, on: eventLoop)
+    public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
+        self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费集群
     @inlinable
-    public func renewCluster(clusterId: String, period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
-        try await self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), logger: logger, on: eventLoop)
+    public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
+        try await self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,8 +84,8 @@ extension As {
     /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
     /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     @inlinable
-    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLifecycleHookResponse> {
-        self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLifecycleHookResponse> {
+        self.client.execute(action: "UpgradeLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级生命周期挂钩
@@ -93,8 +93,8 @@ extension As {
     /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
     /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     @inlinable
-    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
-        try await self.client.execute(action: "UpgradeLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeLifecycleHook(_ input: UpgradeLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
+        try await self.client.execute(action: "UpgradeLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级生命周期挂钩
@@ -102,8 +102,8 @@ extension As {
     /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
     /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     @inlinable
-    public func upgradeLifecycleHook(lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLifecycleHookResponse> {
-        self.upgradeLifecycleHook(UpgradeLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func upgradeLifecycleHook(lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeLifecycleHookResponse> {
+        self.upgradeLifecycleHook(UpgradeLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级生命周期挂钩
@@ -111,7 +111,7 @@ extension As {
     /// 本接口（UpgradeLifecycleHook）用于升级生命周期挂钩。
     /// * 本接口用于升级生命周期挂钩，采用“完全覆盖”风格，无论之前参数如何，统一按照接口参数设置为新的配置。对于非必填字段，不填写则按照默认值赋值。
     @inlinable
-    public func upgradeLifecycleHook(lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
-        try await self.upgradeLifecycleHook(UpgradeLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func upgradeLifecycleHook(lifecycleHookId: String, lifecycleHookName: String, lifecycleTransition: String, defaultResult: String? = nil, heartbeatTimeout: Int64? = nil, notificationMetadata: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleTransitionType: String? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeLifecycleHookResponse {
+        try await self.upgradeLifecycleHook(UpgradeLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, notificationTarget: notificationTarget, lifecycleTransitionType: lifecycleTransitionType, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 }

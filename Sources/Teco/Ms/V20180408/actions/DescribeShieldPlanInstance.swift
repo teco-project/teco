@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Ms {
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
-        self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
+        self.client.execute(action: "DescribeShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
-        try await self.client.execute(action: "DescribeShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeShieldPlanInstance(_ input: DescribeShieldPlanInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
+        try await self.client.execute(action: "DescribeShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
-        self.describeShieldPlanInstance(DescribeShieldPlanInstanceRequest(resourceId: resourceId, pid: pid), logger: logger, on: eventLoop)
+    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldPlanInstanceResponse> {
+        self.describeShieldPlanInstance(DescribeShieldPlanInstanceRequest(resourceId: resourceId, pid: pid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询加固策略
     ///
     /// 查询加固策略。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
-        try await self.describeShieldPlanInstance(DescribeShieldPlanInstanceRequest(resourceId: resourceId, pid: pid), logger: logger, on: eventLoop)
+    public func describeShieldPlanInstance(resourceId: String, pid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldPlanInstanceResponse {
+        try await self.describeShieldPlanInstance(DescribeShieldPlanInstanceRequest(resourceId: resourceId, pid: pid), region: region, logger: logger, on: eventLoop)
     }
 }

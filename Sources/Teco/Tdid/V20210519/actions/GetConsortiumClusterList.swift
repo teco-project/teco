@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdid {
 
     /// 获取联盟bcos网络列表
     @inlinable
-    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
-        self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
+        self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取联盟bcos网络列表
     @inlinable
-    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.client.execute(action: "GetConsortiumClusterList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getConsortiumClusterList(_ input: GetConsortiumClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
+        try await self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取联盟bcos网络列表
     @inlinable
-    public func getConsortiumClusterList(consortiumId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
-        self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), logger: logger, on: eventLoop)
+    public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
+        self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联盟bcos网络列表
     @inlinable
-    public func getConsortiumClusterList(consortiumId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), logger: logger, on: eventLoop)
+    public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
+        try await self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
     }
 }

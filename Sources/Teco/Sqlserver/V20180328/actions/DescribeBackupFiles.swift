@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
-    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
-        self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
+        self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
-    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
-        try await self.client.execute(action: "DescribeBackupFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupFiles(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
+        try await self.client.execute(action: "DescribeBackupFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备份文件列表
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
-    public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
-        self.describeBackupFiles(DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupFilesResponse> {
+        self.describeBackupFiles(DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
-    public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
-        try await self.describeBackupFiles(DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func describeBackupFiles(instanceId: String, groupId: String, limit: Int64? = nil, offset: Int64? = nil, databaseName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupFilesResponse {
+        try await self.describeBackupFiles(DescribeBackupFilesRequest(instanceId: instanceId, groupId: groupId, limit: limit, offset: offset, databaseName: databaseName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 }

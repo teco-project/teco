@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Apm {
 
     /// 获取Apm Agent信息
     @inlinable
-    public func describeApmAgent(_ input: DescribeApmAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmAgentResponse> {
-        self.client.execute(action: "DescribeApmAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApmAgent(_ input: DescribeApmAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmAgentResponse> {
+        self.client.execute(action: "DescribeApmAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Apm Agent信息
     @inlinable
-    public func describeApmAgent(_ input: DescribeApmAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
-        try await self.client.execute(action: "DescribeApmAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApmAgent(_ input: DescribeApmAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
+        try await self.client.execute(action: "DescribeApmAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Apm Agent信息
     @inlinable
-    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmAgentResponse> {
-        self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), logger: logger, on: eventLoop)
+    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApmAgentResponse> {
+        self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Apm Agent信息
     @inlinable
-    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
-        try await self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), logger: logger, on: eventLoop)
+    public func describeApmAgent(instanceId: String, agentType: String? = nil, networkMode: String? = nil, languageEnvironment: String? = nil, reportMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApmAgentResponse {
+        try await self.describeApmAgent(DescribeApmAgentRequest(instanceId: instanceId, agentType: agentType, networkMode: networkMode, languageEnvironment: languageEnvironment, reportMethod: reportMethod), region: region, logger: logger, on: eventLoop)
     }
 }

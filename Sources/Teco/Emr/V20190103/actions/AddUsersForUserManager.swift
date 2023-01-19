@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 新增用户列表（用户管理）。
     @inlinable
-    public func addUsersForUserManager(_ input: AddUsersForUserManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersForUserManagerResponse> {
-        self.client.execute(action: "AddUsersForUserManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addUsersForUserManager(_ input: AddUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersForUserManagerResponse> {
+        self.client.execute(action: "AddUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增用户列表
@@ -68,8 +68,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 新增用户列表（用户管理）。
     @inlinable
-    public func addUsersForUserManager(_ input: AddUsersForUserManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
-        try await self.client.execute(action: "AddUsersForUserManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addUsersForUserManager(_ input: AddUsersForUserManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
+        try await self.client.execute(action: "AddUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增用户列表
@@ -77,8 +77,8 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 新增用户列表（用户管理）。
     @inlinable
-    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersForUserManagerResponse> {
-        self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), logger: logger, on: eventLoop)
+    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersForUserManagerResponse> {
+        self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增用户列表
@@ -86,7 +86,7 @@ extension Emr {
     /// 该接口支持安装了OpenLdap组件的集群。
     /// 新增用户列表（用户管理）。
     @inlinable
-    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
-        try await self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), logger: logger, on: eventLoop)
+    public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
+        try await self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), region: region, logger: logger, on: eventLoop)
     }
 }

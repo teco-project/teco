@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Ciam {
 
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
-        self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateUserStatus(_ input: UpdateUserStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
+        self.client.execute(action: "UpdateUserStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(_ input: UpdateUserStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
-        try await self.client.execute(action: "UpdateUserStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateUserStatus(_ input: UpdateUserStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
+        try await self.client.execute(action: "UpdateUserStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(userStoreId: String, userId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
-        self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), logger: logger, on: eventLoop)
+    public func updateUserStatus(userStoreId: String, userId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
+        self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新用户状态
     @inlinable
-    public func updateUserStatus(userStoreId: String, userId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
-        try await self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), logger: logger, on: eventLoop)
+    public func updateUserStatus(userStoreId: String, userId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
+        try await self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

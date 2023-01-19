@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Iecp {
 
     /// 获取消息路由列表
     @inlinable
-    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageRouteListResponse> {
-        self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageRouteListResponse> {
+        self.client.execute(action: "DescribeMessageRouteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消息路由列表
     @inlinable
-    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
-        try await self.client.execute(action: "DescribeMessageRouteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMessageRouteList(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
+        try await self.client.execute(action: "DescribeMessageRouteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取消息路由列表
     @inlinable
-    public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageRouteListResponse> {
-        self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), logger: logger, on: eventLoop)
+    public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageRouteListResponse> {
+        self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消息路由列表
     @inlinable
-    public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
-        try await self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), logger: logger, on: eventLoop)
+    public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
+        try await self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

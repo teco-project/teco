@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Es {
 
     /// 智能运维诊断集群
     @inlinable
-    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
-        self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
+        self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能运维诊断集群
     @inlinable
-    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
-        try await self.client.execute(action: "DiagnoseInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func diagnoseInstance(_ input: DiagnoseInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
+        try await self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能运维诊断集群
     @inlinable
-    public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
-        self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), logger: logger, on: eventLoop)
+    public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
+        self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能运维诊断集群
     @inlinable
-    public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
-        try await self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), logger: logger, on: eventLoop)
+    public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
+        try await self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
     }
 }

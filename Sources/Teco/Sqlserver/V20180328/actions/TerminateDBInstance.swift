@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Sqlserver {
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
-        self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
+        self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable
-    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.client.execute(action: "TerminateDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateDBInstance(_ input: TerminateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
+        try await self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable
-    public func terminateDBInstance(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
-        self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
+        self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable
-    public func terminateDBInstance(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
+        try await self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

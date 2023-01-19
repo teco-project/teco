@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 查询订单信息
     @inlinable
-    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDealDetailResponse> {
-        self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDealDetailResponse> {
+        self.client.execute(action: "DescribeInstanceDealDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
     @inlinable
-    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
-        try await self.client.execute(action: "DescribeInstanceDealDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceDealDetail(_ input: DescribeInstanceDealDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
+        try await self.client.execute(action: "DescribeInstanceDealDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询订单信息
     @inlinable
-    public func describeInstanceDealDetail(dealIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDealDetailResponse> {
-        self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), logger: logger, on: eventLoop)
+    public func describeInstanceDealDetail(dealIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDealDetailResponse> {
+        self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
     @inlinable
-    public func describeInstanceDealDetail(dealIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
-        try await self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), logger: logger, on: eventLoop)
+    public func describeInstanceDealDetail(dealIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDealDetailResponse {
+        try await self.describeInstanceDealDetail(DescribeInstanceDealDetailRequest(dealIds: dealIds), region: region, logger: logger, on: eventLoop)
     }
 }

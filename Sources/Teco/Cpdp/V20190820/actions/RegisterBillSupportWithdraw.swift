@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,31 +111,31 @@ extension Cpdp {
     ///
     /// 登记挂账(支持撤销)。此接口可实现把不明来账或自有资金等已登记在挂账子账户下的资金调整到普通会员子账户。即通过申请调用此接口，将会减少挂账子账户的资金，调增指定的普通会员子账户的可提现余额及可用余额。此接口不支持把挂账子账户资金清分到功能子账户。
     @inlinable
-    public func registerBillSupportWithdraw(_ input: RegisterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillSupportWithdrawResponse> {
-        self.client.execute(action: "RegisterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerBillSupportWithdraw(_ input: RegisterBillSupportWithdrawRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillSupportWithdrawResponse> {
+        self.client.execute(action: "RegisterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-登记挂账
     ///
     /// 登记挂账(支持撤销)。此接口可实现把不明来账或自有资金等已登记在挂账子账户下的资金调整到普通会员子账户。即通过申请调用此接口，将会减少挂账子账户的资金，调增指定的普通会员子账户的可提现余额及可用余额。此接口不支持把挂账子账户资金清分到功能子账户。
     @inlinable
-    public func registerBillSupportWithdraw(_ input: RegisterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillSupportWithdrawResponse {
-        try await self.client.execute(action: "RegisterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerBillSupportWithdraw(_ input: RegisterBillSupportWithdrawRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillSupportWithdrawResponse {
+        try await self.client.execute(action: "RegisterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-登记挂账
     ///
     /// 登记挂账(支持撤销)。此接口可实现把不明来账或自有资金等已登记在挂账子账户下的资金调整到普通会员子账户。即通过申请调用此接口，将会减少挂账子账户的资金，调增指定的普通会员子账户的可提现余额及可用余额。此接口不支持把挂账子账户资金清分到功能子账户。
     @inlinable
-    public func registerBillSupportWithdraw(tranNetMemberCode: String, orderNo: String, suspendAmt: String, tranFee: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillSupportWithdrawResponse> {
-        self.registerBillSupportWithdraw(RegisterBillSupportWithdrawRequest(tranNetMemberCode: tranNetMemberCode, orderNo: orderNo, suspendAmt: suspendAmt, tranFee: tranFee, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    public func registerBillSupportWithdraw(tranNetMemberCode: String, orderNo: String, suspendAmt: String, tranFee: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterBillSupportWithdrawResponse> {
+        self.registerBillSupportWithdraw(RegisterBillSupportWithdrawRequest(tranNetMemberCode: tranNetMemberCode, orderNo: orderNo, suspendAmt: suspendAmt, tranFee: tranFee, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-登记挂账
     ///
     /// 登记挂账(支持撤销)。此接口可实现把不明来账或自有资金等已登记在挂账子账户下的资金调整到普通会员子账户。即通过申请调用此接口，将会减少挂账子账户的资金，调增指定的普通会员子账户的可提现余额及可用余额。此接口不支持把挂账子账户资金清分到功能子账户。
     @inlinable
-    public func registerBillSupportWithdraw(tranNetMemberCode: String, orderNo: String, suspendAmt: String, tranFee: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillSupportWithdrawResponse {
-        try await self.registerBillSupportWithdraw(RegisterBillSupportWithdrawRequest(tranNetMemberCode: tranNetMemberCode, orderNo: orderNo, suspendAmt: suspendAmt, tranFee: tranFee, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    public func registerBillSupportWithdraw(tranNetMemberCode: String, orderNo: String, suspendAmt: String, tranFee: String, mrchCode: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterBillSupportWithdrawResponse {
+        try await self.registerBillSupportWithdraw(RegisterBillSupportWithdrawRequest(tranNetMemberCode: tranNetMemberCode, orderNo: orderNo, suspendAmt: suspendAmt, tranFee: tranFee, mrchCode: mrchCode, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

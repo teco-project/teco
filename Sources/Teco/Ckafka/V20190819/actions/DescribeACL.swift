@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Ckafka {
 
     /// 枚举ACL
     @inlinable
-    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
-        self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeACL(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
+        self.client.execute(action: "DescribeACL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 枚举ACL
     @inlinable
-    public func describeACL(_ input: DescribeACLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
-        try await self.client.execute(action: "DescribeACL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeACL(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
+        try await self.client.execute(action: "DescribeACL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 枚举ACL
     @inlinable
-    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
-        self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeACLResponse> {
+        self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 枚举ACL
     @inlinable
-    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
-        try await self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeACL(instanceId: String, resourceType: Int64, resourceName: String, offset: Int64? = nil, limit: Int64? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeACLResponse {
+        try await self.describeACL(DescribeACLRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 }

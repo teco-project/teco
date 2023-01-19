@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cpdp {
 
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
-        self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
+        self.client.execute(action: "DeleteAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
-        try await self.client.execute(action: "DeleteAgentTaxPaymentInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAgentTaxPaymentInfos(_ input: DeleteAgentTaxPaymentInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
+        try await self.client.execute(action: "DeleteAgentTaxPaymentInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(batchNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
-        self.deleteAgentTaxPaymentInfos(DeleteAgentTaxPaymentInfosRequest(batchNum: batchNum), logger: logger, on: eventLoop)
+    public func deleteAgentTaxPaymentInfos(batchNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfosResponse> {
+        self.deleteAgentTaxPaymentInfos(DeleteAgentTaxPaymentInfosRequest(batchNum: batchNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-删除代理商完税信息
     @inlinable
-    public func deleteAgentTaxPaymentInfos(batchNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
-        try await self.deleteAgentTaxPaymentInfos(DeleteAgentTaxPaymentInfosRequest(batchNum: batchNum), logger: logger, on: eventLoop)
+    public func deleteAgentTaxPaymentInfos(batchNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfosResponse {
+        try await self.deleteAgentTaxPaymentInfos(DeleteAgentTaxPaymentInfosRequest(batchNum: batchNum), region: region, logger: logger, on: eventLoop)
     }
 }

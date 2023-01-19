@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Scf {
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
-        self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFunctionAddress(_ input: GetFunctionAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
+        self.client.execute(action: "GetFunctionAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(_ input: GetFunctionAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
-        try await self.client.execute(action: "GetFunctionAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFunctionAddress(_ input: GetFunctionAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
+        try await self.client.execute(action: "GetFunctionAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
-        self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), logger: logger, on: eventLoop)
+    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionAddressResponse> {
+        self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数代码下载地址
     ///
     /// 该接口用于获取函数代码包的下载地址。
     @inlinable
-    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
-        try await self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), logger: logger, on: eventLoop)
+    public func getFunctionAddress(functionName: String, qualifier: String? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionAddressResponse {
+        try await self.getFunctionAddress(GetFunctionAddressRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

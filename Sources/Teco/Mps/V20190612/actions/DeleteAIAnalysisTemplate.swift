@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Mps {
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable
-    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
-        self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
+        self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除内容分析模板
@@ -53,8 +53,8 @@ extension Mps {
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable
-    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "DeleteAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除内容分析模板
@@ -62,8 +62,8 @@ extension Mps {
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable
-    public func deleteAIAnalysisTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
-        self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
+        self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除内容分析模板
@@ -71,7 +71,7 @@ extension Mps {
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable
-    public func deleteAIAnalysisTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
-        try await self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
+        try await self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 }

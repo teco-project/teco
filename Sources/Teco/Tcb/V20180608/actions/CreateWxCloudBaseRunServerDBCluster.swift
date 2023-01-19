@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Tcb {
 
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
-        self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
+        self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
-        try await self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWxCloudBaseRunServerDBCluster(_ input: CreateWxCloudBaseRunServerDBClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
+        try await self.client.execute(action: "CreateWxCloudBaseRunServerDBCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
-        self.createWxCloudBaseRunServerDBCluster(CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunServerDBClusterResponse> {
+        self.createWxCloudBaseRunServerDBCluster(CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通微信云托管MySQL数据库服务
     @inlinable
-    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
-        try await self.createWxCloudBaseRunServerDBCluster(CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), logger: logger, on: eventLoop)
+    public func createWxCloudBaseRunServerDBCluster(accountPassword: String, envId: String, wxAppId: String? = nil, dbVersion: String? = nil, lowerCaseTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunServerDBClusterResponse {
+        try await self.createWxCloudBaseRunServerDBCluster(CreateWxCloudBaseRunServerDBClusterRequest(accountPassword: accountPassword, envId: envId, wxAppId: wxAppId, dbVersion: dbVersion, lowerCaseTableName: lowerCaseTableName), region: region, logger: logger, on: eventLoop)
     }
 }

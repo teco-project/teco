@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Bizlive {
 
     /// 强制退出游戏
     @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
-        self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopGame(_ input: StopGameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
+        self.client.execute(action: "StopGame", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 强制退出游戏
     @inlinable
-    public func stopGame(_ input: StopGameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
-        try await self.client.execute(action: "StopGame", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopGame(_ input: StopGameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
+        try await self.client.execute(action: "StopGame", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 强制退出游戏
     @inlinable
-    public func stopGame(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
-        self.stopGame(StopGameRequest(userId: userId), logger: logger, on: eventLoop)
+    public func stopGame(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
+        self.stopGame(StopGameRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 强制退出游戏
     @inlinable
-    public func stopGame(userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
-        try await self.stopGame(StopGameRequest(userId: userId), logger: logger, on: eventLoop)
+    public func stopGame(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
+        try await self.stopGame(StopGameRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

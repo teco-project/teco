@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cpdp {
 
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
-        self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
+        self.client.execute(action: "QueryOutwardOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
-        try await self.client.execute(action: "QueryOutwardOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOutwardOrder(_ input: QueryOutwardOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
+        try await self.client.execute(action: "QueryOutwardOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
-        self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), logger: logger, on: eventLoop)
+    public func queryOutwardOrder(transactionId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOutwardOrderResponse> {
+        self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-查询汇出结果
     @inlinable
-    public func queryOutwardOrder(transactionId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
-        try await self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), logger: logger, on: eventLoop)
+    public func queryOutwardOrder(transactionId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOutwardOrderResponse {
+        try await self.queryOutwardOrder(QueryOutwardOrderRequest(transactionId: transactionId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

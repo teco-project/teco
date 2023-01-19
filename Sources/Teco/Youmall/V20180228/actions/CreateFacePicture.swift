@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Youmall {
     ///
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
-    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFacePictureResponse> {
-        self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFacePicture(_ input: CreateFacePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFacePictureResponse> {
+        self.client.execute(action: "CreateFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传人脸图片
     ///
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
-    public func createFacePicture(_ input: CreateFacePictureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
-        try await self.client.execute(action: "CreateFacePicture", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFacePicture(_ input: CreateFacePictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
+        try await self.client.execute(action: "CreateFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传人脸图片
     ///
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
-    public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFacePictureResponse> {
-        self.createFacePicture(CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), logger: logger, on: eventLoop)
+    public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFacePictureResponse> {
+        self.createFacePicture(CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传人脸图片
     ///
     /// 通过上传指定规格的人脸图片，创建黑名单用户或者白名单用户。
     @inlinable
-    public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
-        try await self.createFacePicture(CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), logger: logger, on: eventLoop)
+    public func createFacePicture(companyId: String, personType: Int64, picture: String, pictureName: String, shopId: Int64? = nil, isForceUpload: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFacePictureResponse {
+        try await self.createFacePicture(CreateFacePictureRequest(companyId: companyId, personType: personType, picture: picture, pictureName: pictureName, shopId: shopId, isForceUpload: isForceUpload), region: region, logger: logger, on: eventLoop)
     }
 }

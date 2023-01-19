@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cfs {
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
-        self.client.execute(action: "DeleteCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
+        self.client.execute(action: "DeleteCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
-        try await self.client.execute(action: "DeleteCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCfsRule(_ input: DeleteCfsRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
+        try await self.client.execute(action: "DeleteCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(pGroupId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
-        self.deleteCfsRule(DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteCfsRule(pGroupId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsRuleResponse> {
+        self.deleteCfsRule(DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除权限组规则
     ///
     /// 本接口（DeleteCfsRule）用于删除权限组规则。
     @inlinable
-    public func deleteCfsRule(pGroupId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
-        try await self.deleteCfsRule(DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteCfsRule(pGroupId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsRuleResponse {
+        try await self.deleteCfsRule(DeleteCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

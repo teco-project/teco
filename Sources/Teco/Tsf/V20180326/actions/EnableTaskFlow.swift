@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 启用工作流
     @inlinable
-    public func enableTaskFlow(_ input: EnableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTaskFlowResponse> {
-        self.client.execute(action: "EnableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableTaskFlow(_ input: EnableTaskFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTaskFlowResponse> {
+        self.client.execute(action: "EnableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用工作流
     @inlinable
-    public func enableTaskFlow(_ input: EnableTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskFlowResponse {
-        try await self.client.execute(action: "EnableTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableTaskFlow(_ input: EnableTaskFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskFlowResponse {
+        try await self.client.execute(action: "EnableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用工作流
     @inlinable
-    public func enableTaskFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTaskFlowResponse> {
-        self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func enableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTaskFlowResponse> {
+        self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用工作流
     @inlinable
-    public func enableTaskFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskFlowResponse {
-        try await self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func enableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskFlowResponse {
+        try await self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

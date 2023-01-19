@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Iotcloud {
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
-    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicRulesResponse> {
-        self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTopicRules(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicRulesResponse> {
+        self.client.execute(action: "ListTopicRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取规则列表
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
-    public func listTopicRules(_ input: ListTopicRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
-        try await self.client.execute(action: "ListTopicRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTopicRules(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
+        try await self.client.execute(action: "ListTopicRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取规则列表
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
-    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicRulesResponse> {
-        self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicRulesResponse> {
+        self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取规则列表
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
-    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
-        try await self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func listTopicRules(pageNum: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
+        try await self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

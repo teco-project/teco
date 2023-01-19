@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tsf {
     ///
     /// 对执行失败的任务批次执行续跑
     @inlinable
-    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueRunFailedTaskBatchResponse> {
-        self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueRunFailedTaskBatchResponse> {
+        self.client.execute(action: "ContinueRunFailedTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续跑任务批次
     ///
     /// 对执行失败的任务批次执行续跑
     @inlinable
-    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
-        try await self.client.execute(action: "ContinueRunFailedTaskBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func continueRunFailedTaskBatch(_ input: ContinueRunFailedTaskBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
+        try await self.client.execute(action: "ContinueRunFailedTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续跑任务批次
     ///
     /// 对执行失败的任务批次执行续跑
     @inlinable
-    public func continueRunFailedTaskBatch(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueRunFailedTaskBatchResponse> {
-        self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func continueRunFailedTaskBatch(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueRunFailedTaskBatchResponse> {
+        self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续跑任务批次
     ///
     /// 对执行失败的任务批次执行续跑
     @inlinable
-    public func continueRunFailedTaskBatch(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
-        try await self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func continueRunFailedTaskBatch(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
+        try await self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

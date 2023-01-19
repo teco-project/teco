@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
-        self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
+        self.client.execute(action: "DescribeAbnormalEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
-        try await self.client.execute(action: "DescribeAbnormalEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAbnormalEvents(_ input: DescribeAbnormalEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
+        try await self.client.execute(action: "DescribeAbnormalEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
-        self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalEventsResponse> {
+        self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取异常事件统计
     @inlinable
-    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
-        try await self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeAbnormalEvents(startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalEventsResponse {
+        try await self.describeAbnormalEvents(DescribeAbnormalEventsRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

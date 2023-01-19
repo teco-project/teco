@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ecm {
 
     /// 查询可用区的默认子网
     @inlinable
-    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultSubnetResponse> {
-        self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultSubnetResponse> {
+        self.client.execute(action: "DescribeDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可用区的默认子网
     @inlinable
-    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
-        try await self.client.execute(action: "DescribeDefaultSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDefaultSubnet(_ input: DescribeDefaultSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
+        try await self.client.execute(action: "DescribeDefaultSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询可用区的默认子网
     @inlinable
-    public func describeDefaultSubnet(ecmRegion: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultSubnetResponse> {
-        self.describeDefaultSubnet(DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone), logger: logger, on: eventLoop)
+    public func describeDefaultSubnet(ecmRegion: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultSubnetResponse> {
+        self.describeDefaultSubnet(DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询可用区的默认子网
     @inlinable
-    public func describeDefaultSubnet(ecmRegion: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
-        try await self.describeDefaultSubnet(DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone), logger: logger, on: eventLoop)
+    public func describeDefaultSubnet(ecmRegion: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultSubnetResponse {
+        try await self.describeDefaultSubnet(DescribeDefaultSubnetRequest(ecmRegion: ecmRegion, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

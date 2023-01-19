@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Pts {
 
     /// 生成临时COS凭证
     @inlinable
-    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateTmpKeyResponse> {
-        self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateTmpKey(_ input: GenerateTmpKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateTmpKeyResponse> {
+        self.client.execute(action: "GenerateTmpKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成临时COS凭证
     @inlinable
-    public func generateTmpKey(_ input: GenerateTmpKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
-        try await self.client.execute(action: "GenerateTmpKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateTmpKey(_ input: GenerateTmpKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
+        try await self.client.execute(action: "GenerateTmpKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成临时COS凭证
     @inlinable
-    public func generateTmpKey(projectId: String, scenarioId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateTmpKeyResponse> {
-        self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    public func generateTmpKey(projectId: String, scenarioId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateTmpKeyResponse> {
+        self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成临时COS凭证
     @inlinable
-    public func generateTmpKey(projectId: String, scenarioId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
-        try await self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    public func generateTmpKey(projectId: String, scenarioId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
+        try await self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 }

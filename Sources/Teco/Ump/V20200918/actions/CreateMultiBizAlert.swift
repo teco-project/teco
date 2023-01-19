@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Ump {
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
-        self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
+        self.client.execute(action: "CreateMultiBizAlert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
-        try await self.client.execute(action: "CreateMultiBizAlert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMultiBizAlert(_ input: CreateMultiBizAlertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
+        try await self.client.execute(action: "CreateMultiBizAlert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
-        self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), logger: logger, on: eventLoop)
+    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMultiBizAlertResponse> {
+        self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 多经点位告警
     ///
     /// 集团广场的多经点位告警
     @inlinable
-    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
-        try await self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), logger: logger, on: eventLoop)
+    public func createMultiBizAlert(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, captureTime: UInt64, state: Int64, image: String? = nil, warnings: [MultiBizWarning]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiBizAlertResponse {
+        try await self.createMultiBizAlert(CreateMultiBizAlertRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, captureTime: captureTime, state: state, image: image, warnings: warnings), region: region, logger: logger, on: eventLoop)
     }
 }

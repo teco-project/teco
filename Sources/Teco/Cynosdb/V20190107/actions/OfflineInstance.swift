@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cynosdb {
 
     /// 下线实例
     @inlinable
-    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
-        self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offlineInstance(_ input: OfflineInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
+        self.client.execute(action: "OfflineInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线实例
     @inlinable
-    public func offlineInstance(_ input: OfflineInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
-        try await self.client.execute(action: "OfflineInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offlineInstance(_ input: OfflineInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
+        try await self.client.execute(action: "OfflineInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线实例
     @inlinable
-    public func offlineInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
-        self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func offlineInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineInstanceResponse> {
+        self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线实例
     @inlinable
-    public func offlineInstance(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
-        try await self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func offlineInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineInstanceResponse {
+        try await self.offlineInstance(OfflineInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

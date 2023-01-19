@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,8 +100,8 @@ extension Vm {
     /// - 视频文件支持的传输协议：HTTP/HTTPS/RTMP；
     /// - 支持用户配置是否需要开启音频审核，若不开启则将仅对视频流图像内容进行审核。
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -135,8 +135,8 @@ extension Vm {
     /// - 视频文件支持的传输协议：HTTP/HTTPS/RTMP；
     /// - 支持用户配置是否需要开启音频审核，若不开启则将仅对视频流图像内容进行审核。
     @inlinable
-    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.client.execute(action: "CreateVideoModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVideoModerationTask(_ input: CreateVideoModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建视频审核任务
@@ -170,8 +170,8 @@ extension Vm {
     /// - 视频文件支持的传输协议：HTTP/HTTPS/RTMP；
     /// - 支持用户配置是否需要开启音频审核，若不开启则将仅对视频流图像内容进行审核。
     @inlinable
-    public func createVideoModerationTask(type: String, tasks: [TaskInput], bizType: String? = nil, seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.createVideoModerationTask(CreateVideoModerationTaskRequest(type: type, tasks: tasks, bizType: bizType, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(type: String, tasks: [TaskInput], bizType: String? = nil, seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
+        self.createVideoModerationTask(CreateVideoModerationTaskRequest(type: type, tasks: tasks, bizType: bizType, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -205,7 +205,7 @@ extension Vm {
     /// - 视频文件支持的传输协议：HTTP/HTTPS/RTMP；
     /// - 支持用户配置是否需要开启音频审核，若不开启则将仅对视频流图像内容进行审核。
     @inlinable
-    public func createVideoModerationTask(type: String, tasks: [TaskInput], bizType: String? = nil, seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(type: type, tasks: tasks, bizType: bizType, seed: seed, callbackUrl: callbackUrl, priority: priority), logger: logger, on: eventLoop)
+    public func createVideoModerationTask(type: String, tasks: [TaskInput], bizType: String? = nil, seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
+        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(type: type, tasks: tasks, bizType: bizType, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Wedata {
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
-        self.client.execute(action: "DescribeRuleTemplatesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
+        self.client.execute(action: "DescribeRuleTemplatesByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesByPageResponse {
-        try await self.client.execute(action: "DescribeRuleTemplatesByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleTemplatesByPage(_ input: DescribeRuleTemplatesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesByPageResponse {
+        try await self.client.execute(action: "DescribeRuleTemplatesByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
-        self.describeRuleTemplatesByPage(DescribeRuleTemplatesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleTemplatesByPageResponse> {
+        self.describeRuleTemplatesByPage(DescribeRuleTemplatesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则模版查询接口
     ///
     /// 过滤条件】 {模版名称Name,支持模糊匹配} {模版类型type，1.系统模版 2.自定义模版} {质量检测维度QualityDims, 1.准确性 2.唯一性 3.完整性 4.一致性 5.及时性 6.有效性} 【排序字段】 { 引用数排序类型CitationOrderType，根据引用数量排序 ASC DESC}
     @inlinable
-    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesByPageResponse {
-        try await self.describeRuleTemplatesByPage(DescribeRuleTemplatesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    public func describeRuleTemplatesByPage(pageNumber: UInt64, pageSize: UInt64, projectId: String, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleTemplatesByPageResponse {
+        try await self.describeRuleTemplatesByPage(DescribeRuleTemplatesByPageRequest(pageNumber: pageNumber, pageSize: pageSize, projectId: projectId, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

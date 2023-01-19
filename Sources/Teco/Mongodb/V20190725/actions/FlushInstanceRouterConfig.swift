@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mongodb {
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable
-    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
-        self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
+        self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable
-    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
-        try await self.client.execute(action: "FlushInstanceRouterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
+        try await self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable
-    public func flushInstanceRouterConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
-        self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
+        self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
     @inlinable
-    public func flushInstanceRouterConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
-        try await self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
+        try await self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

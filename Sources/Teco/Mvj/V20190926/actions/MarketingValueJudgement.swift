@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Mvj {
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
-        self.client.execute(action: "MarketingValueJudgement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
+        self.client.execute(action: "MarketingValueJudgement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 营销价值判断
@@ -82,8 +82,8 @@ extension Mvj {
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
-        try await self.client.execute(action: "MarketingValueJudgement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
+        try await self.client.execute(action: "MarketingValueJudgement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 营销价值判断
@@ -91,8 +91,8 @@ extension Mvj {
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
-        self.marketingValueJudgement(MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), logger: logger, on: eventLoop)
+    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
+        self.marketingValueJudgement(MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), region: region, logger: logger, on: eventLoop)
     }
 
     /// 营销价值判断
@@ -100,7 +100,7 @@ extension Mvj {
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
-    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
-        try await self.marketingValueJudgement(MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), logger: logger, on: eventLoop)
+    public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
+        try await self.marketingValueJudgement(MarketingValueJudgementRequest(accountType: accountType, uid: uid, userIp: userIp, postTime: postTime, imei: imei, referer: referer), region: region, logger: logger, on: eventLoop)
     }
 }

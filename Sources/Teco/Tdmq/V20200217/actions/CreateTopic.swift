@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Tdmq {
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTopic(_ input: CreateTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增主题
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTopic(_ input: CreateTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增主题
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(CreateTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), logger: logger, on: eventLoop)
+    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.createTopic(CreateTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增主题
     ///
     /// 新增指定分区、类型的消息主题
     @inlinable
-    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(CreateTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), logger: logger, on: eventLoop)
+    public func createTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, topicType: UInt64? = nil, clusterId: String? = nil, pulsarTopicType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(CreateTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, topicType: topicType, clusterId: clusterId, pulsarTopicType: pulsarTopicType), region: region, logger: logger, on: eventLoop)
     }
 }

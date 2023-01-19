@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dnspod {
 
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
-        self.client.execute(action: "DescribeDomainAliasList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
+        self.client.execute(action: "DescribeDomainAliasList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
-        try await self.client.execute(action: "DescribeDomainAliasList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainAliasList(_ input: DescribeDomainAliasListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
+        try await self.client.execute(action: "DescribeDomainAliasList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
-        self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainAliasListResponse> {
+        self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名别名列表
     @inlinable
-    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
-        try await self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomainAliasList(domain: String, domainId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainAliasListResponse {
+        try await self.describeDomainAliasList(DescribeDomainAliasListRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

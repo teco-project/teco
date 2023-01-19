@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Tsf {
 
     /// 新增微服务
     @inlinable
-    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMicroserviceResponse> {
-        self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMicroservice(_ input: CreateMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMicroserviceResponse> {
+        self.client.execute(action: "CreateMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增微服务
     @inlinable
-    public func createMicroservice(_ input: CreateMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
-        try await self.client.execute(action: "CreateMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMicroservice(_ input: CreateMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
+        try await self.client.execute(action: "CreateMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增微服务
     @inlinable
-    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMicroserviceResponse> {
-        self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMicroserviceResponse> {
+        self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增微服务
     @inlinable
-    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
-        try await self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    public func createMicroservice(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceResponse {
+        try await self.createMicroservice(CreateMicroserviceRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
     }
 }

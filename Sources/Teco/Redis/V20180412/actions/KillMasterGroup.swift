@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Redis {
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
-        self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func killMasterGroup(_ input: KillMasterGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
+        self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 模拟故障接口
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(_ input: KillMasterGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
-        try await self.client.execute(action: "KillMasterGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func killMasterGroup(_ input: KillMasterGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
+        try await self.client.execute(action: "KillMasterGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 模拟故障接口
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
-        self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), logger: logger, on: eventLoop)
+    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillMasterGroupResponse> {
+        self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模拟故障接口
     ///
     /// 模拟故障
     @inlinable
-    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
-        try await self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), logger: logger, on: eventLoop)
+    public func killMasterGroup(instanceId: String, password: String, shardIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillMasterGroupResponse {
+        try await self.killMasterGroup(KillMasterGroupRequest(instanceId: instanceId, password: password, shardIds: shardIds), region: region, logger: logger, on: eventLoop)
     }
 }

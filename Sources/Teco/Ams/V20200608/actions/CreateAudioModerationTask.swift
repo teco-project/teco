@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,8 +87,8 @@ extension Ams {
     /// - 音频流格式支持的类型：rtp、srtp、rtmp、rtmps、mmsh、 mmst、hls、http、tcp、https、m3u8；
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
-    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        self.client.execute(action: "CreateAudioModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
+        self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -114,8 +114,8 @@ extension Ams {
     /// - 音频流格式支持的类型：rtp、srtp、rtmp、rtmps、mmsh、 mmst、hls、http、tcp、https、m3u8；
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
-    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        try await self.client.execute(action: "CreateAudioModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
+        try await self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建音频审核任务
@@ -141,8 +141,8 @@ extension Ams {
     /// - 音频流格式支持的类型：rtp、srtp、rtmp、rtmps、mmsh、 mmst、hls、http、tcp、https、m3u8；
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
-    public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        self.createAudioModerationTask(CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), logger: logger, on: eventLoop)
+    public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
+        self.createAudioModerationTask(CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -168,7 +168,7 @@ extension Ams {
     /// - 音频流格式支持的类型：rtp、srtp、rtmp、rtmps、mmsh、 mmst、hls、http、tcp、https、m3u8；
     /// - 支持音视频流分离并对音频流进行独立识别；
     @inlinable
-    public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        try await self.createAudioModerationTask(CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), logger: logger, on: eventLoop)
+    public func createAudioModerationTask(bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, tasks: [TaskInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
+        try await self.createAudioModerationTask(CreateAudioModerationTaskRequest(bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl, tasks: tasks), region: region, logger: logger, on: eventLoop)
     }
 }

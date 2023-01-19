@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Iotvideoindustry {
 
     /// 获取X-P2P的统计数据
     @inlinable
-    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeXP2PDataResponse> {
-        self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeXP2PData(_ input: DescribeXP2PDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeXP2PDataResponse> {
+        self.client.execute(action: "DescribeXP2PData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取X-P2P的统计数据
     @inlinable
-    public func describeXP2PData(_ input: DescribeXP2PDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
-        try await self.client.execute(action: "DescribeXP2PData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeXP2PData(_ input: DescribeXP2PDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
+        try await self.client.execute(action: "DescribeXP2PData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取X-P2P的统计数据
     @inlinable
-    public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeXP2PDataResponse> {
-        self.describeXP2PData(DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), logger: logger, on: eventLoop)
+    public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeXP2PDataResponse> {
+        self.describeXP2PData(DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取X-P2P的统计数据
     @inlinable
-    public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
-        try await self.describeXP2PData(DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), logger: logger, on: eventLoop)
+    public func describeXP2PData(p2pAppId: String, from: Int64, to: Int64, p2pChannelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeXP2PDataResponse {
+        try await self.describeXP2PData(DescribeXP2PDataRequest(p2pAppId: p2pAppId, from: from, to: to, p2pChannelId: p2pChannelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
-        self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFolder(_ input: CreateFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
+        self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件夹【Beta版本】
@@ -68,8 +68,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(_ input: CreateFolderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        try await self.client.execute(action: "CreateFolder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFolder(_ input: CreateFolderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
+        try await self.client.execute(action: "CreateFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建文件夹【Beta版本】
@@ -77,8 +77,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
-        self.createFolder(CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), logger: logger, on: eventLoop)
+    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFolderResponse> {
+        self.createFolder(CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件夹【Beta版本】
@@ -86,7 +86,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建文件夹
     @inlinable
-    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
-        try await self.createFolder(CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), logger: logger, on: eventLoop)
+    public func createFolder(projectId: String, folderName: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFolderResponse {
+        try await self.createFolder(CreateFolderRequest(projectId: projectId, folderName: folderName, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
     }
 }

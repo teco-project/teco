@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension As {
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
-        self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
+        self.client.execute(action: "ModifyDesiredCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
-        try await self.client.execute(action: "ModifyDesiredCapacity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
+        try await self.client.execute(action: "ModifyDesiredCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
-        self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), logger: logger, on: eventLoop)
+    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
+        self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
     @inlinable
-    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
-        try await self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), logger: logger, on: eventLoop)
+    public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
+        try await self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), region: region, logger: logger, on: eventLoop)
     }
 }

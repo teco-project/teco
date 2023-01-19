@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,31 +94,31 @@ extension Iotcloud {
     ///
     /// 创建lora类型的设备
     @inlinable
-    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoraDeviceResponse> {
-        self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoraDevice(_ input: CreateLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoraDeviceResponse> {
+        self.client.execute(action: "CreateLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建lora设备
     ///
     /// 创建lora类型的设备
     @inlinable
-    public func createLoraDevice(_ input: CreateLoraDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
-        try await self.client.execute(action: "CreateLoraDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoraDevice(_ input: CreateLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
+        try await self.client.execute(action: "CreateLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建lora设备
     ///
     /// 创建lora类型的设备
     @inlinable
-    public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoraDeviceResponse> {
-        self.createLoraDevice(CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), logger: logger, on: eventLoop)
+    public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoraDeviceResponse> {
+        self.createLoraDevice(CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建lora设备
     ///
     /// 创建lora类型的设备
     @inlinable
-    public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
-        try await self.createLoraDevice(CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), logger: logger, on: eventLoop)
+    public func createLoraDevice(productId: String, deviceName: String, deviceType: String, appEui: String? = nil, deviceEui: String? = nil, appKey: String? = nil, authKey: String? = nil, memo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoraDeviceResponse {
+        try await self.createLoraDevice(CreateLoraDeviceRequest(productId: productId, deviceName: deviceName, deviceType: deviceType, appEui: appEui, deviceEui: deviceEui, appKey: appKey, authKey: authKey, memo: memo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
-        self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
+        self.client.execute(action: "DescribeVpcTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
-        try await self.client.execute(action: "DescribeVpcTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcTaskResult(_ input: DescribeVpcTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
+        try await self.client.execute(action: "DescribeVpcTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
-        self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeVpcTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
+        self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC异步任务执行结果
     ///
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
-    public func describeVpcTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
-        try await self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeVpcTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
+        try await self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

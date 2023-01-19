@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Essbasic {
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
-    public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
-        self.client.execute(action: "GetDownloadFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
+        self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取合同（流程）批量下载链接
@@ -67,8 +67,8 @@ extension Essbasic {
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
-    public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
-        try await self.client.execute(action: "GetDownloadFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDownloadFlowUrl(_ input: GetDownloadFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
+        try await self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取合同（流程）批量下载链接
@@ -76,8 +76,8 @@ extension Essbasic {
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
-    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
-        self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), logger: logger, on: eventLoop)
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
+        self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取合同（流程）批量下载链接
@@ -85,7 +85,7 @@ extension Essbasic {
     /// 此接口（GetDownloadFlowUrl）用于创建电子签批量下载地址，让合作企业进入控制台直接下载，支持客户合同（流程）按照自定义文件夹形式 分类下载。
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
-    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
-        try await self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), logger: logger, on: eventLoop)
+    public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
+        try await self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

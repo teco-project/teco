@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcm {
 
     /// 解关联集群
     @inlinable
-    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkClusterResponse> {
-        self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unlinkCluster(_ input: UnlinkClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkClusterResponse> {
+        self.client.execute(action: "UnlinkCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解关联集群
     @inlinable
-    public func unlinkCluster(_ input: UnlinkClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
-        try await self.client.execute(action: "UnlinkCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unlinkCluster(_ input: UnlinkClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
+        try await self.client.execute(action: "UnlinkCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解关联集群
     @inlinable
-    public func unlinkCluster(meshId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkClusterResponse> {
-        self.unlinkCluster(UnlinkClusterRequest(meshId: meshId, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func unlinkCluster(meshId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkClusterResponse> {
+        self.unlinkCluster(UnlinkClusterRequest(meshId: meshId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解关联集群
     @inlinable
-    public func unlinkCluster(meshId: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
-        try await self.unlinkCluster(UnlinkClusterRequest(meshId: meshId, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func unlinkCluster(meshId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkClusterResponse {
+        try await self.unlinkCluster(UnlinkClusterRequest(meshId: meshId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

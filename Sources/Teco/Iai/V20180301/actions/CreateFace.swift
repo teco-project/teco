@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,8 +115,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
-        self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFace(_ input: CreateFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
+        self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加人脸
@@ -125,8 +125,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createFace(_ input: CreateFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        try await self.client.execute(action: "CreateFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFace(_ input: CreateFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 增加人脸
@@ -135,8 +135,8 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
-        self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
+        self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加人脸
@@ -145,7 +145,7 @@ extension Iai {
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
-    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        try await self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
+        try await self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

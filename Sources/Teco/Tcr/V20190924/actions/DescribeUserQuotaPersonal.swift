@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Tcr {
 
     /// 查询个人用户配额
     @inlinable
-    public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaPersonalResponse> {
-        self.client.execute(action: "DescribeUserQuotaPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaPersonalResponse> {
+        self.client.execute(action: "DescribeUserQuotaPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人用户配额
     @inlinable
-    public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
-        try await self.client.execute(action: "DescribeUserQuotaPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserQuotaPersonal(_ input: DescribeUserQuotaPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
+        try await self.client.execute(action: "DescribeUserQuotaPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询个人用户配额
     @inlinable
-    public func describeUserQuotaPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaPersonalResponse> {
-        self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), logger: logger, on: eventLoop)
+    public func describeUserQuotaPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaPersonalResponse> {
+        self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人用户配额
     @inlinable
-    public func describeUserQuotaPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
-        try await self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), logger: logger, on: eventLoop)
+    public func describeUserQuotaPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
+        try await self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

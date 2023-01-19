@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Tdmq {
 
     /// 获取RocketMQ主题列表
     @inlinable
-    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQTopicsResponse> {
-        self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQTopicsResponse> {
+        self.client.execute(action: "DescribeRocketMQTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ主题列表
     @inlinable
-    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
-        try await self.client.execute(action: "DescribeRocketMQTopics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRocketMQTopics(_ input: DescribeRocketMQTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
+        try await self.client.execute(action: "DescribeRocketMQTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取RocketMQ主题列表
     @inlinable
-    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQTopicsResponse> {
-        self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), logger: logger, on: eventLoop)
+    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQTopicsResponse> {
+        self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ主题列表
     @inlinable
-    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
-        try await self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), logger: logger, on: eventLoop)
+    public func describeRocketMQTopics(offset: UInt64, limit: UInt64, clusterId: String, namespaceId: String, filterType: [String]? = nil, filterName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQTopicsResponse {
+        try await self.describeRocketMQTopics(DescribeRocketMQTopicsRequest(offset: offset, limit: limit, clusterId: clusterId, namespaceId: namespaceId, filterType: filterType, filterName: filterName), region: region, logger: logger, on: eventLoop)
     }
 }

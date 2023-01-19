@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmvpc {
     ///
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
-    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
-        self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
+        self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载VPN通道配置
     ///
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
-    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
-        try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadCustomerGatewayConfiguration(_ input: DownloadCustomerGatewayConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
+        try await self.client.execute(action: "DownloadCustomerGatewayConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载VPN通道配置
     ///
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
-    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
-        self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), logger: logger, on: eventLoop)
+    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomerGatewayConfigurationResponse> {
+        self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载VPN通道配置
     ///
     /// 本接口(DownloadCustomerGatewayConfiguration)用于下载VPN通道配置。
     @inlinable
-    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
-        try await self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), logger: logger, on: eventLoop)
+    public func downloadCustomerGatewayConfiguration(vpnConnectionId: String, vendorName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomerGatewayConfigurationResponse {
+        try await self.downloadCustomerGatewayConfiguration(DownloadCustomerGatewayConfigurationRequest(vpnConnectionId: vpnConnectionId, vendorName: vendorName), region: region, logger: logger, on: eventLoop)
     }
 }

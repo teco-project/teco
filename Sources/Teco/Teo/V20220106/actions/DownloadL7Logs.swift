@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Teo {
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
-        self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadL7Logs(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
+        self.client.execute(action: "DownloadL7Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(_ input: DownloadL7LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
-        try await self.client.execute(action: "DownloadL7Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadL7Logs(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
+        try await self.client.execute(action: "DownloadL7Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
-        self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), logger: logger, on: eventLoop)
+    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
+        self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
-        try await self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), logger: logger, on: eventLoop)
+    public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
+        try await self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

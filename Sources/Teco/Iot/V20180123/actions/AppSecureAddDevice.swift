@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
-    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppSecureAddDeviceResponse> {
-        self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppSecureAddDeviceResponse> {
+        self.client.execute(action: "AppSecureAddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户绑定设备
     ///
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
-    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
-        try await self.client.execute(action: "AppSecureAddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appSecureAddDevice(_ input: AppSecureAddDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
+        try await self.client.execute(action: "AppSecureAddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户绑定设备
     ///
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
-    public func appSecureAddDevice(accessToken: String, deviceSignature: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppSecureAddDeviceResponse> {
-        self.appSecureAddDevice(AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature), logger: logger, on: eventLoop)
+    public func appSecureAddDevice(accessToken: String, deviceSignature: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppSecureAddDeviceResponse> {
+        self.appSecureAddDevice(AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户绑定设备
     ///
     /// 用户绑定设备，绑定后可以在APP端进行控制。绑定设备前需调用“获取设备绑定签名”接口
     @inlinable
-    public func appSecureAddDevice(accessToken: String, deviceSignature: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
-        try await self.appSecureAddDevice(AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature), logger: logger, on: eventLoop)
+    public func appSecureAddDevice(accessToken: String, deviceSignature: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppSecureAddDeviceResponse {
+        try await self.appSecureAddDevice(AppSecureAddDeviceRequest(accessToken: accessToken, deviceSignature: deviceSignature), region: region, logger: logger, on: eventLoop)
     }
 }

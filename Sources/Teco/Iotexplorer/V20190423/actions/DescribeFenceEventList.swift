@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Iotexplorer {
 
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
-        self.client.execute(action: "DescribeFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
+        self.client.execute(action: "DescribeFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
-        try await self.client.execute(action: "DescribeFenceEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFenceEventList(_ input: DescribeFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
+        try await self.client.execute(action: "DescribeFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
-        self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
+        self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏告警事件列表
     @inlinable
-    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
-        try await self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
+        try await self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

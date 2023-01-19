@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Dasb {
 
     /// 查询访问权限列表
     @inlinable
-    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAclsResponse> {
-        self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAcls(_ input: DescribeAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAclsResponse> {
+        self.client.execute(action: "DescribeAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询访问权限列表
     @inlinable
-    public func describeAcls(_ input: DescribeAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
-        try await self.client.execute(action: "DescribeAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAcls(_ input: DescribeAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
+        try await self.client.execute(action: "DescribeAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询访问权限列表
     @inlinable
-    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAclsResponse> {
-        self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAclsResponse> {
+        self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询访问权限列表
     @inlinable
-    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
-        try await self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
+        try await self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

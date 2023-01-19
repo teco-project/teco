@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Ccc {
 
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
-        self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
+        self.client.execute(action: "DescribeAutoCalloutTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
-        try await self.client.execute(action: "DescribeAutoCalloutTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAutoCalloutTasks(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
+        try await self.client.execute(action: "DescribeAutoCalloutTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
-        self.describeAutoCalloutTasks(DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoCalloutTasksResponse> {
+        self.describeAutoCalloutTasks(DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
-        try await self.describeAutoCalloutTasks(DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeAutoCalloutTasks(sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoCalloutTasksResponse {
+        try await self.describeAutoCalloutTasks(DescribeAutoCalloutTasksRequest(sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

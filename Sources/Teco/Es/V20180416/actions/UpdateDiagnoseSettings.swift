@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Es {
 
     /// 更新智能运维配置
     @inlinable
-    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDiagnoseSettingsResponse> {
-        self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDiagnoseSettingsResponse> {
+        self.client.execute(action: "UpdateDiagnoseSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新智能运维配置
     @inlinable
-    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
-        try await self.client.execute(action: "UpdateDiagnoseSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDiagnoseSettings(_ input: UpdateDiagnoseSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
+        try await self.client.execute(action: "UpdateDiagnoseSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新智能运维配置
     @inlinable
-    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDiagnoseSettingsResponse> {
-        self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), logger: logger, on: eventLoop)
+    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDiagnoseSettingsResponse> {
+        self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新智能运维配置
     @inlinable
-    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
-        try await self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), logger: logger, on: eventLoop)
+    public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
+        try await self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), region: region, logger: logger, on: eventLoop)
     }
 }

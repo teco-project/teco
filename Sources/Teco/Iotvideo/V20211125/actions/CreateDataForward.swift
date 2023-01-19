@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 创建数据转发
     @inlinable
-    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
-        self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDataForward(_ input: CreateDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
+        self.client.execute(action: "CreateDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建数据转发
     @inlinable
-    public func createDataForward(_ input: CreateDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
-        try await self.client.execute(action: "CreateDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDataForward(_ input: CreateDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
+        try await self.client.execute(action: "CreateDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建数据转发
     @inlinable
-    public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
-        self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), logger: logger, on: eventLoop)
+    public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
+        self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据转发
     @inlinable
-    public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
-        try await self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), logger: logger, on: eventLoop)
+    public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
+        try await self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 }

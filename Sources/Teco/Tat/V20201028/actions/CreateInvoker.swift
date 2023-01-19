@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Tat {
     ///
     /// 此接口用于创建执行器。
     @inlinable
-    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInvokerResponse> {
-        self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInvoker(_ input: CreateInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInvokerResponse> {
+        self.client.execute(action: "CreateInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建执行器
     ///
     /// 此接口用于创建执行器。
     @inlinable
-    public func createInvoker(_ input: CreateInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
-        try await self.client.execute(action: "CreateInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInvoker(_ input: CreateInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
+        try await self.client.execute(action: "CreateInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建执行器
     ///
     /// 此接口用于创建执行器。
     @inlinable
-    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInvokerResponse> {
-        self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInvokerResponse> {
+        self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建执行器
     ///
     /// 此接口用于创建执行器。
     @inlinable
-    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
-        try await self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), logger: logger, on: eventLoop)
+    public func createInvoker(name: String, type: String, commandId: String, instanceIds: [String], username: String? = nil, parameters: String? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInvokerResponse {
+        try await self.createInvoker(CreateInvokerRequest(name: name, type: type, commandId: commandId, instanceIds: instanceIds, username: username, parameters: parameters, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }
 }

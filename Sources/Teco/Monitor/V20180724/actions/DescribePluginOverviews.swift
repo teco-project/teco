@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Monitor {
     ///
     /// 列出可安装的所有 Grafana 插件
     @inlinable
-    public func describePluginOverviews(_ input: DescribePluginOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginOverviewsResponse> {
-        self.client.execute(action: "DescribePluginOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePluginOverviews(_ input: DescribePluginOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginOverviewsResponse> {
+        self.client.execute(action: "DescribePluginOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出所有 Grafana 插件
     ///
     /// 列出可安装的所有 Grafana 插件
     @inlinable
-    public func describePluginOverviews(_ input: DescribePluginOverviewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
-        try await self.client.execute(action: "DescribePluginOverviews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePluginOverviews(_ input: DescribePluginOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
+        try await self.client.execute(action: "DescribePluginOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出所有 Grafana 插件
     ///
     /// 列出可安装的所有 Grafana 插件
     @inlinable
-    public func describePluginOverviews(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginOverviewsResponse> {
-        self.describePluginOverviews(DescribePluginOverviewsRequest(), logger: logger, on: eventLoop)
+    public func describePluginOverviews(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginOverviewsResponse> {
+        self.describePluginOverviews(DescribePluginOverviewsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出所有 Grafana 插件
     ///
     /// 列出可安装的所有 Grafana 插件
     @inlinable
-    public func describePluginOverviews(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
-        try await self.describePluginOverviews(DescribePluginOverviewsRequest(), logger: logger, on: eventLoop)
+    public func describePluginOverviews(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
+        try await self.describePluginOverviews(DescribePluginOverviewsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Essbasic {
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
-    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建流程
@@ -72,8 +72,8 @@ extension Essbasic {
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
-    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlowByFiles(_ input: CreateFlowByFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.client.execute(action: "CreateFlowByFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用PDF文件创建流程
@@ -81,8 +81,8 @@ extension Essbasic {
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
-    public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
-        self.createFlowByFiles(CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), logger: logger, on: eventLoop)
+    public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowByFilesResponse> {
+        self.createFlowByFiles(CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用PDF文件创建流程
@@ -90,7 +90,7 @@ extension Essbasic {
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
     /// 注意：调用此接口前，请先调用多文件上传接口 (UploadFiles)，提前上传合同文件。
     @inlinable
-    public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
-        try await self.createFlowByFiles(CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), logger: logger, on: eventLoop)
+    public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
+        try await self.createFlowByFiles(CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), region: region, logger: logger, on: eventLoop)
     }
 }

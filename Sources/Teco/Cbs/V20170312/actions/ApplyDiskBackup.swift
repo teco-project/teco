@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Cbs {
     /// * 用于回滚的备份点必须处于NORMAL状态。备份点状态可以通过DescribeDiskBackups接口查询，见输出参数中BackupState字段解释。
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable
-    public func applyDiskBackup(_ input: ApplyDiskBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
-        self.client.execute(action: "ApplyDiskBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyDiskBackup(_ input: ApplyDiskBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
+        self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚备份点
@@ -62,8 +62,8 @@ extension Cbs {
     /// * 用于回滚的备份点必须处于NORMAL状态。备份点状态可以通过DescribeDiskBackups接口查询，见输出参数中BackupState字段解释。
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable
-    public func applyDiskBackup(_ input: ApplyDiskBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
-        try await self.client.execute(action: "ApplyDiskBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyDiskBackup(_ input: ApplyDiskBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
+        try await self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回滚备份点
@@ -73,8 +73,8 @@ extension Cbs {
     /// * 用于回滚的备份点必须处于NORMAL状态。备份点状态可以通过DescribeDiskBackups接口查询，见输出参数中BackupState字段解释。
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable
-    public func applyDiskBackup(diskBackupId: String, diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
-        self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), logger: logger, on: eventLoop)
+    public func applyDiskBackup(diskBackupId: String, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
+        self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回滚备份点
@@ -84,7 +84,7 @@ extension Cbs {
     /// * 用于回滚的备份点必须处于NORMAL状态。备份点状态可以通过DescribeDiskBackups接口查询，见输出参数中BackupState字段解释。
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable
-    public func applyDiskBackup(diskBackupId: String, diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
-        try await self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), logger: logger, on: eventLoop)
+    public func applyDiskBackup(diskBackupId: String, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
+        try await self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 }

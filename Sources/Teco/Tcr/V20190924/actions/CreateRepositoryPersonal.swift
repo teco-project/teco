@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcr {
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
-        self.client.execute(action: "CreateRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
+        self.client.execute(action: "CreateRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
-        try await self.client.execute(action: "CreateRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
+        try await self.client.execute(action: "CreateRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
-        self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), logger: logger, on: eventLoop)
+    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
+        self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
     @inlinable
-    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
-        try await self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), logger: logger, on: eventLoop)
+    public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
+        try await self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

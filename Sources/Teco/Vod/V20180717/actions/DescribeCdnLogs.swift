@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,8 +86,8 @@ extension Vod {
     ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
-        self.client.execute(action: "DescribeCdnLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
+        self.client.execute(action: "DescribeCdnLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 CDN 日志下载链接列表
@@ -97,8 +97,8 @@ extension Vod {
     ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
-        try await self.client.execute(action: "DescribeCdnLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCdnLogs(_ input: DescribeCdnLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
+        try await self.client.execute(action: "DescribeCdnLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 CDN 日志下载链接列表
@@ -108,8 +108,8 @@ extension Vod {
     ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
-        self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
+        self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 CDN 日志下载链接列表
@@ -119,7 +119,7 @@ extension Vod {
     ///     2. 默认情况下 CDN 每小时生成一个日志文件，如果某一个小时没有 CDN 访问，不会生成日志文件。
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
-    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
-        try await self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
+        try await self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

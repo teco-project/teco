@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cynosdb {
     ///
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable
-    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
-        self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
+        self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名称
     ///
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable
-    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
-        try await self.client.execute(action: "ModifyInstanceName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceName(_ input: ModifyInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
+        try await self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例名称
     ///
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable
-    public func modifyInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
-        self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    public func modifyInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
+        self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名称
     ///
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable
-    public func modifyInstanceName(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
-        try await self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    public func modifyInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
+        try await self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

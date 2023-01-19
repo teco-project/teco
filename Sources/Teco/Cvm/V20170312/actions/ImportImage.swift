@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Cvm {
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
+        self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
+        try await self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), logger: logger, on: eventLoop)
+    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
+        self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 外部镜像导入
     ///
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable
-    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), logger: logger, on: eventLoop)
+    public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
+        try await self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Tke {
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
-        self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageCache(_ input: CreateImageCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
+        self.client.execute(action: "CreateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像缓存
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(_ input: CreateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
-        try await self.client.execute(action: "CreateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageCache(_ input: CreateImageCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
+        try await self.client.execute(action: "CreateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像缓存
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
-        self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), logger: logger, on: eventLoop)
+    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
+        self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像缓存
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
-        try await self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), logger: logger, on: eventLoop)
+    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
+        try await self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tbaas {
 
     /// 查询长安链体验网络指定高度区块的交易
     @inlinable
-    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerDemoBlockTransactionResponse> {
-        self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerDemoBlockTransactionResponse> {
+        self.client.execute(action: "QueryChainMakerDemoBlockTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询长安链体验网络指定高度区块的交易
     @inlinable
-    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
-        try await self.client.execute(action: "QueryChainMakerDemoBlockTransaction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryChainMakerDemoBlockTransaction(_ input: QueryChainMakerDemoBlockTransactionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
+        try await self.client.execute(action: "QueryChainMakerDemoBlockTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询长安链体验网络指定高度区块的交易
     @inlinable
-    public func queryChainMakerDemoBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerDemoBlockTransactionResponse> {
-        self.queryChainMakerDemoBlockTransaction(QueryChainMakerDemoBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), logger: logger, on: eventLoop)
+    public func queryChainMakerDemoBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerDemoBlockTransactionResponse> {
+        self.queryChainMakerDemoBlockTransaction(QueryChainMakerDemoBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询长安链体验网络指定高度区块的交易
     @inlinable
-    public func queryChainMakerDemoBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
-        try await self.queryChainMakerDemoBlockTransaction(QueryChainMakerDemoBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), logger: logger, on: eventLoop)
+    public func queryChainMakerDemoBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerDemoBlockTransactionResponse {
+        try await self.queryChainMakerDemoBlockTransaction(QueryChainMakerDemoBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), region: region, logger: logger, on: eventLoop)
     }
 }

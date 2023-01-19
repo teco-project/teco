@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cfs {
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(_ input: DescribeCfsFileSystemClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
-        self.client.execute(action: "DescribeCfsFileSystemClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCfsFileSystemClients(_ input: DescribeCfsFileSystemClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
+        self.client.execute(action: "DescribeCfsFileSystemClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统客户端
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(_ input: DescribeCfsFileSystemClientsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
-        try await self.client.execute(action: "DescribeCfsFileSystemClients", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCfsFileSystemClients(_ input: DescribeCfsFileSystemClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
+        try await self.client.execute(action: "DescribeCfsFileSystemClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件系统客户端
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
-        self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
+        self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统客户端
     ///
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
-    public func describeCfsFileSystemClients(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
-        try await self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
+        try await self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

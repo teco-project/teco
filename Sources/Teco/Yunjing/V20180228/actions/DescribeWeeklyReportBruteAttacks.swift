@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
-        self.client.execute(action: "DescribeWeeklyReportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
+        self.client.execute(action: "DescribeWeeklyReportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportBruteAttacksResponse {
-        try await self.client.execute(action: "DescribeWeeklyReportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWeeklyReportBruteAttacks(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportBruteAttacksResponse {
+        try await self.client.execute(action: "DescribeWeeklyReportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
-        self.describeWeeklyReportBruteAttacks(DescribeWeeklyReportBruteAttacksRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWeeklyReportBruteAttacksResponse> {
+        self.describeWeeklyReportBruteAttacks(DescribeWeeklyReportBruteAttacksRequest(beginDate: beginDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业周报密码破解数据
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportBruteAttacksResponse {
-        try await self.describeWeeklyReportBruteAttacks(DescribeWeeklyReportBruteAttacksRequest(beginDate: beginDate, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeWeeklyReportBruteAttacks(beginDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWeeklyReportBruteAttacksResponse {
+        try await self.describeWeeklyReportBruteAttacks(DescribeWeeklyReportBruteAttacksRequest(beginDate: beginDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

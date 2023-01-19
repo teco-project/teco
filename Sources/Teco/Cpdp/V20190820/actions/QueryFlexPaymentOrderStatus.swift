@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Cpdp {
 
     /// 灵云V2-查询付款订单状态
     @inlinable
-    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderStatusResponse> {
-        self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderStatusResponse> {
+        self.client.execute(action: "QueryFlexPaymentOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询付款订单状态
     @inlinable
-    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
-        try await self.client.execute(action: "QueryFlexPaymentOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexPaymentOrderStatus(_ input: QueryFlexPaymentOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
+        try await self.client.execute(action: "QueryFlexPaymentOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-查询付款订单状态
     @inlinable
-    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderStatusResponse> {
-        self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPaymentOrderStatusResponse> {
+        self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询付款订单状态
     @inlinable
-    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
-        try await self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexPaymentOrderStatus(outOrderId: String? = nil, orderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPaymentOrderStatusResponse {
+        try await self.queryFlexPaymentOrderStatus(QueryFlexPaymentOrderStatusRequest(outOrderId: outOrderId, orderId: orderId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

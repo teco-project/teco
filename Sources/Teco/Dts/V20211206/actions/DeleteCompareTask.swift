@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dts {
     ///
     /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
     @inlinable
-    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompareTaskResponse> {
-        self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompareTaskResponse> {
+        self.client.execute(action: "DeleteCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除一致性校验任务
     ///
     /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
     @inlinable
-    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
-        try await self.client.execute(action: "DeleteCompareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCompareTask(_ input: DeleteCompareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
+        try await self.client.execute(action: "DeleteCompareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除一致性校验任务
     ///
     /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
     @inlinable
-    public func deleteCompareTask(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompareTaskResponse> {
-        self.deleteCompareTask(DeleteCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    public func deleteCompareTask(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompareTaskResponse> {
+        self.deleteCompareTask(DeleteCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除一致性校验任务
     ///
     /// 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
     @inlinable
-    public func deleteCompareTask(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
-        try await self.deleteCompareTask(DeleteCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    public func deleteCompareTask(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompareTaskResponse {
+        try await self.deleteCompareTask(DeleteCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

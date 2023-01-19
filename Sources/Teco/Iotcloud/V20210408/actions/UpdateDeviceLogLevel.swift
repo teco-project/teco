@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotcloud {
     ///
     /// 设置设备上报的日志级别
     @inlinable
-    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
-        self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
+        self.client.execute(action: "UpdateDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
     @inlinable
-    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
-        try await self.client.execute(action: "UpdateDeviceLogLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
+        try await self.client.execute(action: "UpdateDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
     @inlinable
-    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
-        self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
+        self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
     @inlinable
-    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
-        try await self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
+        try await self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 }

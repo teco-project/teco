@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cloudstudio {
 
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
-        self.client.execute(action: "CreateWorkspaceByAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
+        self.client.execute(action: "CreateWorkspaceByAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
-        try await self.client.execute(action: "CreateWorkspaceByAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWorkspaceByAgent(_ input: CreateWorkspaceByAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
+        try await self.client.execute(action: "CreateWorkspaceByAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
-        self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), logger: logger, on: eventLoop)
+    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
+        self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云服务器方式创建工作空间
     @inlinable
-    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
-        try await self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), logger: logger, on: eventLoop)
+    public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
+        try await self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), region: region, logger: logger, on: eventLoop)
     }
 }

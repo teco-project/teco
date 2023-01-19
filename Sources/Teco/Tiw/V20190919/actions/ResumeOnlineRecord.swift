@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tiw {
 
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
-        self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
+        self.client.execute(action: "ResumeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
-        try await self.client.execute(action: "ResumeOnlineRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeOnlineRecord(_ input: ResumeOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
+        try await self.client.execute(action: "ResumeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
-        self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
+        self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复实时录制
     @inlinable
-    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
-        try await self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
+        try await self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdid {
 
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
+        self.client.execute(action: "SetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(_ input: SetCredentialStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        try await self.client.execute(action: "SetCredentialStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setCredentialStatus(_ input: SetCredentialStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
+        try await self.client.execute(action: "SetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
-        self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), logger: logger, on: eventLoop)
+    public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCredentialStatusResponse> {
+        self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置凭证链上状态
     @inlinable
-    public func setCredentialStatus(credentialStatus: CredentialStatus, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
-        try await self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), logger: logger, on: eventLoop)
+    public func setCredentialStatus(credentialStatus: CredentialStatus, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCredentialStatusResponse {
+        try await self.setCredentialStatus(SetCredentialStatusRequest(credentialStatus: credentialStatus), region: region, logger: logger, on: eventLoop)
     }
 }

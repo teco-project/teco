@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,31 +127,31 @@ extension Cls {
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
-        self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConfigExtra(_ input: CreateConfigExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
+        self.client.execute(action: "CreateConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建特殊采集配置任务
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(_ input: CreateConfigExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
-        try await self.client.execute(action: "CreateConfigExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConfigExtra(_ input: CreateConfigExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
+        try await self.client.execute(action: "CreateConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建特殊采集配置任务
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
-        self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
+        self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建特殊采集配置任务
     ///
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
-    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
-        try await self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
+        try await self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 }

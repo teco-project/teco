@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Tbaas {
 
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
-        self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
+        self.client.execute(action: "GetPeerLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
-        try await self.client.execute(action: "GetPeerLogForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPeerLogForUser(_ input: GetPeerLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
+        try await self.client.execute(action: "GetPeerLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
-        self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), logger: logger, on: eventLoop)
+    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPeerLogForUserResponse> {
+        self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取节点日志
     @inlinable
-    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
-        try await self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), logger: logger, on: eventLoop)
+    public func getPeerLogForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, beginTime: String, rowNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPeerLogForUserResponse {
+        try await self.getPeerLogForUser(GetPeerLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, beginTime: beginTime, rowNum: rowNum), region: region, logger: logger, on: eventLoop)
     }
 }

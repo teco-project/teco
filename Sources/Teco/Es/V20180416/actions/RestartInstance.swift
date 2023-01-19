@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Es {
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
-        self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartInstance(_ input: RestartInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
+        self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(_ input: RestartInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
-        try await self.client.execute(action: "RestartInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartInstance(_ input: RestartInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
+        try await self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
-        self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)
+    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
+        self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
     @inlinable
-    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
-        try await self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), logger: logger, on: eventLoop)
+    public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
+        try await self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }
 }

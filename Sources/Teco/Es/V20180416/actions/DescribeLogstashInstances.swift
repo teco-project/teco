@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Es {
     ///
     /// 查询用户该地域下符合条件的所有Logstash实例
     @inlinable
-    public func describeLogstashInstances(_ input: DescribeLogstashInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashInstancesResponse> {
-        self.client.execute(action: "DescribeLogstashInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogstashInstances(_ input: DescribeLogstashInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashInstancesResponse> {
+        self.client.execute(action: "DescribeLogstashInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Logstash实例列表
     ///
     /// 查询用户该地域下符合条件的所有Logstash实例
     @inlinable
-    public func describeLogstashInstances(_ input: DescribeLogstashInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstancesResponse {
-        try await self.client.execute(action: "DescribeLogstashInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogstashInstances(_ input: DescribeLogstashInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstancesResponse {
+        try await self.client.execute(action: "DescribeLogstashInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Logstash实例列表
     ///
     /// 查询用户该地域下符合条件的所有Logstash实例
     @inlinable
-    public func describeLogstashInstances(zone: String? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByKey: UInt64? = nil, orderByType: UInt64? = nil, vpcIds: [String]? = nil, tagList: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashInstancesResponse> {
-        self.describeLogstashInstances(DescribeLogstashInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, vpcIds: vpcIds, tagList: tagList), logger: logger, on: eventLoop)
+    public func describeLogstashInstances(zone: String? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByKey: UInt64? = nil, orderByType: UInt64? = nil, vpcIds: [String]? = nil, tagList: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogstashInstancesResponse> {
+        self.describeLogstashInstances(DescribeLogstashInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, vpcIds: vpcIds, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Logstash实例列表
     ///
     /// 查询用户该地域下符合条件的所有Logstash实例
     @inlinable
-    public func describeLogstashInstances(zone: String? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByKey: UInt64? = nil, orderByType: UInt64? = nil, vpcIds: [String]? = nil, tagList: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstancesResponse {
-        try await self.describeLogstashInstances(DescribeLogstashInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, vpcIds: vpcIds, tagList: tagList), logger: logger, on: eventLoop)
+    public func describeLogstashInstances(zone: String? = nil, instanceIds: [String]? = nil, instanceNames: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByKey: UInt64? = nil, orderByType: UInt64? = nil, vpcIds: [String]? = nil, tagList: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogstashInstancesResponse {
+        try await self.describeLogstashInstances(DescribeLogstashInstancesRequest(zone: zone, instanceIds: instanceIds, instanceNames: instanceNames, offset: offset, limit: limit, orderByKey: orderByKey, orderByType: orderByType, vpcIds: vpcIds, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 }

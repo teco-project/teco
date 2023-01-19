@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 查询规则组详情接口
     @inlinable
-    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupResponse> {
-        self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupResponse> {
+        self.client.execute(action: "DescribeRuleGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则组详情接口
     @inlinable
-    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
-        try await self.client.execute(action: "DescribeRuleGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleGroup(_ input: DescribeRuleGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
+        try await self.client.execute(action: "DescribeRuleGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询规则组详情接口
     @inlinable
-    public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupResponse> {
-        self.describeRuleGroup(DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), logger: logger, on: eventLoop)
+    public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupResponse> {
+        self.describeRuleGroup(DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则组详情接口
     @inlinable
-    public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
-        try await self.describeRuleGroup(DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), logger: logger, on: eventLoop)
+    public func describeRuleGroup(ruleGroupId: UInt64? = nil, datasourceId: String? = nil, tableId: String? = nil, projectId: String? = nil, databaseId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupResponse {
+        try await self.describeRuleGroup(DescribeRuleGroupRequest(ruleGroupId: ruleGroupId, datasourceId: datasourceId, tableId: tableId, projectId: projectId, databaseId: databaseId), region: region, logger: logger, on: eventLoop)
     }
 }

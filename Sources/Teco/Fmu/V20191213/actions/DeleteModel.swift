@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Fmu {
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
-        self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteModel(_ input: DeleteModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
+        self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(_ input: DeleteModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
-        try await self.client.execute(action: "DeleteModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteModel(_ input: DeleteModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
+        try await self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
-        self.deleteModel(DeleteModelRequest(modelId: modelId), logger: logger, on: eventLoop)
+    public func deleteModel(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
+        self.deleteModel(DeleteModelRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除唇色素材
     ///
     /// 删除已注册的唇色素材。
     @inlinable
-    public func deleteModel(modelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
-        try await self.deleteModel(DeleteModelRequest(modelId: modelId), logger: logger, on: eventLoop)
+    public func deleteModel(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
+        try await self.deleteModel(DeleteModelRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
-    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogBackupOverviewResponse> {
-        self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogBackupOverviewResponse> {
+        self.client.execute(action: "DescribeBinlogBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志备份概览
     ///
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
-    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
-        try await self.client.execute(action: "DescribeBinlogBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBinlogBackupOverview(_ input: DescribeBinlogBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
+        try await self.client.execute(action: "DescribeBinlogBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询日志备份概览
     ///
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
-    public func describeBinlogBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogBackupOverviewResponse> {
-        self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeBinlogBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBinlogBackupOverviewResponse> {
+        self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志备份概览
     ///
     /// 本接口(DescribeBinlogBackupOverview)用于查询用户在当前地域总的日志备份概览。
     @inlinable
-    public func describeBinlogBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
-        try await self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeBinlogBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBinlogBackupOverviewResponse {
+        try await self.describeBinlogBackupOverview(DescribeBinlogBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

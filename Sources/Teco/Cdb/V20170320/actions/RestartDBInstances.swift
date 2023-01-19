@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,8 +50,8 @@ extension Cdb {
     /// 1、本接口只支持主实例进行重启操作；
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
-        self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
+        self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -61,8 +61,8 @@ extension Cdb {
     /// 1、本接口只支持主实例进行重启操作；
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
-    public func restartDBInstances(_ input: RestartDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        try await self.client.execute(action: "RestartDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartDBInstances(_ input: RestartDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.client.execute(action: "RestartDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启实例
@@ -72,8 +72,8 @@ extension Cdb {
     /// 1、本接口只支持主实例进行重启操作；
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
-    public func restartDBInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
-        self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func restartDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartDBInstancesResponse> {
+        self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -83,7 +83,7 @@ extension Cdb {
     /// 1、本接口只支持主实例进行重启操作；
     /// 2、实例状态必须为正常，并且没有其他异步任务在执行中。
     @inlinable
-    public func restartDBInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
-        try await self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func restartDBInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartDBInstancesResponse {
+        try await self.restartDBInstances(RestartDBInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

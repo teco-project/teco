@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ecm {
     ///
     /// 通过实例id获取当前禁止的操作
     @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDeniedActionsResponse> {
-        self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDeniedActionsResponse> {
+        self.client.execute(action: "DescribeInstancesDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
     @inlinable
-    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
-        try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.client.execute(action: "DescribeInstancesDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
     @inlinable
-    public func describeInstancesDeniedActions(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDeniedActionsResponse> {
-        self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func describeInstancesDeniedActions(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesDeniedActionsResponse> {
+        self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
     @inlinable
-    public func describeInstancesDeniedActions(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
-        try await self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func describeInstancesDeniedActions(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
+        try await self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

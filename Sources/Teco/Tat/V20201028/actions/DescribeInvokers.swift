@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Tat {
     ///
     /// 此接口用于查询执行器信息。
     @inlinable
-    public func describeInvokers(_ input: DescribeInvokersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvokersResponse> {
-        self.client.execute(action: "DescribeInvokers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInvokers(_ input: DescribeInvokersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvokersResponse> {
+        self.client.execute(action: "DescribeInvokers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询执行器
     ///
     /// 此接口用于查询执行器信息。
     @inlinable
-    public func describeInvokers(_ input: DescribeInvokersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
-        try await self.client.execute(action: "DescribeInvokers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInvokers(_ input: DescribeInvokersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
+        try await self.client.execute(action: "DescribeInvokers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询执行器
     ///
     /// 此接口用于查询执行器信息。
     @inlinable
-    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvokersResponse> {
-        self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvokersResponse> {
+        self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行器
     ///
     /// 此接口用于查询执行器信息。
     @inlinable
-    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
-        try await self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInvokers(invokerIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvokersResponse {
+        try await self.describeInvokers(DescribeInvokersRequest(invokerIds: invokerIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

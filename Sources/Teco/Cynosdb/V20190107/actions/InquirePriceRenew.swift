@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cynosdb {
     ///
     /// 查询续费集群价格
     @inlinable
-    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewResponse> {
-        self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewResponse> {
+        self.client.execute(action: "InquirePriceRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费集群询价
     ///
     /// 查询续费集群价格
     @inlinable
-    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
-        try await self.client.execute(action: "InquirePriceRenew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceRenew(_ input: InquirePriceRenewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
+        try await self.client.execute(action: "InquirePriceRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费集群询价
     ///
     /// 查询续费集群价格
     @inlinable
-    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewResponse> {
-        self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewResponse> {
+        self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费集群询价
     ///
     /// 查询续费集群价格
     @inlinable
-    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
-        try await self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
+        try await self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 }

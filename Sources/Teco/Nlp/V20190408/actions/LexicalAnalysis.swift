@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,8 +72,8 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
-        self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
+        self.client.execute(action: "LexicalAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 词法分析
@@ -84,8 +84,8 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
-        try await self.client.execute(action: "LexicalAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func lexicalAnalysis(_ input: LexicalAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
+        try await self.client.execute(action: "LexicalAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 词法分析
@@ -96,8 +96,8 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
-        self.lexicalAnalysis(LexicalAnalysisRequest(text: text, dictId: dictId, flag: flag), logger: logger, on: eventLoop)
+    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LexicalAnalysisResponse> {
+        self.lexicalAnalysis(LexicalAnalysisRequest(text: text, dictId: dictId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 词法分析
@@ -108,7 +108,7 @@ extension Nlp {
     /// 3、命名实体识别：快速识别文本中的实体，例如人名、地名、机构名等。
     /// 所有的功能均基于千亿级大规模互联网语料进行持续迭代更新，以保证效果不断提升，用户无需担心新词发现、歧义消除、调用性能等问题。目前词法分析已经在泛互联网、金融、政务等不同垂直领域提供业务支持，并取得良好的效果。
     @inlinable
-    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
-        try await self.lexicalAnalysis(LexicalAnalysisRequest(text: text, dictId: dictId, flag: flag), logger: logger, on: eventLoop)
+    public func lexicalAnalysis(text: String, dictId: String? = nil, flag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LexicalAnalysisResponse {
+        try await self.lexicalAnalysis(LexicalAnalysisRequest(text: text, dictId: dictId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

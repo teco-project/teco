@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Solar {
 
     /// 子项目详情
     @inlinable
-    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubProjectResponse> {
-        self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubProject(_ input: DescribeSubProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubProjectResponse> {
+        self.client.execute(action: "DescribeSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 子项目详情
     @inlinable
-    public func describeSubProject(_ input: DescribeSubProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
-        try await self.client.execute(action: "DescribeSubProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubProject(_ input: DescribeSubProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
+        try await self.client.execute(action: "DescribeSubProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 子项目详情
     @inlinable
-    public func describeSubProject(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubProjectResponse> {
-        self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeSubProject(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubProjectResponse> {
+        self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 子项目详情
     @inlinable
-    public func describeSubProject(subProjectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
-        try await self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeSubProject(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubProjectResponse {
+        try await self.describeSubProject(DescribeSubProjectRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 }

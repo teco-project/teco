@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,25 +119,25 @@ extension Cdc {
 
     /// 修改机房设备信息
     @inlinable
-    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteDeviceInfoResponse> {
-        self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteDeviceInfoResponse> {
+        self.client.execute(action: "ModifySiteDeviceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改机房设备信息
     @inlinable
-    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
-        try await self.client.execute(action: "ModifySiteDeviceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySiteDeviceInfo(_ input: ModifySiteDeviceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
+        try await self.client.execute(action: "ModifySiteDeviceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改机房设备信息
     @inlinable
-    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteDeviceInfoResponse> {
-        self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteDeviceInfoResponse> {
+        self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改机房设备信息
     @inlinable
-    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
-        try await self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    public func modifySiteDeviceInfo(siteId: String, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteDeviceInfoResponse {
+        try await self.modifySiteDeviceInfo(ModifySiteDeviceInfoRequest(siteId: siteId, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), region: region, logger: logger, on: eventLoop)
     }
 }

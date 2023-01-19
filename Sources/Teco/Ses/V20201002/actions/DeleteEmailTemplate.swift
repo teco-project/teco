@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Ses {
 
     /// 删除发信模板
     @inlinable
-    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailTemplateResponse> {
-        self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailTemplateResponse> {
+        self.client.execute(action: "DeleteEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发信模板
     @inlinable
-    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
-        try await self.client.execute(action: "DeleteEmailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEmailTemplate(_ input: DeleteEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
+        try await self.client.execute(action: "DeleteEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除发信模板
     @inlinable
-    public func deleteEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailTemplateResponse> {
-        self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), logger: logger, on: eventLoop)
+    public func deleteEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailTemplateResponse> {
+        self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发信模板
     @inlinable
-    public func deleteEmailTemplate(templateID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
-        try await self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), logger: logger, on: eventLoop)
+    public func deleteEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
+        try await self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 }

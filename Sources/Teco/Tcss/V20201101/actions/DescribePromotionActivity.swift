@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询促销活动
     @inlinable
-    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePromotionActivityResponse> {
-        self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePromotionActivityResponse> {
+        self.client.execute(action: "DescribePromotionActivity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询促销活动
     @inlinable
-    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
-        try await self.client.execute(action: "DescribePromotionActivity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePromotionActivity(_ input: DescribePromotionActivityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
+        try await self.client.execute(action: "DescribePromotionActivity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询促销活动
     @inlinable
-    public func describePromotionActivity(activeID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePromotionActivityResponse> {
-        self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), logger: logger, on: eventLoop)
+    public func describePromotionActivity(activeID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePromotionActivityResponse> {
+        self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询促销活动
     @inlinable
-    public func describePromotionActivity(activeID: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
-        try await self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), logger: logger, on: eventLoop)
+    public func describePromotionActivity(activeID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePromotionActivityResponse {
+        try await self.describePromotionActivity(DescribePromotionActivityRequest(activeID: activeID), region: region, logger: logger, on: eventLoop)
     }
 }

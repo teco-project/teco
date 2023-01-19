@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,8 +93,8 @@ extension Ams {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        self.client.execute(action: "CreateAudioModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
+        self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -126,8 +126,8 @@ extension Ams {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        try await self.client.execute(action: "CreateAudioModerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAudioModerationTask(_ input: CreateAudioModerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
+        try await self.client.execute(action: "CreateAudioModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建音频审核任务
@@ -159,8 +159,8 @@ extension Ams {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
-        self.createAudioModerationTask(CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAudioModerationTaskResponse> {
+        self.createAudioModerationTask(CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音频审核任务
@@ -192,7 +192,7 @@ extension Ams {
     /// - 如果直播任务没有取消/结束，直播视频推流因故中断，产品将在将在10分钟内持续拉流重试。如果10分钟检测到音频切片数据，则恢复正常审核，反之，则终止拉流并退出审核。在拉流终止后，用户如有审核需求，需重新送审。
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
-    public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
-        try await self.createAudioModerationTask(CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), logger: logger, on: eventLoop)
+    public func createAudioModerationTask(tasks: [TaskInput], bizType: String? = nil, type: String? = nil, seed: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAudioModerationTaskResponse {
+        try await self.createAudioModerationTask(CreateAudioModerationTaskRequest(tasks: tasks, bizType: bizType, type: type, seed: seed, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

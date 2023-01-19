@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -38,25 +38,25 @@ extension Cloudaudit {
 
     /// 查询跟踪集概要
     @inlinable
-    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuditsResponse> {
-        self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAudits(_ input: ListAuditsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuditsResponse> {
+        self.client.execute(action: "ListAudits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询跟踪集概要
     @inlinable
-    public func listAudits(_ input: ListAuditsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
-        try await self.client.execute(action: "ListAudits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAudits(_ input: ListAuditsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
+        try await self.client.execute(action: "ListAudits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询跟踪集概要
     @inlinable
-    public func listAudits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuditsResponse> {
-        self.listAudits(ListAuditsRequest(), logger: logger, on: eventLoop)
+    public func listAudits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuditsResponse> {
+        self.listAudits(ListAuditsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询跟踪集概要
     @inlinable
-    public func listAudits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
-        try await self.listAudits(ListAuditsRequest(), logger: logger, on: eventLoop)
+    public func listAudits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuditsResponse {
+        try await self.listAudits(ListAuditsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

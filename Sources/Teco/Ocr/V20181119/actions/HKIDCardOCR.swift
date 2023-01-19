@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -128,8 +128,8 @@ extension Ocr {
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
-        self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func hkidCardOCR(_ input: HKIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
+        self.client.execute(action: "HKIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 中国香港身份证识别
@@ -137,8 +137,8 @@ extension Ocr {
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func hkidCardOCR(_ input: HKIDCardOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
-        try await self.client.execute(action: "HKIDCardOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func hkidCardOCR(_ input: HKIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
+        try await self.client.execute(action: "HKIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 中国香港身份证识别
@@ -146,8 +146,8 @@ extension Ocr {
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
-        self.hkidCardOCR(HKIDCardOCRRequest(detectFake: detectFake, returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
+        self.hkidCardOCR(HKIDCardOCRRequest(detectFake: detectFake, returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 中国香港身份证识别
@@ -155,7 +155,7 @@ extension Ocr {
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
-        try await self.hkidCardOCR(HKIDCardOCRRequest(detectFake: detectFake, returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
+        try await self.hkidCardOCR(HKIDCardOCRRequest(detectFake: detectFake, returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Mariadb {
 
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
-        self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelDcnJob(_ input: CancelDcnJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
+        self.client.execute(action: "CancelDcnJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(_ input: CancelDcnJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
-        try await self.client.execute(action: "CancelDcnJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelDcnJob(_ input: CancelDcnJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
+        try await self.client.execute(action: "CancelDcnJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
-        self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func cancelDcnJob(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDcnJobResponse> {
+        self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消DCN同步
     @inlinable
-    public func cancelDcnJob(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
-        try await self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func cancelDcnJob(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDcnJobResponse {
+        try await self.cancelDcnJob(CancelDcnJobRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

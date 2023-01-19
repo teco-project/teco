@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable
-    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchCDBProxyResponse> {
-        self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchCDBProxyResponse> {
+        self.client.execute(action: "SwitchCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable
-    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
-        try await self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchCDBProxy(_ input: SwitchCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
+        try await self.client.execute(action: "SwitchCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable
-    public func switchCDBProxy(instanceId: String, proxyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchCDBProxyResponse> {
-        self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func switchCDBProxy(instanceId: String, proxyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchCDBProxyResponse> {
+        self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable
-    public func switchCDBProxy(instanceId: String, proxyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
-        try await self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func switchCDBProxy(instanceId: String, proxyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
+        try await self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

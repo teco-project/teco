@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Mgobe {
     ///
     /// 通过game_id、room_id解散房间
     @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
-        self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dismissRoom(_ input: DismissRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
+        self.client.execute(action: "DismissRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解散房间
     ///
     /// 通过game_id、room_id解散房间
     @inlinable
-    public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dismissRoom(_ input: DismissRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.client.execute(action: "DismissRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解散房间
     ///
     /// 通过game_id、room_id解散房间
     @inlinable
-    public func dismissRoom(gameId: String, roomId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
-        self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), logger: logger, on: eventLoop)
+    public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomResponse> {
+        self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解散房间
     ///
     /// 通过game_id、room_id解散房间
     @inlinable
-    public func dismissRoom(gameId: String, roomId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
-        try await self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), logger: logger, on: eventLoop)
+    public func dismissRoom(gameId: String, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
+        try await self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Antiddos {
 
     /// 修改CC频率限制策略
     @inlinable
-    public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
-        self.client.execute(action: "ModifyCCReqLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
+        self.client.execute(action: "ModifyCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC频率限制策略
     @inlinable
-    public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
-        try await self.client.execute(action: "ModifyCCReqLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
+        try await self.client.execute(action: "ModifyCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC频率限制策略
     @inlinable
-    public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
-        self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), logger: logger, on: eventLoop)
+    public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
+        self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC频率限制策略
     @inlinable
-    public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
-        try await self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), logger: logger, on: eventLoop)
+    public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
+        try await self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), region: region, logger: logger, on: eventLoop)
     }
 }

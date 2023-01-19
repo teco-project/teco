@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
-        self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
+        self.client.execute(action: "ModifyTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
-        try await self.client.execute(action: "ModifyTemplateMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTemplateMember(_ input: ModifyTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
+        try await self.client.execute(action: "ModifyTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
-        self.modifyTemplateMember(ModifyTemplateMemberRequest(templateId: templateId, originalTemplateMember: originalTemplateMember, templateMember: templateMember), logger: logger, on: eventLoop)
+    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTemplateMemberResponse> {
+        self.modifyTemplateMember(ModifyTemplateMemberRequest(templateId: templateId, originalTemplateMember: originalTemplateMember, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模板对象成员
     ///
     /// 修改模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
     @inlinable
-    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
-        try await self.modifyTemplateMember(ModifyTemplateMemberRequest(templateId: templateId, originalTemplateMember: originalTemplateMember, templateMember: templateMember), logger: logger, on: eventLoop)
+    public func modifyTemplateMember(templateId: String, originalTemplateMember: [MemberInfo], templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTemplateMemberResponse {
+        try await self.modifyTemplateMember(ModifyTemplateMemberRequest(templateId: templateId, originalTemplateMember: originalTemplateMember, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
 }

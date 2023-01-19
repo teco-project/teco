@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,25 +104,25 @@ extension Iotvideo {
 
     /// 获取产品转发规则
     @inlinable
-    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForwardRuleResponse> {
-        self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeForwardRule(_ input: DescribeForwardRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForwardRuleResponse> {
+        self.client.execute(action: "DescribeForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发规则
     @inlinable
-    public func describeForwardRule(_ input: DescribeForwardRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
-        try await self.client.execute(action: "DescribeForwardRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeForwardRule(_ input: DescribeForwardRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
+        try await self.client.execute(action: "DescribeForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品转发规则
     @inlinable
-    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForwardRuleResponse> {
-        self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), logger: logger, on: eventLoop)
+    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForwardRuleResponse> {
+        self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发规则
     @inlinable
-    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
-        try await self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), logger: logger, on: eventLoop)
+    public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
+        try await self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), region: region, logger: logger, on: eventLoop)
     }
 }

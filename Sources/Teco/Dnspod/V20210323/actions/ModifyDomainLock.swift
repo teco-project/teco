@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dnspod {
 
     /// 锁定域名
     @inlinable
-    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainLockResponse> {
-        self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomainLock(_ input: ModifyDomainLockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainLockResponse> {
+        self.client.execute(action: "ModifyDomainLock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 锁定域名
     @inlinable
-    public func modifyDomainLock(_ input: ModifyDomainLockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
-        try await self.client.execute(action: "ModifyDomainLock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomainLock(_ input: ModifyDomainLockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
+        try await self.client.execute(action: "ModifyDomainLock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 锁定域名
     @inlinable
-    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainLockResponse> {
-        self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainLockResponse> {
+        self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 锁定域名
     @inlinable
-    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
-        try await self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
+        try await self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

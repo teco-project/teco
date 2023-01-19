@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Kms {
     ///
     /// 随机数生成接口。
     @inlinable
-    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateRandomResponse> {
-        self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateRandom(_ input: GenerateRandomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateRandomResponse> {
+        self.client.execute(action: "GenerateRandom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 随机数生成接口
     ///
     /// 随机数生成接口。
     @inlinable
-    public func generateRandom(_ input: GenerateRandomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
-        try await self.client.execute(action: "GenerateRandom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateRandom(_ input: GenerateRandomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
+        try await self.client.execute(action: "GenerateRandom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 随机数生成接口
     ///
     /// 随机数生成接口。
     @inlinable
-    public func generateRandom(numberOfBytes: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateRandomResponse> {
-        self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), logger: logger, on: eventLoop)
+    public func generateRandom(numberOfBytes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateRandomResponse> {
+        self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 随机数生成接口
     ///
     /// 随机数生成接口。
     @inlinable
-    public func generateRandom(numberOfBytes: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
-        try await self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), logger: logger, on: eventLoop)
+    public func generateRandom(numberOfBytes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
+        try await self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Apigateway {
 
     /// 重置API文档密码
     @inlinable
-    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAPIDocPasswordResponse> {
-        self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAPIDocPasswordResponse> {
+        self.client.execute(action: "ResetAPIDocPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置API文档密码
     @inlinable
-    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
-        try await self.client.execute(action: "ResetAPIDocPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetAPIDocPassword(_ input: ResetAPIDocPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
+        try await self.client.execute(action: "ResetAPIDocPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置API文档密码
     @inlinable
-    public func resetAPIDocPassword(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAPIDocPasswordResponse> {
-        self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    public func resetAPIDocPassword(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAPIDocPasswordResponse> {
+        self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置API文档密码
     @inlinable
-    public func resetAPIDocPassword(apiDocId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
-        try await self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), logger: logger, on: eventLoop)
+    public func resetAPIDocPassword(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
+        try await self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
     }
 }

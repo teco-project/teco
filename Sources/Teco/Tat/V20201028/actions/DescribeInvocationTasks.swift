@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tat {
     ///
     /// 此接口用于查询执行任务详情。
     @inlinable
-    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationTasksResponse> {
-        self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationTasksResponse> {
+        self.client.execute(action: "DescribeInvocationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询执行任务
     ///
     /// 此接口用于查询执行任务详情。
     @inlinable
-    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
-        try await self.client.execute(action: "DescribeInvocationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInvocationTasks(_ input: DescribeInvocationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
+        try await self.client.execute(action: "DescribeInvocationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询执行任务
     ///
     /// 此接口用于查询执行任务详情。
     @inlinable
-    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationTasksResponse> {
-        self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), logger: logger, on: eventLoop)
+    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationTasksResponse> {
+        self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行任务
     ///
     /// 此接口用于查询执行任务详情。
     @inlinable
-    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
-        try await self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), logger: logger, on: eventLoop)
+    public func describeInvocationTasks(invocationTaskIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, hideOutput: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationTasksResponse {
+        try await self.describeInvocationTasks(DescribeInvocationTasksRequest(invocationTaskIds: invocationTaskIds, filters: filters, limit: limit, offset: offset, hideOutput: hideOutput), region: region, logger: logger, on: eventLoop)
     }
 }

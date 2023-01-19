@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Pts {
     ///
     /// 查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleQueryResponse> {
-        self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleQueryResponse> {
+        self.client.execute(action: "DescribeSampleQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指标
     ///
     /// 查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
-        try await self.client.execute(action: "DescribeSampleQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSampleQuery(_ input: DescribeSampleQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
+        try await self.client.execute(action: "DescribeSampleQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指标
     ///
     /// 查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleQueryResponse> {
-        self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), logger: logger, on: eventLoop)
+    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleQueryResponse> {
+        self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指标
     ///
     /// 查询指标，返回固定时间点指标内容
     @inlinable
-    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
-        try await self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), logger: logger, on: eventLoop)
+    public func describeSampleQuery(jobId: String, scenarioId: String, metric: String, aggregation: String, projectId: String, labels: [Label]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleQueryResponse {
+        try await self.describeSampleQuery(DescribeSampleQueryRequest(jobId: jobId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, projectId: projectId, labels: labels), region: region, logger: logger, on: eventLoop)
     }
 }

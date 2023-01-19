@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Trp {
 
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
-        self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTraceChain(_ input: CreateTraceChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
+        self.client.execute(action: "CreateTraceChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(_ input: CreateTraceChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
-        try await self.client.execute(action: "CreateTraceChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTraceChain(_ input: CreateTraceChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
+        try await self.client.execute(action: "CreateTraceChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
-        self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), logger: logger, on: eventLoop)
+    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceChainResponse> {
+        self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上链溯源信息
     @inlinable
-    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
-        try await self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), logger: logger, on: eventLoop)
+    public func createTraceChain(corpId: UInt64? = nil, traceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceChainResponse {
+        try await self.createTraceChain(CreateTraceChainRequest(corpId: corpId, traceId: traceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Bmlb {
     ///
     /// 更新黑石负载均衡证书。
     @inlinable
-    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertResponse> {
-        self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceCert(_ input: ReplaceCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertResponse> {
+        self.client.execute(action: "ReplaceCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石负载均衡证书
     ///
     /// 更新黑石负载均衡证书。
     @inlinable
-    public func replaceCert(_ input: ReplaceCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
-        try await self.client.execute(action: "ReplaceCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceCert(_ input: ReplaceCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
+        try await self.client.execute(action: "ReplaceCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新黑石负载均衡证书
     ///
     /// 更新黑石负载均衡证书。
     @inlinable
-    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertResponse> {
-        self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), logger: logger, on: eventLoop)
+    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertResponse> {
+        self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石负载均衡证书
     ///
     /// 更新黑石负载均衡证书。
     @inlinable
-    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
-        try await self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), logger: logger, on: eventLoop)
+    public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
+        try await self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Rum {
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
-        self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
+        self.client.execute(action: "DescribeOfflineLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
-        try await self.client.execute(action: "DescribeOfflineLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOfflineLogConfigs(_ input: DescribeOfflineLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
+        try await self.client.execute(action: "DescribeOfflineLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
-        self.describeOfflineLogConfigs(DescribeOfflineLogConfigsRequest(projectKey: projectKey), logger: logger, on: eventLoop)
+    public func describeOfflineLogConfigs(projectKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfflineLogConfigsResponse> {
+        self.describeOfflineLogConfigs(DescribeOfflineLogConfigsRequest(projectKey: projectKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设置的离线日志监听配置
     ///
     /// 获取设置的离线日志监听配置 - 返回设置的用户唯一标识
     @inlinable
-    public func describeOfflineLogConfigs(projectKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
-        try await self.describeOfflineLogConfigs(DescribeOfflineLogConfigsRequest(projectKey: projectKey), logger: logger, on: eventLoop)
+    public func describeOfflineLogConfigs(projectKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfflineLogConfigsResponse {
+        try await self.describeOfflineLogConfigs(DescribeOfflineLogConfigsRequest(projectKey: projectKey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tem {
 
     /// 销毁日志收集配置
     @inlinable
-    public func destroyLogConfig(_ input: DestroyLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyLogConfigResponse> {
-        self.client.execute(action: "DestroyLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyLogConfig(_ input: DestroyLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyLogConfigResponse> {
+        self.client.execute(action: "DestroyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁日志收集配置
     @inlinable
-    public func destroyLogConfig(_ input: DestroyLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyLogConfigResponse {
-        try await self.client.execute(action: "DestroyLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyLogConfig(_ input: DestroyLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyLogConfigResponse {
+        try await self.client.execute(action: "DestroyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁日志收集配置
     @inlinable
-    public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyLogConfigResponse> {
-        self.destroyLogConfig(DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyLogConfigResponse> {
+        self.destroyLogConfig(DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁日志收集配置
     @inlinable
-    public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyLogConfigResponse {
-        try await self.destroyLogConfig(DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func destroyLogConfig(environmentId: String, name: String, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyLogConfigResponse {
+        try await self.destroyLogConfig(DestroyLogConfigRequest(environmentId: environmentId, name: name, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ciam {
 
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
-        self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
+        self.client.execute(action: "CreateApiImportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
-        try await self.client.execute(action: "CreateApiImportUserJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApiImportUserJob(_ input: CreateApiImportUserJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
+        try await self.client.execute(action: "CreateApiImportUserJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
-        self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), logger: logger, on: eventLoop)
+    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiImportUserJobResponse> {
+        self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建接口导入用户任务
     @inlinable
-    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
-        try await self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), logger: logger, on: eventLoop)
+    public func createApiImportUserJob(userStoreId: String, dataFlowUserCreateList: [ImportUser], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiImportUserJobResponse {
+        try await self.createApiImportUserJob(CreateApiImportUserJobRequest(userStoreId: userStoreId, dataFlowUserCreateList: dataFlowUserCreateList), region: region, logger: logger, on: eventLoop)
     }
 }

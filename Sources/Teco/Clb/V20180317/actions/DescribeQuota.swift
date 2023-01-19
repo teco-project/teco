@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Clb {
     ///
     /// 查询用户当前地域下的各项配额
     @inlinable
-    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaResponse> {
-        self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeQuota(_ input: DescribeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaResponse> {
+        self.client.execute(action: "DescribeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配额
     ///
     /// 查询用户当前地域下的各项配额
     @inlinable
-    public func describeQuota(_ input: DescribeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
-        try await self.client.execute(action: "DescribeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeQuota(_ input: DescribeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
+        try await self.client.execute(action: "DescribeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询配额
     ///
     /// 查询用户当前地域下的各项配额
     @inlinable
-    public func describeQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaResponse> {
-        self.describeQuota(DescribeQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaResponse> {
+        self.describeQuota(DescribeQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配额
     ///
     /// 查询用户当前地域下的各项配额
     @inlinable
-    public func describeQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
-        try await self.describeQuota(DescribeQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
+        try await self.describeQuota(DescribeQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

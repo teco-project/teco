@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Sqlserver {
     ///
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
+        self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据备份文件恢复实例
     ///
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据备份文件恢复实例
     ///
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
+        self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据备份文件恢复实例
     ///
     /// 本接口（RestoreInstance）用于根据备份文件恢复实例。
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: Int64, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, targetInstanceId: targetInstanceId, renameRestore: renameRestore, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

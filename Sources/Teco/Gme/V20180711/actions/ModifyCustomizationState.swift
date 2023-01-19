@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Gme {
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
-        self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
+        self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
-        try await self.client.execute(action: "ModifyCustomizationState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
+        try await self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
-        self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), logger: logger, on: eventLoop)
+    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
+        self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改语音消息转文本自学习模型状态
     ///
     /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
     @inlinable
-    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
-        try await self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), logger: logger, on: eventLoop)
+    public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
+        try await self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 }

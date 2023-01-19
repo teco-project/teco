@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Yunjing {
 
     /// 获取高危命令规则列表
     @inlinable
-    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashRulesResponse> {
-        self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBashRules(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashRulesResponse> {
+        self.client.execute(action: "DescribeBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令规则列表
     @inlinable
-    public func describeBashRules(_ input: DescribeBashRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
-        try await self.client.execute(action: "DescribeBashRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBashRules(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
+        try await self.client.execute(action: "DescribeBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高危命令规则列表
     @inlinable
-    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashRulesResponse> {
-        self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashRulesResponse> {
+        self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令规则列表
     @inlinable
-    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
-        try await self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
+        try await self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
-        self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
+        self.client.execute(action: "DescribeClusterNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
-        try await self.client.execute(action: "DescribeClusterNamespaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterNamespaceList(_ input: DescribeClusterNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
+        try await self.client.execute(action: "DescribeClusterNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(clusterId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
-        self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeClusterNamespaceList(clusterId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
+        self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群命名空间列表
     @inlinable
-    public func describeClusterNamespaceList(clusterId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
-        try await self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeClusterNamespaceList(clusterId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
+        try await self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

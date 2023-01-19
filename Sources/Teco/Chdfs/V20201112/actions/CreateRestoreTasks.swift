@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Chdfs {
     ///
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
-        self.client.execute(action: "CreateRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
+        self.client.execute(action: "CreateRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建回热任务
     ///
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
-        try await self.client.execute(action: "CreateRestoreTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRestoreTasks(_ input: CreateRestoreTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
+        try await self.client.execute(action: "CreateRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量创建回热任务
     ///
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
-        self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), logger: logger, on: eventLoop)
+    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
+        self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建回热任务
     ///
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable
-    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
-        try await self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), logger: logger, on: eventLoop)
+    public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
+        try await self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), region: region, logger: logger, on: eventLoop)
     }
 }

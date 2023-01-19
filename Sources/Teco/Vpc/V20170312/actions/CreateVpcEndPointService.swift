@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Vpc {
     ///
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
-    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
-        self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
+        self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点服务
     ///
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
-    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
-        try await self.client.execute(action: "CreateVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVpcEndPointService(_ input: CreateVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
+        try await self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建终端节点服务
     ///
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
-    public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
-        self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService), logger: logger, on: eventLoop)
+    public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
+        self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点服务
     ///
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
-    public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
-        try await self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService), logger: logger, on: eventLoop)
+    public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
+        try await self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService), region: region, logger: logger, on: eventLoop)
     }
 }

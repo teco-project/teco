@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Cynosdb {
     ///
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
-    public func searchClusterTables(_ input: SearchClusterTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClusterTablesResponse> {
-        self.client.execute(action: "SearchClusterTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchClusterTables(_ input: SearchClusterTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClusterTablesResponse> {
+        self.client.execute(action: "SearchClusterTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索集群数据表列表
     ///
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
-    public func searchClusterTables(_ input: SearchClusterTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterTablesResponse {
-        try await self.client.execute(action: "SearchClusterTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchClusterTables(_ input: SearchClusterTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterTablesResponse {
+        try await self.client.execute(action: "SearchClusterTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索集群数据表列表
     ///
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
-    public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClusterTablesResponse> {
-        self.searchClusterTables(SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType), logger: logger, on: eventLoop)
+    public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClusterTablesResponse> {
+        self.searchClusterTables(SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索集群数据表列表
     ///
     /// 本接口(SearchClusterTables)搜索集群数据表列表
     @inlinable
-    public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterTablesResponse {
-        try await self.searchClusterTables(SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType), logger: logger, on: eventLoop)
+    public func searchClusterTables(clusterId: String, database: String? = nil, table: String? = nil, tableType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterTablesResponse {
+        try await self.searchClusterTables(SearchClusterTablesRequest(clusterId: clusterId, database: database, table: table, tableType: tableType), region: region, logger: logger, on: eventLoop)
     }
 }

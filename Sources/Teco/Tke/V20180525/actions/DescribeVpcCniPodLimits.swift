@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tke {
     ///
     /// 本接口查询当前用户和地域在指定可用区下的机型可支持的最大 TKE VPC-CNI 网络模式的 Pod 数量
     @inlinable
-    public func describeVpcCniPodLimits(_ input: DescribeVpcCniPodLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcCniPodLimitsResponse> {
-        self.client.execute(action: "DescribeVpcCniPodLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcCniPodLimits(_ input: DescribeVpcCniPodLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcCniPodLimitsResponse> {
+        self.client.execute(action: "DescribeVpcCniPodLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机型可支持的最大VPC-CNI模式Pod数量
     ///
     /// 本接口查询当前用户和地域在指定可用区下的机型可支持的最大 TKE VPC-CNI 网络模式的 Pod 数量
     @inlinable
-    public func describeVpcCniPodLimits(_ input: DescribeVpcCniPodLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcCniPodLimitsResponse {
-        try await self.client.execute(action: "DescribeVpcCniPodLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcCniPodLimits(_ input: DescribeVpcCniPodLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcCniPodLimitsResponse {
+        try await self.client.execute(action: "DescribeVpcCniPodLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询机型可支持的最大VPC-CNI模式Pod数量
     ///
     /// 本接口查询当前用户和地域在指定可用区下的机型可支持的最大 TKE VPC-CNI 网络模式的 Pod 数量
     @inlinable
-    public func describeVpcCniPodLimits(zone: String? = nil, instanceFamily: String? = nil, instanceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcCniPodLimitsResponse> {
-        self.describeVpcCniPodLimits(DescribeVpcCniPodLimitsRequest(zone: zone, instanceFamily: instanceFamily, instanceType: instanceType), logger: logger, on: eventLoop)
+    public func describeVpcCniPodLimits(zone: String? = nil, instanceFamily: String? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcCniPodLimitsResponse> {
+        self.describeVpcCniPodLimits(DescribeVpcCniPodLimitsRequest(zone: zone, instanceFamily: instanceFamily, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询机型可支持的最大VPC-CNI模式Pod数量
     ///
     /// 本接口查询当前用户和地域在指定可用区下的机型可支持的最大 TKE VPC-CNI 网络模式的 Pod 数量
     @inlinable
-    public func describeVpcCniPodLimits(zone: String? = nil, instanceFamily: String? = nil, instanceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcCniPodLimitsResponse {
-        try await self.describeVpcCniPodLimits(DescribeVpcCniPodLimitsRequest(zone: zone, instanceFamily: instanceFamily, instanceType: instanceType), logger: logger, on: eventLoop)
+    public func describeVpcCniPodLimits(zone: String? = nil, instanceFamily: String? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcCniPodLimitsResponse {
+        try await self.describeVpcCniPodLimits(DescribeVpcCniPodLimitsRequest(zone: zone, instanceFamily: instanceFamily, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 }

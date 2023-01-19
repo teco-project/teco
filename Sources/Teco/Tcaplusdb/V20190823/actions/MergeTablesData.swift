@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcaplusdb {
     ///
     /// 合并指定表格
     @inlinable
-    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergeTablesDataResponse> {
-        self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func mergeTablesData(_ input: MergeTablesDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergeTablesDataResponse> {
+        self.client.execute(action: "MergeTablesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合服
     ///
     /// 合并指定表格
     @inlinable
-    public func mergeTablesData(_ input: MergeTablesDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
-        try await self.client.execute(action: "MergeTablesData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func mergeTablesData(_ input: MergeTablesDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
+        try await self.client.execute(action: "MergeTablesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合服
     ///
     /// 合并指定表格
     @inlinable
-    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergeTablesDataResponse> {
-        self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), logger: logger, on: eventLoop)
+    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergeTablesDataResponse> {
+        self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合服
     ///
     /// 合并指定表格
     @inlinable
-    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
-        try await self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), logger: logger, on: eventLoop)
+    public func mergeTablesData(selectedTables: [MergeTablesInfo], isOnlyCompare: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergeTablesDataResponse {
+        try await self.mergeTablesData(MergeTablesDataRequest(selectedTables: selectedTables, isOnlyCompare: isOnlyCompare), region: region, logger: logger, on: eventLoop)
     }
 }

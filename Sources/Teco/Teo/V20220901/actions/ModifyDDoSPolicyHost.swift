@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Teo {
 
     /// 域名DDoS高可用开关
     @inlinable
-    public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
-        self.client.execute(action: "ModifyDDoSPolicyHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
+        self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名DDoS高可用开关
     @inlinable
-    public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
-        try await self.client.execute(action: "ModifyDDoSPolicyHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
+        try await self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名DDoS高可用开关
     @inlinable
-    public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
-        self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), logger: logger, on: eventLoop)
+    public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
+        self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名DDoS高可用开关
     @inlinable
-    public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
-        try await self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), logger: logger, on: eventLoop)
+    public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
+        try await self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }
 }

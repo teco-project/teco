@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
-    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersResponse> {
-        self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersResponse> {
+        self.client.execute(action: "DescribeL7Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层监听器列表信息
     ///
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
-    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
-        try await self.client.execute(action: "DescribeL7Listeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeL7Listeners(_ input: DescribeL7ListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
+        try await self.client.execute(action: "DescribeL7Listeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑石负载均衡七层监听器列表信息
     ///
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
-    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersResponse> {
-        self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenersResponse> {
+        self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层监听器列表信息
     ///
     /// 获取黑石负载均衡七层监听器列表信息。
     @inlinable
-    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
-        try await self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func describeL7Listeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenersResponse {
+        try await self.describeL7Listeners(DescribeL7ListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,31 +107,31 @@ extension Bmlb {
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
-        self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
+        self.client.execute(action: "ModifyL7Listener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
-        try await self.client.execute(action: "ModifyL7Listener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyL7Listener(_ input: ModifyL7ListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
+        try await self.client.execute(action: "ModifyL7Listener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
-        self.modifyL7Listener(ModifyL7ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sslMode: sslMode, certId: certId, certName: certName, certContent: certContent, certKey: certKey, certCaId: certCaId, certCaName: certCaName, certCaContent: certCaContent, bandwidth: bandwidth, forwardProtocol: forwardProtocol), logger: logger, on: eventLoop)
+    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7ListenerResponse> {
+        self.modifyL7Listener(ModifyL7ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sslMode: sslMode, certId: certId, certName: certName, certContent: certContent, certKey: certKey, certCaId: certCaId, certCaName: certCaName, certCaContent: certCaContent, bandwidth: bandwidth, forwardProtocol: forwardProtocol), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层监听器
     ///
     /// 修改黑石负载均衡七层监听器。
     @inlinable
-    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
-        try await self.modifyL7Listener(ModifyL7ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sslMode: sslMode, certId: certId, certName: certName, certContent: certContent, certKey: certKey, certCaId: certCaId, certCaName: certCaName, certCaContent: certCaContent, bandwidth: bandwidth, forwardProtocol: forwardProtocol), logger: logger, on: eventLoop)
+    public func modifyL7Listener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7ListenerResponse {
+        try await self.modifyL7Listener(ModifyL7ListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sslMode: sslMode, certId: certId, certName: certName, certContent: certContent, certKey: certKey, certCaId: certCaId, certCaName: certCaName, certCaContent: certCaContent, bandwidth: bandwidth, forwardProtocol: forwardProtocol), region: region, logger: logger, on: eventLoop)
     }
 }

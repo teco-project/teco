@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
-        self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
+        self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定数量扩容实例
@@ -68,8 +68,8 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
-        try await self.client.execute(action: "ScaleOutInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scaleOutInstances(_ input: ScaleOutInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
+        try await self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 指定数量扩容实例
@@ -80,8 +80,8 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
-        self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), logger: logger, on: eventLoop)
+    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
+        self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 指定数量扩容实例
@@ -92,7 +92,7 @@ extension As {
     /// * 接口会增加期望实例数，新的期望实例数需要小于等于最大实例数
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
-    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
-        try await self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), logger: logger, on: eventLoop)
+    public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
+        try await self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)
     }
 }

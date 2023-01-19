@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,25 +111,25 @@ extension Antiddos {
 
     /// 修改DDoS清洗阈值
     @inlinable
-    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSThresholdResponse> {
-        self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSThresholdResponse> {
+        self.client.execute(action: "ModifyDDoSThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS清洗阈值
     @inlinable
-    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
-        try await self.client.execute(action: "ModifyDDoSThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSThreshold(_ input: ModifyDDoSThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
+        try await self.client.execute(action: "ModifyDDoSThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS清洗阈值
     @inlinable
-    public func modifyDDoSThreshold(threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64? = nil, synFloodThreshold: UInt64? = nil, synFloodPktThreshold: UInt64? = nil, udpFloodThreshold: UInt64? = nil, udpFloodPktThreshold: UInt64? = nil, ackFloodThreshold: UInt64? = nil, ackFloodPktThreshold: UInt64? = nil, synAckFloodThreshold: UInt64? = nil, synAckFloodPktThreshold: UInt64? = nil, rstFloodThreshold: UInt64? = nil, rstFloodPktThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSThresholdResponse> {
-        self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(threshold: threshold, id: id, business: business, otherThresholdFlag: otherThresholdFlag, synFloodThreshold: synFloodThreshold, synFloodPktThreshold: synFloodPktThreshold, udpFloodThreshold: udpFloodThreshold, udpFloodPktThreshold: udpFloodPktThreshold, ackFloodThreshold: ackFloodThreshold, ackFloodPktThreshold: ackFloodPktThreshold, synAckFloodThreshold: synAckFloodThreshold, synAckFloodPktThreshold: synAckFloodPktThreshold, rstFloodThreshold: rstFloodThreshold, rstFloodPktThreshold: rstFloodPktThreshold), logger: logger, on: eventLoop)
+    public func modifyDDoSThreshold(threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64? = nil, synFloodThreshold: UInt64? = nil, synFloodPktThreshold: UInt64? = nil, udpFloodThreshold: UInt64? = nil, udpFloodPktThreshold: UInt64? = nil, ackFloodThreshold: UInt64? = nil, ackFloodPktThreshold: UInt64? = nil, synAckFloodThreshold: UInt64? = nil, synAckFloodPktThreshold: UInt64? = nil, rstFloodThreshold: UInt64? = nil, rstFloodPktThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSThresholdResponse> {
+        self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(threshold: threshold, id: id, business: business, otherThresholdFlag: otherThresholdFlag, synFloodThreshold: synFloodThreshold, synFloodPktThreshold: synFloodPktThreshold, udpFloodThreshold: udpFloodThreshold, udpFloodPktThreshold: udpFloodPktThreshold, ackFloodThreshold: ackFloodThreshold, ackFloodPktThreshold: ackFloodPktThreshold, synAckFloodThreshold: synAckFloodThreshold, synAckFloodPktThreshold: synAckFloodPktThreshold, rstFloodThreshold: rstFloodThreshold, rstFloodPktThreshold: rstFloodPktThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS清洗阈值
     @inlinable
-    public func modifyDDoSThreshold(threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64? = nil, synFloodThreshold: UInt64? = nil, synFloodPktThreshold: UInt64? = nil, udpFloodThreshold: UInt64? = nil, udpFloodPktThreshold: UInt64? = nil, ackFloodThreshold: UInt64? = nil, ackFloodPktThreshold: UInt64? = nil, synAckFloodThreshold: UInt64? = nil, synAckFloodPktThreshold: UInt64? = nil, rstFloodThreshold: UInt64? = nil, rstFloodPktThreshold: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
-        try await self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(threshold: threshold, id: id, business: business, otherThresholdFlag: otherThresholdFlag, synFloodThreshold: synFloodThreshold, synFloodPktThreshold: synFloodPktThreshold, udpFloodThreshold: udpFloodThreshold, udpFloodPktThreshold: udpFloodPktThreshold, ackFloodThreshold: ackFloodThreshold, ackFloodPktThreshold: ackFloodPktThreshold, synAckFloodThreshold: synAckFloodThreshold, synAckFloodPktThreshold: synAckFloodPktThreshold, rstFloodThreshold: rstFloodThreshold, rstFloodPktThreshold: rstFloodPktThreshold), logger: logger, on: eventLoop)
+    public func modifyDDoSThreshold(threshold: UInt64, id: String, business: String, otherThresholdFlag: Int64? = nil, synFloodThreshold: UInt64? = nil, synFloodPktThreshold: UInt64? = nil, udpFloodThreshold: UInt64? = nil, udpFloodPktThreshold: UInt64? = nil, ackFloodThreshold: UInt64? = nil, ackFloodPktThreshold: UInt64? = nil, synAckFloodThreshold: UInt64? = nil, synAckFloodPktThreshold: UInt64? = nil, rstFloodThreshold: UInt64? = nil, rstFloodPktThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSThresholdResponse {
+        try await self.modifyDDoSThreshold(ModifyDDoSThresholdRequest(threshold: threshold, id: id, business: business, otherThresholdFlag: otherThresholdFlag, synFloodThreshold: synFloodThreshold, synFloodPktThreshold: synFloodPktThreshold, udpFloodThreshold: udpFloodThreshold, udpFloodPktThreshold: udpFloodPktThreshold, ackFloodThreshold: ackFloodThreshold, ackFloodPktThreshold: ackFloodPktThreshold, synAckFloodThreshold: synAckFloodThreshold, synAckFloodPktThreshold: synAckFloodPktThreshold, rstFloodThreshold: rstFloodThreshold, rstFloodPktThreshold: rstFloodPktThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

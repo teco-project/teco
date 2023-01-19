@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cynosdb {
 
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
-        self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterParam(_ input: ModifyClusterParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
+        self.client.execute(action: "ModifyClusterParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(_ input: ModifyClusterParamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
-        try await self.client.execute(action: "ModifyClusterParam", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterParam(_ input: ModifyClusterParamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
+        try await self.client.execute(action: "ModifyClusterParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
-        self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
+        self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群参数
     @inlinable
-    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
-        try await self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
+        try await self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

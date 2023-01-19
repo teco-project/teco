@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Vod {
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
-        self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func splitMedia(_ input: SplitMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
+        self.client.execute(action: "SplitMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(_ input: SplitMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
-        try await self.client.execute(action: "SplitMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func splitMedia(_ input: SplitMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
+        try await self.client.execute(action: "SplitMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
-        self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), logger: logger, on: eventLoop)
+    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitMediaResponse> {
+        self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频拆条
     ///
     /// 对点播视频进行拆条，生成多个新的点播视频。
     @inlinable
-    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
-        try await self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), logger: logger, on: eventLoop)
+    public func splitMedia(fileId: String, segments: [SplitMediaTaskConfig], subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitMediaResponse {
+        try await self.splitMedia(SplitMediaRequest(fileId: fileId, segments: segments, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority), region: region, logger: logger, on: eventLoop)
     }
 }

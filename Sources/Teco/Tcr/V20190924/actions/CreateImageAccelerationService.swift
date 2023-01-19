@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tcr {
 
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
-        self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
+        self.client.execute(action: "CreateImageAccelerationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
-        try await self.client.execute(action: "CreateImageAccelerationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImageAccelerationService(_ input: CreateImageAccelerationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
+        try await self.client.execute(action: "CreateImageAccelerationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
-        self.createImageAccelerationService(CreateImageAccelerationServiceRequest(registryId: registryId, vpcId: vpcId, subnetId: subnetId, storageType: storageType, pGroupId: pGroupId, zone: zone, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageAccelerationServiceResponse> {
+        self.createImageAccelerationService(CreateImageAccelerationServiceRequest(registryId: registryId, vpcId: vpcId, subnetId: subnetId, storageType: storageType, pGroupId: pGroupId, zone: zone, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像加速服务
     @inlinable
-    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
-        try await self.createImageAccelerationService(CreateImageAccelerationServiceRequest(registryId: registryId, vpcId: vpcId, subnetId: subnetId, storageType: storageType, pGroupId: pGroupId, zone: zone, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createImageAccelerationService(registryId: String, vpcId: String, subnetId: String, storageType: String, pGroupId: String, zone: String, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageAccelerationServiceResponse {
+        try await self.createImageAccelerationService(CreateImageAccelerationServiceRequest(registryId: registryId, vpcId: vpcId, subnetId: subnetId, storageType: storageType, pGroupId: pGroupId, zone: zone, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

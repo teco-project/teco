@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcr {
     ///
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
-    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagePersonalResponse> {
-        self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagePersonalResponse> {
+        self.client.execute(action: "DescribeImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版镜像仓库tag列表
     ///
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
-    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
-        try await self.client.execute(action: "DescribeImagePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImagePersonal(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
+        try await self.client.execute(action: "DescribeImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取个人版镜像仓库tag列表
     ///
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
-    public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagePersonalResponse> {
-        self.describeImagePersonal(DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag), logger: logger, on: eventLoop)
+    public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagePersonalResponse> {
+        self.describeImagePersonal(DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版镜像仓库tag列表
     ///
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
-    public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
-        try await self.describeImagePersonal(DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag), logger: logger, on: eventLoop)
+    public func describeImagePersonal(repoName: String, offset: Int64? = nil, limit: Int64? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagePersonalResponse {
+        try await self.describeImagePersonal(DescribeImagePersonalRequest(repoName: repoName, offset: offset, limit: limit, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

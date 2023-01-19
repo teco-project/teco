@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Vod {
     ///
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
-        self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
+        self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建音视频内容分析模板
     ///
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
-    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        try await self.client.execute(action: "CreateAIAnalysisTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAIAnalysisTemplate(_ input: CreateAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
+        try await self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建音视频内容分析模板
     ///
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
-    public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
-        self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), logger: logger, on: eventLoop)
+    public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
+        self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音视频内容分析模板
     ///
     /// 创建用户自定义音视频内容分析模板，数量上限：50。
     @inlinable
-    public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        try await self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), logger: logger, on: eventLoop)
+    public func createAIAnalysisTemplate(subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, highlightConfigure: HighlightsConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
+        try await self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
 }

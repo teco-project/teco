@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmvpc {
     ///
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
-    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeNatGatewayResponse> {
-        self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeNatGatewayResponse> {
+        self.client.execute(action: "UpgradeNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级NAT网关
     ///
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
-    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
-        try await self.client.execute(action: "UpgradeNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeNatGateway(_ input: UpgradeNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
+        try await self.client.execute(action: "UpgradeNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级NAT网关
     ///
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
-    public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeNatGatewayResponse> {
-        self.upgradeNatGateway(UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), logger: logger, on: eventLoop)
+    public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeNatGatewayResponse> {
+        self.upgradeNatGateway(UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级NAT网关
     ///
     /// 升级NAT网关接口，可NAT网关修改为小型NAT网关、中型NAT网关、以及大型NAT网关
     @inlinable
-    public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
-        try await self.upgradeNatGateway(UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), logger: logger, on: eventLoop)
+    public func upgradeNatGateway(natId: String, vpcId: String, maxConcurrent: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeNatGatewayResponse {
+        try await self.upgradeNatGateway(UpgradeNatGatewayRequest(natId: natId, vpcId: vpcId, maxConcurrent: maxConcurrent), region: region, logger: logger, on: eventLoop)
     }
 }

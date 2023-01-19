@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cynosdb {
 
     /// 切换到从可用区
     @inlinable
-    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchClusterZoneResponse> {
-        self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchClusterZone(_ input: SwitchClusterZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchClusterZoneResponse> {
+        self.client.execute(action: "SwitchClusterZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换到从可用区
     @inlinable
-    public func switchClusterZone(_ input: SwitchClusterZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
-        try await self.client.execute(action: "SwitchClusterZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchClusterZone(_ input: SwitchClusterZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
+        try await self.client.execute(action: "SwitchClusterZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换到从可用区
     @inlinable
-    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchClusterZoneResponse> {
-        self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchClusterZoneResponse> {
+        self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换到从可用区
     @inlinable
-    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
-        try await self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), logger: logger, on: eventLoop)
+    public func switchClusterZone(clusterId: String, oldZone: String, newZone: String, isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchClusterZoneResponse {
+        try await self.switchClusterZone(SwitchClusterZoneRequest(clusterId: clusterId, oldZone: oldZone, newZone: newZone, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

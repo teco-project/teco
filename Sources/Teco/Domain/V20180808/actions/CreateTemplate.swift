@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Domain {
     ///
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
-    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTemplateResponse> {
-        self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTemplate(_ input: CreateTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTemplateResponse> {
+        self.client.execute(action: "CreateTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加域名信息模板
     ///
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
-    public func createTemplate(_ input: CreateTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
-        try await self.client.execute(action: "CreateTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTemplate(_ input: CreateTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
+        try await self.client.execute(action: "CreateTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加域名信息模板
     ///
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
-    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTemplateResponse> {
-        self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), logger: logger, on: eventLoop)
+    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTemplateResponse> {
+        self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加域名信息模板
     ///
     /// 本接口 ( CreateTemplate ) 用于添加域名信息模板 。
     @inlinable
-    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
-        try await self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), logger: logger, on: eventLoop)
+    public func createTemplate(contactInfo: ContactInfo, certificateInfo: CertificateInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTemplateResponse {
+        try await self.createTemplate(CreateTemplateRequest(contactInfo: contactInfo, certificateInfo: certificateInfo), region: region, logger: logger, on: eventLoop)
     }
 }

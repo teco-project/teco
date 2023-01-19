@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension As {
     /// 本接口（SetInstancesProtection）用于设置实例保护。
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable
-    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetInstancesProtectionResponse> {
-        self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetInstancesProtectionResponse> {
+        self.client.execute(action: "SetInstancesProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例保护
@@ -63,8 +63,8 @@ extension As {
     /// 本接口（SetInstancesProtection）用于设置实例保护。
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable
-    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
-        try await self.client.execute(action: "SetInstancesProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setInstancesProtection(_ input: SetInstancesProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
+        try await self.client.execute(action: "SetInstancesProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置实例保护
@@ -72,8 +72,8 @@ extension As {
     /// 本接口（SetInstancesProtection）用于设置实例保护。
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable
-    public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetInstancesProtectionResponse> {
-        self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), logger: logger, on: eventLoop)
+    public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetInstancesProtectionResponse> {
+        self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置实例保护
@@ -81,7 +81,7 @@ extension As {
     /// 本接口（SetInstancesProtection）用于设置实例保护。
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable
-    public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
-        try await self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), logger: logger, on: eventLoop)
+    public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
+        try await self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
     }
 }

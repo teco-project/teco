@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Dayu {
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
-        self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
+        self.client.execute(action: "ModifyDDoSAIStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
-        try await self.client.execute(action: "ModifyDDoSAIStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSAIStatus(_ input: ModifyDDoSAIStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
+        try await self.client.execute(action: "ModifyDDoSAIStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
-        self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
+        self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS的AI防护状态
     ///
     /// 读取或修改DDoS的AI防护状态
     @inlinable
-    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
-        try await self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
+        try await self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
     }
 }

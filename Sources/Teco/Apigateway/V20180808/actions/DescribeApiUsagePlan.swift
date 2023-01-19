@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Apigateway {
     /// 本接口（DescribeApiUsagePlan）用于查询服务中 API 使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
     @inlinable
-    public func describeApiUsagePlan(_ input: DescribeApiUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUsagePlanResponse> {
-        self.client.execute(action: "DescribeApiUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiUsagePlan(_ input: DescribeApiUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUsagePlanResponse> {
+        self.client.execute(action: "DescribeApiUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 使用计划详情
@@ -68,8 +68,8 @@ extension Apigateway {
     /// 本接口（DescribeApiUsagePlan）用于查询服务中 API 使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
     @inlinable
-    public func describeApiUsagePlan(_ input: DescribeApiUsagePlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUsagePlanResponse {
-        try await self.client.execute(action: "DescribeApiUsagePlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiUsagePlan(_ input: DescribeApiUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUsagePlanResponse {
+        try await self.client.execute(action: "DescribeApiUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 API 使用计划详情
@@ -77,8 +77,8 @@ extension Apigateway {
     /// 本接口（DescribeApiUsagePlan）用于查询服务中 API 使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
     @inlinable
-    public func describeApiUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUsagePlanResponse> {
-        self.describeApiUsagePlan(DescribeApiUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeApiUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUsagePlanResponse> {
+        self.describeApiUsagePlan(DescribeApiUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 使用计划详情
@@ -86,7 +86,7 @@ extension Apigateway {
     /// 本接口（DescribeApiUsagePlan）用于查询服务中 API 使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务及其中 API 的所有使用计划。
     @inlinable
-    public func describeApiUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUsagePlanResponse {
-        try await self.describeApiUsagePlan(DescribeApiUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeApiUsagePlan(serviceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUsagePlanResponse {
+        try await self.describeApiUsagePlan(DescribeApiUsagePlanRequest(serviceId: serviceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

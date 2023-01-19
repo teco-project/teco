@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
-        self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBlueprints(_ input: DescribeBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
+        self.client.execute(action: "DescribeBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(_ input: DescribeBlueprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
-        try await self.client.execute(action: "DescribeBlueprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBlueprints(_ input: DescribeBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
+        try await self.client.execute(action: "DescribeBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
-        self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
+        self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
     ///
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
-    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
-        try await self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
+        try await self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

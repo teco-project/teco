@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Teo {
     ///
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
-    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesHitRuleDetailResponse> {
-        self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesHitRuleDetailResponse> {
+        self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Web攻击命中规则详情
     ///
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
-    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
-        try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebManagedRulesHitRuleDetail(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
+        try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Web攻击命中规则详情
     ///
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
-    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesHitRuleDetailResponse> {
-        self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesHitRuleDetailResponse> {
+        self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Web攻击命中规则详情
     ///
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
-    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
-        try await self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
+        try await self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

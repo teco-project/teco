@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Dnspod {
 
     /// 添加记录
     @inlinable
-    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
-        self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecord(_ input: CreateRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
+        self.client.execute(action: "CreateRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加记录
     @inlinable
-    public func createRecord(_ input: CreateRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
-        try await self.client.execute(action: "CreateRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecord(_ input: CreateRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
+        try await self.client.execute(action: "CreateRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加记录
     @inlinable
-    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
-        self.createRecord(CreateRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), logger: logger, on: eventLoop)
+    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordResponse> {
+        self.createRecord(CreateRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加记录
     @inlinable
-    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
-        try await self.createRecord(CreateRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), logger: logger, on: eventLoop)
+    public func createRecord(domain: String, recordType: String, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, weight: UInt64? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordResponse {
+        try await self.createRecord(CreateRecordRequest(domain: domain, recordType: recordType, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, mx: mx, ttl: ttl, weight: weight, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

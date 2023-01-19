@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Tke {
     ///
     ///  查询集群下节点实例信息
     @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
-        self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
+        self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群节点信息
     ///
     ///  查询集群下节点实例信息
     @inlinable
-    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        try await self.client.execute(action: "DescribeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
+        try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群节点信息
     ///
     ///  查询集群下节点实例信息
     @inlinable
-    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
-        self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), logger: logger, on: eventLoop)
+    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
+        self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群节点信息
     ///
     ///  查询集群下节点实例信息
     @inlinable
-    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
-        try await self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), logger: logger, on: eventLoop)
+    public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
+        try await self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

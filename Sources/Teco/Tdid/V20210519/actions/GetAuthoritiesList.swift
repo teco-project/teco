@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tdid {
 
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
-        self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
+        self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        try await self.client.execute(action: "GetAuthoritiesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAuthoritiesList(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
+        try await self.client.execute(action: "GetAuthoritiesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
-        self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), logger: logger, on: eventLoop)
+    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAuthoritiesListResponse> {
+        self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
-        try await self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), logger: logger, on: eventLoop)
+    public func getAuthoritiesList(pageNumber: Int64, pageSize: Int64, did: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAuthoritiesListResponse {
+        try await self.getAuthoritiesList(GetAuthoritiesListRequest(pageNumber: pageNumber, pageSize: pageSize, did: did, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

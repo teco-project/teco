@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tke {
 
     /// 查询集群路由表
     @inlinable
-    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRouteTablesResponse> {
-        self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRouteTablesResponse> {
+        self.client.execute(action: "DescribeClusterRouteTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群路由表
     @inlinable
-    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
-        try await self.client.execute(action: "DescribeClusterRouteTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterRouteTables(_ input: DescribeClusterRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
+        try await self.client.execute(action: "DescribeClusterRouteTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群路由表
     @inlinable
-    public func describeClusterRouteTables(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRouteTablesResponse> {
-        self.describeClusterRouteTables(DescribeClusterRouteTablesRequest(), logger: logger, on: eventLoop)
+    public func describeClusterRouteTables(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRouteTablesResponse> {
+        self.describeClusterRouteTables(DescribeClusterRouteTablesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群路由表
     @inlinable
-    public func describeClusterRouteTables(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
-        try await self.describeClusterRouteTables(DescribeClusterRouteTablesRequest(), logger: logger, on: eventLoop)
+    public func describeClusterRouteTables(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRouteTablesResponse {
+        try await self.describeClusterRouteTables(DescribeClusterRouteTablesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cloudaudit {
 
     /// 查询云审计支持的cos可用区
     @inlinable
-    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListCosEnableRegionResponse> {
-        self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListCosEnableRegionResponse> {
+        self.client.execute(action: "ListCosEnableRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云审计支持的cos可用区
     @inlinable
-    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
-        try await self.client.execute(action: "ListCosEnableRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listCosEnableRegion(_ input: ListCosEnableRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
+        try await self.client.execute(action: "ListCosEnableRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云审计支持的cos可用区
     @inlinable
-    public func listCosEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListCosEnableRegionResponse> {
-        self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    public func listCosEnableRegion(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListCosEnableRegionResponse> {
+        self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云审计支持的cos可用区
     @inlinable
-    public func listCosEnableRegion(websiteType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
-        try await self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), logger: logger, on: eventLoop)
+    public func listCosEnableRegion(websiteType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCosEnableRegionResponse {
+        try await self.listCosEnableRegion(ListCosEnableRegionRequest(websiteType: websiteType), region: region, logger: logger, on: eventLoop)
     }
 }

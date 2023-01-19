@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tdid {
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialCptRank(_ input: GetCredentialCptRankRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialCptRankResponse> {
-        self.client.execute(action: "GetCredentialCptRank", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCredentialCptRank(_ input: GetCredentialCptRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialCptRankResponse> {
+        self.client.execute(action: "GetCredentialCptRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发模板排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialCptRank(_ input: GetCredentialCptRankRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialCptRankResponse {
-        try await self.client.execute(action: "GetCredentialCptRank", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCredentialCptRank(_ input: GetCredentialCptRankRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialCptRankResponse {
+        try await self.client.execute(action: "GetCredentialCptRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证颁发模板排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialCptRankResponse> {
-        self.getCredentialCptRank(GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialCptRankResponse> {
+        self.getCredentialCptRank(GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发模板排行
     ///
     /// 凭证颁发按机构排行
     @inlinable
-    public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialCptRankResponse {
-        try await self.getCredentialCptRank(GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getCredentialCptRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialCptRankResponse {
+        try await self.getCredentialCptRank(GetCredentialCptRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

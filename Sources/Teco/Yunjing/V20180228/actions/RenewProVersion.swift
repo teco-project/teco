@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Yunjing {
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable
-    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
-        self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewProVersion(_ input: RenewProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
+        self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable
-    public func renewProVersion(_ input: RenewProVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
-        try await self.client.execute(action: "RenewProVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewProVersion(_ input: RenewProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
+        try await self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable
-    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
-        self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), logger: logger, on: eventLoop)
+    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
+        self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
     @inlinable
-    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
-        try await self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), logger: logger, on: eventLoop)
+    public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
+        try await self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

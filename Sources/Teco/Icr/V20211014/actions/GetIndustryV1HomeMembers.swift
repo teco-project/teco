@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Icr {
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
-        self.client.execute(action: "GetIndustryV1HomeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
+        self.client.execute(action: "GetIndustryV1HomeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取成员列表
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
-        try await self.client.execute(action: "GetIndustryV1HomeMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getIndustryV1HomeMembers(_ input: GetIndustryV1HomeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
+        try await self.client.execute(action: "GetIndustryV1HomeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取成员列表
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
-        self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), logger: logger, on: eventLoop)
+    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIndustryV1HomeMembersResponse> {
+        self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取成员列表
     ///
     /// 获取成员列表接口
     @inlinable
-    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
-        try await self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), logger: logger, on: eventLoop)
+    public func getIndustryV1HomeMembers(payload: GetIndustryV1HomeMembersReqPayload, metadata: ReqMetadata? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIndustryV1HomeMembersResponse {
+        try await self.getIndustryV1HomeMembers(GetIndustryV1HomeMembersRequest(payload: payload, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 }

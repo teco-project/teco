@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,25 +83,25 @@ extension Tcm {
 
     /// 获取AccessLog配置
     @inlinable
-    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessLogConfigResponse> {
-        self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessLogConfigResponse> {
+        self.client.execute(action: "DescribeAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取AccessLog配置
     @inlinable
-    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
-        try await self.client.execute(action: "DescribeAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccessLogConfig(_ input: DescribeAccessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
+        try await self.client.execute(action: "DescribeAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取AccessLog配置
     @inlinable
-    public func describeAccessLogConfig(meshId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessLogConfigResponse> {
-        self.describeAccessLogConfig(DescribeAccessLogConfigRequest(meshId: meshId), logger: logger, on: eventLoop)
+    public func describeAccessLogConfig(meshId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessLogConfigResponse> {
+        self.describeAccessLogConfig(DescribeAccessLogConfigRequest(meshId: meshId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取AccessLog配置
     @inlinable
-    public func describeAccessLogConfig(meshId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
-        try await self.describeAccessLogConfig(DescribeAccessLogConfigRequest(meshId: meshId), logger: logger, on: eventLoop)
+    public func describeAccessLogConfig(meshId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessLogConfigResponse {
+        try await self.describeAccessLogConfig(DescribeAccessLogConfigRequest(meshId: meshId), region: region, logger: logger, on: eventLoop)
     }
 }

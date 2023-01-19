@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Asw {
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
-        self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlowService(_ input: CreateFlowServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
+        self.client.execute(action: "CreateFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(_ input: CreateFlowServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
-        try await self.client.execute(action: "CreateFlowService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlowService(_ input: CreateFlowServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
+        try await self.client.execute(action: "CreateFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
-        self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), logger: logger, on: eventLoop)
+    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
+        self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建状态机
     ///
     /// 该接口用于生成状态机服务
     @inlinable
-    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
-        try await self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), logger: logger, on: eventLoop)
+    public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
+        try await self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), region: region, logger: logger, on: eventLoop)
     }
 }

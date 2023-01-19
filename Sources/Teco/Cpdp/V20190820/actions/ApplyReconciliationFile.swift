@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Cpdp {
 
     /// 聚鑫-申请对账文件
     @inlinable
-    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReconciliationFileResponse> {
-        self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReconciliationFileResponse> {
+        self.client.execute(action: "ApplyReconciliationFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-申请对账文件
     @inlinable
-    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
-        try await self.client.execute(action: "ApplyReconciliationFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyReconciliationFile(_ input: ApplyReconciliationFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
+        try await self.client.execute(action: "ApplyReconciliationFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-申请对账文件
     @inlinable
-    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReconciliationFileResponse> {
-        self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyReconciliationFileResponse> {
+        self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-申请对账文件
     @inlinable
-    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
-        try await self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func applyReconciliationFile(applyFileType: String, applyFileDate: String, bankAccountNumber: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyReconciliationFileResponse {
+        try await self.applyReconciliationFile(ApplyReconciliationFileRequest(applyFileType: applyFileType, applyFileDate: applyFileDate, bankAccountNumber: bankAccountNumber, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

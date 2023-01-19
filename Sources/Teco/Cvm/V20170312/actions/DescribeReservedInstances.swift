@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Cvm {
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
-        self.client.execute(action: "DescribeReservedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
+        self.client.execute(action: "DescribeReservedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
-        try await self.client.execute(action: "DescribeReservedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReservedInstances(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
+        try await self.client.execute(action: "DescribeReservedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
-        self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReservedInstancesResponse> {
+        self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出已购买的预留实例
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
-        try await self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeReservedInstances(dryRun: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReservedInstancesResponse {
+        try await self.describeReservedInstances(DescribeReservedInstancesRequest(dryRun: dryRun, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

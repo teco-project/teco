@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
-        self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
+        self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
-        try await self.client.execute(action: "DeleteEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
+        try await self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
-        self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
+        self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用列表
     @inlinable
-    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
-        try await self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
+        try await self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Dnspod {
 
     /// 获取等级允许的线路
     @inlinable
-    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordLineListResponse> {
-        self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordLineListResponse> {
+        self.client.execute(action: "DescribeRecordLineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取等级允许的线路
     @inlinable
-    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
-        try await self.client.execute(action: "DescribeRecordLineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordLineList(_ input: DescribeRecordLineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
+        try await self.client.execute(action: "DescribeRecordLineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取等级允许的线路
     @inlinable
-    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordLineListResponse> {
-        self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordLineListResponse> {
+        self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取等级允许的线路
     @inlinable
-    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
-        try await self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeRecordLineList(domain: String, domainGrade: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordLineListResponse {
+        try await self.describeRecordLineList(DescribeRecordLineListRequest(domain: domain, domainGrade: domainGrade, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

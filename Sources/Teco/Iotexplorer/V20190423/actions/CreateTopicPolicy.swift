@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotexplorer {
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
-        self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
+        self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable
-    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
-        try await self.client.execute(action: "CreateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTopicPolicy(_ input: CreateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
+        try await self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable
-    public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
-        self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege), logger: logger, on: eventLoop)
+    public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
+        self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
     @inlinable
-    public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
-        try await self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege), logger: logger, on: eventLoop)
+    public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
+        try await self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
     }
 }

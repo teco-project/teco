@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Dnspod {
 
     /// 批量添加记录
     @inlinable
-    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordBatchResponse> {
-        self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecordBatch(_ input: CreateRecordBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordBatchResponse> {
+        self.client.execute(action: "CreateRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量添加记录
     @inlinable
-    public func createRecordBatch(_ input: CreateRecordBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
-        try await self.client.execute(action: "CreateRecordBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecordBatch(_ input: CreateRecordBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
+        try await self.client.execute(action: "CreateRecordBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量添加记录
     @inlinable
-    public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordBatchResponse> {
-        self.createRecordBatch(CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList), logger: logger, on: eventLoop)
+    public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordBatchResponse> {
+        self.createRecordBatch(CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量添加记录
     @inlinable
-    public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
-        try await self.createRecordBatch(CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList), logger: logger, on: eventLoop)
+    public func createRecordBatch(domainIdList: [String], recordList: [AddRecordBatch], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordBatchResponse {
+        try await self.createRecordBatch(CreateRecordBatchRequest(domainIdList: domainIdList, recordList: recordList), region: region, logger: logger, on: eventLoop)
     }
 }

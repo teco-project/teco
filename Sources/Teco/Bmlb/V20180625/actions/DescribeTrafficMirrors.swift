@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Bmlb {
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
-        self.client.execute(action: "DescribeTrafficMirrors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
+        self.client.execute(action: "DescribeTrafficMirrors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
-        try await self.client.execute(action: "DescribeTrafficMirrors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrafficMirrors(_ input: DescribeTrafficMirrorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
+        try await self.client.execute(action: "DescribeTrafficMirrors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
-        self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorsResponse> {
+        self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像实例的列表信息
     ///
     /// 获取流量镜像实例的列表信息。
     @inlinable
-    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
-        try await self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeTrafficMirrors(trafficMirrorIds: [String]? = nil, aliases: [String]? = nil, vpcIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderField: String? = nil, order: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorsResponse {
+        try await self.describeTrafficMirrors(DescribeTrafficMirrorsRequest(trafficMirrorIds: trafficMirrorIds, aliases: aliases, vpcIds: vpcIds, offset: offset, limit: limit, orderField: orderField, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 }

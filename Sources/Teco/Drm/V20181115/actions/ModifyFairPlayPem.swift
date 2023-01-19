@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,8 +84,8 @@ extension Drm {
     /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
-    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFairPlayPemResponse> {
-        self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFairPlayPemResponse> {
+        self.client.execute(action: "ModifyFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置fairplay方案所需私钥
@@ -93,8 +93,8 @@ extension Drm {
     /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
-    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
-        try await self.client.execute(action: "ModifyFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFairPlayPem(_ input: ModifyFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
+        try await self.client.execute(action: "ModifyFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置fairplay方案所需私钥
@@ -102,8 +102,8 @@ extension Drm {
     /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
-    public func modifyFairPlayPem(pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFairPlayPemResponse> {
-        self.modifyFairPlayPem(ModifyFairPlayPemRequest(pem: pem, ask: ask, fairPlayPemId: fairPlayPemId, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), logger: logger, on: eventLoop)
+    public func modifyFairPlayPem(pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFairPlayPemResponse> {
+        self.modifyFairPlayPem(ModifyFairPlayPemRequest(pem: pem, ask: ask, fairPlayPemId: fairPlayPemId, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置fairplay方案所需私钥
@@ -111,7 +111,7 @@ extension Drm {
     /// 本接口用来设置fairplay方案所需的私钥、私钥密钥、ask等信息。
     /// 如需使用fairplay方案，请务必先设置私钥。
     @inlinable
-    public func modifyFairPlayPem(pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
-        try await self.modifyFairPlayPem(ModifyFairPlayPemRequest(pem: pem, ask: ask, fairPlayPemId: fairPlayPemId, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), logger: logger, on: eventLoop)
+    public func modifyFairPlayPem(pem: String, ask: String, fairPlayPemId: UInt64, pemDecryptKey: String? = nil, bailorId: UInt64? = nil, priority: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFairPlayPemResponse {
+        try await self.modifyFairPlayPem(ModifyFairPlayPemRequest(pem: pem, ask: ask, fairPlayPemId: fairPlayPemId, pemDecryptKey: pemDecryptKey, bailorId: bailorId, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

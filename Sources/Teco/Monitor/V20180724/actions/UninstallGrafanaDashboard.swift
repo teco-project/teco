@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Monitor {
 
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
-        self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
+        self.client.execute(action: "UninstallGrafanaDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
-        try await self.client.execute(action: "UninstallGrafanaDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uninstallGrafanaDashboard(_ input: UninstallGrafanaDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
+        try await self.client.execute(action: "UninstallGrafanaDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
-        self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
+    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaDashboardResponse> {
+        self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana Dashboard
     @inlinable
-    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
-        try await self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), logger: logger, on: eventLoop)
+    public func uninstallGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaDashboardResponse {
+        try await self.uninstallGrafanaDashboard(UninstallGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), region: region, logger: logger, on: eventLoop)
     }
 }

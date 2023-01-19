@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tsf {
 
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
-        self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiDetail(_ input: DescribeApiDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
+        self.client.execute(action: "DescribeApiDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(_ input: DescribeApiDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
-        try await self.client.execute(action: "DescribeApiDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiDetail(_ input: DescribeApiDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
+        try await self.client.execute(action: "DescribeApiDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
-        self.describeApiDetail(DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiDetailResponse> {
+        self.describeApiDetail(DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API详情
     @inlinable
-    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
-        try await self.describeApiDetail(DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeApiDetail(microserviceId: String, path: String, method: String, pkgVersion: String, applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiDetailResponse {
+        try await self.describeApiDetail(DescribeApiDetailRequest(microserviceId: microserviceId, path: path, method: method, pkgVersion: pkgVersion, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

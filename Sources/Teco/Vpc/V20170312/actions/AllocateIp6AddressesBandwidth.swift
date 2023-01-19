@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Vpc {
     ///
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
-    public func allocateIp6AddressesBandwidth(_ input: AllocateIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateIp6AddressesBandwidthResponse> {
-        self.client.execute(action: "AllocateIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func allocateIp6AddressesBandwidth(_ input: AllocateIp6AddressesBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateIp6AddressesBandwidthResponse> {
+        self.client.execute(action: "AllocateIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// IPv6地址分配公网带宽
     ///
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
-    public func allocateIp6AddressesBandwidth(_ input: AllocateIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateIp6AddressesBandwidthResponse {
-        try await self.client.execute(action: "AllocateIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func allocateIp6AddressesBandwidth(_ input: AllocateIp6AddressesBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateIp6AddressesBandwidthResponse {
+        try await self.client.execute(action: "AllocateIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// IPv6地址分配公网带宽
     ///
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
-    public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateIp6AddressesBandwidthResponse> {
-        self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateIp6AddressesBandwidthResponse> {
+        self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// IPv6地址分配公网带宽
     ///
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
-    public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateIp6AddressesBandwidthResponse {
-        try await self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateIp6AddressesBandwidthResponse {
+        try await self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
     }
 }

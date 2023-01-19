@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cdb {
 
     /// 关闭数据库代理
     @inlinable
-    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCDBProxyResponse> {
-        self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func closeCDBProxy(_ input: CloseCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCDBProxyResponse> {
+        self.client.execute(action: "CloseCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭数据库代理
     @inlinable
-    public func closeCDBProxy(_ input: CloseCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
-        try await self.client.execute(action: "CloseCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func closeCDBProxy(_ input: CloseCDBProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
+        try await self.client.execute(action: "CloseCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭数据库代理
     @inlinable
-    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCDBProxyResponse> {
-        self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), logger: logger, on: eventLoop)
+    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCDBProxyResponse> {
+        self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭数据库代理
     @inlinable
-    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
-        try await self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), logger: logger, on: eventLoop)
+    public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
+        try await self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), region: region, logger: logger, on: eventLoop)
     }
 }

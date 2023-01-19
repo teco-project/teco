@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cfs {
 
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
-        self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
+        self.client.execute(action: "CreateCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
-        try await self.client.execute(action: "CreateCfsSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCfsSnapshot(_ input: CreateCfsSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
+        try await self.client.execute(action: "CreateCfsSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
-        self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsSnapshotResponse> {
+        self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统快照
     @inlinable
-    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
-        try await self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createCfsSnapshot(fileSystemId: String, snapshotName: String? = nil, resourceTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsSnapshotResponse {
+        try await self.createCfsSnapshot(CreateCfsSnapshotRequest(fileSystemId: fileSystemId, snapshotName: snapshotName, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 }

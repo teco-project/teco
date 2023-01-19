@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Ckafka {
     ///
     /// 用于cdc的专用ckafka集群
     @inlinable
-    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCdcClusterResponse> {
-        self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCdcCluster(_ input: CreateCdcClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCdcClusterResponse> {
+        self.client.execute(action: "CreateCdcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建cdc-ckafka集群
     ///
     /// 用于cdc的专用ckafka集群
     @inlinable
-    public func createCdcCluster(_ input: CreateCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
-        try await self.client.execute(action: "CreateCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCdcCluster(_ input: CreateCdcClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
+        try await self.client.execute(action: "CreateCdcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建cdc-ckafka集群
     ///
     /// 用于cdc的专用ckafka集群
     @inlinable
-    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCdcClusterResponse> {
-        self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), logger: logger, on: eventLoop)
+    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCdcClusterResponse> {
+        self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建cdc-ckafka集群
     ///
     /// 用于cdc的专用ckafka集群
     @inlinable
-    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
-        try await self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), logger: logger, on: eventLoop)
+    public func createCdcCluster(cdcId: String, cdcVpcId: String, cdcSubnetId: String, zoneId: Int64, bandwidth: Int64, diskSize: Int64, diskType: String, systemDiskType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCdcClusterResponse {
+        try await self.createCdcCluster(CreateCdcClusterRequest(cdcId: cdcId, cdcVpcId: cdcVpcId, cdcSubnetId: cdcSubnetId, zoneId: zoneId, bandwidth: bandwidth, diskSize: diskSize, diskType: diskType, systemDiskType: systemDiskType), region: region, logger: logger, on: eventLoop)
     }
 }

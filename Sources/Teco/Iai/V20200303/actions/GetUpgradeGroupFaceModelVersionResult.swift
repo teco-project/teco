@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Iai {
 
     /// 人员库升级结果查询
     @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
+        self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级结果查询
     @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUpgradeGroupFaceModelVersionResult(_ input: GetUpgradeGroupFaceModelVersionResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
+        try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人员库升级结果查询
     @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
+        self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级结果查询
     @inlinable
-    public func getUpgradeGroupFaceModelVersionResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
+        try await self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

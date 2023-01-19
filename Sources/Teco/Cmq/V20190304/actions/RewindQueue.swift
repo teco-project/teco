@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cmq {
 
     /// 回溯队列
     @inlinable
-    public func rewindQueue(_ input: RewindQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
-        self.client.execute(action: "RewindQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rewindQueue(_ input: RewindQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
+        self.client.execute(action: "RewindQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回溯队列
     @inlinable
-    public func rewindQueue(_ input: RewindQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
-        try await self.client.execute(action: "RewindQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rewindQueue(_ input: RewindQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
+        try await self.client.execute(action: "RewindQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回溯队列
     @inlinable
-    public func rewindQueue(queueName: String, startConsumeTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
-        self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), logger: logger, on: eventLoop)
+    public func rewindQueue(queueName: String, startConsumeTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
+        self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回溯队列
     @inlinable
-    public func rewindQueue(queueName: String, startConsumeTime: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
-        try await self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), logger: logger, on: eventLoop)
+    public func rewindQueue(queueName: String, startConsumeTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
+        try await self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), region: region, logger: logger, on: eventLoop)
     }
 }

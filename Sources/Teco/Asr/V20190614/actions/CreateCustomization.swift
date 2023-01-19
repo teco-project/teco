@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Asr {
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomization(_ input: CreateCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
+        self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自学习模型
@@ -72,8 +72,8 @@ extension Asr {
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomization(_ input: CreateCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
+        try await self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自学习模型
@@ -81,8 +81,8 @@ extension Asr {
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), logger: logger, on: eventLoop)
+    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
+        self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自学习模型
@@ -90,7 +90,7 @@ extension Asr {
     /// 用户使用该接口可以创建自学习模型，以供识别调用。
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
-    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), logger: logger, on: eventLoop)
+    public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
+        try await self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), region: region, logger: logger, on: eventLoop)
     }
 }

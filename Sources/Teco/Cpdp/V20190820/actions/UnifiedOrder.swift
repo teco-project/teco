@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -190,31 +190,31 @@ extension Cpdp {
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedOrderResponse> {
-        self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unifiedOrder(_ input: UnifiedOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedOrderResponse> {
+        self.client.execute(action: "UnifiedOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-统一下单接口
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedOrder(_ input: UnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
-        try await self.client.execute(action: "UnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unifiedOrder(_ input: UnifiedOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
+        try await self.client.execute(action: "UnifiedOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-统一下单接口
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedOrder(currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [UnifiedOrderInSubOrderList]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedOrderResponse> {
-        self.unifiedOrder(UnifiedOrderRequest(currencyType: currencyType, midasAppId: midasAppId, outTradeNo: outTradeNo, productDetail: productDetail, productId: productId, productName: productName, totalAmt: totalAmt, userId: userId, realChannel: realChannel, originalAmt: originalAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, callbackUrl: callbackUrl, channel: channel, metadata: metadata, quantity: quantity, subAppId: subAppId, subOrderList: subOrderList, totalMchIncome: totalMchIncome, totalPlatformIncome: totalPlatformIncome, wxOpenId: wxOpenId, wxSubOpenId: wxSubOpenId, midasEnvironment: midasEnvironment, wxAppId: wxAppId, wxSubAppId: wxSubAppId, paymentNotifyUrl: paymentNotifyUrl), logger: logger, on: eventLoop)
+    public func unifiedOrder(currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [UnifiedOrderInSubOrderList]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedOrderResponse> {
+        self.unifiedOrder(UnifiedOrderRequest(currencyType: currencyType, midasAppId: midasAppId, outTradeNo: outTradeNo, productDetail: productDetail, productId: productId, productName: productName, totalAmt: totalAmt, userId: userId, realChannel: realChannel, originalAmt: originalAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, callbackUrl: callbackUrl, channel: channel, metadata: metadata, quantity: quantity, subAppId: subAppId, subOrderList: subOrderList, totalMchIncome: totalMchIncome, totalPlatformIncome: totalPlatformIncome, wxOpenId: wxOpenId, wxSubOpenId: wxSubOpenId, midasEnvironment: midasEnvironment, wxAppId: wxAppId, wxSubAppId: wxSubAppId, paymentNotifyUrl: paymentNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-统一下单接口
     ///
     /// 应用需要先调用本接口生成支付订单号，并将应答的PayInfo透传给聚鑫SDK，拉起客户端（包括微信公众号/微信小程序/客户端App）支付。
     @inlinable
-    public func unifiedOrder(currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [UnifiedOrderInSubOrderList]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
-        try await self.unifiedOrder(UnifiedOrderRequest(currencyType: currencyType, midasAppId: midasAppId, outTradeNo: outTradeNo, productDetail: productDetail, productId: productId, productName: productName, totalAmt: totalAmt, userId: userId, realChannel: realChannel, originalAmt: originalAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, callbackUrl: callbackUrl, channel: channel, metadata: metadata, quantity: quantity, subAppId: subAppId, subOrderList: subOrderList, totalMchIncome: totalMchIncome, totalPlatformIncome: totalPlatformIncome, wxOpenId: wxOpenId, wxSubOpenId: wxSubOpenId, midasEnvironment: midasEnvironment, wxAppId: wxAppId, wxSubAppId: wxSubAppId, paymentNotifyUrl: paymentNotifyUrl), logger: logger, on: eventLoop)
+    public func unifiedOrder(currencyType: String, midasAppId: String, outTradeNo: String, productDetail: String, productId: String, productName: String, totalAmt: Int64, userId: String, realChannel: String, originalAmt: Int64, midasSecretId: String, midasSignature: String, callbackUrl: String? = nil, channel: String? = nil, metadata: String? = nil, quantity: Int64? = nil, subAppId: String? = nil, subOrderList: [UnifiedOrderInSubOrderList]? = nil, totalMchIncome: Int64? = nil, totalPlatformIncome: Int64? = nil, wxOpenId: String? = nil, wxSubOpenId: String? = nil, midasEnvironment: String? = nil, wxAppId: String? = nil, wxSubAppId: String? = nil, paymentNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedOrderResponse {
+        try await self.unifiedOrder(UnifiedOrderRequest(currencyType: currencyType, midasAppId: midasAppId, outTradeNo: outTradeNo, productDetail: productDetail, productId: productId, productName: productName, totalAmt: totalAmt, userId: userId, realChannel: realChannel, originalAmt: originalAmt, midasSecretId: midasSecretId, midasSignature: midasSignature, callbackUrl: callbackUrl, channel: channel, metadata: metadata, quantity: quantity, subAppId: subAppId, subOrderList: subOrderList, totalMchIncome: totalMchIncome, totalPlatformIncome: totalPlatformIncome, wxOpenId: wxOpenId, wxSubOpenId: wxSubOpenId, midasEnvironment: midasEnvironment, wxAppId: wxAppId, wxSubAppId: wxSubAppId, paymentNotifyUrl: paymentNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

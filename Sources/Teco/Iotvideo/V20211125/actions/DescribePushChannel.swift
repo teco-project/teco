@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Iotvideo {
 
     /// 查看推送通道
     @inlinable
-    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushChannelResponse> {
-        self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePushChannel(_ input: DescribePushChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushChannelResponse> {
+        self.client.execute(action: "DescribePushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看推送通道
     @inlinable
-    public func describePushChannel(_ input: DescribePushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
-        try await self.client.execute(action: "DescribePushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePushChannel(_ input: DescribePushChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
+        try await self.client.execute(action: "DescribePushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看推送通道
     @inlinable
-    public func describePushChannel(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushChannelResponse> {
-        self.describePushChannel(DescribePushChannelRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describePushChannel(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushChannelResponse> {
+        self.describePushChannel(DescribePushChannelRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看推送通道
     @inlinable
-    public func describePushChannel(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
-        try await self.describePushChannel(DescribePushChannelRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describePushChannel(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushChannelResponse {
+        try await self.describePushChannel(DescribePushChannelRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

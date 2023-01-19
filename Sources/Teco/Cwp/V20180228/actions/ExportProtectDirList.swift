@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cwp {
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
-        self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportProtectDirList(_ input: ExportProtectDirListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
+        self.client.execute(action: "ExportProtectDirList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(_ input: ExportProtectDirListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
-        try await self.client.execute(action: "ExportProtectDirList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportProtectDirList(_ input: ExportProtectDirListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
+        try await self.client.execute(action: "ExportProtectDirList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
-        self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportProtectDirListResponse> {
+        self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出防护目录列表
     ///
     /// 导出网页防篡改防护目录列表
     @inlinable
-    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
-        try await self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), logger: logger, on: eventLoop)
+    public func exportProtectDirList(filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportProtectDirListResponse {
+        try await self.exportProtectDirList(ExportProtectDirListRequest(filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

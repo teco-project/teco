@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bm {
 
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
-        self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
+        self.client.execute(action: "DescribeDevicePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
-        try await self.client.execute(action: "DescribeDevicePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevicePartition(_ input: DescribeDevicePartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
+        try await self.client.execute(action: "DescribeDevicePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
-        self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDevicePartition(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
+        self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取物理机的分区格式
     @inlinable
-    public func describeDevicePartition(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
-        try await self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDevicePartition(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
+        try await self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

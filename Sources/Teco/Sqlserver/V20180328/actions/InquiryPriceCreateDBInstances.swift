@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Sqlserver {
     ///
     /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
     @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
-        self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
+        self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询申请实例价格
     ///
     /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
     @inlinable
-    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceCreateDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceCreateDBInstances(_ input: InquiryPriceCreateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceCreateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询申请实例价格
     ///
     /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
     @inlinable
-    public func inquiryPriceCreateDBInstances(zone: String, memory: Int64, storage: Int64, instanceChargeType: String? = nil, period: Int64? = nil, goodsNum: Int64? = nil, dbVersion: String? = nil, cpu: Int64? = nil, instanceType: String? = nil, machineType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
-        self.inquiryPriceCreateDBInstances(InquiryPriceCreateDBInstancesRequest(zone: zone, memory: memory, storage: storage, instanceChargeType: instanceChargeType, period: period, goodsNum: goodsNum, dbVersion: dbVersion, cpu: cpu, instanceType: instanceType, machineType: machineType), logger: logger, on: eventLoop)
+    public func inquiryPriceCreateDBInstances(zone: String, memory: Int64, storage: Int64, instanceChargeType: String? = nil, period: Int64? = nil, goodsNum: Int64? = nil, dbVersion: String? = nil, cpu: Int64? = nil, instanceType: String? = nil, machineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDBInstancesResponse> {
+        self.inquiryPriceCreateDBInstances(InquiryPriceCreateDBInstancesRequest(zone: zone, memory: memory, storage: storage, instanceChargeType: instanceChargeType, period: period, goodsNum: goodsNum, dbVersion: dbVersion, cpu: cpu, instanceType: instanceType, machineType: machineType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询申请实例价格
     ///
     /// 本接口（InquiryPriceCreateDBInstances）用于查询申请实例价格。
     @inlinable
-    public func inquiryPriceCreateDBInstances(zone: String, memory: Int64, storage: Int64, instanceChargeType: String? = nil, period: Int64? = nil, goodsNum: Int64? = nil, dbVersion: String? = nil, cpu: Int64? = nil, instanceType: String? = nil, machineType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
-        try await self.inquiryPriceCreateDBInstances(InquiryPriceCreateDBInstancesRequest(zone: zone, memory: memory, storage: storage, instanceChargeType: instanceChargeType, period: period, goodsNum: goodsNum, dbVersion: dbVersion, cpu: cpu, instanceType: instanceType, machineType: machineType), logger: logger, on: eventLoop)
+    public func inquiryPriceCreateDBInstances(zone: String, memory: Int64, storage: Int64, instanceChargeType: String? = nil, period: Int64? = nil, goodsNum: Int64? = nil, dbVersion: String? = nil, cpu: Int64? = nil, instanceType: String? = nil, machineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDBInstancesResponse {
+        try await self.inquiryPriceCreateDBInstances(InquiryPriceCreateDBInstancesRequest(zone: zone, memory: memory, storage: storage, instanceChargeType: instanceChargeType, period: period, goodsNum: goodsNum, dbVersion: dbVersion, cpu: cpu, instanceType: instanceType, machineType: machineType), region: region, logger: logger, on: eventLoop)
     }
 }

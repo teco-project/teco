@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Essbasic {
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
-        self.client.execute(action: "ChannelCreateBoundFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
+        self.client.execute(action: "ChannelCreateBoundFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
-        try await self.client.execute(action: "ChannelCreateBoundFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
+        try await self.client.execute(action: "ChannelCreateBoundFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
-        self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
+        self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
     @inlinable
-    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
-        try await self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
+        try await self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Solar {
 
     /// 员工渠道更改员工状态
     @inlinable
-    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckStaffChUserResponse> {
-        self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkStaffChUser(_ input: CheckStaffChUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckStaffChUserResponse> {
+        self.client.execute(action: "CheckStaffChUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 员工渠道更改员工状态
     @inlinable
-    public func checkStaffChUser(_ input: CheckStaffChUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
-        try await self.client.execute(action: "CheckStaffChUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkStaffChUser(_ input: CheckStaffChUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
+        try await self.client.execute(action: "CheckStaffChUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 员工渠道更改员工状态
     @inlinable
-    public func checkStaffChUser(userId: [String], operateType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckStaffChUserResponse> {
-        self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), logger: logger, on: eventLoop)
+    public func checkStaffChUser(userId: [String], operateType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckStaffChUserResponse> {
+        self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 员工渠道更改员工状态
     @inlinable
-    public func checkStaffChUser(userId: [String], operateType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
-        try await self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), logger: logger, on: eventLoop)
+    public func checkStaffChUser(userId: [String], operateType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckStaffChUserResponse {
+        try await self.checkStaffChUser(CheckStaffChUserRequest(userId: userId, operateType: operateType), region: region, logger: logger, on: eventLoop)
     }
 }

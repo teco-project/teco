@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Iottid {
     ///
     /// 单向认证测试TID
     @inlinable
-    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
-        self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func authTestTid(_ input: AuthTestTidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
+        self.client.execute(action: "AuthTestTid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 单向认证测试TID
     ///
     /// 单向认证测试TID
     @inlinable
-    public func authTestTid(_ input: AuthTestTidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
-        try await self.client.execute(action: "AuthTestTid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func authTestTid(_ input: AuthTestTidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
+        try await self.client.execute(action: "AuthTestTid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 单向认证测试TID
     ///
     /// 单向认证测试TID
     @inlinable
-    public func authTestTid(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
-        self.authTestTid(AuthTestTidRequest(data: data), logger: logger, on: eventLoop)
+    public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
+        self.authTestTid(AuthTestTidRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 单向认证测试TID
     ///
     /// 单向认证测试TID
     @inlinable
-    public func authTestTid(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
-        try await self.authTestTid(AuthTestTidRequest(data: data), logger: logger, on: eventLoop)
+    public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
+        try await self.authTestTid(AuthTestTidRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 }

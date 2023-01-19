@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Vpc {
     /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
-        self.client.execute(action: "DescribeVpcPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
+        self.client.execute(action: "DescribeVpcPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内网IP信息
@@ -62,8 +62,8 @@ extension Vpc {
     /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
-        try await self.client.execute(action: "DescribeVpcPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcPrivateIpAddresses(_ input: DescribeVpcPrivateIpAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
+        try await self.client.execute(action: "DescribeVpcPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询VPC内网IP信息
@@ -71,8 +71,8 @@ extension Vpc {
     /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
-        self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcPrivateIpAddressesResponse> {
+        self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内网IP信息
@@ -80,7 +80,7 @@ extension Vpc {
     /// 本接口（DescribeVpcPrivateIpAddresses）用于查询VPC内网IP信息。<br />
     /// 只能查询已使用的IP信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
-        try await self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), logger: logger, on: eventLoop)
+    public func describeVpcPrivateIpAddresses(vpcId: String, privateIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcPrivateIpAddressesResponse {
+        try await self.describeVpcPrivateIpAddresses(DescribeVpcPrivateIpAddressesRequest(vpcId: vpcId, privateIpAddresses: privateIpAddresses), region: region, logger: logger, on: eventLoop)
     }
 }

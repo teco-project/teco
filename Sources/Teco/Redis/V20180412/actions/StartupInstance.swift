@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 实例解隔离
     @inlinable
-    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
-        self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startupInstance(_ input: StartupInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
+        self.client.execute(action: "StartupInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例解隔离
     @inlinable
-    public func startupInstance(_ input: StartupInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
-        try await self.client.execute(action: "StartupInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startupInstance(_ input: StartupInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
+        try await self.client.execute(action: "StartupInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例解隔离
     @inlinable
-    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
-        self.startupInstance(StartupInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func startupInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartupInstanceResponse> {
+        self.startupInstance(StartupInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例解隔离
     @inlinable
-    public func startupInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
-        try await self.startupInstance(StartupInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func startupInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartupInstanceResponse {
+        try await self.startupInstance(StartupInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

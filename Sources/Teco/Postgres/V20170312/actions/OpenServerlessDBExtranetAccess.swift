@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Postgres {
 
     /// 开通serverlessDB实例外网
     @inlinable
-    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
-        self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
+        self.client.execute(action: "OpenServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通serverlessDB实例外网
     @inlinable
-    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
-        try await self.client.execute(action: "OpenServerlessDBExtranetAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openServerlessDBExtranetAccess(_ input: OpenServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
+        try await self.client.execute(action: "OpenServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通serverlessDB实例外网
     @inlinable
-    public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
-        self.openServerlessDBExtranetAccess(OpenServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), logger: logger, on: eventLoop)
+    public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenServerlessDBExtranetAccessResponse> {
+        self.openServerlessDBExtranetAccess(OpenServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通serverlessDB实例外网
     @inlinable
-    public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
-        try await self.openServerlessDBExtranetAccess(OpenServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), logger: logger, on: eventLoop)
+    public func openServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenServerlessDBExtranetAccessResponse {
+        try await self.openServerlessDBExtranetAccess(OpenServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }
 }

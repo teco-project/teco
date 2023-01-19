@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Facefusion {
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
-    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
-        self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func faceFusionLite(_ input: FaceFusionLiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
+        self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
-    public func faceFusionLite(_ input: FaceFusionLiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.client.execute(action: "FaceFusionLite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func faceFusionLite(_ input: FaceFusionLiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
+        try await self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
-    public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
-        self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), logger: logger, on: eventLoop)
+    public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
+        self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸融合活动专用版
     ///
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
-    public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), logger: logger, on: eventLoop)
+    public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
+        try await self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
     }
 }

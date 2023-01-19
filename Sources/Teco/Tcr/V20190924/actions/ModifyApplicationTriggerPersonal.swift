@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Tcr {
     ///
     /// 用于修改应用更新触发器
     @inlinable
-    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationTriggerPersonalResponse> {
-        self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationTriggerPersonalResponse> {
+        self.client.execute(action: "ModifyApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用更新触发器
     ///
     /// 用于修改应用更新触发器
     @inlinable
-    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "ModifyApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationTriggerPersonal(_ input: ModifyApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "ModifyApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用更新触发器
     ///
     /// 用于修改应用更新触发器
     @inlinable
-    public func modifyApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, invokeMethod: String? = nil, invokeExpr: String? = nil, clusterId: String? = nil, namespace: String? = nil, workloadType: String? = nil, workloadName: String? = nil, containerName: String? = nil, clusterRegion: Int64? = nil, newTriggerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationTriggerPersonalResponse> {
-        self.modifyApplicationTriggerPersonal(ModifyApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, invokeExpr: invokeExpr, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, newTriggerName: newTriggerName), logger: logger, on: eventLoop)
+    public func modifyApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, invokeMethod: String? = nil, invokeExpr: String? = nil, clusterId: String? = nil, namespace: String? = nil, workloadType: String? = nil, workloadName: String? = nil, containerName: String? = nil, clusterRegion: Int64? = nil, newTriggerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationTriggerPersonalResponse> {
+        self.modifyApplicationTriggerPersonal(ModifyApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, invokeExpr: invokeExpr, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, newTriggerName: newTriggerName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用更新触发器
     ///
     /// 用于修改应用更新触发器
     @inlinable
-    public func modifyApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, invokeMethod: String? = nil, invokeExpr: String? = nil, clusterId: String? = nil, namespace: String? = nil, workloadType: String? = nil, workloadName: String? = nil, containerName: String? = nil, clusterRegion: Int64? = nil, newTriggerName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
-        try await self.modifyApplicationTriggerPersonal(ModifyApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, invokeExpr: invokeExpr, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, newTriggerName: newTriggerName), logger: logger, on: eventLoop)
+    public func modifyApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, invokeMethod: String? = nil, invokeExpr: String? = nil, clusterId: String? = nil, namespace: String? = nil, workloadType: String? = nil, workloadName: String? = nil, containerName: String? = nil, clusterRegion: Int64? = nil, newTriggerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationTriggerPersonalResponse {
+        try await self.modifyApplicationTriggerPersonal(ModifyApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, invokeExpr: invokeExpr, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, newTriggerName: newTriggerName), region: region, logger: logger, on: eventLoop)
     }
 }

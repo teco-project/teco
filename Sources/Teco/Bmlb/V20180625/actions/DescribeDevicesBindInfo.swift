@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
-    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesBindInfoResponse> {
-        self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesBindInfoResponse> {
+        self.client.execute(action: "DescribeDevicesBindInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
     ///
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
-    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
-        try await self.client.execute(action: "DescribeDevicesBindInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevicesBindInfo(_ input: DescribeDevicesBindInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
+        try await self.client.execute(action: "DescribeDevicesBindInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
     ///
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
-    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesBindInfoResponse> {
-        self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesBindInfoResponse> {
+        self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情
     ///
     /// 查询黑石物理机和虚机以及托管服务器绑定的黑石负载均衡详情。
     @inlinable
-    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
-        try await self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeDevicesBindInfo(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesBindInfoResponse {
+        try await self.describeDevicesBindInfo(DescribeDevicesBindInfoRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

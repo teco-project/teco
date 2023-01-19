@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Cr {
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
-        self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
+        self.client.execute(action: "ApplyCreditAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
-        try await self.client.execute(action: "ApplyCreditAudit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyCreditAudit(_ input: ApplyCreditAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
+        try await self.client.execute(action: "ApplyCreditAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
-        self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), logger: logger, on: eventLoop)
+    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
+        self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交信审申请
     ///
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
-    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
-        try await self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), logger: logger, on: eventLoop)
+    public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
+        try await self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
     }
 }

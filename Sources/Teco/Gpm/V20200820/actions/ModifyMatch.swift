@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,8 +113,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配
     @inlinable
-    public func modifyMatch(_ input: ModifyMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMatchResponse> {
-        self.client.execute(action: "ModifyMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMatch(_ input: ModifyMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMatchResponse> {
+        self.client.execute(action: "ModifyMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改匹配
@@ -122,8 +122,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配
     @inlinable
-    public func modifyMatch(_ input: ModifyMatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
-        try await self.client.execute(action: "ModifyMatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMatch(_ input: ModifyMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
+        try await self.client.execute(action: "ModifyMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改匹配
@@ -131,8 +131,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配
     @inlinable
-    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMatchResponse> {
-        self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), logger: logger, on: eventLoop)
+    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMatchResponse> {
+        self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改匹配
@@ -140,7 +140,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 修改匹配
     @inlinable
-    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
-        try await self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), logger: logger, on: eventLoop)
+    public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
+        try await self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

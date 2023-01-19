@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cynosdb {
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
+        self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable
-    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), logger: logger, on: eventLoop)
+    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
+        self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable
-    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), logger: logger, on: eventLoop)
+    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }
 }

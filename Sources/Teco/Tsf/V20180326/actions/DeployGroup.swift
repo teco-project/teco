@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -136,25 +136,25 @@ extension Tsf {
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
-        self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deployGroup(_ input: DeployGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
+        self.client.execute(action: "DeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(_ input: DeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
-        try await self.client.execute(action: "DeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deployGroup(_ input: DeployGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
+        try await self.client.execute(action: "DeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
-        self.deployGroup(DeployGroupRequest(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), logger: logger, on: eventLoop)
+    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployGroupResponse> {
+        self.deployGroup(DeployGroupRequest(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), region: region, logger: logger, on: eventLoop)
     }
 
     /// 部署虚拟机部署组应用
     @inlinable
-    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
-        try await self.deployGroup(DeployGroupRequest(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), logger: logger, on: eventLoop)
+    public func deployGroup(groupId: String, pkgId: String, startupParameters: String? = nil, deployDesc: String? = nil, forceStart: Bool? = nil, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, updateType: UInt64? = nil, deployBetaEnable: Bool? = nil, deployBatch: [Float]? = nil, deployExeMode: String? = nil, deployWaitTime: UInt64? = nil, startScript: String? = nil, stopScript: String? = nil, incrementalDeployment: Bool? = nil, jdkName: String? = nil, jdkVersion: String? = nil, agentProfileList: [AgentProfile]? = nil, warmupSetting: WarmupSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployGroupResponse {
+        try await self.deployGroup(DeployGroupRequest(groupId: groupId, pkgId: pkgId, startupParameters: startupParameters, deployDesc: deployDesc, forceStart: forceStart, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings, updateType: updateType, deployBetaEnable: deployBetaEnable, deployBatch: deployBatch, deployExeMode: deployExeMode, deployWaitTime: deployWaitTime, startScript: startScript, stopScript: stopScript, incrementalDeployment: incrementalDeployment, jdkName: jdkName, jdkVersion: jdkVersion, agentProfileList: agentProfileList, warmupSetting: warmupSetting), region: region, logger: logger, on: eventLoop)
     }
 }

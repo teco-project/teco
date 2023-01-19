@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,8 +45,8 @@ extension Cdb {
     /// 该接口为异步操作，部分资源的回收可能存在延迟。您可以通过使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口，指定实例 InstanceId 和状态 Status 为 [5,6,7] 进行查询，若返回实例为空，则实例资源已全部释放。
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable
-    public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedInstancesResponse> {
-        self.client.execute(action: "OfflineIsolatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedInstancesResponse> {
+        self.client.execute(action: "OfflineIsolatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线隔离状态的云数据库实例
@@ -55,8 +55,8 @@ extension Cdb {
     /// 该接口为异步操作，部分资源的回收可能存在延迟。您可以通过使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口，指定实例 InstanceId 和状态 Status 为 [5,6,7] 进行查询，若返回实例为空，则实例资源已全部释放。
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable
-    public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
-        try await self.client.execute(action: "OfflineIsolatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
+        try await self.client.execute(action: "OfflineIsolatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线隔离状态的云数据库实例
@@ -65,8 +65,8 @@ extension Cdb {
     /// 该接口为异步操作，部分资源的回收可能存在延迟。您可以通过使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口，指定实例 InstanceId 和状态 Status 为 [5,6,7] 进行查询，若返回实例为空，则实例资源已全部释放。
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable
-    public func offlineIsolatedInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedInstancesResponse> {
-        self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func offlineIsolatedInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedInstancesResponse> {
+        self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线隔离状态的云数据库实例
@@ -75,7 +75,7 @@ extension Cdb {
     /// 该接口为异步操作，部分资源的回收可能存在延迟。您可以通过使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口，指定实例 InstanceId 和状态 Status 为 [5,6,7] 进行查询，若返回实例为空，则实例资源已全部释放。
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable
-    public func offlineIsolatedInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
-        try await self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func offlineIsolatedInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
+        try await self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

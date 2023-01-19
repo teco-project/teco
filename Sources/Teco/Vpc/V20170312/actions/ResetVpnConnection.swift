@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
-        self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
+        self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
-        try await self.client.execute(action: "ResetVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
+        try await self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
-        self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
+        self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
     @inlinable
-    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
-        try await self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    public func resetVpnConnection(vpnGatewayId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
+        try await self.resetVpnConnection(ResetVpnConnectionRequest(vpnGatewayId: vpnGatewayId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bm {
 
     /// 开启服务器
     @inlinable
-    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
-        self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startDevices(_ input: StartDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
+        self.client.execute(action: "StartDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启服务器
     @inlinable
-    public func startDevices(_ input: StartDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
-        try await self.client.execute(action: "StartDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startDevices(_ input: StartDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
+        try await self.client.execute(action: "StartDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启服务器
     @inlinable
-    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
-        self.startDevices(StartDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func startDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartDevicesResponse> {
+        self.startDevices(StartDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启服务器
     @inlinable
-    public func startDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
-        try await self.startDevices(StartDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func startDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartDevicesResponse {
+        try await self.startDevices(StartDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

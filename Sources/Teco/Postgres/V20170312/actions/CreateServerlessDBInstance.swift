@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Postgres {
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
-        self.client.execute(action: "CreateServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
+        self.client.execute(action: "CreateServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
-        try await self.client.execute(action: "CreateServerlessDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createServerlessDBInstance(_ input: CreateServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
+        try await self.client.execute(action: "CreateServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
-        self.createServerlessDBInstance(CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), logger: logger, on: eventLoop)
+    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServerlessDBInstanceResponse> {
+        self.createServerlessDBInstance(CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建ServerlessDB实例
     ///
     /// 本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
     @inlinable
-    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
-        try await self.createServerlessDBInstance(CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), logger: logger, on: eventLoop)
+    public func createServerlessDBInstance(zone: String, dbInstanceName: String, dbVersion: String, dbCharset: String, projectId: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServerlessDBInstanceResponse {
+        try await self.createServerlessDBInstance(CreateServerlessDBInstanceRequest(zone: zone, dbInstanceName: dbInstanceName, dbVersion: dbVersion, dbCharset: dbCharset, projectId: projectId, vpcId: vpcId, subnetId: subnetId, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 }

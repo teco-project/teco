@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Gaap {
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
-        self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
+        self.client.execute(action: "DescribeProxyGroupStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
-        try await self.client.execute(action: "DescribeProxyGroupStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxyGroupStatistics(_ input: DescribeProxyGroupStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
+        try await self.client.execute(action: "DescribeProxyGroupStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
-        self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
+        self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组统计数据
     ///
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
-    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
-        try await self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
+        try await self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tsf {
 
     /// 查询API 分组信息列表
     @inlinable
-    public func describeApiGroups(_ input: DescribeApiGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupsResponse> {
-        self.client.execute(action: "DescribeApiGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiGroups(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupsResponse> {
+        self.client.execute(action: "DescribeApiGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询API 分组信息列表
     @inlinable
-    public func describeApiGroups(_ input: DescribeApiGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
-        try await self.client.execute(action: "DescribeApiGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiGroups(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
+        try await self.client.execute(action: "DescribeApiGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询API 分组信息列表
     @inlinable
-    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupsResponse> {
-        self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiGroupsResponse> {
+        self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API 分组信息列表
     @inlinable
-    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
-        try await self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeApiGroups(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupType: String? = nil, authType: String? = nil, status: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, gatewayInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiGroupsResponse {
+        try await self.describeApiGroups(DescribeApiGroupsRequest(searchWord: searchWord, offset: offset, limit: limit, groupType: groupType, authType: authType, status: status, orderBy: orderBy, orderType: orderType, gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tke {
     ///
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
-    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterStatusResponse> {
-        self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterStatusResponse> {
+        self.client.execute(action: "DescribeTKEEdgeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘计算集群状态
     ///
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
-    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
-        try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTKEEdgeClusterStatus(_ input: DescribeTKEEdgeClusterStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
+        try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘计算集群状态
     ///
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
-    public func describeTKEEdgeClusterStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterStatusResponse> {
-        self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeTKEEdgeClusterStatus(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterStatusResponse> {
+        self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘计算集群状态
     ///
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
-    public func describeTKEEdgeClusterStatus(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
-        try await self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeTKEEdgeClusterStatus(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
+        try await self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

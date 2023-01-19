@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cynosdb {
     ///
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
-    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRenewFlagResponse> {
-        self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setRenewFlag(_ input: SetRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRenewFlagResponse> {
+        self.client.execute(action: "SetRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动续费
     ///
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
-    public func setRenewFlag(_ input: SetRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
-        try await self.client.execute(action: "SetRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setRenewFlag(_ input: SetRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
+        try await self.client.execute(action: "SetRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置自动续费
     ///
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
-    public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRenewFlagResponse> {
-        self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRenewFlagResponse> {
+        self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动续费
     ///
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
-    public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
-        try await self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), logger: logger, on: eventLoop)
+    public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
+        try await self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

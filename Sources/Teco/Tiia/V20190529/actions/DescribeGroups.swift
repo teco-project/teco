@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tiia {
     ///
     /// 查询所有的图库信息。
     @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
-        self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroups(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
+        self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
     @inlinable
-    public func describeGroups(_ input: DescribeGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        try await self.client.execute(action: "DescribeGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroups(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
     @inlinable
-    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
-        self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
+        self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
     @inlinable
-    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
-        try await self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
+        try await self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

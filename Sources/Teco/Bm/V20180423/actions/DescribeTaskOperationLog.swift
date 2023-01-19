@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Bm {
     ///
     /// 获取维修任务操作日志
     @inlinable
-    public func describeTaskOperationLog(_ input: DescribeTaskOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskOperationLogResponse> {
-        self.client.execute(action: "DescribeTaskOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskOperationLog(_ input: DescribeTaskOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskOperationLogResponse> {
+        self.client.execute(action: "DescribeTaskOperationLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务操作日志获取
     ///
     /// 获取维修任务操作日志
     @inlinable
-    public func describeTaskOperationLog(_ input: DescribeTaskOperationLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
-        try await self.client.execute(action: "DescribeTaskOperationLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskOperationLog(_ input: DescribeTaskOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
+        try await self.client.execute(action: "DescribeTaskOperationLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 维修任务操作日志获取
     ///
     /// 获取维修任务操作日志
     @inlinable
-    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskOperationLogResponse> {
-        self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskOperationLogResponse> {
+        self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务操作日志获取
     ///
     /// 获取维修任务操作日志
     @inlinable
-    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
-        try await self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeTaskOperationLog(taskId: String, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskOperationLogResponse {
+        try await self.describeTaskOperationLog(DescribeTaskOperationLogRequest(taskId: taskId, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

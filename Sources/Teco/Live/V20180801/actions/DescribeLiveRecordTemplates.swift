@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Live {
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
-        self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
+        self.client.execute(action: "DescribeLiveRecordTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveRecordTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveRecordTemplates(_ input: DescribeLiveRecordTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveRecordTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
-        self.describeLiveRecordTemplates(DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive), logger: logger, on: eventLoop)
+    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordTemplatesResponse> {
+        self.describeLiveRecordTemplates(DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取录制模板列表
     ///
     /// 获取录制模板列表。
     @inlinable
-    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
-        try await self.describeLiveRecordTemplates(DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive), logger: logger, on: eventLoop)
+    public func describeLiveRecordTemplates(isDelayLive: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplatesResponse {
+        try await self.describeLiveRecordTemplates(DescribeLiveRecordTemplatesRequest(isDelayLive: isDelayLive), region: region, logger: logger, on: eventLoop)
     }
 }

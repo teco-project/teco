@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,8 +93,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPersonResponse> {
-        self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyPerson(_ input: VerifyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPersonResponse> {
+        self.client.execute(action: "VerifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员验证
@@ -106,8 +106,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
-        try await self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyPerson(_ input: VerifyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
+        try await self.client.execute(action: "VerifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人员验证
@@ -119,8 +119,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPersonResponse> {
-        self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPersonResponse> {
+        self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员验证
@@ -132,7 +132,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
-    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
-        try await self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
+    public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
+        try await self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
     }
 }

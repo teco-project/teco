@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -118,25 +118,25 @@ extension Cpdp {
 
     /// 智能代发-单笔代发转账接口
     @inlinable
-    public func transferSinglePay(_ input: TransferSinglePayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferSinglePayResponse> {
-        self.client.execute(action: "TransferSinglePay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transferSinglePay(_ input: TransferSinglePayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferSinglePayResponse> {
+        self.client.execute(action: "TransferSinglePay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能代发-单笔代发转账接口
     @inlinable
-    public func transferSinglePay(_ input: TransferSinglePayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
-        try await self.client.execute(action: "TransferSinglePay", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transferSinglePay(_ input: TransferSinglePayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
+        try await self.client.execute(action: "TransferSinglePay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能代发-单笔代发转账接口
     @inlinable
-    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferSinglePayResponse> {
-        self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), logger: logger, on: eventLoop)
+    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferSinglePayResponse> {
+        self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能代发-单笔代发转账接口
     @inlinable
-    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
-        try await self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), logger: logger, on: eventLoop)
+    public func transferSinglePay(merchantId: String, merchantAppId: String, transferType: Int64, orderId: String, transferAmount: Int64, payeeId: String, payeeName: String? = nil, payeeExtends: String? = nil, reqReserved: String? = nil, remark: String? = nil, notifyUrl: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferSinglePayResponse {
+        try await self.transferSinglePay(TransferSinglePayRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, orderId: orderId, transferAmount: transferAmount, payeeId: payeeId, payeeName: payeeName, payeeExtends: payeeExtends, reqReserved: reqReserved, remark: remark, notifyUrl: notifyUrl, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

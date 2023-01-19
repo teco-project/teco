@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideo {
     ///
     /// 本接口（CreateUploadPath）用于获取固件上传路径。
     @inlinable
-    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUploadPathResponse> {
-        self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUploadPath(_ input: CreateUploadPathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUploadPathResponse> {
+        self.client.execute(action: "CreateUploadPath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取固件上传路径
     ///
     /// 本接口（CreateUploadPath）用于获取固件上传路径。
     @inlinable
-    public func createUploadPath(_ input: CreateUploadPathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
-        try await self.client.execute(action: "CreateUploadPath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUploadPath(_ input: CreateUploadPathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
+        try await self.client.execute(action: "CreateUploadPath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取固件上传路径
     ///
     /// 本接口（CreateUploadPath）用于获取固件上传路径。
     @inlinable
-    public func createUploadPath(productId: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUploadPathResponse> {
-        self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), logger: logger, on: eventLoop)
+    public func createUploadPath(productId: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUploadPathResponse> {
+        self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取固件上传路径
     ///
     /// 本接口（CreateUploadPath）用于获取固件上传路径。
     @inlinable
-    public func createUploadPath(productId: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
-        try await self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), logger: logger, on: eventLoop)
+    public func createUploadPath(productId: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUploadPathResponse {
+        try await self.createUploadPath(CreateUploadPathRequest(productId: productId, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 }

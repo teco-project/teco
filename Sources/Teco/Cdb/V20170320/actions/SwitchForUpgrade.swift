@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cdb {
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable
-    public func switchForUpgrade(_ input: SwitchForUpgradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchForUpgradeResponse> {
-        self.client.execute(action: "SwitchForUpgrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchForUpgrade(_ input: SwitchForUpgradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchForUpgradeResponse> {
+        self.client.execute(action: "SwitchForUpgrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable
-    public func switchForUpgrade(_ input: SwitchForUpgradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
-        try await self.client.execute(action: "SwitchForUpgrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchForUpgrade(_ input: SwitchForUpgradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
+        try await self.client.execute(action: "SwitchForUpgrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable
-    public func switchForUpgrade(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchForUpgradeResponse> {
-        self.switchForUpgrade(SwitchForUpgradeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func switchForUpgrade(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchForUpgradeResponse> {
+        self.switchForUpgrade(SwitchForUpgradeRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
     @inlinable
-    public func switchForUpgrade(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
-        try await self.switchForUpgrade(SwitchForUpgradeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func switchForUpgrade(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
+        try await self.switchForUpgrade(SwitchForUpgradeRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

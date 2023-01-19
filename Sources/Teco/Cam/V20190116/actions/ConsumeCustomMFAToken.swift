@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cam {
 
     /// 验证自定义多因子Token
     @inlinable
-    public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConsumeCustomMFATokenResponse> {
-        self.client.execute(action: "ConsumeCustomMFAToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConsumeCustomMFATokenResponse> {
+        self.client.execute(action: "ConsumeCustomMFAToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证自定义多因子Token
     @inlinable
-    public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConsumeCustomMFATokenResponse {
-        try await self.client.execute(action: "ConsumeCustomMFAToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func consumeCustomMFAToken(_ input: ConsumeCustomMFATokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConsumeCustomMFATokenResponse {
+        try await self.client.execute(action: "ConsumeCustomMFAToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证自定义多因子Token
     @inlinable
-    public func consumeCustomMFAToken(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConsumeCustomMFATokenResponse> {
-        self.consumeCustomMFAToken(ConsumeCustomMFATokenRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    public func consumeCustomMFAToken(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConsumeCustomMFATokenResponse> {
+        self.consumeCustomMFAToken(ConsumeCustomMFATokenRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证自定义多因子Token
     @inlinable
-    public func consumeCustomMFAToken(mfaToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConsumeCustomMFATokenResponse {
-        try await self.consumeCustomMFAToken(ConsumeCustomMFATokenRequest(mfaToken: mfaToken), logger: logger, on: eventLoop)
+    public func consumeCustomMFAToken(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConsumeCustomMFATokenResponse {
+        try await self.consumeCustomMFAToken(ConsumeCustomMFATokenRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
     }
 }

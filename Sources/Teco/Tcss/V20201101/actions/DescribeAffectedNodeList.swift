@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Tcss {
     ///
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
-    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedNodeListResponse> {
-        self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedNodeListResponse> {
+        self.client.execute(action: "DescribeAffectedNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询节点类型的影响范围
     ///
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
-    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
-        try await self.client.execute(action: "DescribeAffectedNodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAffectedNodeList(_ input: DescribeAffectedNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
+        try await self.client.execute(action: "DescribeAffectedNodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询节点类型的影响范围
     ///
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
-    public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedNodeListResponse> {
-        self.describeAffectedNodeList(DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAffectedNodeListResponse> {
+        self.describeAffectedNodeList(DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询节点类型的影响范围
     ///
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
-    public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
-        try await self.describeAffectedNodeList(DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeAffectedNodeList(checkItemId: Int64, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAffectedNodeListResponse {
+        try await self.describeAffectedNodeList(DescribeAffectedNodeListRequest(checkItemId: checkItemId, offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

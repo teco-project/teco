@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iot {
 
     /// 启用规则
     @inlinable
-    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
-        self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func activateRule(_ input: ActivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
+        self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用规则
     @inlinable
-    public func activateRule(_ input: ActivateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
-        try await self.client.execute(action: "ActivateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func activateRule(_ input: ActivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
+        try await self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用规则
     @inlinable
-    public func activateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
-        self.activateRule(ActivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
+        self.activateRule(ActivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用规则
     @inlinable
-    public func activateRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
-        try await self.activateRule(ActivateRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
+        try await self.activateRule(ActivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

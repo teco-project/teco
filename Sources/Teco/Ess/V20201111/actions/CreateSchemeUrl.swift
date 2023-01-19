@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,8 +94,8 @@ extension Ess {
     /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
-        self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
+        self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取小程序跳转链接
@@ -106,8 +106,8 @@ extension Ess {
     /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
-        try await self.client.execute(action: "CreateSchemeUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSchemeUrl(_ input: CreateSchemeUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
+        try await self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取小程序跳转链接
@@ -118,8 +118,8 @@ extension Ess {
     /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
-        self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), logger: logger, on: eventLoop)
+    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
+        self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取小程序跳转链接
@@ -130,7 +130,7 @@ extension Ess {
     /// 跳转到小程序的实现，参考官方文档（分为<a href="https://developers.weixin.qq.com/miniprogram/dev/api/navigate/wx.navigateToMiniProgram.html">全屏</a>、<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/openEmbeddedMiniProgram.html">半屏</a>两种方式）
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
-    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
-        try await self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), logger: logger, on: eventLoop)
+    public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
+        try await self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Essbasic {
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
+        self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人用户信息
@@ -62,8 +62,8 @@ extension Essbasic {
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询个人用户信息
@@ -71,8 +71,8 @@ extension Essbasic {
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
-    public func describeUsers(caller: Caller, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), logger: logger, on: eventLoop)
+    public func describeUsers(caller: Caller, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
+        self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人用户信息
@@ -80,7 +80,7 @@ extension Essbasic {
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
-    public func describeUsers(caller: Caller, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), logger: logger, on: eventLoop)
+    public func describeUsers(caller: Caller, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.describeUsers(DescribeUsersRequest(caller: caller, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 }

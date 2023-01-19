@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Iot {
 
     /// 新增规则
     @inlinable
-    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
-        self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addRule(_ input: AddRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
+        self.client.execute(action: "AddRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增规则
     @inlinable
-    public func addRule(_ input: AddRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
-        try await self.client.execute(action: "AddRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addRule(_ input: AddRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
+        try await self.client.execute(action: "AddRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增规则
     @inlinable
-    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
-        self.addRule(AddRuleRequest(name: name, description: description, query: query, actions: actions, dataType: dataType), logger: logger, on: eventLoop)
+    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRuleResponse> {
+        self.addRule(AddRuleRequest(name: name, description: description, query: query, actions: actions, dataType: dataType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增规则
     @inlinable
-    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
-        try await self.addRule(AddRuleRequest(name: name, description: description, query: query, actions: actions, dataType: dataType), logger: logger, on: eventLoop)
+    public func addRule(name: String, description: String, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRuleResponse {
+        try await self.addRule(AddRuleRequest(name: name, description: description, query: query, actions: actions, dataType: dataType), region: region, logger: logger, on: eventLoop)
     }
 }

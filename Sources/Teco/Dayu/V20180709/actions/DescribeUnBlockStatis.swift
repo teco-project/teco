@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Dayu {
 
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
-        self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
+        self.client.execute(action: "DescribeUnBlockStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
-        try await self.client.execute(action: "DescribeUnBlockStatis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUnBlockStatis(_ input: DescribeUnBlockStatisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
+        try await self.client.execute(action: "DescribeUnBlockStatis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
-        self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), logger: logger, on: eventLoop)
+    public func describeUnBlockStatis(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnBlockStatisResponse> {
+        self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑洞解封次数
     @inlinable
-    public func describeUnBlockStatis(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
-        try await self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), logger: logger, on: eventLoop)
+    public func describeUnBlockStatis(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnBlockStatisResponse {
+        try await self.describeUnBlockStatis(DescribeUnBlockStatisRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

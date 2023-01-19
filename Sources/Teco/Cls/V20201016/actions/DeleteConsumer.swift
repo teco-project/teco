@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cls {
     ///
     /// 本接口用于删除投递配置
     @inlinable
-    public func deleteConsumer(_ input: DeleteConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
-        self.client.execute(action: "DeleteConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteConsumer(_ input: DeleteConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
+        self.client.execute(action: "DeleteConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
     @inlinable
-    public func deleteConsumer(_ input: DeleteConsumerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
-        try await self.client.execute(action: "DeleteConsumer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteConsumer(_ input: DeleteConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
+        try await self.client.execute(action: "DeleteConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
     @inlinable
-    public func deleteConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
-        self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
+        self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
     @inlinable
-    public func deleteConsumer(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
-        try await self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
+        try await self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

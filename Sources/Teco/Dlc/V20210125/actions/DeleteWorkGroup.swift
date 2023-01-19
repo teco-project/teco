@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dlc {
 
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
-        self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
+        self.client.execute(action: "DeleteWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
-        try await self.client.execute(action: "DeleteWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWorkGroup(_ input: DeleteWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
+        try await self.client.execute(action: "DeleteWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(workGroupIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
-        self.deleteWorkGroup(DeleteWorkGroupRequest(workGroupIds: workGroupIds), logger: logger, on: eventLoop)
+    public func deleteWorkGroup(workGroupIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkGroupResponse> {
+        self.deleteWorkGroup(DeleteWorkGroupRequest(workGroupIds: workGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除工作组
     @inlinable
-    public func deleteWorkGroup(workGroupIds: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
-        try await self.deleteWorkGroup(DeleteWorkGroupRequest(workGroupIds: workGroupIds), logger: logger, on: eventLoop)
+    public func deleteWorkGroup(workGroupIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkGroupResponse {
+        try await self.deleteWorkGroup(DeleteWorkGroupRequest(workGroupIds: workGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

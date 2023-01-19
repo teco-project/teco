@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
-        self.client.execute(action: "CreateSecurityGroupWithPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
+        self.client.execute(action: "CreateSecurityGroupWithPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组和规则
@@ -94,8 +94,8 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
-        try await self.client.execute(action: "CreateSecurityGroupWithPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityGroupWithPolicies(_ input: CreateSecurityGroupWithPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
+        try await self.client.execute(action: "CreateSecurityGroupWithPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建安全组和规则
@@ -114,8 +114,8 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
-        self.createSecurityGroupWithPolicies(CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupWithPoliciesResponse> {
+        self.createSecurityGroupWithPolicies(CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组和规则
@@ -134,7 +134,7 @@ extension Vpc {
     /// * CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate四者是排他关系，不允许同时输入，Protocol + Port和ServiceTemplate二者是排他关系，不允许同时输入。
     /// * 一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。
     @inlinable
-    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
-        try await self.createSecurityGroupWithPolicies(CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), logger: logger, on: eventLoop)
+    public func createSecurityGroupWithPolicies(groupName: String, groupDescription: String, projectId: String? = nil, securityGroupPolicySet: SecurityGroupPolicySet? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupWithPoliciesResponse {
+        try await self.createSecurityGroupWithPolicies(CreateSecurityGroupWithPoliciesRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

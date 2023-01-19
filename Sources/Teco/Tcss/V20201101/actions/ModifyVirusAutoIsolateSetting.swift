@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcss {
 
     /// 修改木马自动隔离设置
     @inlinable
-    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateSettingResponse> {
-        self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateSettingResponse> {
+        self.client.execute(action: "ModifyVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离设置
     @inlinable
-    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
-        try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVirusAutoIsolateSetting(_ input: ModifyVirusAutoIsolateSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
+        try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改木马自动隔离设置
     @inlinable
-    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateSettingResponse> {
-        self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateSettingResponse> {
+        self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离设置
     @inlinable
-    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
-        try await self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
+        try await self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), region: region, logger: logger, on: eventLoop)
     }
 }

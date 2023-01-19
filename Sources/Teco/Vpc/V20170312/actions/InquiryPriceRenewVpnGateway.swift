@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Vpc {
     ///
     /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
     @inlinable
-    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewVpnGatewayResponse> {
-        self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewVpnGatewayResponse> {
+        self.client.execute(action: "InquiryPriceRenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费VPN网关询价
     ///
     /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
     @inlinable
-    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
-        try await self.client.execute(action: "InquiryPriceRenewVpnGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceRenewVpnGateway(_ input: InquiryPriceRenewVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
+        try await self.client.execute(action: "InquiryPriceRenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费VPN网关询价
     ///
     /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
     @inlinable
-    public func inquiryPriceRenewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewVpnGatewayResponse> {
-        self.inquiryPriceRenewVpnGateway(InquiryPriceRenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func inquiryPriceRenewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewVpnGatewayResponse> {
+        self.inquiryPriceRenewVpnGateway(InquiryPriceRenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费VPN网关询价
     ///
     /// 本接口（InquiryPriceRenewVpnGateway）用于续费VPN网关询价。目前仅支持IPSEC类型网关的询价。
     @inlinable
-    public func inquiryPriceRenewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
-        try await self.inquiryPriceRenewVpnGateway(InquiryPriceRenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func inquiryPriceRenewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewVpnGatewayResponse {
+        try await self.inquiryPriceRenewVpnGateway(InquiryPriceRenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

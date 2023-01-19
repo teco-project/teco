@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
-    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPasswordResponse> {
-        self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPasswordResponse> {
+        self.client.execute(action: "ModifyAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的密码
     ///
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
-    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
-        try await self.client.execute(action: "ModifyAccountPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountPassword(_ input: ModifyAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
+        try await self.client.execute(action: "ModifyAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例账号的密码
     ///
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
-    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPasswordResponse> {
-        self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPasswordResponse> {
+        self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的密码
     ///
     /// 本接口(ModifyAccountPassword)用于修改云数据库账户的密码。
     @inlinable
-    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
-        try await self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountPassword(instanceId: String, newPassword: String, accounts: [Account], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPasswordResponse {
+        try await self.modifyAccountPassword(ModifyAccountPasswordRequest(instanceId: instanceId, newPassword: newPassword, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

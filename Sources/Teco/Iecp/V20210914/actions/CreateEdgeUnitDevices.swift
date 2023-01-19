@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
-        self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
+        self.client.execute(action: "CreateEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
-        try await self.client.execute(action: "CreateEdgeUnitDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeUnitDevices(_ input: CreateEdgeUnitDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
+        try await self.client.execute(action: "CreateEdgeUnitDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
-        self.createEdgeUnitDevices(CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitDevicesResponse> {
+        self.createEdgeUnitDevices(CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定设备到单元
     @inlinable
-    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
-        try await self.createEdgeUnitDevices(CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), logger: logger, on: eventLoop)
+    public func createEdgeUnitDevices(edgeUnitId: Int64, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitDevicesResponse {
+        try await self.createEdgeUnitDevices(CreateEdgeUnitDevicesRequest(edgeUnitId: edgeUnitId, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
     }
 }

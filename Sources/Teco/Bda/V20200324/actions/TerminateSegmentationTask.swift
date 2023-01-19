@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Bda {
     ///
     /// 终止指定视频人像分割处理任务
     @inlinable
-    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
-        self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
+        self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
     @inlinable
-    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
-        try await self.client.execute(action: "TerminateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
+        try await self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
     @inlinable
-    public func terminateSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
-        self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
+        self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
     @inlinable
-    public func terminateSegmentationTask(taskID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
-        try await self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), logger: logger, on: eventLoop)
+    public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
+        try await self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

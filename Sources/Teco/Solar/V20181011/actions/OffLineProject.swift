@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Solar {
 
     /// 下线项目
     @inlinable
-    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
-        self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offLineProject(_ input: OffLineProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
+        self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线项目
     @inlinable
-    public func offLineProject(_ input: OffLineProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
-        try await self.client.execute(action: "OffLineProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offLineProject(_ input: OffLineProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
+        try await self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线项目
     @inlinable
-    public func offLineProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
-        self.offLineProject(OffLineProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
+        self.offLineProject(OffLineProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线项目
     @inlinable
-    public func offLineProject(projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
-        try await self.offLineProject(OffLineProjectRequest(projectId: projectId), logger: logger, on: eventLoop)
+    public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
+        try await self.offLineProject(OffLineProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

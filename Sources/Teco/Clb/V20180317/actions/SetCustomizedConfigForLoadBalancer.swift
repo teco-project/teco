@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Clb {
     ///
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
-    public func setCustomizedConfigForLoadBalancer(_ input: SetCustomizedConfigForLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCustomizedConfigForLoadBalancerResponse> {
-        self.client.execute(action: "SetCustomizedConfigForLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setCustomizedConfigForLoadBalancer(_ input: SetCustomizedConfigForLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCustomizedConfigForLoadBalancerResponse> {
+        self.client.execute(action: "SetCustomizedConfigForLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡维度的个性化配置相关操作
     ///
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
-    public func setCustomizedConfigForLoadBalancer(_ input: SetCustomizedConfigForLoadBalancerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCustomizedConfigForLoadBalancerResponse {
-        try await self.client.execute(action: "SetCustomizedConfigForLoadBalancer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setCustomizedConfigForLoadBalancer(_ input: SetCustomizedConfigForLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCustomizedConfigForLoadBalancerResponse {
+        try await self.client.execute(action: "SetCustomizedConfigForLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 负载均衡维度的个性化配置相关操作
     ///
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
-    public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCustomizedConfigForLoadBalancerResponse> {
-        self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCustomizedConfigForLoadBalancerResponse> {
+        self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡维度的个性化配置相关操作
     ///
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
-    public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCustomizedConfigForLoadBalancerResponse {
-        try await self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), logger: logger, on: eventLoop)
+    public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCustomizedConfigForLoadBalancerResponse {
+        try await self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
 }

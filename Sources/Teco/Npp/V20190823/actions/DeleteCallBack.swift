@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Npp {
 
     /// 回拨呼叫取消
     @inlinable
-    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCallBackResponse> {
-        self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCallBack(_ input: DeleteCallBackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCallBackResponse> {
+        self.client.execute(action: "DeleteCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨呼叫取消
     @inlinable
-    public func deleteCallBack(_ input: DeleteCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
-        try await self.client.execute(action: "DeleteCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCallBack(_ input: DeleteCallBackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
+        try await self.client.execute(action: "DeleteCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回拨呼叫取消
     @inlinable
-    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCallBackResponse> {
-        self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), logger: logger, on: eventLoop)
+    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCallBackResponse> {
+        self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨呼叫取消
     @inlinable
-    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
-        try await self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), logger: logger, on: eventLoop)
+    public func deleteCallBack(bizAppId: String, callId: String, cancelFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCallBackResponse {
+        try await self.deleteCallBack(DeleteCallBackRequest(bizAppId: bizAppId, callId: callId, cancelFlag: cancelFlag), region: region, logger: logger, on: eventLoop)
     }
 }

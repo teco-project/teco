@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
-    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRulesResponse> {
-        self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRulesResponse> {
+        self.client.execute(action: "DescribeSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据安全规则ID查询安全规则详情列表
     ///
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
-    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
-        try await self.client.execute(action: "DescribeSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityRules(_ input: DescribeSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
+        try await self.client.execute(action: "DescribeSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据安全规则ID查询安全规则详情列表
     ///
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
-    public func describeSecurityRules(securityRuleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRulesResponse> {
-        self.describeSecurityRules(DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds), logger: logger, on: eventLoop)
+    public func describeSecurityRules(securityRuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityRulesResponse> {
+        self.describeSecurityRules(DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据安全规则ID查询安全规则详情列表
     ///
     /// 本接口（DescribeSecurityRules）用于根据安全规则ID查询安全规则详情列表。支持一个或多个安全规则的查询。一次最多支持20个安全规则的查询。
     @inlinable
-    public func describeSecurityRules(securityRuleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
-        try await self.describeSecurityRules(DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds), logger: logger, on: eventLoop)
+    public func describeSecurityRules(securityRuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityRulesResponse {
+        try await self.describeSecurityRules(DescribeSecurityRulesRequest(securityRuleIds: securityRuleIds), region: region, logger: logger, on: eventLoop)
     }
 }

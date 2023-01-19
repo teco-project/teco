@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 与云监控融合的2.0实例关联集群
     @inlinable
-    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
-        self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
+        self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 2.0实例关联集群
     ///
     /// 与云监控融合的2.0实例关联集群
     @inlinable
-    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
-        try await self.client.execute(action: "CreatePrometheusClusterAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusClusterAgent(_ input: CreatePrometheusClusterAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
+        try await self.client.execute(action: "CreatePrometheusClusterAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 2.0实例关联集群
     ///
     /// 与云监控融合的2.0实例关联集群
     @inlinable
-    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
-        self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), logger: logger, on: eventLoop)
+    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusClusterAgentResponse> {
+        self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 2.0实例关联集群
     ///
     /// 与云监控融合的2.0实例关联集群
     @inlinable
-    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
-        try await self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), logger: logger, on: eventLoop)
+    public func createPrometheusClusterAgent(instanceId: String, agents: [PrometheusClusterAgentBasic], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusClusterAgentResponse {
+        try await self.createPrometheusClusterAgent(CreatePrometheusClusterAgentRequest(instanceId: instanceId, agents: agents), region: region, logger: logger, on: eventLoop)
     }
 }

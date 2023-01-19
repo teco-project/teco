@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Iot {
     ///
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable
-    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IssueDeviceControlResponse> {
-        self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func issueDeviceControl(_ input: IssueDeviceControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IssueDeviceControlResponse> {
+        self.client.execute(action: "IssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下发设备控制指令
     ///
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable
-    public func issueDeviceControl(_ input: IssueDeviceControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
-        try await self.client.execute(action: "IssueDeviceControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func issueDeviceControl(_ input: IssueDeviceControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
+        try await self.client.execute(action: "IssueDeviceControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下发设备控制指令
     ///
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable
-    public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IssueDeviceControlResponse> {
-        self.issueDeviceControl(IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IssueDeviceControlResponse> {
+        self.issueDeviceControl(IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下发设备控制指令
     ///
     /// 提供下发控制指令到指定设备的能力，该接口适用于使用高级版类型的产品。
     @inlinable
-    public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
-        try await self.issueDeviceControl(IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), logger: logger, on: eventLoop)
+    public func issueDeviceControl(productId: String, deviceName: String, controlData: String, metadata: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IssueDeviceControlResponse {
+        try await self.issueDeviceControl(IssueDeviceControlRequest(productId: productId, deviceName: deviceName, controlData: controlData, metadata: metadata), region: region, logger: logger, on: eventLoop)
     }
 }

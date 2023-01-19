@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,31 +99,31 @@ extension Vod {
     ///
     /// 修改用户自定义转码模板信息。
     @inlinable
-    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTranscodeTemplateResponse> {
-        self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTranscodeTemplateResponse> {
+        self.client.execute(action: "ModifyTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改转码模板
     ///
     /// 修改用户自定义转码模板信息。
     @inlinable
-    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
-        try await self.client.execute(action: "ModifyTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTranscodeTemplate(_ input: ModifyTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
+        try await self.client.execute(action: "ModifyTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改转码模板
     ///
     /// 修改用户自定义转码模板信息。
     @inlinable
-    public func modifyTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTranscodeTemplateResponse> {
-        self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, subAppId: subAppId, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), logger: logger, on: eventLoop)
+    public func modifyTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTranscodeTemplateResponse> {
+        self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, subAppId: subAppId, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改转码模板
     ///
     /// 修改用户自定义转码模板信息。
     @inlinable
-    public func modifyTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, segmentType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
-        try await self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, subAppId: subAppId, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), logger: logger, on: eventLoop)
+    public func modifyTranscodeTemplate(definition: Int64, subAppId: UInt64? = nil, container: String? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfoForUpdate? = nil, audioTemplate: AudioTemplateInfoForUpdate? = nil, tehdConfig: TEHDConfigForUpdate? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTranscodeTemplateResponse {
+        try await self.modifyTranscodeTemplate(ModifyTranscodeTemplateRequest(definition: definition, subAppId: subAppId, container: container, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Pts {
 
     /// 复制场景
     @inlinable
-    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyScenarioResponse> {
-        self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyScenario(_ input: CopyScenarioRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyScenarioResponse> {
+        self.client.execute(action: "CopyScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制场景
     @inlinable
-    public func copyScenario(_ input: CopyScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
-        try await self.client.execute(action: "CopyScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyScenario(_ input: CopyScenarioRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
+        try await self.client.execute(action: "CopyScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制场景
     @inlinable
-    public func copyScenario(projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyScenarioResponse> {
-        self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    public func copyScenario(projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyScenarioResponse> {
+        self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制场景
     @inlinable
-    public func copyScenario(projectId: String, scenarioId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
-        try await self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), logger: logger, on: eventLoop)
+    public func copyScenario(projectId: String, scenarioId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyScenarioResponse {
+        try await self.copyScenario(CopyScenarioRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
     }
 }

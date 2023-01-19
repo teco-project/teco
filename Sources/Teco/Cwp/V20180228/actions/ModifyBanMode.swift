@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cwp {
 
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
-        self.client.execute(action: "ModifyBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBanMode(_ input: ModifyBanModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
+        self.client.execute(action: "ModifyBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(_ input: ModifyBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
-        try await self.client.execute(action: "ModifyBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBanMode(_ input: ModifyBanModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
+        try await self.client.execute(action: "ModifyBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(mode: String, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
-        self.modifyBanMode(ModifyBanModeRequest(mode: mode, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyBanMode(mode: String, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBanModeResponse> {
+        self.modifyBanMode(ModifyBanModeRequest(mode: mode, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改爆破阻断模式
     @inlinable
-    public func modifyBanMode(mode: String, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
-        try await self.modifyBanMode(ModifyBanModeRequest(mode: mode, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyBanMode(mode: String, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBanModeResponse {
+        try await self.modifyBanMode(ModifyBanModeRequest(mode: mode, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

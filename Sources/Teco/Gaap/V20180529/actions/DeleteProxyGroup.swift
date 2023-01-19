@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
     @inlinable
-    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
-        self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
+        self.client.execute(action: "DeleteProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
     @inlinable
-    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
-        try await self.client.execute(action: "DeleteProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
+        try await self.client.execute(action: "DeleteProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
     @inlinable
-    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
-        self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), logger: logger, on: eventLoop)
+    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
+        self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
     @inlinable
-    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
-        try await self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), logger: logger, on: eventLoop)
+    public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
+        try await self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

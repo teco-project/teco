@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tkgdq {
     ///
     /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
     @inlinable
-    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTripleResponse> {
-        self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTriple(_ input: DescribeTripleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTripleResponse> {
+        self.client.execute(action: "DescribeTriple", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 三元组查询
     ///
     /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
     @inlinable
-    public func describeTriple(_ input: DescribeTripleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
-        try await self.client.execute(action: "DescribeTriple", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTriple(_ input: DescribeTripleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
+        try await self.client.execute(action: "DescribeTriple", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 三元组查询
     ///
     /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
     @inlinable
-    public func describeTriple(tripleCondition: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTripleResponse> {
-        self.describeTriple(DescribeTripleRequest(tripleCondition: tripleCondition), logger: logger, on: eventLoop)
+    public func describeTriple(tripleCondition: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTripleResponse> {
+        self.describeTriple(DescribeTripleRequest(tripleCondition: tripleCondition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 三元组查询
     ///
     /// 三元组查询，主要分为两类，SP查询和PO查询。SP查询表示已知主语和谓语查询宾语，PO查询表示已知宾语和谓语查询主语。每一个SP或PO查询都是一个可独立执行的查询，TQL支持SP查询的嵌套查询，即主语可以是一个嵌套的子查询。其他复杂的三元组查询方法，请参考官网API文档示例。
     @inlinable
-    public func describeTriple(tripleCondition: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
-        try await self.describeTriple(DescribeTripleRequest(tripleCondition: tripleCondition), logger: logger, on: eventLoop)
+    public func describeTriple(tripleCondition: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTripleResponse {
+        try await self.describeTriple(DescribeTripleRequest(tripleCondition: tripleCondition), region: region, logger: logger, on: eventLoop)
     }
 }

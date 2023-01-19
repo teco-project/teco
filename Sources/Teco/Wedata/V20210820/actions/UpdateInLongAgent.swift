@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 更新采集器
     @inlinable
-    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateInLongAgentResponse> {
-        self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateInLongAgentResponse> {
+        self.client.execute(action: "UpdateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新采集器
     @inlinable
-    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
-        try await self.client.execute(action: "UpdateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateInLongAgent(_ input: UpdateInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
+        try await self.client.execute(action: "UpdateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新采集器
     @inlinable
-    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateInLongAgentResponse> {
-        self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateInLongAgentResponse> {
+        self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新采集器
     @inlinable
-    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
-        try await self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), logger: logger, on: eventLoop)
+    public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
+        try await self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

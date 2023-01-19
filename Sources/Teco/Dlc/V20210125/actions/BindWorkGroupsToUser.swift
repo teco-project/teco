@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dlc {
 
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
-        self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
+        self.client.execute(action: "BindWorkGroupsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
-        try await self.client.execute(action: "BindWorkGroupsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
+        try await self.client.execute(action: "BindWorkGroupsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
-        self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
+        self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定工作组到用户
     @inlinable
-    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
-        try await self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), logger: logger, on: eventLoop)
+    public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
+        try await self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 }

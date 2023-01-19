@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Iotvideo {
     ///
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
-    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppUsrResponse> {
-        self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAppUsr(_ input: CreateAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppUsrResponse> {
+        self.client.execute(action: "CreateAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端用户注册
     ///
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
-    public func createAppUsr(_ input: CreateAppUsrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
-        try await self.client.execute(action: "CreateAppUsr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAppUsr(_ input: CreateAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
+        try await self.client.execute(action: "CreateAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终端用户注册
     ///
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
-    public func createAppUsr(cunionId: String, mobile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppUsrResponse> {
-        self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), logger: logger, on: eventLoop)
+    public func createAppUsr(cunionId: String, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppUsrResponse> {
+        self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终端用户注册
     ///
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
-    public func createAppUsr(cunionId: String, mobile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
-        try await self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), logger: logger, on: eventLoop)
+    public func createAppUsr(cunionId: String, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
+        try await self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), region: region, logger: logger, on: eventLoop)
     }
 }

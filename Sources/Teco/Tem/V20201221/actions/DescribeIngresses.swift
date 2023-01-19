@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 查询 Ingress 规则列表
     @inlinable
-    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
-        self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIngresses(_ input: DescribeIngressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
+        self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 Ingress 规则列表
     @inlinable
-    public func describeIngresses(_ input: DescribeIngressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
-        try await self.client.execute(action: "DescribeIngresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIngresses(_ input: DescribeIngressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
+        try await self.client.execute(action: "DescribeIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 Ingress 规则列表
     @inlinable
-    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
-        self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), logger: logger, on: eventLoop)
+    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIngressesResponse> {
+        self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 Ingress 规则列表
     @inlinable
-    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
-        try await self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), logger: logger, on: eventLoop)
+    public func describeIngresses(namespaceId: String? = nil, eksNamespace: String? = nil, sourceChannel: Int64? = nil, names: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIngressesResponse {
+        try await self.describeIngresses(DescribeIngressesRequest(namespaceId: namespaceId, eksNamespace: eksNamespace, sourceChannel: sourceChannel, names: names), region: region, logger: logger, on: eventLoop)
     }
 }

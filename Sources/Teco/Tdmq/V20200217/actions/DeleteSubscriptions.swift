@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tdmq {
 
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
-        self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
+        self.client.execute(action: "DeleteSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
-        try await self.client.execute(action: "DeleteSubscriptions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSubscriptions(_ input: DeleteSubscriptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
+        try await self.client.execute(action: "DeleteSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
-        self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
+        self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅关系
     @inlinable
-    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
-        try await self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), logger: logger, on: eventLoop)
+    public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
+        try await self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

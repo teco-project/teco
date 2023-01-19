@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideo {
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable
-    public func disableOtaVersion(_ input: DisableOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
-        self.client.execute(action: "DisableOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableOtaVersion(_ input: DisableOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
+        self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable
-    public func disableOtaVersion(_ input: DisableOtaVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
-        try await self.client.execute(action: "DisableOtaVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableOtaVersion(_ input: DisableOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
+        try await self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable
-    public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
-        self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), logger: logger, on: eventLoop)
+    public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
+        self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
     @inlinable
-    public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
-        try await self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), logger: logger, on: eventLoop)
+    public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
+        try await self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

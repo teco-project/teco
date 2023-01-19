@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Dnspod {
 
     /// 设置记录备注
     @inlinable
-    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordRemarkResponse> {
-        self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordRemarkResponse> {
+        self.client.execute(action: "ModifyRecordRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置记录备注
     @inlinable
-    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
-        try await self.client.execute(action: "ModifyRecordRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordRemark(_ input: ModifyRecordRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
+        try await self.client.execute(action: "ModifyRecordRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置记录备注
     @inlinable
-    public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordRemarkResponse> {
-        self.modifyRecordRemark(ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordRemarkResponse> {
+        self.modifyRecordRemark(ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置记录备注
     @inlinable
-    public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
-        try await self.modifyRecordRemark(ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark), logger: logger, on: eventLoop)
+    public func modifyRecordRemark(domain: String, recordId: UInt64, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordRemarkResponse {
+        try await self.modifyRecordRemark(ModifyRecordRemarkRequest(domain: domain, recordId: recordId, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

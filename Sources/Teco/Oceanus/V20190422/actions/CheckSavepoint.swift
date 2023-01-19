@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Oceanus {
 
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
-        self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkSavepoint(_ input: CheckSavepointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
+        self.client.execute(action: "CheckSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(_ input: CheckSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
-        try await self.client.execute(action: "CheckSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkSavepoint(_ input: CheckSavepointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
+        try await self.client.execute(action: "CheckSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
-        self.checkSavepoint(CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSavepointResponse> {
+        self.checkSavepoint(CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查快照是否可用
     @inlinable
-    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
-        try await self.checkSavepoint(CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func checkSavepoint(jobId: String, serialId: String, recordType: Int64, savepointPath: String, workSpaceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSavepointResponse {
+        try await self.checkSavepoint(CheckSavepointRequest(jobId: jobId, serialId: serialId, recordType: recordType, savepointPath: savepointPath, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

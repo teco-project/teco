@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tdmq {
 
     /// 创建AMQP队列
     @inlinable
-    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPQueueResponse> {
-        self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPQueueResponse> {
+        self.client.execute(action: "CreateAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP队列
     @inlinable
-    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
-        try await self.client.execute(action: "CreateAMQPQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAMQPQueue(_ input: CreateAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
+        try await self.client.execute(action: "CreateAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建AMQP队列
     @inlinable
-    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPQueueResponse> {
-        self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPQueueResponse> {
+        self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP队列
     @inlinable
-    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
-        try await self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), logger: logger, on: eventLoop)
+    public func createAMQPQueue(queue: String, vHostId: String, autoDelete: Bool, clusterId: String, remark: String? = nil, deadLetterExchange: String? = nil, deadLetterRoutingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPQueueResponse {
+        try await self.createAMQPQueue(CreateAMQPQueueRequest(queue: queue, vHostId: vHostId, autoDelete: autoDelete, clusterId: clusterId, remark: remark, deadLetterExchange: deadLetterExchange, deadLetterRoutingKey: deadLetterRoutingKey), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Dcdb {
 
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
-        self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
+        self.client.execute(action: "IsolateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
-        try await self.client.execute(action: "IsolateHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateHourDCDBInstance(_ input: IsolateHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
+        try await self.client.execute(action: "IsolateHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
-        self.isolateHourDCDBInstance(IsolateHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func isolateHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDCDBInstanceResponse> {
+        self.isolateHourDCDBInstance(IsolateHourDCDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离DCDB后付费实例
     @inlinable
-    public func isolateHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
-        try await self.isolateHourDCDBInstance(IsolateHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func isolateHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDCDBInstanceResponse {
+        try await self.isolateHourDCDBInstance(IsolateHourDCDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

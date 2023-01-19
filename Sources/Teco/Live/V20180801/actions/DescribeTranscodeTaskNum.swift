@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Live {
 
     /// 查询转码任务数。
     @inlinable
-    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeTaskNumResponse> {
-        self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeTaskNumResponse> {
+        self.client.execute(action: "DescribeTranscodeTaskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转码任务数。
     @inlinable
-    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
-        try await self.client.execute(action: "DescribeTranscodeTaskNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTranscodeTaskNum(_ input: DescribeTranscodeTaskNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
+        try await self.client.execute(action: "DescribeTranscodeTaskNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询转码任务数。
     @inlinable
-    public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeTaskNumResponse> {
-        self.describeTranscodeTaskNum(DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeTaskNumResponse> {
+        self.describeTranscodeTaskNum(DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询转码任务数。
     @inlinable
-    public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
-        try await self.describeTranscodeTaskNum(DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains), logger: logger, on: eventLoop)
+    public func describeTranscodeTaskNum(startTime: String, endTime: String, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeTaskNumResponse {
+        try await self.describeTranscodeTaskNum(DescribeTranscodeTaskNumRequest(startTime: startTime, endTime: endTime, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
     }
 }

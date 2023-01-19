@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcss {
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable
-    public func modifyVirusMonitorSetting(_ input: ModifyVirusMonitorSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
-        self.client.execute(action: "ModifyVirusMonitorSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVirusMonitorSetting(_ input: ModifyVirusMonitorSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
+        self.client.execute(action: "ModifyVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable
-    public func modifyVirusMonitorSetting(_ input: ModifyVirusMonitorSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
-        try await self.client.execute(action: "ModifyVirusMonitorSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVirusMonitorSetting(_ input: ModifyVirusMonitorSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
+        try await self.client.execute(action: "ModifyVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable
-    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
-        self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), logger: logger, on: eventLoop)
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
+        self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable
-    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
-        try await self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), logger: logger, on: eventLoop)
+    public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
+        try await self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
     }
 }

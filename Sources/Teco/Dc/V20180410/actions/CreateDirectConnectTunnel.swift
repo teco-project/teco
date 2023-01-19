@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -151,31 +151,31 @@ extension Dc {
     ///
     /// 用于创建专用通道的接口
     @inlinable
-    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectTunnelResponse> {
-        self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectTunnelResponse> {
+        self.client.execute(action: "CreateDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专用通道
     ///
     /// 用于创建专用通道的接口
     @inlinable
-    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
-        try await self.client.execute(action: "CreateDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDirectConnectTunnel(_ input: CreateDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
+        try await self.client.execute(action: "CreateDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建专用通道
     ///
     /// 用于创建专用通道的接口
     @inlinable
-    public func createDirectConnectTunnel(directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String? = nil, networkType: String? = nil, networkRegion: String? = nil, vpcId: String? = nil, directConnectGatewayId: String? = nil, bandwidth: Int64? = nil, routeType: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, tencentBackupAddress: String? = nil, cloudAttachId: String? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectTunnelResponse> {
-        self.createDirectConnectTunnel(CreateDirectConnectTunnelRequest(directConnectId: directConnectId, directConnectTunnelName: directConnectTunnelName, directConnectOwnerAccount: directConnectOwnerAccount, networkType: networkType, networkRegion: networkRegion, vpcId: vpcId, directConnectGatewayId: directConnectGatewayId, bandwidth: bandwidth, routeType: routeType, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, tencentBackupAddress: tencentBackupAddress, cloudAttachId: cloudAttachId, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo), logger: logger, on: eventLoop)
+    public func createDirectConnectTunnel(directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String? = nil, networkType: String? = nil, networkRegion: String? = nil, vpcId: String? = nil, directConnectGatewayId: String? = nil, bandwidth: Int64? = nil, routeType: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, tencentBackupAddress: String? = nil, cloudAttachId: String? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectTunnelResponse> {
+        self.createDirectConnectTunnel(CreateDirectConnectTunnelRequest(directConnectId: directConnectId, directConnectTunnelName: directConnectTunnelName, directConnectOwnerAccount: directConnectOwnerAccount, networkType: networkType, networkRegion: networkRegion, vpcId: vpcId, directConnectGatewayId: directConnectGatewayId, bandwidth: bandwidth, routeType: routeType, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, tencentBackupAddress: tencentBackupAddress, cloudAttachId: cloudAttachId, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专用通道
     ///
     /// 用于创建专用通道的接口
     @inlinable
-    public func createDirectConnectTunnel(directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String? = nil, networkType: String? = nil, networkRegion: String? = nil, vpcId: String? = nil, directConnectGatewayId: String? = nil, bandwidth: Int64? = nil, routeType: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, tencentBackupAddress: String? = nil, cloudAttachId: String? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
-        try await self.createDirectConnectTunnel(CreateDirectConnectTunnelRequest(directConnectId: directConnectId, directConnectTunnelName: directConnectTunnelName, directConnectOwnerAccount: directConnectOwnerAccount, networkType: networkType, networkRegion: networkRegion, vpcId: vpcId, directConnectGatewayId: directConnectGatewayId, bandwidth: bandwidth, routeType: routeType, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, tencentBackupAddress: tencentBackupAddress, cloudAttachId: cloudAttachId, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo), logger: logger, on: eventLoop)
+    public func createDirectConnectTunnel(directConnectId: String, directConnectTunnelName: String, directConnectOwnerAccount: String? = nil, networkType: String? = nil, networkRegion: String? = nil, vpcId: String? = nil, directConnectGatewayId: String? = nil, bandwidth: Int64? = nil, routeType: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, tencentBackupAddress: String? = nil, cloudAttachId: String? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectTunnelResponse {
+        try await self.createDirectConnectTunnel(CreateDirectConnectTunnelRequest(directConnectId: directConnectId, directConnectTunnelName: directConnectTunnelName, directConnectOwnerAccount: directConnectOwnerAccount, networkType: networkType, networkRegion: networkRegion, vpcId: vpcId, directConnectGatewayId: directConnectGatewayId, bandwidth: bandwidth, routeType: routeType, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, tencentBackupAddress: tencentBackupAddress, cloudAttachId: cloudAttachId, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo), region: region, logger: logger, on: eventLoop)
     }
 }

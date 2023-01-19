@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
-        self.client.execute(action: "AssociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
+        self.client.execute(action: "AssociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定密钥对
@@ -68,8 +68,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
-        try await self.client.execute(action: "AssociateInstancesKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
+        try await self.client.execute(action: "AssociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定密钥对
@@ -82,8 +82,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
-        self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
+        self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定密钥对
@@ -96,7 +96,7 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为 100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
-        try await self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func associateInstancesKeyPairs(keyIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
+        try await self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(keyIds: keyIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

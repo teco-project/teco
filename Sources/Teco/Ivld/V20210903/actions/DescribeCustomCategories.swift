@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Ivld {
     ///
     /// 批量描述自定义人物分类信息
     @inlinable
-    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomCategoriesResponse> {
-        self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomCategoriesResponse> {
+        self.client.execute(action: "DescribeCustomCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量描述自定义人物分类
     ///
     /// 批量描述自定义人物分类信息
     @inlinable
-    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
-        try await self.client.execute(action: "DescribeCustomCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomCategories(_ input: DescribeCustomCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
+        try await self.client.execute(action: "DescribeCustomCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量描述自定义人物分类
     ///
     /// 批量描述自定义人物分类信息
     @inlinable
-    public func describeCustomCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomCategoriesResponse> {
-        self.describeCustomCategories(DescribeCustomCategoriesRequest(), logger: logger, on: eventLoop)
+    public func describeCustomCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomCategoriesResponse> {
+        self.describeCustomCategories(DescribeCustomCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量描述自定义人物分类
     ///
     /// 批量描述自定义人物分类信息
     @inlinable
-    public func describeCustomCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
-        try await self.describeCustomCategories(DescribeCustomCategoriesRequest(), logger: logger, on: eventLoop)
+    public func describeCustomCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
+        try await self.describeCustomCategories(DescribeCustomCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

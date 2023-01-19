@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Tbaas {
 
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
-        self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
+        self.client.execute(action: "CreateChaincodeAndInstallForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
-        try await self.client.execute(action: "CreateChaincodeAndInstallForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createChaincodeAndInstallForUser(_ input: CreateChaincodeAndInstallForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
+        try await self.client.execute(action: "CreateChaincodeAndInstallForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
-        self.createChaincodeAndInstallForUser(CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), logger: logger, on: eventLoop)
+    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChaincodeAndInstallForUserResponse> {
+        self.createChaincodeAndInstallForUser(CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并安装合约
     @inlinable
-    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
-        try await self.createChaincodeAndInstallForUser(CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), logger: logger, on: eventLoop)
+    public func createChaincodeAndInstallForUser(module: String, operation: String, clusterId: String, groupName: String, peerName: String, chaincodeName: String, chaincodeVersion: String, chaincodeFileType: String, chaincode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChaincodeAndInstallForUserResponse {
+        try await self.createChaincodeAndInstallForUser(CreateChaincodeAndInstallForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, peerName: peerName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, chaincodeFileType: chaincodeFileType, chaincode: chaincode), region: region, logger: logger, on: eventLoop)
     }
 }

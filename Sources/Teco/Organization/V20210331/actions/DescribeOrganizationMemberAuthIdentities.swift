@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Organization {
 
     /// 获取组织成员可被管理的身份列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
-        self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
+        self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员可被管理的身份列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
-        try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrganizationMemberAuthIdentities(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
+        try await self.client.execute(action: "DescribeOrganizationMemberAuthIdentities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取组织成员可被管理的身份列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
-        self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMemberAuthIdentitiesResponse> {
+        self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组织成员可被管理的身份列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
-        try await self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), logger: logger, on: eventLoop)
+    public func describeOrganizationMemberAuthIdentities(offset: Int64, limit: Int64, memberUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMemberAuthIdentitiesResponse {
+        try await self.describeOrganizationMemberAuthIdentities(DescribeOrganizationMemberAuthIdentitiesRequest(offset: offset, limit: limit, memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Asw {
     ///
     /// 对状态机的执行历史进行描述.
     @inlinable
-    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionsResponse> {
-        self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExecutions(_ input: DescribeExecutionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionsResponse> {
+        self.client.execute(action: "DescribeExecutions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机执行列表
     ///
     /// 对状态机的执行历史进行描述.
     @inlinable
-    public func describeExecutions(_ input: DescribeExecutionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
-        try await self.client.execute(action: "DescribeExecutions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExecutions(_ input: DescribeExecutionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
+        try await self.client.execute(action: "DescribeExecutions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询状态机执行列表
     ///
     /// 对状态机的执行历史进行描述.
     @inlinable
-    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionsResponse> {
-        self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), logger: logger, on: eventLoop)
+    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionsResponse> {
+        self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机执行列表
     ///
     /// 对状态机的执行历史进行描述.
     @inlinable
-    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
-        try await self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), logger: logger, on: eventLoop)
+    public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
+        try await self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), region: region, logger: logger, on: eventLoop)
     }
 }

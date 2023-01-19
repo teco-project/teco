@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ie {
     ///
     /// 删除正在进行的画质重生任务
     @inlinable
-    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
-        self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
+        self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
     @inlinable
-    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
-        try await self.client.execute(action: "StopMediaQualityRestorationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
+        try await self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
     @inlinable
-    public func stopMediaQualityRestorationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
-        self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
+        self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
     @inlinable
-    public func stopMediaQualityRestorationTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
-        try await self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
+        try await self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

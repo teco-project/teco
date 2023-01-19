@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量修改任务责任人
     @inlinable
-    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
-        self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
+        self.client.execute(action: "BatchModifyOwnersNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改任务责任人【Beta版本】
@@ -67,8 +67,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量修改任务责任人
     @inlinable
-    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
-        try await self.client.execute(action: "BatchModifyOwnersNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchModifyOwnersNew(_ input: BatchModifyOwnersNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
+        try await self.client.execute(action: "BatchModifyOwnersNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改任务责任人【Beta版本】
@@ -76,8 +76,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量修改任务责任人
     @inlinable
-    public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
-        self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
+        self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改任务责任人【Beta版本】
@@ -85,7 +85,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量修改任务责任人
     @inlinable
-    public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
-        try await self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
+        try await self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

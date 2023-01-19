@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable
-    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaveOrUpdateWarningsResponse> {
-        self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaveOrUpdateWarningsResponse> {
+        self.client.execute(action: "DescribeSaveOrUpdateWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户告警设置
     ///
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable
-    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
-        try await self.client.execute(action: "DescribeSaveOrUpdateWarnings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSaveOrUpdateWarnings(_ input: DescribeSaveOrUpdateWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
+        try await self.client.execute(action: "DescribeSaveOrUpdateWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新用户告警设置
     ///
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable
-    public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaveOrUpdateWarningsResponse> {
-        self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaveOrUpdateWarningsResponse> {
+        self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新用户告警设置
     ///
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable
-    public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
-        try await self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), logger: logger, on: eventLoop)
+    public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
+        try await self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Dlc {
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
-    public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
-        self.client.execute(action: "DescribeSparkAppTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
+        self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
-    public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
-        try await self.client.execute(action: "DescribeSparkAppTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSparkAppTasks(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
+        try await self.client.execute(action: "DescribeSparkAppTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
-    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
-        self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), logger: logger, on: eventLoop)
+    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppTasksResponse> {
+        self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
-    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
-        try await self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), logger: logger, on: eventLoop)
+    public func describeSparkAppTasks(jobId: String, offset: Int64? = nil, limit: Int64? = nil, taskId: String? = nil, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppTasksResponse {
+        try await self.describeSparkAppTasks(DescribeSparkAppTasksRequest(jobId: jobId, offset: offset, limit: limit, taskId: taskId, startTime: startTime, endTime: endTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

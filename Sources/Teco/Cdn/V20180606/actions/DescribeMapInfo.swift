@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Cdn {
     ///
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
-    public func describeMapInfo(_ input: DescribeMapInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMapInfoResponse> {
-        self.client.execute(action: "DescribeMapInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMapInfo(_ input: DescribeMapInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMapInfoResponse> {
+        self.client.execute(action: "DescribeMapInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 省份运营商映射查询
     ///
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
-    public func describeMapInfo(_ input: DescribeMapInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
-        try await self.client.execute(action: "DescribeMapInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMapInfo(_ input: DescribeMapInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
+        try await self.client.execute(action: "DescribeMapInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 省份运营商映射查询
     ///
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
-    public func describeMapInfo(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMapInfoResponse> {
-        self.describeMapInfo(DescribeMapInfoRequest(name: name), logger: logger, on: eventLoop)
+    public func describeMapInfo(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMapInfoResponse> {
+        self.describeMapInfo(DescribeMapInfoRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 省份运营商映射查询
     ///
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
-    public func describeMapInfo(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
-        try await self.describeMapInfo(DescribeMapInfoRequest(name: name), logger: logger, on: eventLoop)
+    public func describeMapInfo(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
+        try await self.describeMapInfo(DescribeMapInfoRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

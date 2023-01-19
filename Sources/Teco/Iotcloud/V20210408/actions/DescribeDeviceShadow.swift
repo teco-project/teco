@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
-        self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
+        self.client.execute(action: "DescribeDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备影子
     ///
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
-        try await self.client.execute(action: "DescribeDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceShadow(_ input: DescribeDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
+        try await self.client.execute(action: "DescribeDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备影子
     ///
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
-        self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceShadowResponse> {
+        self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备影子
     ///
     /// 本接口（DescribeDeviceShadow）用于查询虚拟设备信息。
     @inlinable
-    public func describeDeviceShadow(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
-        try await self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func describeDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceShadowResponse {
+        try await self.describeDeviceShadow(DescribeDeviceShadowRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

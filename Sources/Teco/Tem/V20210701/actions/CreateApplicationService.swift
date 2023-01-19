@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
-        self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplicationService(_ input: CreateApplicationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
+        self.client.execute(action: "CreateApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(_ input: CreateApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
-        try await self.client.execute(action: "CreateApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplicationService(_ input: CreateApplicationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
+        try await self.client.execute(action: "CreateApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
-        self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), logger: logger, on: eventLoop)
+    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
+        self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增访问方式
     @inlinable
-    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
-        try await self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), logger: logger, on: eventLoop)
+    public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
+        try await self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), region: region, logger: logger, on: eventLoop)
     }
 }

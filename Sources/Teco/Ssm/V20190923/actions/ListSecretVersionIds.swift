@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ssm {
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
-        self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
+        self.client.execute(action: "ListSecretVersionIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
-        try await self.client.execute(action: "ListSecretVersionIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listSecretVersionIds(_ input: ListSecretVersionIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
+        try await self.client.execute(action: "ListSecretVersionIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
-        self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func listSecretVersionIds(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
+        self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定凭据下的版本列表信息。
     ///
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
-    public func listSecretVersionIds(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
-        try await self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func listSecretVersionIds(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
+        try await self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 }

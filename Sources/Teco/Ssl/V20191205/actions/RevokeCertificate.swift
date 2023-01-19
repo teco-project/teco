@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ssl {
     ///
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
-    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeCertificateResponse> {
-        self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revokeCertificate(_ input: RevokeCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeCertificateResponse> {
+        self.client.execute(action: "RevokeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 吊销证书
     ///
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
-    public func revokeCertificate(_ input: RevokeCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
-        try await self.client.execute(action: "RevokeCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revokeCertificate(_ input: RevokeCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
+        try await self.client.execute(action: "RevokeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 吊销证书
     ///
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
-    public func revokeCertificate(certificateId: String, reason: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeCertificateResponse> {
-        self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), logger: logger, on: eventLoop)
+    public func revokeCertificate(certificateId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeCertificateResponse> {
+        self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), region: region, logger: logger, on: eventLoop)
     }
 
     /// 吊销证书
     ///
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
-    public func revokeCertificate(certificateId: String, reason: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
-        try await self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), logger: logger, on: eventLoop)
+    public func revokeCertificate(certificateId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
+        try await self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), region: region, logger: logger, on: eventLoop)
     }
 }

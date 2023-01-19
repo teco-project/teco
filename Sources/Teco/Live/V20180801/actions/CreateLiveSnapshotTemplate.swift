@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,8 +112,8 @@ extension Live {
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
-        self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
+        self.client.execute(action: "CreateLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建截图模板
@@ -121,8 +121,8 @@ extension Live {
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
-        try await self.client.execute(action: "CreateLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveSnapshotTemplate(_ input: CreateLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
+        try await self.client.execute(action: "CreateLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建截图模板
@@ -130,8 +130,8 @@ extension Live {
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
-        self.createLiveSnapshotTemplate(CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), logger: logger, on: eventLoop)
+    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotTemplateResponse> {
+        self.createLiveSnapshotTemplate(CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建截图模板
@@ -139,7 +139,7 @@ extension Live {
     /// 创建截图模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveSnapshotRule](/document/product/267/32625)接口，将模板id绑定到流使用。
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     @inlinable
-    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
-        try await self.createLiveSnapshotTemplate(CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), logger: logger, on: eventLoop)
+    public func createLiveSnapshotTemplate(templateName: String, cosAppId: Int64, cosBucket: String, cosRegion: String, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotTemplateResponse {
+        try await self.createLiveSnapshotTemplate(CreateLiveSnapshotTemplateRequest(templateName: templateName, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }
 }

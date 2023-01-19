@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cdb {
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
-        self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
+        self.client.execute(action: "ModifyRoGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
-        try await self.client.execute(action: "ModifyRoGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRoGroupInfo(_ input: ModifyRoGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
+        try await self.client.execute(action: "ModifyRoGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
-        self.modifyRoGroupInfo(ModifyRoGroupInfoRequest(roGroupId: roGroupId, roGroupInfo: roGroupInfo, roWeightValues: roWeightValues, isBalanceRoLoad: isBalanceRoLoad, replicationDelayTime: replicationDelayTime), logger: logger, on: eventLoop)
+    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoGroupInfoResponse> {
+        self.modifyRoGroupInfo(ModifyRoGroupInfoRequest(roGroupId: roGroupId, roGroupInfo: roGroupInfo, roWeightValues: roWeightValues, isBalanceRoLoad: isBalanceRoLoad, replicationDelayTime: replicationDelayTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新实例Ro组的信息
     ///
     /// 本接口（ModifyRoGroupInfo）用于更新云数据库只读组的信息。包括设置实例延迟超限剔除策略，设置只读实例读权重，设置复制延迟时间等。
     @inlinable
-    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
-        try await self.modifyRoGroupInfo(ModifyRoGroupInfoRequest(roGroupId: roGroupId, roGroupInfo: roGroupInfo, roWeightValues: roWeightValues, isBalanceRoLoad: isBalanceRoLoad, replicationDelayTime: replicationDelayTime), logger: logger, on: eventLoop)
+    public func modifyRoGroupInfo(roGroupId: String, roGroupInfo: RoGroupAttr? = nil, roWeightValues: [RoWeightValue]? = nil, isBalanceRoLoad: Int64? = nil, replicationDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoGroupInfoResponse {
+        try await self.modifyRoGroupInfo(ModifyRoGroupInfoRequest(roGroupId: roGroupId, roGroupInfo: roGroupInfo, roWeightValues: roWeightValues, isBalanceRoLoad: isBalanceRoLoad, replicationDelayTime: replicationDelayTime), region: region, logger: logger, on: eventLoop)
     }
 }

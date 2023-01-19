@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Iottid {
     ///
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
-        self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
+        self.client.execute(action: "VerifyChipBurnInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证芯片烧录TID信息
     ///
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
-        try await self.client.execute(action: "VerifyChipBurnInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyChipBurnInfo(_ input: VerifyChipBurnInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
+        try await self.client.execute(action: "VerifyChipBurnInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证芯片烧录TID信息
     ///
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
-        self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), logger: logger, on: eventLoop)
+    public func verifyChipBurnInfo(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyChipBurnInfoResponse> {
+        self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证芯片烧录TID信息
     ///
     /// 下载控制台验证芯片烧录信息，保证TID与中心信息一致
     @inlinable
-    public func verifyChipBurnInfo(data: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
-        try await self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), logger: logger, on: eventLoop)
+    public func verifyChipBurnInfo(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyChipBurnInfoResponse {
+        try await self.verifyChipBurnInfo(VerifyChipBurnInfoRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 }

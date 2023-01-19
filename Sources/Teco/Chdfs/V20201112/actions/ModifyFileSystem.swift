@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Chdfs {
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
     @inlinable
-    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
-        self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFileSystem(_ input: ModifyFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
+        self.client.execute(action: "ModifyFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
     @inlinable
-    public func modifyFileSystem(_ input: ModifyFileSystemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
-        try await self.client.execute(action: "ModifyFileSystem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFileSystem(_ input: ModifyFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
+        try await self.client.execute(action: "ModifyFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
     @inlinable
-    public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
-        self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), logger: logger, on: eventLoop)
+    public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
+        self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
     @inlinable
-    public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
-        try await self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), logger: logger, on: eventLoop)
+    public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
+        try await self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), region: region, logger: logger, on: eventLoop)
     }
 }

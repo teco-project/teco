@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ses {
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
     @inlinable
-    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailIdentityResponse> {
-        self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailIdentityResponse> {
+        self.client.execute(action: "DeleteEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
     @inlinable
-    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
-        try await self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
+        try await self.client.execute(action: "DeleteEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
     @inlinable
-    public func deleteEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailIdentityResponse> {
-        self.deleteEmailIdentity(DeleteEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
+    public func deleteEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailIdentityResponse> {
+        self.deleteEmailIdentity(DeleteEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
     @inlinable
-    public func deleteEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
-        try await self.deleteEmailIdentity(DeleteEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
+    public func deleteEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
+        try await self.deleteEmailIdentity(DeleteEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 }

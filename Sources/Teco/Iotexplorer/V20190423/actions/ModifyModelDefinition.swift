@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotexplorer {
     ///
     /// 提供修改产品的数据模板的能力
     @inlinable
-    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
-        self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
+        self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
     @inlinable
-    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
-        try await self.client.execute(action: "ModifyModelDefinition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
+        try await self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
     @inlinable
-    public func modifyModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
-        self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), logger: logger, on: eventLoop)
+    public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
+        self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
     @inlinable
-    public func modifyModelDefinition(productId: String, modelSchema: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
-        try await self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), logger: logger, on: eventLoop)
+    public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
+        try await self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
 }

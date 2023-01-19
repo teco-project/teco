@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Teo {
     ///
     /// 创建刷新/预热重放任务
     @inlinable
-    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplayTaskResponse> {
-        self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReplayTask(_ input: CreateReplayTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplayTaskResponse> {
+        self.client.execute(action: "CreateReplayTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建重放任务
     ///
     /// 创建刷新/预热重放任务
     @inlinable
-    public func createReplayTask(_ input: CreateReplayTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
-        try await self.client.execute(action: "CreateReplayTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReplayTask(_ input: CreateReplayTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
+        try await self.client.execute(action: "CreateReplayTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建重放任务
     ///
     /// 创建刷新/预热重放任务
     @inlinable
-    public func createReplayTask(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplayTaskResponse> {
-        self.createReplayTask(CreateReplayTaskRequest(ids: ids), logger: logger, on: eventLoop)
+    public func createReplayTask(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplayTaskResponse> {
+        self.createReplayTask(CreateReplayTaskRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建重放任务
     ///
     /// 创建刷新/预热重放任务
     @inlinable
-    public func createReplayTask(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
-        try await self.createReplayTask(CreateReplayTaskRequest(ids: ids), logger: logger, on: eventLoop)
+    public func createReplayTask(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplayTaskResponse {
+        try await self.createReplayTask(CreateReplayTaskRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Dbbrain {
     ///
     /// 查询安全审计日志导出任务列表。
     @inlinable
-    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogExportTasksResponse> {
-        self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogExportTasksResponse> {
+        self.client.execute(action: "DescribeSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全审计日志导出任务列表
     ///
     /// 查询安全审计日志导出任务列表。
     @inlinable
-    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
-        try await self.client.execute(action: "DescribeSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityAuditLogExportTasks(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
+        try await self.client.execute(action: "DescribeSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全审计日志导出任务列表
     ///
     /// 查询安全审计日志导出任务列表。
     @inlinable
-    public func describeSecurityAuditLogExportTasks(secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogExportTasksResponse> {
-        self.describeSecurityAuditLogExportTasks(DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, product: product, asyncRequestIds: asyncRequestIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogExportTasks(secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityAuditLogExportTasksResponse> {
+        self.describeSecurityAuditLogExportTasks(DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, product: product, asyncRequestIds: asyncRequestIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全审计日志导出任务列表
     ///
     /// 查询安全审计日志导出任务列表。
     @inlinable
-    public func describeSecurityAuditLogExportTasks(secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
-        try await self.describeSecurityAuditLogExportTasks(DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, product: product, asyncRequestIds: asyncRequestIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSecurityAuditLogExportTasks(secAuditGroupId: String, product: String, asyncRequestIds: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityAuditLogExportTasksResponse {
+        try await self.describeSecurityAuditLogExportTasks(DescribeSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, product: product, asyncRequestIds: asyncRequestIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

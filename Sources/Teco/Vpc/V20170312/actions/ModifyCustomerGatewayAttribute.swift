@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable
-    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
-        self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
+        self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable
-    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
-        try await self.client.execute(action: "ModifyCustomerGatewayAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
+        try await self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable
-    public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
-        self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), logger: logger, on: eventLoop)
+    public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
+        self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable
-    public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
-        try await self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), logger: logger, on: eventLoop)
+    public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
+        try await self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
     }
 }

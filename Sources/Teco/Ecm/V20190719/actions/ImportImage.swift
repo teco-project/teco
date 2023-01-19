@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 从CVM产品导入镜像到ECM
     @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
+        self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
     @inlinable
-    public func importImage(_ input: ImportImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.client.execute(action: "ImportImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
+        try await self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
     @inlinable
-    public func importImage(imageId: String, imageDescription: String, sourceRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), logger: logger, on: eventLoop)
+    public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
+        self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
     @inlinable
-    public func importImage(imageId: String, imageDescription: String, sourceRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), logger: logger, on: eventLoop)
+    public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
+        try await self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
     }
 }

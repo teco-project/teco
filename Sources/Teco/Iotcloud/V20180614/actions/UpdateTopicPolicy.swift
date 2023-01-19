@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotcloud {
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
-        self.client.execute(action: "UpdateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
+        self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
-        try await self.client.execute(action: "UpdateTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
+        try await self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
-        self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), logger: logger, on: eventLoop)
+    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
+        self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable
-    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
-        try await self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), logger: logger, on: eventLoop)
+    public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
+        try await self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }
 }

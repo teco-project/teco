@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
-    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindTrafficMirrorReceiversResponse> {
-        self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindTrafficMirrorReceiversResponse> {
+        self.client.execute(action: "BindTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定黑石物理服务器成为流量镜像接收机
     ///
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
-    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
-        try await self.client.execute(action: "BindTrafficMirrorReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindTrafficMirrorReceivers(_ input: BindTrafficMirrorReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
+        try await self.client.execute(action: "BindTrafficMirrorReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定黑石物理服务器成为流量镜像接收机
     ///
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
-    public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindTrafficMirrorReceiversResponse> {
-        self.bindTrafficMirrorReceivers(BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), logger: logger, on: eventLoop)
+    public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindTrafficMirrorReceiversResponse> {
+        self.bindTrafficMirrorReceivers(BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定黑石物理服务器成为流量镜像接收机
     ///
     /// 绑定黑石物理服务器成为流量镜像接收机。
     @inlinable
-    public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
-        try await self.bindTrafficMirrorReceivers(BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), logger: logger, on: eventLoop)
+    public func bindTrafficMirrorReceivers(trafficMirrorId: String, receiverSet: [BindTrafficMirrorReceiver], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindTrafficMirrorReceiversResponse {
+        try await self.bindTrafficMirrorReceivers(BindTrafficMirrorReceiversRequest(trafficMirrorId: trafficMirrorId, receiverSet: receiverSet), region: region, logger: logger, on: eventLoop)
     }
 }

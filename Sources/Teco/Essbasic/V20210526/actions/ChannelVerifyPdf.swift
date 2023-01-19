@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Essbasic {
 
     /// 合同文件验签
     @inlinable
-    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
-        self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
+        self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合同文件验签
     @inlinable
-    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
-        try await self.client.execute(action: "ChannelVerifyPdf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelVerifyPdf(_ input: ChannelVerifyPdfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
+        try await self.client.execute(action: "ChannelVerifyPdf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合同文件验签
     @inlinable
-    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
-        self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelVerifyPdfResponse> {
+        self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合同文件验签
     @inlinable
-    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
-        try await self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelVerifyPdf(flowId: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelVerifyPdfResponse {
+        try await self.channelVerifyPdf(ChannelVerifyPdfRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Ie {
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
-        self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
+        self.client.execute(action: "CreateMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
-        try await self.client.execute(action: "CreateMediaProcessTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMediaProcessTask(_ input: CreateMediaProcessTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
+        try await self.client.execute(action: "CreateMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
-        self.createMediaProcessTask(CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), logger: logger, on: eventLoop)
+    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaProcessTaskResponse> {
+        self.createMediaProcessTask(CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建编辑处理任务
     ///
     /// 用于创建编辑处理任务，如媒体截取、媒体编辑、媒体拼接、媒体字幕。
     @inlinable
-    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
-        try await self.createMediaProcessTask(CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), logger: logger, on: eventLoop)
+    public func createMediaProcessTask(mediaProcessInfo: MediaProcessInfo, sourceInfoSet: [MediaSourceInfo]? = nil, saveInfoSet: [SaveInfo]? = nil, callbackInfoSet: [CallbackInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaProcessTaskResponse {
+        try await self.createMediaProcessTask(CreateMediaProcessTaskRequest(mediaProcessInfo: mediaProcessInfo, sourceInfoSet: sourceInfoSet, saveInfoSet: saveInfoSet, callbackInfoSet: callbackInfoSet), region: region, logger: logger, on: eventLoop)
     }
 }

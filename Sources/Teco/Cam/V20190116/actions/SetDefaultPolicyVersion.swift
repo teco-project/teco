@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable
-    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultPolicyVersionResponse> {
-        self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultPolicyVersionResponse> {
+        self.client.execute(action: "SetDefaultPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置生效的策略版本
     ///
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable
-    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
-        try await self.client.execute(action: "SetDefaultPolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setDefaultPolicyVersion(_ input: SetDefaultPolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
+        try await self.client.execute(action: "SetDefaultPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置生效的策略版本
     ///
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable
-    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultPolicyVersionResponse> {
-        self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultPolicyVersionResponse> {
+        self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置生效的策略版本
     ///
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable
-    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
-        try await self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
+        try await self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

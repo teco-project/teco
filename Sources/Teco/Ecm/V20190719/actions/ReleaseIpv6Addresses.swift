@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ecm {
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
-        self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
+        self.client.execute(action: "ReleaseIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
-        try await self.client.execute(action: "ReleaseIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseIpv6Addresses(_ input: ReleaseIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
+        try await self.client.execute(action: "ReleaseIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
-        self.releaseIpv6Addresses(ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), logger: logger, on: eventLoop)
+    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIpv6AddressesResponse> {
+        self.releaseIpv6Addresses(ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
     ///
     /// 本接口（UnassignIpv6Addresses）用于释放弹性网卡IPv6地址。
     @inlinable
-    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
-        try await self.releaseIpv6Addresses(ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), logger: logger, on: eventLoop)
+    public func releaseIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIpv6AddressesResponse {
+        try await self.releaseIpv6Addresses(ReleaseIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
 }

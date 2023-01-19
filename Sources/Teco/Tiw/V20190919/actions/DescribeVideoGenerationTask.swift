@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Tiw {
     ///
     /// 查询录制视频生成任务状态与结果
     @inlinable
-    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskResponse> {
-        self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskResponse> {
+        self.client.execute(action: "DescribeVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询录制视频生成任务
     ///
     /// 查询录制视频生成任务状态与结果
     @inlinable
-    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
-        try await self.client.execute(action: "DescribeVideoGenerationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVideoGenerationTask(_ input: DescribeVideoGenerationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
+        try await self.client.execute(action: "DescribeVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询录制视频生成任务
     ///
     /// 查询录制视频生成任务状态与结果
     @inlinable
-    public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskResponse> {
-        self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskResponse> {
+        self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询录制视频生成任务
     ///
     /// 查询录制视频生成任务状态与结果
     @inlinable
-    public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
-        try await self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
+        try await self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

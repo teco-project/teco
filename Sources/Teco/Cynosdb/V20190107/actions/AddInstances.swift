@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -124,31 +124,31 @@ extension Cynosdb {
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
-        self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addInstances(_ input: AddInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
+        self.client.execute(action: "AddInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(_ input: AddInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.client.execute(action: "AddInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addInstances(_ input: AddInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.client.execute(action: "AddInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
-        self.addInstances(AddInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode), logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddInstancesResponse> {
+        self.addInstances(AddInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群添加实例
     ///
     /// 本接口（AddInstances）用于集群添加实例
     @inlinable
-    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
-        try await self.addInstances(AddInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode), logger: logger, on: eventLoop)
+    public func addInstances(clusterId: String, cpu: Int64, memory: Int64, readOnlyCount: Int64, instanceGrpId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, port: Int64? = nil, instanceName: String? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, orderSource: String? = nil, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddInstancesResponse {
+        try await self.addInstances(AddInstancesRequest(clusterId: clusterId, cpu: cpu, memory: memory, readOnlyCount: readOnlyCount, instanceGrpId: instanceGrpId, vpcId: vpcId, subnetId: subnetId, port: port, instanceName: instanceName, autoVoucher: autoVoucher, dbType: dbType, orderSource: orderSource, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
     }
 }

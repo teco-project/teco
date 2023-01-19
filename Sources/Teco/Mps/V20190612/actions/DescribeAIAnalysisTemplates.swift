@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Mps {
     ///
     /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
     @inlinable
-    public func describeAIAnalysisTemplates(_ input: DescribeAIAnalysisTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIAnalysisTemplatesResponse> {
-        self.client.execute(action: "DescribeAIAnalysisTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAIAnalysisTemplates(_ input: DescribeAIAnalysisTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIAnalysisTemplatesResponse> {
+        self.client.execute(action: "DescribeAIAnalysisTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取内容分析模板列表
     ///
     /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
     @inlinable
-    public func describeAIAnalysisTemplates(_ input: DescribeAIAnalysisTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
-        try await self.client.execute(action: "DescribeAIAnalysisTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAIAnalysisTemplates(_ input: DescribeAIAnalysisTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
+        try await self.client.execute(action: "DescribeAIAnalysisTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取内容分析模板列表
     ///
     /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
     @inlinable
-    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIAnalysisTemplatesResponse> {
-        self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAIAnalysisTemplatesResponse> {
+        self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取内容分析模板列表
     ///
     /// 根据内容分析模板唯一标识，获取内容分析模板详情列表。返回结果包含符合条件的所有用户自定义内容分析模板及系统预置视频内容分析模板
     @inlinable
-    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
-        try await self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeAIAnalysisTemplates(definitions: [Int64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAIAnalysisTemplatesResponse {
+        try await self.describeAIAnalysisTemplates(DescribeAIAnalysisTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

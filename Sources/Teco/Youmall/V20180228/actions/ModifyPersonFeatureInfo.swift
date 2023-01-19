@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Youmall {
     ///
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
-    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonFeatureInfoResponse> {
-        self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonFeatureInfoResponse> {
+        self.client.execute(action: "ModifyPersonFeatureInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客特征信息
     ///
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
-    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
-        try await self.client.execute(action: "ModifyPersonFeatureInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPersonFeatureInfo(_ input: ModifyPersonFeatureInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
+        try await self.client.execute(action: "ModifyPersonFeatureInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改顾客特征信息
     ///
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
-    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonFeatureInfoResponse> {
-        self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), logger: logger, on: eventLoop)
+    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonFeatureInfoResponse> {
+        self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客特征信息
     ///
     /// 支持修改黑白名单类型的顾客特征
     @inlinable
-    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
-        try await self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), logger: logger, on: eventLoop)
+    public func modifyPersonFeatureInfo(companyId: String, personId: Int64, picture: String, pictureName: String, personType: Int64, shopId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonFeatureInfoResponse {
+        try await self.modifyPersonFeatureInfo(ModifyPersonFeatureInfoRequest(companyId: companyId, personId: personId, picture: picture, pictureName: pictureName, personType: personType, shopId: shopId), region: region, logger: logger, on: eventLoop)
     }
 }

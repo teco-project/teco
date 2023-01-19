@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Tcb {
     ///
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
+        self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
     ///
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索CLS日志
     ///
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
-    public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), logger: logger, on: eventLoop)
+    public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
+        self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
     ///
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
-    public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), logger: logger, on: eventLoop)
+    public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)
     }
 }

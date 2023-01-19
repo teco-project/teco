@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vod {
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable
-    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
-        self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
+        self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable
-    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
-        try await self.client.execute(action: "ModifySubAppIdInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
+        try await self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable
-    public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
-        self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), logger: logger, on: eventLoop)
+    public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
+        self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
     @inlinable
-    public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
-        try await self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), logger: logger, on: eventLoop)
+    public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
+        try await self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

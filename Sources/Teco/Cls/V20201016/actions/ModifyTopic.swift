@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cls {
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTopic(_ input: ModifyTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(_ input: ModifyTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.client.execute(action: "ModifyTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTopic(_ input: ModifyTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), logger: logger, on: eventLoop)
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
+        self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
     ///
     /// 本接口用于修改日志主题。
     @inlinable
-    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), logger: logger, on: eventLoop)
+    public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
+        try await self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

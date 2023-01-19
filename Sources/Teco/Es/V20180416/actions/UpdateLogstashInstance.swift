@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,8 +88,8 @@ extension Es {
     /// - BindedES：修改绑定的ES集群配置
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable
-    public func updateLogstashInstance(_ input: UpdateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashInstanceResponse> {
-        self.client.execute(action: "UpdateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateLogstashInstance(_ input: UpdateLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashInstanceResponse> {
+        self.client.execute(action: "UpdateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Logstash实例
@@ -101,8 +101,8 @@ extension Es {
     /// - BindedES：修改绑定的ES集群配置
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable
-    public func updateLogstashInstance(_ input: UpdateLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashInstanceResponse {
-        try await self.client.execute(action: "UpdateLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateLogstashInstance(_ input: UpdateLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashInstanceResponse {
+        try await self.client.execute(action: "UpdateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新Logstash实例
@@ -114,8 +114,8 @@ extension Es {
     /// - BindedES：修改绑定的ES集群配置
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable
-    public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashInstanceResponse> {
-        self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), logger: logger, on: eventLoop)
+    public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashInstanceResponse> {
+        self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新Logstash实例
@@ -127,7 +127,7 @@ extension Es {
     /// - BindedES：修改绑定的ES集群配置
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable
-    public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashInstanceResponse {
-        try await self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), logger: logger, on: eventLoop)
+    public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashInstanceResponse {
+        try await self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
     }
 }

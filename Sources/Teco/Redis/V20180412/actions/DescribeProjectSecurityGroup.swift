@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupResponse> {
-        self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupResponse> {
+        self.client.execute(action: "DescribeProjectSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
-        try await self.client.execute(action: "DescribeProjectSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProjectSecurityGroup(_ input: DescribeProjectSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
+        try await self.client.execute(action: "DescribeProjectSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupResponse> {
-        self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupResponse> {
+        self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
-        try await self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
+        try await self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

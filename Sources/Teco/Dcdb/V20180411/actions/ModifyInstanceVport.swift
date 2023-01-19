@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Dcdb {
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable
-    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
-        self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
+        self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable
-    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
-        try await self.client.execute(action: "ModifyInstanceVport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
+        try await self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable
-    public func modifyInstanceVport(instanceId: String, vport: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
-        self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), logger: logger, on: eventLoop)
+    public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
+        self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
     @inlinable
-    public func modifyInstanceVport(instanceId: String, vport: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
-        try await self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), logger: logger, on: eventLoop)
+    public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
+        try await self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 }

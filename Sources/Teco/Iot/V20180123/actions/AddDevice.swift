@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iot {
     ///
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
-    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
-        self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addDevice(_ input: AddDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
+        self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增设备
     ///
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
-    public func addDevice(_ input: AddDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
-        try await self.client.execute(action: "AddDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addDevice(_ input: AddDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
+        try await self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增设备
     ///
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
-    public func addDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
-        self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func addDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
+        self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增设备
     ///
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
-    public func addDevice(productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
-        try await self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func addDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
+        try await self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

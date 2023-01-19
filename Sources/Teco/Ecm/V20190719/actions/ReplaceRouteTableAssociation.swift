@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 修改子网关联的路由表，一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
-        self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
+        self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换路由表绑定关系
     ///
     /// 修改子网关联的路由表，一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
-        try await self.client.execute(action: "ReplaceRouteTableAssociation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
+        try await self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 替换路由表绑定关系
     ///
     /// 修改子网关联的路由表，一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
-        self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
+        self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换路由表绑定关系
     ///
     /// 修改子网关联的路由表，一个子网只能关联一个路由表。
     @inlinable
-    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
-        try await self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
+        try await self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

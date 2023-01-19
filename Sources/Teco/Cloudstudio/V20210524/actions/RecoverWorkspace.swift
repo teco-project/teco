@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cloudstudio {
 
     /// 恢复工作空间
     @inlinable
-    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverWorkspaceResponse> {
-        self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverWorkspaceResponse> {
+        self.client.execute(action: "RecoverWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复工作空间
     @inlinable
-    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
-        try await self.client.execute(action: "RecoverWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recoverWorkspace(_ input: RecoverWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
+        try await self.client.execute(action: "RecoverWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复工作空间
     @inlinable
-    public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverWorkspaceResponse> {
-        self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverWorkspaceResponse> {
+        self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复工作空间
     @inlinable
-    public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
-        try await self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
+        try await self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
     }
 }

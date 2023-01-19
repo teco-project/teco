@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,8 +113,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流调度
     @inlinable
-    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
-        self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
+        self.client.execute(action: "ModifyWorkflowSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新工作流调度【Beta版本】
@@ -122,8 +122,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流调度
     @inlinable
-    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
-        try await self.client.execute(action: "ModifyWorkflowSchedule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWorkflowSchedule(_ input: ModifyWorkflowScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
+        try await self.client.execute(action: "ModifyWorkflowSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新工作流调度【Beta版本】
@@ -131,8 +131,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流调度
     @inlinable
-    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
-        self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), logger: logger, on: eventLoop)
+    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowScheduleResponse> {
+        self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新工作流调度【Beta版本】
@@ -140,7 +140,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 更新工作流调度
     @inlinable
-    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
-        try await self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), logger: logger, on: eventLoop)
+    public func modifyWorkflowSchedule(projectId: String, workflowId: String, delayTime: Int64, startupTime: Int64, selfDepend: Int64, cycleType: Int64, cycleStep: Int64, startTime: String? = nil, endTime: String? = nil, taskAction: String? = nil, crontabExpression: String? = nil, executionStartTime: String? = nil, executionEndTime: String? = nil, dependencyWorkflow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowScheduleResponse {
+        try await self.modifyWorkflowSchedule(ModifyWorkflowScheduleRequest(projectId: projectId, workflowId: workflowId, delayTime: delayTime, startupTime: startupTime, selfDepend: selfDepend, cycleType: cycleType, cycleStep: cycleStep, startTime: startTime, endTime: endTime, taskAction: taskAction, crontabExpression: crontabExpression, executionStartTime: executionStartTime, executionEndTime: executionEndTime, dependencyWorkflow: dependencyWorkflow), region: region, logger: logger, on: eventLoop)
     }
 }

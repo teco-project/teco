@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,8 +52,8 @@ extension Ssm {
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
-        self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
+        self.client.execute(action: "DescribeRotationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询凭据轮转历史版本
@@ -61,8 +61,8 @@ extension Ssm {
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
-        try await self.client.execute(action: "DescribeRotationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRotationHistory(_ input: DescribeRotationHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
+        try await self.client.execute(action: "DescribeRotationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询凭据轮转历史版本
@@ -70,8 +70,8 @@ extension Ssm {
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
-        self.describeRotationHistory(DescribeRotationHistoryRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func describeRotationHistory(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRotationHistoryResponse> {
+        self.describeRotationHistory(DescribeRotationHistoryRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询凭据轮转历史版本
@@ -79,7 +79,7 @@ extension Ssm {
     /// 查询凭据轮转历史版本。
     /// 本接口仅适用于云产品凭据。
     @inlinable
-    public func describeRotationHistory(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
-        try await self.describeRotationHistory(DescribeRotationHistoryRequest(secretName: secretName), logger: logger, on: eventLoop)
+    public func describeRotationHistory(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRotationHistoryResponse {
+        try await self.describeRotationHistory(DescribeRotationHistoryRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
     }
 }

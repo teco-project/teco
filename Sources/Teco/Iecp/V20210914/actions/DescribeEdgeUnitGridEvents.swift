@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iecp {
 
     /// 查询边缘单元Grid事件列表
     @inlinable
-    public func describeEdgeUnitGridEvents(_ input: DescribeEdgeUnitGridEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitGridEventsResponse> {
-        self.client.execute(action: "DescribeEdgeUnitGridEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitGridEvents(_ input: DescribeEdgeUnitGridEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitGridEventsResponse> {
+        self.client.execute(action: "DescribeEdgeUnitGridEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid事件列表
     @inlinable
-    public func describeEdgeUnitGridEvents(_ input: DescribeEdgeUnitGridEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitGridEventsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitGridEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitGridEvents(_ input: DescribeEdgeUnitGridEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitGridEventsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitGridEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元Grid事件列表
     @inlinable
-    public func describeEdgeUnitGridEvents(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, nodeUnit: String? = nil, podName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitGridEventsResponse> {
-        self.describeEdgeUnitGridEvents(DescribeEdgeUnitGridEventsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, nodeUnit: nodeUnit, podName: podName), logger: logger, on: eventLoop)
+    public func describeEdgeUnitGridEvents(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, nodeUnit: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitGridEventsResponse> {
+        self.describeEdgeUnitGridEvents(DescribeEdgeUnitGridEventsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, nodeUnit: nodeUnit, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid事件列表
     @inlinable
-    public func describeEdgeUnitGridEvents(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, nodeUnit: String? = nil, podName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitGridEventsResponse {
-        try await self.describeEdgeUnitGridEvents(DescribeEdgeUnitGridEventsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, nodeUnit: nodeUnit, podName: podName), logger: logger, on: eventLoop)
+    public func describeEdgeUnitGridEvents(edgeUnitId: UInt64, gridName: String, workloadKind: String, namespace: String? = nil, nodeUnit: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitGridEventsResponse {
+        try await self.describeEdgeUnitGridEvents(DescribeEdgeUnitGridEventsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, namespace: namespace, nodeUnit: nodeUnit, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 }

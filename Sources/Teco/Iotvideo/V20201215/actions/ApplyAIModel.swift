@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideo {
 
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
-        self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyAIModel(_ input: ApplyAIModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
+        self.client.execute(action: "ApplyAIModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(_ input: ApplyAIModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
-        try await self.client.execute(action: "ApplyAIModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyAIModel(_ input: ApplyAIModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
+        try await self.client.execute(action: "ApplyAIModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
-        self.applyAIModel(ApplyAIModelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func applyAIModel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyAIModelResponse> {
+        self.applyAIModel(ApplyAIModelRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请AI模型
     @inlinable
-    public func applyAIModel(modelId: String, productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
-        try await self.applyAIModel(ApplyAIModelRequest(modelId: modelId, productId: productId), logger: logger, on: eventLoop)
+    public func applyAIModel(modelId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyAIModelResponse {
+        try await self.applyAIModel(ApplyAIModelRequest(modelId: modelId, productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

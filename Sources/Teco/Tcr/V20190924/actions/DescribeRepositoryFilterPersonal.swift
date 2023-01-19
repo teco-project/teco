@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Tcr {
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
-    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryFilterPersonalResponse> {
-        self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryFilterPersonalResponse> {
+        self.client.execute(action: "DescribeRepositoryFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取满足输入搜索条件的个人版镜像仓库
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
-    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
-        try await self.client.execute(action: "DescribeRepositoryFilterPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRepositoryFilterPersonal(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
+        try await self.client.execute(action: "DescribeRepositoryFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取满足输入搜索条件的个人版镜像仓库
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
-    public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryFilterPersonalResponse> {
-        self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryFilterPersonalResponse> {
+        self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取满足输入搜索条件的个人版镜像仓库
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
-    public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
-        try await self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
+        try await self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

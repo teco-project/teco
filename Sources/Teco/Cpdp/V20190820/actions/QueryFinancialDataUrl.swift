@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Cpdp {
 
     /// 财税-查询金融数据文件下载链接
     @inlinable
-    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFinancialDataUrlResponse> {
-        self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFinancialDataUrlResponse> {
+        self.client.execute(action: "QueryFinancialDataUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 财税-查询金融数据文件下载链接
     @inlinable
-    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
-        try await self.client.execute(action: "QueryFinancialDataUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFinancialDataUrl(_ input: QueryFinancialDataUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
+        try await self.client.execute(action: "QueryFinancialDataUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 财税-查询金融数据文件下载链接
     @inlinable
-    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFinancialDataUrlResponse> {
-        self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), logger: logger, on: eventLoop)
+    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFinancialDataUrlResponse> {
+        self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 财税-查询金融数据文件下载链接
     @inlinable
-    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
-        try await self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), logger: logger, on: eventLoop)
+    public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
+        try await self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), region: region, logger: logger, on: eventLoop)
     }
 }

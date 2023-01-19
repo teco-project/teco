@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Redis {
 
     /// 按量计费实例销毁
     @inlinable
-    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPostpaidInstanceResponse> {
-        self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPostpaidInstanceResponse> {
+        self.client.execute(action: "DestroyPostpaidInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按量计费实例销毁
     @inlinable
-    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
-        try await self.client.execute(action: "DestroyPostpaidInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyPostpaidInstance(_ input: DestroyPostpaidInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
+        try await self.client.execute(action: "DestroyPostpaidInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 按量计费实例销毁
     @inlinable
-    public func destroyPostpaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPostpaidInstanceResponse> {
-        self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyPostpaidInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPostpaidInstanceResponse> {
+        self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按量计费实例销毁
     @inlinable
-    public func destroyPostpaidInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
-        try await self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyPostpaidInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPostpaidInstanceResponse {
+        try await self.destroyPostpaidInstance(DestroyPostpaidInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

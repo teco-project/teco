@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cam {
 
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
-        self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
+        self.client.execute(action: "GetSecurityLastUsed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
-        try await self.client.execute(action: "GetSecurityLastUsed", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getSecurityLastUsed(_ input: GetSecurityLastUsedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
+        try await self.client.execute(action: "GetSecurityLastUsed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
-        self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), logger: logger, on: eventLoop)
+    public func getSecurityLastUsed(secretIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSecurityLastUsedResponse> {
+        self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取密钥最近使用情况
     @inlinable
-    public func getSecurityLastUsed(secretIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
-        try await self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), logger: logger, on: eventLoop)
+    public func getSecurityLastUsed(secretIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSecurityLastUsedResponse {
+        try await self.getSecurityLastUsed(GetSecurityLastUsedRequest(secretIdList: secretIdList), region: region, logger: logger, on: eventLoop)
     }
 }

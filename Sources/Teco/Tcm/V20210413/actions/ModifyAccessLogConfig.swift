@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tcm {
 
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
-        self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
+        self.client.execute(action: "ModifyAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
-        try await self.client.execute(action: "ModifyAccessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccessLogConfig(_ input: ModifyAccessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
+        try await self.client.execute(action: "ModifyAccessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
-        self.modifyAccessLogConfig(ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), logger: logger, on: eventLoop)
+    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessLogConfigResponse> {
+        self.modifyAccessLogConfig(ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志配置
     @inlinable
-    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
-        try await self.modifyAccessLogConfig(ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), logger: logger, on: eventLoop)
+    public func modifyAccessLogConfig(meshId: String, selectedRange: SelectedRange? = nil, template: String? = nil, enable: Bool? = nil, cls: CLS? = nil, encoding: String? = nil, format: String? = nil, enableStdout: Bool? = nil, enableServer: Bool? = nil, address: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessLogConfigResponse {
+        try await self.modifyAccessLogConfig(ModifyAccessLogConfigRequest(meshId: meshId, selectedRange: selectedRange, template: template, enable: enable, cls: cls, encoding: encoding, format: format, enableStdout: enableStdout, enableServer: enableServer, address: address), region: region, logger: logger, on: eventLoop)
     }
 }

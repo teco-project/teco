@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,25 +98,25 @@ extension Tse {
 
     /// 查询引擎实例访问地址
     @inlinable
-    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSREInstanceAccessAddressResponse> {
-        self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSREInstanceAccessAddressResponse> {
+        self.client.execute(action: "DescribeSREInstanceAccessAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询引擎实例访问地址
     @inlinable
-    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
-        try await self.client.execute(action: "DescribeSREInstanceAccessAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSREInstanceAccessAddress(_ input: DescribeSREInstanceAccessAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
+        try await self.client.execute(action: "DescribeSREInstanceAccessAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询引擎实例访问地址
     @inlinable
-    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSREInstanceAccessAddressResponse> {
-        self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), logger: logger, on: eventLoop)
+    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSREInstanceAccessAddressResponse> {
+        self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询引擎实例访问地址
     @inlinable
-    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
-        try await self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), logger: logger, on: eventLoop)
+    public func describeSREInstanceAccessAddress(instanceId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, workload: String? = nil, engineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstanceAccessAddressResponse {
+        try await self.describeSREInstanceAccessAddress(DescribeSREInstanceAccessAddressRequest(instanceId: instanceId, vpcId: vpcId, subnetId: subnetId, workload: workload, engineRegion: engineRegion), region: region, logger: logger, on: eventLoop)
     }
 }

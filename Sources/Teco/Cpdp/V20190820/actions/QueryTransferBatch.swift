@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -213,31 +213,31 @@ extension Cpdp {
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
-    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferBatchResponse> {
-        self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryTransferBatch(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferBatchResponse> {
+        self.client.execute(action: "QueryTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
-    public func queryTransferBatch(_ input: QueryTransferBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
-        try await self.client.execute(action: "QueryTransferBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryTransferBatch(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
+        try await self.client.execute(action: "QueryTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
-    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferBatchResponse> {
-        self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), logger: logger, on: eventLoop)
+    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferBatchResponse> {
+        self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
-    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
-        try await self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), logger: logger, on: eventLoop)
+    public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
+        try await self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), region: region, logger: logger, on: eventLoop)
     }
 }

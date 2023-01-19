@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
-        self.client.execute(action: "RemoveBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
+        self.client.execute(action: "RemoveBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
-        try await self.client.execute(action: "RemoveBandwidthPackageResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeBandwidthPackageResources(_ input: RemoveBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
+        try await self.client.execute(action: "RemoveBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
-        self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), logger: logger, on: eventLoop)
+    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
+        self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除带宽包资源
     ///
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable
-    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
-        try await self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), logger: logger, on: eventLoop)
+    public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
+        try await self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
 }

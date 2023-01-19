@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bmvpc {
 
     /// 删除黑石对等连接
     @inlinable
-    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcPeerConnectionResponse> {
-        self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcPeerConnectionResponse> {
+        self.client.execute(action: "DeleteVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除黑石对等连接
     @inlinable
-    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
-        try await self.client.execute(action: "DeleteVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpcPeerConnection(_ input: DeleteVpcPeerConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
+        try await self.client.execute(action: "DeleteVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除黑石对等连接
     @inlinable
-    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcPeerConnectionResponse> {
-        self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcPeerConnectionResponse> {
+        self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除黑石对等连接
     @inlinable
-    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
-        try await self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    public func deleteVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcPeerConnectionResponse {
+        try await self.deleteVpcPeerConnection(DeleteVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

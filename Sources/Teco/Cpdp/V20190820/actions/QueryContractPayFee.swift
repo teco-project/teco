@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Cpdp {
 
     /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
-    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractPayFeeResponse> {
-        self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractPayFeeResponse> {
+        self.client.execute(action: "QueryContractPayFee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
-    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
-        try await self.client.execute(action: "QueryContractPayFee", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryContractPayFee(_ input: QueryContractPayFeeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
+        try await self.client.execute(action: "QueryContractPayFee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
-    public func queryContractPayFee(openId: String, openKey: String, paymentId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractPayFeeResponse> {
-        self.queryContractPayFee(QueryContractPayFeeRequest(openId: openId, openKey: openKey, paymentId: paymentId, profile: profile), logger: logger, on: eventLoop)
+    public func queryContractPayFee(openId: String, openKey: String, paymentId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractPayFeeResponse> {
+        self.queryContractPayFee(QueryContractPayFeeRequest(openId: openId, openKey: openKey, paymentId: paymentId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询支付方式费率及自定义表单项接口
     @inlinable
-    public func queryContractPayFee(openId: String, openKey: String, paymentId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
-        try await self.queryContractPayFee(QueryContractPayFeeRequest(openId: openId, openKey: openKey, paymentId: paymentId, profile: profile), logger: logger, on: eventLoop)
+    public func queryContractPayFee(openId: String, openKey: String, paymentId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayFeeResponse {
+        try await self.queryContractPayFee(QueryContractPayFeeRequest(openId: openId, openKey: openKey, paymentId: paymentId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

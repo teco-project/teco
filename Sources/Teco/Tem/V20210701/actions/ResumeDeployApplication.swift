@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tem {
 
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
-        self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
+        self.client.execute(action: "ResumeDeployApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
-        try await self.client.execute(action: "ResumeDeployApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resumeDeployApplication(_ input: ResumeDeployApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
+        try await self.client.execute(action: "ResumeDeployApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
-        self.resumeDeployApplication(ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), logger: logger, on: eventLoop)
+    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDeployApplicationResponse> {
+        self.resumeDeployApplication(ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始下一批次发布
     @inlinable
-    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
-        try await self.resumeDeployApplication(ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), logger: logger, on: eventLoop)
+    public func resumeDeployApplication(applicationId: String? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDeployApplicationResponse {
+        try await self.resumeDeployApplication(ResumeDeployApplicationRequest(applicationId: applicationId, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 }

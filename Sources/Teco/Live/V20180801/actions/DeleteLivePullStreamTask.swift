@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Live {
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable
-    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
-        self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
+        self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除直播拉流任务
@@ -62,8 +62,8 @@ extension Live {
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable
-    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
-        try await self.client.execute(action: "DeleteLivePullStreamTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
+        try await self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除直播拉流任务
@@ -73,8 +73,8 @@ extension Live {
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable
-    public func deleteLivePullStreamTask(taskId: String, operator: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
-        self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
+        self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除直播拉流任务
@@ -84,7 +84,7 @@ extension Live {
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
     @inlinable
-    public func deleteLivePullStreamTask(taskId: String, operator: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
-        try await self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
+        try await self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

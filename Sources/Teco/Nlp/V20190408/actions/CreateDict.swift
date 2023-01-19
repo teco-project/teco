@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Nlp {
     ///
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
-    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDictResponse> {
-        self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDict(_ input: CreateDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDictResponse> {
+        self.client.execute(action: "CreateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义词库
     ///
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
-    public func createDict(_ input: CreateDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
-        try await self.client.execute(action: "CreateDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDict(_ input: CreateDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
+        try await self.client.execute(action: "CreateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义词库
     ///
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
-    public func createDict(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDictResponse> {
-        self.createDict(CreateDictRequest(name: name, description: description), logger: logger, on: eventLoop)
+    public func createDict(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDictResponse> {
+        self.createDict(CreateDictRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义词库
     ///
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
-    public func createDict(name: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
-        try await self.createDict(CreateDictRequest(name: name, description: description), logger: logger, on: eventLoop)
+    public func createDict(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
+        try await self.createDict(CreateDictRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,31 +46,31 @@ extension Vpc {
     ///
     /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
     @inlinable
-    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGatewayFlowMonitorResponse> {
-        self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGatewayFlowMonitorResponse> {
+        self.client.execute(action: "EnableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启网关流量监控
     ///
     /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
     @inlinable
-    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
-        try await self.client.execute(action: "EnableGatewayFlowMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableGatewayFlowMonitor(_ input: EnableGatewayFlowMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
+        try await self.client.execute(action: "EnableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启网关流量监控
     ///
     /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
     @inlinable
-    public func enableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGatewayFlowMonitorResponse> {
-        self.enableGatewayFlowMonitor(EnableGatewayFlowMonitorRequest(gatewayId: gatewayId), logger: logger, on: eventLoop)
+    public func enableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGatewayFlowMonitorResponse> {
+        self.enableGatewayFlowMonitor(EnableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启网关流量监控
     ///
     /// 本接口（EnableGatewayFlowMonitor）用于开启网关流量监控。
     @inlinable
-    public func enableGatewayFlowMonitor(gatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
-        try await self.enableGatewayFlowMonitor(EnableGatewayFlowMonitorRequest(gatewayId: gatewayId), logger: logger, on: eventLoop)
+    public func enableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGatewayFlowMonitorResponse {
+        try await self.enableGatewayFlowMonitor(EnableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

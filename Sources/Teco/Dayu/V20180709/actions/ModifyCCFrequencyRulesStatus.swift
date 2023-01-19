@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Dayu {
 
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesStatusResponse> {
-        self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesStatusResponse> {
+        self.client.execute(action: "ModifyCCFrequencyRulesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
-        try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCFrequencyRulesStatus(_ input: ModifyCCFrequencyRulesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
+        try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesStatusResponse> {
-        self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesStatusResponse> {
+        self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
-    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
-        try await self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), logger: logger, on: eventLoop)
+    public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
+        try await self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
     }
 }

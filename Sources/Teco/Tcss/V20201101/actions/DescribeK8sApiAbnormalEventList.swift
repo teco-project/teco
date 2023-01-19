@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Tcss {
 
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
-        self.client.execute(action: "DescribeK8sApiAbnormalEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
+        self.client.execute(action: "DescribeK8sApiAbnormalEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
-        try await self.client.execute(action: "DescribeK8sApiAbnormalEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeK8sApiAbnormalEventList(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
+        try await self.client.execute(action: "DescribeK8sApiAbnormalEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
-        self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
+        self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
-        try await self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
+        try await self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Tcss {
     ///
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
-    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurchaseStateInfoResponse> {
-        self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurchaseStateInfoResponse> {
+        self.client.execute(action: "DescribePurchaseStateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全服务已购买信息
     ///
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
-    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
-        try await self.client.execute(action: "DescribePurchaseStateInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePurchaseStateInfo(_ input: DescribePurchaseStateInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
+        try await self.client.execute(action: "DescribePurchaseStateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器安全服务已购买信息
     ///
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
-    public func describePurchaseStateInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurchaseStateInfoResponse> {
-        self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), logger: logger, on: eventLoop)
+    public func describePurchaseStateInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurchaseStateInfoResponse> {
+        self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全服务已购买信息
     ///
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
-    public func describePurchaseStateInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
-        try await self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), logger: logger, on: eventLoop)
+    public func describePurchaseStateInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
+        try await self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

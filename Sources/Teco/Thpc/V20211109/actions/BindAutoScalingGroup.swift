@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Thpc {
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
-        self.client.execute(action: "BindAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
+        self.client.execute(action: "BindAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
-        try await self.client.execute(action: "BindAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindAutoScalingGroup(_ input: BindAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
+        try await self.client.execute(action: "BindAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
-        self.bindAutoScalingGroup(BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAutoScalingGroupResponse> {
+        self.bindAutoScalingGroup(BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性伸缩组
     ///
     /// 本接口(BindAutoScalingGroup)用于为集群队列绑定弹性伸缩组
     @inlinable
-    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
-        try await self.bindAutoScalingGroup(BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func bindAutoScalingGroup(clusterId: String, launchConfigurationId: String, autoScalingGroupId: String, queueName: String? = nil, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, enableAutoExpansion: Bool? = nil, enableAutoShrink: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAutoScalingGroupResponse {
+        try await self.bindAutoScalingGroup(BindAutoScalingGroupRequest(clusterId: clusterId, launchConfigurationId: launchConfigurationId, autoScalingGroupId: autoScalingGroupId, queueName: queueName, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, enableAutoExpansion: enableAutoExpansion, enableAutoShrink: enableAutoShrink, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

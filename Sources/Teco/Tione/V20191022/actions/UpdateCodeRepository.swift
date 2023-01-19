@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tione {
 
     /// 更新存储库
     @inlinable
-    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCodeRepositoryResponse> {
-        self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCodeRepositoryResponse> {
+        self.client.execute(action: "UpdateCodeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新存储库
     @inlinable
-    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
-        try await self.client.execute(action: "UpdateCodeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCodeRepository(_ input: UpdateCodeRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
+        try await self.client.execute(action: "UpdateCodeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新存储库
     @inlinable
-    public func updateCodeRepository(codeRepositoryName: String, gitSecret: GitSecret? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCodeRepositoryResponse> {
-        self.updateCodeRepository(UpdateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitSecret: gitSecret), logger: logger, on: eventLoop)
+    public func updateCodeRepository(codeRepositoryName: String, gitSecret: GitSecret? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCodeRepositoryResponse> {
+        self.updateCodeRepository(UpdateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitSecret: gitSecret), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新存储库
     @inlinable
-    public func updateCodeRepository(codeRepositoryName: String, gitSecret: GitSecret? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
-        try await self.updateCodeRepository(UpdateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitSecret: gitSecret), logger: logger, on: eventLoop)
+    public func updateCodeRepository(codeRepositoryName: String, gitSecret: GitSecret? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCodeRepositoryResponse {
+        try await self.updateCodeRepository(UpdateCodeRepositoryRequest(codeRepositoryName: codeRepositoryName, gitSecret: gitSecret), region: region, logger: logger, on: eventLoop)
     }
 }

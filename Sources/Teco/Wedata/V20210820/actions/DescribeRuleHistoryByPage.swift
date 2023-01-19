@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Wedata {
     ///
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
-    public func describeRuleHistoryByPage(_ input: DescribeRuleHistoryByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleHistoryByPageResponse> {
-        self.client.execute(action: "DescribeRuleHistoryByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleHistoryByPage(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleHistoryByPageResponse> {
+        self.client.execute(action: "DescribeRuleHistoryByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则操作记录接口
     ///
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
-    public func describeRuleHistoryByPage(_ input: DescribeRuleHistoryByPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleHistoryByPageResponse {
-        try await self.client.execute(action: "DescribeRuleHistoryByPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleHistoryByPage(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleHistoryByPageResponse {
+        try await self.client.execute(action: "DescribeRuleHistoryByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询规则操作记录接口
     ///
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
-    public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleHistoryByPageResponse> {
-        self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleHistoryByPageResponse> {
+        self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则操作记录接口
     ///
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
-    public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleHistoryByPageResponse {
-        try await self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleHistoryByPageResponse {
+        try await self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

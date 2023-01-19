@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iecp {
 
     /// 检查应用模板的Yaml配置
     @inlinable
-    public func describeApplicationYamlError(_ input: DescribeApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationYamlErrorResponse> {
-        self.client.execute(action: "DescribeApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationYamlError(_ input: DescribeApplicationYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationYamlErrorResponse> {
+        self.client.execute(action: "DescribeApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查应用模板的Yaml配置
     @inlinable
-    public func describeApplicationYamlError(_ input: DescribeApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
-        try await self.client.execute(action: "DescribeApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationYamlError(_ input: DescribeApplicationYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
+        try await self.client.execute(action: "DescribeApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查应用模板的Yaml配置
     @inlinable
-    public func describeApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationYamlErrorResponse> {
-        self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationYamlErrorResponse> {
+        self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查应用模板的Yaml配置
     @inlinable
-    public func describeApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
-        try await self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationYamlErrorResponse {
+        try await self.describeApplicationYamlError(DescribeApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

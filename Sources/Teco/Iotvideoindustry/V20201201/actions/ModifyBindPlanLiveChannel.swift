@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
-        self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
+        self.client.execute(action: "ModifyBindPlanLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
-        try await self.client.execute(action: "ModifyBindPlanLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBindPlanLiveChannel(_ input: ModifyBindPlanLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
+        try await self.client.execute(action: "ModifyBindPlanLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
-        self.modifyBindPlanLiveChannel(ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds), logger: logger, on: eventLoop)
+    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindPlanLiveChannelResponse> {
+        self.modifyBindPlanLiveChannel(ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播录制计划绑定解绑直播频道
     @inlinable
-    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
-        try await self.modifyBindPlanLiveChannel(ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds), logger: logger, on: eventLoop)
+    public func modifyBindPlanLiveChannel(planId: String, type: Int64, liveChannelIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindPlanLiveChannelResponse {
+        try await self.modifyBindPlanLiveChannel(ModifyBindPlanLiveChannelRequest(planId: planId, type: type, liveChannelIds: liveChannelIds), region: region, logger: logger, on: eventLoop)
     }
 }

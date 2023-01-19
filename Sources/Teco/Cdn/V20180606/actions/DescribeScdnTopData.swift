@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -130,25 +130,25 @@ extension Cdn {
 
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
-        self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
+        self.client.execute(action: "DescribeScdnTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
-        try await self.client.execute(action: "DescribeScdnTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScdnTopData(_ input: DescribeScdnTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
+        try await self.client.execute(action: "DescribeScdnTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
-        self.describeScdnTopData(DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), logger: logger, on: eventLoop)
+    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnTopDataResponse> {
+        self.describeScdnTopData(DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SCDN的Top数据
     @inlinable
-    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
-        try await self.describeScdnTopData(DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), logger: logger, on: eventLoop)
+    public func describeScdnTopData(startTime: Date, endTime: Date, mode: String, metric: String, filter: String, domain: String? = nil, attackType: String? = nil, defenceMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnTopDataResponse {
+        try await self.describeScdnTopData(DescribeScdnTopDataRequest(startTime: startTime, endTime: endTime, mode: mode, metric: metric, filter: filter, domain: domain, attackType: attackType, defenceMode: defenceMode), region: region, logger: logger, on: eventLoop)
     }
 }

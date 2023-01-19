@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 停止虚拟机部署组
     @inlinable
-    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGroupResponse> {
-        self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopGroup(_ input: StopGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGroupResponse> {
+        self.client.execute(action: "StopGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止虚拟机部署组
     @inlinable
-    public func stopGroup(_ input: StopGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
-        try await self.client.execute(action: "StopGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopGroup(_ input: StopGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
+        try await self.client.execute(action: "StopGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止虚拟机部署组
     @inlinable
-    public func stopGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGroupResponse> {
-        self.stopGroup(StopGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func stopGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGroupResponse> {
+        self.stopGroup(StopGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止虚拟机部署组
     @inlinable
-    public func stopGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
-        try await self.stopGroup(StopGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func stopGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGroupResponse {
+        try await self.stopGroup(StopGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

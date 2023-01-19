@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Faceid {
     ///
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
-    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetActionSequenceResponse> {
-        self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getActionSequence(_ input: GetActionSequenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetActionSequenceResponse> {
+        self.client.execute(action: "GetActionSequence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取动作顺序
     ///
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
-    public func getActionSequence(_ input: GetActionSequenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
-        try await self.client.execute(action: "GetActionSequence", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getActionSequence(_ input: GetActionSequenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
+        try await self.client.execute(action: "GetActionSequence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取动作顺序
     ///
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
-    public func getActionSequence(actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetActionSequenceResponse> {
-        self.getActionSequence(GetActionSequenceRequest(actionType: actionType), logger: logger, on: eventLoop)
+    public func getActionSequence(actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetActionSequenceResponse> {
+        self.getActionSequence(GetActionSequenceRequest(actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取动作顺序
     ///
     /// 使用动作活体检测模式前，需调用本接口获取动作顺序。
     @inlinable
-    public func getActionSequence(actionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
-        try await self.getActionSequence(GetActionSequenceRequest(actionType: actionType), logger: logger, on: eventLoop)
+    public func getActionSequence(actionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetActionSequenceResponse {
+        try await self.getActionSequence(GetActionSequenceRequest(actionType: actionType), region: region, logger: logger, on: eventLoop)
     }
 }

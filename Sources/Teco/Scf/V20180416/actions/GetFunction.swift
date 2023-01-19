@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -255,31 +255,31 @@ extension Scf {
     ///
     /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
     @inlinable
-    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionResponse> {
-        self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFunction(_ input: GetFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionResponse> {
+        self.client.execute(action: "GetFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数详细信息
     ///
     /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
     @inlinable
-    public func getFunction(_ input: GetFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
-        try await self.client.execute(action: "GetFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFunction(_ input: GetFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
+        try await self.client.execute(action: "GetFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数详细信息
     ///
     /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
     @inlinable
-    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionResponse> {
-        self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), logger: logger, on: eventLoop)
+    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionResponse> {
+        self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数详细信息
     ///
     /// 该接口获取某个函数的详细信息，包括名称、代码、处理方法、关联触发器和超时时间等字段。
     @inlinable
-    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
-        try await self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), logger: logger, on: eventLoop)
+    public func getFunction(functionName: String, qualifier: String? = nil, namespace: String? = nil, showCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionResponse {
+        try await self.getFunction(GetFunctionRequest(functionName: functionName, qualifier: qualifier, namespace: namespace, showCode: showCode), region: region, logger: logger, on: eventLoop)
     }
 }

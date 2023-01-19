@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Tbaas {
 
     /// 动态部署并发布Bcos合约
     @inlinable
-    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployDynamicBcosContractResponse> {
-        self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployDynamicBcosContractResponse> {
+        self.client.execute(action: "DeployDynamicBcosContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 动态部署并发布Bcos合约
     @inlinable
-    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
-        try await self.client.execute(action: "DeployDynamicBcosContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deployDynamicBcosContract(_ input: DeployDynamicBcosContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
+        try await self.client.execute(action: "DeployDynamicBcosContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 动态部署并发布Bcos合约
     @inlinable
-    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployDynamicBcosContractResponse> {
-        self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), logger: logger, on: eventLoop)
+    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeployDynamicBcosContractResponse> {
+        self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 动态部署并发布Bcos合约
     @inlinable
-    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
-        try await self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), logger: logger, on: eventLoop)
+    public func deployDynamicBcosContract(clusterId: String, groupId: Int64, abiInfo: String, byteCodeBin: String, signUserId: String, constructorParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeployDynamicBcosContractResponse {
+        try await self.deployDynamicBcosContract(DeployDynamicBcosContractRequest(clusterId: clusterId, groupId: groupId, abiInfo: abiInfo, byteCodeBin: byteCodeBin, signUserId: signUserId, constructorParams: constructorParams), region: region, logger: logger, on: eventLoop)
     }
 }

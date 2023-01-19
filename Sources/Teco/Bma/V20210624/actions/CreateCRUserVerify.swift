@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Bma {
     ///
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
-    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRUserVerifyResponse> {
-        self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRUserVerifyResponse> {
+        self.client.execute(action: "CreateCRUserVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 个人认证
     ///
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
-    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
-        try await self.client.execute(action: "CreateCRUserVerify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRUserVerify(_ input: CreateCRUserVerifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
+        try await self.client.execute(action: "CreateCRUserVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 个人认证
     ///
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
-    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRUserVerifyResponse> {
-        self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), logger: logger, on: eventLoop)
+    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRUserVerifyResponse> {
+        self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 个人认证
     ///
     /// 本接口用于个人认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
-    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
-        try await self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), logger: logger, on: eventLoop)
+    public func createCRUserVerify(userName: String, userID: String, userPhone: String, verificationCode: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRUserVerifyResponse {
+        try await self.createCRUserVerify(CreateCRUserVerifyRequest(userName: userName, userID: userID, userPhone: userPhone, verificationCode: verificationCode, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

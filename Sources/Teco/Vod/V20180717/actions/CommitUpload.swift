@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Vod {
     ///
     /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
     @inlinable
-    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitUploadResponse> {
-        self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func commitUpload(_ input: CommitUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitUploadResponse> {
+        self.client.execute(action: "CommitUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 确认上传
     ///
     /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
     @inlinable
-    public func commitUpload(_ input: CommitUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
-        try await self.client.execute(action: "CommitUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func commitUpload(_ input: CommitUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
+        try await self.client.execute(action: "CommitUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 确认上传
     ///
     /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
     @inlinable
-    public func commitUpload(vodSessionKey: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitUploadResponse> {
-        self.commitUpload(CommitUploadRequest(vodSessionKey: vodSessionKey, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func commitUpload(vodSessionKey: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitUploadResponse> {
+        self.commitUpload(CommitUploadRequest(vodSessionKey: vodSessionKey, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 确认上传
     ///
     /// 该接口用于确认媒体文件（和封面文件）上传到腾讯云点播的结果，并存储媒体信息，返回文件的播放地址和文件 ID。
     @inlinable
-    public func commitUpload(vodSessionKey: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
-        try await self.commitUpload(CommitUploadRequest(vodSessionKey: vodSessionKey, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func commitUpload(vodSessionKey: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitUploadResponse {
+        try await self.commitUpload(CommitUploadRequest(vodSessionKey: vodSessionKey, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

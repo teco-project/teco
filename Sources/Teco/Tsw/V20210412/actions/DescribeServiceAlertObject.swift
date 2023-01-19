@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Tsw {
 
     /// 获取告警对象-服务告警表
     @inlinable
-    public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceAlertObjectResponse> {
-        self.client.execute(action: "DescribeServiceAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceAlertObjectResponse> {
+        self.client.execute(action: "DescribeServiceAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警对象-服务告警表
     @inlinable
-    public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
-        try await self.client.execute(action: "DescribeServiceAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeServiceAlertObject(_ input: DescribeServiceAlertObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
+        try await self.client.execute(action: "DescribeServiceAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取告警对象-服务告警表
     @inlinable
-    public func describeServiceAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceAlertObjectResponse> {
-        self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), logger: logger, on: eventLoop)
+    public func describeServiceAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceAlertObjectResponse> {
+        self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警对象-服务告警表
     @inlinable
-    public func describeServiceAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
-        try await self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), logger: logger, on: eventLoop)
+    public func describeServiceAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
+        try await self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

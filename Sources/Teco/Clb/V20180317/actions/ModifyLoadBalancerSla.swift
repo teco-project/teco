@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Clb {
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
-        self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
+        self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
-        try await self.client.execute(action: "ModifyLoadBalancerSla", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
+        try await self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
-        self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
+        self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)
     }
 
     /// 性能容量型变配
     ///
     /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
     @inlinable
-    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
-        try await self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), logger: logger, on: eventLoop)
+    public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
+        try await self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)
     }
 }

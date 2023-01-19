@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Iotvideoindustry {
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
-        self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func controlRecordStream(_ input: ControlRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
+        self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流（旧）
@@ -73,8 +73,8 @@ extension Iotvideoindustry {
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(_ input: ControlRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
-        try await self.client.execute(action: "ControlRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func controlRecordStream(_ input: ControlRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
+        try await self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 控制通道本地回放流（旧）
@@ -82,8 +82,8 @@ extension Iotvideoindustry {
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
-        self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), logger: logger, on: eventLoop)
+    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
+        self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 控制通道本地回放流（旧）
@@ -91,7 +91,7 @@ extension Iotvideoindustry {
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
     @inlinable
-    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
-        try await self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), logger: logger, on: eventLoop)
+    public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
+        try await self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

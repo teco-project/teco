@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Yunjing {
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable
-    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
-        self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
+        self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable
-    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
-        try await self.client.execute(action: "DeleteUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
+        try await self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable
-    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
-        self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), logger: logger, on: eventLoop)
+    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
+        self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable
-    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
-        try await self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), logger: logger, on: eventLoop)
+    public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
+        try await self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
     }
 }

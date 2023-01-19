@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotvideoindustry {
 
     /// 编辑预置位信息
     @inlinable
-    public func modifyPreset(_ input: ModifyPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPresetResponse> {
-        self.client.execute(action: "ModifyPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPreset(_ input: ModifyPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPresetResponse> {
+        self.client.execute(action: "ModifyPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑预置位信息
     @inlinable
-    public func modifyPreset(_ input: ModifyPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {
-        try await self.client.execute(action: "ModifyPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPreset(_ input: ModifyPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {
+        try await self.client.execute(action: "ModifyPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑预置位信息
     @inlinable
-    public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPresetResponse> {
-        self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPresetResponse> {
+        self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑预置位信息
     @inlinable
-    public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {
-        try await self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {
+        try await self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tag {
     ///
     /// 本接口用于解除标签和资源的关联关系
     @inlinable
-    public func deleteResourceTag(_ input: DeleteResourceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
-        self.client.execute(action: "DeleteResourceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteResourceTag(_ input: DeleteResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
+        self.client.execute(action: "DeleteResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
     @inlinable
-    public func deleteResourceTag(_ input: DeleteResourceTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
-        try await self.client.execute(action: "DeleteResourceTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteResourceTag(_ input: DeleteResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
+        try await self.client.execute(action: "DeleteResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
     @inlinable
-    public func deleteResourceTag(tagKey: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
-        self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), logger: logger, on: eventLoop)
+    public func deleteResourceTag(tagKey: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
+        self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
     @inlinable
-    public func deleteResourceTag(tagKey: String, resource: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
-        try await self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), logger: logger, on: eventLoop)
+    public func deleteResourceTag(tagKey: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
+        try await self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 }

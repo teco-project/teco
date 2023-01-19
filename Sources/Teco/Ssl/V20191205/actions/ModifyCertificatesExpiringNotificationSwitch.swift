@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ssl {
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
-        self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
+        self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
-        try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCertificatesExpiringNotificationSwitch(_ input: ModifyCertificatesExpiringNotificationSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
+        try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
-        self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), logger: logger, on: eventLoop)
+    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
+        self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改是否忽略证书到期通知
     ///
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
-    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
-        try await self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), logger: logger, on: eventLoop)
+    public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
+        try await self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), region: region, logger: logger, on: eventLoop)
     }
 }

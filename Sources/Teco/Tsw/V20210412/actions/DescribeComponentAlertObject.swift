@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Tsw {
 
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
-        self.client.execute(action: "DescribeComponentAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
+        self.client.execute(action: "DescribeComponentAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {
-        try await self.client.execute(action: "DescribeComponentAlertObject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComponentAlertObject(_ input: DescribeComponentAlertObjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {
+        try await self.client.execute(action: "DescribeComponentAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
-        self.describeComponentAlertObject(DescribeComponentAlertObjectRequest(), logger: logger, on: eventLoop)
+    public func describeComponentAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentAlertObjectResponse> {
+        self.describeComponentAlertObject(DescribeComponentAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取告警对象-组件告警
     @inlinable
-    public func describeComponentAlertObject(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {
-        try await self.describeComponentAlertObject(DescribeComponentAlertObjectRequest(), logger: logger, on: eventLoop)
+    public func describeComponentAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentAlertObjectResponse {
+        try await self.describeComponentAlertObject(DescribeComponentAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

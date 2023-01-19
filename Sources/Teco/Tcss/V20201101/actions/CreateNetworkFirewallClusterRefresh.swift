@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
-        self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
+        self.client.execute(action: "CreateNetworkFirewallClusterRefresh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetworkFirewallClusterRefresh(_ input: CreateNetworkFirewallClusterRefreshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallClusterRefresh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
-        self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), logger: logger, on: eventLoop)
+    public func createNetworkFirewallClusterRefresh(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallClusterRefreshResponse> {
+        self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群下发刷新任务
     @inlinable
-    public func createNetworkFirewallClusterRefresh(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
-        try await self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), logger: logger, on: eventLoop)
+    public func createNetworkFirewallClusterRefresh(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallClusterRefreshResponse {
+        try await self.createNetworkFirewallClusterRefresh(CreateNetworkFirewallClusterRefreshRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

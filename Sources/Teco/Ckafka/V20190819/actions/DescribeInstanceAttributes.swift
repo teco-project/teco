@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ckafka {
     ///
     /// 获取实例属性
     @inlinable
-    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
-        self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
+        self.client.execute(action: "DescribeInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例属性
     ///
     /// 获取实例属性
     @inlinable
-    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
-        try await self.client.execute(action: "DescribeInstanceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
+        try await self.client.execute(action: "DescribeInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例属性
     ///
     /// 获取实例属性
     @inlinable
-    public func describeInstanceAttributes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
-        self.describeInstanceAttributes(DescribeInstanceAttributesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
+        self.describeInstanceAttributes(DescribeInstanceAttributesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例属性
     ///
     /// 获取实例属性
     @inlinable
-    public func describeInstanceAttributes(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
-        try await self.describeInstanceAttributes(DescribeInstanceAttributesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
+        try await self.describeInstanceAttributes(DescribeInstanceAttributesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

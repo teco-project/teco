@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Pts {
 
     /// 创建文件
     @inlinable
-    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
-        self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFile(_ input: CreateFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
+        self.client.execute(action: "CreateFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件
     @inlinable
-    public func createFile(_ input: CreateFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
-        try await self.client.execute(action: "CreateFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFile(_ input: CreateFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
+        try await self.client.execute(action: "CreateFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建文件
     @inlinable
-    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
-        self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), logger: logger, on: eventLoop)
+    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileResponse> {
+        self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文件
     @inlinable
-    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
-        try await self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), logger: logger, on: eventLoop)
+    public func createFile(fileId: String, projectId: String, kind: Int64, name: String, size: Int64, type: String, lineCount: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, headerInFile: Bool? = nil, headerColumns: [String]? = nil, fileInfos: [FileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileResponse {
+        try await self.createFile(CreateFileRequest(fileId: fileId, projectId: projectId, kind: kind, name: name, size: size, type: type, lineCount: lineCount, headLines: headLines, tailLines: tailLines, headerInFile: headerInFile, headerColumns: headerColumns, fileInfos: fileInfos), region: region, logger: logger, on: eventLoop)
     }
 }

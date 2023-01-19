@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Wav {
     ///
     /// 该接口获取license对应的详细信息
     @inlinable
-    public func queryLicenseInfo(_ input: QueryLicenseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLicenseInfoResponse> {
-        self.client.execute(action: "QueryLicenseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryLicenseInfo(_ input: QueryLicenseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLicenseInfoResponse> {
+        self.client.execute(action: "QueryLicenseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询license信息接口
     ///
     /// 该接口获取license对应的详细信息
     @inlinable
-    public func queryLicenseInfo(_ input: QueryLicenseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
-        try await self.client.execute(action: "QueryLicenseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryLicenseInfo(_ input: QueryLicenseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
+        try await self.client.execute(action: "QueryLicenseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询license信息接口
     ///
     /// 该接口获取license对应的详细信息
     @inlinable
-    public func queryLicenseInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLicenseInfoResponse> {
-        self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), logger: logger, on: eventLoop)
+    public func queryLicenseInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLicenseInfoResponse> {
+        self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询license信息接口
     ///
     /// 该接口获取license对应的详细信息
     @inlinable
-    public func queryLicenseInfo(license: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
-        try await self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), logger: logger, on: eventLoop)
+    public func queryLicenseInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
+        try await self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
     }
 }

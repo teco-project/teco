@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
-        self.client.execute(action: "BatchDeleteIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
+        self.client.execute(action: "BatchDeleteIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchDeleteIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDeleteIntegrationTasks(_ input: BatchDeleteIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchDeleteIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
-        self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteIntegrationTasksResponse> {
+        self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除集成任务
     @inlinable
-    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
-        try await self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchDeleteIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteIntegrationTasksResponse {
+        try await self.batchDeleteIntegrationTasks(BatchDeleteIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

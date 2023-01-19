@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Sqlserver {
     ///
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
-    public func startIncrementalMigration(_ input: StartIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIncrementalMigrationResponse> {
-        self.client.execute(action: "StartIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startIncrementalMigration(_ input: StartIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIncrementalMigrationResponse> {
+        self.client.execute(action: "StartIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动增量备份导入任务
     ///
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
-    public func startIncrementalMigration(_ input: StartIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
-        try await self.client.execute(action: "StartIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startIncrementalMigration(_ input: StartIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
+        try await self.client.execute(action: "StartIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动增量备份导入任务
     ///
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
-    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIncrementalMigrationResponse> {
-        self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartIncrementalMigrationResponse> {
+        self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动增量备份导入任务
     ///
     /// 本接口（StartIncrementalMigration）用于启动增量备份导入任务。
     @inlinable
-    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
-        try await self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func startIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartIncrementalMigrationResponse {
+        try await self.startIncrementalMigration(StartIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

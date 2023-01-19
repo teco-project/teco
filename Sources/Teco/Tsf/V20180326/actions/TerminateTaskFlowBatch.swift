@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 停止一个工作流批次
     @inlinable
-    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskFlowBatchResponse> {
-        self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskFlowBatchResponse> {
+        self.client.execute(action: "TerminateTaskFlowBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止一个工作流批次
     @inlinable
-    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
-        try await self.client.execute(action: "TerminateTaskFlowBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateTaskFlowBatch(_ input: TerminateTaskFlowBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
+        try await self.client.execute(action: "TerminateTaskFlowBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止一个工作流批次
     @inlinable
-    public func terminateTaskFlowBatch(flowBatchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskFlowBatchResponse> {
-        self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), logger: logger, on: eventLoop)
+    public func terminateTaskFlowBatch(flowBatchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskFlowBatchResponse> {
+        self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止一个工作流批次
     @inlinable
-    public func terminateTaskFlowBatch(flowBatchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
-        try await self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), logger: logger, on: eventLoop)
+    public func terminateTaskFlowBatch(flowBatchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskFlowBatchResponse {
+        try await self.terminateTaskFlowBatch(TerminateTaskFlowBatchRequest(flowBatchId: flowBatchId), region: region, logger: logger, on: eventLoop)
     }
 }

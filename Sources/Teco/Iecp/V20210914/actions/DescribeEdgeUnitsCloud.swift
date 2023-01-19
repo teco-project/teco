@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Iecp {
 
     /// 查询边缘单元列表
     @inlinable
-    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitsCloudResponse> {
-        self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitsCloudResponse> {
+        self.client.execute(action: "DescribeEdgeUnitsCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元列表
     @inlinable
-    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitsCloud", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitsCloud(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitsCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元列表
     @inlinable
-    public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitsCloudResponse> {
-        self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitsCloudResponse> {
+        self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元列表
     @inlinable
-    public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
-        try await self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
+        try await self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

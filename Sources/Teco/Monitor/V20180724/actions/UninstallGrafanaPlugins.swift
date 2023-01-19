@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 删除已安装的插件
     @inlinable
-    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
-        self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
+        self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除已安装的插件
     @inlinable
-    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
-        try await self.client.execute(action: "UninstallGrafanaPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
+        try await self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除已安装的插件
     @inlinable
-    public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
-        self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
+        self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除已安装的插件
     @inlinable
-    public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
-        try await self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
+        try await self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

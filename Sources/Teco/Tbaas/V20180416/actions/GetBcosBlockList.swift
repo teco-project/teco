@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Tbaas {
     ///
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
-    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockListResponse> {
-        self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBcosBlockList(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockListResponse> {
+        self.client.execute(action: "GetBcosBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos区块列表
     ///
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
-    public func getBcosBlockList(_ input: GetBcosBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
-        try await self.client.execute(action: "GetBcosBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBcosBlockList(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
+        try await self.client.execute(action: "GetBcosBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询Bcos区块列表
     ///
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
-    public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockListResponse> {
-        self.getBcosBlockList(GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), logger: logger, on: eventLoop)
+    public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockListResponse> {
+        self.getBcosBlockList(GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bcos区块列表
     ///
     /// Bcos分页查询当前群组下的区块列表
     @inlinable
-    public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
-        try await self.getBcosBlockList(GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), logger: logger, on: eventLoop)
+    public func getBcosBlockList(clusterId: String, groupId: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, blockNumber: Int64? = nil, blockHash: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockListResponse {
+        try await self.getBcosBlockList(GetBcosBlockListRequest(clusterId: clusterId, groupId: groupId, pageNumber: pageNumber, pageSize: pageSize, blockNumber: blockNumber, blockHash: blockHash), region: region, logger: logger, on: eventLoop)
     }
 }

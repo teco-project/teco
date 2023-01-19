@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,25 +125,25 @@ extension Monitor {
 
     /// 获取基础策略告警组列表
     @inlinable
-    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupListResponse> {
-        self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupListResponse> {
+        self.client.execute(action: "DescribePolicyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础策略告警组列表
     @inlinable
-    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
-        try await self.client.execute(action: "DescribePolicyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePolicyGroupList(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
+        try await self.client.execute(action: "DescribePolicyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础策略告警组列表
     @inlinable
-    public func describePolicyGroupList(module: String, limit: Int64, offset: Int64, like: String? = nil, instanceGroupId: Int64? = nil, updateTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, filterUnuseReceiver: Int64? = nil, receivers: [String]? = nil, receiverUserList: [String]? = nil, dimensions: String? = nil, conditionTempGroupId: String? = nil, receiverType: String? = nil, isOpen: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupListResponse> {
-        self.describePolicyGroupList(DescribePolicyGroupListRequest(module: module, limit: limit, offset: offset, like: like, instanceGroupId: instanceGroupId, updateTimeOrder: updateTimeOrder, projectIds: projectIds, viewNames: viewNames, filterUnuseReceiver: filterUnuseReceiver, receivers: receivers, receiverUserList: receiverUserList, dimensions: dimensions, conditionTempGroupId: conditionTempGroupId, receiverType: receiverType, isOpen: isOpen), logger: logger, on: eventLoop)
+    public func describePolicyGroupList(module: String, limit: Int64, offset: Int64, like: String? = nil, instanceGroupId: Int64? = nil, updateTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, filterUnuseReceiver: Int64? = nil, receivers: [String]? = nil, receiverUserList: [String]? = nil, dimensions: String? = nil, conditionTempGroupId: String? = nil, receiverType: String? = nil, isOpen: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupListResponse> {
+        self.describePolicyGroupList(DescribePolicyGroupListRequest(module: module, limit: limit, offset: offset, like: like, instanceGroupId: instanceGroupId, updateTimeOrder: updateTimeOrder, projectIds: projectIds, viewNames: viewNames, filterUnuseReceiver: filterUnuseReceiver, receivers: receivers, receiverUserList: receiverUserList, dimensions: dimensions, conditionTempGroupId: conditionTempGroupId, receiverType: receiverType, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础策略告警组列表
     @inlinable
-    public func describePolicyGroupList(module: String, limit: Int64, offset: Int64, like: String? = nil, instanceGroupId: Int64? = nil, updateTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, filterUnuseReceiver: Int64? = nil, receivers: [String]? = nil, receiverUserList: [String]? = nil, dimensions: String? = nil, conditionTempGroupId: String? = nil, receiverType: String? = nil, isOpen: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
-        try await self.describePolicyGroupList(DescribePolicyGroupListRequest(module: module, limit: limit, offset: offset, like: like, instanceGroupId: instanceGroupId, updateTimeOrder: updateTimeOrder, projectIds: projectIds, viewNames: viewNames, filterUnuseReceiver: filterUnuseReceiver, receivers: receivers, receiverUserList: receiverUserList, dimensions: dimensions, conditionTempGroupId: conditionTempGroupId, receiverType: receiverType, isOpen: isOpen), logger: logger, on: eventLoop)
+    public func describePolicyGroupList(module: String, limit: Int64, offset: Int64, like: String? = nil, instanceGroupId: Int64? = nil, updateTimeOrder: String? = nil, projectIds: [Int64]? = nil, viewNames: [String]? = nil, filterUnuseReceiver: Int64? = nil, receivers: [String]? = nil, receiverUserList: [String]? = nil, dimensions: String? = nil, conditionTempGroupId: String? = nil, receiverType: String? = nil, isOpen: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupListResponse {
+        try await self.describePolicyGroupList(DescribePolicyGroupListRequest(module: module, limit: limit, offset: offset, like: like, instanceGroupId: instanceGroupId, updateTimeOrder: updateTimeOrder, projectIds: projectIds, viewNames: viewNames, filterUnuseReceiver: filterUnuseReceiver, receivers: receivers, receiverUserList: receiverUserList, dimensions: dimensions, conditionTempGroupId: conditionTempGroupId, receiverType: receiverType, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }
 }

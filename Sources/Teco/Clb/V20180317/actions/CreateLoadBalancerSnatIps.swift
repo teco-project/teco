@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Clb {
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
-        self.client.execute(action: "CreateLoadBalancerSnatIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
+        self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加SnatIp
@@ -63,8 +63,8 @@ extension Clb {
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
-        try await self.client.execute(action: "CreateLoadBalancerSnatIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
+        try await self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加SnatIp
@@ -72,8 +72,8 @@ extension Clb {
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
-        self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), logger: logger, on: eventLoop)
+    public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
+        self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加SnatIp
@@ -81,7 +81,7 @@ extension Clb {
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
-        try await self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), logger: logger, on: eventLoop)
+    public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
+        try await self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }
 }

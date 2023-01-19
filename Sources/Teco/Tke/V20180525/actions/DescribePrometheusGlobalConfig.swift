@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tke {
 
     /// 获得实例级别抓取配置
     @inlinable
-    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
-        self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
+        self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获得实例级别抓取配置
     @inlinable
-    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
-        try await self.client.execute(action: "DescribePrometheusGlobalConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusGlobalConfig(_ input: DescribePrometheusGlobalConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
+        try await self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获得实例级别抓取配置
     @inlinable
-    public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
-        self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), logger: logger, on: eventLoop)
+    public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
+        self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获得实例级别抓取配置
     @inlinable
-    public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
-        try await self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), logger: logger, on: eventLoop)
+    public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
+        try await self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
     }
 }

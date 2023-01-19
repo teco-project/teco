@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
-        self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
+        self.client.execute(action: "DescribeSupportedPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
-        try await self.client.execute(action: "DescribeSupportedPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSupportedPrivileges(_ input: DescribeSupportedPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
+        try await self.client.execute(action: "DescribeSupportedPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
-        self.describeSupportedPrivileges(DescribeSupportedPrivilegesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeSupportedPrivileges(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSupportedPrivilegesResponse> {
+        self.describeSupportedPrivileges(DescribeSupportedPrivilegesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例支持的权限信息
     ///
     /// 本接口(DescribeSupportedPrivileges)用于查询云数据库的支持的权限信息，包括全局权限，数据库权限，表权限以及列权限。
     @inlinable
-    public func describeSupportedPrivileges(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
-        try await self.describeSupportedPrivileges(DescribeSupportedPrivilegesRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeSupportedPrivileges(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSupportedPrivilegesResponse {
+        try await self.describeSupportedPrivileges(DescribeSupportedPrivilegesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

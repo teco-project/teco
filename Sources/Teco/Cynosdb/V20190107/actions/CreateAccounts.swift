@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cynosdb {
 
     /// 创建账号
     @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
-        self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccounts(_ input: CreateAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
+        self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建账号
     @inlinable
-    public func createAccounts(_ input: CreateAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
-        try await self.client.execute(action: "CreateAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccounts(_ input: CreateAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
+        try await self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建账号
     @inlinable
-    public func createAccounts(clusterId: String, accounts: [NewAccount], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
-        self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), logger: logger, on: eventLoop)
+    public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
+        self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建账号
     @inlinable
-    public func createAccounts(clusterId: String, accounts: [NewAccount], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
-        try await self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), logger: logger, on: eventLoop)
+    public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
+        try await self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

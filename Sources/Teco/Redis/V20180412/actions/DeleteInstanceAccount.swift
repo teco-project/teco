@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 删除实例子账号
     @inlinable
-    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceAccountResponse> {
-        self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceAccountResponse> {
+        self.client.execute(action: "DeleteInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例子账号
     @inlinable
-    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
-        try await self.client.execute(action: "DeleteInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteInstanceAccount(_ input: DeleteInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
+        try await self.client.execute(action: "DeleteInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例子账号
     @inlinable
-    public func deleteInstanceAccount(instanceId: String, accountName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceAccountResponse> {
-        self.deleteInstanceAccount(DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName), logger: logger, on: eventLoop)
+    public func deleteInstanceAccount(instanceId: String, accountName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceAccountResponse> {
+        self.deleteInstanceAccount(DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例子账号
     @inlinable
-    public func deleteInstanceAccount(instanceId: String, accountName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
-        try await self.deleteInstanceAccount(DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName), logger: logger, on: eventLoop)
+    public func deleteInstanceAccount(instanceId: String, accountName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceAccountResponse {
+        try await self.deleteInstanceAccount(DeleteInstanceAccountRequest(instanceId: instanceId, accountName: accountName), region: region, logger: logger, on: eventLoop)
     }
 }

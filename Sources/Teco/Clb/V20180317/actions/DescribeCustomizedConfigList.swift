@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Clb {
     ///
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
-    public func describeCustomizedConfigList(_ input: DescribeCustomizedConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigListResponse> {
-        self.client.execute(action: "DescribeCustomizedConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomizedConfigList(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigListResponse> {
+        self.client.execute(action: "DescribeCustomizedConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置列表
     ///
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
-    public func describeCustomizedConfigList(_ input: DescribeCustomizedConfigListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
-        try await self.client.execute(action: "DescribeCustomizedConfigList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomizedConfigList(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
+        try await self.client.execute(action: "DescribeCustomizedConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取配置列表
     ///
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
-    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigListResponse> {
-        self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), logger: logger, on: eventLoop)
+    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigListResponse> {
+        self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置列表
     ///
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
-    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
-        try await self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), logger: logger, on: eventLoop)
+    public func describeCustomizedConfigList(configType: String, offset: Int64? = nil, limit: Int64? = nil, configName: String? = nil, uconfigIds: [String]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigListResponse {
+        try await self.describeCustomizedConfigList(DescribeCustomizedConfigListRequest(configType: configType, offset: offset, limit: limit, configName: configName, uconfigIds: uconfigIds, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

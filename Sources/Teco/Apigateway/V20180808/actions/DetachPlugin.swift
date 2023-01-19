@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Apigateway {
     ///
     /// 解除插件与API绑定
     @inlinable
-    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachPluginResponse> {
-        self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachPlugin(_ input: DetachPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachPluginResponse> {
+        self.client.execute(action: "DetachPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 插件解绑API
     ///
     /// 解除插件与API绑定
     @inlinable
-    public func detachPlugin(_ input: DetachPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
-        try await self.client.execute(action: "DetachPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachPlugin(_ input: DetachPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
+        try await self.client.execute(action: "DetachPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 插件解绑API
     ///
     /// 解除插件与API绑定
     @inlinable
-    public func detachPlugin(pluginId: String, serviceId: String, environmentName: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachPluginResponse> {
-        self.detachPlugin(DetachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiId: apiId), logger: logger, on: eventLoop)
+    public func detachPlugin(pluginId: String, serviceId: String, environmentName: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachPluginResponse> {
+        self.detachPlugin(DetachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 插件解绑API
     ///
     /// 解除插件与API绑定
     @inlinable
-    public func detachPlugin(pluginId: String, serviceId: String, environmentName: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
-        try await self.detachPlugin(DetachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiId: apiId), logger: logger, on: eventLoop)
+    public func detachPlugin(pluginId: String, serviceId: String, environmentName: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachPluginResponse {
+        try await self.detachPlugin(DetachPluginRequest(pluginId: pluginId, serviceId: serviceId, environmentName: environmentName, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

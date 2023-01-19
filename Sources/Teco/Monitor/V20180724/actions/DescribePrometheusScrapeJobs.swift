@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Monitor {
 
     /// 列出 Prometheus 抓取任务
     @inlinable
-    public func describePrometheusScrapeJobs(_ input: DescribePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusScrapeJobsResponse> {
-        self.client.execute(action: "DescribePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusScrapeJobs(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusScrapeJobsResponse> {
+        self.client.execute(action: "DescribePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 抓取任务
     @inlinable
-    public func describePrometheusScrapeJobs(_ input: DescribePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusScrapeJobsResponse {
-        try await self.client.execute(action: "DescribePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusScrapeJobs(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusScrapeJobsResponse {
+        try await self.client.execute(action: "DescribePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出 Prometheus 抓取任务
     @inlinable
-    public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusScrapeJobsResponse> {
-        self.describePrometheusScrapeJobs(DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusScrapeJobsResponse> {
+        self.describePrometheusScrapeJobs(DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 抓取任务
     @inlinable
-    public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusScrapeJobsResponse {
-        try await self.describePrometheusScrapeJobs(DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePrometheusScrapeJobs(instanceId: String, agentId: String, name: String? = nil, jobIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusScrapeJobsResponse {
+        try await self.describePrometheusScrapeJobs(DescribePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, name: name, jobIds: jobIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

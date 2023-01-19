@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
     @inlinable
-    public func describeBackupSummaries(_ input: DescribeBackupSummariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupSummariesResponse> {
-        self.client.execute(action: "DescribeBackupSummaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBackupSummaries(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupSummariesResponse> {
+        self.client.execute(action: "DescribeBackupSummaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份实时统计
     ///
     /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
     @inlinable
-    public func describeBackupSummaries(_ input: DescribeBackupSummariesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
-        try await self.client.execute(action: "DescribeBackupSummaries", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBackupSummaries(_ input: DescribeBackupSummariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
+        try await self.client.execute(action: "DescribeBackupSummaries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询备份实时统计
     ///
     /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
     @inlinable
-    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupSummariesResponse> {
-        self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupSummariesResponse> {
+        self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份实时统计
     ///
     /// 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
     @inlinable
-    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
-        try await self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeBackupSummaries(product: String, offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupSummariesResponse {
+        try await self.describeBackupSummaries(DescribeBackupSummariesRequest(product: product, offset: offset, limit: limit, orderBy: orderBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

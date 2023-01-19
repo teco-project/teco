@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Teo {
 
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
-        self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
+        self.client.execute(action: "DescribeSecurityPolicyRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityPolicyRegions(_ input: DescribeSecurityPolicyRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
-        self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityPolicyRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyRegionsResponse> {
+        self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有地域信息
     @inlinable
-    public func describeSecurityPolicyRegions(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
-        try await self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityPolicyRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyRegionsResponse {
+        try await self.describeSecurityPolicyRegions(DescribeSecurityPolicyRegionsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Pts {
 
     /// 创建并启动任务
     @inlinable
-    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartJobResponse> {
-        self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startJob(_ input: StartJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartJobResponse> {
+        self.client.execute(action: "StartJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建并启动任务
     @inlinable
-    public func startJob(_ input: StartJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
-        try await self.client.execute(action: "StartJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startJob(_ input: StartJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
+        try await self.client.execute(action: "StartJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建并启动任务
     @inlinable
-    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartJobResponse> {
-        self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), logger: logger, on: eventLoop)
+    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartJobResponse> {
+        self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并启动任务
     @inlinable
-    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
-        try await self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), logger: logger, on: eventLoop)
+    public func startJob(scenarioId: String, jobOwner: String, projectId: String, debug: Bool? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartJobResponse {
+        try await self.startJob(StartJobRequest(scenarioId: scenarioId, jobOwner: jobOwner, projectId: projectId, debug: debug, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Gme {
     ///
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
-    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppStatusResponse> {
-        self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAppStatus(_ input: ModifyAppStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppStatusResponse> {
+        self.client.execute(action: "ModifyAppStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用开关状态
     ///
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
-    public func modifyAppStatus(_ input: ModifyAppStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
-        try await self.client.execute(action: "ModifyAppStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAppStatus(_ input: ModifyAppStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
+        try await self.client.execute(action: "ModifyAppStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用开关状态
     ///
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
-    public func modifyAppStatus(bizId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppStatusResponse> {
-        self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), logger: logger, on: eventLoop)
+    public func modifyAppStatus(bizId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppStatusResponse> {
+        self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用开关状态
     ///
     /// 本接口(ModifyAppStatus)用于修改应用总开关状态。
     @inlinable
-    public func modifyAppStatus(bizId: UInt64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
-        try await self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), logger: logger, on: eventLoop)
+    public func modifyAppStatus(bizId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppStatusResponse {
+        try await self.modifyAppStatus(ModifyAppStatusRequest(bizId: bizId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

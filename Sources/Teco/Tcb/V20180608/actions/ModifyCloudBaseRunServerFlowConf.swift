@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tcb {
 
     /// 修改容器内的版本流量配置
     @inlinable
-    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerFlowConfResponse> {
-        self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerFlowConfResponse> {
+        self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改容器内的版本流量配置
     @inlinable
-    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
-        try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCloudBaseRunServerFlowConf(_ input: ModifyCloudBaseRunServerFlowConfRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
+        try await self.client.execute(action: "ModifyCloudBaseRunServerFlowConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改容器内的版本流量配置
     @inlinable
-    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerFlowConfResponse> {
-        self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerFlowConfResponse> {
+        self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改容器内的版本流量配置
     @inlinable
-    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
-        try await self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    public func modifyCloudBaseRunServerFlowConf(envId: String, serverName: String, versionFlowItems: [CloudBaseRunVersionFlowItem]? = nil, trafficType: String? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerFlowConfResponse {
+        try await self.modifyCloudBaseRunServerFlowConf(ModifyCloudBaseRunServerFlowConfRequest(envId: envId, serverName: serverName, versionFlowItems: versionFlowItems, trafficType: trafficType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 }

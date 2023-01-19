@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Cdn {
     ///
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
+        self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
     ///
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
-    public func searchClsLog(_ input: SearchClsLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.client.execute(action: "SearchClsLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchClsLog(_ input: SearchClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索CLS日志
     ///
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
-    public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        self.searchClsLog(SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), logger: logger, on: eventLoop)
+    public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
+        self.searchClsLog(SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
     ///
     /// SearchClsLog 用于 CLS 日志检索。支持检索今天，24小时（可选近7中的某一天），近7天的日志数据。
     @inlinable
-    public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.searchClsLog(SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), logger: logger, on: eventLoop)
+    public func searchClsLog(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
+        try await self.searchClsLog(SearchClsLogRequest(logsetId: logsetId, topicIds: topicIds, startTime: startTime, endTime: endTime, limit: limit, channel: channel, query: query, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

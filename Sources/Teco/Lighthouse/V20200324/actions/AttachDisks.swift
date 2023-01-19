@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Lighthouse {
     ///
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable
-    public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
-        self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachDisks(_ input: AttachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
+        self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable
-    public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
-        try await self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachDisks(_ input: AttachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable
-    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
-        self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
+        self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable
-    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
-        try await self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
+        try await self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Eiam {
 
     /// 删除账号组
     @inlinable
-    public func deleteAccountGroup(_ input: DeleteAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountGroupResponse> {
-        self.client.execute(action: "DeleteAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAccountGroup(_ input: DeleteAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountGroupResponse> {
+        self.client.execute(action: "DeleteAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除账号组
     @inlinable
-    public func deleteAccountGroup(_ input: DeleteAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountGroupResponse {
-        try await self.client.execute(action: "DeleteAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAccountGroup(_ input: DeleteAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountGroupResponse {
+        try await self.client.execute(action: "DeleteAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除账号组
     @inlinable
-    public func deleteAccountGroup(accountGroupIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountGroupResponse> {
-        self.deleteAccountGroup(DeleteAccountGroupRequest(accountGroupIdList: accountGroupIdList), logger: logger, on: eventLoop)
+    public func deleteAccountGroup(accountGroupIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountGroupResponse> {
+        self.deleteAccountGroup(DeleteAccountGroupRequest(accountGroupIdList: accountGroupIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除账号组
     @inlinable
-    public func deleteAccountGroup(accountGroupIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountGroupResponse {
-        try await self.deleteAccountGroup(DeleteAccountGroupRequest(accountGroupIdList: accountGroupIdList), logger: logger, on: eventLoop)
+    public func deleteAccountGroup(accountGroupIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountGroupResponse {
+        try await self.deleteAccountGroup(DeleteAccountGroupRequest(accountGroupIdList: accountGroupIdList), region: region, logger: logger, on: eventLoop)
     }
 }

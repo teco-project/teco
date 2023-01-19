@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdb {
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
+        self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(_ input: DeleteBackupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.client.execute(action: "DeleteBackup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(instanceId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        self.deleteBackup(DeleteBackupRequest(instanceId: instanceId, backupId: backupId), logger: logger, on: eventLoop)
+    public func deleteBackup(instanceId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
+        self.deleteBackup(DeleteBackupRequest(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除云数据库备份
     ///
     /// 本接口(DeleteBackup)用于删除数据库备份。本接口只支持删除手动发起的备份。
     @inlinable
-    public func deleteBackup(instanceId: String, backupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.deleteBackup(DeleteBackupRequest(instanceId: instanceId, backupId: backupId), logger: logger, on: eventLoop)
+    public func deleteBackup(instanceId: String, backupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.deleteBackup(DeleteBackupRequest(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
     }
 }

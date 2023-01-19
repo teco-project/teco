@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Antiddos {
 
     /// 设置单IP告警阈值配置
     @inlinable
-    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
-        self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
+        self.client.execute(action: "CreateIPAlarmThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP告警阈值配置
     @inlinable
-    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
-        try await self.client.execute(action: "CreateIPAlarmThresholdConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
+        try await self.client.execute(action: "CreateIPAlarmThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置单IP告警阈值配置
     @inlinable
-    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
-        self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), logger: logger, on: eventLoop)
+    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
+        self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP告警阈值配置
     @inlinable
-    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
-        try await self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), logger: logger, on: eventLoop)
+    public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
+        try await self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), region: region, logger: logger, on: eventLoop)
     }
 }

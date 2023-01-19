@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Teo {
     ///
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
-    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSetsResponse> {
-        self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogSets(_ input: DescribeLogSetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSetsResponse> {
+        self.client.execute(action: "DescribeLogSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志集列表
     ///
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
-    public func describeLogSets(_ input: DescribeLogSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
-        try await self.client.execute(action: "DescribeLogSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogSets(_ input: DescribeLogSetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
+        try await self.client.execute(action: "DescribeLogSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志集列表
     ///
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
-    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSetsResponse> {
-        self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), logger: logger, on: eventLoop)
+    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSetsResponse> {
+        self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志集列表
     ///
     /// 本接口（DescribeLogSets）用于获取日志集列表。
     @inlinable
-    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
-        try await self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), logger: logger, on: eventLoop)
+    public func describeLogSets(logSetRegion: String, logSetId: String? = nil, logSetName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSetsResponse {
+        try await self.describeLogSets(DescribeLogSetsRequest(logSetRegion: logSetRegion, logSetId: logSetId, logSetName: logSetName), region: region, logger: logger, on: eventLoop)
     }
 }

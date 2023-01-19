@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,31 +125,31 @@ extension Cpdp {
     ///
     /// 查询银行时间段内交易明细。查询时间段的会员成功交易。
     @inlinable
-    public func queryBankTransactionDetails(_ input: QueryBankTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankTransactionDetailsResponse> {
-        self.client.execute(action: "QueryBankTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBankTransactionDetails(_ input: QueryBankTransactionDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankTransactionDetailsResponse> {
+        self.client.execute(action: "QueryBankTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行时间段内交易明细
     ///
     /// 查询银行时间段内交易明细。查询时间段的会员成功交易。
     @inlinable
-    public func queryBankTransactionDetails(_ input: QueryBankTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankTransactionDetailsResponse {
-        try await self.client.execute(action: "QueryBankTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBankTransactionDetails(_ input: QueryBankTransactionDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankTransactionDetailsResponse {
+        try await self.client.execute(action: "QueryBankTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-查询银行时间段内交易明细
     ///
     /// 查询银行时间段内交易明细。查询时间段的会员成功交易。
     @inlinable
-    public func queryBankTransactionDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankTransactionDetailsResponse> {
-        self.queryBankTransactionDetails(QueryBankTransactionDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryBankTransactionDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankTransactionDetailsResponse> {
+        self.queryBankTransactionDetails(QueryBankTransactionDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行时间段内交易明细
     ///
     /// 查询银行时间段内交易明细。查询时间段的会员成功交易。
     @inlinable
-    public func queryBankTransactionDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankTransactionDetailsResponse {
-        try await self.queryBankTransactionDetails(QueryBankTransactionDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryBankTransactionDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankTransactionDetailsResponse {
+        try await self.queryBankTransactionDetails(QueryBankTransactionDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

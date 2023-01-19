@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Live {
     ///
     /// 获取截图模板列表。
     @inlinable
-    public func describeLiveSnapshotTemplates(_ input: DescribeLiveSnapshotTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotTemplatesResponse> {
-        self.client.execute(action: "DescribeLiveSnapshotTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveSnapshotTemplates(_ input: DescribeLiveSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotTemplatesResponse> {
+        self.client.execute(action: "DescribeLiveSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取截图模板列表
     ///
     /// 获取截图模板列表。
     @inlinable
-    public func describeLiveSnapshotTemplates(_ input: DescribeLiveSnapshotTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotTemplatesResponse {
-        try await self.client.execute(action: "DescribeLiveSnapshotTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveSnapshotTemplates(_ input: DescribeLiveSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotTemplatesResponse {
+        try await self.client.execute(action: "DescribeLiveSnapshotTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取截图模板列表
     ///
     /// 获取截图模板列表。
     @inlinable
-    public func describeLiveSnapshotTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotTemplatesResponse> {
-        self.describeLiveSnapshotTemplates(DescribeLiveSnapshotTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveSnapshotTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveSnapshotTemplatesResponse> {
+        self.describeLiveSnapshotTemplates(DescribeLiveSnapshotTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取截图模板列表
     ///
     /// 获取截图模板列表。
     @inlinable
-    public func describeLiveSnapshotTemplates(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotTemplatesResponse {
-        try await self.describeLiveSnapshotTemplates(DescribeLiveSnapshotTemplatesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveSnapshotTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveSnapshotTemplatesResponse {
+        try await self.describeLiveSnapshotTemplates(DescribeLiveSnapshotTemplatesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

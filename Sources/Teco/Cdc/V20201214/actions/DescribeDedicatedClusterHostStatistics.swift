@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cdc {
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
-        self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
+        self.client.execute(action: "DescribeDedicatedClusterHostStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDedicatedClusterHostStatistics(_ input: DescribeDedicatedClusterHostStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
-        self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
+        self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
-    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
-        try await self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
+        try await self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

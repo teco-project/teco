@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tione {
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
-        self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModelService(_ input: DescribeModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
+        self.client.execute(action: "DescribeModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(_ input: DescribeModelServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
-        try await self.client.execute(action: "DescribeModelService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModelService(_ input: DescribeModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
+        try await self.client.execute(action: "DescribeModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
-        self.describeModelService(DescribeModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelServiceResponse> {
+        self.describeModelService(DescribeModelServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务
     @inlinable
-    public func describeModelService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
-        try await self.describeModelService(DescribeModelServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelServiceResponse {
+        try await self.describeModelService(DescribeModelServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 }

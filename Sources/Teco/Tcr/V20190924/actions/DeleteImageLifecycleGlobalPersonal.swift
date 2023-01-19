@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -35,31 +35,31 @@ extension Tcr {
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
-        self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
+        self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
-        try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
+        try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
-        self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), logger: logger, on: eventLoop)
+    public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
+        self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable
-    public func deleteImageLifecycleGlobalPersonal(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
-        try await self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), logger: logger, on: eventLoop)
+    public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
+        try await self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

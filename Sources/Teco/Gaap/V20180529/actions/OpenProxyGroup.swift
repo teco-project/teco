@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
-    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxyGroupResponse> {
-        self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openProxyGroup(_ input: OpenProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxyGroupResponse> {
+        self.client.execute(action: "OpenProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启通道组
     ///
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
-    public func openProxyGroup(_ input: OpenProxyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
-        try await self.client.execute(action: "OpenProxyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openProxyGroup(_ input: OpenProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
+        try await self.client.execute(action: "OpenProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启通道组
     ///
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
-    public func openProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxyGroupResponse> {
-        self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func openProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProxyGroupResponse> {
+        self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启通道组
     ///
     /// 该接口（OpenProxyGroup）用于开启一条通道组中的所有通道
     @inlinable
-    public func openProxyGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
-        try await self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func openProxyGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProxyGroupResponse {
+        try await self.openProxyGroup(OpenProxyGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

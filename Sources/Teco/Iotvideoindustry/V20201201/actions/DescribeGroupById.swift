@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
-    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByIdResponse> {
-        self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupById(_ input: DescribeGroupByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByIdResponse> {
+        self.client.execute(action: "DescribeGroupById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据分组ID查询分组
     ///
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
-    public func describeGroupById(_ input: DescribeGroupByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
-        try await self.client.execute(action: "DescribeGroupById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupById(_ input: DescribeGroupByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
+        try await self.client.execute(action: "DescribeGroupById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据分组ID查询分组
     ///
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
-    public func describeGroupById(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByIdResponse> {
-        self.describeGroupById(DescribeGroupByIdRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupById(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupByIdResponse> {
+        self.describeGroupById(DescribeGroupByIdRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据分组ID查询分组
     ///
     /// 本接口(DescribeGroupById)用于根据分组ID查询分组。
     @inlinable
-    public func describeGroupById(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
-        try await self.describeGroupById(DescribeGroupByIdRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupById(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupByIdResponse {
+        try await self.describeGroupById(DescribeGroupByIdRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

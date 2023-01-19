@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Cwp {
 
     /// 查询资产管理数据库列表
     @inlinable
-    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDatabaseListResponse> {
-        self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDatabaseListResponse> {
+        self.client.execute(action: "DescribeAssetDatabaseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产管理数据库列表
     @inlinable
-    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
-        try await self.client.execute(action: "DescribeAssetDatabaseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetDatabaseList(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
+        try await self.client.execute(action: "DescribeAssetDatabaseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询资产管理数据库列表
     @inlinable
-    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDatabaseListResponse> {
-        self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDatabaseListResponse> {
+        self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产管理数据库列表
     @inlinable
-    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
-        try await self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeAssetDatabaseList(quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDatabaseListResponse {
+        try await self.describeAssetDatabaseList(DescribeAssetDatabaseListRequest(quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

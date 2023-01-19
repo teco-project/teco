@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -114,25 +114,25 @@ extension Dayu {
 
     /// 获取DDoS攻击事件列表
     @inlinable
-    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvListResponse> {
-        self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvListResponse> {
+        self.client.execute(action: "DescribeDDoSEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击事件列表
     @inlinable
-    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
-        try await self.client.execute(action: "DescribeDDoSEvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSEvList(_ input: DescribeDDoSEvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
+        try await self.client.execute(action: "DescribeDDoSEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS攻击事件列表
     @inlinable
-    public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvListResponse> {
-        self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvListResponse> {
+        self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击事件列表
     @inlinable
-    public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
-        try await self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
+        try await self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

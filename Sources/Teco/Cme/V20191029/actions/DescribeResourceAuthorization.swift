@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cme {
     ///
     /// 查询资源被授权的情况。
     @inlinable
-    public func describeResourceAuthorization(_ input: DescribeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceAuthorizationResponse> {
-        self.client.execute(action: "DescribeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceAuthorization(_ input: DescribeResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceAuthorizationResponse> {
+        self.client.execute(action: "DescribeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源授权列表
     ///
     /// 查询资源被授权的情况。
     @inlinable
-    public func describeResourceAuthorization(_ input: DescribeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
-        try await self.client.execute(action: "DescribeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceAuthorization(_ input: DescribeResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
+        try await self.client.execute(action: "DescribeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资源授权列表
     ///
     /// 查询资源被授权的情况。
     @inlinable
-    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceAuthorizationResponse> {
-        self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceAuthorizationResponse> {
+        self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源授权列表
     ///
     /// 查询资源被授权的情况。
     @inlinable
-    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
-        try await self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeResourceAuthorization(platform: String, owner: Entity? = nil, resource: Resource? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceAuthorizationResponse {
+        try await self.describeResourceAuthorization(DescribeResourceAuthorizationRequest(platform: platform, owner: owner, resource: resource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

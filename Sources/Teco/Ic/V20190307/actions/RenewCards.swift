@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Ic {
     /// 3、销户和未激活的卡片不支持续费。
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
-    public func renewCards(_ input: RenewCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewCardsResponse> {
-        self.client.execute(action: "RenewCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewCards(_ input: RenewCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewCardsResponse> {
+        self.client.execute(action: "RenewCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卡片续费
@@ -76,8 +76,8 @@ extension Ic {
     /// 3、销户和未激活的卡片不支持续费。
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
-    public func renewCards(_ input: RenewCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
-        try await self.client.execute(action: "RenewCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewCards(_ input: RenewCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
+        try await self.client.execute(action: "RenewCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 卡片续费
@@ -89,8 +89,8 @@ extension Ic {
     /// 3、销户和未激活的卡片不支持续费。
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
-    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewCardsResponse> {
-        self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), logger: logger, on: eventLoop)
+    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewCardsResponse> {
+        self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卡片续费
@@ -102,7 +102,7 @@ extension Ic {
     /// 3、销户和未激活的卡片不支持续费。
     /// 4、每张物联网卡，续费总周期不能超过24个月
     @inlinable
-    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
-        try await self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), logger: logger, on: eventLoop)
+    public func renewCards(sdkappid: UInt64, iccids: [String], renewNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewCardsResponse {
+        try await self.renewCards(RenewCardsRequest(sdkappid: sdkappid, iccids: iccids, renewNum: renewNum), region: region, logger: logger, on: eventLoop)
     }
 }

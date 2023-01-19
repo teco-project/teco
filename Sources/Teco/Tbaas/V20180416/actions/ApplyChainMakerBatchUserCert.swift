@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tbaas {
 
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
-        self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
+        self.client.execute(action: "ApplyChainMakerBatchUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
-        try await self.client.execute(action: "ApplyChainMakerBatchUserCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyChainMakerBatchUserCert(_ input: ApplyChainMakerBatchUserCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
+        try await self.client.execute(action: "ApplyChainMakerBatchUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
-        self.applyChainMakerBatchUserCert(ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList), logger: logger, on: eventLoop)
+    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyChainMakerBatchUserCertResponse> {
+        self.applyChainMakerBatchUserCert(ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量申请长安链用户签名证书
     @inlinable
-    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
-        try await self.applyChainMakerBatchUserCert(ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList), logger: logger, on: eventLoop)
+    public func applyChainMakerBatchUserCert(clusterId: String, signUserCsrList: [SignCertCsr], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyChainMakerBatchUserCertResponse {
+        try await self.applyChainMakerBatchUserCert(ApplyChainMakerBatchUserCertRequest(clusterId: clusterId, signUserCsrList: signUserCsrList), region: region, logger: logger, on: eventLoop)
     }
 }

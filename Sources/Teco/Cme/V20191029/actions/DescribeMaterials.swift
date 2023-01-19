@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Cme {
     ///
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
-    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialsResponse> {
-        self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMaterials(_ input: DescribeMaterialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialsResponse> {
+        self.client.execute(action: "DescribeMaterials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详情
     ///
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
-    public func describeMaterials(_ input: DescribeMaterialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
-        try await self.client.execute(action: "DescribeMaterials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMaterials(_ input: DescribeMaterialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
+        try await self.client.execute(action: "DescribeMaterials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取媒体详情
     ///
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
-    public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialsResponse> {
-        self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialsResponse> {
+        self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详情
     ///
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
-    public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
-        try await self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
+        try await self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tsf {
 
     /// 创建公共配置项
     @inlinable
-    public func createPublicConfig(_ input: CreatePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePublicConfigResponse> {
-        self.client.execute(action: "CreatePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPublicConfig(_ input: CreatePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePublicConfigResponse> {
+        self.client.execute(action: "CreatePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建公共配置项
     @inlinable
-    public func createPublicConfig(_ input: CreatePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
-        try await self.client.execute(action: "CreatePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPublicConfig(_ input: CreatePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
+        try await self.client.execute(action: "CreatePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建公共配置项
     @inlinable
-    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePublicConfigResponse> {
-        self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePublicConfigResponse> {
+        self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建公共配置项
     @inlinable
-    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
-        try await self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
+        try await self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Mps {
     ///
     /// 修改用户自定义水印模板，水印类型不允许修改。
     @inlinable
-    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWatermarkTemplateResponse> {
-        self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWatermarkTemplateResponse> {
+        self.client.execute(action: "ModifyWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改水印模板
     ///
     /// 修改用户自定义水印模板，水印类型不允许修改。
     @inlinable
-    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
-        try await self.client.execute(action: "ModifyWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWatermarkTemplate(_ input: ModifyWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
+        try await self.client.execute(action: "ModifyWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改水印模板
     ///
     /// 修改用户自定义水印模板，水印类型不允许修改。
     @inlinable
-    public func modifyWatermarkTemplate(definition: Int64, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWatermarkTemplateResponse> {
-        self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    public func modifyWatermarkTemplate(definition: Int64, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWatermarkTemplateResponse> {
+        self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改水印模板
     ///
     /// 修改用户自定义水印模板，水印类型不允许修改。
     @inlinable
-    public func modifyWatermarkTemplate(definition: Int64, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
-        try await self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    public func modifyWatermarkTemplate(definition: Int64, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInputForUpdate? = nil, textTemplate: TextWatermarkTemplateInputForUpdate? = nil, svgTemplate: SvgWatermarkInputForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWatermarkTemplateResponse {
+        try await self.modifyWatermarkTemplate(ModifyWatermarkTemplateRequest(definition: definition, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
     }
 }

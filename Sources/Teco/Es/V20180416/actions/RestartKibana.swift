@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Es {
     ///
     /// 重启Kibana
     @inlinable
-    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
-        self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartKibana(_ input: RestartKibanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
+        self.client.execute(action: "RestartKibana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启Kibana
     ///
     /// 重启Kibana
     @inlinable
-    public func restartKibana(_ input: RestartKibanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
-        try await self.client.execute(action: "RestartKibana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartKibana(_ input: RestartKibanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
+        try await self.client.execute(action: "RestartKibana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启Kibana
     ///
     /// 重启Kibana
     @inlinable
-    public func restartKibana(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
-        self.restartKibana(RestartKibanaRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
+        self.restartKibana(RestartKibanaRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启Kibana
     ///
     /// 重启Kibana
     @inlinable
-    public func restartKibana(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
-        try await self.restartKibana(RestartKibanaRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
+        try await self.restartKibana(RestartKibanaRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

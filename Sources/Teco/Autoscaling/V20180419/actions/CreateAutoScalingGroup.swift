@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -183,31 +183,31 @@ extension As {
     ///
     /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
     @inlinable
-    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupResponse> {
-        self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupResponse> {
+        self.client.execute(action: "CreateAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建伸缩组
     ///
     /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
     @inlinable
-    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
-        try await self.client.execute(action: "CreateAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAutoScalingGroup(_ input: CreateAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
+        try await self.client.execute(action: "CreateAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建伸缩组
     ///
     /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
     @inlinable
-    public func createAutoScalingGroup(autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, loadBalancerIds: [String]? = nil, projectId: UInt64? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, tags: [Tag]? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupResponse> {
-        self.createAutoScalingGroup(CreateAutoScalingGroupRequest(autoScalingGroupName: autoScalingGroupName, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, vpcId: vpcId, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, loadBalancerIds: loadBalancerIds, projectId: projectId, forwardLoadBalancers: forwardLoadBalancers, subnetIds: subnetIds, terminationPolicies: terminationPolicies, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, tags: tags, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), logger: logger, on: eventLoop)
+    public func createAutoScalingGroup(autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, loadBalancerIds: [String]? = nil, projectId: UInt64? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, tags: [Tag]? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupResponse> {
+        self.createAutoScalingGroup(CreateAutoScalingGroupRequest(autoScalingGroupName: autoScalingGroupName, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, vpcId: vpcId, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, loadBalancerIds: loadBalancerIds, projectId: projectId, forwardLoadBalancers: forwardLoadBalancers, subnetIds: subnetIds, terminationPolicies: terminationPolicies, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, tags: tags, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建伸缩组
     ///
     /// 本接口（CreateAutoScalingGroup）用于创建伸缩组
     @inlinable
-    public func createAutoScalingGroup(autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, loadBalancerIds: [String]? = nil, projectId: UInt64? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, tags: [Tag]? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
-        try await self.createAutoScalingGroup(CreateAutoScalingGroupRequest(autoScalingGroupName: autoScalingGroupName, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, vpcId: vpcId, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, loadBalancerIds: loadBalancerIds, projectId: projectId, forwardLoadBalancers: forwardLoadBalancers, subnetIds: subnetIds, terminationPolicies: terminationPolicies, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, tags: tags, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), logger: logger, on: eventLoop)
+    public func createAutoScalingGroup(autoScalingGroupName: String, launchConfigurationId: String, maxSize: UInt64, minSize: UInt64, vpcId: String, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, loadBalancerIds: [String]? = nil, projectId: UInt64? = nil, forwardLoadBalancers: [ForwardLoadBalancer]? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, tags: [Tag]? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupResponse {
+        try await self.createAutoScalingGroup(CreateAutoScalingGroupRequest(autoScalingGroupName: autoScalingGroupName, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, vpcId: vpcId, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, loadBalancerIds: loadBalancerIds, projectId: projectId, forwardLoadBalancers: forwardLoadBalancers, subnetIds: subnetIds, terminationPolicies: terminationPolicies, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, tags: tags, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), region: region, logger: logger, on: eventLoop)
     }
 }

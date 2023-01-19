@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
     @inlinable
-    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
-        self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
+        self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网路由策略
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
     @inlinable
-    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
-        try await self.client.execute(action: "DescribeCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCcnRoutes(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
+        try await self.client.execute(action: "DescribeCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云联网路由策略
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
     @inlinable
-    public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
-        self.describeCcnRoutes(DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRoutesResponse> {
+        self.describeCcnRoutes(DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网路由策略
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
     @inlinable
-    public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
-        try await self.describeCcnRoutes(DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCcnRoutes(ccnId: String, routeIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRoutesResponse {
+        try await self.describeCcnRoutes(DescribeCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

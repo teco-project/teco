@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Nlp {
     ///
     /// 相似词接口能够基于同义词库及词向量技术，检索出与输入词语在语义上最相似的若干个词语，可广泛用于检索系统、问答系统、文档归档等场景。
     @inlinable
-    public func similarWords(_ input: SimilarWordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimilarWordsResponse> {
-        self.client.execute(action: "SimilarWords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func similarWords(_ input: SimilarWordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimilarWordsResponse> {
+        self.client.execute(action: "SimilarWords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 相似词
     ///
     /// 相似词接口能够基于同义词库及词向量技术，检索出与输入词语在语义上最相似的若干个词语，可广泛用于检索系统、问答系统、文档归档等场景。
     @inlinable
-    public func similarWords(_ input: SimilarWordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimilarWordsResponse {
-        try await self.client.execute(action: "SimilarWords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func similarWords(_ input: SimilarWordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimilarWordsResponse {
+        try await self.client.execute(action: "SimilarWords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 相似词
     ///
     /// 相似词接口能够基于同义词库及词向量技术，检索出与输入词语在语义上最相似的若干个词语，可广泛用于检索系统、问答系统、文档归档等场景。
     @inlinable
-    public func similarWords(text: String, wordNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimilarWordsResponse> {
-        self.similarWords(SimilarWordsRequest(text: text, wordNumber: wordNumber), logger: logger, on: eventLoop)
+    public func similarWords(text: String, wordNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimilarWordsResponse> {
+        self.similarWords(SimilarWordsRequest(text: text, wordNumber: wordNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 相似词
     ///
     /// 相似词接口能够基于同义词库及词向量技术，检索出与输入词语在语义上最相似的若干个词语，可广泛用于检索系统、问答系统、文档归档等场景。
     @inlinable
-    public func similarWords(text: String, wordNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimilarWordsResponse {
-        try await self.similarWords(SimilarWordsRequest(text: text, wordNumber: wordNumber), logger: logger, on: eventLoop)
+    public func similarWords(text: String, wordNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimilarWordsResponse {
+        try await self.similarWords(SimilarWordsRequest(text: text, wordNumber: wordNumber), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Gme {
 
     /// 获取房间内用户信息
     @inlinable
-    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
-        self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
+        self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取房间内用户信息
     @inlinable
-    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
-        try await self.client.execute(action: "DescribeRoomInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoomInfo(_ input: DescribeRoomInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
+        try await self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取房间内用户信息
     @inlinable
-    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
-        self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), logger: logger, on: eventLoop)
+    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
+        self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取房间内用户信息
     @inlinable
-    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
-        try await self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), logger: logger, on: eventLoop)
+    public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
+        try await self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), region: region, logger: logger, on: eventLoop)
     }
 }

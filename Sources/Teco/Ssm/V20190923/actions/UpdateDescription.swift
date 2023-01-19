@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ssm {
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
-        self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDescription(_ input: UpdateDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
+        self.client.execute(action: "UpdateDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(_ input: UpdateDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
-        try await self.client.execute(action: "UpdateDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDescription(_ input: UpdateDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
+        try await self.client.execute(action: "UpdateDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(secretName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
-        self.updateDescription(UpdateDescriptionRequest(secretName: secretName, description: description), logger: logger, on: eventLoop)
+    public func updateDescription(secretName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDescriptionResponse> {
+        self.updateDescription(UpdateDescriptionRequest(secretName: secretName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新凭据描述信息
     ///
     /// 该接口用于修改指定凭据的描述信息，仅能修改Enabled 和 Disabled 状态的凭据。
     @inlinable
-    public func updateDescription(secretName: String, description: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
-        try await self.updateDescription(UpdateDescriptionRequest(secretName: secretName, description: description), logger: logger, on: eventLoop)
+    public func updateDescription(secretName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDescriptionResponse {
+        try await self.updateDescription(UpdateDescriptionRequest(secretName: secretName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

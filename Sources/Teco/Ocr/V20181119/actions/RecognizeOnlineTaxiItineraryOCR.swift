@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Ocr {
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
-    public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
-        self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
+        self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
-    public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
-        try await self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeOnlineTaxiItineraryOCR(_ input: RecognizeOnlineTaxiItineraryOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
+        try await self.client.execute(action: "RecognizeOnlineTaxiItineraryOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
-    public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
-        self.recognizeOnlineTaxiItineraryOCR(RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeOnlineTaxiItineraryOCRResponse> {
+        self.recognizeOnlineTaxiItineraryOCR(RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网约车行程单识别
     ///
     /// 本接口支持网约车行程单关键字段的识别，包括行程起止日期、上车时间、起点、终点、里程、金额等字段。
     @inlinable
-    public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
-        try await self.recognizeOnlineTaxiItineraryOCR(RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func recognizeOnlineTaxiItineraryOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeOnlineTaxiItineraryOCRResponse {
+        try await self.recognizeOnlineTaxiItineraryOCR(RecognizeOnlineTaxiItineraryOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Tcss {
 
     /// 新增逃逸白名单
     @inlinable
-    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
-        self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
+        self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增逃逸白名单
     @inlinable
-    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
-        try await self.client.execute(action: "AddEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
+        try await self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增逃逸白名单
     @inlinable
-    public func addEscapeWhiteList(eventType: [String], imageIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
-        self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), logger: logger, on: eventLoop)
+    public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
+        self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增逃逸白名单
     @inlinable
-    public func addEscapeWhiteList(eventType: [String], imageIDs: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
-        try await self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), logger: logger, on: eventLoop)
+    public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
+        try await self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }
 }

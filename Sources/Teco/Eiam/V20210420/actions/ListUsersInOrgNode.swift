@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Eiam {
     ///
     /// 根据机构节点ID读取节点下用户
     @inlinable
-    public func listUsersInOrgNode(_ input: ListUsersInOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInOrgNodeResponse> {
-        self.client.execute(action: "ListUsersInOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listUsersInOrgNode(_ input: ListUsersInOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInOrgNodeResponse> {
+        self.client.execute(action: "ListUsersInOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 读取节点下用户
     ///
     /// 根据机构节点ID读取节点下用户
     @inlinable
-    public func listUsersInOrgNode(_ input: ListUsersInOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
-        try await self.client.execute(action: "ListUsersInOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listUsersInOrgNode(_ input: ListUsersInOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
+        try await self.client.execute(action: "ListUsersInOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 读取节点下用户
     ///
     /// 根据机构节点ID读取节点下用户
     @inlinable
-    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInOrgNodeResponse> {
-        self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersInOrgNodeResponse> {
+        self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 读取节点下用户
     ///
     /// 根据机构节点ID读取节点下用户
     @inlinable
-    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
-        try await self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listUsersInOrgNode(orgNodeId: String? = nil, includeOrgNodeChildInfo: Bool? = nil, searchCondition: ListUsersInOrgNodeSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersInOrgNodeResponse {
+        try await self.listUsersInOrgNode(ListUsersInOrgNodeRequest(orgNodeId: orgNodeId, includeOrgNodeChildInfo: includeOrgNodeChildInfo, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

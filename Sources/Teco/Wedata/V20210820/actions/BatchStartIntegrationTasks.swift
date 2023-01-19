@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Wedata {
 
     /// 批量运行集成任务
     @inlinable
-    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStartIntegrationTasksResponse> {
-        self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStartIntegrationTasksResponse> {
+        self.client.execute(action: "BatchStartIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量运行集成任务
     @inlinable
-    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
-        try await self.client.execute(action: "BatchStartIntegrationTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchStartIntegrationTasks(_ input: BatchStartIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
+        try await self.client.execute(action: "BatchStartIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量运行集成任务
     @inlinable
-    public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStartIntegrationTasksResponse> {
-        self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStartIntegrationTasksResponse> {
+        self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量运行集成任务
     @inlinable
-    public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
-        try await self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
+        try await self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

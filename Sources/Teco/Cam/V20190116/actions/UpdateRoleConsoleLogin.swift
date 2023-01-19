@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cam {
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable
-    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
-        self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
+        self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable
-    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
-        try await self.client.execute(action: "UpdateRoleConsoleLogin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
+        try await self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable
-    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
-        self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
+        self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
     @inlinable
-    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
-        try await self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
+        try await self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

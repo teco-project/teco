@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
-        self.client.execute(action: "DeleteEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
+        self.client.execute(action: "DeleteEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
-        try await self.client.execute(action: "DeleteEscapeWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEscapeWhiteList(_ input: DeleteEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
+        try await self.client.execute(action: "DeleteEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
-        self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), logger: logger, on: eventLoop)
+    public func deleteEscapeWhiteList(idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEscapeWhiteListResponse> {
+        self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除逃逸白名单
     @inlinable
-    public func deleteEscapeWhiteList(idSet: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
-        try await self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), logger: logger, on: eventLoop)
+    public func deleteEscapeWhiteList(idSet: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEscapeWhiteListResponse {
+        try await self.deleteEscapeWhiteList(DeleteEscapeWhiteListRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Billing {
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
-        self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
+        self.client.execute(action: "DescribeVoucherUsageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
-        try await self.client.execute(action: "DescribeVoucherUsageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVoucherUsageDetails(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
+        try await self.client.execute(action: "DescribeVoucherUsageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
-        self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
+        self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
-        try await self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
+        try await self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

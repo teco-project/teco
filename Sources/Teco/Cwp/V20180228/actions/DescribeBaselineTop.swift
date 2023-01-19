@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cwp {
     ///
     /// 根据策略id查询基线检测项TOP
     @inlinable
-    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineTopResponse> {
-        self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineTopResponse> {
+        self.client.execute(action: "DescribeBaselineTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基线检测项TOP
     ///
     /// 根据策略id查询基线检测项TOP
     @inlinable
-    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
-        try await self.client.execute(action: "DescribeBaselineTop", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineTop(_ input: DescribeBaselineTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
+        try await self.client.execute(action: "DescribeBaselineTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 基线检测项TOP
     ///
     /// 根据策略id查询基线检测项TOP
     @inlinable
-    public func describeBaselineTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineTopResponse> {
-        self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineTopResponse> {
+        self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 基线检测项TOP
     ///
     /// 根据策略id查询基线检测项TOP
     @inlinable
-    public func describeBaselineTop(top: UInt64, strategyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
-        try await self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), logger: logger, on: eventLoop)
+    public func describeBaselineTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineTopResponse {
+        try await self.describeBaselineTop(DescribeBaselineTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
     }
 }

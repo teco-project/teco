@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cwp {
     ///
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportNonlocalLoginPlacesResponse> {
-        self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportNonlocalLoginPlacesResponse> {
+        self.client.execute(action: "ExportNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出异地登录记录
     ///
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
-    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
-        try await self.client.execute(action: "ExportNonlocalLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportNonlocalLoginPlaces(_ input: ExportNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
+        try await self.client.execute(action: "ExportNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出异地登录记录
     ///
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
-    public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportNonlocalLoginPlacesResponse> {
-        self.exportNonlocalLoginPlaces(ExportNonlocalLoginPlacesRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportNonlocalLoginPlacesResponse> {
+        self.exportNonlocalLoginPlaces(ExportNonlocalLoginPlacesRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出异地登录记录
     ///
     /// 本接口 (ExportNonlocalLoginPlaces) 用于导出异地登录事件记录CSV文件。
     @inlinable
-    public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
-        try await self.exportNonlocalLoginPlaces(ExportNonlocalLoginPlacesRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportNonlocalLoginPlaces(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportNonlocalLoginPlacesResponse {
+        try await self.exportNonlocalLoginPlaces(ExportNonlocalLoginPlacesRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

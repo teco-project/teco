@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,25 +43,25 @@ extension Live {
 
     /// 删除截图模板
     @inlinable
-    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotTemplateResponse> {
-        self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotTemplateResponse> {
+        self.client.execute(action: "DeleteLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除截图模板
     @inlinable
-    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
-        try await self.client.execute(action: "DeleteLiveSnapshotTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveSnapshotTemplate(_ input: DeleteLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
+        try await self.client.execute(action: "DeleteLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除截图模板
     @inlinable
-    public func deleteLiveSnapshotTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotTemplateResponse> {
-        self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotTemplateResponse> {
+        self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除截图模板
     @inlinable
-    public func deleteLiveSnapshotTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
-        try await self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deleteLiveSnapshotTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
+        try await self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

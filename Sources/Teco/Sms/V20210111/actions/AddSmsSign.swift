@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,8 +109,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSmsSignResponse> {
-        self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addSmsSign(_ input: AddSmsSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSmsSignResponse> {
+        self.client.execute(action: "AddSmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加短信签名
@@ -120,8 +120,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func addSmsSign(_ input: AddSmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
-        try await self.client.execute(action: "AddSmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addSmsSign(_ input: AddSmsSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
+        try await self.client.execute(action: "AddSmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加短信签名
@@ -131,8 +131,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func addSmsSign(signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSmsSignResponse> {
-        self.addSmsSign(AddSmsSignRequest(signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), logger: logger, on: eventLoop)
+    public func addSmsSign(signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddSmsSignResponse> {
+        self.addSmsSign(AddSmsSignRequest(signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加短信签名
@@ -142,7 +142,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 SDK 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func addSmsSign(signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
-        try await self.addSmsSign(AddSmsSignRequest(signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), logger: logger, on: eventLoop)
+    public func addSmsSign(signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddSmsSignResponse {
+        try await self.addSmsSign(AddSmsSignRequest(signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

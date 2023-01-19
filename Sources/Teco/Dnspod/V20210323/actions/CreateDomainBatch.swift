@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Dnspod {
 
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
-        self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
+        self.client.execute(action: "CreateDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(_ input: CreateDomainBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        try await self.client.execute(action: "CreateDomainBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDomainBatch(_ input: CreateDomainBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.client.execute(action: "CreateDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(domainList: [String], recordValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
-        self.createDomainBatch(CreateDomainBatchRequest(domainList: domainList, recordValue: recordValue), logger: logger, on: eventLoop)
+    public func createDomainBatch(domainList: [String], recordValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainBatchResponse> {
+        self.createDomainBatch(CreateDomainBatchRequest(domainList: domainList, recordValue: recordValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量添加域名
     @inlinable
-    public func createDomainBatch(domainList: [String], recordValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
-        try await self.createDomainBatch(CreateDomainBatchRequest(domainList: domainList, recordValue: recordValue), logger: logger, on: eventLoop)
+    public func createDomainBatch(domainList: [String], recordValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainBatchResponse {
+        try await self.createDomainBatch(CreateDomainBatchRequest(domainList: domainList, recordValue: recordValue), region: region, logger: logger, on: eventLoop)
     }
 }

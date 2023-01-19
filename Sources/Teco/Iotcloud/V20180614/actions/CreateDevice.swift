@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -120,31 +120,31 @@ extension Iotcloud {
     ///
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDevice(_ input: CreateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
+        self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
     ///
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
-    public func createDevice(_ input: CreateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.client.execute(action: "CreateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDevice(_ input: CreateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建设备
     ///
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
-    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey), logger: logger, on: eventLoop)
+    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
+        self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
     ///
     /// 本接口（CreateDevice）用于新建一个物联网通信设备。
     @inlinable
-    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey), logger: logger, on: eventLoop)
+    public func createDevice(productId: String, deviceName: String, attribute: Attribute? = nil, definedPsk: String? = nil, isp: UInt64? = nil, imei: String? = nil, loraDevEui: String? = nil, loraMoteType: UInt64? = nil, skey: String? = nil, loraAppKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
+        try await self.createDevice(CreateDeviceRequest(productId: productId, deviceName: deviceName, attribute: attribute, definedPsk: definedPsk, isp: isp, imei: imei, loraDevEui: loraDevEui, loraMoteType: loraMoteType, skey: skey, loraAppKey: loraAppKey), region: region, logger: logger, on: eventLoop)
     }
 }

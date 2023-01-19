@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Faceid {
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
-        self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
+        self.client.execute(action: "GetWeChatBillDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
-        try await self.client.execute(action: "GetWeChatBillDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getWeChatBillDetails(_ input: GetWeChatBillDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
+        try await self.client.execute(action: "GetWeChatBillDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
-        self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetWeChatBillDetailsResponse> {
+        self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
     @inlinable
-    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
-        try await self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func getWeChatBillDetails(date: Date, cursor: UInt64, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetWeChatBillDetailsResponse {
+        try await self.getWeChatBillDetails(GetWeChatBillDetailsRequest(date: date, cursor: cursor, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

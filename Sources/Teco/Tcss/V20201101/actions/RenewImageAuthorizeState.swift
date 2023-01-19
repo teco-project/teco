@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcss {
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable
-    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
-        self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
+        self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable
-    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
-        try await self.client.execute(action: "RenewImageAuthorizeState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
+        try await self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable
-    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
-        self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), logger: logger, on: eventLoop)
+    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
+        self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable
-    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
-        try await self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), logger: logger, on: eventLoop)
+    public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
+        try await self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 }

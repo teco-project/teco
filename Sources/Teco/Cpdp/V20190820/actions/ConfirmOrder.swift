@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cpdp {
 
     /// 云鉴-消费订单确认接口
     @inlinable
-    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmOrderResponse> {
-        self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func confirmOrder(_ input: ConfirmOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmOrderResponse> {
+        self.client.execute(action: "ConfirmOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单确认接口
     @inlinable
-    public func confirmOrder(_ input: ConfirmOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
-        try await self.client.execute(action: "ConfirmOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func confirmOrder(_ input: ConfirmOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
+        try await self.client.execute(action: "ConfirmOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-消费订单确认接口
     @inlinable
-    public func confirmOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmOrderResponse> {
-        self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    public func confirmOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmOrderResponse> {
+        self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单确认接口
     @inlinable
-    public func confirmOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
-        try await self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    public func confirmOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
+        try await self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 }

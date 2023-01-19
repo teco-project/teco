@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ecm {
     ///
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable
-    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
-        self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteHaVip(_ input: DeleteHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
+        self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除HAVIP
     ///
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable
-    public func deleteHaVip(_ input: DeleteHaVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
-        try await self.client.execute(action: "DeleteHaVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteHaVip(_ input: DeleteHaVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
+        try await self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除HAVIP
     ///
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable
-    public func deleteHaVip(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
-        self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
+        self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除HAVIP
     ///
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable
-    public func deleteHaVip(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
-        try await self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), logger: logger, on: eventLoop)
+    public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
+        try await self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
     }
 }

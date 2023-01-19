@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Vpc {
 
     /// 删除SSL-VPN-CLIENT
     @inlinable
-    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
-        self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
+        self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除SSL-VPN-CLIENT
     @inlinable
-    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
-        try await self.client.execute(action: "DeleteVpnGatewaySslClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpnGatewaySslClient(_ input: DeleteVpnGatewaySslClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
+        try await self.client.execute(action: "DeleteVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除SSL-VPN-CLIENT
     @inlinable
-    public func deleteVpnGatewaySslClient(sslVpnClientId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
-        self.deleteVpnGatewaySslClient(DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId), logger: logger, on: eventLoop)
+    public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewaySslClientResponse> {
+        self.deleteVpnGatewaySslClient(DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除SSL-VPN-CLIENT
     @inlinable
-    public func deleteVpnGatewaySslClient(sslVpnClientId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
-        try await self.deleteVpnGatewaySslClient(DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId), logger: logger, on: eventLoop)
+    public func deleteVpnGatewaySslClient(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslClientResponse {
+        try await self.deleteVpnGatewaySslClient(DeleteVpnGatewaySslClientRequest(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
     }
 }

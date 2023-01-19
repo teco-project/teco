@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Trdp {
 
     /// 用户风险质量接口
     @inlinable
-    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluateUserRiskResponse> {
-        self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluateUserRiskResponse> {
+        self.client.execute(action: "EvaluateUserRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户风险质量接口
     @inlinable
-    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
-        try await self.client.execute(action: "EvaluateUserRisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func evaluateUserRisk(_ input: EvaluateUserRiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
+        try await self.client.execute(action: "EvaluateUserRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户风险质量接口
     @inlinable
-    public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluateUserRiskResponse> {
-        self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), logger: logger, on: eventLoop)
+    public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluateUserRiskResponse> {
+        self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户风险质量接口
     @inlinable
-    public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
-        try await self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), logger: logger, on: eventLoop)
+    public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
+        try await self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), region: region, logger: logger, on: eventLoop)
     }
 }

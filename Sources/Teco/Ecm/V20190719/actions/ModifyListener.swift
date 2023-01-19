@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Ecm {
     ///
     /// 修改负载均衡监听器属性。
     @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
-        self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyListener(_ input: ModifyListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
+        self.client.execute(action: "ModifyListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡监听器属性
     ///
     /// 修改负载均衡监听器属性。
     @inlinable
-    public func modifyListener(_ input: ModifyListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.client.execute(action: "ModifyListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyListener(_ input: ModifyListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.client.execute(action: "ModifyListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡监听器属性
     ///
     /// 修改负载均衡监听器属性。
     @inlinable
-    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
-        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), logger: logger, on: eventLoop)
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
+        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡监听器属性
     ///
     /// 修改负载均衡监听器属性。
     @inlinable
-    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), logger: logger, on: eventLoop)
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), region: region, logger: logger, on: eventLoop)
     }
 }

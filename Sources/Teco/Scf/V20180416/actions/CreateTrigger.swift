@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Scf {
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
-        self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTrigger(_ input: CreateTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
+        self.client.execute(action: "CreateTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(_ input: CreateTriggerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
-        try await self.client.execute(action: "CreateTrigger", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTrigger(_ input: CreateTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
+        try await self.client.execute(action: "CreateTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
-        self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), logger: logger, on: eventLoop)
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTriggerResponse> {
+        self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置函数触发方式
     ///
     /// 该接口根据参数输入设置新的触发方式。
     @inlinable
-    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
-        try await self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), logger: logger, on: eventLoop)
+    public func createTrigger(functionName: String, triggerName: String, type: String, triggerDesc: String? = nil, namespace: String? = nil, qualifier: String? = nil, enable: String? = nil, customArgument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTriggerResponse {
+        try await self.createTrigger(CreateTriggerRequest(functionName: functionName, triggerName: triggerName, type: type, triggerDesc: triggerDesc, namespace: namespace, qualifier: qualifier, enable: enable, customArgument: customArgument), region: region, logger: logger, on: eventLoop)
     }
 }

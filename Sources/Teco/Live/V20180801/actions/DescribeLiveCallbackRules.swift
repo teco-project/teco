@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Live {
 
     /// 获取回调规则列表
     @inlinable
-    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackRulesResponse> {
-        self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackRulesResponse> {
+        self.client.execute(action: "DescribeLiveCallbackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取回调规则列表
     @inlinable
-    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
-        try await self.client.execute(action: "DescribeLiveCallbackRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveCallbackRules(_ input: DescribeLiveCallbackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
+        try await self.client.execute(action: "DescribeLiveCallbackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取回调规则列表
     @inlinable
-    public func describeLiveCallbackRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackRulesResponse> {
-        self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveCallbackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackRulesResponse> {
+        self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取回调规则列表
     @inlinable
-    public func describeLiveCallbackRules(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
-        try await self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), logger: logger, on: eventLoop)
+    public func describeLiveCallbackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
+        try await self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

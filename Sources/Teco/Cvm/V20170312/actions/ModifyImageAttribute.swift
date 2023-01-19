@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Cvm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     /// * 已分享的镜像无法修改属性。
     @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
-        self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
+        self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
@@ -63,8 +63,8 @@ extension Cvm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     /// * 已分享的镜像无法修改属性。
     @inlinable
-    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        try await self.client.execute(action: "ModifyImageAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
+        try await self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改镜像属性
@@ -72,8 +72,8 @@ extension Cvm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     /// * 已分享的镜像无法修改属性。
     @inlinable
-    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
-        self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
+        self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
@@ -81,7 +81,7 @@ extension Cvm {
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
     /// * 已分享的镜像无法修改属性。
     @inlinable
-    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        try await self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), logger: logger, on: eventLoop)
+    public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
+        try await self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
 }

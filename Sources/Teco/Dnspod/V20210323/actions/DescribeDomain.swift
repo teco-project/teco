@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dnspod {
 
     /// 获取域名信息
     @inlinable
-    public func describeDomain(_ input: DescribeDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainResponse> {
-        self.client.execute(action: "DescribeDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomain(_ input: DescribeDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainResponse> {
+        self.client.execute(action: "DescribeDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名信息
     @inlinable
-    public func describeDomain(_ input: DescribeDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainResponse {
-        try await self.client.execute(action: "DescribeDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomain(_ input: DescribeDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainResponse {
+        try await self.client.execute(action: "DescribeDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名信息
     @inlinable
-    public func describeDomain(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainResponse> {
-        self.describeDomain(DescribeDomainRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomain(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainResponse> {
+        self.describeDomain(DescribeDomainRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名信息
     @inlinable
-    public func describeDomain(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainResponse {
-        try await self.describeDomain(DescribeDomainRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeDomain(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainResponse {
+        try await self.describeDomain(DescribeDomainRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,25 +52,25 @@ extension Tcss {
 
     /// 运行时查询文件查杀实时监控设置
     @inlinable
-    public func describeVirusMonitorSetting(_ input: DescribeVirusMonitorSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusMonitorSettingResponse> {
-        self.client.execute(action: "DescribeVirusMonitorSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVirusMonitorSetting(_ input: DescribeVirusMonitorSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusMonitorSettingResponse> {
+        self.client.execute(action: "DescribeVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀实时监控设置
     @inlinable
-    public func describeVirusMonitorSetting(_ input: DescribeVirusMonitorSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusMonitorSettingResponse {
-        try await self.client.execute(action: "DescribeVirusMonitorSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVirusMonitorSetting(_ input: DescribeVirusMonitorSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusMonitorSettingResponse {
+        try await self.client.execute(action: "DescribeVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时查询文件查杀实时监控设置
     @inlinable
-    public func describeVirusMonitorSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusMonitorSettingResponse> {
-        self.describeVirusMonitorSetting(DescribeVirusMonitorSettingRequest(), logger: logger, on: eventLoop)
+    public func describeVirusMonitorSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusMonitorSettingResponse> {
+        self.describeVirusMonitorSetting(DescribeVirusMonitorSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀实时监控设置
     @inlinable
-    public func describeVirusMonitorSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusMonitorSettingResponse {
-        try await self.describeVirusMonitorSetting(DescribeVirusMonitorSettingRequest(), logger: logger, on: eventLoop)
+    public func describeVirusMonitorSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusMonitorSettingResponse {
+        try await self.describeVirusMonitorSetting(DescribeVirusMonitorSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

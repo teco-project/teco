@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
-        self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
+        self.client.execute(action: "DescribeResourceManagePathTrees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
-        try await self.client.execute(action: "DescribeResourceManagePathTrees", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceManagePathTrees(_ input: DescribeResourceManagePathTreesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
+        try await self.client.execute(action: "DescribeResourceManagePathTrees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
-        self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), logger: logger, on: eventLoop)
+    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
+        self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源管理目录树
     @inlinable
-    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
-        try await self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), logger: logger, on: eventLoop)
+    public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
+        try await self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), region: region, logger: logger, on: eventLoop)
     }
 }

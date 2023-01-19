@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cme {
     ///
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
-    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyProjectResponse> {
-        self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyProject(_ input: CopyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyProjectResponse> {
+        self.client.execute(action: "CopyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制项目
     ///
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
-    public func copyProject(_ input: CopyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
-        try await self.client.execute(action: "CopyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyProject(_ input: CopyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
+        try await self.client.execute(action: "CopyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制项目
     ///
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
-    public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyProjectResponse> {
-        self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), logger: logger, on: eventLoop)
+    public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyProjectResponse> {
+        self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制项目
     ///
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
-    public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
-        try await self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), logger: logger, on: eventLoop)
+    public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
+        try await self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

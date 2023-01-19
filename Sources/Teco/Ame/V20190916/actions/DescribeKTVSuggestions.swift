@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ame {
 
     /// 获取直播互动曲库联想词
     @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSuggestionsResponse> {
-        self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSuggestionsResponse> {
+        self.client.execute(action: "DescribeKTVSuggestions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库联想词
     @inlinable
-    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
-        try await self.client.execute(action: "DescribeKTVSuggestions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVSuggestions(_ input: DescribeKTVSuggestionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.client.execute(action: "DescribeKTVSuggestions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播互动曲库联想词
     @inlinable
-    public func describeKTVSuggestions(keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSuggestionsResponse> {
-        self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), logger: logger, on: eventLoop)
+    public func describeKTVSuggestions(keyWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSuggestionsResponse> {
+        self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库联想词
     @inlinable
-    public func describeKTVSuggestions(keyWord: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
-        try await self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), logger: logger, on: eventLoop)
+    public func describeKTVSuggestions(keyWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSuggestionsResponse {
+        try await self.describeKTVSuggestions(DescribeKTVSuggestionsRequest(keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 }

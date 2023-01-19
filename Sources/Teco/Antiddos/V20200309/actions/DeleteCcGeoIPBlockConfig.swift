@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Antiddos {
 
     /// 删除CC防护的区域封禁配置
     @inlinable
-    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcGeoIPBlockConfigResponse> {
-        self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcGeoIPBlockConfigResponse> {
+        self.client.execute(action: "DeleteCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC防护的区域封禁配置
     @inlinable
-    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
-        try await self.client.execute(action: "DeleteCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCcGeoIPBlockConfig(_ input: DeleteCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
+        try await self.client.execute(action: "DeleteCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除CC防护的区域封禁配置
     @inlinable
-    public func deleteCcGeoIPBlockConfig(instanceId: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcGeoIPBlockConfigResponse> {
-        self.deleteCcGeoIPBlockConfig(DeleteCcGeoIPBlockConfigRequest(instanceId: instanceId, ccGeoIPBlockConfig: ccGeoIPBlockConfig), logger: logger, on: eventLoop)
+    public func deleteCcGeoIPBlockConfig(instanceId: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcGeoIPBlockConfigResponse> {
+        self.deleteCcGeoIPBlockConfig(DeleteCcGeoIPBlockConfigRequest(instanceId: instanceId, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC防护的区域封禁配置
     @inlinable
-    public func deleteCcGeoIPBlockConfig(instanceId: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
-        try await self.deleteCcGeoIPBlockConfig(DeleteCcGeoIPBlockConfigRequest(instanceId: instanceId, ccGeoIPBlockConfig: ccGeoIPBlockConfig), logger: logger, on: eventLoop)
+    public func deleteCcGeoIPBlockConfig(instanceId: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcGeoIPBlockConfigResponse {
+        try await self.deleteCcGeoIPBlockConfig(DeleteCcGeoIPBlockConfigRequest(instanceId: instanceId, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除数据源
     @inlinable
-    public func deleteDataSources(_ input: DeleteDataSourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
-        self.client.execute(action: "DeleteDataSources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDataSources(_ input: DeleteDataSourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
+        self.client.execute(action: "DeleteDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-删除数据源【Beta版本】
@@ -58,8 +58,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除数据源
     @inlinable
-    public func deleteDataSources(_ input: DeleteDataSourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
-        try await self.client.execute(action: "DeleteDataSources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDataSources(_ input: DeleteDataSourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
+        try await self.client.execute(action: "DeleteDataSources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据源管理-删除数据源【Beta版本】
@@ -67,8 +67,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除数据源
     @inlinable
-    public func deleteDataSources(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
-        self.deleteDataSources(DeleteDataSourcesRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDataSourcesResponse> {
+        self.deleteDataSources(DeleteDataSourcesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-删除数据源【Beta版本】
@@ -76,7 +76,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 删除数据源
     @inlinable
-    public func deleteDataSources(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
-        try await self.deleteDataSources(DeleteDataSourcesRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteDataSources(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDataSourcesResponse {
+        try await self.deleteDataSources(DeleteDataSourcesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

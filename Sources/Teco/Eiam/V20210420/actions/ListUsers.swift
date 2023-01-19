@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Eiam {
     ///
     /// 获取用户列表信息。
     @inlinable
-    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
-        self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listUsers(_ input: ListUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
+        self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息
     ///
     /// 获取用户列表信息。
     @inlinable
-    public func listUsers(_ input: ListUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
-        try await self.client.execute(action: "ListUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listUsers(_ input: ListUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
+        try await self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户列表信息
     ///
     /// 获取用户列表信息。
     @inlinable
-    public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
-        self.listUsers(ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), logger: logger, on: eventLoop)
+    public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
+        self.listUsers(ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户列表信息
     ///
     /// 获取用户列表信息。
     @inlinable
-    public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
-        try await self.listUsers(ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), logger: logger, on: eventLoop)
+    public func listUsers(searchCondition: UserSearchCriteria? = nil, expectedFields: [String]? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, includeTotal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
+        try await self.listUsers(ListUsersRequest(searchCondition: searchCondition, expectedFields: expectedFields, sort: sort, offset: offset, limit: limit, includeTotal: includeTotal), region: region, logger: logger, on: eventLoop)
     }
 }

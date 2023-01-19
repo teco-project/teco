@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cmq {
 
     /// 解绑死信队列
     @inlinable
-    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
-        self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
+        self.client.execute(action: "UnbindDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑死信队列
     @inlinable
-    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
-        try await self.client.execute(action: "UnbindDeadLetter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
+        try await self.client.execute(action: "UnbindDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑死信队列
     @inlinable
-    public func unbindDeadLetter(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
-        self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func unbindDeadLetter(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
+        self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑死信队列
     @inlinable
-    public func unbindDeadLetter(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
-        try await self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func unbindDeadLetter(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
+        try await self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

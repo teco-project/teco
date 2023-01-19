@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Cpdp {
 
     /// 直播平台-扣减额度
     @inlinable
-    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeduceQuotaResponse> {
-        self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deduceQuota(_ input: DeduceQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeduceQuotaResponse> {
+        self.client.execute(action: "DeduceQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-扣减额度
     @inlinable
-    public func deduceQuota(_ input: DeduceQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
-        try await self.client.execute(action: "DeduceQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deduceQuota(_ input: DeduceQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
+        try await self.client.execute(action: "DeduceQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-扣减额度
     @inlinable
-    public func deduceQuota(anchorId: String, amount: Int64, orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeduceQuotaResponse> {
-        self.deduceQuota(DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId), logger: logger, on: eventLoop)
+    public func deduceQuota(anchorId: String, amount: Int64, orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeduceQuotaResponse> {
+        self.deduceQuota(DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-扣减额度
     @inlinable
-    public func deduceQuota(anchorId: String, amount: Int64, orderId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
-        try await self.deduceQuota(DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId), logger: logger, on: eventLoop)
+    public func deduceQuota(anchorId: String, amount: Int64, orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeduceQuotaResponse {
+        try await self.deduceQuota(DeduceQuotaRequest(anchorId: anchorId, amount: amount, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Dnspod {
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
-        self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainList(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
+        self.client.execute(action: "DescribeDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(_ input: DescribeDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
-        try await self.client.execute(action: "DescribeDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainList(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
+        try await self.client.execute(action: "DescribeDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
-        self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), logger: logger, on: eventLoop)
+    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
+        self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
-        try await self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), logger: logger, on: eventLoop)
+    public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
+        try await self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
     }
 }

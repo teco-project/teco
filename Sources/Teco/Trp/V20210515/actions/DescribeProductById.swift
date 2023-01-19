@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Trp {
 
     /// 查询商品信息
     @inlinable
-    public func describeProductById(_ input: DescribeProductByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductByIdResponse> {
-        self.client.execute(action: "DescribeProductById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductById(_ input: DescribeProductByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductByIdResponse> {
+        self.client.execute(action: "DescribeProductById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询商品信息
     @inlinable
-    public func describeProductById(_ input: DescribeProductByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
-        try await self.client.execute(action: "DescribeProductById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductById(_ input: DescribeProductByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
+        try await self.client.execute(action: "DescribeProductById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询商品信息
     @inlinable
-    public func describeProductById(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductByIdResponse> {
-        self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeProductById(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductByIdResponse> {
+        self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询商品信息
     @inlinable
-    public func describeProductById(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
-        try await self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    public func describeProductById(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductByIdResponse {
+        try await self.describeProductById(DescribeProductByIdRequest(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

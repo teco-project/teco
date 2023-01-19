@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Npp {
 
     /// 回拨通话状态获取
     @inlinable
-    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackStatusResponse> {
-        self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackStatusResponse> {
+        self.client.execute(action: "DescribeCallBackStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨通话状态获取
     @inlinable
-    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
-        try await self.client.execute(action: "DescribeCallBackStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCallBackStatus(_ input: DescribeCallBackStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
+        try await self.client.execute(action: "DescribeCallBackStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回拨通话状态获取
     @inlinable
-    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackStatusResponse> {
-        self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), logger: logger, on: eventLoop)
+    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackStatusResponse> {
+        self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨通话状态获取
     @inlinable
-    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
-        try await self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), logger: logger, on: eventLoop)
+    public func describeCallBackStatus(bizAppId: String, callId: String, src: String? = nil, dst: String? = nil, callStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackStatusResponse {
+        try await self.describeCallBackStatus(DescribeCallBackStatusRequest(bizAppId: bizAppId, callId: callId, src: src, dst: dst, callStatus: callStatus), region: region, logger: logger, on: eventLoop)
     }
 }

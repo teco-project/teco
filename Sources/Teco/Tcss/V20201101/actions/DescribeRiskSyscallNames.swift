@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
-        self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
+        self.client.execute(action: "DescribeRiskSyscallNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRiskSyscallNames(_ input: DescribeRiskSyscallNamesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
-        self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), logger: logger, on: eventLoop)
+    public func describeRiskSyscallNames(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
+        self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用系统名称列表
     ///
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
-    public func describeRiskSyscallNames(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
-        try await self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), logger: logger, on: eventLoop)
+    public func describeRiskSyscallNames(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
+        try await self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

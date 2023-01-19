@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Ssl {
     ///
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
-    public func checkCertificateChain(_ input: CheckCertificateChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateChainResponse> {
-        self.client.execute(action: "CheckCertificateChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkCertificateChain(_ input: CheckCertificateChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateChainResponse> {
+        self.client.execute(action: "CheckCertificateChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查证书链完整性
     ///
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
-    public func checkCertificateChain(_ input: CheckCertificateChainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
-        try await self.client.execute(action: "CheckCertificateChain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkCertificateChain(_ input: CheckCertificateChainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
+        try await self.client.execute(action: "CheckCertificateChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查证书链完整性
     ///
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
-    public func checkCertificateChain(certificateChain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateChainResponse> {
-        self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), logger: logger, on: eventLoop)
+    public func checkCertificateChain(certificateChain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateChainResponse> {
+        self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查证书链完整性
     ///
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
-    public func checkCertificateChain(certificateChain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
-        try await self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), logger: logger, on: eventLoop)
+    public func checkCertificateChain(certificateChain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
+        try await self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), region: region, logger: logger, on: eventLoop)
     }
 }

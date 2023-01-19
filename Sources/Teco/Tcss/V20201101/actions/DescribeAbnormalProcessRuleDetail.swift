@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcss {
     ///
     /// 查询运行时异常策略详细信息
     @inlinable
-    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessRuleDetailResponse> {
-        self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessRuleDetailResponse> {
+        self.client.execute(action: "DescribeAbnormalProcessRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询运行时异常进程策略详细信息
     ///
     /// 查询运行时异常策略详细信息
     @inlinable
-    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
-        try await self.client.execute(action: "DescribeAbnormalProcessRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAbnormalProcessRuleDetail(_ input: DescribeAbnormalProcessRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
+        try await self.client.execute(action: "DescribeAbnormalProcessRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询运行时异常进程策略详细信息
     ///
     /// 查询运行时异常策略详细信息
     @inlinable
-    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessRuleDetailResponse> {
-        self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessRuleDetailResponse> {
+        self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询运行时异常进程策略详细信息
     ///
     /// 查询运行时异常策略详细信息
     @inlinable
-    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
-        try await self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAbnormalProcessRuleDetail(ruleId: String? = nil, imageId: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessRuleDetailResponse {
+        try await self.describeAbnormalProcessRuleDetail(DescribeAbnormalProcessRuleDetailRequest(ruleId: ruleId, imageId: imageId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

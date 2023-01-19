@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Bda {
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
-        self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
+        self.client.execute(action: "SegmentPortraitPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
-        try await self.client.execute(action: "SegmentPortraitPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func segmentPortraitPic(_ input: SegmentPortraitPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
+        try await self.client.execute(action: "SegmentPortraitPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
-        self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
+        self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
-        try await self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
+        try await self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

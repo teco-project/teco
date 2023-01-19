@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Partners {
 
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
-        self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
+        self.client.execute(action: "RemovePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
-        try await self.client.execute(action: "RemovePayRelationForClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removePayRelationForClient(_ input: RemovePayRelationForClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
+        try await self.client.execute(action: "RemovePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
-        self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func removePayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
+        self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户消除强代付关系
     @inlinable
-    public func removePayRelationForClient(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
-        try await self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func removePayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
+        try await self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,25 +102,25 @@ extension Dayu {
 
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
-        self.client.execute(action: "DescribeDDoSIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
+        self.client.execute(action: "DescribeDDoSIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
-        try await self.client.execute(action: "DescribeDDoSIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSIpLog(_ input: DescribeDDoSIpLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
+        try await self.client.execute(action: "DescribeDDoSIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
-        self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSIpLogResponse> {
+        self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoSIP攻击日志
     @inlinable
-    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
-        try await self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSIpLog(business: String, id: String, ip: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSIpLogResponse {
+        try await self.describeDDoSIpLog(DescribeDDoSIpLogRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

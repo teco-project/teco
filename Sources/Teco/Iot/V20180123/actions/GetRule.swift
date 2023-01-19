@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iot {
 
     /// 获取转发规则信息
     @inlinable
-    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuleResponse> {
-        self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRule(_ input: GetRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuleResponse> {
+        self.client.execute(action: "GetRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转发规则信息
     @inlinable
-    public func getRule(_ input: GetRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
-        try await self.client.execute(action: "GetRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRule(_ input: GetRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
+        try await self.client.execute(action: "GetRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转发规则信息
     @inlinable
-    public func getRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuleResponse> {
-        self.getRule(GetRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func getRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuleResponse> {
+        self.getRule(GetRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转发规则信息
     @inlinable
-    public func getRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
-        try await self.getRule(GetRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func getRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuleResponse {
+        try await self.getRule(GetRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

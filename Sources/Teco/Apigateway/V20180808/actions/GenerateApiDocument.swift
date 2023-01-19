@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Apigateway {
     ///
     /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
     @inlinable
-    public func generateApiDocument(_ input: GenerateApiDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApiDocumentResponse> {
-        self.client.execute(action: "GenerateApiDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateApiDocument(_ input: GenerateApiDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApiDocumentResponse> {
+        self.client.execute(action: "GenerateApiDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成文档和 SDK
     ///
     /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
     @inlinable
-    public func generateApiDocument(_ input: GenerateApiDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
-        try await self.client.execute(action: "GenerateApiDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateApiDocument(_ input: GenerateApiDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
+        try await self.client.execute(action: "GenerateApiDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成文档和 SDK
     ///
     /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
     @inlinable
-    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApiDocumentResponse> {
-        self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), logger: logger, on: eventLoop)
+    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApiDocumentResponse> {
+        self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成文档和 SDK
     ///
     /// 本接口（GenerateApiDocument）用于自动生成 API 文档和 SDK，一个服务的一个环境生成一份文档和 SDK。
     @inlinable
-    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
-        try await self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), logger: logger, on: eventLoop)
+    public func generateApiDocument(serviceId: String, genEnvironment: String, genLanguage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApiDocumentResponse {
+        try await self.generateApiDocument(GenerateApiDocumentRequest(serviceId: serviceId, genEnvironment: genEnvironment, genLanguage: genLanguage), region: region, logger: logger, on: eventLoop)
     }
 }

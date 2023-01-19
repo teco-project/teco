@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iecp {
 
     /// 获取组件市场组件列表
     @inlinable
-    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMarketComponentListResponse> {
-        self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getMarketComponentList(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMarketComponentListResponse> {
+        self.client.execute(action: "GetMarketComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组件市场组件列表
     @inlinable
-    public func getMarketComponentList(_ input: GetMarketComponentListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
-        try await self.client.execute(action: "GetMarketComponentList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getMarketComponentList(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
+        try await self.client.execute(action: "GetMarketComponentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取组件市场组件列表
     @inlinable
-    public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMarketComponentListResponse> {
-        self.getMarketComponentList(GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order), logger: logger, on: eventLoop)
+    public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetMarketComponentListResponse> {
+        self.getMarketComponentList(GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取组件市场组件列表
     @inlinable
-    public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
-        try await self.getMarketComponentList(GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order), logger: logger, on: eventLoop)
+    public func getMarketComponentList(offset: Int64, limit: Int64, filter: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetMarketComponentListResponse {
+        try await self.getMarketComponentList(GetMarketComponentListRequest(offset: offset, limit: limit, filter: filter, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

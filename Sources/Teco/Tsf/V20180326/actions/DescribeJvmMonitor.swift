@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Tsf {
     ///
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
-    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJvmMonitorResponse> {
-        self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJvmMonitorResponse> {
+        self.client.execute(action: "DescribeJvmMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询java实例jvm监控数据
     ///
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
-    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
-        try await self.client.execute(action: "DescribeJvmMonitor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeJvmMonitor(_ input: DescribeJvmMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
+        try await self.client.execute(action: "DescribeJvmMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询java实例jvm监控数据
     ///
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
-    public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJvmMonitorResponse> {
-        self.describeJvmMonitor(DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), logger: logger, on: eventLoop)
+    public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJvmMonitorResponse> {
+        self.describeJvmMonitor(DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询java实例jvm监控数据
     ///
     /// 查询java实例jvm监控数据,返回数据可选
     @inlinable
-    public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
-        try await self.describeJvmMonitor(DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), logger: logger, on: eventLoop)
+    public func describeJvmMonitor(instanceId: String, applicationId: String, timeGranularity: Int64, from: String, to: String, requiredPictures: [String], tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJvmMonitorResponse {
+        try await self.describeJvmMonitor(DescribeJvmMonitorRequest(instanceId: instanceId, applicationId: applicationId, timeGranularity: timeGranularity, from: from, to: to, requiredPictures: requiredPictures, tag: tag), region: region, logger: logger, on: eventLoop)
     }
 }

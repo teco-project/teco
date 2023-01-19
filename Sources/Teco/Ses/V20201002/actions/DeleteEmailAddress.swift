@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ses {
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
-        self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
+        self.client.execute(action: "DeleteEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发信地址
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
-        try await self.client.execute(action: "DeleteEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
+        try await self.client.execute(action: "DeleteEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除发信地址
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
-        self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), logger: logger, on: eventLoop)
+    public func deleteEmailAddress(emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
+        self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发信地址
     ///
     /// 删除发信人地址
     @inlinable
-    public func deleteEmailAddress(emailAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
-        try await self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), logger: logger, on: eventLoop)
+    public func deleteEmailAddress(emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
+        try await self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }
 }

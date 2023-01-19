@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Iotvideoindustry {
 
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
-        self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
+        self.client.execute(action: "DescribeLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
-        try await self.client.execute(action: "DescribeLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveChannel(_ input: DescribeLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
+        try await self.client.execute(action: "DescribeLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
-        self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
+    public func describeLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
+        self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播详情接口
     @inlinable
-    public func describeLiveChannel(liveChannelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
-        try await self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), logger: logger, on: eventLoop)
+    public func describeLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
+        try await self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
     }
 }

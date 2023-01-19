@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,25 +62,25 @@ extension Dayu {
 
     /// 获取资源的规则数
     @inlinable
-    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleSetsResponse> {
-        self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleSets(_ input: DescribeRuleSetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleSetsResponse> {
+        self.client.execute(action: "DescribeRuleSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的规则数
     @inlinable
-    public func describeRuleSets(_ input: DescribeRuleSetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
-        try await self.client.execute(action: "DescribeRuleSets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleSets(_ input: DescribeRuleSetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
+        try await self.client.execute(action: "DescribeRuleSets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取资源的规则数
     @inlinable
-    public func describeRuleSets(business: String, idList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleSetsResponse> {
-        self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    public func describeRuleSets(business: String, idList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleSetsResponse> {
+        self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取资源的规则数
     @inlinable
-    public func describeRuleSets(business: String, idList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
-        try await self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), logger: logger, on: eventLoop)
+    public func describeRuleSets(business: String, idList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleSetsResponse {
+        try await self.describeRuleSets(DescribeRuleSetsRequest(business: business, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

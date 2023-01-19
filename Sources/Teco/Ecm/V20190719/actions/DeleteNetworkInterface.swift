@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Ecm {
 
     /// 删除弹性网卡
     @inlinable
-    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkInterfaceResponse> {
-        self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkInterfaceResponse> {
+        self.client.execute(action: "DeleteNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性网卡
     @inlinable
-    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
-        try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
+        try await self.client.execute(action: "DeleteNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除弹性网卡
     @inlinable
-    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkInterfaceResponse> {
-        self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkInterfaceResponse> {
+        self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性网卡
     @inlinable
-    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
-        try await self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func deleteNetworkInterface(networkInterfaceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
+        try await self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

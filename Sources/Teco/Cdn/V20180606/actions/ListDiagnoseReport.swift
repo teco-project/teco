@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Cdn {
     ///
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
-    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
-        self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
+        self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务列表
     ///
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
-    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
-        try await self.client.execute(action: "ListDiagnoseReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listDiagnoseReport(_ input: ListDiagnoseReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
+        try await self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取诊断任务列表
     ///
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
-    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
-        self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), logger: logger, on: eventLoop)
+    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
+        self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务列表
     ///
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
-    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
-        try await self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), logger: logger, on: eventLoop)
+    public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
+        try await self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)
     }
 }

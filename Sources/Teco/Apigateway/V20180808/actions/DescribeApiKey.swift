@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Apigateway {
     /// 本接口（DescribeApiKey）用于查询密钥详情。
     /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
     @inlinable
-    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiKeyResponse> {
-        self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiKey(_ input: DescribeApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiKeyResponse> {
+        self.client.execute(action: "DescribeApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询密钥详情
@@ -58,8 +58,8 @@ extension Apigateway {
     /// 本接口（DescribeApiKey）用于查询密钥详情。
     /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
     @inlinable
-    public func describeApiKey(_ input: DescribeApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
-        try await self.client.execute(action: "DescribeApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiKey(_ input: DescribeApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
+        try await self.client.execute(action: "DescribeApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询密钥详情
@@ -67,8 +67,8 @@ extension Apigateway {
     /// 本接口（DescribeApiKey）用于查询密钥详情。
     /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
     @inlinable
-    public func describeApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiKeyResponse> {
-        self.describeApiKey(DescribeApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    public func describeApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiKeyResponse> {
+        self.describeApiKey(DescribeApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询密钥详情
@@ -76,7 +76,7 @@ extension Apigateway {
     /// 本接口（DescribeApiKey）用于查询密钥详情。
     /// 用户在创建密钥后，可用此接口查询一个 API 密钥的详情，该接口会显示密钥 Key。
     @inlinable
-    public func describeApiKey(accessKeyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
-        try await self.describeApiKey(DescribeApiKeyRequest(accessKeyId: accessKeyId), logger: logger, on: eventLoop)
+    public func describeApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiKeyResponse {
+        try await self.describeApiKey(DescribeApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
     }
 }

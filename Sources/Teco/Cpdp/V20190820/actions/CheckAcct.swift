@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -117,31 +117,31 @@ extension Cpdp {
     ///
     /// 商户绑定提现银行卡的验证接口
     @inlinable
-    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAcctResponse> {
-        self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkAcct(_ input: CheckAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAcctResponse> {
+        self.client.execute(action: "CheckAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现银行卡验证
     ///
     /// 商户绑定提现银行卡的验证接口
     @inlinable
-    public func checkAcct(_ input: CheckAcctRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
-        try await self.client.execute(action: "CheckAcct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkAcct(_ input: CheckAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
+        try await self.client.execute(action: "CheckAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-提现银行卡验证
     ///
     /// 商户绑定提现银行卡的验证接口
     @inlinable
-    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAcctResponse> {
-        self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAcctResponse> {
+        self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现银行卡验证
     ///
     /// 商户绑定提现银行卡的验证接口
     @inlinable
-    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
-        try await self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
+        try await self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

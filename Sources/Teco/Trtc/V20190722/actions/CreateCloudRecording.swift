@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,8 +108,8 @@ extension Trtc {
     /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
-    public func createCloudRecording(_ input: CreateCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
-        self.client.execute(action: "CreateCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCloudRecording(_ input: CreateCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
+        self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开始云端录制
@@ -125,8 +125,8 @@ extension Trtc {
     /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
-    public func createCloudRecording(_ input: CreateCloudRecordingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
-        try await self.client.execute(action: "CreateCloudRecording", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCloudRecording(_ input: CreateCloudRecordingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
+        try await self.client.execute(action: "CreateCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开始云端录制
@@ -142,8 +142,8 @@ extension Trtc {
     /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
-    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
-        self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), logger: logger, on: eventLoop)
+    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRecordingResponse> {
+        self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始云端录制
@@ -159,7 +159,7 @@ extension Trtc {
     /// * 单流录制：分别录制房间的订阅UserId的音频和视频。录制服务会实时将录制文件上传至云点播存储。
     /// * 合流录制：将房间内订阅UserId的音视频混录成一个音视频文件，并将录制文件上传至云点播存储（录制结束后可前往云点播控制台查看录制文件：https://console.cloud.tencent.com/vod/media）。
     @inlinable
-    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
-        try await self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), logger: logger, on: eventLoop)
+    public func createCloudRecording(sdkAppId: UInt64, roomId: String, userId: String, userSig: String, recordParams: RecordParams, storageParams: StorageParams, roomIdType: UInt64? = nil, mixTranscodeParams: MixTranscodeParams? = nil, mixLayoutParams: MixLayoutParams? = nil, resourceExpiredHour: UInt64? = nil, privateMapKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRecordingResponse {
+        try await self.createCloudRecording(CreateCloudRecordingRequest(sdkAppId: sdkAppId, roomId: roomId, userId: userId, userSig: userSig, recordParams: recordParams, storageParams: storageParams, roomIdType: roomIdType, mixTranscodeParams: mixTranscodeParams, mixLayoutParams: mixLayoutParams, resourceExpiredHour: resourceExpiredHour, privateMapKey: privateMapKey), region: region, logger: logger, on: eventLoop)
     }
 }

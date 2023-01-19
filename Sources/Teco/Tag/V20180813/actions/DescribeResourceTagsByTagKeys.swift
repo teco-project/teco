@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,25 +87,25 @@ extension Tag {
 
     /// 根据标签键获取资源标签
     @inlinable
-    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByTagKeysResponse> {
-        self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByTagKeysResponse> {
+        self.client.execute(action: "DescribeResourceTagsByTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据标签键获取资源标签
     @inlinable
-    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
-        try await self.client.execute(action: "DescribeResourceTagsByTagKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceTagsByTagKeys(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
+        try await self.client.execute(action: "DescribeResourceTagsByTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据标签键获取资源标签
     @inlinable
-    public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByTagKeysResponse> {
-        self.describeResourceTagsByTagKeys(DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByTagKeysResponse> {
+        self.describeResourceTagsByTagKeys(DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据标签键获取资源标签
     @inlinable
-    public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
-        try await self.describeResourceTagsByTagKeys(DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeResourceTagsByTagKeys(serviceType: String, resourcePrefix: String, resourceRegion: String, resourceIds: [String], tagKeys: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByTagKeysResponse {
+        try await self.describeResourceTagsByTagKeys(DescribeResourceTagsByTagKeysRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceRegion: resourceRegion, resourceIds: resourceIds, tagKeys: tagKeys, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

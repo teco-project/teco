@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Apigateway {
     ///
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
-    public func updateApiKey(_ input: UpdateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiKeyResponse> {
-        self.client.execute(action: "UpdateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateApiKey(_ input: UpdateApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiKeyResponse> {
+        self.client.execute(action: "UpdateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更换密钥
     ///
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
-    public func updateApiKey(_ input: UpdateApiKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiKeyResponse {
-        try await self.client.execute(action: "UpdateApiKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateApiKey(_ input: UpdateApiKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiKeyResponse {
+        try await self.client.execute(action: "UpdateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更换密钥
     ///
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
-    public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiKeyResponse> {
-        self.updateApiKey(UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), logger: logger, on: eventLoop)
+    public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiKeyResponse> {
+        self.updateApiKey(UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更换密钥
     ///
     /// 本接口（UpdateApiKey）用于更换用户已创建的一对 API 密钥。
     @inlinable
-    public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiKeyResponse {
-        try await self.updateApiKey(UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), logger: logger, on: eventLoop)
+    public func updateApiKey(accessKeyId: String, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiKeyResponse {
+        try await self.updateApiKey(UpdateApiKeyRequest(accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
     }
 }

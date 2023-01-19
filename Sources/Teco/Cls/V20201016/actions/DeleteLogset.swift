@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cls {
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
-        self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLogset(_ input: DeleteLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
+        self.client.execute(action: "DeleteLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(_ input: DeleteLogsetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
-        try await self.client.execute(action: "DeleteLogset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLogset(_ input: DeleteLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
+        try await self.client.execute(action: "DeleteLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
-        self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), logger: logger, on: eventLoop)
+    public func deleteLogset(logsetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
+        self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
     @inlinable
-    public func deleteLogset(logsetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
-        try await self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), logger: logger, on: eventLoop)
+    public func deleteLogset(logsetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
+        try await self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), region: region, logger: logger, on: eventLoop)
     }
 }

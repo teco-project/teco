@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mps {
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
-        self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
+        self.client.execute(action: "DeleteTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
-        try await self.client.execute(action: "DeleteTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTranscodeTemplate(_ input: DeleteTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
+        try await self.client.execute(action: "DeleteTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
-        self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    public func deleteTranscodeTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTranscodeTemplateResponse> {
+        self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转码模板
     ///
     /// 删除用户自定义转码模板。
     @inlinable
-    public func deleteTranscodeTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
-        try await self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), logger: logger, on: eventLoop)
+    public func deleteTranscodeTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTranscodeTemplateResponse {
+        try await self.deleteTranscodeTemplate(DeleteTranscodeTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 }

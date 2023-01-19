@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Antiddos {
 
     /// 添加DDoS防护的特征过滤规则
     @inlinable
-    public func createPacketFilterConfig(_ input: CreatePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePacketFilterConfigResponse> {
-        self.client.execute(action: "CreatePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPacketFilterConfig(_ input: CreatePacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePacketFilterConfigResponse> {
+        self.client.execute(action: "CreatePacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的特征过滤规则
     @inlinable
-    public func createPacketFilterConfig(_ input: CreatePacketFilterConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePacketFilterConfigResponse {
-        try await self.client.execute(action: "CreatePacketFilterConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPacketFilterConfig(_ input: CreatePacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePacketFilterConfigResponse {
+        try await self.client.execute(action: "CreatePacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS防护的特征过滤规则
     @inlinable
-    public func createPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePacketFilterConfigResponse> {
-        self.createPacketFilterConfig(CreatePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), logger: logger, on: eventLoop)
+    public func createPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePacketFilterConfigResponse> {
+        self.createPacketFilterConfig(CreatePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的特征过滤规则
     @inlinable
-    public func createPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePacketFilterConfigResponse {
-        try await self.createPacketFilterConfig(CreatePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), logger: logger, on: eventLoop)
+    public func createPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePacketFilterConfigResponse {
+        try await self.createPacketFilterConfig(CreatePacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 }

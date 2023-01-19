@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Redis {
 
     /// 查看实例子账号信息
     @inlinable
-    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
-        self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
+        self.client.execute(action: "DescribeInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
     @inlinable
-    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
-        try await self.client.execute(action: "DescribeInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceAccount(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
+        try await self.client.execute(action: "DescribeInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看实例子账号信息
     @inlinable
-    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
-        self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAccountResponse> {
+        self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看实例子账号信息
     @inlinable
-    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
-        try await self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeInstanceAccount(instanceId: String, limit: Int64, offset: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAccountResponse {
+        try await self.describeInstanceAccount(DescribeInstanceAccountRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

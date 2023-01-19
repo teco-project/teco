@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Vpc {
 
     /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
-    public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorQuotaResponse> {
-        self.client.execute(action: "DescribeIp6TranslatorQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorQuotaResponse> {
+        self.client.execute(action: "DescribeIp6TranslatorQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
-    public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
-        try await self.client.execute(action: "DescribeIp6TranslatorQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIp6TranslatorQuota(_ input: DescribeIp6TranslatorQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
+        try await self.client.execute(action: "DescribeIp6TranslatorQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
-    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorQuotaResponse> {
-        self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), logger: logger, on: eventLoop)
+    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorQuotaResponse> {
+        self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账户在指定地域IPV6转换实例和规则的配额
     @inlinable
-    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
-        try await self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), logger: logger, on: eventLoop)
+    public func describeIp6TranslatorQuota(ip6TranslatorIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorQuotaResponse {
+        try await self.describeIp6TranslatorQuota(DescribeIp6TranslatorQuotaRequest(ip6TranslatorIds: ip6TranslatorIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Smh {
     ///
     /// 查询官方云盘实例概览数据
     @inlinable
-    public func describeOfficialOverview(_ input: DescribeOfficialOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialOverviewResponse> {
-        self.client.execute(action: "DescribeOfficialOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOfficialOverview(_ input: DescribeOfficialOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialOverviewResponse> {
+        self.client.execute(action: "DescribeOfficialOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例概览数据
     ///
     /// 查询官方云盘实例概览数据
     @inlinable
-    public func describeOfficialOverview(_ input: DescribeOfficialOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
-        try await self.client.execute(action: "DescribeOfficialOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOfficialOverview(_ input: DescribeOfficialOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
+        try await self.client.execute(action: "DescribeOfficialOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询官方实例概览数据
     ///
     /// 查询官方云盘实例概览数据
     @inlinable
-    public func describeOfficialOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialOverviewResponse> {
-        self.describeOfficialOverview(DescribeOfficialOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeOfficialOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialOverviewResponse> {
+        self.describeOfficialOverview(DescribeOfficialOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例概览数据
     ///
     /// 查询官方云盘实例概览数据
     @inlinable
-    public func describeOfficialOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
-        try await self.describeOfficialOverview(DescribeOfficialOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeOfficialOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialOverviewResponse {
+        try await self.describeOfficialOverview(DescribeOfficialOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

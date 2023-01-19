@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
-        self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRefreshTask(_ input: CreateRefreshTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
+        self.client.execute(action: "CreateRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下发刷新任务
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(_ input: CreateRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
-        try await self.client.execute(action: "CreateRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRefreshTask(_ input: CreateRefreshTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
+        try await self.client.execute(action: "CreateRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下发刷新任务
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
-        self.createRefreshTask(CreateRefreshTaskRequest(), logger: logger, on: eventLoop)
+    public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRefreshTaskResponse> {
+        self.createRefreshTask(CreateRefreshTaskRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下发刷新任务
     ///
     /// 下发刷新任务，会刷新资产信息
     @inlinable
-    public func createRefreshTask(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
-        try await self.createRefreshTask(CreateRefreshTaskRequest(), logger: logger, on: eventLoop)
+    public func createRefreshTask(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRefreshTaskResponse {
+        try await self.createRefreshTask(CreateRefreshTaskRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

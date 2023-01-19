@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tke {
     ///
     /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
     @inlinable
-    public func describeClusterCommonNames(_ input: DescribeClusterCommonNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterCommonNamesResponse> {
-        self.client.execute(action: "DescribeClusterCommonNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterCommonNames(_ input: DescribeClusterCommonNamesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterCommonNamesResponse> {
+        self.client.execute(action: "DescribeClusterCommonNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群子账户CommonName映射关系
     ///
     /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
     @inlinable
-    public func describeClusterCommonNames(_ input: DescribeClusterCommonNamesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
-        try await self.client.execute(action: "DescribeClusterCommonNames", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterCommonNames(_ input: DescribeClusterCommonNamesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
+        try await self.client.execute(action: "DescribeClusterCommonNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群子账户CommonName映射关系
     ///
     /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
     @inlinable
-    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterCommonNamesResponse> {
-        self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), logger: logger, on: eventLoop)
+    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterCommonNamesResponse> {
+        self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群子账户CommonName映射关系
     ///
     /// 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
     @inlinable
-    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
-        try await self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), logger: logger, on: eventLoop)
+    public func describeClusterCommonNames(clusterId: String, subaccountUins: [String]? = nil, roleIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterCommonNamesResponse {
+        try await self.describeClusterCommonNames(DescribeClusterCommonNamesRequest(clusterId: clusterId, subaccountUins: subaccountUins, roleIds: roleIds), region: region, logger: logger, on: eventLoop)
     }
 }

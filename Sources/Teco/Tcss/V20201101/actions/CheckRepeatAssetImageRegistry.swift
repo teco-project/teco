@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcss {
 
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
-        self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
+        self.client.execute(action: "CheckRepeatAssetImageRegistry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
-        try await self.client.execute(action: "CheckRepeatAssetImageRegistry", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkRepeatAssetImageRegistry(_ input: CheckRepeatAssetImageRegistryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
+        try await self.client.execute(action: "CheckRepeatAssetImageRegistry", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
-        self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), logger: logger, on: eventLoop)
+    public func checkRepeatAssetImageRegistry(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRepeatAssetImageRegistryResponse> {
+        self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查单个镜像仓库名是否重复
     @inlinable
-    public func checkRepeatAssetImageRegistry(name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
-        try await self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), logger: logger, on: eventLoop)
+    public func checkRepeatAssetImageRegistry(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRepeatAssetImageRegistryResponse {
+        try await self.checkRepeatAssetImageRegistry(CheckRepeatAssetImageRegistryRequest(name: name), region: region, logger: logger, on: eventLoop)
     }
 }

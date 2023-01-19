@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,8 +85,8 @@ extension Bda {
     /// - 输入的图片组中，若有部分图片输入不合法（如图片大小过大、分辨率过大、无法解码等），我们将舍弃这部分图片，确保合法图片被正确搜索。即，我们将尽可能保证请求成功，去除不合法的输入；
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
+        self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
@@ -99,8 +99,8 @@ extension Bda {
     /// - 输入的图片组中，若有部分图片输入不合法（如图片大小过大、分辨率过大、无法解码等），我们将舍弃这部分图片，确保合法图片被正确搜索。即，我们将尽可能保证请求成功，去除不合法的输入；
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建人员
@@ -113,8 +113,8 @@ extension Bda {
     /// - 输入的图片组中，若有部分图片输入不合法（如图片大小过大、分辨率过大、无法解码等），我们将舍弃这部分图片，确保合法图片被正确搜索。即，我们将尽可能保证请求成功，去除不合法的输入；
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), logger: logger, on: eventLoop)
+    public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
+        self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
@@ -127,7 +127,7 @@ extension Bda {
     /// - 输入的图片组中，若有部分图片输入不合法（如图片大小过大、分辨率过大、无法解码等），我们将舍弃这部分图片，确保合法图片被正确搜索。即，我们将尽可能保证请求成功，去除不合法的输入；
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
-    public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), logger: logger, on: eventLoop)
+    public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 }

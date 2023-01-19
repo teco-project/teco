@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cme {
     ///
     ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable
-    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeResourceAuthorizationResponse> {
-        self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeResourceAuthorizationResponse> {
+        self.client.execute(action: "RevokeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销资源授权
     ///
     ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable
-    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
-        try await self.client.execute(action: "RevokeResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revokeResourceAuthorization(_ input: RevokeResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
+        try await self.client.execute(action: "RevokeResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤销资源授权
     ///
     ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable
-    public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeResourceAuthorizationResponse> {
-        self.revokeResourceAuthorization(RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
+    public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeResourceAuthorizationResponse> {
+        self.revokeResourceAuthorization(RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤销资源授权
     ///
     ///  资源所属实体对目标实体撤销目标资源的相应权限，若原本没有相应权限则不产生变更。
     @inlinable
-    public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
-        try await self.revokeResourceAuthorization(RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
+    public func revokeResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeResourceAuthorizationResponse {
+        try await self.revokeResourceAuthorization(RevokeResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

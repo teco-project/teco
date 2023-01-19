@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension As {
     ///
     /// 此接口用于修改生命周期挂钩。
     @inlinable
-    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifecycleHookResponse> {
-        self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifecycleHookResponse> {
+        self.client.execute(action: "ModifyLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改生命周期挂钩
     ///
     /// 此接口用于修改生命周期挂钩。
     @inlinable
-    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
-        try await self.client.execute(action: "ModifyLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLifecycleHook(_ input: ModifyLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
+        try await self.client.execute(action: "ModifyLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改生命周期挂钩
     ///
     /// 此接口用于修改生命周期挂钩。
     @inlinable
-    public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifecycleHookResponse> {
-        self.modifyLifecycleHook(ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifecycleHookResponse> {
+        self.modifyLifecycleHook(ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改生命周期挂钩
     ///
     /// 此接口用于修改生命周期挂钩。
     @inlinable
-    public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
-        try await self.modifyLifecycleHook(ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), logger: logger, on: eventLoop)
+    public func modifyLifecycleHook(lifecycleHookId: String, lifecycleHookName: String? = nil, lifecycleTransition: String? = nil, defaultResult: String? = nil, heartbeatTimeout: UInt64? = nil, notificationMetadata: String? = nil, lifecycleTransitionType: String? = nil, notificationTarget: NotificationTarget? = nil, lifecycleCommand: LifecycleCommand? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifecycleHookResponse {
+        try await self.modifyLifecycleHook(ModifyLifecycleHookRequest(lifecycleHookId: lifecycleHookId, lifecycleHookName: lifecycleHookName, lifecycleTransition: lifecycleTransition, defaultResult: defaultResult, heartbeatTimeout: heartbeatTimeout, notificationMetadata: notificationMetadata, lifecycleTransitionType: lifecycleTransitionType, notificationTarget: notificationTarget, lifecycleCommand: lifecycleCommand), region: region, logger: logger, on: eventLoop)
     }
 }

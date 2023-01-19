@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Lighthouse {
     ///
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
-    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceSnapshotResponse> {
-        self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceSnapshotResponse> {
+        self.client.execute(action: "CreateInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例快照
     ///
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
-    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
-        try await self.client.execute(action: "CreateInstanceSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstanceSnapshot(_ input: CreateInstanceSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
+        try await self.client.execute(action: "CreateInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例快照
     ///
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
-    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceSnapshotResponse> {
-        self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceSnapshotResponse> {
+        self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例快照
     ///
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
-    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
-        try await self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), logger: logger, on: eventLoop)
+    public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
+        try await self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
 }

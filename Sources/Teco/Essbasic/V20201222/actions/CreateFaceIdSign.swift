@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Essbasic {
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
-    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceIdSignResponse> {
-        self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceIdSignResponse> {
+        self.client.execute(action: "CreateFaceIdSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成慧眼API签名
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
-    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
-        try await self.client.execute(action: "CreateFaceIdSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFaceIdSign(_ input: CreateFaceIdSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
+        try await self.client.execute(action: "CreateFaceIdSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成慧眼API签名
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
-    public func createFaceIdSign(caller: Caller, values: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceIdSignResponse> {
-        self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), logger: logger, on: eventLoop)
+    public func createFaceIdSign(caller: Caller, values: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceIdSignResponse> {
+        self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成慧眼API签名
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
-    public func createFaceIdSign(caller: Caller, values: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
-        try await self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), logger: logger, on: eventLoop)
+    public func createFaceIdSign(caller: Caller, values: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
+        try await self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), region: region, logger: logger, on: eventLoop)
     }
 }

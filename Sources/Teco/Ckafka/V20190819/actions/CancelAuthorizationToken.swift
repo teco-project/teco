@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Ckafka {
 
     /// 取消授权token
     @inlinable
-    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorizationTokenResponse> {
-        self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorizationTokenResponse> {
+        self.client.execute(action: "CancelAuthorizationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消授权token
     @inlinable
-    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
-        try await self.client.execute(action: "CancelAuthorizationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelAuthorizationToken(_ input: CancelAuthorizationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
+        try await self.client.execute(action: "CancelAuthorizationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消授权token
     @inlinable
-    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorizationTokenResponse> {
-        self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorizationTokenResponse> {
+        self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消授权token
     @inlinable
-    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
-        try await self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    public func cancelAuthorizationToken(instanceId: String, user: String, tokens: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorizationTokenResponse {
+        try await self.cancelAuthorizationToken(CancelAuthorizationTokenRequest(instanceId: instanceId, user: user, tokens: tokens), region: region, logger: logger, on: eventLoop)
     }
 }

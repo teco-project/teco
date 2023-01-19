@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Iecp {
 
     /// 查询用户的资源限制
     @inlinable
-    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeYeheResourceLimitResponse> {
-        self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeYeheResourceLimitResponse> {
+        self.client.execute(action: "DescribeYeheResourceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户的资源限制
     @inlinable
-    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
-        try await self.client.execute(action: "DescribeYeheResourceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeYeheResourceLimit(_ input: DescribeYeheResourceLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
+        try await self.client.execute(action: "DescribeYeheResourceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户的资源限制
     @inlinable
-    public func describeYeheResourceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeYeheResourceLimitResponse> {
-        self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), logger: logger, on: eventLoop)
+    public func describeYeheResourceLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeYeheResourceLimitResponse> {
+        self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户的资源限制
     @inlinable
-    public func describeYeheResourceLimit(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
-        try await self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), logger: logger, on: eventLoop)
+    public func describeYeheResourceLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeYeheResourceLimitResponse {
+        try await self.describeYeheResourceLimit(DescribeYeheResourceLimitRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

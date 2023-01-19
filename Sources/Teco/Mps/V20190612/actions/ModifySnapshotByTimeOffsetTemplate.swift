@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Mps {
     ///
     /// 修改用户自定义指定时间点截图模板。
     @inlinable
-    public func modifySnapshotByTimeOffsetTemplate(_ input: ModifySnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotByTimeOffsetTemplateResponse> {
-        self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySnapshotByTimeOffsetTemplate(_ input: ModifySnapshotByTimeOffsetTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotByTimeOffsetTemplateResponse> {
+        self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改指定时间点截图模板
     ///
     /// 修改用户自定义指定时间点截图模板。
     @inlinable
-    public func modifySnapshotByTimeOffsetTemplate(_ input: ModifySnapshotByTimeOffsetTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotByTimeOffsetTemplateResponse {
-        try await self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySnapshotByTimeOffsetTemplate(_ input: ModifySnapshotByTimeOffsetTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotByTimeOffsetTemplateResponse {
+        try await self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改指定时间点截图模板
     ///
     /// 修改用户自定义指定时间点截图模板。
     @inlinable
-    public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotByTimeOffsetTemplateResponse> {
-        self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotByTimeOffsetTemplateResponse> {
+        self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改指定时间点截图模板
     ///
     /// 修改用户自定义指定时间点截图模板。
     @inlinable
-    public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotByTimeOffsetTemplateResponse {
-        try await self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotByTimeOffsetTemplateResponse {
+        try await self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

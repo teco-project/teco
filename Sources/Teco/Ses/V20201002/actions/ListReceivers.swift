@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Ses {
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     @inlinable
-    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListReceiversResponse> {
-        self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listReceivers(_ input: ListReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListReceiversResponse> {
+        self.client.execute(action: "ListReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询收件人列表
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     @inlinable
-    public func listReceivers(_ input: ListReceiversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
-        try await self.client.execute(action: "ListReceivers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listReceivers(_ input: ListReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
+        try await self.client.execute(action: "ListReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询收件人列表
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     @inlinable
-    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListReceiversResponse> {
-        self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), logger: logger, on: eventLoop)
+    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListReceiversResponse> {
+        self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询收件人列表
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
     @inlinable
-    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
-        try await self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), logger: logger, on: eventLoop)
+    public func listReceivers(offset: UInt64, limit: UInt64, status: UInt64? = nil, keyWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListReceiversResponse {
+        try await self.listReceivers(ListReceiversRequest(offset: offset, limit: limit, status: status, keyWord: keyWord), region: region, logger: logger, on: eventLoop)
     }
 }

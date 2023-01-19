@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Gaap {
 
     /// 修改域名属性
     @inlinable
-    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
-        self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
+        self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名属性
     @inlinable
-    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
-        try await self.client.execute(action: "ModifyGlobalDomainAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
+        try await self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名属性
     @inlinable
-    public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
-        self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), logger: logger, on: eventLoop)
+    public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
+        self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名属性
     @inlinable
-    public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
-        try await self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), logger: logger, on: eventLoop)
+    public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
+        try await self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }
 }

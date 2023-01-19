@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -138,8 +138,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(_ input: GeneralAccurateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
-        self.client.execute(action: "GeneralAccurateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generalAccurateOCR(_ input: GeneralAccurateOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
+        self.client.execute(action: "GeneralAccurateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别（高精度版）
@@ -204,8 +204,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(_ input: GeneralAccurateOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
-        try await self.client.execute(action: "GeneralAccurateOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generalAccurateOCR(_ input: GeneralAccurateOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
+        try await self.client.execute(action: "GeneralAccurateOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通用印刷体识别（高精度版）
@@ -270,8 +270,8 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
-        self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralAccurateOCRResponse> {
+        self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别（高精度版）
@@ -336,7 +336,7 @@ extension Ocr {
     ///     </table>
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
-        try await self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func generalAccurateOCR(imageBase64: String? = nil, imageUrl: String? = nil, isWords: Bool? = nil, enableDetectSplit: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralAccurateOCRResponse {
+        try await self.generalAccurateOCR(GeneralAccurateOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isWords: isWords, enableDetectSplit: enableDetectSplit, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

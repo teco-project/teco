@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dayu {
 
     /// 修改弹性防护阈值
     @inlinable
-    public func modifyElasticLimit(_ input: ModifyElasticLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyElasticLimitResponse> {
-        self.client.execute(action: "ModifyElasticLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyElasticLimit(_ input: ModifyElasticLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyElasticLimitResponse> {
+        self.client.execute(action: "ModifyElasticLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性防护阈值
     @inlinable
-    public func modifyElasticLimit(_ input: ModifyElasticLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
-        try await self.client.execute(action: "ModifyElasticLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyElasticLimit(_ input: ModifyElasticLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
+        try await self.client.execute(action: "ModifyElasticLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性防护阈值
     @inlinable
-    public func modifyElasticLimit(business: String, id: String, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyElasticLimitResponse> {
-        self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), logger: logger, on: eventLoop)
+    public func modifyElasticLimit(business: String, id: String, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyElasticLimitResponse> {
+        self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性防护阈值
     @inlinable
-    public func modifyElasticLimit(business: String, id: String, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
-        try await self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), logger: logger, on: eventLoop)
+    public func modifyElasticLimit(business: String, id: String, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyElasticLimitResponse {
+        try await self.modifyElasticLimit(ModifyElasticLimitRequest(business: business, id: id, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

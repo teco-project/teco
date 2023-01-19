@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Bda {
     ///
     /// 检测给定图片中的人体（Body）的位置信息及属性信息。
     @inlinable
-    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectBodyResponse> {
-        self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detectBody(_ input: DetectBodyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectBodyResponse> {
+        self.client.execute(action: "DetectBody", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人体检测与属性分析
     ///
     /// 检测给定图片中的人体（Body）的位置信息及属性信息。
     @inlinable
-    public func detectBody(_ input: DetectBodyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
-        try await self.client.execute(action: "DetectBody", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detectBody(_ input: DetectBodyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
+        try await self.client.execute(action: "DetectBody", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人体检测与属性分析
     ///
     /// 检测给定图片中的人体（Body）的位置信息及属性信息。
     @inlinable
-    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectBodyResponse> {
-        self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), logger: logger, on: eventLoop)
+    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectBodyResponse> {
+        self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人体检测与属性分析
     ///
     /// 检测给定图片中的人体（Body）的位置信息及属性信息。
     @inlinable
-    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
-        try await self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), logger: logger, on: eventLoop)
+    public func detectBody(image: String? = nil, maxBodyNum: UInt64? = nil, url: String? = nil, attributesOptions: AttributesOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectBodyResponse {
+        try await self.detectBody(DetectBodyRequest(image: image, maxBodyNum: maxBodyNum, url: url, attributesOptions: attributesOptions), region: region, logger: logger, on: eventLoop)
     }
 }

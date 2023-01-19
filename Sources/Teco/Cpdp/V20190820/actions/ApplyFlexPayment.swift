@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Cpdp {
 
     /// 灵云V2-付款
     @inlinable
-    public func applyFlexPayment(_ input: ApplyFlexPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexPaymentResponse> {
-        self.client.execute(action: "ApplyFlexPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyFlexPayment(_ input: ApplyFlexPaymentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexPaymentResponse> {
+        self.client.execute(action: "ApplyFlexPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-付款
     @inlinable
-    public func applyFlexPayment(_ input: ApplyFlexPaymentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
-        try await self.client.execute(action: "ApplyFlexPayment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyFlexPayment(_ input: ApplyFlexPaymentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
+        try await self.client.execute(action: "ApplyFlexPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-付款
     @inlinable
-    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexPaymentResponse> {
-        self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexPaymentResponse> {
+        self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-付款
     @inlinable
-    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
-        try await self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), logger: logger, on: eventLoop)
+    public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
+        try await self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

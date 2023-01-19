@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Scf {
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
-    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFunctionsResponse> {
-        self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listFunctions(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFunctionsResponse> {
+        self.client.execute(action: "ListFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数列表
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
-    public func listFunctions(_ input: ListFunctionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
-        try await self.client.execute(action: "ListFunctions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listFunctions(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
+        try await self.client.execute(action: "ListFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数列表
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
-    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFunctionsResponse> {
-        self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), logger: logger, on: eventLoop)
+    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFunctionsResponse> {
+        self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数列表
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
-    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
-        try await self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), logger: logger, on: eventLoop)
+    public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
+        try await self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

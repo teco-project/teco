@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Iotvideo {
 
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
-        self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setForwardAuth(_ input: SetForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
+        self.client.execute(action: "SetForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(_ input: SetForwardAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
-        try await self.client.execute(action: "SetForwardAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setForwardAuth(_ input: SetForwardAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
+        try await self.client.execute(action: "SetForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
-        self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
+    public func setForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
+        self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置转发权限
     @inlinable
-    public func setForwardAuth(skey: String, queueType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
-        try await self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), logger: logger, on: eventLoop)
+    public func setForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
+        try await self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
     }
 }

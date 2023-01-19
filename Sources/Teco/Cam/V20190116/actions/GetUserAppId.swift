@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cam {
 
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
-        self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUserAppId(_ input: GetUserAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
+        self.client.execute(action: "GetUserAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(_ input: GetUserAppIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
-        try await self.client.execute(action: "GetUserAppId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUserAppId(_ input: GetUserAppIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
+        try await self.client.execute(action: "GetUserAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
-        self.getUserAppId(GetUserAppIdRequest(), logger: logger, on: eventLoop)
+    public func getUserAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
+        self.getUserAppId(GetUserAppIdRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户AppId
     @inlinable
-    public func getUserAppId(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
-        try await self.getUserAppId(GetUserAppIdRequest(), logger: logger, on: eventLoop)
+    public func getUserAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
+        try await self.getUserAppId(GetUserAppIdRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

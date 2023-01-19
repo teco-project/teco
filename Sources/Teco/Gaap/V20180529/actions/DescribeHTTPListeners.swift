@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Gaap {
     ///
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
-    public func describeHTTPListeners(_ input: DescribeHTTPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPListenersResponse> {
-        self.client.execute(action: "DescribeHTTPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHTTPListeners(_ input: DescribeHTTPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPListenersResponse> {
+        self.client.execute(action: "DescribeHTTPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTP监听器信息
     ///
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
-    public func describeHTTPListeners(_ input: DescribeHTTPListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
-        try await self.client.execute(action: "DescribeHTTPListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHTTPListeners(_ input: DescribeHTTPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
+        try await self.client.execute(action: "DescribeHTTPListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询HTTP监听器信息
     ///
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
-    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPListenersResponse> {
-        self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHTTPListenersResponse> {
+        self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询HTTP监听器信息
     ///
     /// 该接口（DescribeHTTPListeners）用来查询HTTP监听器信息。
     @inlinable
-    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
-        try await self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeHTTPListeners(proxyId: String? = nil, listenerId: String? = nil, listenerName: String? = nil, port: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, searchValue: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHTTPListenersResponse {
+        try await self.describeHTTPListeners(DescribeHTTPListenersRequest(proxyId: proxyId, listenerId: listenerId, listenerName: listenerName, port: port, offset: offset, limit: limit, searchValue: searchValue, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Oceanus {
     ///
     /// 单条和批量复制作业
     @inlinable
-    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyJobsResponse> {
-        self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyJobs(_ input: CopyJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyJobsResponse> {
+        self.client.execute(action: "CopyJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制作业
     ///
     /// 单条和批量复制作业
     @inlinable
-    public func copyJobs(_ input: CopyJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
-        try await self.client.execute(action: "CopyJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyJobs(_ input: CopyJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
+        try await self.client.execute(action: "CopyJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制作业
     ///
     /// 单条和批量复制作业
     @inlinable
-    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyJobsResponse> {
-        self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyJobsResponse> {
+        self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制作业
     ///
     /// 单条和批量复制作业
     @inlinable
-    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
-        try await self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
+        try await self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,8 +93,8 @@ extension Live {
     /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createRecordTask(_ input: CreateRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordTaskResponse> {
-        self.client.execute(action: "CreateRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRecordTask(_ input: CreateRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordTaskResponse> {
+        self.client.execute(action: "CreateRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务（新）
@@ -110,8 +110,8 @@ extension Live {
     /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createRecordTask(_ input: CreateRecordTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
-        try await self.client.execute(action: "CreateRecordTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRecordTask(_ input: CreateRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
+        try await self.client.execute(action: "CreateRecordTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建录制任务（新）
@@ -127,8 +127,8 @@ extension Live {
     /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordTaskResponse> {
-        self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), logger: logger, on: eventLoop)
+    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordTaskResponse> {
+        self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务（新）
@@ -144,7 +144,7 @@ extension Live {
     /// 4. 当前录制任务管理API（[CreateRecordTask](https://cloud.tencent.com/document/product/267/45983)/[StopRecordTask](https://cloud.tencent.com/document/product/267/45981)/[DeleteRecordTask](https://cloud.tencent.com/document/product/267/45982)）与旧API（CreateLiveRecord/StopLiveRecord/DeleteLiveRecord）不兼容，两套接口不能混用。
     /// 5. 避免 创建录制任务 与 推流 操作同时进行，可能导致因录制任务未生效而引起任务延迟启动问题，两者操作间隔建议大于3秒。
     @inlinable
-    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
-        try await self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), logger: logger, on: eventLoop)
+    public func createRecordTask(streamName: String, domainName: String, appName: String, endTime: UInt64, startTime: UInt64? = nil, streamType: UInt64? = nil, templateId: UInt64? = nil, extension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordTaskResponse {
+        try await self.createRecordTask(CreateRecordTaskRequest(streamName: streamName, domainName: domainName, appName: appName, endTime: endTime, startTime: startTime, streamType: streamType, templateId: templateId, extension: `extension`), region: region, logger: logger, on: eventLoop)
     }
 }

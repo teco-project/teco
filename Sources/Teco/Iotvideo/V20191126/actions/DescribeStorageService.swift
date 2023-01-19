@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Iotvideo {
 
     /// 查询云存服务
     @inlinable
-    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageServiceResponse> {
-        self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStorageService(_ input: DescribeStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageServiceResponse> {
+        self.client.execute(action: "DescribeStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云存服务
     @inlinable
-    public func describeStorageService(_ input: DescribeStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
-        try await self.client.execute(action: "DescribeStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStorageService(_ input: DescribeStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
+        try await self.client.execute(action: "DescribeStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云存服务
     @inlinable
-    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageServiceResponse> {
-        self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), logger: logger, on: eventLoop)
+    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageServiceResponse> {
+        self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云存服务
     @inlinable
-    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
-        try await self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), logger: logger, on: eventLoop)
+    public func describeStorageService(serviceId: String, getFinishedOrder: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageServiceResponse {
+        try await self.describeStorageService(DescribeStorageServiceRequest(serviceId: serviceId, getFinishedOrder: getFinishedOrder), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dts {
     ///
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
-    public func modifySubscribeObjects(_ input: ModifySubscribeObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeObjectsResponse> {
-        self.client.execute(action: "ModifySubscribeObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubscribeObjects(_ input: ModifySubscribeObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeObjectsResponse> {
+        self.client.execute(action: "ModifySubscribeObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅通道的订阅规则
     ///
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
-    public func modifySubscribeObjects(_ input: ModifySubscribeObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeObjectsResponse {
-        try await self.client.execute(action: "ModifySubscribeObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubscribeObjects(_ input: ModifySubscribeObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeObjectsResponse {
+        try await self.client.execute(action: "ModifySubscribeObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据订阅通道的订阅规则
     ///
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
-    public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeObjectsResponse> {
-        self.modifySubscribeObjects(ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), logger: logger, on: eventLoop)
+    public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeObjectsResponse> {
+        self.modifySubscribeObjects(ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅通道的订阅规则
     ///
     /// 本接口(ModifySubscribeObjects)用于修改数据订阅通道的订阅规则
     @inlinable
-    public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeObjectsResponse {
-        try await self.modifySubscribeObjects(ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), logger: logger, on: eventLoop)
+    public func modifySubscribeObjects(subscribeId: String, subscribeObjectType: Int64, objects: [SubscribeObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeObjectsResponse {
+        try await self.modifySubscribeObjects(ModifySubscribeObjectsRequest(subscribeId: subscribeId, subscribeObjectType: subscribeObjectType, objects: objects), region: region, logger: logger, on: eventLoop)
     }
 }

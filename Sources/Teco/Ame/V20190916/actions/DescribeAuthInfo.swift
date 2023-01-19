@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ame {
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
-        self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
+        self.client.execute(action: "DescribeAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
-        try await self.client.execute(action: "DescribeAuthInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAuthInfo(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
+        try await self.client.execute(action: "DescribeAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
-        self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), logger: logger, on: eventLoop)
+    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
+        self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目列表
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
-        try await self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), logger: logger, on: eventLoop)
+    public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
+        try await self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), region: region, logger: logger, on: eventLoop)
     }
 }

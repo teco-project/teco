@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Chdfs {
     ///
     /// 查看文件系统列表。
     @inlinable
-    public func describeFileSystems(_ input: DescribeFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSystemsResponse> {
-        self.client.execute(action: "DescribeFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFileSystems(_ input: DescribeFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSystemsResponse> {
+        self.client.execute(action: "DescribeFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看文件系统列表
     ///
     /// 查看文件系统列表。
     @inlinable
-    public func describeFileSystems(_ input: DescribeFileSystemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemsResponse {
-        try await self.client.execute(action: "DescribeFileSystems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFileSystems(_ input: DescribeFileSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemsResponse {
+        try await self.client.execute(action: "DescribeFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看文件系统列表
     ///
     /// 查看文件系统列表。
     @inlinable
-    public func describeFileSystems(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSystemsResponse> {
-        self.describeFileSystems(DescribeFileSystemsRequest(), logger: logger, on: eventLoop)
+    public func describeFileSystems(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSystemsResponse> {
+        self.describeFileSystems(DescribeFileSystemsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看文件系统列表
     ///
     /// 查看文件系统列表。
     @inlinable
-    public func describeFileSystems(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemsResponse {
-        try await self.describeFileSystems(DescribeFileSystemsRequest(), logger: logger, on: eventLoop)
+    public func describeFileSystems(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemsResponse {
+        try await self.describeFileSystems(DescribeFileSystemsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

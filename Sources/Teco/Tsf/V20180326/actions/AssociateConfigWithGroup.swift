@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tsf {
 
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
-        self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
+        self.client.execute(action: "AssociateConfigWithGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
-        try await self.client.execute(action: "AssociateConfigWithGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateConfigWithGroup(_ input: AssociateConfigWithGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
+        try await self.client.execute(action: "AssociateConfigWithGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
-        self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
+        self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联投递配置到部署组
     @inlinable
-    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
-        try await self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
+        try await self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 }

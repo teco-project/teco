@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -152,8 +152,8 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
-        self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
+        self.client.execute(action: "DescribeCDNStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询点播域名的 CDN 统计数据
@@ -163,8 +163,8 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
-        try await self.client.execute(action: "DescribeCDNStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCDNStatDetails(_ input: DescribeCDNStatDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
+        try await self.client.execute(action: "DescribeCDNStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询点播域名的 CDN 统计数据
@@ -174,8 +174,8 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
-        self.describeCDNStatDetails(DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), logger: logger, on: eventLoop)
+    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNStatDetailsResponse> {
+        self.describeCDNStatDetails(DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询点播域名的 CDN 统计数据
@@ -185,7 +185,7 @@ extension Vod {
     /// * 可以查询不同服务区域的数据。
     /// * 中国境内的数据支持查询指定地区、运营商的统计数据。
     @inlinable
-    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
-        try await self.describeCDNStatDetails(DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), logger: logger, on: eventLoop)
+    public func describeCDNStatDetails(metric: String, startTime: String, endTime: String, subAppId: UInt64? = nil, domainNames: [String]? = nil, area: String? = nil, districts: [String]? = nil, isps: [String]? = nil, dataInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNStatDetailsResponse {
+        try await self.describeCDNStatDetails(DescribeCDNStatDetailsRequest(metric: metric, startTime: startTime, endTime: endTime, subAppId: subAppId, domainNames: domainNames, area: area, districts: districts, isps: isps, dataInterval: dataInterval), region: region, logger: logger, on: eventLoop)
     }
 }

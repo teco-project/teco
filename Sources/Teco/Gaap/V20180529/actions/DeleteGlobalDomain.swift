@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Gaap {
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
-        self.client.execute(action: "DeleteGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
+        self.client.execute(action: "DeleteGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
-        try await self.client.execute(action: "DeleteGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
+        try await self.client.execute(action: "DeleteGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除域名
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
-        self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
+        self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
     ///
     /// 删除统一域名
     @inlinable
-    public func deleteGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
-        try await self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func deleteGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
+        try await self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

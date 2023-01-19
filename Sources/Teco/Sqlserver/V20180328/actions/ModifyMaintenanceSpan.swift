@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
     @inlinable
-    public func modifyMaintenanceSpan(_ input: ModifyMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceSpanResponse> {
-        self.client.execute(action: "ModifyMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMaintenanceSpan(_ input: ModifyMaintenanceSpanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceSpanResponse> {
+        self.client.execute(action: "ModifyMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改可维护时间窗
     ///
     /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
     @inlinable
-    public func modifyMaintenanceSpan(_ input: ModifyMaintenanceSpanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
-        try await self.client.execute(action: "ModifyMaintenanceSpan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMaintenanceSpan(_ input: ModifyMaintenanceSpanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
+        try await self.client.execute(action: "ModifyMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改可维护时间窗
     ///
     /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
     @inlinable
-    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceSpanResponse> {
-        self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), logger: logger, on: eventLoop)
+    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintenanceSpanResponse> {
+        self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改可维护时间窗
     ///
     /// 本接口（ModifyMaintenanceSpan）用于修改实例的可维护时间窗
     @inlinable
-    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
-        try await self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), logger: logger, on: eventLoop)
+    public func modifyMaintenanceSpan(instanceId: String, weekly: [Int64]? = nil, startTime: String? = nil, span: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintenanceSpanResponse {
+        try await self.modifyMaintenanceSpan(ModifyMaintenanceSpanRequest(instanceId: instanceId, weekly: weekly, startTime: startTime, span: span), region: region, logger: logger, on: eventLoop)
     }
 }

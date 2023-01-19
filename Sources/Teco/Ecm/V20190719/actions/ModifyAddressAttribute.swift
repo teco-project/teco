@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Ecm {
 
     /// 修改弹性公网IP属性
     @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
+        self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
     @inlinable
-    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.client.execute(action: "ModifyAddressAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAddressAttribute(_ input: ModifyAddressAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性公网IP属性
     @inlinable
-    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
+        self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
     @inlinable
-    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func modifyAddressAttribute(ecmRegion: String, addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
+        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(ecmRegion: ecmRegion, addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 }

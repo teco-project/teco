@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,31 +84,31 @@ extension Cwp {
     ///
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
-    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStateResponse> {
-        self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScanState(_ input: DescribeScanStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStateResponse> {
+        self.client.execute(action: "DescribeScanState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询扫描状态
     ///
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
-    public func describeScanState(_ input: DescribeScanStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
-        try await self.client.execute(action: "DescribeScanState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScanState(_ input: DescribeScanStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
+        try await self.client.execute(action: "DescribeScanState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询扫描状态
     ///
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
-    public func describeScanState(moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStateResponse> {
-        self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    public func describeScanState(moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStateResponse> {
+        self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询扫描状态
     ///
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
-    public func describeScanState(moduleType: String, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
-        try await self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), logger: logger, on: eventLoop)
+    public func describeScanState(moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
+        try await self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

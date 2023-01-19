@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Ame {
     ///
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
-    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TakeMusicOffShelvesResponse> {
-        self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TakeMusicOffShelvesResponse> {
+        self.client.execute(action: "TakeMusicOffShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下架歌曲
     ///
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
-    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
-        try await self.client.execute(action: "TakeMusicOffShelves", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func takeMusicOffShelves(_ input: TakeMusicOffShelvesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
+        try await self.client.execute(action: "TakeMusicOffShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下架歌曲
     ///
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
-    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TakeMusicOffShelvesResponse> {
-        self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), logger: logger, on: eventLoop)
+    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TakeMusicOffShelvesResponse> {
+        self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下架歌曲
     ///
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
-    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
-        try await self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), logger: logger, on: eventLoop)
+    public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
+        try await self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), region: region, logger: logger, on: eventLoop)
     }
 }

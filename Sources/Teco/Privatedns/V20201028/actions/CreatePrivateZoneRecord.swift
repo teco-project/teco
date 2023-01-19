@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Privatedns {
 
     /// 添加私有域解析记录
     @inlinable
-    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateZoneRecordResponse> {
-        self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateZoneRecordResponse> {
+        self.client.execute(action: "CreatePrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加私有域解析记录
     @inlinable
-    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
-        try await self.client.execute(action: "CreatePrivateZoneRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrivateZoneRecord(_ input: CreatePrivateZoneRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
+        try await self.client.execute(action: "CreatePrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加私有域解析记录
     @inlinable
-    public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateZoneRecordResponse> {
-        self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), logger: logger, on: eventLoop)
+    public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateZoneRecordResponse> {
+        self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加私有域解析记录
     @inlinable
-    public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
-        try await self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), logger: logger, on: eventLoop)
+    public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
+        try await self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

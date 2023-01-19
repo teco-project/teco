@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cls {
     ///
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
-    public func mergePartition(_ input: MergePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergePartitionResponse> {
-        self.client.execute(action: "MergePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func mergePartition(_ input: MergePartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergePartitionResponse> {
+        self.client.execute(action: "MergePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合并分区
     ///
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
-    public func mergePartition(_ input: MergePartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
-        try await self.client.execute(action: "MergePartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func mergePartition(_ input: MergePartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
+        try await self.client.execute(action: "MergePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合并分区
     ///
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
-    public func mergePartition(topicId: String, partitionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergePartitionResponse> {
-        self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), logger: logger, on: eventLoop)
+    public func mergePartition(topicId: String, partitionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergePartitionResponse> {
+        self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合并分区
     ///
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
-    public func mergePartition(topicId: String, partitionId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
-        try await self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), logger: logger, on: eventLoop)
+    public func mergePartition(topicId: String, partitionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
+        try await self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), region: region, logger: logger, on: eventLoop)
     }
 }

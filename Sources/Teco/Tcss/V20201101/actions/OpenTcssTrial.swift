@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
-        self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func openTcssTrial(_ input: OpenTcssTrialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
+        self.client.execute(action: "OpenTcssTrial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(_ input: OpenTcssTrialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
-        try await self.client.execute(action: "OpenTcssTrial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func openTcssTrial(_ input: OpenTcssTrialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
+        try await self.client.execute(action: "OpenTcssTrial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
-        self.openTcssTrial(OpenTcssTrialRequest(), logger: logger, on: eventLoop)
+    public func openTcssTrial(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
+        self.openTcssTrial(OpenTcssTrialRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通容器安全服务试用
     @inlinable
-    public func openTcssTrial(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
-        try await self.openTcssTrial(OpenTcssTrialRequest(), logger: logger, on: eventLoop)
+    public func openTcssTrial(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
+        try await self.openTcssTrial(OpenTcssTrialRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

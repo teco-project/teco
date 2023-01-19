@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Cpdp {
 
     /// 灵云-上传主播信息
     @inlinable
-    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadExternalAnchorInfoResponse> {
-        self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadExternalAnchorInfoResponse> {
+        self.client.execute(action: "UploadExternalAnchorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-上传主播信息
     @inlinable
-    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
-        try await self.client.execute(action: "UploadExternalAnchorInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadExternalAnchorInfo(_ input: UploadExternalAnchorInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
+        try await self.client.execute(action: "UploadExternalAnchorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-上传主播信息
     @inlinable
-    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadExternalAnchorInfoResponse> {
-        self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), logger: logger, on: eventLoop)
+    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadExternalAnchorInfoResponse> {
+        self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-上传主播信息
     @inlinable
-    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
-        try await self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), logger: logger, on: eventLoop)
+    public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
+        try await self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), region: region, logger: logger, on: eventLoop)
     }
 }

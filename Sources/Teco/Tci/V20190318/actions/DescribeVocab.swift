@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tci {
 
     /// 查询词汇
     @inlinable
-    public func describeVocab(_ input: DescribeVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVocabResponse> {
-        self.client.execute(action: "DescribeVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVocab(_ input: DescribeVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVocabResponse> {
+        self.client.execute(action: "DescribeVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询词汇
     @inlinable
-    public func describeVocab(_ input: DescribeVocabRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabResponse {
-        try await self.client.execute(action: "DescribeVocab", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVocab(_ input: DescribeVocabRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabResponse {
+        try await self.client.execute(action: "DescribeVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询词汇
     @inlinable
-    public func describeVocab(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVocabResponse> {
-        self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), logger: logger, on: eventLoop)
+    public func describeVocab(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVocabResponse> {
+        self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询词汇
     @inlinable
-    public func describeVocab(vocabLibName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabResponse {
-        try await self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), logger: logger, on: eventLoop)
+    public func describeVocab(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabResponse {
+        try await self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
-    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBResponse> {
-        self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDB(_ input: CreateDBRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBResponse> {
+        self.client.execute(action: "CreateDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建数据库
     ///
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
-    public func createDB(_ input: CreateDBRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
-        try await self.client.execute(action: "CreateDB", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDB(_ input: CreateDBRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
+        try await self.client.execute(action: "CreateDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建数据库
     ///
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
-    public func createDB(instanceId: String, dBs: [DBCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBResponse> {
-        self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    public func createDB(instanceId: String, dBs: [DBCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBResponse> {
+        self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据库
     ///
     /// 本接口（CreateDB）用于创建数据库。
     @inlinable
-    public func createDB(instanceId: String, dBs: [DBCreateInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
-        try await self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), logger: logger, on: eventLoop)
+    public func createDB(instanceId: String, dBs: [DBCreateInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBResponse {
+        try await self.createDB(CreateDBRequest(instanceId: instanceId, dBs: dBs), region: region, logger: logger, on: eventLoop)
     }
 }

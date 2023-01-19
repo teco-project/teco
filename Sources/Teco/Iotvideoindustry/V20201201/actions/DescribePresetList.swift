@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 获取预置位列表
     @inlinable
-    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePresetListResponse> {
-        self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePresetList(_ input: DescribePresetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePresetListResponse> {
+        self.client.execute(action: "DescribePresetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取预置位列表
     @inlinable
-    public func describePresetList(_ input: DescribePresetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
-        try await self.client.execute(action: "DescribePresetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePresetList(_ input: DescribePresetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
+        try await self.client.execute(action: "DescribePresetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取预置位列表
     @inlinable
-    public func describePresetList(channelId: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePresetListResponse> {
-        self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func describePresetList(channelId: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePresetListResponse> {
+        self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取预置位列表
     @inlinable
-    public func describePresetList(channelId: String, deviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
-        try await self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), logger: logger, on: eventLoop)
+    public func describePresetList(channelId: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
+        try await self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
     }
 }

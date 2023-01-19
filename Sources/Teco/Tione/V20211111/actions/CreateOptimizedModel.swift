@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tione {
 
     /// 保存优化模型
     @inlinable
-    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOptimizedModelResponse> {
-        self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOptimizedModelResponse> {
+        self.client.execute(action: "CreateOptimizedModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 保存优化模型
     @inlinable
-    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
-        try await self.client.execute(action: "CreateOptimizedModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOptimizedModel(_ input: CreateOptimizedModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
+        try await self.client.execute(action: "CreateOptimizedModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 保存优化模型
     @inlinable
-    public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOptimizedModelResponse> {
-        self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), logger: logger, on: eventLoop)
+    public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOptimizedModelResponse> {
+        self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存优化模型
     @inlinable
-    public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
-        try await self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), logger: logger, on: eventLoop)
+    public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
+        try await self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

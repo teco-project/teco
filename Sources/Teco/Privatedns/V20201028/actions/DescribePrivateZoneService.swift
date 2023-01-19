@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Privatedns {
 
     /// 查询私有域解析开通状态
     @inlinable
-    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneServiceResponse> {
-        self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneServiceResponse> {
+        self.client.execute(action: "DescribePrivateZoneService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有域解析开通状态
     @inlinable
-    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
-        try await self.client.execute(action: "DescribePrivateZoneService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrivateZoneService(_ input: DescribePrivateZoneServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
+        try await self.client.execute(action: "DescribePrivateZoneService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询私有域解析开通状态
     @inlinable
-    public func describePrivateZoneService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneServiceResponse> {
-        self.describePrivateZoneService(DescribePrivateZoneServiceRequest(), logger: logger, on: eventLoop)
+    public func describePrivateZoneService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateZoneServiceResponse> {
+        self.describePrivateZoneService(DescribePrivateZoneServiceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询私有域解析开通状态
     @inlinable
-    public func describePrivateZoneService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
-        try await self.describePrivateZoneService(DescribePrivateZoneServiceRequest(), logger: logger, on: eventLoop)
+    public func describePrivateZoneService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateZoneServiceResponse {
+        try await self.describePrivateZoneService(DescribePrivateZoneServiceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

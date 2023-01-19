@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Trp {
 
     /// 编辑商户
     @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMerchant(_ input: ModifyMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
+        self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑商户
     @inlinable
-    public func modifyMerchant(_ input: ModifyMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.client.execute(action: "ModifyMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMerchant(_ input: ModifyMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑商户
     @inlinable
-    public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
+        self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑商户
     @inlinable
-    public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), logger: logger, on: eventLoop)
+    public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
+        try await self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
     }
 }

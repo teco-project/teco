@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Es {
 
     /// 更新索引
     @inlinable
-    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIndexResponse> {
-        self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateIndex(_ input: UpdateIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIndexResponse> {
+        self.client.execute(action: "UpdateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新索引
     @inlinable
-    public func updateIndex(_ input: UpdateIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
-        try await self.client.execute(action: "UpdateIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateIndex(_ input: UpdateIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
+        try await self.client.execute(action: "UpdateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新索引
     @inlinable
-    public func updateIndex(instanceId: String, indexType: String, indexName: String, updateMetaJson: String? = nil, username: String? = nil, password: String? = nil, rolloverBackingIndex: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIndexResponse> {
-        self.updateIndex(UpdateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, updateMetaJson: updateMetaJson, username: username, password: password, rolloverBackingIndex: rolloverBackingIndex), logger: logger, on: eventLoop)
+    public func updateIndex(instanceId: String, indexType: String, indexName: String, updateMetaJson: String? = nil, username: String? = nil, password: String? = nil, rolloverBackingIndex: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateIndexResponse> {
+        self.updateIndex(UpdateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, updateMetaJson: updateMetaJson, username: username, password: password, rolloverBackingIndex: rolloverBackingIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新索引
     @inlinable
-    public func updateIndex(instanceId: String, indexType: String, indexName: String, updateMetaJson: String? = nil, username: String? = nil, password: String? = nil, rolloverBackingIndex: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
-        try await self.updateIndex(UpdateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, updateMetaJson: updateMetaJson, username: username, password: password, rolloverBackingIndex: rolloverBackingIndex), logger: logger, on: eventLoop)
+    public func updateIndex(instanceId: String, indexType: String, indexName: String, updateMetaJson: String? = nil, username: String? = nil, password: String? = nil, rolloverBackingIndex: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateIndexResponse {
+        try await self.updateIndex(UpdateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, updateMetaJson: updateMetaJson, username: username, password: password, rolloverBackingIndex: rolloverBackingIndex), region: region, logger: logger, on: eventLoop)
     }
 }

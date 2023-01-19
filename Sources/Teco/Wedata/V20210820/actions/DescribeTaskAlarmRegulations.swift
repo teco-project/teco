@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Wedata {
 
     /// 查询任务告警规则列表
     @inlinable
-    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskAlarmRegulationsResponse> {
-        self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskAlarmRegulationsResponse> {
+        self.client.execute(action: "DescribeTaskAlarmRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务告警规则列表
     @inlinable
-    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
-        try await self.client.execute(action: "DescribeTaskAlarmRegulations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskAlarmRegulations(_ input: DescribeTaskAlarmRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
+        try await self.client.execute(action: "DescribeTaskAlarmRegulations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询任务告警规则列表
     @inlinable
-    public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskAlarmRegulationsResponse> {
-        self.describeTaskAlarmRegulations(DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), logger: logger, on: eventLoop)
+    public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskAlarmRegulationsResponse> {
+        self.describeTaskAlarmRegulations(DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务告警规则列表
     @inlinable
-    public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
-        try await self.describeTaskAlarmRegulations(DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), logger: logger, on: eventLoop)
+    public func describeTaskAlarmRegulations(taskId: String, projectId: String, taskType: Int64, pageNumber: Int64, pageSize: Int64, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskAlarmRegulationsResponse {
+        try await self.describeTaskAlarmRegulations(DescribeTaskAlarmRegulationsRequest(taskId: taskId, projectId: projectId, taskType: taskType, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields), region: region, logger: logger, on: eventLoop)
     }
 }

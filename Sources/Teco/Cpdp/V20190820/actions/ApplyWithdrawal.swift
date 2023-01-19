@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -128,31 +128,31 @@ extension Cpdp {
     ///
     /// 商户提现
     @inlinable
-    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyWithdrawalResponse> {
-        self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyWithdrawalResponse> {
+        self.client.execute(action: "ApplyWithdrawal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现
     ///
     /// 商户提现
     @inlinable
-    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
-        try await self.client.execute(action: "ApplyWithdrawal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyWithdrawal(_ input: ApplyWithdrawalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
+        try await self.client.execute(action: "ApplyWithdrawal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-提现
     ///
     /// 商户提现
     @inlinable
-    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyWithdrawalResponse> {
-        self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), logger: logger, on: eventLoop)
+    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyWithdrawalResponse> {
+        self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现
     ///
     /// 商户提现
     @inlinable
-    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
-        try await self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), logger: logger, on: eventLoop)
+    public func applyWithdrawal(midasAppId: String, subAppId: String, settleAcctNo: String, settleAcctName: String, currencyType: String, currencyUnit: Int64, currencyAmt: String, tranWebName: String, idType: String, idCode: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, commissionAmount: String? = nil, withdrawOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyWithdrawalResponse {
+        try await self.applyWithdrawal(ApplyWithdrawalRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, tranWebName: tranWebName, idType: idType, idCode: idCode, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment, commissionAmount: commissionAmount, withdrawOrderId: withdrawOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

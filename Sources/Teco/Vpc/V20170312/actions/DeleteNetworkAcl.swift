@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
-        self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
+        self.client.execute(action: "DeleteNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
-        try await self.client.execute(action: "DeleteNetworkAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
+        try await self.client.execute(action: "DeleteNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
-        self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), logger: logger, on: eventLoop)
+    public func deleteNetworkAcl(networkAclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
+        self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
     @inlinable
-    public func deleteNetworkAcl(networkAclId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
-        try await self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), logger: logger, on: eventLoop)
+    public func deleteNetworkAcl(networkAclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
+        try await self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), region: region, logger: logger, on: eventLoop)
     }
 }

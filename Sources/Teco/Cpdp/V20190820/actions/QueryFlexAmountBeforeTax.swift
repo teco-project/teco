@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 灵云V2-查询税前金额
     @inlinable
-    public func queryFlexAmountBeforeTax(_ input: QueryFlexAmountBeforeTaxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexAmountBeforeTaxResponse> {
-        self.client.execute(action: "QueryFlexAmountBeforeTax", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexAmountBeforeTax(_ input: QueryFlexAmountBeforeTaxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexAmountBeforeTaxResponse> {
+        self.client.execute(action: "QueryFlexAmountBeforeTax", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询税前金额
     @inlinable
-    public func queryFlexAmountBeforeTax(_ input: QueryFlexAmountBeforeTaxRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
-        try await self.client.execute(action: "QueryFlexAmountBeforeTax", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexAmountBeforeTax(_ input: QueryFlexAmountBeforeTaxRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
+        try await self.client.execute(action: "QueryFlexAmountBeforeTax", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-查询税前金额
     @inlinable
-    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexAmountBeforeTaxResponse> {
-        self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexAmountBeforeTaxResponse> {
+        self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询税前金额
     @inlinable
-    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
-        try await self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexAmountBeforeTax(payeeId: String, incomeType: String, amountAfterTax: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexAmountBeforeTaxResponse {
+        try await self.queryFlexAmountBeforeTax(QueryFlexAmountBeforeTaxRequest(payeeId: payeeId, incomeType: incomeType, amountAfterTax: amountAfterTax, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

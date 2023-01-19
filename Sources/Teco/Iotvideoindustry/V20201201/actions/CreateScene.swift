@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iotvideoindustry {
 
     /// 创建场景
     @inlinable
-    public func createScene(_ input: CreateSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSceneResponse> {
-        self.client.execute(action: "CreateScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScene(_ input: CreateSceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSceneResponse> {
+        self.client.execute(action: "CreateScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
-    public func createScene(_ input: CreateSceneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSceneResponse {
-        try await self.client.execute(action: "CreateScene", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScene(_ input: CreateSceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSceneResponse {
+        try await self.client.execute(action: "CreateScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建场景
     @inlinable
-    public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSceneResponse> {
-        self.createScene(CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), logger: logger, on: eventLoop)
+    public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSceneResponse> {
+        self.createScene(CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
-    public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSceneResponse {
-        try await self.createScene(CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), logger: logger, on: eventLoop)
+    public func createScene(sceneName: String, sceneTrigger: String, recordDuration: Int64, storeDuration: Int64, devices: [DeviceItem]? = nil, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSceneResponse {
+        try await self.createScene(CreateSceneRequest(sceneName: sceneName, sceneTrigger: sceneTrigger, recordDuration: recordDuration, storeDuration: storeDuration, devices: devices, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

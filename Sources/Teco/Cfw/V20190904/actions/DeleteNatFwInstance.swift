@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cfw {
 
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
-        self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
+        self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
-        try await self.client.execute(action: "DeleteNatFwInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
+        try await self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(cfwInstance: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
-        self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
+        self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁防火墙实例
     @inlinable
-    public func deleteNatFwInstance(cfwInstance: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
-        try await self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), logger: logger, on: eventLoop)
+    public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
+        try await self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 }

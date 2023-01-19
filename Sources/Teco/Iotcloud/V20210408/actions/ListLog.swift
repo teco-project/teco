@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Iotcloud {
     ///
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
-    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogResponse> {
-        self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listLog(_ input: ListLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogResponse> {
+        self.client.execute(action: "ListLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志
     ///
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
-    public func listLog(_ input: ListLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
-        try await self.client.execute(action: "ListLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listLog(_ input: ListLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
+        try await self.client.execute(action: "ListLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询日志
     ///
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
-    public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogResponse> {
-        self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogResponse> {
+        self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志
     ///
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
-    public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
-        try await self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
+        try await self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

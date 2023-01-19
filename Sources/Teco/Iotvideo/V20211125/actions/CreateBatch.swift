@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iotvideo {
 
     /// 创建批次
     @inlinable
-    public func createBatch(_ input: CreateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
-        self.client.execute(action: "CreateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBatch(_ input: CreateBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
+        self.client.execute(action: "CreateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建批次
     @inlinable
-    public func createBatch(_ input: CreateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
-        try await self.client.execute(action: "CreateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBatch(_ input: CreateBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
+        try await self.client.execute(action: "CreateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建批次
     @inlinable
-    public func createBatch(productId: String, devNum: UInt64, devPre: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
-        self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), logger: logger, on: eventLoop)
+    public func createBatch(productId: String, devNum: UInt64, devPre: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
+        self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建批次
     @inlinable
-    public func createBatch(productId: String, devNum: UInt64, devPre: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
-        try await self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), logger: logger, on: eventLoop)
+    public func createBatch(productId: String, devNum: UInt64, devPre: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
+        try await self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), region: region, logger: logger, on: eventLoop)
     }
 }

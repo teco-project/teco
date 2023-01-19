@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmvpc {
     ///
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
-    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIpsToNatGatewayResponse> {
-        self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIpsToNatGatewayResponse> {
+        self.client.execute(action: "BindIpsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定IP
     ///
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
-    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
-        try await self.client.execute(action: "BindIpsToNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindIpsToNatGateway(_ input: BindIpsToNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
+        try await self.client.execute(action: "BindIpsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// NAT网关绑定IP
     ///
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
-    public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIpsToNatGatewayResponse> {
-        self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), logger: logger, on: eventLoop)
+    public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIpsToNatGatewayResponse> {
+        self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定IP
     ///
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
-    public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
-        try await self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), logger: logger, on: eventLoop)
+    public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
+        try await self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
     }
 }

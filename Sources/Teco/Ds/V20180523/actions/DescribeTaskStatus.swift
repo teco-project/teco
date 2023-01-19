@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ds {
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
+        self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.client.execute(action: "DescribeTaskStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskStatus(_ input: DescribeTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
+        self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取任务状态
     ///
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
-    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskStatus(module: String, operation: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
+        try await self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

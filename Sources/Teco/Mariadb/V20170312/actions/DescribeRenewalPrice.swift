@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Mariadb {
     ///
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
-    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRenewalPriceResponse> {
-        self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRenewalPriceResponse> {
+        self.client.execute(action: "DescribeRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
-    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
-        try await self.client.execute(action: "DescribeRenewalPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRenewalPrice(_ input: DescribeRenewalPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
+        try await self.client.execute(action: "DescribeRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例询价
     ///
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
-    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRenewalPriceResponse> {
-        self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRenewalPriceResponse> {
+        self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口（DescribeRenewalPrice）用于在续费云数据库实例时，查询续费的价格。
     @inlinable
-    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
-        try await self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRenewalPriceResponse {
+        try await self.describeRenewalPrice(DescribeRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

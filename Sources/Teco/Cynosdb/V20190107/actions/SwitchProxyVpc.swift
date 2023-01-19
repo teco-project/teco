@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cynosdb {
     ///
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
-    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyVpcResponse> {
-        self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyVpcResponse> {
+        self.client.execute(action: "SwitchProxyVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更换数据库代理vpc
     ///
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
-    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
-        try await self.client.execute(action: "SwitchProxyVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchProxyVpc(_ input: SwitchProxyVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
+        try await self.client.execute(action: "SwitchProxyVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更换数据库代理vpc
     ///
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
-    public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyVpcResponse> {
-        self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyVpcResponse> {
+        self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更换数据库代理vpc
     ///
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
-    public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
-        try await self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
+    public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
+        try await self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

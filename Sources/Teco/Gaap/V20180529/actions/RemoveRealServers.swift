@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Gaap {
     ///
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable
-    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRealServersResponse> {
-        self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeRealServers(_ input: RemoveRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRealServersResponse> {
+        self.client.execute(action: "RemoveRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除源站
     ///
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable
-    public func removeRealServers(_ input: RemoveRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
-        try await self.client.execute(action: "RemoveRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeRealServers(_ input: RemoveRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
+        try await self.client.execute(action: "RemoveRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除源站
     ///
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable
-    public func removeRealServers(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRealServersResponse> {
-        self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    public func removeRealServers(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRealServersResponse> {
+        self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除源站
     ///
     /// 删除已添加的源站(服务器)IP或域名
     @inlinable
-    public func removeRealServers(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
-        try await self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    public func removeRealServers(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRealServersResponse {
+        try await self.removeRealServers(RemoveRealServersRequest(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 }

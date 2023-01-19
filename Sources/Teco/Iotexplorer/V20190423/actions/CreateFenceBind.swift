@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotexplorer {
 
     /// 创建围栏绑定信息
     @inlinable
-    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFenceBindResponse> {
-        self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFenceBind(_ input: CreateFenceBindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFenceBindResponse> {
+        self.client.execute(action: "CreateFenceBind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建围栏绑定信息
     @inlinable
-    public func createFenceBind(_ input: CreateFenceBindRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
-        try await self.client.execute(action: "CreateFenceBind", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFenceBind(_ input: CreateFenceBindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
+        try await self.client.execute(action: "CreateFenceBind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建围栏绑定信息
     @inlinable
-    public func createFenceBind(fenceId: Int64, items: [FenceBindProductItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFenceBindResponse> {
-        self.createFenceBind(CreateFenceBindRequest(fenceId: fenceId, items: items), logger: logger, on: eventLoop)
+    public func createFenceBind(fenceId: Int64, items: [FenceBindProductItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFenceBindResponse> {
+        self.createFenceBind(CreateFenceBindRequest(fenceId: fenceId, items: items), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建围栏绑定信息
     @inlinable
-    public func createFenceBind(fenceId: Int64, items: [FenceBindProductItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
-        try await self.createFenceBind(CreateFenceBindRequest(fenceId: fenceId, items: items), logger: logger, on: eventLoop)
+    public func createFenceBind(fenceId: Int64, items: [FenceBindProductItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFenceBindResponse {
+        try await self.createFenceBind(CreateFenceBindRequest(fenceId: fenceId, items: items), region: region, logger: logger, on: eventLoop)
     }
 }

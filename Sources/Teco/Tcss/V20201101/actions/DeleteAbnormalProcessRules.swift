@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcss {
     ///
     /// 删除运行异常进程策略
     @inlinable
-    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
-        self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
+        self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
     @inlinable
-    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
-        try await self.client.execute(action: "DeleteAbnormalProcessRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
+        try await self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
     @inlinable
-    public func deleteAbnormalProcessRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
-        self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), logger: logger, on: eventLoop)
+    public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
+        self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
     @inlinable
-    public func deleteAbnormalProcessRules(ruleIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
-        try await self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), logger: logger, on: eventLoop)
+    public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
+        try await self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

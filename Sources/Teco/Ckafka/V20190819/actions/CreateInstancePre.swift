@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -131,25 +131,25 @@ extension Ckafka {
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
-        self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstancePre(_ input: CreateInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
+        self.client.execute(action: "CreateInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(_ input: CreateInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
-        try await self.client.execute(action: "CreateInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstancePre(_ input: CreateInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
+        try await self.client.execute(action: "CreateInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
-        self.createInstancePre(CreateInstancePreRequest(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), logger: logger, on: eventLoop)
+    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePreResponse> {
+        self.createInstancePre(CreateInstancePreRequest(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例(预付费包年包月)
     @inlinable
-    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
-        try await self.createInstancePre(CreateInstancePreRequest(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), logger: logger, on: eventLoop)
+    public func createInstancePre(instanceName: String, zoneId: Int64, period: String, instanceType: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, clusterId: Int64? = nil, renewFlag: Int64? = nil, kafkaVersion: String? = nil, specificationsType: String? = nil, diskSize: Int64? = nil, bandWidth: Int64? = nil, partition: Int64? = nil, tags: [Tag]? = nil, diskType: String? = nil, multiZoneFlag: Bool? = nil, zoneIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePreResponse {
+        try await self.createInstancePre(CreateInstancePreRequest(instanceName: instanceName, zoneId: zoneId, period: period, instanceType: instanceType, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, clusterId: clusterId, renewFlag: renewFlag, kafkaVersion: kafkaVersion, specificationsType: specificationsType, diskSize: diskSize, bandWidth: bandWidth, partition: partition, tags: tags, diskType: diskType, multiZoneFlag: multiZoneFlag, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
     }
 }

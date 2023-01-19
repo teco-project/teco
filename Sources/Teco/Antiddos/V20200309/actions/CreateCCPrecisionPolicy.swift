@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Antiddos {
 
     /// 新增CC精准防护策略
     @inlinable
-    public func createCCPrecisionPolicy(_ input: CreateCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCPrecisionPolicyResponse> {
-        self.client.execute(action: "CreateCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCCPrecisionPolicy(_ input: CreateCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCPrecisionPolicyResponse> {
+        self.client.execute(action: "CreateCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增CC精准防护策略
     @inlinable
-    public func createCCPrecisionPolicy(_ input: CreateCCPrecisionPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
-        try await self.client.execute(action: "CreateCCPrecisionPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCCPrecisionPolicy(_ input: CreateCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
+        try await self.client.execute(action: "CreateCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增CC精准防护策略
     @inlinable
-    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCPrecisionPolicyResponse> {
-        self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCPrecisionPolicyResponse> {
+        self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增CC精准防护策略
     @inlinable
-    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
-        try await self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), logger: logger, on: eventLoop)
+    public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
+        try await self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }
 }

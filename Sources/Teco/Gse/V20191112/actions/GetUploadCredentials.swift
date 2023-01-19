@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,8 +62,8 @@ extension Gse {
     /// 本接口（GetUploadCredentials）获取上传文件授权信息。
     /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
     @inlinable
-    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
-        self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
+        self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取上传文件授权信息
@@ -72,8 +72,8 @@ extension Gse {
     /// 本接口（GetUploadCredentials）获取上传文件授权信息。
     /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
     @inlinable
-    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        try await self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUploadCredentials(_ input: GetUploadCredentialsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
+        try await self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取上传文件授权信息
@@ -82,8 +82,8 @@ extension Gse {
     /// 本接口（GetUploadCredentials）获取上传文件授权信息。
     /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
     @inlinable
-    public func getUploadCredentials(assetRegion: String, bucketKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
-        self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), logger: logger, on: eventLoop)
+    public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
+        self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取上传文件授权信息
@@ -92,7 +92,7 @@ extension Gse {
     /// 本接口（GetUploadCredentials）获取上传文件授权信息。
     /// 通过 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 接口获取临时授权信息后，调用 COS API将数据上传，根据上传的 BucketKey 信息进行生成包 [CreateAsset](https://cloud.tencent.com/document/product/1165/48731) 的创建。参考下面的示例部分。
     @inlinable
-    public func getUploadCredentials(assetRegion: String, bucketKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        try await self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), logger: logger, on: eventLoop)
+    public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
+        try await self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), region: region, logger: logger, on: eventLoop)
     }
 }

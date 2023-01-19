@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ckafka {
 
     /// 查询Datahub任务信息
     @inlinable
-    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTaskResponse> {
-        self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTaskResponse> {
+        self.client.execute(action: "DescribeDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub任务信息
     @inlinable
-    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
-        try await self.client.execute(action: "DescribeDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatahubTask(_ input: DescribeDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
+        try await self.client.execute(action: "DescribeDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Datahub任务信息
     @inlinable
-    public func describeDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTaskResponse> {
-        self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeDatahubTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTaskResponse> {
+        self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub任务信息
     @inlinable
-    public func describeDatahubTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
-        try await self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeDatahubTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTaskResponse {
+        try await self.describeDatahubTask(DescribeDatahubTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

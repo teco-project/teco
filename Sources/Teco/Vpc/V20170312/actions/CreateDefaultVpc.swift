@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Vpc {
     /// * 只支持VPC，返回默认VPC信息
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
-    public func createDefaultVpc(_ input: CreateDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultVpcResponse> {
-        self.client.execute(action: "CreateDefaultVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDefaultVpc(_ input: CreateDefaultVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultVpcResponse> {
+        self.client.execute(action: "CreateDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建默认VPC和默认子网
@@ -70,8 +70,8 @@ extension Vpc {
     /// * 只支持VPC，返回默认VPC信息
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
-    public func createDefaultVpc(_ input: CreateDefaultVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
-        try await self.client.execute(action: "CreateDefaultVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDefaultVpc(_ input: CreateDefaultVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
+        try await self.client.execute(action: "CreateDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建默认VPC和默认子网
@@ -83,8 +83,8 @@ extension Vpc {
     /// * 只支持VPC，返回默认VPC信息
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
-    public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultVpcResponse> {
-        self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), logger: logger, on: eventLoop)
+    public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultVpcResponse> {
+        self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建默认VPC和默认子网
@@ -96,7 +96,7 @@ extension Vpc {
     /// * 只支持VPC，返回默认VPC信息
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
-    public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
-        try await self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), logger: logger, on: eventLoop)
+    public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
+        try await self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), region: region, logger: logger, on: eventLoop)
     }
 }

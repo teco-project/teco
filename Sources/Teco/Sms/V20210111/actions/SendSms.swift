@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,8 +90,8 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendSms(_ input: SendSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
+        self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送短信
@@ -101,8 +101,8 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendSms(_ input: SendSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送短信
@@ -112,8 +112,8 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        self.sendSms(SendSmsRequest(phoneNumberSet: phoneNumberSet, smsSdkAppId: smsSdkAppId, templateId: templateId, signName: signName, templateParamSet: templateParamSet, extendCode: extendCode, sessionContext: sessionContext, senderId: senderId), logger: logger, on: eventLoop)
+    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
+        self.sendSms(SendSmsRequest(phoneNumberSet: phoneNumberSet, smsSdkAppId: smsSdkAppId, templateId: templateId, signName: signName, templateParamSet: templateParamSet, extendCode: extendCode, sessionContext: sessionContext, senderId: senderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送短信
@@ -123,7 +123,7 @@ extension Sms {
     /// >- 注：您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     /// >- 注：当前接口属于 2021-01-11 版本，如果您仍在使用 [2019-07-11 版本](https://cloud.tencent.com/document/product/382/38778)，建议您使用当前最新版本的接口，版本差异可参考[版本描述](https://cloud.tencent.com/document/product/382/63195#.E7.89.88.E6.9C.AC.E6.8F.8F.E8.BF.B0)。
     @inlinable
-    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.sendSms(SendSmsRequest(phoneNumberSet: phoneNumberSet, smsSdkAppId: smsSdkAppId, templateId: templateId, signName: signName, templateParamSet: templateParamSet, extendCode: extendCode, sessionContext: sessionContext, senderId: senderId), logger: logger, on: eventLoop)
+    public func sendSms(phoneNumberSet: [String], smsSdkAppId: String, templateId: String, signName: String? = nil, templateParamSet: [String]? = nil, extendCode: String? = nil, sessionContext: String? = nil, senderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.sendSms(SendSmsRequest(phoneNumberSet: phoneNumberSet, smsSdkAppId: smsSdkAppId, templateId: templateId, signName: signName, templateParamSet: templateParamSet, extendCode: extendCode, sessionContext: sessionContext, senderId: senderId), region: region, logger: logger, on: eventLoop)
     }
 }

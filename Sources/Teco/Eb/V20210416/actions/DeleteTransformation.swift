@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Eb {
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
-        self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTransformation(_ input: DeleteTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
+        self.client.execute(action: "DeleteTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转换器
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(_ input: DeleteTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
-        try await self.client.execute(action: "DeleteTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTransformation(_ input: DeleteTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
+        try await self.client.execute(action: "DeleteTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除转换器
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
-        self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), logger: logger, on: eventLoop)
+    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
+        self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转换器
     ///
     /// 用于删除转换器
     @inlinable
-    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
-        try await self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), logger: logger, on: eventLoop)
+    public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
+        try await self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,25 +47,25 @@ extension Tsf {
 
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(_ input: StopContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
-        self.client.execute(action: "StopContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopContainerGroup(_ input: StopContainerGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
+        self.client.execute(action: "StopContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(_ input: StopContainerGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {
-        try await self.client.execute(action: "StopContainerGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopContainerGroup(_ input: StopContainerGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {
+        try await self.client.execute(action: "StopContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
-        self.stopContainerGroup(StopContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func stopContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopContainerGroupResponse> {
+        self.stopContainerGroup(StopContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止容器部署组
     @inlinable
-    public func stopContainerGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {
-        try await self.stopContainerGroup(StopContainerGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func stopContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopContainerGroupResponse {
+        try await self.stopContainerGroup(StopContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

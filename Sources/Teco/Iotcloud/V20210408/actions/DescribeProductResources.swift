@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
-    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourcesResponse> {
-        self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductResources(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourcesResponse> {
+        self.client.execute(action: "DescribeProductResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品资源列表
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
-    public func describeProductResources(_ input: DescribeProductResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
-        try await self.client.execute(action: "DescribeProductResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductResources(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
+        try await self.client.execute(action: "DescribeProductResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品资源列表
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
-    public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourcesResponse> {
-        self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), logger: logger, on: eventLoop)
+    public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourcesResponse> {
+        self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品资源列表
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
-    public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
-        try await self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), logger: logger, on: eventLoop)
+    public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
+        try await self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

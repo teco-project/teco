@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -120,25 +120,25 @@ extension Monitor {
 
     /// 获取基础策略组详情
     @inlinable
-    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupInfoResponse> {
-        self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupInfoResponse> {
+        self.client.execute(action: "DescribePolicyGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础策略组详情
     @inlinable
-    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
-        try await self.client.execute(action: "DescribePolicyGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePolicyGroupInfo(_ input: DescribePolicyGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
+        try await self.client.execute(action: "DescribePolicyGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础策略组详情
     @inlinable
-    public func describePolicyGroupInfo(module: String, groupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupInfoResponse> {
-        self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    public func describePolicyGroupInfo(module: String, groupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyGroupInfoResponse> {
+        self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础策略组详情
     @inlinable
-    public func describePolicyGroupInfo(module: String, groupId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
-        try await self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), logger: logger, on: eventLoop)
+    public func describePolicyGroupInfo(module: String, groupId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyGroupInfoResponse {
+        try await self.describePolicyGroupInfo(DescribePolicyGroupInfoRequest(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

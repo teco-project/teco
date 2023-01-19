@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Dcdb {
     ///
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
-    public func upgradeDCDBInstance(_ input: UpgradeDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDCDBInstanceResponse> {
-        self.client.execute(action: "UpgradeDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeDCDBInstance(_ input: UpgradeDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDCDBInstanceResponse> {
+        self.client.execute(action: "UpgradeDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级分布式数据库
     ///
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
-    public func upgradeDCDBInstance(_ input: UpgradeDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDCDBInstanceResponse {
-        try await self.client.execute(action: "UpgradeDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeDCDBInstance(_ input: UpgradeDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDCDBInstanceResponse {
+        try await self.client.execute(action: "UpgradeDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级分布式数据库
     ///
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
-    public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDCDBInstanceResponse> {
-        self.upgradeDCDBInstance(UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), logger: logger, on: eventLoop)
+    public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDCDBInstanceResponse> {
+        self.upgradeDCDBInstance(UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级分布式数据库
     ///
     /// 本接口（UpgradeDCDBInstance）用于升级分布式数据库实例。本接口完成下单和支付两个动作，如果发生支付失败的错误，调用用户账户相关接口中的支付订单接口（PayDeals）重新支付即可。
     @inlinable
-    public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDCDBInstanceResponse {
-        try await self.upgradeDCDBInstance(UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), logger: logger, on: eventLoop)
+    public func upgradeDCDBInstance(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, zones: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDCDBInstanceResponse {
+        try await self.upgradeDCDBInstance(UpgradeDCDBInstanceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, autoVoucher: autoVoucher, voucherIds: voucherIds, zones: zones), region: region, logger: logger, on: eventLoop)
     }
 }

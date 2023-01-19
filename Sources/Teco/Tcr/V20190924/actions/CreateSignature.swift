@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tcr {
     ///
     /// 为一个镜像版本创建签名
     @inlinable
-    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
-        self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSignature(_ input: CreateSignatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
+        self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
     @inlinable
-    public func createSignature(_ input: CreateSignatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
-        try await self.client.execute(action: "CreateSignature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSignature(_ input: CreateSignatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
+        try await self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
     @inlinable
-    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
-        self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
+        self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
     @inlinable
-    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
-        try await self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), logger: logger, on: eventLoop)
+    public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
+        try await self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Dayu {
     ///
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
-    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackIndexResponse> {
-        self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePackIndex(_ input: DescribePackIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackIndexResponse> {
+        self.client.execute(action: "DescribePackIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品总览
     ///
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
-    public func describePackIndex(_ input: DescribePackIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
-        try await self.client.execute(action: "DescribePackIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePackIndex(_ input: DescribePackIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
+        try await self.client.execute(action: "DescribePackIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品总览
     ///
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
-    public func describePackIndex(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackIndexResponse> {
-        self.describePackIndex(DescribePackIndexRequest(business: business), logger: logger, on: eventLoop)
+    public func describePackIndex(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackIndexResponse> {
+        self.describePackIndex(DescribePackIndexRequest(business: business), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品总览
     ///
     /// 获取产品总览统计，支持高防包、高防IP、高防IP专业版；
     @inlinable
-    public func describePackIndex(business: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
-        try await self.describePackIndex(DescribePackIndexRequest(business: business), logger: logger, on: eventLoop)
+    public func describePackIndex(business: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackIndexResponse {
+        try await self.describePackIndex(DescribePackIndexRequest(business: business), region: region, logger: logger, on: eventLoop)
     }
 }

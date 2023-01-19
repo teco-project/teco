@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,31 +50,31 @@ extension Teo {
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
-        self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
+        self.client.execute(action: "ModifyZoneStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
-        try await self.client.execute(action: "ModifyZoneStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyZoneStatus(_ input: ModifyZoneStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
+        try await self.client.execute(action: "ModifyZoneStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(zoneId: String, paused: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
-        self.modifyZoneStatus(ModifyZoneStatusRequest(zoneId: zoneId, paused: paused), logger: logger, on: eventLoop)
+    public func modifyZoneStatus(zoneId: String, paused: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneStatusResponse> {
+        self.modifyZoneStatus(ModifyZoneStatusRequest(zoneId: zoneId, paused: paused), region: region, logger: logger, on: eventLoop)
     }
 
     /// 切换站点状态
     ///
     /// 用于开启，关闭站点。
     @inlinable
-    public func modifyZoneStatus(zoneId: String, paused: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
-        try await self.modifyZoneStatus(ModifyZoneStatusRequest(zoneId: zoneId, paused: paused), logger: logger, on: eventLoop)
+    public func modifyZoneStatus(zoneId: String, paused: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneStatusResponse {
+        try await self.modifyZoneStatus(ModifyZoneStatusRequest(zoneId: zoneId, paused: paused), region: region, logger: logger, on: eventLoop)
     }
 }

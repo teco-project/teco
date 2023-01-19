@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Bda {
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
+        self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建人体库
@@ -74,8 +74,8 @@ extension Bda {
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable
-    public func createGroup(_ input: CreateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.client.execute(action: "CreateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建人体库
@@ -85,8 +85,8 @@ extension Bda {
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable
-    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), logger: logger, on: eventLoop)
+    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
+        self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人体库
@@ -96,7 +96,7 @@ extension Bda {
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable
-    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), logger: logger, on: eventLoop)
+    public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
+        try await self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), region: region, logger: logger, on: eventLoop)
     }
 }

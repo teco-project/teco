@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Postgres {
     ///
     /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
     @inlinable
-    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableRecoveryTimeResponse> {
-        self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableRecoveryTimeResponse> {
+        self.client.execute(action: "DescribeAvailableRecoveryTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例可恢复的时间范围
     ///
     /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
     @inlinable
-    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
-        try await self.client.execute(action: "DescribeAvailableRecoveryTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableRecoveryTime(_ input: DescribeAvailableRecoveryTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
+        try await self.client.execute(action: "DescribeAvailableRecoveryTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例可恢复的时间范围
     ///
     /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
     @inlinable
-    public func describeAvailableRecoveryTime(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableRecoveryTimeResponse> {
-        self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeAvailableRecoveryTime(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableRecoveryTimeResponse> {
+        self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例可恢复的时间范围
     ///
     /// 本接口（DescribeAvailableRecoveryTime）用于查询实例可恢复的时间范围。
     @inlinable
-    public func describeAvailableRecoveryTime(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
-        try await self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeAvailableRecoveryTime(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableRecoveryTimeResponse {
+        try await self.describeAvailableRecoveryTime(DescribeAvailableRecoveryTimeRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

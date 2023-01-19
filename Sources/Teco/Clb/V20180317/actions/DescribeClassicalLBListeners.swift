@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Clb {
     ///
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
-    public func describeClassicalLBListeners(_ input: DescribeClassicalLBListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBListenersResponse> {
-        self.client.execute(action: "DescribeClassicalLBListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClassicalLBListeners(_ input: DescribeClassicalLBListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBListenersResponse> {
+        self.client.execute(action: "DescribeClassicalLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡监听器列表
     ///
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
-    public func describeClassicalLBListeners(_ input: DescribeClassicalLBListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBListenersResponse {
-        try await self.client.execute(action: "DescribeClassicalLBListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClassicalLBListeners(_ input: DescribeClassicalLBListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBListenersResponse {
+        try await self.client.execute(action: "DescribeClassicalLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取传统型负载均衡监听器列表
     ///
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
-    public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBListenersResponse> {
-        self.describeClassicalLBListeners(DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), logger: logger, on: eventLoop)
+    public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBListenersResponse> {
+        self.describeClassicalLBListeners(DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡监听器列表
     ///
     /// DescribeClassicalLBListeners 接口用于获取传统型负载均衡的监听器信息。
     @inlinable
-    public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBListenersResponse {
-        try await self.describeClassicalLBListeners(DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), logger: logger, on: eventLoop)
+    public func describeClassicalLBListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBListenersResponse {
+        try await self.describeClassicalLBListeners(DescribeClassicalLBListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, listenerPort: listenerPort, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

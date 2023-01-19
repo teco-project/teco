@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Vpc {
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable
-    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
-        self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
+        self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable
-    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
-        try await self.client.execute(action: "AssociateNatGatewayAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
+        try await self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable
-    public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
-        self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), logger: logger, on: eventLoop)
+    public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
+        self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
     @inlinable
-    public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
-        try await self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), logger: logger, on: eventLoop)
+    public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
+        try await self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
 }

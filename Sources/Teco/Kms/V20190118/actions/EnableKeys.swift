@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Kms {
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
-        self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableKeys(_ input: EnableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
+        self.client.execute(action: "EnableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(_ input: EnableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
-        try await self.client.execute(action: "EnableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableKeys(_ input: EnableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
+        try await self.client.execute(action: "EnableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
-        self.enableKeys(EnableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func enableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
+        self.enableKeys(EnableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
     @inlinable
-    public func enableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
-        try await self.enableKeys(EnableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func enableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
+        try await self.enableKeys(EnableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 }

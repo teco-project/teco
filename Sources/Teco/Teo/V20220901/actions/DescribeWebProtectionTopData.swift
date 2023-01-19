@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,31 +113,31 @@ extension Teo {
     ///
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
-    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionTopDataResponse> {
-        self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionTopDataResponse> {
+        self.client.execute(action: "DescribeWebProtectionTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护Top数据
     ///
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
-    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
-        try await self.client.execute(action: "DescribeWebProtectionTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebProtectionTopData(_ input: DescribeWebProtectionTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
+        try await self.client.execute(action: "DescribeWebProtectionTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询CC防护Top数据
     ///
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
-    public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionTopDataResponse> {
-        self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionTopDataResponse> {
+        self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护Top数据
     ///
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
-    public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
-        try await self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), logger: logger, on: eventLoop)
+    public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
+        try await self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

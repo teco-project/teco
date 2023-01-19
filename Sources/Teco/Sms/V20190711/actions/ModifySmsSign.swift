@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,8 +115,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsSign(_ input: ModifySmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsSignResponse> {
-        self.client.execute(action: "ModifySmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySmsSign(_ input: ModifySmsSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsSignResponse> {
+        self.client.execute(action: "ModifySmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改短信签名
@@ -127,8 +127,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsSign(_ input: ModifySmsSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsSignResponse {
-        try await self.client.execute(action: "ModifySmsSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySmsSign(_ input: ModifySmsSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsSignResponse {
+        try await self.client.execute(action: "ModifySmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改短信签名
@@ -139,8 +139,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, usedMethod: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsSignResponse> {
-        self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, usedMethod: usedMethod, proofImage: proofImage, commissionImage: commissionImage, remark: remark), logger: logger, on: eventLoop)
+    public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, usedMethod: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsSignResponse> {
+        self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, usedMethod: usedMethod, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改短信签名
@@ -151,7 +151,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, usedMethod: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsSignResponse {
-        try await self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, usedMethod: usedMethod, proofImage: proofImage, commissionImage: commissionImage, remark: remark), logger: logger, on: eventLoop)
+    public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, usedMethod: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsSignResponse {
+        try await self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, usedMethod: usedMethod, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

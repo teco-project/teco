@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Apigateway {
     /// 本接口（UnBindSubDomain）用于解绑自定义域名。
     /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
     @inlinable
-    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindSubDomainResponse> {
-        self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unBindSubDomain(_ input: UnBindSubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindSubDomainResponse> {
+        self.client.execute(action: "UnBindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务解绑自定义域名
@@ -62,8 +62,8 @@ extension Apigateway {
     /// 本接口（UnBindSubDomain）用于解绑自定义域名。
     /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
     @inlinable
-    public func unBindSubDomain(_ input: UnBindSubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
-        try await self.client.execute(action: "UnBindSubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unBindSubDomain(_ input: UnBindSubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
+        try await self.client.execute(action: "UnBindSubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务解绑自定义域名
@@ -71,8 +71,8 @@ extension Apigateway {
     /// 本接口（UnBindSubDomain）用于解绑自定义域名。
     /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
     @inlinable
-    public func unBindSubDomain(serviceId: String, subDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindSubDomainResponse> {
-        self.unBindSubDomain(UnBindSubDomainRequest(serviceId: serviceId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func unBindSubDomain(serviceId: String, subDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindSubDomainResponse> {
+        self.unBindSubDomain(UnBindSubDomainRequest(serviceId: serviceId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务解绑自定义域名
@@ -80,7 +80,7 @@ extension Apigateway {
     /// 本接口（UnBindSubDomain）用于解绑自定义域名。
     /// 用户使用 API 网关绑定了自定义域名到服务中后，若想要解绑此自定义域名，可使用此接口。
     @inlinable
-    public func unBindSubDomain(serviceId: String, subDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
-        try await self.unBindSubDomain(UnBindSubDomainRequest(serviceId: serviceId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func unBindSubDomain(serviceId: String, subDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindSubDomainResponse {
+        try await self.unBindSubDomain(UnBindSubDomainRequest(serviceId: serviceId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 }

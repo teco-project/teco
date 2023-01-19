@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Dayu {
 
     /// 添加DDoS高级策略
     @inlinable
-    public func createDDoSPolicy(_ input: CreateDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyResponse> {
-        self.client.execute(action: "CreateDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDDoSPolicy(_ input: CreateDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyResponse> {
+        self.client.execute(action: "CreateDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS高级策略
     @inlinable
-    public func createDDoSPolicy(_ input: CreateDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyResponse {
-        try await self.client.execute(action: "CreateDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDDoSPolicy(_ input: CreateDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyResponse {
+        try await self.client.execute(action: "CreateDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS高级策略
     @inlinable
-    public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyResponse> {
-        self.createDDoSPolicy(CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), logger: logger, on: eventLoop)
+    public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSPolicyResponse> {
+        self.createDDoSPolicy(CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS高级策略
     @inlinable
-    public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyResponse {
-        try await self.createDDoSPolicy(CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), logger: logger, on: eventLoop)
+    public func createDDoSPolicy(business: String, dropOptions: [DDoSPolicyDropOption], name: String? = nil, portLimits: [DDoSPolicyPortLimit]? = nil, ipAllowDenys: [IpBlackWhite]? = nil, packetFilters: [DDoSPolicyPacketFilter]? = nil, waterPrint: [WaterPrintPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSPolicyResponse {
+        try await self.createDDoSPolicy(CreateDDoSPolicyRequest(business: business, dropOptions: dropOptions, name: name, portLimits: portLimits, ipAllowDenys: ipAllowDenys, packetFilters: packetFilters, waterPrint: waterPrint), region: region, logger: logger, on: eventLoop)
     }
 }

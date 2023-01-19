@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cdn {
 
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
-        self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
+        self.client.execute(action: "ListTopDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
-        try await self.client.execute(action: "ListTopDDoSData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTopDDoSData(_ input: ListTopDDoSDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
+        try await self.client.execute(action: "ListTopDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
-        self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), logger: logger, on: eventLoop)
+    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDDoSDataResponse> {
+        self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击Top数据
     @inlinable
-    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
-        try await self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), logger: logger, on: eventLoop)
+    public func listTopDDoSData(startTime: String, endTime: String, topCount: UInt64? = nil, metric: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDDoSDataResponse {
+        try await self.listTopDDoSData(ListTopDDoSDataRequest(startTime: startTime, endTime: endTime, topCount: topCount, metric: metric), region: region, logger: logger, on: eventLoop)
     }
 }

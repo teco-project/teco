@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Mongodb {
     ///
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
     @inlinable
-    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
-        self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
+        self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 全部账号列表
     ///
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
     @inlinable
-    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
-        try await self.client.execute(action: "DescribeAccountUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
+        try await self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 全部账号列表
     ///
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
     @inlinable
-    public func describeAccountUsers(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
-        self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
+        self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 全部账号列表
     ///
     /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
     @inlinable
-    public func describeAccountUsers(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
-        try await self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
+        try await self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Apigateway {
     ///
     /// 创建API网关插件。
     @inlinable
-    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePluginResponse> {
-        self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPlugin(_ input: CreatePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePluginResponse> {
+        self.client.execute(action: "CreatePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建插件
     ///
     /// 创建API网关插件。
     @inlinable
-    public func createPlugin(_ input: CreatePluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
-        try await self.client.execute(action: "CreatePlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPlugin(_ input: CreatePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
+        try await self.client.execute(action: "CreatePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建插件
     ///
     /// 创建API网关插件。
     @inlinable
-    public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePluginResponse> {
-        self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), logger: logger, on: eventLoop)
+    public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePluginResponse> {
+        self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建插件
     ///
     /// 创建API网关插件。
     @inlinable
-    public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
-        try await self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), logger: logger, on: eventLoop)
+    public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
+        try await self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

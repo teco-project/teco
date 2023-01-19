@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Tcss {
     ///
     /// 容器安全查询镜像关联主机
     @inlinable
-    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageHostListResponse> {
-        self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageHostListResponse> {
+        self.client.execute(action: "DescribeAssetImageHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像关联主机
     ///
     /// 容器安全查询镜像关联主机
     @inlinable
-    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
-        try await self.client.execute(action: "DescribeAssetImageHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageHostList(_ input: DescribeAssetImageHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
+        try await self.client.execute(action: "DescribeAssetImageHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像关联主机
     ///
     /// 容器安全查询镜像关联主机
     @inlinable
-    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageHostListResponse> {
-        self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageHostListResponse> {
+        self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像关联主机
     ///
     /// 容器安全查询镜像关联主机
     @inlinable
-    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
-        try await self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageHostList(filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageHostListResponse {
+        try await self.describeAssetImageHostList(DescribeAssetImageHostListRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

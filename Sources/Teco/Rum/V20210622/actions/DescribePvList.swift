@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Rum {
     ///
     /// 获取项目下的PV列表
     @inlinable
-    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePvListResponse> {
-        self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePvList(_ input: DescribePvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePvListResponse> {
+        self.client.execute(action: "DescribePvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取PV列表
     ///
     /// 获取项目下的PV列表
     @inlinable
-    public func describePvList(_ input: DescribePvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
-        try await self.client.execute(action: "DescribePvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePvList(_ input: DescribePvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
+        try await self.client.execute(action: "DescribePvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取PV列表
     ///
     /// 获取项目下的PV列表
     @inlinable
-    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePvListResponse> {
-        self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), logger: logger, on: eventLoop)
+    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePvListResponse> {
+        self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取PV列表
     ///
     /// 获取项目下的PV列表
     @inlinable
-    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
-        try await self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), logger: logger, on: eventLoop)
+    public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
+        try await self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
     }
 }

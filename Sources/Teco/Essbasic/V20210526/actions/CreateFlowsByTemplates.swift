@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,8 +89,8 @@ extension Essbasic {
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
-        self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
+        self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用多个模板批量创建签署流程
@@ -99,8 +99,8 @@ extension Essbasic {
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
-        try await self.client.execute(action: "CreateFlowsByTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlowsByTemplates(_ input: CreateFlowsByTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
+        try await self.client.execute(action: "CreateFlowsByTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用多个模板批量创建签署流程
@@ -109,8 +109,8 @@ extension Essbasic {
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
-        self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), logger: logger, on: eventLoop)
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowsByTemplatesResponse> {
+        self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用多个模板批量创建签署流程
@@ -119,7 +119,7 @@ extension Essbasic {
     /// 如若在模板中配置了动态表格, 上传的附件必须为A4大小
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
-        try await self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), logger: logger, on: eventLoop)
+    public func createFlowsByTemplates(agent: Agent, flowInfos: [FlowInfo], needPreview: Bool? = nil, previewType: Int64? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowsByTemplatesResponse {
+        try await self.createFlowsByTemplates(CreateFlowsByTemplatesRequest(agent: agent, flowInfos: flowInfos, needPreview: needPreview, previewType: previewType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

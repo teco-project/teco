@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -38,25 +38,25 @@ extension Iotvideo {
 
     /// 查看操作系统支持的芯片列表
     @inlinable
-    public func describeOsList(_ input: DescribeOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsListResponse> {
-        self.client.execute(action: "DescribeOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOsList(_ input: DescribeOsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsListResponse> {
+        self.client.execute(action: "DescribeOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看操作系统支持的芯片列表
     @inlinable
-    public func describeOsList(_ input: DescribeOsListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsListResponse {
-        try await self.client.execute(action: "DescribeOsList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOsList(_ input: DescribeOsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsListResponse {
+        try await self.client.execute(action: "DescribeOsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看操作系统支持的芯片列表
     @inlinable
-    public func describeOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsListResponse> {
-        self.describeOsList(DescribeOsListRequest(), logger: logger, on: eventLoop)
+    public func describeOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOsListResponse> {
+        self.describeOsList(DescribeOsListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看操作系统支持的芯片列表
     @inlinable
-    public func describeOsList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsListResponse {
-        try await self.describeOsList(DescribeOsListRequest(), logger: logger, on: eventLoop)
+    public func describeOsList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOsListResponse {
+        try await self.describeOsList(DescribeOsListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

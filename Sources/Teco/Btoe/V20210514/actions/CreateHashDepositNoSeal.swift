@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Btoe {
     ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
-        self.client.execute(action: "CreateHashDepositNoSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
+        self.client.execute(action: "CreateHashDepositNoSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证(有证书，无签章)
     ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
-        try await self.client.execute(action: "CreateHashDepositNoSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHashDepositNoSeal(_ input: CreateHashDepositNoSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
+        try await self.client.execute(action: "CreateHashDepositNoSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 哈希上链存证(有证书，无签章)
     ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
-        self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoSealResponse> {
+        self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证(有证书，无签章)
     ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，并生成无电子签章的区块链存证电子凭证。
     @inlinable
-    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
-        try await self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), logger: logger, on: eventLoop)
+    public func createHashDepositNoSeal(evidenceHash: String, businessId: String? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoSealResponse {
+        try await self.createHashDepositNoSeal(CreateHashDepositNoSealRequest(evidenceHash: evidenceHash, businessId: businessId, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)
     }
 }

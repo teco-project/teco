@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量重跑
     @inlinable
-    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
-        self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rerunInstances(_ input: RerunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
+        self.client.execute(action: "RerunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例批量重跑【Beta版本】
@@ -87,8 +87,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量重跑
     @inlinable
-    public func rerunInstances(_ input: RerunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
-        try await self.client.execute(action: "RerunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rerunInstances(_ input: RerunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
+        try await self.client.execute(action: "RerunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例批量重跑【Beta版本】
@@ -96,8 +96,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量重跑
     @inlinable
-    public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
-        self.rerunInstances(RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), logger: logger, on: eventLoop)
+    public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RerunInstancesResponse> {
+        self.rerunInstances(RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例批量重跑【Beta版本】
@@ -105,7 +105,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量重跑
     @inlinable
-    public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
-        try await self.rerunInstances(RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), logger: logger, on: eventLoop)
+    public func rerunInstances(projectId: String, instances: [InstanceInfo], checkFather: Bool, rerunType: String, dependentWay: String, skipEventListening: Bool, sonInstanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RerunInstancesResponse {
+        try await self.rerunInstances(RerunInstancesRequest(projectId: projectId, instances: instances, checkFather: checkFather, rerunType: rerunType, dependentWay: dependentWay, skipEventListening: skipEventListening, sonInstanceType: sonInstanceType), region: region, logger: logger, on: eventLoop)
     }
 }

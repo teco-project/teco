@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Tione {
 
     /// 查看notebook生命周期脚本详情
     @inlinable
-    public func describeNotebookLifecycleScript(_ input: DescribeNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptResponse> {
-        self.client.execute(action: "DescribeNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScript(_ input: DescribeNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptResponse> {
+        self.client.execute(action: "DescribeNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本详情
     @inlinable
-    public func describeNotebookLifecycleScript(_ input: DescribeNotebookLifecycleScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptResponse {
-        try await self.client.execute(action: "DescribeNotebookLifecycleScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNotebookLifecycleScript(_ input: DescribeNotebookLifecycleScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptResponse {
+        try await self.client.execute(action: "DescribeNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看notebook生命周期脚本详情
     @inlinable
-    public func describeNotebookLifecycleScript(notebookLifecycleScriptsName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptResponse> {
-        self.describeNotebookLifecycleScript(DescribeNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName), logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScript(notebookLifecycleScriptsName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookLifecycleScriptResponse> {
+        self.describeNotebookLifecycleScript(DescribeNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看notebook生命周期脚本详情
     @inlinable
-    public func describeNotebookLifecycleScript(notebookLifecycleScriptsName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptResponse {
-        try await self.describeNotebookLifecycleScript(DescribeNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName), logger: logger, on: eventLoop)
+    public func describeNotebookLifecycleScript(notebookLifecycleScriptsName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookLifecycleScriptResponse {
+        try await self.describeNotebookLifecycleScript(DescribeNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName), region: region, logger: logger, on: eventLoop)
     }
 }

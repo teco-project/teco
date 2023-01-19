@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcaplusdb {
     ///
     /// 在TcaplusDB集群下创建表格组
     @inlinable
-    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableGroupResponse> {
-        self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTableGroup(_ input: CreateTableGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableGroupResponse> {
+        self.client.execute(action: "CreateTableGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建表格组
     ///
     /// 在TcaplusDB集群下创建表格组
     @inlinable
-    public func createTableGroup(_ input: CreateTableGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
-        try await self.client.execute(action: "CreateTableGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTableGroup(_ input: CreateTableGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
+        try await self.client.execute(action: "CreateTableGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建表格组
     ///
     /// 在TcaplusDB集群下创建表格组
     @inlinable
-    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableGroupResponse> {
-        self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTableGroupResponse> {
+        self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建表格组
     ///
     /// 在TcaplusDB集群下创建表格组
     @inlinable
-    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
-        try await self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), logger: logger, on: eventLoop)
+    public func createTableGroup(clusterId: String, tableGroupName: String, tableGroupId: String? = nil, resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTableGroupResponse {
+        try await self.createTableGroup(CreateTableGroupRequest(clusterId: clusterId, tableGroupName: tableGroupName, tableGroupId: tableGroupId, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
     }
 }

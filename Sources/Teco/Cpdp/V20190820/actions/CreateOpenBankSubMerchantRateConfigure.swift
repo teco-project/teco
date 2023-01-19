@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -145,25 +145,25 @@ extension Cpdp {
 
     /// 云企付-子商户费率配置
     @inlinable
-    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankSubMerchantRateConfigureResponse> {
-        self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankSubMerchantRateConfigureResponse> {
+        self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户费率配置
     @inlinable
-    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
-        try await self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOpenBankSubMerchantRateConfigure(_ input: CreateOpenBankSubMerchantRateConfigureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
+        try await self.client.execute(action: "CreateOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户费率配置
     @inlinable
-    public func createOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String? = nil, minFee: UInt64? = nil, maxFee: UInt64? = nil, notifyUrl: String? = nil, feeRangeList: [FeeRangInfo]? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankSubMerchantRateConfigureResponse> {
-        self.createOpenBankSubMerchantRateConfigure(CreateOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, outProductFeeNo: outProductFeeNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, payType: payType, payChannel: payChannel, feeMode: feeMode, feeValue: feeValue, paymentMethod: paymentMethod, minFee: minFee, maxFee: maxFee, notifyUrl: notifyUrl, feeRangeList: feeRangeList, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String? = nil, minFee: UInt64? = nil, maxFee: UInt64? = nil, notifyUrl: String? = nil, feeRangeList: [FeeRangInfo]? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankSubMerchantRateConfigureResponse> {
+        self.createOpenBankSubMerchantRateConfigure(CreateOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, outProductFeeNo: outProductFeeNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, payType: payType, payChannel: payChannel, feeMode: feeMode, feeValue: feeValue, paymentMethod: paymentMethod, minFee: minFee, maxFee: maxFee, notifyUrl: notifyUrl, feeRangeList: feeRangeList, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户费率配置
     @inlinable
-    public func createOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String? = nil, minFee: UInt64? = nil, maxFee: UInt64? = nil, notifyUrl: String? = nil, feeRangeList: [FeeRangInfo]? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
-        try await self.createOpenBankSubMerchantRateConfigure(CreateOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, outProductFeeNo: outProductFeeNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, payType: payType, payChannel: payChannel, feeMode: feeMode, feeValue: feeValue, paymentMethod: paymentMethod, minFee: minFee, maxFee: maxFee, notifyUrl: notifyUrl, feeRangeList: feeRangeList, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, outProductFeeNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, payType: String, payChannel: String, feeMode: String, feeValue: UInt64, paymentMethod: String? = nil, minFee: UInt64? = nil, maxFee: UInt64? = nil, notifyUrl: String? = nil, feeRangeList: [FeeRangInfo]? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankSubMerchantRateConfigureResponse {
+        try await self.createOpenBankSubMerchantRateConfigure(CreateOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, outProductFeeNo: outProductFeeNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, payType: payType, payChannel: payChannel, feeMode: feeMode, feeValue: feeValue, paymentMethod: paymentMethod, minFee: minFee, maxFee: maxFee, notifyUrl: notifyUrl, feeRangeList: feeRangeList, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

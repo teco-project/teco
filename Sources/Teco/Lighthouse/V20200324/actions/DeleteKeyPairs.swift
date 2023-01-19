@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Lighthouse {
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
-        self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
+        self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
-        try await self.client.execute(action: "DeleteKeyPairs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
+        try await self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
-        self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
+        self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
     @inlinable
-    public func deleteKeyPairs(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
-        try await self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
+        try await self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 }

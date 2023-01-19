@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
-        self.client.execute(action: "DescribeEdgeNodeRemarkList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
+        self.client.execute(action: "DescribeEdgeNodeRemarkList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
-        try await self.client.execute(action: "DescribeEdgeNodeRemarkList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeNodeRemarkList(_ input: DescribeEdgeNodeRemarkListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
+        try await self.client.execute(action: "DescribeEdgeNodeRemarkList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
-        self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeRemarkListResponse> {
+        self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取节点备注信息列表
     @inlinable
-    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
-        try await self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), logger: logger, on: eventLoop)
+    public func describeEdgeNodeRemarkList(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeRemarkListResponse {
+        try await self.describeEdgeNodeRemarkList(DescribeEdgeNodeRemarkListRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }
 }

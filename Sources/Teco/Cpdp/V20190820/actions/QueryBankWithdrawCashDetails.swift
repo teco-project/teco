@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,31 +125,31 @@ extension Cpdp {
     ///
     /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
     @inlinable
-    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankWithdrawCashDetailsResponse> {
-        self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankWithdrawCashDetailsResponse> {
+        self.client.execute(action: "QueryBankWithdrawCashDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行时间段内清分提现明细
     ///
     /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
     @inlinable
-    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
-        try await self.client.execute(action: "QueryBankWithdrawCashDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBankWithdrawCashDetails(_ input: QueryBankWithdrawCashDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
+        try await self.client.execute(action: "QueryBankWithdrawCashDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-查询银行时间段内清分提现明细
     ///
     /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
     @inlinable
-    public func queryBankWithdrawCashDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankWithdrawCashDetailsResponse> {
-        self.queryBankWithdrawCashDetails(QueryBankWithdrawCashDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, beginDate: beginDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryBankWithdrawCashDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankWithdrawCashDetailsResponse> {
+        self.queryBankWithdrawCashDetails(QueryBankWithdrawCashDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, beginDate: beginDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行时间段内清分提现明细
     ///
     /// 查询银行时间段内清分提现明细。查询银行时间段内清分提现明细接口：若为“见证+收单退款”“见证+收单充值”记录时备注Note为“见证+收单充值,订单号”“见证+收单退款,订单号”，此接口可以查到T0/T1的充值明细和退款记录。查询标志：充值记录仍用3清分选项查询，退款记录同提现用2选项查询。
     @inlinable
-    public func queryBankWithdrawCashDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
-        try await self.queryBankWithdrawCashDetails(QueryBankWithdrawCashDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, beginDate: beginDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func queryBankWithdrawCashDetails(mrchCode: String, functionFlag: String, subAcctNo: String, queryFlag: String, pageNum: String, beginDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankWithdrawCashDetailsResponse {
+        try await self.queryBankWithdrawCashDetails(QueryBankWithdrawCashDetailsRequest(mrchCode: mrchCode, functionFlag: functionFlag, subAcctNo: subAcctNo, queryFlag: queryFlag, pageNum: pageNum, beginDate: beginDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

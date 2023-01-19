@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Iotvideo {
 
     /// 获取设备sdk日志
     @inlinable
-    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSDKLogResponse> {
-        self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSDKLog(_ input: DescribeSDKLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSDKLogResponse> {
+        self.client.execute(action: "DescribeSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备sdk日志
     @inlinable
-    public func describeSDKLog(_ input: DescribeSDKLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
-        try await self.client.execute(action: "DescribeSDKLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSDKLog(_ input: DescribeSDKLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
+        try await self.client.execute(action: "DescribeSDKLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备sdk日志
     @inlinable
-    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSDKLogResponse> {
-        self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSDKLogResponse> {
+        self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备sdk日志
     @inlinable
-    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
-        try await self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), logger: logger, on: eventLoop)
+    public func describeSDKLog(minTime: UInt64, maxTime: UInt64, keywords: String, context: String? = nil, maxNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSDKLogResponse {
+        try await self.describeSDKLog(DescribeSDKLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcr {
 
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
-        self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
+        self.client.execute(action: "ManageExternalEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
-        try await self.client.execute(action: "ManageExternalEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func manageExternalEndpoint(_ input: ManageExternalEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
+        try await self.client.execute(action: "ManageExternalEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
-        self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), logger: logger, on: eventLoop)
+    public func manageExternalEndpoint(registryId: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageExternalEndpointResponse> {
+        self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 管理实例公网访问
     @inlinable
-    public func manageExternalEndpoint(registryId: String, operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
-        try await self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), logger: logger, on: eventLoop)
+    public func manageExternalEndpoint(registryId: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageExternalEndpointResponse {
+        try await self.manageExternalEndpoint(ManageExternalEndpointRequest(registryId: registryId, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 }

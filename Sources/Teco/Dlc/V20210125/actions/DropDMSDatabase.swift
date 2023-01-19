@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dlc {
 
     /// DMS元数据删除库
     @inlinable
-    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSDatabaseResponse> {
-        self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSDatabaseResponse> {
+        self.client.execute(action: "DropDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除库
     @inlinable
-    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
-        try await self.client.execute(action: "DropDMSDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dropDMSDatabase(_ input: DropDMSDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
+        try await self.client.execute(action: "DropDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据删除库
     @inlinable
-    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSDatabaseResponse> {
-        self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), logger: logger, on: eventLoop)
+    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSDatabaseResponse> {
+        self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除库
     @inlinable
-    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
-        try await self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), logger: logger, on: eventLoop)
+    public func dropDMSDatabase(name: String, deleteData: Bool? = nil, cascade: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSDatabaseResponse {
+        try await self.dropDMSDatabase(DropDMSDatabaseRequest(name: name, deleteData: deleteData, cascade: cascade), region: region, logger: logger, on: eventLoop)
     }
 }

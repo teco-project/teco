@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dasb {
 
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
-        self.client.execute(action: "DeleteDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
+        self.client.execute(action: "DeleteDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
-        try await self.client.execute(action: "DeleteDeviceGroupMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
+        try await self.client.execute(action: "DeleteDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
-        self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), logger: logger, on: eventLoop)
+    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
+        self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组成员
     @inlinable
-    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
-        try await self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), logger: logger, on: eventLoop)
+    public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
+        try await self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cme {
     ///
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
-    public func describeSharedSpace(_ input: DescribeSharedSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSharedSpaceResponse> {
-        self.client.execute(action: "DescribeSharedSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSharedSpace(_ input: DescribeSharedSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSharedSpaceResponse> {
+        self.client.execute(action: "DescribeSharedSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取共享空间
     ///
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
-    public func describeSharedSpace(_ input: DescribeSharedSpaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
-        try await self.client.execute(action: "DescribeSharedSpace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSharedSpace(_ input: DescribeSharedSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
+        try await self.client.execute(action: "DescribeSharedSpace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取共享空间
     ///
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
-    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSharedSpaceResponse> {
-        self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSharedSpaceResponse> {
+        self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取共享空间
     ///
     /// 获取共享空间。当个人或团队A对个人或团队B授权某资源以后，个人或团队B的共享空间就会增加个人或团队A。
     @inlinable
-    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
-        try await self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeSharedSpace(platform: String, authorizee: Entity, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSharedSpaceResponse {
+        try await self.describeSharedSpace(DescribeSharedSpaceRequest(platform: platform, authorizee: authorizee, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

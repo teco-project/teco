@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Irp {
     ///
     /// 上报被用于推荐的信息流内容信息
     @inlinable
-    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
-        self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reportFeedItem(_ input: ReportFeedItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
+        self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
     @inlinable
-    public func reportFeedItem(_ input: ReportFeedItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
-        try await self.client.execute(action: "ReportFeedItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reportFeedItem(_ input: ReportFeedItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
+        try await self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
     @inlinable
-    public func reportFeedItem(instanceId: String, feedItemList: [DocItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
-        self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), logger: logger, on: eventLoop)
+    public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
+        self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
     @inlinable
-    public func reportFeedItem(instanceId: String, feedItemList: [DocItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
-        try await self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), logger: logger, on: eventLoop)
+    public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
+        try await self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
     }
 }

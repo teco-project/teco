@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Ecm {
     /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
     /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
-    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseAddressesResponse> {
-        self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseAddresses(_ input: ReleaseAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseAddressesResponse> {
+        self.client.execute(action: "ReleaseAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放弹性公网IP
@@ -64,8 +64,8 @@ extension Ecm {
     /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
     /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
-    public func releaseAddresses(_ input: ReleaseAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
-        try await self.client.execute(action: "ReleaseAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseAddresses(_ input: ReleaseAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
+        try await self.client.execute(action: "ReleaseAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放弹性公网IP
@@ -74,8 +74,8 @@ extension Ecm {
     /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
     /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
-    public func releaseAddresses(ecmRegion: String, addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseAddressesResponse> {
-        self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), logger: logger, on: eventLoop)
+    public func releaseAddresses(ecmRegion: String, addressIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseAddressesResponse> {
+        self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放弹性公网IP
@@ -84,7 +84,7 @@ extension Ecm {
     /// 该操作不可逆，释放后 EIP 关联的 IP 地址将不再属于您的名下。
     /// 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
-    public func releaseAddresses(ecmRegion: String, addressIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
-        try await self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), logger: logger, on: eventLoop)
+    public func releaseAddresses(ecmRegion: String, addressIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
+        try await self.releaseAddresses(ReleaseAddressesRequest(ecmRegion: ecmRegion, addressIds: addressIds), region: region, logger: logger, on: eventLoop)
     }
 }

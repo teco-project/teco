@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Zj {
 
     /// 删除短信模板
     @inlinable
-    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelTemplateResponse> {
-        self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func delTemplate(_ input: DelTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelTemplateResponse> {
+        self.client.execute(action: "DelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除短信模板
     @inlinable
-    public func delTemplate(_ input: DelTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
-        try await self.client.execute(action: "DelTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func delTemplate(_ input: DelTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
+        try await self.client.execute(action: "DelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除短信模板
     @inlinable
-    public func delTemplate(license: String, templateID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelTemplateResponse> {
-        self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), logger: logger, on: eventLoop)
+    public func delTemplate(license: String, templateID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelTemplateResponse> {
+        self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除短信模板
     @inlinable
-    public func delTemplate(license: String, templateID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
-        try await self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), logger: logger, on: eventLoop)
+    public func delTemplate(license: String, templateID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
+        try await self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), region: region, logger: logger, on: eventLoop)
     }
 }

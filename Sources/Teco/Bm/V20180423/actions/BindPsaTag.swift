@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Bm {
 
     /// 为预授权规则绑定标签
     @inlinable
-    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPsaTagResponse> {
-        self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindPsaTag(_ input: BindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPsaTagResponse> {
+        self.client.execute(action: "BindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 为预授权规则绑定标签
     @inlinable
-    public func bindPsaTag(_ input: BindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
-        try await self.client.execute(action: "BindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindPsaTag(_ input: BindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
+        try await self.client.execute(action: "BindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 为预授权规则绑定标签
     @inlinable
-    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPsaTagResponse> {
-        self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPsaTagResponse> {
+        self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为预授权规则绑定标签
     @inlinable
-    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
-        try await self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func bindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPsaTagResponse {
+        try await self.bindPsaTag(BindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 }

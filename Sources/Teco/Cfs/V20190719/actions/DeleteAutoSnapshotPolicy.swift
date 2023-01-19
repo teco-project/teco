@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cfs {
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
-        self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
+        self.client.execute(action: "DeleteAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除快照策略
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "DeleteAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAutoSnapshotPolicy(_ input: DeleteAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "DeleteAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除快照策略
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
-        self.deleteAutoSnapshotPolicy(DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPolicyResponse> {
+        self.deleteAutoSnapshotPolicy(DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除快照策略
     ///
     /// 删除快照定期策略
     @inlinable
-    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
-        try await self.deleteAutoSnapshotPolicy(DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    public func deleteAutoSnapshotPolicy(autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPolicyResponse {
+        try await self.deleteAutoSnapshotPolicy(DeleteAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 }

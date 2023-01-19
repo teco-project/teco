@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Redis {
 
     /// 添加复制组成员
     @inlinable
-    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddReplicationInstanceResponse> {
-        self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddReplicationInstanceResponse> {
+        self.client.execute(action: "AddReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加复制组成员
     @inlinable
-    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
-        try await self.client.execute(action: "AddReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addReplicationInstance(_ input: AddReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
+        try await self.client.execute(action: "AddReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加复制组成员
     @inlinable
-    public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddReplicationInstanceResponse> {
-        self.addReplicationInstance(AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), logger: logger, on: eventLoop)
+    public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddReplicationInstanceResponse> {
+        self.addReplicationInstance(AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加复制组成员
     @inlinable
-    public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
-        try await self.addReplicationInstance(AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), logger: logger, on: eventLoop)
+    public func addReplicationInstance(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddReplicationInstanceResponse {
+        try await self.addReplicationInstance(AddReplicationInstanceRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 }

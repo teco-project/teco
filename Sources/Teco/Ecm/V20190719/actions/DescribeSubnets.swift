@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Ecm {
 
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
-        self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubnets(_ input: DescribeSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
+        self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(_ input: DescribeSubnetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        try await self.client.execute(action: "DescribeSubnets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubnets(_ input: DescribeSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
+        try await self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
-        self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), logger: logger, on: eventLoop)
+    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
+        self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表
     @inlinable
-    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        try await self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), logger: logger, on: eventLoop)
+    public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, ecmRegion: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
+        try await self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

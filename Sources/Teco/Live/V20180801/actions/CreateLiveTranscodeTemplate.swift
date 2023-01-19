@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -181,8 +181,8 @@ extension Live {
     /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeTemplateResponse> {
-        self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeTemplateResponse> {
+        self.client.execute(action: "CreateLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转码模板
@@ -190,8 +190,8 @@ extension Live {
     /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
-        try await self.client.execute(action: "CreateLiveTranscodeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveTranscodeTemplate(_ input: CreateLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
+        try await self.client.execute(action: "CreateLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建转码模板
@@ -199,8 +199,8 @@ extension Live {
     /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeTemplate(templateName: String, videoBitrate: Int64, acodec: String? = nil, audioBitrate: Int64? = nil, vcodec: String? = nil, description: String? = nil, needVideo: Int64? = nil, width: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, aiTransCode: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeTemplateResponse> {
-        self.createLiveTranscodeTemplate(CreateLiveTranscodeTemplateRequest(templateName: templateName, videoBitrate: videoBitrate, acodec: acodec, audioBitrate: audioBitrate, vcodec: vcodec, description: description, needVideo: needVideo, width: width, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, aiTransCode: aiTransCode, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), logger: logger, on: eventLoop)
+    public func createLiveTranscodeTemplate(templateName: String, videoBitrate: Int64, acodec: String? = nil, audioBitrate: Int64? = nil, vcodec: String? = nil, description: String? = nil, needVideo: Int64? = nil, width: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, aiTransCode: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeTemplateResponse> {
+        self.createLiveTranscodeTemplate(CreateLiveTranscodeTemplateRequest(templateName: templateName, videoBitrate: videoBitrate, acodec: acodec, audioBitrate: audioBitrate, vcodec: vcodec, description: description, needVideo: needVideo, width: width, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, aiTransCode: aiTransCode, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建转码模板
@@ -208,7 +208,7 @@ extension Live {
     /// 创建转码模板，数量上限：50，成功返回模板id后，需要调用[CreateLiveTranscodeRule](/document/product/267/32647)接口，将返回的模板id绑定到流使用。
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable
-    public func createLiveTranscodeTemplate(templateName: String, videoBitrate: Int64, acodec: String? = nil, audioBitrate: Int64? = nil, vcodec: String? = nil, description: String? = nil, needVideo: Int64? = nil, width: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, aiTransCode: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
-        try await self.createLiveTranscodeTemplate(CreateLiveTranscodeTemplateRequest(templateName: templateName, videoBitrate: videoBitrate, acodec: acodec, audioBitrate: audioBitrate, vcodec: vcodec, description: description, needVideo: needVideo, width: width, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, aiTransCode: aiTransCode, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), logger: logger, on: eventLoop)
+    public func createLiveTranscodeTemplate(templateName: String, videoBitrate: Int64, acodec: String? = nil, audioBitrate: Int64? = nil, vcodec: String? = nil, description: String? = nil, needVideo: Int64? = nil, width: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, aiTransCode: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeTemplateResponse {
+        try await self.createLiveTranscodeTemplate(CreateLiveTranscodeTemplateRequest(templateName: templateName, videoBitrate: videoBitrate, acodec: acodec, audioBitrate: audioBitrate, vcodec: vcodec, description: description, needVideo: needVideo, width: width, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, aiTransCode: aiTransCode, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), region: region, logger: logger, on: eventLoop)
     }
 }

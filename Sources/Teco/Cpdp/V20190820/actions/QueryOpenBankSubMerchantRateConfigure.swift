@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Cpdp {
 
     /// 云企付-子商户费率配置结果查询
     @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantRateConfigureResponse> {
-        self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantRateConfigureResponse> {
+        self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户费率配置结果查询
     @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
-        try await self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankSubMerchantRateConfigure(_ input: QueryOpenBankSubMerchantRateConfigureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
+        try await self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户费率配置结果查询
     @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantRateConfigureResponse> {
-        self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantRateConfigureResponse> {
+        self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户费率配置结果查询
     @inlinable
-    public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
-        try await self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
+        try await self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

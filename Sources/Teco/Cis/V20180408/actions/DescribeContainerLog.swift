@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cis {
     ///
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
-    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerLogResponse> {
-        self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContainerLog(_ input: DescribeContainerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerLogResponse> {
+        self.client.execute(action: "DescribeContainerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取容器日志信息
     ///
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
-    public func describeContainerLog(_ input: DescribeContainerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
-        try await self.client.execute(action: "DescribeContainerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContainerLog(_ input: DescribeContainerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
+        try await self.client.execute(action: "DescribeContainerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取容器日志信息
     ///
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
-    public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerLogResponse> {
-        self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), logger: logger, on: eventLoop)
+    public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerLogResponse> {
+        self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取容器日志信息
     ///
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
-    public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
-        try await self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), logger: logger, on: eventLoop)
+    public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
+        try await self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), region: region, logger: logger, on: eventLoop)
     }
 }

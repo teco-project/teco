@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Bm {
 
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
-        self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
+        self.client.execute(action: "ModifyDeviceAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
-        try await self.client.execute(action: "ModifyDeviceAliases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDeviceAliases(_ input: ModifyDeviceAliasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
+        try await self.client.execute(action: "ModifyDeviceAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
-        self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), logger: logger, on: eventLoop)
+    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
+        self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改服务器名称
     @inlinable
-    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
-        try await self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), logger: logger, on: eventLoop)
+    public func modifyDeviceAliases(deviceAliases: [DeviceAlias], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
+        try await self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), region: region, logger: logger, on: eventLoop)
     }
 }

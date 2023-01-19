@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Tione {
 
     /// 训练框架列表
     @inlinable
-    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingFrameworksResponse> {
-        self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingFrameworksResponse> {
+        self.client.execute(action: "DescribeTrainingFrameworks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 训练框架列表
     @inlinable
-    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
-        try await self.client.execute(action: "DescribeTrainingFrameworks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrainingFrameworks(_ input: DescribeTrainingFrameworksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
+        try await self.client.execute(action: "DescribeTrainingFrameworks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 训练框架列表
     @inlinable
-    public func describeTrainingFrameworks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingFrameworksResponse> {
-        self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), logger: logger, on: eventLoop)
+    public func describeTrainingFrameworks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingFrameworksResponse> {
+        self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 训练框架列表
     @inlinable
-    public func describeTrainingFrameworks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
-        try await self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), logger: logger, on: eventLoop)
+    public func describeTrainingFrameworks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingFrameworksResponse {
+        try await self.describeTrainingFrameworks(DescribeTrainingFrameworksRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

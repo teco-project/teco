@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Clb {
     ///
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
-    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerListByCertIdResponse> {
-        self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerListByCertIdResponse> {
+        self.client.execute(action: "DescribeLoadBalancerListByCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据证书ID查询负载均衡
     ///
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
-    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerListByCertId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLoadBalancerListByCertId(_ input: DescribeLoadBalancerListByCertIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerListByCertId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据证书ID查询负载均衡
     ///
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
-    public func describeLoadBalancerListByCertId(certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerListByCertIdResponse> {
-        self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), logger: logger, on: eventLoop)
+    public func describeLoadBalancerListByCertId(certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerListByCertIdResponse> {
+        self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 根据证书ID查询负载均衡
     ///
     /// 根据证书ID查询其在一个地域中所关联到负载均衡实例列表
     @inlinable
-    public func describeLoadBalancerListByCertId(certIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
-        try await self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), logger: logger, on: eventLoop)
+    public func describeLoadBalancerListByCertId(certIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerListByCertIdResponse {
+        try await self.describeLoadBalancerListByCertId(DescribeLoadBalancerListByCertIdRequest(certIds: certIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ecm {
     ///
     /// 禁用已启用的子网路由
     @inlinable
-    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
-        self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
+        self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
     @inlinable
-    public func disableRoutes(_ input: DisableRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
-        try await self.client.execute(action: "DisableRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
+        try await self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
     @inlinable
-    public func disableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
-        self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
+        self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
     @inlinable
-    public func disableRoutes(routeTableId: String, routeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
-        try await self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
+        try await self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

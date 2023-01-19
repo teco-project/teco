@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
-        self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApiApp(_ input: ModifyApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
+        self.client.execute(action: "ModifyApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(_ input: ModifyApiAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
-        try await self.client.execute(action: "ModifyApiApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApiApp(_ input: ModifyApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
+        try await self.client.execute(action: "ModifyApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
-        self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
+        self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     ///
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
-    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
-        try await self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), logger: logger, on: eventLoop)
+    public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
+        try await self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
     }
 }

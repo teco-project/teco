@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcb {
 
     /// 删除服务版本
     @inlinable
-    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseRunServerVersionResponse> {
-        self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseRunServerVersionResponse> {
+        self.client.execute(action: "DeleteCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务版本
     @inlinable
-    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
-        try await self.client.execute(action: "DeleteCloudBaseRunServerVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCloudBaseRunServerVersion(_ input: DeleteCloudBaseRunServerVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
+        try await self.client.execute(action: "DeleteCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除服务版本
     @inlinable
-    public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseRunServerVersionResponse> {
-        self.deleteCloudBaseRunServerVersion(DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseRunServerVersionResponse> {
+        self.deleteCloudBaseRunServerVersion(DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务版本
     @inlinable
-    public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
-        try await self.deleteCloudBaseRunServerVersion(DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), logger: logger, on: eventLoop)
+    public func deleteCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, isDeleteServer: Bool? = nil, isDeleteImage: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseRunServerVersionResponse {
+        try await self.deleteCloudBaseRunServerVersion(DeleteCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, isDeleteServer: isDeleteServer, isDeleteImage: isDeleteImage, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
     }
 }

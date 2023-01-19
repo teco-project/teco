@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,25 +97,25 @@ extension Teo {
 
     /// 创建应用代理
     @inlinable
-    public func createApplicationProxy(_ input: CreateApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyResponse> {
-        self.client.execute(action: "CreateApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplicationProxy(_ input: CreateApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyResponse> {
+        self.client.execute(action: "CreateApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用代理
     @inlinable
-    public func createApplicationProxy(_ input: CreateApplicationProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyResponse {
-        try await self.client.execute(action: "CreateApplicationProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplicationProxy(_ input: CreateApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyResponse {
+        try await self.client.execute(action: "CreateApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建应用代理
     @inlinable
-    public func createApplicationProxy(zoneId: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6? = nil, applicationProxyRules: [ApplicationProxyRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyResponse> {
-        self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6, applicationProxyRules: applicationProxyRules), logger: logger, on: eventLoop)
+    public func createApplicationProxy(zoneId: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6? = nil, applicationProxyRules: [ApplicationProxyRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyResponse> {
+        self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6, applicationProxyRules: applicationProxyRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用代理
     @inlinable
-    public func createApplicationProxy(zoneId: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6? = nil, applicationProxyRules: [ApplicationProxyRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyResponse {
-        try await self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6, applicationProxyRules: applicationProxyRules), logger: logger, on: eventLoop)
+    public func createApplicationProxy(zoneId: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6? = nil, applicationProxyRules: [ApplicationProxyRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyResponse {
+        try await self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6, applicationProxyRules: applicationProxyRules), region: region, logger: logger, on: eventLoop)
     }
 }

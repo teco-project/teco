@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Apigateway {
     /// 本接口（UnReleaseService）用于下线服务。
     /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
     @inlinable
-    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnReleaseServiceResponse> {
-        self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unReleaseService(_ input: UnReleaseServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnReleaseServiceResponse> {
+        self.client.execute(action: "UnReleaseService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线服务
@@ -68,8 +68,8 @@ extension Apigateway {
     /// 本接口（UnReleaseService）用于下线服务。
     /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
     @inlinable
-    public func unReleaseService(_ input: UnReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
-        try await self.client.execute(action: "UnReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unReleaseService(_ input: UnReleaseServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
+        try await self.client.execute(action: "UnReleaseService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线服务
@@ -77,8 +77,8 @@ extension Apigateway {
     /// 本接口（UnReleaseService）用于下线服务。
     /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
     @inlinable
-    public func unReleaseService(serviceId: String, environmentName: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnReleaseServiceResponse> {
-        self.unReleaseService(UnReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func unReleaseService(serviceId: String, environmentName: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnReleaseServiceResponse> {
+        self.unReleaseService(UnReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线服务
@@ -86,7 +86,7 @@ extension Apigateway {
     /// 本接口（UnReleaseService）用于下线服务。
     /// 用户发布服务到某个环境后，此服务中的 API 方可被调用者进行调用，当用户需要将此服务从发布环境中下线时，可调用此 API。下线后的服务不可被调用。
     @inlinable
-    public func unReleaseService(serviceId: String, environmentName: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
-        try await self.unReleaseService(UnReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), logger: logger, on: eventLoop)
+    public func unReleaseService(serviceId: String, environmentName: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnReleaseServiceResponse {
+        try await self.unReleaseService(UnReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
     }
 }

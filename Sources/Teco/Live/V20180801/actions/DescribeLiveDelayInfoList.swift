@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Live {
     ///
     /// 获取直播延播列表。
     @inlinable
-    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDelayInfoListResponse> {
-        self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDelayInfoListResponse> {
+        self.client.execute(action: "DescribeLiveDelayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播延播列表
     ///
     /// 获取直播延播列表。
     @inlinable
-    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
-        try await self.client.execute(action: "DescribeLiveDelayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveDelayInfoList(_ input: DescribeLiveDelayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
+        try await self.client.execute(action: "DescribeLiveDelayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播延播列表
     ///
     /// 获取直播延播列表。
     @inlinable
-    public func describeLiveDelayInfoList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDelayInfoListResponse> {
-        self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), logger: logger, on: eventLoop)
+    public func describeLiveDelayInfoList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDelayInfoListResponse> {
+        self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播延播列表
     ///
     /// 获取直播延播列表。
     @inlinable
-    public func describeLiveDelayInfoList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
-        try await self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), logger: logger, on: eventLoop)
+    public func describeLiveDelayInfoList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDelayInfoListResponse {
+        try await self.describeLiveDelayInfoList(DescribeLiveDelayInfoListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

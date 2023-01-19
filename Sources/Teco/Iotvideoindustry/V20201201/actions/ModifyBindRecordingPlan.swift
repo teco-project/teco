@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable
-    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
-        self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
+        self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable
-    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
-        try await self.client.execute(action: "ModifyBindRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
+        try await self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable
-    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
-        self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), logger: logger, on: eventLoop)
+    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
+        self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable
-    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
-        try await self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), logger: logger, on: eventLoop)
+    public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
+        try await self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

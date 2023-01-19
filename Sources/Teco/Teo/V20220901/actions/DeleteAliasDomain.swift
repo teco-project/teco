@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Teo {
     ///
     /// 删除别称域名。
     @inlinable
-    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
-        self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
+        self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除别称域名
     ///
     /// 删除别称域名。
     @inlinable
-    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
-        try await self.client.execute(action: "DeleteAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
+        try await self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除别称域名
     ///
     /// 删除别称域名。
     @inlinable
-    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
-        self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), logger: logger, on: eventLoop)
+    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
+        self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除别称域名
     ///
     /// 删除别称域名。
     @inlinable
-    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
-        try await self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), logger: logger, on: eventLoop)
+    public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
+        try await self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
 }

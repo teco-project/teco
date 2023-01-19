@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Vod {
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
-        self.client.execute(action: "DescribeDrmDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
+        self.client.execute(action: "DescribeDrmDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取视频解密密钥
@@ -57,8 +57,8 @@ extension Vod {
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
-        try await self.client.execute(action: "DescribeDrmDataKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDrmDataKey(_ input: DescribeDrmDataKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
+        try await self.client.execute(action: "DescribeDrmDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取视频解密密钥
@@ -66,8 +66,8 @@ extension Vod {
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(edkList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
-        self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList), logger: logger, on: eventLoop)
+    public func describeDrmDataKey(edkList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
+        self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取视频解密密钥
@@ -75,7 +75,7 @@ extension Vod {
     /// 本 API 是 [旧版本加密](https://cloud.tencent.com/document/product/266/9638) 中[DescribeDrmDataKey 的 API 2017 接口](https://cloud.tencent.com/document/product/266/9643)的升级版本。
     /// 如果您是新接入点播加密的用户，不要使用该 API。请参考[视频加密综述](https://cloud.tencent.com/document/product/266/45552)使用。
     @inlinable
-    public func describeDrmDataKey(edkList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
-        try await self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList), logger: logger, on: eventLoop)
+    public func describeDrmDataKey(edkList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
+        try await self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList), region: region, logger: logger, on: eventLoop)
     }
 }

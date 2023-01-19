@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -139,31 +139,31 @@ extension Apigateway {
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
-        self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogSearch(_ input: DescribeLogSearchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
+        self.client.execute(action: "DescribeLogSearch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(_ input: DescribeLogSearchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
-        try await self.client.execute(action: "DescribeLogSearch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogSearch(_ input: DescribeLogSearchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
+        try await self.client.execute(action: "DescribeLogSearch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
-        self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), logger: logger, on: eventLoop)
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
+        self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 日志搜索服务
     ///
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
-    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
-        try await self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), logger: logger, on: eventLoop)
+    public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
+        try await self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Rum {
     ///
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
-    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineLogConfigResponse> {
-        self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineLogConfigResponse> {
+        self.client.execute(action: "CreateOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建离线日志监听
     ///
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
-    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
-        try await self.client.execute(action: "CreateOfflineLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOfflineLogConfig(_ input: CreateOfflineLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
+        try await self.client.execute(action: "CreateOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建离线日志监听
     ///
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
-    public func createOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineLogConfigResponse> {
-        self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    public func createOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineLogConfigResponse> {
+        self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建离线日志监听
     ///
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
-    public func createOfflineLogConfig(projectKey: String, uniqueID: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
-        try await self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), logger: logger, on: eventLoop)
+    public func createOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
+        try await self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
     }
 }

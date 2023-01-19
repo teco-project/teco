@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Live {
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
-        self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
+        self.client.execute(action: "ForbidLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
-        try await self.client.execute(action: "ForbidLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
+        try await self.client.execute(action: "ForbidLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
-        self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func forbidLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
+        self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
     @inlinable
-    public func forbidLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
-        try await self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func forbidLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
+        try await self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

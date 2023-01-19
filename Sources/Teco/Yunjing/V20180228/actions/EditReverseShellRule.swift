@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Yunjing {
 
     /// 编辑反弹Shell规则
     @inlinable
-    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditReverseShellRuleResponse> {
-        self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditReverseShellRuleResponse> {
+        self.client.execute(action: "EditReverseShellRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑反弹Shell规则
     @inlinable
-    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
-        try await self.client.execute(action: "EditReverseShellRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editReverseShellRule(_ input: EditReverseShellRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
+        try await self.client.execute(action: "EditReverseShellRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑反弹Shell规则
     @inlinable
-    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditReverseShellRuleResponse> {
-        self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditReverseShellRuleResponse> {
+        self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑反弹Shell规则
     @inlinable
-    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
-        try await self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editReverseShellRule(id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, destIp: String? = nil, destPort: String? = nil, processName: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditReverseShellRuleResponse {
+        try await self.editReverseShellRule(EditReverseShellRuleRequest(id: id, uuid: uuid, hostip: hostip, destIp: destIp, destPort: destPort, processName: processName, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

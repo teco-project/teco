@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Teo {
     ///
     /// 查询top类流量数据
     @inlinable
-    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7AnalysisDataResponse> {
-        self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7AnalysisDataResponse> {
+        self.client.execute(action: "DescribeTopL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 七层数据分析类top流量数据接口
     ///
     /// 查询top类流量数据
     @inlinable
-    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
-        try await self.client.execute(action: "DescribeTopL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopL7AnalysisData(_ input: DescribeTopL7AnalysisDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
+        try await self.client.execute(action: "DescribeTopL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 七层数据分析类top流量数据接口
     ///
     /// 查询top类流量数据
     @inlinable
-    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7AnalysisDataResponse> {
-        self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7AnalysisDataResponse> {
+        self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 七层数据分析类top流量数据接口
     ///
     /// 查询top类流量数据
     @inlinable
-    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
-        try await self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), logger: logger, on: eventLoop)
+    public func describeTopL7AnalysisData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7AnalysisDataResponse {
+        try await self.describeTopL7AnalysisData(DescribeTopL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

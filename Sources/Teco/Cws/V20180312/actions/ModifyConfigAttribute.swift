@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cws {
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable
-    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
-        self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
+        self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable
-    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
-        try await self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
+        try await self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable
-    public func modifyConfigAttribute(noticeLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
-        self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), logger: logger, on: eventLoop)
+    public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
+        self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
     @inlinable
-    public func modifyConfigAttribute(noticeLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
-        try await self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), logger: logger, on: eventLoop)
+    public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
+        try await self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }
 }

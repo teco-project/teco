@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cdb {
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
-        self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
+        self.client.execute(action: "ModifyAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
-        try await self.client.execute(action: "ModifyAuditConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAuditConfig(_ input: ModifyAuditConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
+        try await self.client.execute(action: "ModifyAuditConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
-        self.modifyAuditConfig(ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
+    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditConfigResponse> {
+        self.modifyAuditConfig(ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改审计服务配置
     ///
     /// 本接口(ModifyAuditConfig)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
     @inlinable
-    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
-        try await self.modifyAuditConfig(ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), logger: logger, on: eventLoop)
+    public func modifyAuditConfig(instanceId: String, logExpireDay: Int64? = nil, closeAudit: Bool? = nil, highLogExpireDay: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditConfigResponse {
+        try await self.modifyAuditConfig(ModifyAuditConfigRequest(instanceId: instanceId, logExpireDay: logExpireDay, closeAudit: closeAudit, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
     }
 }

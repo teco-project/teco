@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
-        self.client.execute(action: "UpgradeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
+        self.client.execute(action: "UpgradeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {
-        try await self.client.execute(action: "UpgradeGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeGrafanaInstance(_ input: UpgradeGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {
+        try await self.client.execute(action: "UpgradeGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(instanceId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
-        self.upgradeGrafanaInstance(UpgradeGrafanaInstanceRequest(instanceId: instanceId, alias: alias), logger: logger, on: eventLoop)
+    public func upgradeGrafanaInstance(instanceId: String, alias: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaInstanceResponse> {
+        self.upgradeGrafanaInstance(UpgradeGrafanaInstanceRequest(instanceId: instanceId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级 Grafana 实例
     @inlinable
-    public func upgradeGrafanaInstance(instanceId: String, alias: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {
-        try await self.upgradeGrafanaInstance(UpgradeGrafanaInstanceRequest(instanceId: instanceId, alias: alias), logger: logger, on: eventLoop)
+    public func upgradeGrafanaInstance(instanceId: String, alias: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaInstanceResponse {
+        try await self.upgradeGrafanaInstance(UpgradeGrafanaInstanceRequest(instanceId: instanceId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

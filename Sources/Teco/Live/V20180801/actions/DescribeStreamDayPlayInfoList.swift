@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Live {
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
-    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
-        self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
+        self.client.execute(action: "DescribeStreamDayPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有流的流量数据
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
-    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeStreamDayPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamDayPlayInfoList(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeStreamDayPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有流的流量数据
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
-    public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
-        self.describeStreamDayPlayInfoList(DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), logger: logger, on: eventLoop)
+    public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamDayPlayInfoListResponse> {
+        self.describeStreamDayPlayInfoList(DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有流的流量数据
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
     @inlinable
-    public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
-        try await self.describeStreamDayPlayInfoList(DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), logger: logger, on: eventLoop)
+    public func describeStreamDayPlayInfoList(dayTime: String, playDomain: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamDayPlayInfoListResponse {
+        try await self.describeStreamDayPlayInfoList(DescribeStreamDayPlayInfoListRequest(dayTime: dayTime, playDomain: playDomain, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 }

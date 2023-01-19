@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tem {
 
     /// 查询配置列表
     @inlinable
-    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataListResponse> {
-        self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataListResponse> {
+        self.client.execute(action: "DescribeConfigDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配置列表
     @inlinable
-    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
-        try await self.client.execute(action: "DescribeConfigDataList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigDataList(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
+        try await self.client.execute(action: "DescribeConfigDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询配置列表
     @inlinable
-    public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataListResponse> {
-        self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), logger: logger, on: eventLoop)
+    public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataListResponse> {
+        self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置列表
     @inlinable
-    public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
-        try await self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), logger: logger, on: eventLoop)
+    public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
+        try await self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

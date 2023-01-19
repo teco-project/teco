@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Teo {
 
     /// 修改规则引擎规则优先级
     @inlinable
-    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRulePriorityResponse> {
-        self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRulePriorityResponse> {
+        self.client.execute(action: "ModifyRulePriority", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改规则引擎规则优先级
     @inlinable
-    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
-        try await self.client.execute(action: "ModifyRulePriority", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRulePriority(_ input: ModifyRulePriorityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
+        try await self.client.execute(action: "ModifyRulePriority", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改规则引擎规则优先级
     @inlinable
-    public func modifyRulePriority(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRulePriorityResponse> {
-        self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func modifyRulePriority(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRulePriorityResponse> {
+        self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则引擎规则优先级
     @inlinable
-    public func modifyRulePriority(zoneId: String, ruleIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
-        try await self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), logger: logger, on: eventLoop)
+    public func modifyRulePriority(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
+        try await self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
     }
 }

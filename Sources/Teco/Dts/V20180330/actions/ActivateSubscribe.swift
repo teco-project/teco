@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Dts {
     ///
     /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
     @inlinable
-    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateSubscribeResponse> {
-        self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func activateSubscribe(_ input: ActivateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateSubscribeResponse> {
+        self.client.execute(action: "ActivateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置数据订阅通道
     ///
     /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
     @inlinable
-    public func activateSubscribe(_ input: ActivateSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
-        try await self.client.execute(action: "ActivateSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func activateSubscribe(_ input: ActivateSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
+        try await self.client.execute(action: "ActivateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置数据订阅通道
     ///
     /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
     @inlinable
-    public func activateSubscribe(subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject? = nil, uniqSubnetId: String? = nil, vport: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateSubscribeResponse> {
-        self.activateSubscribe(ActivateSubscribeRequest(subscribeId: subscribeId, instanceId: instanceId, subscribeObjectType: subscribeObjectType, objects: objects, uniqSubnetId: uniqSubnetId, vport: vport), logger: logger, on: eventLoop)
+    public func activateSubscribe(subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject? = nil, uniqSubnetId: String? = nil, vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateSubscribeResponse> {
+        self.activateSubscribe(ActivateSubscribeRequest(subscribeId: subscribeId, instanceId: instanceId, subscribeObjectType: subscribeObjectType, objects: objects, uniqSubnetId: uniqSubnetId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置数据订阅通道
     ///
     /// 本接口用于配置数据订阅，只有在未配置状态的订阅实例才能调用此接口。
     @inlinable
-    public func activateSubscribe(subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject? = nil, uniqSubnetId: String? = nil, vport: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
-        try await self.activateSubscribe(ActivateSubscribeRequest(subscribeId: subscribeId, instanceId: instanceId, subscribeObjectType: subscribeObjectType, objects: objects, uniqSubnetId: uniqSubnetId, vport: vport), logger: logger, on: eventLoop)
+    public func activateSubscribe(subscribeId: String, instanceId: String, subscribeObjectType: Int64, objects: SubscribeObject? = nil, uniqSubnetId: String? = nil, vport: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateSubscribeResponse {
+        try await self.activateSubscribe(ActivateSubscribeRequest(subscribeId: subscribeId, instanceId: instanceId, subscribeObjectType: subscribeObjectType, objects: objects, uniqSubnetId: uniqSubnetId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
 }

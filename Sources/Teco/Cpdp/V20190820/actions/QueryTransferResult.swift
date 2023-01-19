@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Cpdp {
 
     /// 智能代发-单笔代发转账查询接口
     @inlinable
-    public func queryTransferResult(_ input: QueryTransferResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferResultResponse> {
-        self.client.execute(action: "QueryTransferResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryTransferResult(_ input: QueryTransferResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferResultResponse> {
+        self.client.execute(action: "QueryTransferResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能代发-单笔代发转账查询接口
     @inlinable
-    public func queryTransferResult(_ input: QueryTransferResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferResultResponse {
-        try await self.client.execute(action: "QueryTransferResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryTransferResult(_ input: QueryTransferResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferResultResponse {
+        try await self.client.execute(action: "QueryTransferResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能代发-单笔代发转账查询接口
     @inlinable
-    public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferResultResponse> {
-        self.queryTransferResult(QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), logger: logger, on: eventLoop)
+    public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferResultResponse> {
+        self.queryTransferResult(QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能代发-单笔代发转账查询接口
     @inlinable
-    public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferResultResponse {
-        try await self.queryTransferResult(QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), logger: logger, on: eventLoop)
+    public func queryTransferResult(merchantId: String, merchantAppId: String, transferType: Int64, tradeSerialNo: String? = nil, orderId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferResultResponse {
+        try await self.queryTransferResult(QueryTransferResultRequest(merchantId: merchantId, merchantAppId: merchantAppId, transferType: transferType, tradeSerialNo: tradeSerialNo, orderId: orderId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

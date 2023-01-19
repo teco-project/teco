@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(_ input: EnableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
-        self.client.execute(action: "EnableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableUnitRule(_ input: EnableUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
+        self.client.execute(action: "EnableUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(_ input: EnableUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {
-        try await self.client.execute(action: "EnableUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableUnitRule(_ input: EnableUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {
+        try await self.client.execute(action: "EnableUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
-        self.enableUnitRule(EnableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func enableUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableUnitRuleResponse> {
+        self.enableUnitRule(EnableUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用单元化规则
     @inlinable
-    public func enableUnitRule(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {
-        try await self.enableUnitRule(EnableUnitRuleRequest(id: id), logger: logger, on: eventLoop)
+    public func enableUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableUnitRuleResponse {
+        try await self.enableUnitRule(EnableUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

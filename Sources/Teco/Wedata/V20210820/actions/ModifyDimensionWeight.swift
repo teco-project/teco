@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Wedata {
     ///
     /// 质量报告-修改维度权限
     @inlinable
-    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDimensionWeightResponse> {
-        self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDimensionWeightResponse> {
+        self.client.execute(action: "ModifyDimensionWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改维度权重
     ///
     /// 质量报告-修改维度权限
     @inlinable
-    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
-        try await self.client.execute(action: "ModifyDimensionWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDimensionWeight(_ input: ModifyDimensionWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
+        try await self.client.execute(action: "ModifyDimensionWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改维度权重
     ///
     /// 质量报告-修改维度权限
     @inlinable
-    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDimensionWeightResponse> {
-        self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), logger: logger, on: eventLoop)
+    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDimensionWeightResponse> {
+        self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改维度权重
     ///
     /// 质量报告-修改维度权限
     @inlinable
-    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
-        try await self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), logger: logger, on: eventLoop)
+    public func modifyDimensionWeight(weightInfoList: [WeightInfo], projectId: String, refresh: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDimensionWeightResponse {
+        try await self.modifyDimensionWeight(ModifyDimensionWeightRequest(weightInfoList: weightInfoList, projectId: projectId, refresh: refresh), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Teo {
 
     /// 查询内容管理接口配额
     @inlinable
-    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContentQuotaResponse> {
-        self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContentQuota(_ input: DescribeContentQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContentQuotaResponse> {
+        self.client.execute(action: "DescribeContentQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询内容管理接口配额
     @inlinable
-    public func describeContentQuota(_ input: DescribeContentQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
-        try await self.client.execute(action: "DescribeContentQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContentQuota(_ input: DescribeContentQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
+        try await self.client.execute(action: "DescribeContentQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询内容管理接口配额
     @inlinable
-    public func describeContentQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContentQuotaResponse> {
-        self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeContentQuota(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContentQuotaResponse> {
+        self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询内容管理接口配额
     @inlinable
-    public func describeContentQuota(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
-        try await self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeContentQuota(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContentQuotaResponse {
+        try await self.describeContentQuota(DescribeContentQuotaRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

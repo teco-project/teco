@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Trp {
 
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
-        self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomRules(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
+        self.client.execute(action: "DescribeCustomRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(_ input: DescribeCustomRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
-        try await self.client.execute(action: "DescribeCustomRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomRules(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
+        try await self.client.execute(action: "DescribeCustomRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
-        self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), logger: logger, on: eventLoop)
+    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomRulesResponse> {
+        self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
-        try await self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), logger: logger, on: eventLoop)
+    public func describeCustomRules(keyword: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, corpId: UInt64? = nil, status: Int64? = nil, merchantId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomRulesResponse {
+        try await self.describeCustomRules(DescribeCustomRulesRequest(keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, corpId: corpId, status: status, merchantId: merchantId), region: region, logger: logger, on: eventLoop)
     }
 }

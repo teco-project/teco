@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Antiddos {
     ///
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewCCTrendResponse> {
-        self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewCCTrendResponse> {
+        self.client.execute(action: "DescribeOverviewCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览趋势图
     ///
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
-        try await self.client.execute(action: "DescribeOverviewCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewCCTrend(_ input: DescribeOverviewCCTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
+        try await self.client.execute(action: "DescribeOverviewCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取防护概览趋势图
     ///
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewCCTrendResponse> {
-        self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewCCTrendResponse> {
+        self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览趋势图
     ///
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
-        try await self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), logger: logger, on: eventLoop)
+    public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
+        try await self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

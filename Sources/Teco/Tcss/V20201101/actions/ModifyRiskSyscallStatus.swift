@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcss {
     ///
     /// 修改高危系统调用事件的状态信息
     @inlinable
-    public func modifyRiskSyscallStatus(_ input: ModifyRiskSyscallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRiskSyscallStatusResponse> {
-        self.client.execute(action: "ModifyRiskSyscallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRiskSyscallStatus(_ input: ModifyRiskSyscallStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRiskSyscallStatusResponse> {
+        self.client.execute(action: "ModifyRiskSyscallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改高危系统调用事件状态
     ///
     /// 修改高危系统调用事件的状态信息
     @inlinable
-    public func modifyRiskSyscallStatus(_ input: ModifyRiskSyscallStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRiskSyscallStatusResponse {
-        try await self.client.execute(action: "ModifyRiskSyscallStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRiskSyscallStatus(_ input: ModifyRiskSyscallStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRiskSyscallStatusResponse {
+        try await self.client.execute(action: "ModifyRiskSyscallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改高危系统调用事件状态
     ///
     /// 修改高危系统调用事件的状态信息
     @inlinable
-    public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRiskSyscallStatusResponse> {
-        self.modifyRiskSyscallStatus(ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRiskSyscallStatusResponse> {
+        self.modifyRiskSyscallStatus(ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改高危系统调用事件状态
     ///
     /// 修改高危系统调用事件的状态信息
     @inlinable
-    public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRiskSyscallStatusResponse {
-        try await self.modifyRiskSyscallStatus(ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyRiskSyscallStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRiskSyscallStatusResponse {
+        try await self.modifyRiskSyscallStatus(ModifyRiskSyscallStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

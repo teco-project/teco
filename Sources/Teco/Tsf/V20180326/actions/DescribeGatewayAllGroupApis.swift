@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tsf {
 
     /// 查询网关所有分组下Api列表
     @inlinable
-    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayAllGroupApisResponse> {
-        self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayAllGroupApisResponse> {
+        self.client.execute(action: "DescribeGatewayAllGroupApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关所有分组下Api列表
     @inlinable
-    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
-        try await self.client.execute(action: "DescribeGatewayAllGroupApis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGatewayAllGroupApis(_ input: DescribeGatewayAllGroupApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
+        try await self.client.execute(action: "DescribeGatewayAllGroupApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网关所有分组下Api列表
     @inlinable
-    public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayAllGroupApisResponse> {
-        self.describeGatewayAllGroupApis(DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayAllGroupApisResponse> {
+        self.describeGatewayAllGroupApis(DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关所有分组下Api列表
     @inlinable
-    public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
-        try await self.describeGatewayAllGroupApis(DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeGatewayAllGroupApis(gatewayDeployGroupId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayAllGroupApisResponse {
+        try await self.describeGatewayAllGroupApis(DescribeGatewayAllGroupApisRequest(gatewayDeployGroupId: gatewayDeployGroupId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcb {
 
     /// 查询云应用服务版本容器列表
     @inlinable
-    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunPodListResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunPodListResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunPodList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云应用服务版本容器列表
     @inlinable
-    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunPodList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunPodList(_ input: DescribeCloudBaseRunPodListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunPodList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云应用服务版本容器列表
     @inlinable
-    public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunPodListResponse> {
-        self.describeCloudBaseRunPodList(DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunPodListResponse> {
+        self.describeCloudBaseRunPodList(DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云应用服务版本容器列表
     @inlinable
-    public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
-        try await self.describeCloudBaseRunPodList(DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunPodList(envId: String, serverName: String, versionName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunPodListResponse {
+        try await self.describeCloudBaseRunPodList(DescribeCloudBaseRunPodListRequest(envId: envId, serverName: serverName, versionName: versionName, limit: limit, offset: offset, status: status, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tsf {
     ///
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
-        self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
+        self.client.execute(action: "DescribeDeliveryConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置
     ///
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
-        try await self.client.execute(action: "DescribeDeliveryConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
+        try await self.client.execute(action: "DescribeDeliveryConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取多个投递项配置
     ///
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
-        self.describeDeliveryConfigs(DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
+        self.describeDeliveryConfigs(DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取多个投递项配置
     ///
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
-        try await self.describeDeliveryConfigs(DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
+        try await self.describeDeliveryConfigs(DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

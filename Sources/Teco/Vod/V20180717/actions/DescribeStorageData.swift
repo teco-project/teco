@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Vod {
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
-        self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStorageData(_ input: DescribeStorageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
+        self.client.execute(action: "DescribeStorageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(_ input: DescribeStorageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
-        try await self.client.execute(action: "DescribeStorageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStorageData(_ input: DescribeStorageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
+        try await self.client.execute(action: "DescribeStorageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
-        self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeStorageData(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
+        self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询当前存储情况
     ///
     /// 查询存储空间使用情况和文件数量。
     @inlinable
-    public func describeStorageData(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
-        try await self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeStorageData(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
+        try await self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

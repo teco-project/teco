@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Privatedns {
 
     /// 获取私有域解析请求量
     @inlinable
-    public func describeRequestData(_ input: DescribeRequestDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestDataResponse> {
-        self.client.execute(action: "DescribeRequestData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRequestData(_ input: DescribeRequestDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestDataResponse> {
+        self.client.execute(action: "DescribeRequestData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析请求量
     @inlinable
-    public func describeRequestData(_ input: DescribeRequestDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
-        try await self.client.execute(action: "DescribeRequestData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRequestData(_ input: DescribeRequestDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
+        try await self.client.execute(action: "DescribeRequestData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取私有域解析请求量
     @inlinable
-    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestDataResponse> {
-        self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), logger: logger, on: eventLoop)
+    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestDataResponse> {
+        self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析请求量
     @inlinable
-    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
-        try await self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), logger: logger, on: eventLoop)
+    public func describeRequestData(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestDataResponse {
+        try await self.describeRequestData(DescribeRequestDataRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd), region: region, logger: logger, on: eventLoop)
     }
 }

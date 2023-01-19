@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -126,8 +126,8 @@ extension Vod {
     /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
-    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUploadResponse> {
-        self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyUpload(_ input: ApplyUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUploadResponse> {
+        self.client.execute(action: "ApplyUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请上传
@@ -136,8 +136,8 @@ extension Vod {
     /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
-    public func applyUpload(_ input: ApplyUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
-        try await self.client.execute(action: "ApplyUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyUpload(_ input: ApplyUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
+        try await self.client.execute(action: "ApplyUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请上传
@@ -146,8 +146,8 @@ extension Vod {
     /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
-    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUploadResponse> {
-        self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUploadResponse> {
+        self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请上传
@@ -156,7 +156,7 @@ extension Vod {
     /// * 该接口用于申请媒体文件（和封面文件）的上传，获取文件上传到云点播的元信息（包括上传路径、上传签名等），用于后续上传接口。
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
-    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
-        try await self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
+        try await self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

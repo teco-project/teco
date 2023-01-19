@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Teo {
     ///
     /// 规则引擎创建规则。
     @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRule(_ input: CreateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
+        self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建规则引擎规则
     ///
     /// 规则引擎创建规则。
     @inlinable
-    public func createRule(_ input: CreateRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.client.execute(action: "CreateRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRule(_ input: CreateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建规则引擎规则
     ///
     /// 规则引擎创建规则。
     @inlinable
-    public func createRule(zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules, tags: tags), logger: logger, on: eventLoop)
+    public func createRule(zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
+        self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建规则引擎规则
     ///
     /// 规则引擎创建规则。
     @inlinable
-    public func createRule(zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules, tags: tags), logger: logger, on: eventLoop)
+    public func createRule(zoneId: String, ruleName: String, status: String, rules: [Rule], tags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
+        try await self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

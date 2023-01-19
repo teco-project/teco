@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
-        self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
+        self.client.execute(action: "DescribeIPStrategyApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
-        try await self.client.execute(action: "DescribeIPStrategyApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIPStrategyApisStatus(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
+        try await self.client.execute(action: "DescribeIPStrategyApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
-        self.describeIPStrategyApisStatus(DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyApisStatusResponse> {
+        self.describeIPStrategyApisStatus(DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IP策略绑定的API列表
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
-        try await self.describeIPStrategyApisStatus(DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeIPStrategyApisStatus(serviceId: String, strategyId: String, environmentName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyApisStatusResponse {
+        try await self.describeIPStrategyApisStatus(DescribeIPStrategyApisStatusRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

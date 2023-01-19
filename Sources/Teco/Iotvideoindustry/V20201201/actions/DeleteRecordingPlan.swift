@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Iotvideoindustry {
     /// 本接口(DeleteRecordingPlan)用于删除录制计划
     /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
     @inlinable
-    public func deleteRecordingPlan(_ input: DeleteRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingPlanResponse> {
-        self.client.execute(action: "DeleteRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRecordingPlan(_ input: DeleteRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingPlanResponse> {
+        self.client.execute(action: "DeleteRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除录制计划
@@ -57,8 +57,8 @@ extension Iotvideoindustry {
     /// 本接口(DeleteRecordingPlan)用于删除录制计划
     /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
     @inlinable
-    public func deleteRecordingPlan(_ input: DeleteRecordingPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingPlanResponse {
-        try await self.client.execute(action: "DeleteRecordingPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRecordingPlan(_ input: DeleteRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingPlanResponse {
+        try await self.client.execute(action: "DeleteRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除录制计划
@@ -66,8 +66,8 @@ extension Iotvideoindustry {
     /// 本接口(DeleteRecordingPlan)用于删除录制计划
     /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
     @inlinable
-    public func deleteRecordingPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingPlanResponse> {
-        self.deleteRecordingPlan(DeleteRecordingPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    public func deleteRecordingPlan(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRecordingPlanResponse> {
+        self.deleteRecordingPlan(DeleteRecordingPlanRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除录制计划
@@ -75,7 +75,7 @@ extension Iotvideoindustry {
     /// 本接口(DeleteRecordingPlan)用于删除录制计划
     /// 录制计划删除的同时，会停止该录制计划下的全部录制任务。
     @inlinable
-    public func deleteRecordingPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingPlanResponse {
-        try await self.deleteRecordingPlan(DeleteRecordingPlanRequest(planId: planId), logger: logger, on: eventLoop)
+    public func deleteRecordingPlan(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordingPlanResponse {
+        try await self.deleteRecordingPlan(DeleteRecordingPlanRequest(planId: planId), region: region, logger: logger, on: eventLoop)
     }
 }

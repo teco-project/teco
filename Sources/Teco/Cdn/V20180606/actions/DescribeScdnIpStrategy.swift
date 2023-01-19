@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cdn {
     ///
     /// 查询在SCDN IP安全策略
     @inlinable
-    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnIpStrategyResponse> {
-        self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnIpStrategyResponse> {
+        self.client.execute(action: "DescribeScdnIpStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN安全防护IP白名单
     ///
     /// 查询在SCDN IP安全策略
     @inlinable
-    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
-        try await self.client.execute(action: "DescribeScdnIpStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScdnIpStrategy(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
+        try await self.client.execute(action: "DescribeScdnIpStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询SCDN安全防护IP白名单
     ///
     /// 查询在SCDN IP安全策略
     @inlinable
-    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnIpStrategyResponse> {
-        self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), logger: logger, on: eventLoop)
+    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnIpStrategyResponse> {
+        self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN安全防护IP白名单
     ///
     /// 查询在SCDN IP安全策略
     @inlinable
-    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
-        try await self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), logger: logger, on: eventLoop)
+    public func describeScdnIpStrategy(offset: Int64? = nil, limit: Int64? = nil, filters: [ScdnIpStrategyFilter]? = nil, order: String? = nil, sequence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnIpStrategyResponse {
+        try await self.describeScdnIpStrategy(DescribeScdnIpStrategyRequest(offset: offset, limit: limit, filters: filters, order: order, sequence: sequence), region: region, logger: logger, on: eventLoop)
     }
 }

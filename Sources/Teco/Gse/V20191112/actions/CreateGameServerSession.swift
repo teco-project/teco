@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,8 +89,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(_ input: CreateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
-        self.client.execute(action: "CreateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGameServerSession(_ input: CreateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
+        self.client.execute(action: "CreateGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建游戏服务器会话
@@ -98,8 +98,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(_ input: CreateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
-        try await self.client.execute(action: "CreateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGameServerSession(_ input: CreateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
+        try await self.client.execute(action: "CreateGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建游戏服务器会话
@@ -107,8 +107,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
-        self.createGameServerSession(CreateGameServerSessionRequest(maximumPlayerSessionCount: maximumPlayerSessionCount, aliasId: aliasId, creatorId: creatorId, fleetId: fleetId, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionId: gameServerSessionId, idempotencyToken: idempotencyToken, name: name), logger: logger, on: eventLoop)
+    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionResponse> {
+        self.createGameServerSession(CreateGameServerSessionRequest(maximumPlayerSessionCount: maximumPlayerSessionCount, aliasId: aliasId, creatorId: creatorId, fleetId: fleetId, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionId: gameServerSessionId, idempotencyToken: idempotencyToken, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建游戏服务器会话
@@ -116,7 +116,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（CreateGameServerSession）用于创建游戏服务会话。
     @inlinable
-    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
-        try await self.createGameServerSession(CreateGameServerSessionRequest(maximumPlayerSessionCount: maximumPlayerSessionCount, aliasId: aliasId, creatorId: creatorId, fleetId: fleetId, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionId: gameServerSessionId, idempotencyToken: idempotencyToken, name: name), logger: logger, on: eventLoop)
+    public func createGameServerSession(maximumPlayerSessionCount: UInt64, aliasId: String? = nil, creatorId: String? = nil, fleetId: String? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionId: String? = nil, idempotencyToken: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionResponse {
+        try await self.createGameServerSession(CreateGameServerSessionRequest(maximumPlayerSessionCount: maximumPlayerSessionCount, aliasId: aliasId, creatorId: creatorId, fleetId: fleetId, gameProperties: gameProperties, gameServerSessionData: gameServerSessionData, gameServerSessionId: gameServerSessionId, idempotencyToken: idempotencyToken, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

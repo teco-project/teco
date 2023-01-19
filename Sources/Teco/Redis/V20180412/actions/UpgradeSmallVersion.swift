@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Redis {
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
-        self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
+        self.client.execute(action: "UpgradeSmallVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
-        try await self.client.execute(action: "UpgradeSmallVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeSmallVersion(_ input: UpgradeSmallVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
+        try await self.client.execute(action: "UpgradeSmallVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
-        self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), logger: logger, on: eventLoop)
+    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
+        self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例小版本升级接口
     ///
     /// 实例小版本升级
     @inlinable
-    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
-        try await self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), logger: logger, on: eventLoop)
+    public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
+        try await self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
     }
 }

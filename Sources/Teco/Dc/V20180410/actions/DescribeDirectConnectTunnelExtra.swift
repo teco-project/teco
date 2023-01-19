@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Dc {
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
-        self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
+        self.client.execute(action: "DescribeDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
-        try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDirectConnectTunnelExtra(_ input: DescribeDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
+        try await self.client.execute(action: "DescribeDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
-        self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelExtraResponse> {
+        self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用通道扩展信息
     ///
     /// 本接口（DescribeDirectConnectTunnelExtra）用于查询专用通道扩展信息
     @inlinable
-    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
-        try await self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func describeDirectConnectTunnelExtra(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelExtraResponse {
+        try await self.describeDirectConnectTunnelExtra(DescribeDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Cam {
 
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
-        self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
+        self.client.execute(action: "DescribeUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
-        try await self.client.execute(action: "DescribeUserOIDCConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserOIDCConfig(_ input: DescribeUserOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
+        try await self.client.execute(action: "DescribeUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
-        self.describeUserOIDCConfig(DescribeUserOIDCConfigRequest(), logger: logger, on: eventLoop)
+    public func describeUserOIDCConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserOIDCConfigResponse> {
+        self.describeUserOIDCConfig(DescribeUserOIDCConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户OIDC配置
     @inlinable
-    public func describeUserOIDCConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
-        try await self.describeUserOIDCConfig(DescribeUserOIDCConfigRequest(), logger: logger, on: eventLoop)
+    public func describeUserOIDCConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserOIDCConfigResponse {
+        try await self.describeUserOIDCConfig(DescribeUserOIDCConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

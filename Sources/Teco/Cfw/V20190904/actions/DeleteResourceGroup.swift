@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cfw {
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
-        self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
+        self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
-        try await self.client.execute(action: "DeleteResourceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
+        try await self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
-        self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
+        self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
     @inlinable
-    public func deleteResourceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
-        try await self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
+        try await self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

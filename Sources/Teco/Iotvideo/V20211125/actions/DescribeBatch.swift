@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iotvideo {
 
     /// 获取批次详情
     @inlinable
-    public func describeBatch(_ input: DescribeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchResponse> {
-        self.client.execute(action: "DescribeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBatch(_ input: DescribeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchResponse> {
+        self.client.execute(action: "DescribeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取批次详情
     @inlinable
-    public func describeBatch(_ input: DescribeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
-        try await self.client.execute(action: "DescribeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBatch(_ input: DescribeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
+        try await self.client.execute(action: "DescribeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取批次详情
     @inlinable
-    public func describeBatch(batchId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchResponse> {
-        self.describeBatch(DescribeBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func describeBatch(batchId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchResponse> {
+        self.describeBatch(DescribeBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取批次详情
     @inlinable
-    public func describeBatch(batchId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
-        try await self.describeBatch(DescribeBatchRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func describeBatch(batchId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchResponse {
+        try await self.describeBatch(DescribeBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

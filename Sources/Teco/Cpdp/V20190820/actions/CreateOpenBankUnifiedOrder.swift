@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -168,25 +168,25 @@ extension Cpdp {
 
     /// 云企付-聚合下单
     @inlinable
-    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankUnifiedOrderResponse> {
-        self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankUnifiedOrderResponse> {
+        self.client.execute(action: "CreateOpenBankUnifiedOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-聚合下单
     @inlinable
-    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
-        try await self.client.execute(action: "CreateOpenBankUnifiedOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOpenBankUnifiedOrder(_ input: CreateOpenBankUnifiedOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
+        try await self.client.execute(action: "CreateOpenBankUnifiedOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-聚合下单
     @inlinable
-    public func createOpenBankUnifiedOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, payChannel: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, orderSubject: String? = nil, goodsDetail: String? = nil, expireTime: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, attachment: String? = nil, externalPaymentData: String? = nil, remark: String? = nil, storeInfo: OpenBankStoreInfo? = nil, payLimitInfo: OpenBankPayLimitInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankUnifiedOrderResponse> {
-        self.createOpenBankUnifiedOrder(CreateOpenBankUnifiedOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, payChannel: payChannel, sceneInfo: sceneInfo, profitShareInfoList: profitShareInfoList, orderSubject: orderSubject, goodsDetail: goodsDetail, expireTime: expireTime, notifyUrl: notifyUrl, frontUrl: frontUrl, attachment: attachment, externalPaymentData: externalPaymentData, remark: remark, storeInfo: storeInfo, payLimitInfo: payLimitInfo, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankUnifiedOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, payChannel: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, orderSubject: String? = nil, goodsDetail: String? = nil, expireTime: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, attachment: String? = nil, externalPaymentData: String? = nil, remark: String? = nil, storeInfo: OpenBankStoreInfo? = nil, payLimitInfo: OpenBankPayLimitInfo? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankUnifiedOrderResponse> {
+        self.createOpenBankUnifiedOrder(CreateOpenBankUnifiedOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, payChannel: payChannel, sceneInfo: sceneInfo, profitShareInfoList: profitShareInfoList, orderSubject: orderSubject, goodsDetail: goodsDetail, expireTime: expireTime, notifyUrl: notifyUrl, frontUrl: frontUrl, attachment: attachment, externalPaymentData: externalPaymentData, remark: remark, storeInfo: storeInfo, payLimitInfo: payLimitInfo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-聚合下单
     @inlinable
-    public func createOpenBankUnifiedOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, payChannel: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, orderSubject: String? = nil, goodsDetail: String? = nil, expireTime: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, attachment: String? = nil, externalPaymentData: String? = nil, remark: String? = nil, storeInfo: OpenBankStoreInfo? = nil, payLimitInfo: OpenBankPayLimitInfo? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
-        try await self.createOpenBankUnifiedOrder(CreateOpenBankUnifiedOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, payChannel: payChannel, sceneInfo: sceneInfo, profitShareInfoList: profitShareInfoList, orderSubject: orderSubject, goodsDetail: goodsDetail, expireTime: expireTime, notifyUrl: notifyUrl, frontUrl: frontUrl, attachment: attachment, externalPaymentData: externalPaymentData, remark: remark, storeInfo: storeInfo, payLimitInfo: payLimitInfo, environment: environment), logger: logger, on: eventLoop)
+    public func createOpenBankUnifiedOrder(channelMerchantId: String, channelName: String, payType: String, outOrderId: String, totalAmount: Int64, currency: String, channelSubMerchantId: String? = nil, payChannel: String? = nil, sceneInfo: OpenBankSceneInfo? = nil, profitShareInfoList: [OpenBankProfitShareInfo]? = nil, orderSubject: String? = nil, goodsDetail: String? = nil, expireTime: String? = nil, notifyUrl: String? = nil, frontUrl: String? = nil, attachment: String? = nil, externalPaymentData: String? = nil, remark: String? = nil, storeInfo: OpenBankStoreInfo? = nil, payLimitInfo: OpenBankPayLimitInfo? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankUnifiedOrderResponse {
+        try await self.createOpenBankUnifiedOrder(CreateOpenBankUnifiedOrderRequest(channelMerchantId: channelMerchantId, channelName: channelName, payType: payType, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, channelSubMerchantId: channelSubMerchantId, payChannel: payChannel, sceneInfo: sceneInfo, profitShareInfoList: profitShareInfoList, orderSubject: orderSubject, goodsDetail: goodsDetail, expireTime: expireTime, notifyUrl: notifyUrl, frontUrl: frontUrl, attachment: attachment, externalPaymentData: externalPaymentData, remark: remark, storeInfo: storeInfo, payLimitInfo: payLimitInfo, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

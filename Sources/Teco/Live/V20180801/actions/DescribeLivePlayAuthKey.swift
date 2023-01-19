@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Live {
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
-        self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
+        self.client.execute(action: "DescribeLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
-        try await self.client.execute(action: "DescribeLivePlayAuthKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLivePlayAuthKey(_ input: DescribeLivePlayAuthKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
+        try await self.client.execute(action: "DescribeLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
-        self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeLivePlayAuthKey(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePlayAuthKeyResponse> {
+        self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询播放鉴权key
     ///
     /// 查询播放鉴权key。
     @inlinable
-    public func describeLivePlayAuthKey(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
-        try await self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func describeLivePlayAuthKey(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePlayAuthKeyResponse {
+        try await self.describeLivePlayAuthKey(DescribeLivePlayAuthKeyRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

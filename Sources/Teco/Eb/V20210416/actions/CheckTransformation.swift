@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Eb {
     ///
     /// 用于在ETL配置页面, 测试规则和数据.
     @inlinable
-    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTransformationResponse> {
-        self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkTransformation(_ input: CheckTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTransformationResponse> {
+        self.client.execute(action: "CheckTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查转换器
     ///
     /// 用于在ETL配置页面, 测试规则和数据.
     @inlinable
-    public func checkTransformation(_ input: CheckTransformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
-        try await self.client.execute(action: "CheckTransformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkTransformation(_ input: CheckTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
+        try await self.client.execute(action: "CheckTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查转换器
     ///
     /// 用于在ETL配置页面, 测试规则和数据.
     @inlinable
-    public func checkTransformation(input: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTransformationResponse> {
-        self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), logger: logger, on: eventLoop)
+    public func checkTransformation(input: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTransformationResponse> {
+        self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查转换器
     ///
     /// 用于在ETL配置页面, 测试规则和数据.
     @inlinable
-    public func checkTransformation(input: String, transformations: [Transformation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
-        try await self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), logger: logger, on: eventLoop)
+    public func checkTransformation(input: String, transformations: [Transformation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTransformationResponse {
+        try await self.checkTransformation(CheckTransformationRequest(input: input, transformations: transformations), region: region, logger: logger, on: eventLoop)
     }
 }

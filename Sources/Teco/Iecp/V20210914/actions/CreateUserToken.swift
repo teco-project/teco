@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iecp {
 
     /// 创建token
     @inlinable
-    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
-        self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUserToken(_ input: CreateUserTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
+        self.client.execute(action: "CreateUserToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建token
     @inlinable
-    public func createUserToken(_ input: CreateUserTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
-        try await self.client.execute(action: "CreateUserToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUserToken(_ input: CreateUserTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
+        try await self.client.execute(action: "CreateUserToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建token
     @inlinable
-    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
-        self.createUserToken(CreateUserTokenRequest(second: second), logger: logger, on: eventLoop)
+    public func createUserToken(second: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserTokenResponse> {
+        self.createUserToken(CreateUserTokenRequest(second: second), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建token
     @inlinable
-    public func createUserToken(second: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
-        try await self.createUserToken(CreateUserTokenRequest(second: second), logger: logger, on: eventLoop)
+    public func createUserToken(second: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserTokenResponse {
+        try await self.createUserToken(CreateUserTokenRequest(second: second), region: region, logger: logger, on: eventLoop)
     }
 }

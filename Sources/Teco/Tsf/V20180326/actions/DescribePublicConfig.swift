@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 查询公共配置（单条）
     @inlinable
-    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigResponse> {
-        self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePublicConfig(_ input: DescribePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigResponse> {
+        self.client.execute(action: "DescribePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置（单条）
     @inlinable
-    public func describePublicConfig(_ input: DescribePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
-        try await self.client.execute(action: "DescribePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePublicConfig(_ input: DescribePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
+        try await self.client.execute(action: "DescribePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询公共配置（单条）
     @inlinable
-    public func describePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigResponse> {
-        self.describePublicConfig(DescribePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func describePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigResponse> {
+        self.describePublicConfig(DescribePublicConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置（单条）
     @inlinable
-    public func describePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
-        try await self.describePublicConfig(DescribePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func describePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigResponse {
+        try await self.describePublicConfig(DescribePublicConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

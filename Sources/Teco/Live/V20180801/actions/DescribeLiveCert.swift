@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Live {
 
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
-        self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveCert(_ input: DescribeLiveCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
+        self.client.execute(action: "DescribeLiveCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(_ input: DescribeLiveCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
-        try await self.client.execute(action: "DescribeLiveCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveCert(_ input: DescribeLiveCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
+        try await self.client.execute(action: "DescribeLiveCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
-        self.describeLiveCert(DescribeLiveCertRequest(certId: certId), logger: logger, on: eventLoop)
+    public func describeLiveCert(certId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCertResponse> {
+        self.describeLiveCert(DescribeLiveCertRequest(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书信息
     @inlinable
-    public func describeLiveCert(certId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
-        try await self.describeLiveCert(DescribeLiveCertRequest(certId: certId), logger: logger, on: eventLoop)
+    public func describeLiveCert(certId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCertResponse {
+        try await self.describeLiveCert(DescribeLiveCertRequest(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

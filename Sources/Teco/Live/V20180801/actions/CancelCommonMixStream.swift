@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,31 +44,31 @@ extension Live {
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
-        self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
+        self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
-        try await self.client.execute(action: "CancelCommonMixStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
+        try await self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
-        self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), logger: logger, on: eventLoop)
+    public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
+        self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
     @inlinable
-    public func cancelCommonMixStream(mixStreamSessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
-        try await self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), logger: logger, on: eventLoop)
+    public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
+        try await self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }
 }

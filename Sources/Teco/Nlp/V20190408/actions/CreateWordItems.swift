@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Nlp {
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
-        self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWordItems(_ input: CreateWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
+        self.client.execute(action: "CreateWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(_ input: CreateWordItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
-        try await self.client.execute(action: "CreateWordItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWordItems(_ input: CreateWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
+        try await self.client.execute(action: "CreateWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
-        self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
+    public func createWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
+        self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义词库词条
     ///
     /// 向指定的词库中添加词条。
     @inlinable
-    public func createWordItems(dictId: String, wordItems: [WordItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
-        try await self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), logger: logger, on: eventLoop)
+    public func createWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
+        try await self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
 }

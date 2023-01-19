@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tci {
 
     /// 删除人脸
     @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
-        self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFace(_ input: DeleteFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
+        self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人脸
     @inlinable
-    public func deleteFace(_ input: DeleteFaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        try await self.client.execute(action: "DeleteFace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFace(_ input: DeleteFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
+        try await self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除人脸
     @inlinable
-    public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
-        self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), logger: logger, on: eventLoop)
+    public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
+        self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除人脸
     @inlinable
-    public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        try await self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), logger: logger, on: eventLoop)
+    public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
+        try await self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 }

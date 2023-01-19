@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Smh {
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
-        self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLibrary(_ input: CreateLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
+        self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体库
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(_ input: CreateLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.client.execute(action: "CreateLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLibrary(_ input: CreateLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建媒体库
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
-        self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), logger: logger, on: eventLoop)
+    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
+        self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体库
     ///
     /// 创建 PaaS 服务媒体库
     @inlinable
-    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), logger: logger, on: eventLoop)
+    public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
+        try await self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

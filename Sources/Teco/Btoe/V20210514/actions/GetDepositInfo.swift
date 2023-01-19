@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(_ input: GetDepositInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
-        self.client.execute(action: "GetDepositInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
+        self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(_ input: GetDepositInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
-        try await self.client.execute(action: "GetDepositInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
+        try await self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
-        self.getDepositInfo(GetDepositInfoRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
+        self.getDepositInfo(GetDepositInfoRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
-    public func getDepositInfo(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
-        try await self.getDepositInfo(GetDepositInfoRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
+        try await self.getDepositInfo(GetDepositInfoRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 }

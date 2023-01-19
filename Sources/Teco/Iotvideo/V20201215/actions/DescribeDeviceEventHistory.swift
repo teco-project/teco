@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Iotvideo {
 
     /// 获取设备的历史事件
     @inlinable
-    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventHistoryResponse> {
-        self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventHistoryResponse> {
+        self.client.execute(action: "DescribeDeviceEventHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备的历史事件
     @inlinable
-    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
-        try await self.client.execute(action: "DescribeDeviceEventHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceEventHistory(_ input: DescribeDeviceEventHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
+        try await self.client.execute(action: "DescribeDeviceEventHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备的历史事件
     @inlinable
-    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventHistoryResponse> {
-        self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), logger: logger, on: eventLoop)
+    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceEventHistoryResponse> {
+        self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备的历史事件
     @inlinable
-    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
-        try await self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), logger: logger, on: eventLoop)
+    public func describeDeviceEventHistory(productId: String, deviceName: String, type: String? = nil, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceEventHistoryResponse {
+        try await self.describeDeviceEventHistory(DescribeDeviceEventHistoryRequest(productId: productId, deviceName: deviceName, type: type, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

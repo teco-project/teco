@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 为CAM用户创建访问密钥
     @inlinable
-    public func createAccessKey(_ input: CreateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessKeyResponse> {
-        self.client.execute(action: "CreateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccessKey(_ input: CreateAccessKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessKeyResponse> {
+        self.client.execute(action: "CreateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建访问密钥
     ///
     /// 为CAM用户创建访问密钥
     @inlinable
-    public func createAccessKey(_ input: CreateAccessKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
-        try await self.client.execute(action: "CreateAccessKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccessKey(_ input: CreateAccessKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
+        try await self.client.execute(action: "CreateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建访问密钥
     ///
     /// 为CAM用户创建访问密钥
     @inlinable
-    public func createAccessKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessKeyResponse> {
-        self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    public func createAccessKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessKeyResponse> {
+        self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建访问密钥
     ///
     /// 为CAM用户创建访问密钥
     @inlinable
-    public func createAccessKey(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
-        try await self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    public func createAccessKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
+        try await self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 }

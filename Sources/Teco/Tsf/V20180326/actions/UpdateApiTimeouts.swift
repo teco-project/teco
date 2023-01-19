@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tsf {
     ///
     /// 批量更新API超时
     @inlinable
-    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiTimeoutsResponse> {
-        self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiTimeoutsResponse> {
+        self.client.execute(action: "UpdateApiTimeouts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新API超时
     ///
     /// 批量更新API超时
     @inlinable
-    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
-        try await self.client.execute(action: "UpdateApiTimeouts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateApiTimeouts(_ input: UpdateApiTimeoutsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
+        try await self.client.execute(action: "UpdateApiTimeouts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新API超时
     ///
     /// 批量更新API超时
     @inlinable
-    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiTimeoutsResponse> {
-        self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), logger: logger, on: eventLoop)
+    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiTimeoutsResponse> {
+        self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新API超时
     ///
     /// 批量更新API超时
     @inlinable
-    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
-        try await self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), logger: logger, on: eventLoop)
+    public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
+        try await self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 }

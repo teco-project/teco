@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Redis {
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
-        self.client.execute(action: "AllocateWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func allocateWanAddress(_ input: AllocateWanAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
+        self.client.execute(action: "AllocateWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通外网接口
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(_ input: AllocateWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
-        try await self.client.execute(action: "AllocateWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func allocateWanAddress(_ input: AllocateWanAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
+        try await self.client.execute(action: "AllocateWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通外网接口
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
-        self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func allocateWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
+        self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通外网接口
     ///
     /// 开通外网
     @inlinable
-    public func allocateWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
-        try await self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func allocateWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
+        try await self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

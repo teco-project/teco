@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
-        self.client.execute(action: "RecoverClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
+        self.client.execute(action: "RecoverClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例
@@ -68,8 +68,8 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
-        try await self.client.execute(action: "RecoverClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
+        try await self.client.execute(action: "RecoverClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复实例
@@ -79,8 +79,8 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
-        self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), logger: logger, on: eventLoop)
+    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
+        self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例
@@ -90,7 +90,7 @@ extension Tdcpg {
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
     @inlinable
-    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
-        try await self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), logger: logger, on: eventLoop)
+    public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
+        try await self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

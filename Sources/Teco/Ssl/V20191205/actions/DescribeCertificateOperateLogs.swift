@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Ssl {
     ///
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
-    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateOperateLogsResponse> {
-        self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateOperateLogsResponse> {
+        self.client.execute(action: "DescribeCertificateOperateLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取证书操作日志
     ///
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
-    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
-        try await self.client.execute(action: "DescribeCertificateOperateLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCertificateOperateLogs(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
+        try await self.client.execute(action: "DescribeCertificateOperateLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取证书操作日志
     ///
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
-    public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateOperateLogsResponse> {
-        self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateOperateLogsResponse> {
+        self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取证书操作日志
     ///
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
-    public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
-        try await self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
+        try await self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

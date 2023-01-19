@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Youmall {
 
     /// 获取指定区域分时客流量
     @inlinable
-    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowHourlyByZoneIdResponse> {
-        self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowHourlyByZoneIdResponse> {
+        self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定区域分时客流量
     @inlinable
-    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
-        try await self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneFlowHourlyByZoneId(_ input: DescribeZoneFlowHourlyByZoneIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
+        try await self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定区域分时客流量
     @inlinable
-    public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowHourlyByZoneIdResponse> {
-        self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowHourlyByZoneIdResponse> {
+        self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定区域分时客流量
     @inlinable
-    public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
-        try await self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
+        try await self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

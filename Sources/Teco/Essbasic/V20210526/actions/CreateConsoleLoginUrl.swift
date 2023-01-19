@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -114,8 +114,8 @@ extension Essbasic {
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
-    public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
-        self.client.execute(action: "CreateConsoleLoginUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
+        self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成控制台、移动端链接
@@ -125,8 +125,8 @@ extension Essbasic {
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
-    public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
-        try await self.client.execute(action: "CreateConsoleLoginUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConsoleLoginUrl(_ input: CreateConsoleLoginUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.client.execute(action: "CreateConsoleLoginUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成控制台、移动端链接
@@ -136,8 +136,8 @@ extension Essbasic {
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
-        self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsoleLoginUrlResponse> {
+        self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成控制台、移动端链接
@@ -147,7 +147,7 @@ extension Essbasic {
     /// 若子客企业已激活，使用了新的经办人OpenId进入，则会进入经办人的实名流程。
     /// 若子客企业、经办人均已完成认证，则会直接进入子客Web控制台。
     @inlinable
-    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
-        try await self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), logger: logger, on: eventLoop)
+    public func createConsoleLoginUrl(agent: Agent, proxyOrganizationName: String, proxyOperatorName: String? = nil, module: String? = nil, moduleId: String? = nil, uniformSocialCreditCode: String? = nil, menuStatus: String? = nil, endpoint: String? = nil, autoJumpBackEvent: String? = nil, operator: UserInfo? = nil, authorizationTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsoleLoginUrlResponse {
+        try await self.createConsoleLoginUrl(CreateConsoleLoginUrlRequest(agent: agent, proxyOrganizationName: proxyOrganizationName, proxyOperatorName: proxyOperatorName, module: module, moduleId: moduleId, uniformSocialCreditCode: uniformSocialCreditCode, menuStatus: menuStatus, endpoint: endpoint, autoJumpBackEvent: autoJumpBackEvent, operator: `operator`, authorizationTypes: authorizationTypes), region: region, logger: logger, on: eventLoop)
     }
 }

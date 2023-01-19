@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Dnspod {
 
     /// 快照回滚前检查
     @inlinable
-    public func checkSnapshotRollback(_ input: CheckSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSnapshotRollbackResponse> {
-        self.client.execute(action: "CheckSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkSnapshotRollback(_ input: CheckSnapshotRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSnapshotRollbackResponse> {
+        self.client.execute(action: "CheckSnapshotRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 快照回滚前检查
     @inlinable
-    public func checkSnapshotRollback(_ input: CheckSnapshotRollbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSnapshotRollbackResponse {
-        try await self.client.execute(action: "CheckSnapshotRollback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkSnapshotRollback(_ input: CheckSnapshotRollbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSnapshotRollbackResponse {
+        try await self.client.execute(action: "CheckSnapshotRollback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 快照回滚前检查
     @inlinable
-    public func checkSnapshotRollback(domain: String, snapshotId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSnapshotRollbackResponse> {
-        self.checkSnapshotRollback(CheckSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), logger: logger, on: eventLoop)
+    public func checkSnapshotRollback(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckSnapshotRollbackResponse> {
+        self.checkSnapshotRollback(CheckSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 快照回滚前检查
     @inlinable
-    public func checkSnapshotRollback(domain: String, snapshotId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSnapshotRollbackResponse {
-        try await self.checkSnapshotRollback(CheckSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), logger: logger, on: eventLoop)
+    public func checkSnapshotRollback(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckSnapshotRollbackResponse {
+        try await self.checkSnapshotRollback(CheckSnapshotRollbackRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

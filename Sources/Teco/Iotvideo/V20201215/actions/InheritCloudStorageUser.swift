@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotvideo {
 
     /// 继承云存用户
     @inlinable
-    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
-        self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
+        self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 继承云存用户
     @inlinable
-    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
-        try await self.client.execute(action: "InheritCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
+        try await self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 继承云存用户
     @inlinable
-    public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
-        self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), logger: logger, on: eventLoop)
+    public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
+        self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 继承云存用户
     @inlinable
-    public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
-        try await self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), logger: logger, on: eventLoop)
+    public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
+        try await self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }
 }

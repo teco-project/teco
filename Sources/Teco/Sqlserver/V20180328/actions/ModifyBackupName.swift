@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Sqlserver {
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
-        self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
+        self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(_ input: ModifyBackupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
-        try await self.client.execute(action: "ModifyBackupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
+        try await self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
-        self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), logger: logger, on: eventLoop)
+    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
+        self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
     @inlinable
-    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
-        try await self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), logger: logger, on: eventLoop)
+    public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
+        try await self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

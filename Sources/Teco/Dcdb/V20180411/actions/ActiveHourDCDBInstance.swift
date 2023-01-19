@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Dcdb {
 
     /// 解隔离DCDB后付费实例
     @inlinable
-    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
-        self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
+        self.client.execute(action: "ActiveHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解隔离DCDB后付费实例
     @inlinable
-    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
-        try await self.client.execute(action: "ActiveHourDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func activeHourDCDBInstance(_ input: ActiveHourDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
+        try await self.client.execute(action: "ActiveHourDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解隔离DCDB后付费实例
     @inlinable
-    public func activeHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
-        self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func activeHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActiveHourDCDBInstanceResponse> {
+        self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解隔离DCDB后付费实例
     @inlinable
-    public func activeHourDCDBInstance(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
-        try await self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func activeHourDCDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActiveHourDCDBInstanceResponse {
+        try await self.activeHourDCDBInstance(ActiveHourDCDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

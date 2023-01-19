@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ds {
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
-        self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSeal(_ input: DeleteSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
+        self.client.execute(action: "DeleteSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(_ input: DeleteSealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
-        try await self.client.execute(action: "DeleteSeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSeal(_ input: DeleteSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
+        try await self.client.execute(action: "DeleteSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
-        self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), logger: logger, on: eventLoop)
+    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
+        self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除签章
     ///
     /// 删除印章接口，删除指定账号的某个印章
     @inlinable
-    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
-        try await self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), logger: logger, on: eventLoop)
+    public func deleteSeal(module: String, operation: String, accountResId: String, sealResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
+        try await self.deleteSeal(DeleteSealRequest(module: module, operation: operation, accountResId: accountResId, sealResId: sealResId), region: region, logger: logger, on: eventLoop)
     }
 }

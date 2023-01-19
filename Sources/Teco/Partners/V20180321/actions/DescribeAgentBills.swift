@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Partners {
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
-        self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentBills(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
+        self.client.execute(action: "DescribeAgentBills", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(_ input: DescribeAgentBillsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
-        try await self.client.execute(action: "DescribeAgentBills", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentBills(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
+        try await self.client.execute(action: "DescribeAgentBills", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
-        self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
+        self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
-        try await self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
+        try await self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

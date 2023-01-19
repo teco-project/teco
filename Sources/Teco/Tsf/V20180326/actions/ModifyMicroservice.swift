@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,25 +52,25 @@ extension Tsf {
 
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
-        self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
+        self.client.execute(action: "ModifyMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
-        try await self.client.execute(action: "ModifyMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMicroservice(_ input: ModifyMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
+        try await self.client.execute(action: "ModifyMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
-        self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
+        self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改微服务详情
     @inlinable
-    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
-        try await self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), logger: logger, on: eventLoop)
+    public func modifyMicroservice(microserviceId: String, microserviceDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
+        try await self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
     }
 }

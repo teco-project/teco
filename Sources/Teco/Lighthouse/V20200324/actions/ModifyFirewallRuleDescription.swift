@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func modifyFirewallRuleDescription(_ input: ModifyFirewallRuleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRuleDescriptionResponse> {
-        self.client.execute(action: "ModifyFirewallRuleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFirewallRuleDescription(_ input: ModifyFirewallRuleDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRuleDescriptionResponse> {
+        self.client.execute(action: "ModifyFirewallRuleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改防火墙规则描述
@@ -75,8 +75,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func modifyFirewallRuleDescription(_ input: ModifyFirewallRuleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
-        try await self.client.execute(action: "ModifyFirewallRuleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFirewallRuleDescription(_ input: ModifyFirewallRuleDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
+        try await self.client.execute(action: "ModifyFirewallRuleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改防火墙规则描述
@@ -90,8 +90,8 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRuleDescriptionResponse> {
-        self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRuleDescriptionResponse> {
+        self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改防火墙规则描述
@@ -105,7 +105,7 @@ extension Lighthouse {
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable
-    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
-        try await self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), logger: logger, on: eventLoop)
+    public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
+        try await self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }
 }

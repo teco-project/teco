@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Gaap {
     ///
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
-    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRealServersResponse> {
-        self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addRealServers(_ input: AddRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRealServersResponse> {
+        self.client.execute(action: "AddRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加源站
     ///
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
-    public func addRealServers(_ input: AddRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
-        try await self.client.execute(action: "AddRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addRealServers(_ input: AddRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
+        try await self.client.execute(action: "AddRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加源站
     ///
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
-    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRealServersResponse> {
-        self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddRealServersResponse> {
+        self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加源站
     ///
     /// 添加源站(服务器)信息，支持IP或域名
     @inlinable
-    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
-        try await self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func addRealServers(projectId: UInt64, realServerIP: [String], realServerName: String, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddRealServersResponse {
+        try await self.addRealServers(AddRealServersRequest(projectId: projectId, realServerIP: realServerIP, realServerName: realServerName, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 }

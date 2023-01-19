@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcss {
     ///
     /// 查询运行时高危系统调用白名单详细信息
     @inlinable
-    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallWhiteListDetailResponse> {
-        self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallWhiteListDetailResponse> {
+        self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用白名单详细信息
     ///
     /// 查询运行时高危系统调用白名单详细信息
     @inlinable
-    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
-        try await self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRiskSyscallWhiteListDetail(_ input: DescribeRiskSyscallWhiteListDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
+        try await self.client.execute(action: "DescribeRiskSyscallWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时高危系统调用白名单详细信息
     ///
     /// 查询运行时高危系统调用白名单详细信息
     @inlinable
-    public func describeRiskSyscallWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallWhiteListDetailResponse> {
-        self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    public func describeRiskSyscallWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallWhiteListDetailResponse> {
+        self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用白名单详细信息
     ///
     /// 查询运行时高危系统调用白名单详细信息
     @inlinable
-    public func describeRiskSyscallWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
-        try await self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    public func describeRiskSyscallWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallWhiteListDetailResponse {
+        try await self.describeRiskSyscallWhiteListDetail(DescribeRiskSyscallWhiteListDetailRequest(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 }

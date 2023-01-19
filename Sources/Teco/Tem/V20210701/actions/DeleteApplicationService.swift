@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 删除一条访问方式
     @inlinable
-    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationServiceResponse> {
-        self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationServiceResponse> {
+        self.client.execute(action: "DeleteApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除一条访问方式
     @inlinable
-    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
-        try await self.client.execute(action: "DeleteApplicationService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApplicationService(_ input: DeleteApplicationServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
+        try await self.client.execute(action: "DeleteApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除一条访问方式
     @inlinable
-    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationServiceResponse> {
-        self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), logger: logger, on: eventLoop)
+    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationServiceResponse> {
+        self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除一条访问方式
     @inlinable
-    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
-        try await self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), logger: logger, on: eventLoop)
+    public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
+        try await self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
     }
 }

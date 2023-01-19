@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Clb {
     /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
     /// 注：本接口仅可从广州地域调用。
     @inlinable
-    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertForLoadBalancersResponse> {
-        self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertForLoadBalancersResponse> {
+        self.client.execute(action: "ReplaceCertForLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换负载均衡实例所关联的证书
@@ -62,8 +62,8 @@ extension Clb {
     /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
     /// 注：本接口仅可从广州地域调用。
     @inlinable
-    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
-        try await self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
+        try await self.client.execute(action: "ReplaceCertForLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 替换负载均衡实例所关联的证书
@@ -73,8 +73,8 @@ extension Clb {
     /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
     /// 注：本接口仅可从广州地域调用。
     @inlinable
-    public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertForLoadBalancersResponse> {
-        self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), logger: logger, on: eventLoop)
+    public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertForLoadBalancersResponse> {
+        self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换负载均衡实例所关联的证书
@@ -84,7 +84,7 @@ extension Clb {
     /// 需要使用的新证书，可以通过传入证书ID来指定，如果不指定证书ID，则必须传入证书内容等相关信息，用以新建证书并绑定至负载均衡。
     /// 注：本接口仅可从广州地域调用。
     @inlinable
-    public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
-        try await self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), logger: logger, on: eventLoop)
+    public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
+        try await self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), region: region, logger: logger, on: eventLoop)
     }
 }

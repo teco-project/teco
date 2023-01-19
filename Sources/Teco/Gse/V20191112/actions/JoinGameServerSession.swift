@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSession(_ input: JoinGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
-        self.client.execute(action: "JoinGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
+        self.client.execute(action: "JoinGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 加入游戏服务器会话
@@ -68,8 +68,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSession(_ input: JoinGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
-        try await self.client.execute(action: "JoinGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
+        try await self.client.execute(action: "JoinGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 加入游戏服务器会话
@@ -77,8 +77,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
-        self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), logger: logger, on: eventLoop)
+    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
+        self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 加入游戏服务器会话
@@ -86,7 +86,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
     @inlinable
-    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
-        try await self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), logger: logger, on: eventLoop)
+    public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
+        try await self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), region: region, logger: logger, on: eventLoop)
     }
 }

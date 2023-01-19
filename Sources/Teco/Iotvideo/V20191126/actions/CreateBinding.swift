@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Iotvideo {
     /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
     ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
     @inlinable
-    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindingResponse> {
-        self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBinding(_ input: CreateBindingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindingResponse> {
+        self.client.execute(action: "CreateBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端用户绑定设备
@@ -82,8 +82,8 @@ extension Iotvideo {
     /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
     ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
     @inlinable
-    public func createBinding(_ input: CreateBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
-        try await self.client.execute(action: "CreateBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBinding(_ input: CreateBindingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
+        try await self.client.execute(action: "CreateBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终端用户绑定设备
@@ -91,8 +91,8 @@ extension Iotvideo {
     /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
     ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
     @inlinable
-    public func createBinding(accessId: String, tid: String, role: String, forceBind: Bool? = nil, nick: String? = nil, bindToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindingResponse> {
-        self.createBinding(CreateBindingRequest(accessId: accessId, tid: tid, role: role, forceBind: forceBind, nick: nick, bindToken: bindToken), logger: logger, on: eventLoop)
+    public func createBinding(accessId: String, tid: String, role: String, forceBind: Bool? = nil, nick: String? = nil, bindToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindingResponse> {
+        self.createBinding(CreateBindingRequest(accessId: accessId, tid: tid, role: role, forceBind: forceBind, nick: nick, bindToken: bindToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终端用户绑定设备
@@ -100,7 +100,7 @@ extension Iotvideo {
     /// 本接口（CreateBinding）用于终端用户和设备进行绑定，具体的应用场景如下：
     ///     终端用户与设备具有“强关联”关系。用户与设备绑定之后，用户终端即具备了该设备的访问权限,访问或操作设备时，无需获取设备访问Token。
     @inlinable
-    public func createBinding(accessId: String, tid: String, role: String, forceBind: Bool? = nil, nick: String? = nil, bindToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
-        try await self.createBinding(CreateBindingRequest(accessId: accessId, tid: tid, role: role, forceBind: forceBind, nick: nick, bindToken: bindToken), logger: logger, on: eventLoop)
+    public func createBinding(accessId: String, tid: String, role: String, forceBind: Bool? = nil, nick: String? = nil, bindToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindingResponse {
+        try await self.createBinding(CreateBindingRequest(accessId: accessId, tid: tid, role: role, forceBind: forceBind, nick: nick, bindToken: bindToken), region: region, logger: logger, on: eventLoop)
     }
 }

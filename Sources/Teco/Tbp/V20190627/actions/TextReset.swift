@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Tbp {
     ///
     /// 会话重置接口。
     @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
-        self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textReset(_ input: TextResetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
+        self.client.execute(action: "TextReset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 会话重置
     ///
     /// 会话重置接口。
     @inlinable
-    public func textReset(_ input: TextResetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
-        try await self.client.execute(action: "TextReset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textReset(_ input: TextResetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
+        try await self.client.execute(action: "TextReset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 会话重置
     ///
     /// 会话重置接口。
     @inlinable
-    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
-        self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), logger: logger, on: eventLoop)
+    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
+        self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 会话重置
     ///
     /// 会话重置接口。
     @inlinable
-    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
-        try await self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), logger: logger, on: eventLoop)
+    public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
+        try await self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), region: region, logger: logger, on: eventLoop)
     }
 }

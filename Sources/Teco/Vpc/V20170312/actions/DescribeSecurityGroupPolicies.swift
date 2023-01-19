@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
-        self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
+        self.client.execute(action: "DescribeSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupPolicies(_ input: DescribeSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
-        self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), logger: logger, on: eventLoop)
+    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
+        self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则
     ///
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
-    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
-        try await self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), logger: logger, on: eventLoop)
+    public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
+        try await self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

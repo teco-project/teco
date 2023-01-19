@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Cpdp {
 
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
-        self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
+        self.client.execute(action: "ModifyBindedAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
-        try await self.client.execute(action: "ModifyBindedAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBindedAccount(_ input: ModifyBindedAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
+        try await self.client.execute(action: "ModifyBindedAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
-        self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindedAccountResponse> {
+        self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-重新绑定账号
     @inlinable
-    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
-        try await self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), logger: logger, on: eventLoop)
+    public func modifyBindedAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindedAccountResponse {
+        try await self.modifyBindedAccount(ModifyBindedAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
     }
 }

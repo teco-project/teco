@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Live {
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
     @inlinable
-    public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
-        self.client.execute(action: "DeleteLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
+        self.client.execute(action: "DeleteLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
     @inlinable
-    public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
-        try await self.client.execute(action: "DeleteLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
+        try await self.client.execute(action: "DeleteLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
     @inlinable
-    public func deleteLiveRecord(streamName: String, taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
-        self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), logger: logger, on: eventLoop)
+    public func deleteLiveRecord(streamName: String, taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
+        self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
     @inlinable
-    public func deleteLiveRecord(streamName: String, taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
-        try await self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), logger: logger, on: eventLoop)
+    public func deleteLiveRecord(streamName: String, taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
+        try await self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

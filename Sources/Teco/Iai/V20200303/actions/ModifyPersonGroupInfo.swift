@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iai {
     ///
     /// 修改指定人员库人员描述内容。
     @inlinable
-    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonGroupInfoResponse> {
-        self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonGroupInfoResponse> {
+        self.client.execute(action: "ModifyPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改人员描述信息
     ///
     /// 修改指定人员库人员描述内容。
     @inlinable
-    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
-        try await self.client.execute(action: "ModifyPersonGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPersonGroupInfo(_ input: ModifyPersonGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
+        try await self.client.execute(action: "ModifyPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改人员描述信息
     ///
     /// 修改指定人员库人员描述内容。
     @inlinable
-    public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonGroupInfoResponse> {
-        self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), logger: logger, on: eventLoop)
+    public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonGroupInfoResponse> {
+        self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人员描述信息
     ///
     /// 修改指定人员库人员描述内容。
     @inlinable
-    public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
-        try await self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), logger: logger, on: eventLoop)
+    public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
+        try await self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), region: region, logger: logger, on: eventLoop)
     }
 }

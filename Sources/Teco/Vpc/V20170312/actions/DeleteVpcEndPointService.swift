@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
-        self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
+        self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
-        try await self.client.execute(action: "DeleteVpcEndPointService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
+        try await self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
-        self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), logger: logger, on: eventLoop)
+    public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
+        self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
     @inlinable
-    public func deleteVpcEndPointService(endPointServiceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
-        try await self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), logger: logger, on: eventLoop)
+    public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
+        try await self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }
 }

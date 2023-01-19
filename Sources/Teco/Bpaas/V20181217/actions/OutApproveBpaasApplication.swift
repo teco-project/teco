@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Bpaas {
 
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
-        self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
+        self.client.execute(action: "OutApproveBpaasApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
-        try await self.client.execute(action: "OutApproveBpaasApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func outApproveBpaasApplication(_ input: OutApproveBpaasApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
+        try await self.client.execute(action: "OutApproveBpaasApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
-        self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), logger: logger, on: eventLoop)
+    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
+        self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), region: region, logger: logger, on: eventLoop)
     }
 
     /// 外部审批申请单
     @inlinable
-    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
-        try await self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), logger: logger, on: eventLoop)
+    public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
+        try await self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), region: region, logger: logger, on: eventLoop)
     }
 }

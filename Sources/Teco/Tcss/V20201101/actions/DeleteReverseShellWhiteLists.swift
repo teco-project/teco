@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 删除运行时反弹shell白名单
     @inlinable
-    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellWhiteListsResponse> {
-        self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellWhiteListsResponse> {
+        self.client.execute(action: "DeleteReverseShellWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时反弹shell白名单
     @inlinable
-    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
-        try await self.client.execute(action: "DeleteReverseShellWhiteLists", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteReverseShellWhiteLists(_ input: DeleteReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
+        try await self.client.execute(action: "DeleteReverseShellWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除运行时反弹shell白名单
     @inlinable
-    public func deleteReverseShellWhiteLists(whiteListIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellWhiteListsResponse> {
-        self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), logger: logger, on: eventLoop)
+    public func deleteReverseShellWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellWhiteListsResponse> {
+        self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时反弹shell白名单
     @inlinable
-    public func deleteReverseShellWhiteLists(whiteListIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
-        try await self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), logger: logger, on: eventLoop)
+    public func deleteReverseShellWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
+        try await self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

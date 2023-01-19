@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
-        self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
+        self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
@@ -73,8 +73,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        try await self.client.execute(action: "DescribeDataSourceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataSourceList(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
+        try await self.client.execute(action: "DescribeDataSourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
@@ -82,8 +82,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
-        self.describeDataSourceList(DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceListResponse> {
+        self.describeDataSourceList(DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-查询数据源分页列表【Beta版本】
@@ -91,7 +91,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
     @inlinable
-    public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
-        try await self.describeDataSourceList(DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), logger: logger, on: eventLoop)
+    public func describeDataSourceList(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderFields: [OrderField]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceListResponse {
+        try await self.describeDataSourceList(DescribeDataSourceListRequest(pageNumber: pageNumber, pageSize: pageSize, orderFields: orderFields, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

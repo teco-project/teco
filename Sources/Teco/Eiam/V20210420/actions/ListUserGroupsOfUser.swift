@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Eiam {
 
     /// 获取用户所在的用户组列表
     @inlinable
-    public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserGroupsOfUserResponse> {
-        self.client.execute(action: "ListUserGroupsOfUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserGroupsOfUserResponse> {
+        self.client.execute(action: "ListUserGroupsOfUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户所在的用户组列表
     @inlinable
-    public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
-        try await self.client.execute(action: "ListUserGroupsOfUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listUserGroupsOfUser(_ input: ListUserGroupsOfUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
+        try await self.client.execute(action: "ListUserGroupsOfUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户所在的用户组列表
     @inlinable
-    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserGroupsOfUserResponse> {
-        self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUserGroupsOfUserResponse> {
+        self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户所在的用户组列表
     @inlinable
-    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
-        try await self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listUserGroupsOfUser(userId: String, searchCondition: UserGroupInformationSearchCriteria? = nil, sort: SortCondition? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUserGroupsOfUserResponse {
+        try await self.listUserGroupsOfUser(ListUserGroupsOfUserRequest(userId: userId, searchCondition: searchCondition, sort: sort, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

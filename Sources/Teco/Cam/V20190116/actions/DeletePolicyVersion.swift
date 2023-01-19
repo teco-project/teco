@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable
-    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
-        self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
+        self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable
-    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
-        try await self.client.execute(action: "DeletePolicyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
+        try await self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable
-    public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
-        self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
+        self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable
-    public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
-        try await self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), logger: logger, on: eventLoop)
+    public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
+        try await self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

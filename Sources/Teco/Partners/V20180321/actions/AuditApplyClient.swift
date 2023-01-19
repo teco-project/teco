@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Partners {
     ///
     /// 代理商可以审核其名下申请中代客
     @inlinable
-    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditApplyClientResponse> {
-        self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func auditApplyClient(_ input: AuditApplyClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditApplyClientResponse> {
+        self.client.execute(action: "AuditApplyClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 审核客户
     ///
     /// 代理商可以审核其名下申请中代客
     @inlinable
-    public func auditApplyClient(_ input: AuditApplyClientRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
-        try await self.client.execute(action: "AuditApplyClient", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func auditApplyClient(_ input: AuditApplyClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
+        try await self.client.execute(action: "AuditApplyClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 审核客户
     ///
     /// 代理商可以审核其名下申请中代客
     @inlinable
-    public func auditApplyClient(clientUin: String, auditResult: String, note: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditApplyClientResponse> {
-        self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), logger: logger, on: eventLoop)
+    public func auditApplyClient(clientUin: String, auditResult: String, note: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditApplyClientResponse> {
+        self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 审核客户
     ///
     /// 代理商可以审核其名下申请中代客
     @inlinable
-    public func auditApplyClient(clientUin: String, auditResult: String, note: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
-        try await self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), logger: logger, on: eventLoop)
+    public func auditApplyClient(clientUin: String, auditResult: String, note: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditApplyClientResponse {
+        try await self.auditApplyClient(AuditApplyClientRequest(clientUin: clientUin, auditResult: auditResult, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

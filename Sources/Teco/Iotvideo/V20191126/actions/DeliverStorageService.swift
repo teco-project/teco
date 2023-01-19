@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Iotvideo {
 
     /// 将已购买的云存服务转移到另一设备
     @inlinable
-    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverStorageServiceResponse> {
-        self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deliverStorageService(_ input: DeliverStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverStorageServiceResponse> {
+        self.client.execute(action: "DeliverStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将已购买的云存服务转移到另一设备
     @inlinable
-    public func deliverStorageService(_ input: DeliverStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
-        try await self.client.execute(action: "DeliverStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deliverStorageService(_ input: DeliverStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
+        try await self.client.execute(action: "DeliverStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将已购买的云存服务转移到另一设备
     @inlinable
-    public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverStorageServiceResponse> {
-        self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), logger: logger, on: eventLoop)
+    public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverStorageServiceResponse> {
+        self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将已购买的云存服务转移到另一设备
     @inlinable
-    public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
-        try await self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), logger: logger, on: eventLoop)
+    public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
+        try await self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
 }

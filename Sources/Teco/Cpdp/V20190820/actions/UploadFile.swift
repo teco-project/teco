@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Cpdp {
 
     /// 直播平台-文件上传
     @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadFile(_ input: UploadFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
+        self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-文件上传
     @inlinable
-    public func uploadFile(_ input: UploadFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.client.execute(action: "UploadFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadFile(_ input: UploadFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-文件上传
     @inlinable
-    public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        self.uploadFile(UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), logger: logger, on: eventLoop)
+    public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
+        self.uploadFile(UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-文件上传
     @inlinable
-    public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.uploadFile(UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), logger: logger, on: eventLoop)
+    public func uploadFile(fileName: String, fileType: String, fileUrl: String? = nil, fileContent: String? = nil, fileExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
+        try await self.uploadFile(UploadFileRequest(fileName: fileName, fileType: fileType, fileUrl: fileUrl, fileContent: fileContent, fileExtendInfo: fileExtendInfo), region: region, logger: logger, on: eventLoop)
     }
 }

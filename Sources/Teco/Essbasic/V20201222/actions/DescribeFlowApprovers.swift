@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Essbasic {
     ///
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
-    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowApproversResponse> {
-        self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowApproversResponse> {
+        self.client.execute(action: "DescribeFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程参与者信息
     ///
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
-    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
-        try await self.client.execute(action: "DescribeFlowApprovers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowApprovers(_ input: DescribeFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
+        try await self.client.execute(action: "DescribeFlowApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流程参与者信息
     ///
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
-    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowApproversResponse> {
-        self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), logger: logger, on: eventLoop)
+    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowApproversResponse> {
+        self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程参与者信息
     ///
     /// 第三方应用可通过此接口（DescribeFlowApprovers）查询流程参与者信息。
     @inlinable
-    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
-        try await self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), logger: logger, on: eventLoop)
+    public func describeFlowApprovers(caller: Caller, flowId: String, userId: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowApproversResponse {
+        try await self.describeFlowApprovers(DescribeFlowApproversRequest(caller: caller, flowId: flowId, userId: userId, signId: signId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tcss {
 
     /// 创建一个导出安全合规信息的任务
     @inlinable
-    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportComplianceStatusListJobResponse> {
-        self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportComplianceStatusListJobResponse> {
+        self.client.execute(action: "CreateExportComplianceStatusListJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建一个导出安全合规信息的任务
     @inlinable
-    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
-        try await self.client.execute(action: "CreateExportComplianceStatusListJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createExportComplianceStatusListJob(_ input: CreateExportComplianceStatusListJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
+        try await self.client.execute(action: "CreateExportComplianceStatusListJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建一个导出安全合规信息的任务
     @inlinable
-    public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportComplianceStatusListJobResponse> {
-        self.createExportComplianceStatusListJob(CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), logger: logger, on: eventLoop)
+    public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportComplianceStatusListJobResponse> {
+        self.createExportComplianceStatusListJob(CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建一个导出安全合规信息的任务
     @inlinable
-    public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
-        try await self.createExportComplianceStatusListJob(CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), logger: logger, on: eventLoop)
+    public func createExportComplianceStatusListJob(assetType: String, exportByAsset: Bool, exportAll: Bool, idList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportComplianceStatusListJobResponse {
+        try await self.createExportComplianceStatusListJob(CreateExportComplianceStatusListJobRequest(assetType: assetType, exportByAsset: exportByAsset, exportAll: exportAll, idList: idList), region: region, logger: logger, on: eventLoop)
     }
 }

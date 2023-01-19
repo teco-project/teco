@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Fmu {
     ///
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
-    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
-        self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func beautifyPic(_ input: BeautifyPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
+        self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸美颜
     ///
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
-    public func beautifyPic(_ input: BeautifyPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
-        try await self.client.execute(action: "BeautifyPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func beautifyPic(_ input: BeautifyPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
+        try await self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人脸美颜
     ///
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
-    public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
-        self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
+        self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人脸美颜
     ///
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
-    public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
-        try await self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), logger: logger, on: eventLoop)
+    public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
+        try await self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,25 +97,25 @@ extension Iotvideo {
 
     /// 创建产品
     @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProduct(_ input: CreateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
+        self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
     @inlinable
-    public func createProduct(_ input: CreateProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.client.execute(action: "CreateProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProduct(_ input: CreateProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建产品
     @inlinable
-    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), logger: logger, on: eventLoop)
+    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
+        self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建产品
     @inlinable
-    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), logger: logger, on: eventLoop)
+    public func createProduct(productName: String, deviceType: UInt64, productVaildYears: UInt64, features: [String], chipManufactureId: String, chipId: String, productDescription: String, chipOs: String, encryptionType: UInt64? = nil, categoryId: UInt64? = nil, netType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
+        try await self.createProduct(CreateProductRequest(productName: productName, deviceType: deviceType, productVaildYears: productVaildYears, features: features, chipManufactureId: chipManufactureId, chipId: chipId, productDescription: productDescription, chipOs: chipOs, encryptionType: encryptionType, categoryId: categoryId, netType: netType), region: region, logger: logger, on: eventLoop)
     }
 }

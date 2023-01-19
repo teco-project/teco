@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Vod {
     /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
     /// 2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeReviewDetails(_ input: DescribeReviewDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewDetailsResponse> {
-        self.client.execute(action: "DescribeReviewDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReviewDetails(_ input: DescribeReviewDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewDetailsResponse> {
+        self.client.execute(action: "DescribeReviewDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询内容智能识别详情
@@ -79,8 +79,8 @@ extension Vod {
     /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
     /// 2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeReviewDetails(_ input: DescribeReviewDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
-        try await self.client.execute(action: "DescribeReviewDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReviewDetails(_ input: DescribeReviewDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
+        try await self.client.execute(action: "DescribeReviewDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询内容智能识别详情
@@ -90,8 +90,8 @@ extension Vod {
     /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
     /// 2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewDetailsResponse> {
-        self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewDetailsResponse> {
+        self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询内容智能识别详情
@@ -101,7 +101,7 @@ extension Vod {
     /// 1. 可以查询最近365天内的视频内容智能识别时长统计数据。
     /// 2. 查询时间跨度不超过90天。
     @inlinable
-    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
-        try await self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeReviewDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewDetailsResponse {
+        try await self.describeReviewDetails(DescribeReviewDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

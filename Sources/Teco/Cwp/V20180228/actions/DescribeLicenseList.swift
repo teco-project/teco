@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Cwp {
     ///
     /// 获取用户所有授权订单信息
     @inlinable
-    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseListResponse> {
-        self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLicenseList(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseListResponse> {
+        self.client.execute(action: "DescribeLicenseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取授权订单列表
     ///
     /// 获取用户所有授权订单信息
     @inlinable
-    public func describeLicenseList(_ input: DescribeLicenseListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
-        try await self.client.execute(action: "DescribeLicenseList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLicenseList(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
+        try await self.client.execute(action: "DescribeLicenseList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取授权订单列表
     ///
     /// 获取用户所有授权订单信息
     @inlinable
-    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseListResponse> {
-        self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), logger: logger, on: eventLoop)
+    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLicenseListResponse> {
+        self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取授权订单列表
     ///
     /// 获取用户所有授权订单信息
     @inlinable
-    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
-        try await self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), logger: logger, on: eventLoop)
+    public func describeLicenseList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, tags: [Tags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLicenseListResponse {
+        try await self.describeLicenseList(DescribeLicenseListRequest(filters: filters, limit: limit, offset: offset, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

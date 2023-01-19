@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Cms {
     /// <br>
     /// 支持批量查询文本样本库。
     @inlinable
-    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextSampleResponse> {
-        self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTextSample(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextSampleResponse> {
+        self.client.execute(action: "DescribeTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文本样本库
@@ -83,8 +83,8 @@ extension Cms {
     /// <br>
     /// 支持批量查询文本样本库。
     @inlinable
-    public func describeTextSample(_ input: DescribeTextSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
-        try await self.client.execute(action: "DescribeTextSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTextSample(_ input: DescribeTextSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
+        try await self.client.execute(action: "DescribeTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文本样本库
@@ -93,8 +93,8 @@ extension Cms {
     /// <br>
     /// 支持批量查询文本样本库。
     @inlinable
-    public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextSampleResponse> {
-        self.describeTextSample(DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextSampleResponse> {
+        self.describeTextSample(DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文本样本库
@@ -103,7 +103,7 @@ extension Cms {
     /// <br>
     /// 支持批量查询文本样本库。
     @inlinable
-    public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
-        try await self.describeTextSample(DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), logger: logger, on: eventLoop)
+    public func describeTextSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextSampleResponse {
+        try await self.describeTextSample(DescribeTextSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 }

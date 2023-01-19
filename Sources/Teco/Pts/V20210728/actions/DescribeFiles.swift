@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Pts {
 
     /// 查询文件列表
     @inlinable
-    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFilesResponse> {
-        self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFiles(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFilesResponse> {
+        self.client.execute(action: "DescribeFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件列表
     @inlinable
-    public func describeFiles(_ input: DescribeFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
-        try await self.client.execute(action: "DescribeFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFiles(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
+        try await self.client.execute(action: "DescribeFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询文件列表
     @inlinable
-    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFilesResponse> {
-        self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), logger: logger, on: eventLoop)
+    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFilesResponse> {
+        self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询文件列表
     @inlinable
-    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
-        try await self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), logger: logger, on: eventLoop)
+    public func describeFiles(projectIds: [String], fileIds: [String]? = nil, fileName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, kind: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFilesResponse {
+        try await self.describeFiles(DescribeFilesRequest(projectIds: projectIds, fileIds: fileIds, fileName: fileName, offset: offset, limit: limit, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 }

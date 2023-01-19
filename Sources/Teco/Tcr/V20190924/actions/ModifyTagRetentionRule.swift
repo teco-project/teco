@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tcr {
 
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
-        self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
+        self.client.execute(action: "ModifyTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
-        try await self.client.execute(action: "ModifyTagRetentionRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
+        try await self.client.execute(action: "ModifyTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
-        self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), logger: logger, on: eventLoop)
+    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
+        self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新版本保留规则
     @inlinable
-    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
-        try await self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), logger: logger, on: eventLoop)
+    public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
+        try await self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Eb {
 
     /// 创建事件连接器
     @inlinable
-    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectionResponse> {
-        self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConnection(_ input: CreateConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectionResponse> {
+        self.client.execute(action: "CreateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建事件连接器
     @inlinable
-    public func createConnection(_ input: CreateConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
-        try await self.client.execute(action: "CreateConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConnection(_ input: CreateConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
+        try await self.client.execute(action: "CreateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建事件连接器
     @inlinable
-    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectionResponse> {
-        self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), logger: logger, on: eventLoop)
+    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectionResponse> {
+        self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件连接器
     @inlinable
-    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
-        try await self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), logger: logger, on: eventLoop)
+    public func createConnection(connectionDescription: ConnectionDescription, eventBusId: String, connectionName: String, description: String? = nil, enable: Bool? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectionResponse {
+        try await self.createConnection(CreateConnectionRequest(connectionDescription: connectionDescription, eventBusId: eventBusId, connectionName: connectionName, description: description, enable: enable, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

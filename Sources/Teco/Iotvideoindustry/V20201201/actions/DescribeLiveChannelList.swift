@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iotvideoindustry {
 
     /// 直播列表接口
     @inlinable
-    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelListResponse> {
-        self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelListResponse> {
+        self.client.execute(action: "DescribeLiveChannelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播列表接口
     @inlinable
-    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
-        try await self.client.execute(action: "DescribeLiveChannelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveChannelList(_ input: DescribeLiveChannelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
+        try await self.client.execute(action: "DescribeLiveChannelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播列表接口
     @inlinable
-    public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelListResponse> {
-        self.describeLiveChannelList(DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), logger: logger, on: eventLoop)
+    public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelListResponse> {
+        self.describeLiveChannelList(DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播列表接口
     @inlinable
-    public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
-        try await self.describeLiveChannelList(DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), logger: logger, on: eventLoop)
+    public func describeLiveChannelList(offset: Int64, limit: Int64, liveChannelType: Int64? = nil, recordPlanId: String? = nil, liveChannelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelListResponse {
+        try await self.describeLiveChannelList(DescribeLiveChannelListRequest(offset: offset, limit: limit, liveChannelType: liveChannelType, recordPlanId: recordPlanId, liveChannelName: liveChannelName), region: region, logger: logger, on: eventLoop)
     }
 }

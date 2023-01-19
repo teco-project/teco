@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Monitor {
 
     /// 创建 Grafana 告警通道
     @inlinable
-    public func createGrafanaNotificationChannel(_ input: CreateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaNotificationChannelResponse> {
-        self.client.execute(action: "CreateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGrafanaNotificationChannel(_ input: CreateGrafanaNotificationChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaNotificationChannelResponse> {
+        self.client.execute(action: "CreateGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 告警通道
     @inlinable
-    public func createGrafanaNotificationChannel(_ input: CreateGrafanaNotificationChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaNotificationChannelResponse {
-        try await self.client.execute(action: "CreateGrafanaNotificationChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGrafanaNotificationChannel(_ input: CreateGrafanaNotificationChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaNotificationChannelResponse {
+        try await self.client.execute(action: "CreateGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 Grafana 告警通道
     @inlinable
-    public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaNotificationChannelResponse> {
-        self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), logger: logger, on: eventLoop)
+    public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaNotificationChannelResponse> {
+        self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 告警通道
     @inlinable
-    public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaNotificationChannelResponse {
-        try await self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), logger: logger, on: eventLoop)
+    public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaNotificationChannelResponse {
+        try await self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), region: region, logger: logger, on: eventLoop)
     }
 }

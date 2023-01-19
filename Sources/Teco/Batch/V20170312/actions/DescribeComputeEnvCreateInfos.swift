@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Batch {
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
-        self.client.execute(action: "DescribeComputeEnvCreateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
+        self.client.execute(action: "DescribeComputeEnvCreateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
-        try await self.client.execute(action: "DescribeComputeEnvCreateInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComputeEnvCreateInfos(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
+        try await self.client.execute(action: "DescribeComputeEnvCreateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
-        self.describeComputeEnvCreateInfos(DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfosResponse> {
+        self.describeComputeEnvCreateInfos(DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
-        try await self.describeComputeEnvCreateInfos(DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeComputeEnvCreateInfos(envIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfosResponse {
+        try await self.describeComputeEnvCreateInfos(DescribeComputeEnvCreateInfosRequest(envIds: envIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

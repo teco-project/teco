@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
     @inlinable
-    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInterfaceLimitResponse> {
-        self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInterfaceLimitResponse> {
+        self.client.execute(action: "DescribeNetworkInterfaceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性网卡配额
     ///
     /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
     @inlinable
-    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
-        try await self.client.execute(action: "DescribeNetworkInterfaceLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNetworkInterfaceLimit(_ input: DescribeNetworkInterfaceLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
+        try await self.client.execute(action: "DescribeNetworkInterfaceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询弹性网卡配额
     ///
     /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
     @inlinable
-    public func describeNetworkInterfaceLimit(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInterfaceLimitResponse> {
-        self.describeNetworkInterfaceLimit(DescribeNetworkInterfaceLimitRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeNetworkInterfaceLimit(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInterfaceLimitResponse> {
+        self.describeNetworkInterfaceLimit(DescribeNetworkInterfaceLimitRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性网卡配额
     ///
     /// 本接口（DescribeNetworkInterfaceLimit）根据CVM实例ID或弹性网卡ID查询弹性网卡配额，返回该CVM实例或弹性网卡能绑定的弹性网卡配额，以及弹性网卡可以分配的IP配额
     @inlinable
-    public func describeNetworkInterfaceLimit(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
-        try await self.describeNetworkInterfaceLimit(DescribeNetworkInterfaceLimitRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeNetworkInterfaceLimit(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfaceLimitResponse {
+        try await self.describeNetworkInterfaceLimit(DescribeNetworkInterfaceLimitRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

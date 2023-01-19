@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Cdn {
     /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
-    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlViolationsResponse> {
-        self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlViolationsResponse> {
+        self.client.execute(action: "DescribeUrlViolations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 违规历史查询
@@ -72,8 +72,8 @@ extension Cdn {
     /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
-    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
-        try await self.client.execute(action: "DescribeUrlViolations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUrlViolations(_ input: DescribeUrlViolationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
+        try await self.client.execute(action: "DescribeUrlViolations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 违规历史查询
@@ -81,8 +81,8 @@ extension Cdn {
     /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
-    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlViolationsResponse> {
-        self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), logger: logger, on: eventLoop)
+    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlViolationsResponse> {
+        self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 违规历史查询
@@ -90,7 +90,7 @@ extension Cdn {
     /// DescribeUrlViolations 用于查询被 CDN 系统扫描到的域名违规 URL 列表及当前状态。
     /// 对应内容分发网络控制台【图片鉴黄】页面。
     @inlinable
-    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
-        try await self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), logger: logger, on: eventLoop)
+    public func describeUrlViolations(offset: Int64? = nil, limit: Int64? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlViolationsResponse {
+        try await self.describeUrlViolations(DescribeUrlViolationsRequest(offset: offset, limit: limit, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

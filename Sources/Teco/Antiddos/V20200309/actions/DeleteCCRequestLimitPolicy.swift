@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Antiddos {
 
     /// 删除CC频率限制策略
     @inlinable
-    public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
-        self.client.execute(action: "DeleteCCRequestLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
+        self.client.execute(action: "DeleteCCRequestLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC频率限制策略
     @inlinable
-    public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
-        try await self.client.execute(action: "DeleteCCRequestLimitPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
+        try await self.client.execute(action: "DeleteCCRequestLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除CC频率限制策略
     @inlinable
-    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
-        self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), logger: logger, on: eventLoop)
+    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
+        self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC频率限制策略
     @inlinable
-    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
-        try await self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), logger: logger, on: eventLoop)
+    public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
+        try await self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Essbasic {
 
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
-        self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
+        self.client.execute(action: "DescribeFlowFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
-        try await self.client.execute(action: "DescribeFlowFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowFiles(_ input: DescribeFlowFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
+        try await self.client.execute(action: "DescribeFlowFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
-        self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowFiles(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
+        self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程文件
     @inlinable
-    public func describeFlowFiles(caller: Caller, flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
-        try await self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowFiles(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
+        try await self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

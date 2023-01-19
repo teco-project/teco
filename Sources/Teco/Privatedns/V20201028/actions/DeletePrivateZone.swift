@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Privatedns {
     ///
     /// 删除私有域并停止解析
     @inlinable
-    public func deletePrivateZone(_ input: DeletePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
-        self.client.execute(action: "DeletePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrivateZone(_ input: DeletePrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
+        self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
     @inlinable
-    public func deletePrivateZone(_ input: DeletePrivateZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
-        try await self.client.execute(action: "DeletePrivateZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrivateZone(_ input: DeletePrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
+        try await self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
     @inlinable
-    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
-        self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), logger: logger, on: eventLoop)
+    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
+        self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
     @inlinable
-    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
-        try await self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), logger: logger, on: eventLoop)
+    public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
+        try await self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

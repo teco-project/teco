@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Tmt {
     /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
-        self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func languageDetect(_ input: LanguageDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
+        self.client.execute(action: "LanguageDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语种识别
@@ -63,8 +63,8 @@ extension Tmt {
     /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func languageDetect(_ input: LanguageDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
-        try await self.client.execute(action: "LanguageDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func languageDetect(_ input: LanguageDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
+        try await self.client.execute(action: "LanguageDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 语种识别
@@ -72,8 +72,8 @@ extension Tmt {
     /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func languageDetect(text: String, projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
-        self.languageDetect(LanguageDetectRequest(text: text, projectId: projectId), logger: logger, on: eventLoop)
+    public func languageDetect(text: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LanguageDetectResponse> {
+        self.languageDetect(LanguageDetectRequest(text: text, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语种识别
@@ -81,7 +81,7 @@ extension Tmt {
     /// 可自动识别文本内容的语言种类，轻量高效，无需额外实现判断方式，使面向客户的服务体验更佳。 <br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
-    public func languageDetect(text: String, projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
-        try await self.languageDetect(LanguageDetectRequest(text: text, projectId: projectId), logger: logger, on: eventLoop)
+    public func languageDetect(text: String, projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LanguageDetectResponse {
+        try await self.languageDetect(LanguageDetectRequest(text: text, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

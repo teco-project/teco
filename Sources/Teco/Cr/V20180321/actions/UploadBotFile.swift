@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cr {
 
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
-        self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadBotFile(_ input: UploadBotFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
+        self.client.execute(action: "UploadBotFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(_ input: UploadBotFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
-        try await self.client.execute(action: "UploadBotFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadBotFile(_ input: UploadBotFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
+        try await self.client.execute(action: "UploadBotFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
-        self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadBotFileResponse> {
+        self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传机器人文件
     @inlinable
-    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
-        try await self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), logger: logger, on: eventLoop)
+    public func uploadBotFile(module: String, operation: String, fileType: String, fileUrl: String, fileName: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadBotFileResponse {
+        try await self.uploadBotFile(UploadBotFileRequest(module: module, operation: operation, fileType: fileType, fileUrl: fileUrl, fileName: fileName, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 }

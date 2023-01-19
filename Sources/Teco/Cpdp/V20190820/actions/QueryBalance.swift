@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Cpdp {
     ///
     /// 子商户余额查询
     @inlinable
-    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBalanceResponse> {
-        self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBalance(_ input: QueryBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBalanceResponse> {
+        self.client.execute(action: "QueryBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-余额查询
     ///
     /// 子商户余额查询
     @inlinable
-    public func queryBalance(_ input: QueryBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
-        try await self.client.execute(action: "QueryBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBalance(_ input: QueryBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
+        try await self.client.execute(action: "QueryBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-余额查询
     ///
     /// 子商户余额查询
     @inlinable
-    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBalanceResponse> {
-        self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBalanceResponse> {
+        self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-余额查询
     ///
     /// 子商户余额查询
     @inlinable
-    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
-        try await self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
+        try await self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

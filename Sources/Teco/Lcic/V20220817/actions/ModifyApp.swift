@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Lcic {
 
     /// 修改应用
     @inlinable
-    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
-        self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApp(_ input: ModifyAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
+        self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     @inlinable
-    public func modifyApp(_ input: ModifyAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
-        try await self.client.execute(action: "ModifyApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApp(_ input: ModifyAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
+        try await self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用
     @inlinable
-    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
-        self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
+        self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     @inlinable
-    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
-        try await self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), logger: logger, on: eventLoop)
+    public func modifyApp(sdkAppId: UInt64, callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
+        try await self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 }

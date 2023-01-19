@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Rum {
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
-        self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStarProject(_ input: CreateStarProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
+        self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(_ input: CreateStarProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
-        try await self.client.execute(action: "CreateStarProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStarProject(_ input: CreateStarProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
+        try await self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
-        self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func createStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
+        self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加星标项目
     ///
     /// 个人用户添加星标项目
     @inlinable
-    public func createStarProject(instanceID: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
-        try await self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), logger: logger, on: eventLoop)
+    public func createStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
+        try await self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

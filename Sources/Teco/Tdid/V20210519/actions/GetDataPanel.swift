@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Tdid {
 
     /// 概览
     @inlinable
-    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
-        self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDataPanel(_ input: GetDataPanelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
+        self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 概览
     @inlinable
-    public func getDataPanel(_ input: GetDataPanelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.client.execute(action: "GetDataPanel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDataPanel(_ input: GetDataPanelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
+        try await self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 概览
     @inlinable
-    public func getDataPanel(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
-        self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
+        self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 概览
     @inlinable
-    public func getDataPanel(clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
+        try await self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Oceanus {
 
     /// 创建资源接口
     @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResource(_ input: CreateResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
+        self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建资源接口
     @inlinable
-    public func createResource(_ input: CreateResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.client.execute(action: "CreateResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResource(_ input: CreateResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建资源接口
     @inlinable
-    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        self.createResource(CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
+        self.createResource(CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建资源接口
     @inlinable
-    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.createResource(CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func createResource(resourceLoc: ResourceLoc, resourceType: Int64, remark: String? = nil, name: String? = nil, resourceConfigRemark: String? = nil, folderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
+        try await self.createResource(CreateResourceRequest(resourceLoc: resourceLoc, resourceType: resourceType, remark: remark, name: name, resourceConfigRemark: resourceConfigRemark, folderId: folderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

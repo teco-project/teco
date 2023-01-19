@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,25 +52,25 @@ extension Tsf {
 
     /// 批量删除镜像版本
     @inlinable
-    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageTagsResponse> {
-        self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteImageTags(_ input: DeleteImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageTagsResponse> {
+        self.client.execute(action: "DeleteImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除镜像版本
     @inlinable
-    public func deleteImageTags(_ input: DeleteImageTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
-        try await self.client.execute(action: "DeleteImageTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteImageTags(_ input: DeleteImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
+        try await self.client.execute(action: "DeleteImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除镜像版本
     @inlinable
-    public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageTagsResponse> {
-        self.deleteImageTags(DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType), logger: logger, on: eventLoop)
+    public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageTagsResponse> {
+        self.deleteImageTags(DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除镜像版本
     @inlinable
-    public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
-        try await self.deleteImageTags(DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType), logger: logger, on: eventLoop)
+    public func deleteImageTags(imageTags: [DeleteImageTag], repoType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageTagsResponse {
+        try await self.deleteImageTags(DeleteImageTagsRequest(imageTags: imageTags, repoType: repoType), region: region, logger: logger, on: eventLoop)
     }
 }

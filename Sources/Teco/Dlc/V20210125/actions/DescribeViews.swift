@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Dlc {
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
-        self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeViews(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
+        self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(_ input: DescribeViewsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
-        try await self.client.execute(action: "DescribeViews", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeViews(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
+        try await self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
-        self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
+        self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询视图列表
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
-        try await self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
+        try await self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdid {
 
     /// 凭证模版详情
     @inlinable
-    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
-        self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCptInfo(_ input: GetCptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
+        self.client.execute(action: "GetCptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版详情
     @inlinable
-    public func getCptInfo(_ input: GetCptInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
-        try await self.client.execute(action: "GetCptInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCptInfo(_ input: GetCptInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
+        try await self.client.execute(action: "GetCptInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 凭证模版详情
     @inlinable
-    public func getCptInfo(cptIndex: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
-        self.getCptInfo(GetCptInfoRequest(cptIndex: cptIndex), logger: logger, on: eventLoop)
+    public func getCptInfo(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCptInfoResponse> {
+        self.getCptInfo(GetCptInfoRequest(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版详情
     @inlinable
-    public func getCptInfo(cptIndex: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
-        try await self.getCptInfo(GetCptInfoRequest(cptIndex: cptIndex), logger: logger, on: eventLoop)
+    public func getCptInfo(cptIndex: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCptInfoResponse {
+        try await self.getCptInfo(GetCptInfoRequest(cptIndex: cptIndex), region: region, logger: logger, on: eventLoop)
     }
 }

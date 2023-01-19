@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Live {
     ///
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
-    public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
-        self.client.execute(action: "DescribeStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
+        self.client.execute(action: "DescribeStreamPushInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某条流上行推流质量数据
     ///
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
-    public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
-        try await self.client.execute(action: "DescribeStreamPushInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamPushInfoList(_ input: DescribeStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
+        try await self.client.execute(action: "DescribeStreamPushInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询某条流上行推流质量数据
     ///
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
-    public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
-        self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), logger: logger, on: eventLoop)
+    public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
+        self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某条流上行推流质量数据
     ///
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
-    public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
-        try await self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), logger: logger, on: eventLoop)
+    public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
+        try await self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ssm {
     ///
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getServiceStatus(_ input: GetServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
+        self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户服务开通状态
     ///
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
-    public func getServiceStatus(_ input: GetServiceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.client.execute(action: "GetServiceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getServiceStatus(_ input: GetServiceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户服务开通状态
     ///
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
-    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
+        self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户服务开通状态
     ///
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
-    public func getServiceStatus(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.getServiceStatus(GetServiceStatusRequest(), logger: logger, on: eventLoop)
+    public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
+        try await self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

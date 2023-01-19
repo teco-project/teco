@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,25 +116,25 @@ extension Ciam {
 
     /// 更新用户
     @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
-        self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateUser(_ input: UpdateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
+        self.client.execute(action: "UpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户
     @inlinable
-    public func updateUser(_ input: UpdateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
-        try await self.client.execute(action: "UpdateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateUser(_ input: UpdateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
+        try await self.client.execute(action: "UpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新用户
     @inlinable
-    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
-        self.updateUser(UpdateUserRequest(userId: userId, userStoreId: userStoreId, userName: userName, phoneNumber: phoneNumber, email: email, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserResponse> {
+        self.updateUser(UpdateUserRequest(userId: userId, userStoreId: userStoreId, userName: userName, phoneNumber: phoneNumber, email: email, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新用户
     @inlinable
-    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
-        try await self.updateUser(UpdateUserRequest(userId: userId, userStoreId: userStoreId, userName: userName, phoneNumber: phoneNumber, email: email, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    public func updateUser(userId: String, userStoreId: String, userName: String? = nil, phoneNumber: String? = nil, email: String? = nil, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserResponse {
+        try await self.updateUser(UpdateUserRequest(userId: userId, userStoreId: userStoreId, userName: userName, phoneNumber: phoneNumber, email: email, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), region: region, logger: logger, on: eventLoop)
     }
 }

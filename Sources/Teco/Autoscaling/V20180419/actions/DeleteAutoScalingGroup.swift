@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension As {
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
     @inlinable
-    public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
-        self.client.execute(action: "DeleteAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
+        self.client.execute(action: "DeleteAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
     @inlinable
-    public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
-        try await self.client.execute(action: "DeleteAutoScalingGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
+        try await self.client.execute(action: "DeleteAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
     @inlinable
-    public func deleteAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
-        self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    public func deleteAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
+        self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
     @inlinable
-    public func deleteAutoScalingGroup(autoScalingGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
-        try await self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), logger: logger, on: eventLoop)
+    public func deleteAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
+        try await self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

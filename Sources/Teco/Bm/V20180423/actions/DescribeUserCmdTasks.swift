@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Bm {
 
     /// 获取自定义脚本任务列表
     @inlinable
-    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTasksResponse> {
-        self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTasksResponse> {
+        self.client.execute(action: "DescribeUserCmdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义脚本任务列表
     @inlinable
-    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
-        try await self.client.execute(action: "DescribeUserCmdTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserCmdTasks(_ input: DescribeUserCmdTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
+        try await self.client.execute(action: "DescribeUserCmdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取自定义脚本任务列表
     @inlinable
-    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTasksResponse> {
-        self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTasksResponse> {
+        self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义脚本任务列表
     @inlinable
-    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
-        try await self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
+        try await self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Eb {
 
     /// 删除事件目标
     @inlinable
-    public func deleteTarget(_ input: DeleteTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
-        self.client.execute(action: "DeleteTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTarget(_ input: DeleteTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
+        self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件目标
     @inlinable
-    public func deleteTarget(_ input: DeleteTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
-        try await self.client.execute(action: "DeleteTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTarget(_ input: DeleteTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
+        try await self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件目标
     @inlinable
-    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
-        self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
+        self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件目标
     @inlinable
-    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
-        try await self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
+        try await self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

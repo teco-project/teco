@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Cbs {
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
-        self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
+        self.client.execute(action: "InquiryPriceResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容云硬盘询价
@@ -67,8 +67,8 @@ extension Cbs {
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
-        try await self.client.execute(action: "InquiryPriceResizeDisk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
+        try await self.client.execute(action: "InquiryPriceResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 扩容云硬盘询价
@@ -76,8 +76,8 @@ extension Cbs {
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
-        self.inquiryPriceResizeDisk(InquiryPriceResizeDiskRequest(diskId: diskId, diskSize: diskSize, projectId: projectId), logger: logger, on: eventLoop)
+    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
+        self.inquiryPriceResizeDisk(InquiryPriceResizeDiskRequest(diskId: diskId, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容云硬盘询价
@@ -85,7 +85,7 @@ extension Cbs {
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
-    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
-        try await self.inquiryPriceResizeDisk(InquiryPriceResizeDiskRequest(diskId: diskId, diskSize: diskSize, projectId: projectId), logger: logger, on: eventLoop)
+    public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
+        try await self.inquiryPriceResizeDisk(InquiryPriceResizeDiskRequest(diskId: diskId, diskSize: diskSize, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

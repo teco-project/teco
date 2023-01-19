@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -158,31 +158,31 @@ extension Ssa {
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
-        self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
+        self.client.execute(action: "DescribeVulDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(_ input: DescribeVulDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
-        try await self.client.execute(action: "DescribeVulDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulDetail(_ input: DescribeVulDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
+        try await self.client.execute(action: "DescribeVulDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
-        self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), logger: logger, on: eventLoop)
+    public func describeVulDetail(uniqId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
+        self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞列表-漏洞详情
     ///
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
-    public func describeVulDetail(uniqId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
-        try await self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), logger: logger, on: eventLoop)
+    public func describeVulDetail(uniqId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
+        try await self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), region: region, logger: logger, on: eventLoop)
     }
 }

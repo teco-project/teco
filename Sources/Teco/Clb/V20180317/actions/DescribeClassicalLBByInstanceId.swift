@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Clb {
     ///
     /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
     @inlinable
-    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBByInstanceIdResponse> {
-        self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBByInstanceIdResponse> {
+        self.client.execute(action: "DescribeClassicalLBByInstanceId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过后端主机反向查找其绑定的传统型负载均衡
     ///
     /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
     @inlinable
-    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
-        try await self.client.execute(action: "DescribeClassicalLBByInstanceId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClassicalLBByInstanceId(_ input: DescribeClassicalLBByInstanceIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
+        try await self.client.execute(action: "DescribeClassicalLBByInstanceId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过后端主机反向查找其绑定的传统型负载均衡
     ///
     /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
     @inlinable
-    public func describeClassicalLBByInstanceId(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBByInstanceIdResponse> {
-        self.describeClassicalLBByInstanceId(DescribeClassicalLBByInstanceIdRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeClassicalLBByInstanceId(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBByInstanceIdResponse> {
+        self.describeClassicalLBByInstanceId(DescribeClassicalLBByInstanceIdRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过后端主机反向查找其绑定的传统型负载均衡
     ///
     /// DescribeClassicalLBByInstanceId用于通过后端实例ID获取传统型负载均衡ID列表。
     @inlinable
-    public func describeClassicalLBByInstanceId(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
-        try await self.describeClassicalLBByInstanceId(DescribeClassicalLBByInstanceIdRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeClassicalLBByInstanceId(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBByInstanceIdResponse {
+        try await self.describeClassicalLBByInstanceId(DescribeClassicalLBByInstanceIdRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
-    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceConfigResponse> {
-        self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceConfigResponse> {
+        self.client.execute(action: "DescribeDBInstanceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的配置信息
     ///
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
-    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
-        try await self.client.execute(action: "DescribeDBInstanceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBInstanceConfig(_ input: DescribeDBInstanceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
+        try await self.client.execute(action: "DescribeDBInstanceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库实例的配置信息
     ///
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
-    public func describeDBInstanceConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceConfigResponse> {
-        self.describeDBInstanceConfig(DescribeDBInstanceConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBInstanceConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceConfigResponse> {
+        self.describeDBInstanceConfig(DescribeDBInstanceConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的配置信息
     ///
     /// 本接口(DescribeDBInstanceConfig)用于云数据库实例的配置信息，包括同步模式，部署模式等。
     @inlinable
-    public func describeDBInstanceConfig(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
-        try await self.describeDBInstanceConfig(DescribeDBInstanceConfigRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBInstanceConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceConfigResponse {
+        try await self.describeDBInstanceConfig(DescribeDBInstanceConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

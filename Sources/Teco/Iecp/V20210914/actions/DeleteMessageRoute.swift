@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iecp {
 
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
-        self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
+        self.client.execute(action: "DeleteMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
-        try await self.client.execute(action: "DeleteMessageRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMessageRoute(_ input: DeleteMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
+        try await self.client.execute(action: "DeleteMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(routeID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
-        self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), logger: logger, on: eventLoop)
+    public func deleteMessageRoute(routeID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
+        self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除消息路由
     @inlinable
-    public func deleteMessageRoute(routeID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
-        try await self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), logger: logger, on: eventLoop)
+    public func deleteMessageRoute(routeID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
+        try await self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), region: region, logger: logger, on: eventLoop)
     }
 }

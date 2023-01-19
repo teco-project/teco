@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Essbasic {
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable
-    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
-        self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
+        self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新电子印章
@@ -83,8 +83,8 @@ extension Essbasic {
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable
-    public func modifySeal(_ input: ModifySealRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
-        try await self.client.execute(action: "ModifySeal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
+        try await self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新电子印章
@@ -92,8 +92,8 @@ extension Essbasic {
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable
-    public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
-        self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), logger: logger, on: eventLoop)
+    public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
+        self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新电子印章
@@ -101,7 +101,7 @@ extension Essbasic {
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable
-    public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
-        try await self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), logger: logger, on: eventLoop)
+    public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
+        try await self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Rum {
 
     /// 查询片区信息
     @inlinable
-    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawAreasResponse> {
-        self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTawAreas(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawAreasResponse> {
+        self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询片区信息
     @inlinable
-    public func describeTawAreas(_ input: DescribeTawAreasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
-        try await self.client.execute(action: "DescribeTawAreas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTawAreas(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
+        try await self.client.execute(action: "DescribeTawAreas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询片区信息
     @inlinable
-    public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawAreasResponse> {
-        self.describeTawAreas(DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), logger: logger, on: eventLoop)
+    public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTawAreasResponse> {
+        self.describeTawAreas(DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询片区信息
     @inlinable
-    public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
-        try await self.describeTawAreas(DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), logger: logger, on: eventLoop)
+    public func describeTawAreas(areaIds: [Int64]? = nil, areaKeys: [String]? = nil, limit: Int64? = nil, areaStatuses: [Int64]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTawAreasResponse {
+        try await self.describeTawAreas(DescribeTawAreasRequest(areaIds: areaIds, areaKeys: areaKeys, limit: limit, areaStatuses: areaStatuses, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

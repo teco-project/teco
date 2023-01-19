@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Bmvpc {
 
     /// 创建黑石路由表的路由规则
     @inlinable
-    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutePoliciesResponse> {
-        self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutePoliciesResponse> {
+        self.client.execute(action: "CreateRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石路由表的路由规则
     @inlinable
-    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
-        try await self.client.execute(action: "CreateRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRoutePolicies(_ input: CreateRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
+        try await self.client.execute(action: "CreateRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石路由表的路由规则
     @inlinable
-    public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutePoliciesResponse> {
-        self.createRoutePolicies(CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet), logger: logger, on: eventLoop)
+    public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoutePoliciesResponse> {
+        self.createRoutePolicies(CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石路由表的路由规则
     @inlinable
-    public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
-        try await self.createRoutePolicies(CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet), logger: logger, on: eventLoop)
+    public func createRoutePolicies(routeTableId: String, routePolicySet: [RoutePolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoutePoliciesResponse {
+        try await self.createRoutePolicies(CreateRoutePoliciesRequest(routeTableId: routeTableId, routePolicySet: routePolicySet), region: region, logger: logger, on: eventLoop)
     }
 }

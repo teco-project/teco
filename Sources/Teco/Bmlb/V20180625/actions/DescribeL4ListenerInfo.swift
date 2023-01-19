@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmlb {
     ///
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
-    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4ListenerInfoResponse> {
-        self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4ListenerInfoResponse> {
+        self.client.execute(action: "DescribeL4ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
     ///
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
-    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
-        try await self.client.execute(action: "DescribeL4ListenerInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeL4ListenerInfo(_ input: DescribeL4ListenerInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
+        try await self.client.execute(action: "DescribeL4ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
     ///
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
-    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4ListenerInfoResponse> {
-        self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4ListenerInfoResponse> {
+        self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
     ///
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
-    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
-        try await self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
+        try await self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

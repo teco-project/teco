@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Ic {
 
     /// 发送短信息接口
     @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendSms(_ input: SendSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
+        self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送短信息接口
     @inlinable
-    public func sendSms(_ input: SendSmsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.client.execute(action: "SendSms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendSms(_ input: SendSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送短信息接口
     @inlinable
-    public func sendSms(sdkappid: Int64, iccid: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        self.sendSms(SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content), logger: logger, on: eventLoop)
+    public func sendSms(sdkappid: Int64, iccid: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
+        self.sendSms(SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送短信息接口
     @inlinable
-    public func sendSms(sdkappid: Int64, iccid: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.sendSms(SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content), logger: logger, on: eventLoop)
+    public func sendSms(sdkappid: Int64, iccid: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
+        try await self.sendSms(SendSmsRequest(sdkappid: sdkappid, iccid: iccid, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,25 +57,25 @@ extension Tcss {
 
     /// 查询漏洞各威胁等级统计数
     @inlinable
-    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelSummaryResponse> {
-        self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelSummaryResponse> {
+        self.client.execute(action: "DescribeVulLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞各威胁等级统计数
     @inlinable
-    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
-        try await self.client.execute(action: "DescribeVulLevelSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulLevelSummary(_ input: DescribeVulLevelSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
+        try await self.client.execute(action: "DescribeVulLevelSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞各威胁等级统计数
     @inlinable
-    public func describeVulLevelSummary(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelSummaryResponse> {
-        self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    public func describeVulLevelSummary(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelSummaryResponse> {
+        self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞各威胁等级统计数
     @inlinable
-    public func describeVulLevelSummary(categoryType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
-        try await self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), logger: logger, on: eventLoop)
+    public func describeVulLevelSummary(categoryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelSummaryResponse {
+        try await self.describeVulLevelSummary(DescribeVulLevelSummaryRequest(categoryType: categoryType), region: region, logger: logger, on: eventLoop)
     }
 }

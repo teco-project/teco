@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Lighthouse {
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable
-    public func resetAttachCcn(_ input: ResetAttachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
-        self.client.execute(action: "ResetAttachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetAttachCcn(_ input: ResetAttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
+        self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable
-    public func resetAttachCcn(_ input: ResetAttachCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
-        try await self.client.execute(action: "ResetAttachCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetAttachCcn(_ input: ResetAttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
+        try await self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable
-    public func resetAttachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
-        self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
+        self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
     @inlinable
-    public func resetAttachCcn(ccnId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
-        try await self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), logger: logger, on: eventLoop)
+    public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
+        try await self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
 }

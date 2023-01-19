@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tke {
     ///
     /// 在应用市场中取消安装失败的应用
     @inlinable
-    public func cancelClusterRelease(_ input: CancelClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelClusterReleaseResponse> {
-        self.client.execute(action: "CancelClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelClusterRelease(_ input: CancelClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelClusterReleaseResponse> {
+        self.client.execute(action: "CancelClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群取消安装应用
     ///
     /// 在应用市场中取消安装失败的应用
     @inlinable
-    public func cancelClusterRelease(_ input: CancelClusterReleaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
-        try await self.client.execute(action: "CancelClusterRelease", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelClusterRelease(_ input: CancelClusterReleaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
+        try await self.client.execute(action: "CancelClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 集群取消安装应用
     ///
     /// 在应用市场中取消安装失败的应用
     @inlinable
-    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelClusterReleaseResponse> {
-        self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelClusterReleaseResponse> {
+        self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群取消安装应用
     ///
     /// 在应用市场中取消安装失败的应用
     @inlinable
-    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
-        try await self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func cancelClusterRelease(id: String, clusterId: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelClusterReleaseResponse {
+        try await self.cancelClusterRelease(CancelClusterReleaseRequest(id: id, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

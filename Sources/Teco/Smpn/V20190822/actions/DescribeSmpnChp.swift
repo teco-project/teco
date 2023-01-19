@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Smpn {
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
-        self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
+        self.client.execute(action: "DescribeSmpnChp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
-        try await self.client.execute(action: "DescribeSmpnChp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmpnChp(_ input: DescribeSmpnChpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
+        try await self.client.execute(action: "DescribeSmpnChp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
-        self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), logger: logger, on: eventLoop)
+    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
+        self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终端骚扰保护
     ///
     /// 查询号码的标记和标记次数
     @inlinable
-    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
-        try await self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), logger: logger, on: eventLoop)
+    public func describeSmpnChp(resourceId: String, requestData: CHPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
+        try await self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Teo {
     ///
     /// 查询应用代理列表。
     @inlinable
-    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxiesResponse> {
-        self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxiesResponse> {
+        self.client.execute(action: "DescribeApplicationProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用代理列表
     ///
     /// 查询应用代理列表。
     @inlinable
-    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
-        try await self.client.execute(action: "DescribeApplicationProxies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationProxies(_ input: DescribeApplicationProxiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
+        try await self.client.execute(action: "DescribeApplicationProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用代理列表
     ///
     /// 查询应用代理列表。
     @inlinable
-    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxiesResponse> {
-        self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxiesResponse> {
+        self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用代理列表
     ///
     /// 查询应用代理列表。
     @inlinable
-    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
-        try await self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeApplicationProxies(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxiesResponse {
+        try await self.describeApplicationProxies(DescribeApplicationProxiesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

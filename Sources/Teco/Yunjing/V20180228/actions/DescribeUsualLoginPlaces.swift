@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Yunjing {
     ///
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
-    public func describeUsualLoginPlaces(_ input: DescribeUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsualLoginPlacesResponse> {
-        self.client.execute(action: "DescribeUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsualLoginPlaces(_ input: DescribeUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsualLoginPlacesResponse> {
+        self.client.execute(action: "DescribeUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询常用登录地
     ///
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
-    public func describeUsualLoginPlaces(_ input: DescribeUsualLoginPlacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsualLoginPlacesResponse {
-        try await self.client.execute(action: "DescribeUsualLoginPlaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsualLoginPlaces(_ input: DescribeUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsualLoginPlacesResponse {
+        try await self.client.execute(action: "DescribeUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询常用登录地
     ///
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
-    public func describeUsualLoginPlaces(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsualLoginPlacesResponse> {
-        self.describeUsualLoginPlaces(DescribeUsualLoginPlacesRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeUsualLoginPlaces(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsualLoginPlacesResponse> {
+        self.describeUsualLoginPlaces(DescribeUsualLoginPlacesRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询常用登录地
     ///
     /// 此接口（DescribeUsualLoginPlaces）用于查询常用登录地。
     @inlinable
-    public func describeUsualLoginPlaces(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsualLoginPlacesResponse {
-        try await self.describeUsualLoginPlaces(DescribeUsualLoginPlacesRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeUsualLoginPlaces(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsualLoginPlacesResponse {
+        try await self.describeUsualLoginPlaces(DescribeUsualLoginPlacesRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

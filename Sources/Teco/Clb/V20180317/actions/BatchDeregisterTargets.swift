@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Clb {
     ///
     /// 批量解绑四七层后端服务。批量解绑的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
-    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
-        self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
+        self.client.execute(action: "BatchDeregisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑四七层后端服务
     ///
     /// 批量解绑四七层后端服务。批量解绑的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
-    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
-        try await self.client.execute(action: "BatchDeregisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDeregisterTargets(_ input: BatchDeregisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
+        try await self.client.execute(action: "BatchDeregisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量解绑四七层后端服务
     ///
     /// 批量解绑四七层后端服务。批量解绑的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
-    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
-        self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeregisterTargetsResponse> {
+        self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑四七层后端服务
     ///
     /// 批量解绑四七层后端服务。批量解绑的资源数量上限为500。只支持VPC网络负载均衡。
     @inlinable
-    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
-        try await self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    public func batchDeregisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeregisterTargetsResponse {
+        try await self.batchDeregisterTargets(BatchDeregisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 }

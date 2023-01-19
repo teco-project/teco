@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iecp {
 
     /// 创建边缘单元NodeUnit模板
     @inlinable
-    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeUnitTemplateResponse> {
-        self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeUnitTemplateResponse> {
+        self.client.execute(action: "CreateEdgeNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeUnit模板
     @inlinable
-    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
-        try await self.client.execute(action: "CreateEdgeNodeUnitTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeNodeUnitTemplate(_ input: CreateEdgeNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
+        try await self.client.execute(action: "CreateEdgeNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建边缘单元NodeUnit模板
     @inlinable
-    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeUnitTemplateResponse> {
-        self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), logger: logger, on: eventLoop)
+    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeUnitTemplateResponse> {
+        self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeUnit模板
     @inlinable
-    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
-        try await self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), logger: logger, on: eventLoop)
+    public func createEdgeNodeUnitTemplate(edgeUnitId: UInt64, name: String, namespace: String? = nil, nodes: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeUnitTemplateResponse {
+        try await self.createEdgeNodeUnitTemplate(CreateEdgeNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, nodes: nodes, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

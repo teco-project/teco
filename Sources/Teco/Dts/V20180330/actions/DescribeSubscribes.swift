@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,31 +111,31 @@ extension Dts {
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
-        self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubscribes(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
+        self.client.execute(action: "DescribeSubscribes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(_ input: DescribeSubscribesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
-        try await self.client.execute(action: "DescribeSubscribes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubscribes(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
+        try await self.client.execute(action: "DescribeSubscribes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
-        self.describeSubscribes(DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion), logger: logger, on: eventLoop)
+    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscribesResponse> {
+        self.describeSubscribes(DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
-        try await self.describeSubscribes(DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion), logger: logger, on: eventLoop)
+    public func describeSubscribes(subscribeId: String? = nil, subscribeName: String? = nil, instanceId: String? = nil, channelId: String? = nil, payType: String? = nil, product: String? = nil, status: [String]? = nil, subsStatus: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, orderDirection: String? = nil, tagFilters: [TagFilter]? = nil, subscribeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscribesResponse {
+        try await self.describeSubscribes(DescribeSubscribesRequest(subscribeId: subscribeId, subscribeName: subscribeName, instanceId: instanceId, channelId: channelId, payType: payType, product: product, status: status, subsStatus: subsStatus, offset: offset, limit: limit, orderDirection: orderDirection, tagFilters: tagFilters, subscribeVersion: subscribeVersion), region: region, logger: logger, on: eventLoop)
     }
 }

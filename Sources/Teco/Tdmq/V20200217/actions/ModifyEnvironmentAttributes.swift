@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Tdmq {
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
-        self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
+        self.client.execute(action: "ModifyEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间属性
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        try await self.client.execute(action: "ModifyEnvironmentAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEnvironmentAttributes(_ input: ModifyEnvironmentAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
+        try await self.client.execute(action: "ModifyEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改命名空间属性
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
-        self.modifyEnvironmentAttributes(ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentAttributesResponse> {
+        self.modifyEnvironmentAttributes(ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间属性
     ///
     /// 修改指定命名空间的属性值
     @inlinable
-    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
-        try await self.modifyEnvironmentAttributes(ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), logger: logger, on: eventLoop)
+    public func modifyEnvironmentAttributes(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentAttributesResponse {
+        try await self.modifyEnvironmentAttributes(ModifyEnvironmentAttributesRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

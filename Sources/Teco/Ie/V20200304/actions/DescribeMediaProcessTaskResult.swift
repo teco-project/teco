@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ie {
     ///
     /// 用于获取编辑处理任务的结果。
     @inlinable
-    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessTaskResultResponse> {
-        self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessTaskResultResponse> {
+        self.client.execute(action: "DescribeMediaProcessTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑处理任务结果
     ///
     /// 用于获取编辑处理任务的结果。
     @inlinable
-    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
-        try await self.client.execute(action: "DescribeMediaProcessTaskResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaProcessTaskResult(_ input: DescribeMediaProcessTaskResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
+        try await self.client.execute(action: "DescribeMediaProcessTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取编辑处理任务结果
     ///
     /// 用于获取编辑处理任务的结果。
     @inlinable
-    public func describeMediaProcessTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessTaskResultResponse> {
-        self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeMediaProcessTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessTaskResultResponse> {
+        self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑处理任务结果
     ///
     /// 用于获取编辑处理任务的结果。
     @inlinable
-    public func describeMediaProcessTaskResult(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
-        try await self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeMediaProcessTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
+        try await self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

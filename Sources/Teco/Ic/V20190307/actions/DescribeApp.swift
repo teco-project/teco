@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ic {
     ///
     /// 根据应用id查询物联卡应用详情
     @inlinable
-    public func describeApp(_ input: DescribeAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppResponse> {
-        self.client.execute(action: "DescribeApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApp(_ input: DescribeAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppResponse> {
+        self.client.execute(action: "DescribeApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用详情
     ///
     /// 根据应用id查询物联卡应用详情
     @inlinable
-    public func describeApp(_ input: DescribeAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppResponse {
-        try await self.client.execute(action: "DescribeApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApp(_ input: DescribeAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppResponse {
+        try await self.client.execute(action: "DescribeApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用详情
     ///
     /// 根据应用id查询物联卡应用详情
     @inlinable
-    public func describeApp(sdkappid: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppResponse> {
-        self.describeApp(DescribeAppRequest(sdkappid: sdkappid), logger: logger, on: eventLoop)
+    public func describeApp(sdkappid: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppResponse> {
+        self.describeApp(DescribeAppRequest(sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用详情
     ///
     /// 根据应用id查询物联卡应用详情
     @inlinable
-    public func describeApp(sdkappid: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppResponse {
-        try await self.describeApp(DescribeAppRequest(sdkappid: sdkappid), logger: logger, on: eventLoop)
+    public func describeApp(sdkappid: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppResponse {
+        try await self.describeApp(DescribeAppRequest(sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tsf {
 
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
-        self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
+        self.client.execute(action: "ModifyPathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
-        try await self.client.execute(action: "ModifyPathRewrite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPathRewrite(_ input: ModifyPathRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
+        try await self.client.execute(action: "ModifyPathRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
-        self.modifyPathRewrite(ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), logger: logger, on: eventLoop)
+    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPathRewriteResponse> {
+        self.modifyPathRewrite(ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路径重写
     @inlinable
-    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
-        try await self.modifyPathRewrite(ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), logger: logger, on: eventLoop)
+    public func modifyPathRewrite(pathRewriteId: String, regex: String? = nil, replacement: String? = nil, blocked: String? = nil, order: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPathRewriteResponse {
+        try await self.modifyPathRewrite(ModifyPathRewriteRequest(pathRewriteId: pathRewriteId, regex: regex, replacement: replacement, blocked: blocked, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

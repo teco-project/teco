@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cdc {
 
     /// 查询专用集群支持的实例规格列表
     @inlinable
-    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterInstanceTypesResponse> {
-        self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterInstanceTypesResponse> {
+        self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群支持的实例规格列表
     @inlinable
-    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDedicatedClusterInstanceTypes(_ input: DescribeDedicatedClusterInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专用集群支持的实例规格列表
     @inlinable
-    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterInstanceTypesResponse> {
-        self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterInstanceTypesResponse> {
+        self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群支持的实例规格列表
     @inlinable
-    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
-        try await self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterInstanceTypes(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterInstanceTypesResponse {
+        try await self.describeDedicatedClusterInstanceTypes(DescribeDedicatedClusterInstanceTypesRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

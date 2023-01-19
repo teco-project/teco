@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Trtc {
     ///
     /// 接口说明：结束云端混流
     @inlinable
-    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
-        self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
+        self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
     @inlinable
-    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
-        try await self.client.execute(action: "StopMCUMixTranscode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
+        try await self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
     @inlinable
-    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
-        self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
+        self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
     @inlinable
-    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
-        try await self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), logger: logger, on: eventLoop)
+    public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
+        try await self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

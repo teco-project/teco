@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
-    public func describeRuleGroupExecResultsByPageWithoutAuth(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageWithoutAuthResponse> {
-        self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleGroupExecResultsByPageWithoutAuth(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageWithoutAuthResponse> {
+        self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
-    public func describeRuleGroupExecResultsByPageWithoutAuth(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageWithoutAuthResponse {
-        try await self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleGroupExecResultsByPageWithoutAuth(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageWithoutAuthResponse {
+        try await self.client.execute(action: "DescribeRuleGroupExecResultsByPageWithoutAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
-    public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageWithoutAuthResponse> {
-        self.describeRuleGroupExecResultsByPageWithoutAuth(DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageWithoutAuthResponse> {
+        self.describeRuleGroupExecResultsByPageWithoutAuth(DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
-    public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageWithoutAuthResponse {
-        try await self.describeRuleGroupExecResultsByPageWithoutAuth(DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRuleGroupExecResultsByPageWithoutAuth(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageWithoutAuthResponse {
+        try await self.describeRuleGroupExecResultsByPageWithoutAuth(DescribeRuleGroupExecResultsByPageWithoutAuthRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

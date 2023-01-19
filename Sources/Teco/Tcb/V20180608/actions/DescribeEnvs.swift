@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tcb {
     ///
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
-    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvsResponse> {
-        self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvs(_ input: DescribeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvsResponse> {
+        self.client.execute(action: "DescribeEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取环境列表
     ///
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
-    public func describeEnvs(_ input: DescribeEnvsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
-        try await self.client.execute(action: "DescribeEnvs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvs(_ input: DescribeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
+        try await self.client.execute(action: "DescribeEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取环境列表
     ///
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
-    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvsResponse> {
-        self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvsResponse> {
+        self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境列表
     ///
     /// 获取环境列表，含环境下的各个资源信息。尤其是各资源的唯一标识，是请求各资源的关键参数
     @inlinable
-    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
-        try await self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), logger: logger, on: eventLoop)
+    public func describeEnvs(envId: String? = nil, isVisible: Bool? = nil, channels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvsResponse {
+        try await self.describeEnvs(DescribeEnvsRequest(envId: envId, isVisible: isVisible, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

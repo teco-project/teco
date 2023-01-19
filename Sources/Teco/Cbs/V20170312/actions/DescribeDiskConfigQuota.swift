@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Cbs {
     ///
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
-    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigQuotaResponse> {
-        self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigQuotaResponse> {
+        self.client.execute(action: "DescribeDiskConfigQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘配额
     ///
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
-    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
-        try await self.client.execute(action: "DescribeDiskConfigQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiskConfigQuota(_ input: DescribeDiskConfigQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
+        try await self.client.execute(action: "DescribeDiskConfigQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云硬盘配额
     ///
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
-    public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigQuotaResponse> {
-        self.describeDiskConfigQuota(DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), logger: logger, on: eventLoop)
+    public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigQuotaResponse> {
+        self.describeDiskConfigQuota(DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘配额
     ///
     /// 本接口（DescribeDiskConfigQuota）用于查询云硬盘配额。
     @inlinable
-    public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
-        try await self.describeDiskConfigQuota(DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), logger: logger, on: eventLoop)
+    public func describeDiskConfigQuota(inquiryType: String, diskChargeType: String? = nil, instanceFamilies: [String]? = nil, diskTypes: [String]? = nil, zones: [String]? = nil, memory: UInt64? = nil, diskUsage: String? = nil, cpu: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigQuotaResponse {
+        try await self.describeDiskConfigQuota(DescribeDiskConfigQuotaRequest(inquiryType: inquiryType, diskChargeType: diskChargeType, instanceFamilies: instanceFamilies, diskTypes: diskTypes, zones: zones, memory: memory, diskUsage: diskUsage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 }

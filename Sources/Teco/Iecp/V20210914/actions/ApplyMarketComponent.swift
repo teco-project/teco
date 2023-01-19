@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iecp {
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
-        self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
+        self.client.execute(action: "ApplyMarketComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
-        try await self.client.execute(action: "ApplyMarketComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyMarketComponent(_ input: ApplyMarketComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
+        try await self.client.execute(action: "ApplyMarketComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
-        self.applyMarketComponent(ApplyMarketComponentRequest(id: id), logger: logger, on: eventLoop)
+    public func applyMarketComponent(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
+        self.applyMarketComponent(ApplyMarketComponentRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用组件市场中的组件
     ///
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable
-    public func applyMarketComponent(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
-        try await self.applyMarketComponent(ApplyMarketComponentRequest(id: id), logger: logger, on: eventLoop)
+    public func applyMarketComponent(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
+        try await self.applyMarketComponent(ApplyMarketComponentRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

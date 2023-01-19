@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tke {
 
     /// 查看集群状态列表
     @inlinable
-    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStatusResponse> {
-        self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStatusResponse> {
+        self.client.execute(action: "DescribeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看集群状态列表
     @inlinable
-    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
-        try await self.client.execute(action: "DescribeClusterStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterStatus(_ input: DescribeClusterStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
+        try await self.client.execute(action: "DescribeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看集群状态列表
     @inlinable
-    public func describeClusterStatus(clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStatusResponse> {
-        self.describeClusterStatus(DescribeClusterStatusRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeClusterStatus(clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStatusResponse> {
+        self.describeClusterStatus(DescribeClusterStatusRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看集群状态列表
     @inlinable
-    public func describeClusterStatus(clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
-        try await self.describeClusterStatus(DescribeClusterStatusRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeClusterStatus(clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStatusResponse {
+        try await self.describeClusterStatus(DescribeClusterStatusRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

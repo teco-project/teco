@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Teo {
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
-    public func downloadL4Logs(_ input: DownloadL4LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL4LogsResponse> {
-        self.client.execute(action: "DownloadL4Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadL4Logs(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL4LogsResponse> {
+        self.client.execute(action: "DownloadL4Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载四层离线日志
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
-    public func downloadL4Logs(_ input: DownloadL4LogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL4LogsResponse {
-        try await self.client.execute(action: "DownloadL4Logs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadL4Logs(_ input: DownloadL4LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL4LogsResponse {
+        try await self.client.execute(action: "DownloadL4Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载四层离线日志
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
-    public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL4LogsResponse> {
-        self.downloadL4Logs(DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL4LogsResponse> {
+        self.downloadL4Logs(DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载四层离线日志
     ///
     /// 本接口（DownloadL4Logs）用于下载四层离线日志。
     @inlinable
-    public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL4LogsResponse {
-        try await self.downloadL4Logs(DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func downloadL4Logs(startTime: Date, endTime: Date, zoneIds: [String]? = nil, proxyIds: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL4LogsResponse {
+        try await self.downloadL4Logs(DownloadL4LogsRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, proxyIds: proxyIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

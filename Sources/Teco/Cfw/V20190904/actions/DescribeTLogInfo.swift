@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cfw {
     ///
     /// DescribeTLogInfo告警中心概况
     @inlinable
-    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogInfoResponse> {
-        self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogInfoResponse> {
+        self.client.execute(action: "DescribeTLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警中心概况
     ///
     /// DescribeTLogInfo告警中心概况
     @inlinable
-    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
-        try await self.client.execute(action: "DescribeTLogInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTLogInfo(_ input: DescribeTLogInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
+        try await self.client.execute(action: "DescribeTLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 告警中心概况
     ///
     /// DescribeTLogInfo告警中心概况
     @inlinable
-    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogInfoResponse> {
-        self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), logger: logger, on: eventLoop)
+    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogInfoResponse> {
+        self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警中心概况
     ///
     /// DescribeTLogInfo告警中心概况
     @inlinable
-    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
-        try await self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), logger: logger, on: eventLoop)
+    public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
+        try await self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
     }
 }

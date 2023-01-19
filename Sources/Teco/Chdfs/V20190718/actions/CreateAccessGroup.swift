@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 创建权限组。
     @inlinable
-    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessGroupResponse> {
-        self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAccessGroup(_ input: CreateAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessGroupResponse> {
+        self.client.execute(action: "CreateAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
@@ -62,8 +62,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 创建权限组。
     @inlinable
-    public func createAccessGroup(_ input: CreateAccessGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
-        try await self.client.execute(action: "CreateAccessGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAccessGroup(_ input: CreateAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
+        try await self.client.execute(action: "CreateAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建权限组
@@ -71,8 +71,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 创建权限组。
     @inlinable
-    public func createAccessGroup(accessGroupName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessGroupResponse> {
-        self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, description: description), logger: logger, on: eventLoop)
+    public func createAccessGroup(accessGroupName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessGroupResponse> {
+        self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
@@ -80,7 +80,7 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 创建权限组。
     @inlinable
-    public func createAccessGroup(accessGroupName: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
-        try await self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, description: description), logger: logger, on: eventLoop)
+    public func createAccessGroup(accessGroupName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
+        try await self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

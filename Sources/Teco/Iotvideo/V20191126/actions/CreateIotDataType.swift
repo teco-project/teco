@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
-        self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createIotDataType(_ input: CreateIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
+        self.client.execute(action: "CreateIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(_ input: CreateIotDataTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
-        try await self.client.execute(action: "CreateIotDataType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createIotDataType(_ input: CreateIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
+        try await self.client.execute(action: "CreateIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
-        self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), logger: logger, on: eventLoop)
+    public func createIotDataType(iotDataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
+        self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
     @inlinable
-    public func createIotDataType(iotDataType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
-        try await self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), logger: logger, on: eventLoop)
+    public func createIotDataType(iotDataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
+        try await self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), region: region, logger: logger, on: eventLoop)
     }
 }

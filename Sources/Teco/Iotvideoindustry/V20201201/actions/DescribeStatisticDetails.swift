@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,31 +65,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
-        self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
+        self.client.execute(action: "DescribeStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
-        try await self.client.execute(action: "DescribeStatisticDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStatisticDetails(_ input: DescribeStatisticDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
+        try await self.client.execute(action: "DescribeStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
-        self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), logger: logger, on: eventLoop)
+    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
+        self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定统计项详情
     ///
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
-    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
-        try await self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), logger: logger, on: eventLoop)
+    public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
+        try await self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Tdmq {
 
     /// 获取命名空间角色列表
     @inlinable
-    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentRolesResponse> {
-        self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentRolesResponse> {
+        self.client.execute(action: "DescribeEnvironmentRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间角色列表
     @inlinable
-    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
-        try await self.client.execute(action: "DescribeEnvironmentRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvironmentRoles(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
+        try await self.client.execute(action: "DescribeEnvironmentRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取命名空间角色列表
     @inlinable
-    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentRolesResponse> {
-        self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), logger: logger, on: eventLoop)
+    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentRolesResponse> {
+        self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间角色列表
     @inlinable
-    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
-        try await self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), logger: logger, on: eventLoop)
+    public func describeEnvironmentRoles(environmentId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, roleName: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentRolesResponse {
+        try await self.describeEnvironmentRoles(DescribeEnvironmentRolesRequest(environmentId: environmentId, offset: offset, limit: limit, clusterId: clusterId, roleName: roleName, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 删除路由
     @inlinable
-    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteResponse> {
-        self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRoute(_ input: DeleteRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteResponse> {
+        self.client.execute(action: "DeleteRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除路由
     @inlinable
-    public func deleteRoute(_ input: DeleteRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
-        try await self.client.execute(action: "DeleteRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRoute(_ input: DeleteRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
+        try await self.client.execute(action: "DeleteRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除路由
     @inlinable
-    public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteResponse> {
-        self.deleteRoute(DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), logger: logger, on: eventLoop)
+    public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteResponse> {
+        self.deleteRoute(DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除路由
     @inlinable
-    public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
-        try await self.deleteRoute(DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), logger: logger, on: eventLoop)
+    public func deleteRoute(instanceId: String, routeId: Int64, callerAppid: Int64? = nil, deleteRouteTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteResponse {
+        try await self.deleteRoute(DeleteRouteRequest(instanceId: instanceId, routeId: routeId, callerAppid: callerAppid, deleteRouteTime: deleteRouteTime), region: region, logger: logger, on: eventLoop)
     }
 }

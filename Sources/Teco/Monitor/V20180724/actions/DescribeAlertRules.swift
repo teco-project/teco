@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,31 +84,31 @@ extension Monitor {
     ///
     /// Prometheus 报警规则查询接口
     @inlinable
-    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRulesResponse> {
-        self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlertRules(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRulesResponse> {
+        self.client.execute(action: "DescribeAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 报警规则查询
     ///
     /// Prometheus 报警规则查询接口
     @inlinable
-    public func describeAlertRules(_ input: DescribeAlertRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
-        try await self.client.execute(action: "DescribeAlertRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlertRules(_ input: DescribeAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
+        try await self.client.execute(action: "DescribeAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 报警规则查询
     ///
     /// Prometheus 报警规则查询接口
     @inlinable
-    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRulesResponse> {
-        self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), logger: logger, on: eventLoop)
+    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertRulesResponse> {
+        self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 报警规则查询
     ///
     /// Prometheus 报警规则查询接口
     @inlinable
-    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
-        try await self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), logger: logger, on: eventLoop)
+    public func describeAlertRules(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, ruleId: String? = nil, ruleState: Int64? = nil, ruleName: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertRulesResponse {
+        try await self.describeAlertRules(DescribeAlertRulesRequest(instanceId: instanceId, limit: limit, offset: offset, ruleId: ruleId, ruleState: ruleState, ruleName: ruleName, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

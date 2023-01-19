@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable
-    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
-        self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
+        self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable
-    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
-        try await self.client.execute(action: "DeleteServiceTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
+        try await self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable
-    public func deleteServiceTemplate(serviceTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
-        self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), logger: logger, on: eventLoop)
+    public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
+        self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable
-    public func deleteServiceTemplate(serviceTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
-        try await self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), logger: logger, on: eventLoop)
+    public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
+        try await self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcss {
 
     /// 容器网络创建网络策略撤销任务
     @inlinable
-    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallUndoPublishResponse> {
-        self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallUndoPublishResponse> {
+        self.client.execute(action: "CreateNetworkFirewallUndoPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略撤销任务
     @inlinable
-    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallUndoPublish", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetworkFirewallUndoPublish(_ input: CreateNetworkFirewallUndoPublishRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallUndoPublish", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络创建网络策略撤销任务
     @inlinable
-    public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallUndoPublishResponse> {
-        self.createNetworkFirewallUndoPublish(CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallUndoPublishResponse> {
+        self.createNetworkFirewallUndoPublish(CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略撤销任务
     @inlinable
-    public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
-        try await self.createNetworkFirewallUndoPublish(CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func createNetworkFirewallUndoPublish(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallUndoPublishResponse {
+        try await self.createNetworkFirewallUndoPublish(CreateNetworkFirewallUndoPublishRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

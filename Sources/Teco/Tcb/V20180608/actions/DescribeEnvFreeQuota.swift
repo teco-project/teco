@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,25 +52,25 @@ extension Tcb {
 
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
-        self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
+        self.client.execute(action: "DescribeEnvFreeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
-        try await self.client.execute(action: "DescribeEnvFreeQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvFreeQuota(_ input: DescribeEnvFreeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
+        try await self.client.execute(action: "DescribeEnvFreeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
-        self.describeEnvFreeQuota(DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes), logger: logger, on: eventLoop)
+    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvFreeQuotaResponse> {
+        self.describeEnvFreeQuota(DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费免费配额信息
     @inlinable
-    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
-        try await self.describeEnvFreeQuota(DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes), logger: logger, on: eventLoop)
+    public func describeEnvFreeQuota(envId: String, resourceTypes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvFreeQuotaResponse {
+        try await self.describeEnvFreeQuota(DescribeEnvFreeQuotaRequest(envId: envId, resourceTypes: resourceTypes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
-        self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
+        self.client.execute(action: "CopyCryptoColumnPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制字段策略
@@ -88,8 +88,8 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
-        try await self.client.execute(action: "CopyCryptoColumnPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
+        try await self.client.execute(action: "CopyCryptoColumnPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制字段策略
@@ -102,8 +102,8 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
-        self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), logger: logger, on: eventLoop)
+    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
+        self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制字段策略
@@ -116,7 +116,7 @@ extension Casb {
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
     @inlinable
-    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
-        try await self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), logger: logger, on: eventLoop)
+    public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
+        try await self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 云支付-查询订单付款状态
     @inlinable
-    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderStatusResponse> {
-        self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOrderStatus(_ input: QueryOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderStatusResponse> {
+        self.client.execute(action: "QueryOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询订单付款状态
     @inlinable
-    public func queryOrderStatus(_ input: QueryOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
-        try await self.client.execute(action: "QueryOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOrderStatus(_ input: QueryOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
+        try await self.client.execute(action: "QueryOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-查询订单付款状态
     @inlinable
-    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderStatusResponse> {
-        self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOrderStatusResponse> {
+        self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询订单付款状态
     @inlinable
-    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
-        try await self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), logger: logger, on: eventLoop)
+    public func queryOrderStatus(openId: String, openKey: String, developerNo: String, orderNo: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOrderStatusResponse {
+        try await self.queryOrderStatus(QueryOrderStatusRequest(openId: openId, openKey: openKey, developerNo: developerNo, orderNo: orderNo, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

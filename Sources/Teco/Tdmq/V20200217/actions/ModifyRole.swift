@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tdmq {
 
     /// 角色修改
     @inlinable
-    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
-        self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRole(_ input: ModifyRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
+        self.client.execute(action: "ModifyRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 角色修改
     @inlinable
-    public func modifyRole(_ input: ModifyRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
-        try await self.client.execute(action: "ModifyRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRole(_ input: ModifyRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
+        try await self.client.execute(action: "ModifyRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 角色修改
     @inlinable
-    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
-        self.modifyRole(ModifyRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRoleResponse> {
+        self.modifyRole(ModifyRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 角色修改
     @inlinable
-    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
-        try await self.modifyRole(ModifyRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func modifyRole(roleName: String, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRoleResponse {
+        try await self.modifyRole(ModifyRoleRequest(roleName: roleName, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

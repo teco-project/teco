@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tdid {
 
     /// 查看DID文档
     @inlinable
-    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
+        self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看DID文档
     @inlinable
-    public func getDidDocument(_ input: GetDidDocumentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.client.execute(action: "GetDidDocument", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidDocument(_ input: GetDidDocumentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
+        try await self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看DID文档
     @inlinable
-    public func getDidDocument(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        self.getDidDocument(GetDidDocumentRequest(did: did), logger: logger, on: eventLoop)
+    public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
+        self.getDidDocument(GetDidDocumentRequest(did: did), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看DID文档
     @inlinable
-    public func getDidDocument(did: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.getDidDocument(GetDidDocumentRequest(did: did), logger: logger, on: eventLoop)
+    public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
+        try await self.getDidDocument(GetDidDocumentRequest(did: did), region: region, logger: logger, on: eventLoop)
     }
 }

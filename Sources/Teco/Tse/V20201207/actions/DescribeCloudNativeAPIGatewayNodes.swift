@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tse {
 
     /// 获取云原生网关节点列表
     @inlinable
-    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudNativeAPIGatewayNodesResponse> {
-        self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudNativeAPIGatewayNodesResponse> {
+        self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云原生网关节点列表
     @inlinable
-    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
-        try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudNativeAPIGatewayNodes(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
+        try await self.client.execute(action: "DescribeCloudNativeAPIGatewayNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云原生网关节点列表
     @inlinable
-    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudNativeAPIGatewayNodesResponse> {
-        self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudNativeAPIGatewayNodesResponse> {
+        self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云原生网关节点列表
     @inlinable
-    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
-        try await self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeCloudNativeAPIGatewayNodes(gatewayId: String, groupId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudNativeAPIGatewayNodesResponse {
+        try await self.describeCloudNativeAPIGatewayNodes(DescribeCloudNativeAPIGatewayNodesRequest(gatewayId: gatewayId, groupId: groupId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tcb {
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
-        self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reinstateEnv(_ input: ReinstateEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
+        self.client.execute(action: "ReinstateEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(_ input: ReinstateEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
-        try await self.client.execute(action: "ReinstateEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reinstateEnv(_ input: ReinstateEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
+        try await self.client.execute(action: "ReinstateEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
-        self.reinstateEnv(ReinstateEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    public func reinstateEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReinstateEnvResponse> {
+        self.reinstateEnv(ReinstateEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复环境，解除隔离状态
     ///
     /// 针对已隔离的免费环境，可以通过本接口将其恢复访问。
     @inlinable
-    public func reinstateEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
-        try await self.reinstateEnv(ReinstateEnvRequest(envId: envId), logger: logger, on: eventLoop)
+    public func reinstateEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReinstateEnvResponse {
+        try await self.reinstateEnv(ReinstateEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

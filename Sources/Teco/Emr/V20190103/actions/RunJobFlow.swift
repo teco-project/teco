@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,25 +116,25 @@ extension Emr {
 
     /// 创建流程作业
     @inlinable
-    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobFlowResponse> {
-        self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runJobFlow(_ input: RunJobFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobFlowResponse> {
+        self.client.execute(action: "RunJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建流程作业
     @inlinable
-    public func runJobFlow(_ input: RunJobFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
-        try await self.client.execute(action: "RunJobFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runJobFlow(_ input: RunJobFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
+        try await self.client.execute(action: "RunJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建流程作业
     @inlinable
-    public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobFlowResponse> {
-        self.runJobFlow(RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), logger: logger, on: eventLoop)
+    public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobFlowResponse> {
+        self.runJobFlow(RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建流程作业
     @inlinable
-    public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
-        try await self.runJobFlow(RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), logger: logger, on: eventLoop)
+    public func runJobFlow(name: String, createCluster: Bool, steps: [Step], instancePolicy: String, productVersion: String? = nil, securityClusterFlag: Bool? = nil, software: [String]? = nil, bootstrapActions: [BootstrapAction]? = nil, configurations: [Configuration]? = nil, logUri: String? = nil, instanceId: String? = nil, applicationRole: String? = nil, clientToken: String? = nil, instance: ClusterSetting? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobFlowResponse {
+        try await self.runJobFlow(RunJobFlowRequest(name: name, createCluster: createCluster, steps: steps, instancePolicy: instancePolicy, productVersion: productVersion, securityClusterFlag: securityClusterFlag, software: software, bootstrapActions: bootstrapActions, configurations: configurations, logUri: logUri, instanceId: instanceId, applicationRole: applicationRole, clientToken: clientToken, instance: instance), region: region, logger: logger, on: eventLoop)
     }
 }

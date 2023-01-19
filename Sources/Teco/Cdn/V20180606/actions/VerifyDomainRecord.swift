@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Cdn {
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
-        self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
+        self.client.execute(action: "VerifyDomainRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证域名解析
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
-        try await self.client.execute(action: "VerifyDomainRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyDomainRecord(_ input: VerifyDomainRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
+        try await self.client.execute(action: "VerifyDomainRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证域名解析
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
-        self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), logger: logger, on: eventLoop)
+    public func verifyDomainRecord(domain: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
+        self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证域名解析
     ///
     /// 验证域名解析值
     @inlinable
-    public func verifyDomainRecord(domain: String, verifyType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
-        try await self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), logger: logger, on: eventLoop)
+    public func verifyDomainRecord(domain: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
+        try await self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
     }
 }

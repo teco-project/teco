@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Tcss {
 
     /// 更新单个镜像仓库详细信息
     @inlinable
-    public func updateAssetImageRegistryRegistryDetail(_ input: UpdateAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetImageRegistryRegistryDetailResponse> {
-        self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateAssetImageRegistryRegistryDetail(_ input: UpdateAssetImageRegistryRegistryDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetImageRegistryRegistryDetailResponse> {
+        self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新单个镜像仓库详细信息
     @inlinable
-    public func updateAssetImageRegistryRegistryDetail(_ input: UpdateAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetImageRegistryRegistryDetailResponse {
-        try await self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateAssetImageRegistryRegistryDetail(_ input: UpdateAssetImageRegistryRegistryDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetImageRegistryRegistryDetailResponse {
+        try await self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新单个镜像仓库详细信息
     @inlinable
-    public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetImageRegistryRegistryDetailResponse> {
-        self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), logger: logger, on: eventLoop)
+    public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetImageRegistryRegistryDetailResponse> {
+        self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新单个镜像仓库详细信息
     @inlinable
-    public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetImageRegistryRegistryDetailResponse {
-        try await self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), logger: logger, on: eventLoop)
+    public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetImageRegistryRegistryDetailResponse {
+        try await self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
     }
 }

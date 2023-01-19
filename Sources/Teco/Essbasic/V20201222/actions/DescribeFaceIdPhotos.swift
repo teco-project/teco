@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Essbasic {
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
-    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdPhotosResponse> {
-        self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdPhotosResponse> {
+        self.client.execute(action: "DescribeFaceIdPhotos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询慧眼人脸核身照片
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
-    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
-        try await self.client.execute(action: "DescribeFaceIdPhotos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFaceIdPhotos(_ input: DescribeFaceIdPhotosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
+        try await self.client.execute(action: "DescribeFaceIdPhotos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询慧眼人脸核身照片
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
-    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdPhotosResponse> {
-        self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), logger: logger, on: eventLoop)
+    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdPhotosResponse> {
+        self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询慧眼人脸核身照片
     ///
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
-    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
-        try await self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), logger: logger, on: eventLoop)
+    public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
+        try await self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), region: region, logger: logger, on: eventLoop)
     }
 }

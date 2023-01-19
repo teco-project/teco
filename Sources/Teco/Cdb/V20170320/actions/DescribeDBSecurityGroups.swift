@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
     @inlinable
-    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
-        self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
+        self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例安全组信息
     ///
     /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
     @inlinable
-    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
-        try await self.client.execute(action: "DescribeDBSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBSecurityGroups(_ input: DescribeDBSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
+        try await self.client.execute(action: "DescribeDBSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例安全组信息
     ///
     /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
     @inlinable
-    public func describeDBSecurityGroups(instanceId: String, forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
-        self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    public func describeDBSecurityGroups(instanceId: String, forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSecurityGroupsResponse> {
+        self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例安全组信息
     ///
     /// 本接口(DescribeDBSecurityGroups)用于查询实例的安全组详情。
     @inlinable
-    public func describeDBSecurityGroups(instanceId: String, forReadonlyInstance: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
-        try await self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId, forReadonlyInstance: forReadonlyInstance), logger: logger, on: eventLoop)
+    public func describeDBSecurityGroups(instanceId: String, forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSecurityGroupsResponse {
+        try await self.describeDBSecurityGroups(DescribeDBSecurityGroupsRequest(instanceId: instanceId, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
     }
 }

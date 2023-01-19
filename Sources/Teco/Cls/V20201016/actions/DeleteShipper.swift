@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cls {
 
     /// 删除投递规则
     @inlinable
-    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
-        self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteShipper(_ input: DeleteShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
+        self.client.execute(action: "DeleteShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除投递规则
     @inlinable
-    public func deleteShipper(_ input: DeleteShipperRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
-        try await self.client.execute(action: "DeleteShipper", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteShipper(_ input: DeleteShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
+        try await self.client.execute(action: "DeleteShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除投递规则
     @inlinable
-    public func deleteShipper(shipperId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
-        self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), logger: logger, on: eventLoop)
+    public func deleteShipper(shipperId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShipperResponse> {
+        self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除投递规则
     @inlinable
-    public func deleteShipper(shipperId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
-        try await self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), logger: logger, on: eventLoop)
+    public func deleteShipper(shipperId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShipperResponse {
+        try await self.deleteShipper(DeleteShipperRequest(shipperId: shipperId), region: region, logger: logger, on: eventLoop)
     }
 }

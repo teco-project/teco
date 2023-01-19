@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,31 +112,31 @@ extension Tci {
     ///
     /// 分析音频信息
     @inlinable
-    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitAudioStreamResponse> {
-        self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitAudioStreamResponse> {
+        self.client.execute(action: "TransmitAudioStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 流式音频分析
     ///
     /// 分析音频信息
     @inlinable
-    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
-        try await self.client.execute(action: "TransmitAudioStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transmitAudioStream(_ input: TransmitAudioStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
+        try await self.client.execute(action: "TransmitAudioStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 流式音频分析
     ///
     /// 分析音频信息
     @inlinable
-    public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitAudioStreamResponse> {
-        self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), logger: logger, on: eventLoop)
+    public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitAudioStreamResponse> {
+        self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流式音频分析
     ///
     /// 分析音频信息
     @inlinable
-    public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
-        try await self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), logger: logger, on: eventLoop)
+    public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
+        try await self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
     }
 }

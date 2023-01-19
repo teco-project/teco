@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Billing {
 
     /// 获取按资源汇总消耗详情
     @inlinable
-    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByResourceResponse> {
-        self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByResourceResponse> {
+        self.client.execute(action: "DescribeCostSummaryByResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按资源汇总消耗详情
     @inlinable
-    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCostSummaryByResource(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按资源汇总消耗详情
     @inlinable
-    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByResourceResponse> {
-        self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), logger: logger, on: eventLoop)
+    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByResourceResponse> {
+        self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按资源汇总消耗详情
     @inlinable
-    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
-        try await self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), logger: logger, on: eventLoop)
+    public func describeCostSummaryByResource(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, needConditionValue: UInt64? = nil, conditions: Conditions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByResourceResponse {
+        try await self.describeCostSummaryByResource(DescribeCostSummaryByResourceRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum, needConditionValue: needConditionValue, conditions: conditions), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Billing {
 
     /// 查询消耗明细
     @inlinable
-    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostDetailResponse> {
-        self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCostDetail(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostDetailResponse> {
+        self.client.execute(action: "DescribeCostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询消耗明细
     @inlinable
-    public func describeCostDetail(_ input: DescribeCostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
-        try await self.client.execute(action: "DescribeCostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCostDetail(_ input: DescribeCostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
+        try await self.client.execute(action: "DescribeCostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询消耗明细
     @inlinable
-    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostDetailResponse> {
-        self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostDetailResponse> {
+        self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询消耗明细
     @inlinable
-    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
-        try await self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeCostDetail(limit: Int64, offset: UInt64, beginTime: Date? = nil, endTime: Date? = nil, needRecordNum: UInt64? = nil, month: String? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostDetailResponse {
+        try await self.describeCostDetail(DescribeCostDetailRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, month: month, productCode: productCode, payMode: payMode, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

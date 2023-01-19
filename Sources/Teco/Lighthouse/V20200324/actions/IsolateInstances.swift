@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量资源（包括实例与数据盘）的上限为 20。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func isolateInstances(_ input: IsolateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstancesResponse> {
-        self.client.execute(action: "IsolateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateInstances(_ input: IsolateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstancesResponse> {
+        self.client.execute(action: "IsolateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -67,8 +67,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量资源（包括实例与数据盘）的上限为 20。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func isolateInstances(_ input: IsolateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstancesResponse {
-        try await self.client.execute(action: "IsolateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateInstances(_ input: IsolateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstancesResponse {
+        try await self.client.execute(action: "IsolateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离实例
@@ -79,8 +79,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量资源（包括实例与数据盘）的上限为 20。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func isolateInstances(instanceIds: [String], isolateDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstancesResponse> {
-        self.isolateInstances(IsolateInstancesRequest(instanceIds: instanceIds, isolateDataDisk: isolateDataDisk), logger: logger, on: eventLoop)
+    public func isolateInstances(instanceIds: [String], isolateDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstancesResponse> {
+        self.isolateInstances(IsolateInstancesRequest(instanceIds: instanceIds, isolateDataDisk: isolateDataDisk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -91,7 +91,7 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量资源（包括实例与数据盘）的上限为 20。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func isolateInstances(instanceIds: [String], isolateDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstancesResponse {
-        try await self.isolateInstances(IsolateInstancesRequest(instanceIds: instanceIds, isolateDataDisk: isolateDataDisk), logger: logger, on: eventLoop)
+    public func isolateInstances(instanceIds: [String], isolateDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstancesResponse {
+        try await self.isolateInstances(IsolateInstancesRequest(instanceIds: instanceIds, isolateDataDisk: isolateDataDisk), region: region, logger: logger, on: eventLoop)
     }
 }

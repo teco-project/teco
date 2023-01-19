@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tci {
 
     /// 删除人员库
     @inlinable
-    public func deleteLibrary(_ input: DeleteLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLibraryResponse> {
-        self.client.execute(action: "DeleteLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLibrary(_ input: DeleteLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLibraryResponse> {
+        self.client.execute(action: "DeleteLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人员库
     @inlinable
-    public func deleteLibrary(_ input: DeleteLibraryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
-        try await self.client.execute(action: "DeleteLibrary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLibrary(_ input: DeleteLibraryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
+        try await self.client.execute(action: "DeleteLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除人员库
     @inlinable
-    public func deleteLibrary(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLibraryResponse> {
-        self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    public func deleteLibrary(libraryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLibraryResponse> {
+        self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除人员库
     @inlinable
-    public func deleteLibrary(libraryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
-        try await self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), logger: logger, on: eventLoop)
+    public func deleteLibrary(libraryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLibraryResponse {
+        try await self.deleteLibrary(DeleteLibraryRequest(libraryId: libraryId), region: region, logger: logger, on: eventLoop)
     }
 }

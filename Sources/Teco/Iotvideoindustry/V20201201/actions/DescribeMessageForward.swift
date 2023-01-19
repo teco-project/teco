@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,25 +91,25 @@ extension Iotvideoindustry {
 
     /// 查看消息转发配置详情
     @inlinable
-    public func describeMessageForward(_ input: DescribeMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardResponse> {
-        self.client.execute(action: "DescribeMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMessageForward(_ input: DescribeMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardResponse> {
+        self.client.execute(action: "DescribeMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看消息转发配置详情
     @inlinable
-    public func describeMessageForward(_ input: DescribeMessageForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
-        try await self.client.execute(action: "DescribeMessageForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMessageForward(_ input: DescribeMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
+        try await self.client.execute(action: "DescribeMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看消息转发配置详情
     @inlinable
-    public func describeMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardResponse> {
-        self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    public func describeMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageForwardResponse> {
+        self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看消息转发配置详情
     @inlinable
-    public func describeMessageForward(intId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
-        try await self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), logger: logger, on: eventLoop)
+    public func describeMessageForward(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageForwardResponse {
+        try await self.describeMessageForward(DescribeMessageForwardRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,8 +46,8 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新创建校验并通过后, 才能开始迁移.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
-        self.client.execute(action: "CreateMigrateCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
+        self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建校验迁移任务
@@ -57,8 +57,8 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新创建校验并通过后, 才能开始迁移.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
-        try await self.client.execute(action: "CreateMigrateCheckJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMigrateCheckJob(_ input: CreateMigrateCheckJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
+        try await self.client.execute(action: "CreateMigrateCheckJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建校验迁移任务
@@ -68,8 +68,8 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新创建校验并通过后, 才能开始迁移.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
-        self.createMigrateCheckJob(CreateMigrateCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateCheckJobResponse> {
+        self.createMigrateCheckJob(CreateMigrateCheckJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建校验迁移任务
@@ -79,7 +79,7 @@ extension Dts {
     /// 校验成功后,迁移任务若有修改, 则必须重新创建校验并通过后, 才能开始迁移.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func createMigrateCheckJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
-        try await self.createMigrateCheckJob(CreateMigrateCheckJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func createMigrateCheckJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateCheckJobResponse {
+        try await self.createMigrateCheckJob(CreateMigrateCheckJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

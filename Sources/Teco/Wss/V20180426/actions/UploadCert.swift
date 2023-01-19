@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Wss {
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadCert(_ input: UploadCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
+        self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(_ input: UploadCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.client.execute(action: "UploadCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadCert(_ input: UploadCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), logger: logger, on: eventLoop)
+    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
+        self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
     ///
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
-    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), logger: logger, on: eventLoop)
+    public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
+        try await self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

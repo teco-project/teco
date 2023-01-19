@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Cbs {
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
-        self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
+        self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照操作日志列表
@@ -77,8 +77,8 @@ extension Cbs {
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        try await self.client.execute(action: "DescribeSnapshotOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
+        try await self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询快照操作日志列表
@@ -86,8 +86,8 @@ extension Cbs {
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
-        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
+        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照操作日志列表
@@ -95,7 +95,7 @@ extension Cbs {
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
-    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
+        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tag {
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
-        self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unTagResources(_ input: UnTagResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
+        self.client.execute(action: "UnTagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(_ input: UnTagResourcesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
-        try await self.client.execute(action: "UnTagResources", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unTagResources(_ input: UnTagResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
+        try await self.client.execute(action: "UnTagResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
-        self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    public func unTagResources(resourceList: [String], tagKeys: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnTagResourcesResponse> {
+        self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 为资源解绑标签
     ///
     /// 指定的多个云产品的多个云资源统一解绑标签。
     @inlinable
-    public func unTagResources(resourceList: [String], tagKeys: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
-        try await self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), logger: logger, on: eventLoop)
+    public func unTagResources(resourceList: [String], tagKeys: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnTagResourcesResponse {
+        try await self.unTagResources(UnTagResourcesRequest(resourceList: resourceList, tagKeys: tagKeys), region: region, logger: logger, on: eventLoop)
     }
 }

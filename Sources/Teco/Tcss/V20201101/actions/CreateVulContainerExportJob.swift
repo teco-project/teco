@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Tcss {
 
     /// 创建受漏洞影响的容器导出任务
     @inlinable
-    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulContainerExportJobResponse> {
-        self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulContainerExportJobResponse> {
+        self.client.execute(action: "CreateVulContainerExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建受漏洞影响的容器导出任务
     @inlinable
-    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
-        try await self.client.execute(action: "CreateVulContainerExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVulContainerExportJob(_ input: CreateVulContainerExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
+        try await self.client.execute(action: "CreateVulContainerExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建受漏洞影响的容器导出任务
     @inlinable
-    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulContainerExportJobResponse> {
-        self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulContainerExportJobResponse> {
+        self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建受漏洞影响的容器导出任务
     @inlinable
-    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
-        try await self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func createVulContainerExportJob(pocID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulContainerExportJobResponse {
+        try await self.createVulContainerExportJob(CreateVulContainerExportJobRequest(pocID: pocID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

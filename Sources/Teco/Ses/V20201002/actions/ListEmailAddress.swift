@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -38,25 +38,25 @@ extension Ses {
 
     /// 获取发信地址列表
     @inlinable
-    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailAddressResponse> {
-        self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listEmailAddress(_ input: ListEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailAddressResponse> {
+        self.client.execute(action: "ListEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取发信地址列表
     @inlinable
-    public func listEmailAddress(_ input: ListEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
-        try await self.client.execute(action: "ListEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listEmailAddress(_ input: ListEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
+        try await self.client.execute(action: "ListEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取发信地址列表
     @inlinable
-    public func listEmailAddress(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailAddressResponse> {
-        self.listEmailAddress(ListEmailAddressRequest(), logger: logger, on: eventLoop)
+    public func listEmailAddress(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailAddressResponse> {
+        self.listEmailAddress(ListEmailAddressRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取发信地址列表
     @inlinable
-    public func listEmailAddress(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
-        try await self.listEmailAddress(ListEmailAddressRequest(), logger: logger, on: eventLoop)
+    public func listEmailAddress(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
+        try await self.listEmailAddress(ListEmailAddressRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

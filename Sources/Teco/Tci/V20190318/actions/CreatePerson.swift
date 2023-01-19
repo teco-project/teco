@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,25 +102,25 @@ extension Tci {
 
     /// 创建人员
     @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
+        self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
     @inlinable
-    public func createPerson(_ input: CreatePersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.client.execute(action: "CreatePerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPerson(_ input: CreatePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建人员
     @inlinable
-    public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        self.createPerson(CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), logger: logger, on: eventLoop)
+    public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
+        self.createPerson(CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
     @inlinable
-    public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.createPerson(CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), logger: logger, on: eventLoop)
+    public func createPerson(libraryId: String, personName: String, images: [String]? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, personId: String? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, urls: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
+        try await self.createPerson(CreatePersonRequest(libraryId: libraryId, personName: personName, images: images, jobNumber: jobNumber, mail: mail, male: male, personId: personId, phoneNumber: phoneNumber, studentNumber: studentNumber, urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

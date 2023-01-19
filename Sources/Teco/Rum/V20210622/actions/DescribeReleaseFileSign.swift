@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Rum {
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
-        self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
+        self.client.execute(action: "DescribeReleaseFileSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
-        try await self.client.execute(action: "DescribeReleaseFileSign", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReleaseFileSign(_ input: DescribeReleaseFileSignRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
+        try await self.client.execute(action: "DescribeReleaseFileSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
-        self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), logger: logger, on: eventLoop)
+    public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReleaseFileSignResponse> {
+        self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取存储临时密钥
     ///
     /// 获取上传文件存储的临时密钥
     @inlinable
-    public func describeReleaseFileSign(timeout: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
-        try await self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), logger: logger, on: eventLoop)
+    public func describeReleaseFileSign(timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReleaseFileSignResponse {
+        try await self.describeReleaseFileSign(DescribeReleaseFileSignRequest(timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 }

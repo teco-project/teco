@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Waf {
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable
-    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
-        self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
+        self.client.execute(action: "DescribeAccessFastAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable
-    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
-        try await self.client.execute(action: "DescribeAccessFastAnalysis", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
+        try await self.client.execute(action: "DescribeAccessFastAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable
-    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
-        self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), logger: logger, on: eventLoop)
+    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
+        self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
     @inlinable
-    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
-        try await self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), logger: logger, on: eventLoop)
+    public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
+        try await self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
     }
 }

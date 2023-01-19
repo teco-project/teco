@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Chdfs {
     ///
     /// 给挂载点绑定多个权限组。
     @inlinable
-    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
-        self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
+        self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
     @inlinable
-    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
-        try await self.client.execute(action: "AssociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
+        try await self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
     @inlinable
-    public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
-        self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), logger: logger, on: eventLoop)
+    public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
+        self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
     @inlinable
-    public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
-        try await self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), logger: logger, on: eventLoop)
+    public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
+        try await self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

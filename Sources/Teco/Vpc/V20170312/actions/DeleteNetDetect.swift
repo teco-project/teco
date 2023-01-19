@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
     @inlinable
-    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
-        self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
+        self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
     @inlinable
-    public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
-        try await self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
+        try await self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
     @inlinable
-    public func deleteNetDetect(netDetectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
-        self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), logger: logger, on: eventLoop)
+    public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
+        self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
     @inlinable
-    public func deleteNetDetect(netDetectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
-        try await self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), logger: logger, on: eventLoop)
+    public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
+        try await self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)
     }
 }

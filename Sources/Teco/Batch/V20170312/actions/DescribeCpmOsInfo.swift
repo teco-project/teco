@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Batch {
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
-        self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
+        self.client.execute(action: "DescribeCpmOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
-        try await self.client.execute(action: "DescribeCpmOsInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCpmOsInfo(_ input: DescribeCpmOsInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
+        try await self.client.execute(action: "DescribeCpmOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
-        self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    public func describeCpmOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
+        self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询批量计算黑石操作系统信息
     ///
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
-    public func describeCpmOsInfo(deviceClassCode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
-        try await self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), logger: logger, on: eventLoop)
+    public func describeCpmOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
+        try await self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
     }
 }

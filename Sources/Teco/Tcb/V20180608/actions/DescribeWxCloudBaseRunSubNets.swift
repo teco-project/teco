@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tcb {
 
     /// 查询微信云托管子网
     @inlinable
-    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWxCloudBaseRunSubNetsResponse> {
-        self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWxCloudBaseRunSubNetsResponse> {
+        self.client.execute(action: "DescribeWxCloudBaseRunSubNets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询微信云托管子网
     @inlinable
-    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
-        try await self.client.execute(action: "DescribeWxCloudBaseRunSubNets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWxCloudBaseRunSubNets(_ input: DescribeWxCloudBaseRunSubNetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
+        try await self.client.execute(action: "DescribeWxCloudBaseRunSubNets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询微信云托管子网
     @inlinable
-    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWxCloudBaseRunSubNetsResponse> {
-        self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), logger: logger, on: eventLoop)
+    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWxCloudBaseRunSubNetsResponse> {
+        self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询微信云托管子网
     @inlinable
-    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
-        try await self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), logger: logger, on: eventLoop)
+    public func describeWxCloudBaseRunSubNets(vpcId: String, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunSubNetsResponse {
+        try await self.describeWxCloudBaseRunSubNets(DescribeWxCloudBaseRunSubNetsRequest(vpcId: vpcId, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cvm {
     ///
     /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
     @inlinable
-    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSharePermissionResponse> {
-        self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSharePermissionResponse> {
+        self.client.execute(action: "DescribeImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看镜像分享信息
     ///
     /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
     @inlinable
-    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
-        try await self.client.execute(action: "DescribeImageSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageSharePermission(_ input: DescribeImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
+        try await self.client.execute(action: "DescribeImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看镜像分享信息
     ///
     /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
     @inlinable
-    public func describeImageSharePermission(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSharePermissionResponse> {
-        self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), logger: logger, on: eventLoop)
+    public func describeImageSharePermission(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSharePermissionResponse> {
+        self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看镜像分享信息
     ///
     /// 本接口（DescribeImageSharePermission）用于查询镜像分享信息。
     @inlinable
-    public func describeImageSharePermission(imageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
-        try await self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), logger: logger, on: eventLoop)
+    public func describeImageSharePermission(imageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSharePermissionResponse {
+        try await self.describeImageSharePermission(DescribeImageSharePermissionRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

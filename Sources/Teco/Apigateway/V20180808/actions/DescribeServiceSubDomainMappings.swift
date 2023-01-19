@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Apigateway {
     /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
     /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
     @inlinable
-    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceSubDomainMappingsResponse> {
-        self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceSubDomainMappingsResponse> {
+        self.client.execute(action: "DescribeServiceSubDomainMappings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义域名的路径映射
@@ -62,8 +62,8 @@ extension Apigateway {
     /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
     /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
     @inlinable
-    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
-        try await self.client.execute(action: "DescribeServiceSubDomainMappings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeServiceSubDomainMappings(_ input: DescribeServiceSubDomainMappingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
+        try await self.client.execute(action: "DescribeServiceSubDomainMappings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询自定义域名的路径映射
@@ -71,8 +71,8 @@ extension Apigateway {
     /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
     /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
     @inlinable
-    public func describeServiceSubDomainMappings(serviceId: String, subDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceSubDomainMappingsResponse> {
-        self.describeServiceSubDomainMappings(DescribeServiceSubDomainMappingsRequest(serviceId: serviceId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func describeServiceSubDomainMappings(serviceId: String, subDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceSubDomainMappingsResponse> {
+        self.describeServiceSubDomainMappings(DescribeServiceSubDomainMappingsRequest(serviceId: serviceId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义域名的路径映射
@@ -80,7 +80,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceSubDomainMappings）用于查询自定义域名的路径映射。
     /// API 网关可绑定自定义域名到服务，并且可以对自定义域名的路径进行映射，可自定义不同的路径映射到服务中的三个环境，本接口用于查询绑定服务的自定义域名的路径映射列表。
     @inlinable
-    public func describeServiceSubDomainMappings(serviceId: String, subDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
-        try await self.describeServiceSubDomainMappings(DescribeServiceSubDomainMappingsRequest(serviceId: serviceId, subDomain: subDomain), logger: logger, on: eventLoop)
+    public func describeServiceSubDomainMappings(serviceId: String, subDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceSubDomainMappingsResponse {
+        try await self.describeServiceSubDomainMappings(DescribeServiceSubDomainMappingsRequest(serviceId: serviceId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 }

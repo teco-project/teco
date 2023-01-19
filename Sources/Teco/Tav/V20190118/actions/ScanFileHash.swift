@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Tav {
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
-        self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scanFileHash(_ input: ScanFileHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
+        self.client.execute(action: "ScanFileHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(_ input: ScanFileHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
-        try await self.client.execute(action: "ScanFileHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scanFileHash(_ input: ScanFileHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
+        try await self.client.execute(action: "ScanFileHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
-        self.scanFileHash(ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), logger: logger, on: eventLoop)
+    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanFileHashResponse> {
+        self.scanFileHash(ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 公有云查
     ///
     /// 通过文件哈希值获取文件黑白属性
     @inlinable
-    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
-        try await self.scanFileHash(ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), logger: logger, on: eventLoop)
+    public func scanFileHash(key: String, md5s: String, withCategory: String, sensitiveLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanFileHashResponse {
+        try await self.scanFileHash(ScanFileHashRequest(key: key, md5s: md5s, withCategory: withCategory, sensitiveLevel: sensitiveLevel), region: region, logger: logger, on: eventLoop)
     }
 }

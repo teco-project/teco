@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -128,31 +128,31 @@ extension Cwp {
     ///
     /// 漏洞详情，带CVSS版本
     @inlinable
-    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoCvssResponse> {
-        self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoCvssResponse> {
+        self.client.execute(action: "DescribeVulInfoCvss", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞详情
     ///
     /// 漏洞详情，带CVSS版本
     @inlinable
-    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
-        try await self.client.execute(action: "DescribeVulInfoCvss", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulInfoCvss(_ input: DescribeVulInfoCvssRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
+        try await self.client.execute(action: "DescribeVulInfoCvss", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞详情
     ///
     /// 漏洞详情，带CVSS版本
     @inlinable
-    public func describeVulInfoCvss(vulId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoCvssResponse> {
-        self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), logger: logger, on: eventLoop)
+    public func describeVulInfoCvss(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoCvssResponse> {
+        self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞详情
     ///
     /// 漏洞详情，带CVSS版本
     @inlinable
-    public func describeVulInfoCvss(vulId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
-        try await self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), logger: logger, on: eventLoop)
+    public func describeVulInfoCvss(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoCvssResponse {
+        try await self.describeVulInfoCvss(DescribeVulInfoCvssRequest(vulId: vulId), region: region, logger: logger, on: eventLoop)
     }
 }

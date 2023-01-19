@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Vod {
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable
-    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
-        self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEventConfig(_ input: ModifyEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
+        self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改事件通知配置
@@ -82,8 +82,8 @@ extension Vod {
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable
-    public func modifyEventConfig(_ input: ModifyEventConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
-        try await self.client.execute(action: "ModifyEventConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEventConfig(_ input: ModifyEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
+        try await self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改事件通知配置
@@ -94,8 +94,8 @@ extension Vod {
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable
-    public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
-        self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
+        self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改事件通知配置
@@ -106,7 +106,7 @@ extension Vod {
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
     @inlinable
-    public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
-        try await self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
+        try await self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

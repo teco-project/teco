@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Kms {
     /// 用于导入密钥材料。只有类型为EXTERNAL 的CMK 才可以导入，导入的密钥材料使用 GetParametersForImport 获取的密钥进行加密。可以为指定的 CMK 重新导入密钥材料，并重新指定过期时间，但必须导入相同的密钥材料。CMK 密钥材料导入后不可以更换密钥材料。导入的密钥材料过期或者被删除后，指定的CMK将无法使用，需要再次导入相同的密钥材料才能正常使用。CMK是独立的，同样的密钥材料可导入不同的 CMK 中，但使用其中一个 CMK 加密的数据无法使用另一个 CMK解密。
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable
-    public func importKeyMaterial(_ input: ImportKeyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyMaterialResponse> {
-        self.client.execute(action: "ImportKeyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importKeyMaterial(_ input: ImportKeyMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyMaterialResponse> {
+        self.client.execute(action: "ImportKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥材料
@@ -68,8 +68,8 @@ extension Kms {
     /// 用于导入密钥材料。只有类型为EXTERNAL 的CMK 才可以导入，导入的密钥材料使用 GetParametersForImport 获取的密钥进行加密。可以为指定的 CMK 重新导入密钥材料，并重新指定过期时间，但必须导入相同的密钥材料。CMK 密钥材料导入后不可以更换密钥材料。导入的密钥材料过期或者被删除后，指定的CMK将无法使用，需要再次导入相同的密钥材料才能正常使用。CMK是独立的，同样的密钥材料可导入不同的 CMK 中，但使用其中一个 CMK 加密的数据无法使用另一个 CMK解密。
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable
-    public func importKeyMaterial(_ input: ImportKeyMaterialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyMaterialResponse {
-        try await self.client.execute(action: "ImportKeyMaterial", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importKeyMaterial(_ input: ImportKeyMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyMaterialResponse {
+        try await self.client.execute(action: "ImportKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入密钥材料
@@ -77,8 +77,8 @@ extension Kms {
     /// 用于导入密钥材料。只有类型为EXTERNAL 的CMK 才可以导入，导入的密钥材料使用 GetParametersForImport 获取的密钥进行加密。可以为指定的 CMK 重新导入密钥材料，并重新指定过期时间，但必须导入相同的密钥材料。CMK 密钥材料导入后不可以更换密钥材料。导入的密钥材料过期或者被删除后，指定的CMK将无法使用，需要再次导入相同的密钥材料才能正常使用。CMK是独立的，同样的密钥材料可导入不同的 CMK 中，但使用其中一个 CMK 加密的数据无法使用另一个 CMK解密。
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable
-    public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyMaterialResponse> {
-        self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), logger: logger, on: eventLoop)
+    public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyMaterialResponse> {
+        self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥材料
@@ -86,7 +86,7 @@ extension Kms {
     /// 用于导入密钥材料。只有类型为EXTERNAL 的CMK 才可以导入，导入的密钥材料使用 GetParametersForImport 获取的密钥进行加密。可以为指定的 CMK 重新导入密钥材料，并重新指定过期时间，但必须导入相同的密钥材料。CMK 密钥材料导入后不可以更换密钥材料。导入的密钥材料过期或者被删除后，指定的CMK将无法使用，需要再次导入相同的密钥材料才能正常使用。CMK是独立的，同样的密钥材料可导入不同的 CMK 中，但使用其中一个 CMK 加密的数据无法使用另一个 CMK解密。
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable
-    public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyMaterialResponse {
-        try await self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), logger: logger, on: eventLoop)
+    public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyMaterialResponse {
+        try await self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), region: region, logger: logger, on: eventLoop)
     }
 }

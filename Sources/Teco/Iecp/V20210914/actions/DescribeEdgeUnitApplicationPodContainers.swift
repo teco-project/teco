@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 获取应用容器状态
     @inlinable
-    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodContainersResponse> {
-        self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodContainersResponse> {
+        self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用容器状态
     @inlinable
-    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitApplicationPodContainers(_ input: DescribeEdgeUnitApplicationPodContainersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationPodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用容器状态
     @inlinable
-    public func describeEdgeUnitApplicationPodContainers(edgeUnitId: UInt64, applicationId: UInt64, podName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodContainersResponse> {
-        self.describeEdgeUnitApplicationPodContainers(DescribeEdgeUnitApplicationPodContainersRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, podName: podName), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPodContainers(edgeUnitId: UInt64, applicationId: UInt64, podName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodContainersResponse> {
+        self.describeEdgeUnitApplicationPodContainers(DescribeEdgeUnitApplicationPodContainersRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用容器状态
     @inlinable
-    public func describeEdgeUnitApplicationPodContainers(edgeUnitId: UInt64, applicationId: UInt64, podName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
-        try await self.describeEdgeUnitApplicationPodContainers(DescribeEdgeUnitApplicationPodContainersRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, podName: podName), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationPodContainers(edgeUnitId: UInt64, applicationId: UInt64, podName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodContainersResponse {
+        try await self.describeEdgeUnitApplicationPodContainers(DescribeEdgeUnitApplicationPodContainersRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, podName: podName), region: region, logger: logger, on: eventLoop)
     }
 }

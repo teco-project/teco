@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tcss {
 
     /// 创建本地镜像木马列表导出任务
     @inlinable
-    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageVirusExportJobResponse> {
-        self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageVirusExportJobResponse> {
+        self.client.execute(action: "CreateAssetImageVirusExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建本地镜像木马列表导出任务
     @inlinable
-    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
-        try await self.client.execute(action: "CreateAssetImageVirusExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAssetImageVirusExportJob(_ input: CreateAssetImageVirusExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
+        try await self.client.execute(action: "CreateAssetImageVirusExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建本地镜像木马列表导出任务
     @inlinable
-    public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageVirusExportJobResponse> {
-        self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), logger: logger, on: eventLoop)
+    public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageVirusExportJobResponse> {
+        self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建本地镜像木马列表导出任务
     @inlinable
-    public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
-        try await self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), logger: logger, on: eventLoop)
+    public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
+        try await self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

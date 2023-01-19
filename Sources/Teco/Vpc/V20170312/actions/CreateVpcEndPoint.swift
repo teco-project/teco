@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Vpc {
     ///
     /// 创建终端节点。
     @inlinable
-    public func createVpcEndPoint(_ input: CreateVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointResponse> {
-        self.client.execute(action: "CreateVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVpcEndPoint(_ input: CreateVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointResponse> {
+        self.client.execute(action: "CreateVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点
     ///
     /// 创建终端节点。
     @inlinable
-    public func createVpcEndPoint(_ input: CreateVpcEndPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointResponse {
-        try await self.client.execute(action: "CreateVpcEndPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVpcEndPoint(_ input: CreateVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointResponse {
+        try await self.client.execute(action: "CreateVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建终端节点
     ///
     /// 创建终端节点。
     @inlinable
-    public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointResponse> {
-        self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointResponse> {
+        self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点
     ///
     /// 创建终端节点。
     @inlinable
-    public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointResponse {
-        try await self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointResponse {
+        try await self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cwp {
 
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
-        self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVulList(_ input: ExportVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
+        self.client.execute(action: "ExportVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(_ input: ExportVulListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
-        try await self.client.execute(action: "ExportVulList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVulList(_ input: ExportVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
+        try await self.client.execute(action: "ExportVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
-        self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulListResponse> {
+        self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-导出漏洞列表
     @inlinable
-    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
-        try await self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    public func exportVulList(filters: [Filter]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulListResponse {
+        try await self.exportVulList(ExportVulListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
     }
 }

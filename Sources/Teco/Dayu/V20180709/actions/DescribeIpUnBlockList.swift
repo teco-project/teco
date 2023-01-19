@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,25 +91,25 @@ extension Dayu {
 
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
-        self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
+        self.client.execute(action: "DescribeIpUnBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
-        try await self.client.execute(action: "DescribeIpUnBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpUnBlockList(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
+        try await self.client.execute(action: "DescribeIpUnBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
-        self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpUnBlockListResponse> {
+        self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
-        try await self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeIpUnBlockList(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpUnBlockListResponse {
+        try await self.describeIpUnBlockList(DescribeIpUnBlockListRequest(beginTime: beginTime, endTime: endTime, ip: ip, paging: paging, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

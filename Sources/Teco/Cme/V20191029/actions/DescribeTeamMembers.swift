@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Cme {
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
-        self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
+        self.client.execute(action: "DescribeTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
-        try await self.client.execute(action: "DescribeTeamMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTeamMembers(_ input: DescribeTeamMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
+        try await self.client.execute(action: "DescribeTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
-        self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTeamMembersResponse> {
+        self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
     @inlinable
-    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
-        try await self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func describeTeamMembers(platform: String, teamId: String, memberIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTeamMembersResponse {
+        try await self.describeTeamMembers(DescribeTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

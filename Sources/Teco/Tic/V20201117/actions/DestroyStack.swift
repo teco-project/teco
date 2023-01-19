@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tic {
     ///
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
-    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStackResponse> {
-        self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyStack(_ input: DestroyStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStackResponse> {
+        self.client.execute(action: "DestroyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Destroy事件
     ///
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
-    public func destroyStack(_ input: DestroyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
-        try await self.client.execute(action: "DestroyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyStack(_ input: DestroyStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
+        try await self.client.execute(action: "DestroyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 执行Destroy事件
     ///
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
-    public func destroyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStackResponse> {
-        self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    public func destroyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStackResponse> {
+        self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行Destroy事件
     ///
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
-    public func destroyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
-        try await self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    public func destroyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
+        try await self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

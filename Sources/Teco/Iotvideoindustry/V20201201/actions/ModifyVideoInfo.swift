@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideoindustry {
 
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
-        self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
+        self.client.execute(action: "ModifyVideoInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
-        try await self.client.execute(action: "ModifyVideoInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVideoInfo(_ input: ModifyVideoInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
+        try await self.client.execute(action: "ModifyVideoInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
-        self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoInfoResponse> {
+        self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改录像存储列表
     @inlinable
-    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
-        try await self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), logger: logger, on: eventLoop)
+    public func modifyVideoInfo(initIDs: [Int64], expireTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoInfoResponse {
+        try await self.modifyVideoInfo(ModifyVideoInfoRequest(initIDs: initIDs, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
 }

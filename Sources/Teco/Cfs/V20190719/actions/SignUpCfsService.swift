@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cfs {
     ///
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
-    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignUpCfsServiceResponse> {
-        self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func signUpCfsService(_ input: SignUpCfsServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignUpCfsServiceResponse> {
+        self.client.execute(action: "SignUpCfsService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通CFS服务
     ///
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
-    public func signUpCfsService(_ input: SignUpCfsServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
-        try await self.client.execute(action: "SignUpCfsService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func signUpCfsService(_ input: SignUpCfsServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
+        try await self.client.execute(action: "SignUpCfsService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通CFS服务
     ///
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
-    public func signUpCfsService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignUpCfsServiceResponse> {
-        self.signUpCfsService(SignUpCfsServiceRequest(), logger: logger, on: eventLoop)
+    public func signUpCfsService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignUpCfsServiceResponse> {
+        self.signUpCfsService(SignUpCfsServiceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通CFS服务
     ///
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
-    public func signUpCfsService(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
-        try await self.signUpCfsService(SignUpCfsServiceRequest(), logger: logger, on: eventLoop)
+    public func signUpCfsService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
+        try await self.signUpCfsService(SignUpCfsServiceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

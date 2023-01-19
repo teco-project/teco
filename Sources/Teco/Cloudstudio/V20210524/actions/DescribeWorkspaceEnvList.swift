@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cloudstudio {
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
-        self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
+        self.client.execute(action: "DescribeWorkspaceEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
-        try await self.client.execute(action: "DescribeWorkspaceEnvList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWorkspaceEnvList(_ input: DescribeWorkspaceEnvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
+        try await self.client.execute(action: "DescribeWorkspaceEnvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
-        self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceEnvListResponse> {
+        self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 环境列表接口
     ///
     /// 环境列表接口返回信息
     @inlinable
-    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
-        try await self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func describeWorkspaceEnvList(cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceEnvListResponse {
+        try await self.describeWorkspaceEnvList(DescribeWorkspaceEnvListRequest(cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Eiam {
     ///
     ///  获取账号组中的账号列表
     @inlinable
-    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccountInAccountGroupResponse> {
-        self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccountInAccountGroupResponse> {
+        self.client.execute(action: "ListAccountInAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账号组中的账号列表
     ///
     ///  获取账号组中的账号列表
     @inlinable
-    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
-        try await self.client.execute(action: "ListAccountInAccountGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAccountInAccountGroup(_ input: ListAccountInAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
+        try await self.client.execute(action: "ListAccountInAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取账号组中的账号列表
     ///
     ///  获取账号组中的账号列表
     @inlinable
-    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccountInAccountGroupResponse> {
-        self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccountInAccountGroupResponse> {
+        self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取账号组中的账号列表
     ///
     ///  获取账号组中的账号列表
     @inlinable
-    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
-        try await self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func listAccountInAccountGroup(accountGroupId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccountInAccountGroupResponse {
+        try await self.listAccountInAccountGroup(ListAccountInAccountGroupRequest(accountGroupId: accountGroupId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

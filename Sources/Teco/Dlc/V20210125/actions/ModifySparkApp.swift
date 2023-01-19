@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -156,25 +156,25 @@ extension Dlc {
 
     /// 更新spark应用
     @inlinable
-    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
-        self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySparkApp(_ input: ModifySparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
+        self.client.execute(action: "ModifySparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新spark应用
     @inlinable
-    public func modifySparkApp(_ input: ModifySparkAppRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
-        try await self.client.execute(action: "ModifySparkApp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySparkApp(_ input: ModifySparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
+        try await self.client.execute(action: "ModifySparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新spark应用
     @inlinable
-    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
-        self.modifySparkApp(ModifySparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), logger: logger, on: eventLoop)
+    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySparkAppResponse> {
+        self.modifySparkApp(ModifySparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新spark应用
     @inlinable
-    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
-        try await self.modifySparkApp(ModifySparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), logger: logger, on: eventLoop)
+    public func modifySparkApp(appName: String, appType: Int64, dataEngine: String, appFile: String, roleArn: Int64, appDriverSize: String, appExecutorSize: String, appExecutorNums: Int64, sparkAppId: String, eni: String? = nil, isLocal: String? = nil, mainClass: String? = nil, appConf: String? = nil, isLocalJars: String? = nil, appJars: String? = nil, isLocalFiles: String? = nil, appFiles: String? = nil, isLocalPythonFiles: String? = nil, appPythonFiles: String? = nil, cmdArgs: String? = nil, maxRetries: Int64? = nil, dataSource: String? = nil, isLocalArchives: String? = nil, appArchives: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySparkAppResponse {
+        try await self.modifySparkApp(ModifySparkAppRequest(appName: appName, appType: appType, dataEngine: dataEngine, appFile: appFile, roleArn: roleArn, appDriverSize: appDriverSize, appExecutorSize: appExecutorSize, appExecutorNums: appExecutorNums, sparkAppId: sparkAppId, eni: eni, isLocal: isLocal, mainClass: mainClass, appConf: appConf, isLocalJars: isLocalJars, appJars: appJars, isLocalFiles: isLocalFiles, appFiles: appFiles, isLocalPythonFiles: isLocalPythonFiles, appPythonFiles: appPythonFiles, cmdArgs: cmdArgs, maxRetries: maxRetries, dataSource: dataSource, isLocalArchives: isLocalArchives, appArchives: appArchives), region: region, logger: logger, on: eventLoop)
     }
 }

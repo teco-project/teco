@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Ecm {
 
     /// 获取网络峰值数据
     @inlinable
-    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakNetworkOverviewResponse> {
-        self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakNetworkOverviewResponse> {
+        self.client.execute(action: "DescribePeakNetworkOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取网络峰值数据
     @inlinable
-    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
-        try await self.client.execute(action: "DescribePeakNetworkOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePeakNetworkOverview(_ input: DescribePeakNetworkOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
+        try await self.client.execute(action: "DescribePeakNetworkOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取网络峰值数据
     @inlinable
-    public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakNetworkOverviewResponse> {
-        self.describePeakNetworkOverview(DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period), logger: logger, on: eventLoop)
+    public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakNetworkOverviewResponse> {
+        self.describePeakNetworkOverview(DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网络峰值数据
     @inlinable
-    public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
-        try await self.describePeakNetworkOverview(DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period), logger: logger, on: eventLoop)
+    public func describePeakNetworkOverview(startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakNetworkOverviewResponse {
+        try await self.describePeakNetworkOverview(DescribePeakNetworkOverviewRequest(startTime: startTime, endTime: endTime, filters: filters, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,8 +52,8 @@ extension Nlp {
     /// 句向量接口能够将输入的句子映射成一个固定维度的向量，用来表示这个句子的语义特征，可用于文本聚类、文本相似度、文本分类等任务，能够显著提高它们的效果。
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
-    public func sentenceEmbedding(_ input: SentenceEmbeddingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceEmbeddingResponse> {
-        self.client.execute(action: "SentenceEmbedding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sentenceEmbedding(_ input: SentenceEmbeddingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceEmbeddingResponse> {
+        self.client.execute(action: "SentenceEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 句向量
@@ -61,8 +61,8 @@ extension Nlp {
     /// 句向量接口能够将输入的句子映射成一个固定维度的向量，用来表示这个句子的语义特征，可用于文本聚类、文本相似度、文本分类等任务，能够显著提高它们的效果。
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
-    public func sentenceEmbedding(_ input: SentenceEmbeddingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceEmbeddingResponse {
-        try await self.client.execute(action: "SentenceEmbedding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sentenceEmbedding(_ input: SentenceEmbeddingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceEmbeddingResponse {
+        try await self.client.execute(action: "SentenceEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 句向量
@@ -70,8 +70,8 @@ extension Nlp {
     /// 句向量接口能够将输入的句子映射成一个固定维度的向量，用来表示这个句子的语义特征，可用于文本聚类、文本相似度、文本分类等任务，能够显著提高它们的效果。
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
-    public func sentenceEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceEmbeddingResponse> {
-        self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    public func sentenceEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceEmbeddingResponse> {
+        self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
     }
 
     /// 句向量
@@ -79,7 +79,7 @@ extension Nlp {
     /// 句向量接口能够将输入的句子映射成一个固定维度的向量，用来表示这个句子的语义特征，可用于文本聚类、文本相似度、文本分类等任务，能够显著提高它们的效果。
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
-    public func sentenceEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceEmbeddingResponse {
-        try await self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    public func sentenceEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceEmbeddingResponse {
+        try await self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
     }
 }

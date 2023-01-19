@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,31 +94,31 @@ extension Cme {
     ///
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
-    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByEditorTrackDataResponse> {
-        self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByEditorTrackDataResponse> {
+        self.client.execute(action: "ExportVideoByEditorTrackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用视频合成协议导出视频
     ///
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
-    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
-        try await self.client.execute(action: "ExportVideoByEditorTrackData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVideoByEditorTrackData(_ input: ExportVideoByEditorTrackDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
+        try await self.client.execute(action: "ExportVideoByEditorTrackData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用视频合成协议导出视频
     ///
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
-    public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByEditorTrackDataResponse> {
-        self.exportVideoByEditorTrackData(ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByEditorTrackDataResponse> {
+        self.exportVideoByEditorTrackData(ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用视频合成协议导出视频
     ///
     /// 使用 [视频合成协议](https://cloud.tencent.com/document/product/1156/51225) 合成视频，支持导出视频到 CME 云媒资或者云点播媒资。
     @inlinable
-    public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
-        try await self.exportVideoByEditorTrackData(ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), logger: logger, on: eventLoop)
+    public func exportVideoByEditorTrackData(platform: String, definition: UInt64, exportDestination: String, trackData: String, aspectRatio: String? = nil, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByEditorTrackDataResponse {
+        try await self.exportVideoByEditorTrackData(ExportVideoByEditorTrackDataRequest(platform: platform, definition: definition, exportDestination: exportDestination, trackData: trackData, aspectRatio: aspectRatio, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

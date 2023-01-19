@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,25 +93,25 @@ extension Tdid {
 
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
-        self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDeployInfo(_ input: GetDeployInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
+        self.client.execute(action: "GetDeployInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(_ input: GetDeployInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
-        try await self.client.execute(action: "GetDeployInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDeployInfo(_ input: GetDeployInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
+        try await self.client.execute(action: "GetDeployInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
-        self.getDeployInfo(GetDeployInfoRequest(hash: hash), logger: logger, on: eventLoop)
+    public func getDeployInfo(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployInfoResponse> {
+        self.getDeployInfo(GetDeployInfoRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合约部署详情
     @inlinable
-    public func getDeployInfo(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
-        try await self.getDeployInfo(GetDeployInfoRequest(hash: hash), logger: logger, on: eventLoop)
+    public func getDeployInfo(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployInfoResponse {
+        try await self.getDeployInfo(GetDeployInfoRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 }

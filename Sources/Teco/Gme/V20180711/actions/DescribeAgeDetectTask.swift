@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Gme {
     ///
     /// 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
     @inlinable
-    public func describeAgeDetectTask(_ input: DescribeAgeDetectTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgeDetectTaskResponse> {
-        self.client.execute(action: "DescribeAgeDetectTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgeDetectTask(_ input: DescribeAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgeDetectTaskResponse> {
+        self.client.execute(action: "DescribeAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询年龄语音识别任务结果
     ///
     /// 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
     @inlinable
-    public func describeAgeDetectTask(_ input: DescribeAgeDetectTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgeDetectTaskResponse {
-        try await self.client.execute(action: "DescribeAgeDetectTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgeDetectTask(_ input: DescribeAgeDetectTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgeDetectTaskResponse {
+        try await self.client.execute(action: "DescribeAgeDetectTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询年龄语音识别任务结果
     ///
     /// 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
     @inlinable
-    public func describeAgeDetectTask(bizId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgeDetectTaskResponse> {
-        self.describeAgeDetectTask(DescribeAgeDetectTaskRequest(bizId: bizId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeAgeDetectTask(bizId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgeDetectTaskResponse> {
+        self.describeAgeDetectTask(DescribeAgeDetectTaskRequest(bizId: bizId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询年龄语音识别任务结果
     ///
     /// 查询年龄语音识别任务结果，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
     @inlinable
-    public func describeAgeDetectTask(bizId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgeDetectTaskResponse {
-        try await self.describeAgeDetectTask(DescribeAgeDetectTaskRequest(bizId: bizId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeAgeDetectTask(bizId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgeDetectTaskResponse {
+        try await self.describeAgeDetectTask(DescribeAgeDetectTaskRequest(bizId: bizId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tcr {
 
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
-        self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
+        self.client.execute(action: "CreateReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
-        try await self.client.execute(action: "CreateReplicationInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReplicationInstance(_ input: CreateReplicationInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
+        try await self.client.execute(action: "CreateReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
-        self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), logger: logger, on: eventLoop)
+    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
+        self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建从实例
     @inlinable
-    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
-        try await self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), logger: logger, on: eventLoop)
+    public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
+        try await self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
     }
 }

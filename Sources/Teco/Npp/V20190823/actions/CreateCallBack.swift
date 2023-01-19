@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -136,25 +136,25 @@ extension Npp {
 
     /// 回拨呼叫请求
     @inlinable
-    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallBackResponse> {
-        self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCallBack(_ input: CreateCallBackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallBackResponse> {
+        self.client.execute(action: "CreateCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨呼叫请求
     @inlinable
-    public func createCallBack(_ input: CreateCallBackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
-        try await self.client.execute(action: "CreateCallBack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCallBack(_ input: CreateCallBackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
+        try await self.client.execute(action: "CreateCallBack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回拨呼叫请求
     @inlinable
-    public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallBackResponse> {
-        self.createCallBack(CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), logger: logger, on: eventLoop)
+    public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCallBackResponse> {
+        self.createCallBack(CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回拨呼叫请求
     @inlinable
-    public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
-        try await self.createCallBack(CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), logger: logger, on: eventLoop)
+    public func createCallBack(bizAppId: String, src: String, dst: String, srcDisplayNum: String? = nil, dstDisplayNum: String? = nil, record: String? = nil, maxAllowTime: String? = nil, statusFlag: String? = nil, statusUrl: String? = nil, hangupUrl: String? = nil, recordUrl: String? = nil, bizId: String? = nil, lastCallId: String? = nil, preCallerHandle: RreCallerHandle? = nil, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCallBackResponse {
+        try await self.createCallBack(CreateCallBackRequest(bizAppId: bizAppId, src: src, dst: dst, srcDisplayNum: srcDisplayNum, dstDisplayNum: dstDisplayNum, record: record, maxAllowTime: maxAllowTime, statusFlag: statusFlag, statusUrl: statusUrl, hangupUrl: hangupUrl, recordUrl: recordUrl, bizId: bizId, lastCallId: lastCallId, preCallerHandle: preCallerHandle, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

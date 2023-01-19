@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcss {
 
     /// 容器网络创建网络策略确认任务
     @inlinable
-    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmNetworkFirewallPolicyResponse> {
-        self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmNetworkFirewallPolicyResponse> {
+        self.client.execute(action: "ConfirmNetworkFirewallPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略确认任务
     @inlinable
-    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
-        try await self.client.execute(action: "ConfirmNetworkFirewallPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func confirmNetworkFirewallPolicy(_ input: ConfirmNetworkFirewallPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
+        try await self.client.execute(action: "ConfirmNetworkFirewallPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络创建网络策略确认任务
     @inlinable
-    public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmNetworkFirewallPolicyResponse> {
-        self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmNetworkFirewallPolicyResponse> {
+        self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略确认任务
     @inlinable
-    public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
-        try await self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
+        try await self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

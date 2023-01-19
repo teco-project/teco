@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcb {
     ///
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
-    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStandaloneGatewayResponse> {
-        self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStandaloneGatewayResponse> {
+        self.client.execute(action: "DestroyStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁小租户网关
     ///
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
-    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
-        try await self.client.execute(action: "DestroyStandaloneGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyStandaloneGateway(_ input: DestroyStandaloneGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
+        try await self.client.execute(action: "DestroyStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁小租户网关
     ///
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
-    public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStandaloneGatewayResponse> {
-        self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), logger: logger, on: eventLoop)
+    public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStandaloneGatewayResponse> {
+        self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁小租户网关
     ///
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
-    public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
-        try await self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), logger: logger, on: eventLoop)
+    public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
+        try await self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), region: region, logger: logger, on: eventLoop)
     }
 }

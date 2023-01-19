@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Teo {
     ///
     /// 修改别称域名。
     @inlinable
-    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainResponse> {
-        self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainResponse> {
+        self.client.execute(action: "ModifyAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改别称域名
     ///
     /// 修改别称域名。
     @inlinable
-    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
-        try await self.client.execute(action: "ModifyAliasDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAliasDomain(_ input: ModifyAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
+        try await self.client.execute(action: "ModifyAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改别称域名
     ///
     /// 修改别称域名。
     @inlinable
-    public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainResponse> {
-        self.modifyAliasDomain(ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), logger: logger, on: eventLoop)
+    public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainResponse> {
+        self.modifyAliasDomain(ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改别称域名
     ///
     /// 修改别称域名。
     @inlinable
-    public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
-        try await self.modifyAliasDomain(ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), logger: logger, on: eventLoop)
+    public func modifyAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainResponse {
+        try await self.modifyAliasDomain(ModifyAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

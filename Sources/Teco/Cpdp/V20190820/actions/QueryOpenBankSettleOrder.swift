@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Cpdp {
 
     /// 云企付-结算单查询结果
     @inlinable
-    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSettleOrderResponse> {
-        self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSettleOrderResponse> {
+        self.client.execute(action: "QueryOpenBankSettleOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-结算单查询结果
     @inlinable
-    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
-        try await self.client.execute(action: "QueryOpenBankSettleOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankSettleOrder(_ input: QueryOpenBankSettleOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
+        try await self.client.execute(action: "QueryOpenBankSettleOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-结算单查询结果
     @inlinable
-    public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSettleOrderResponse> {
-        self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSettleOrderResponse> {
+        self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-结算单查询结果
     @inlinable
-    public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
-        try await self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
+        try await self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

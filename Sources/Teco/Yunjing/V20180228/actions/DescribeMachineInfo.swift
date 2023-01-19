@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,31 +115,31 @@ extension Yunjing {
     ///
     /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
     @inlinable
-    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineInfoResponse> {
-        self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineInfoResponse> {
+        self.client.execute(action: "DescribeMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机器详情
     ///
     /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
     @inlinable
-    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
-        try await self.client.execute(action: "DescribeMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMachineInfo(_ input: DescribeMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
+        try await self.client.execute(action: "DescribeMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取机器详情
     ///
     /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
     @inlinable
-    public func describeMachineInfo(uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineInfoResponse> {
-        self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeMachineInfo(uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineInfoResponse> {
+        self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取机器详情
     ///
     /// 本接口（DescribeMachineInfo）用于获取机器详细信息。
     @inlinable
-    public func describeMachineInfo(uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
-        try await self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func describeMachineInfo(uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineInfoResponse {
+        try await self.describeMachineInfo(DescribeMachineInfoRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

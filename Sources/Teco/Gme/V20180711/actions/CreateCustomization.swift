@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Gme {
     ///
     /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
     @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomization(_ input: CreateCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
+        self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建语音消息转文本自学习模型
     ///
     /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
     @inlinable
-    public func createCustomization(_ input: CreateCustomizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.client.execute(action: "CreateCustomization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomization(_ input: CreateCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
+        try await self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建语音消息转文本自学习模型
     ///
     /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
     @inlinable
-    public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), logger: logger, on: eventLoop)
+    public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
+        self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建语音消息转文本自学习模型
     ///
     /// 用户使用该接口可以创建语音消息转文本自学习模型，以供识别调用
     @inlinable
-    public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), logger: logger, on: eventLoop)
+    public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
+        try await self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), region: region, logger: logger, on: eventLoop)
     }
 }

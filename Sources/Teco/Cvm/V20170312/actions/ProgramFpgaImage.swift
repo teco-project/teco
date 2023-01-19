@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Cvm {
     /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable
-    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProgramFpgaImageResponse> {
-        self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func programFpgaImage(_ input: ProgramFpgaImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProgramFpgaImageResponse> {
+        self.client.execute(action: "ProgramFpgaImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 在线烧录FPGA镜像
@@ -70,8 +70,8 @@ extension Cvm {
     /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable
-    public func programFpgaImage(_ input: ProgramFpgaImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
-        try await self.client.execute(action: "ProgramFpgaImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func programFpgaImage(_ input: ProgramFpgaImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
+        try await self.client.execute(action: "ProgramFpgaImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 在线烧录FPGA镜像
@@ -80,8 +80,8 @@ extension Cvm {
     /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable
-    public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProgramFpgaImageResponse> {
-        self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProgramFpgaImageResponse> {
+        self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 在线烧录FPGA镜像
@@ -90,7 +90,7 @@ extension Cvm {
     /// * 只支持对单个实例发起在线烧录FPGA镜像的操作。
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable
-    public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
-        try await self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
+        try await self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

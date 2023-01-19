@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Wedata {
 
     /// 获取数据库信息
     @inlinable
-    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
-        self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
+        self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据库信息
     @inlinable
-    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
-        try await self.client.execute(action: "DescribeDatabaseInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatabaseInfoList(_ input: DescribeDatabaseInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
+        try await self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取数据库信息
     @inlinable
-    public func describeDatabaseInfoList(connectionType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
-        self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), logger: logger, on: eventLoop)
+    public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
+        self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取数据库信息
     @inlinable
-    public func describeDatabaseInfoList(connectionType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
-        try await self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), logger: logger, on: eventLoop)
+    public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
+        try await self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
     }
 }

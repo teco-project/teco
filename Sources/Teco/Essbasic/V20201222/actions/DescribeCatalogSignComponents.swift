@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Essbasic {
     ///
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
-    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogSignComponentsResponse> {
-        self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogSignComponentsResponse> {
+        self.client.execute(action: "DescribeCatalogSignComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取目录签署区
     ///
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
-    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
-        try await self.client.execute(action: "DescribeCatalogSignComponents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCatalogSignComponents(_ input: DescribeCatalogSignComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
+        try await self.client.execute(action: "DescribeCatalogSignComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取目录签署区
     ///
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
-    public func describeCatalogSignComponents(caller: Caller, catalogId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogSignComponentsResponse> {
-        self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), logger: logger, on: eventLoop)
+    public func describeCatalogSignComponents(caller: Caller, catalogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogSignComponentsResponse> {
+        self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取目录签署区
     ///
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
-    public func describeCatalogSignComponents(caller: Caller, catalogId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
-        try await self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), logger: logger, on: eventLoop)
+    public func describeCatalogSignComponents(caller: Caller, catalogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
+        try await self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Ame {
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
-        self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
+        self.client.execute(action: "BatchDescribeKTVMusicDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchDescribeKTVMusicDetails(_ input: BatchDescribeKTVMusicDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.client.execute(action: "BatchDescribeKTVMusicDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
-        self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeKTVMusicDetailsResponse> {
+        self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量获取直播互动曲目详情
     ///
     /// 根据 Id 列表查询歌曲的详细信息，包含基础信息及播放信息。
     @inlinable
-    public func batchDescribeKTVMusicDetails(musicIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
-        try await self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), logger: logger, on: eventLoop)
+    public func batchDescribeKTVMusicDetails(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeKTVMusicDetailsResponse {
+        try await self.batchDescribeKTVMusicDetails(BatchDescribeKTVMusicDetailsRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
     }
 }

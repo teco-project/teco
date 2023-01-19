@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Apigateway {
     ///
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
-    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportOpenApiResponse> {
-        self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importOpenApi(_ input: ImportOpenApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportOpenApiResponse> {
+        self.client.execute(action: "ImportOpenApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入OpenAPI
     ///
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
-    public func importOpenApi(_ input: ImportOpenApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
-        try await self.client.execute(action: "ImportOpenApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importOpenApi(_ input: ImportOpenApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
+        try await self.client.execute(action: "ImportOpenApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入OpenAPI
     ///
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
-    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportOpenApiResponse> {
-        self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), logger: logger, on: eventLoop)
+    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportOpenApiResponse> {
+        self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入OpenAPI
     ///
     /// 本接口（ImportOpenApi）用于将OpenAPI规范定义的API导入到API网关。
     @inlinable
-    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
-        try await self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), logger: logger, on: eventLoop)
+    public func importOpenApi(serviceId: String, content: String, encodeType: String? = nil, contentVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportOpenApiResponse {
+        try await self.importOpenApi(ImportOpenApiRequest(serviceId: serviceId, content: content, encodeType: encodeType, contentVersion: contentVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Organization {
 
     /// 获取企业组织成员
     @inlinable
-    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationMemberResponse> {
-        self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationMemberResponse> {
+        self.client.execute(action: "GetOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员
     @inlinable
-    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
-        try await self.client.execute(action: "GetOrganizationMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getOrganizationMember(_ input: GetOrganizationMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
+        try await self.client.execute(action: "GetOrganizationMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取企业组织成员
     @inlinable
-    public func getOrganizationMember(memberUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationMemberResponse> {
-        self.getOrganizationMember(GetOrganizationMemberRequest(memberUin: memberUin), logger: logger, on: eventLoop)
+    public func getOrganizationMember(memberUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOrganizationMemberResponse> {
+        self.getOrganizationMember(GetOrganizationMemberRequest(memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员
     @inlinable
-    public func getOrganizationMember(memberUin: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
-        try await self.getOrganizationMember(GetOrganizationMemberRequest(memberUin: memberUin), logger: logger, on: eventLoop)
+    public func getOrganizationMember(memberUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOrganizationMemberResponse {
+        try await self.getOrganizationMember(GetOrganizationMemberRequest(memberUin: memberUin), region: region, logger: logger, on: eventLoop)
     }
 }

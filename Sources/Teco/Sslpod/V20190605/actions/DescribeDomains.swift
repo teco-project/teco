@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,31 +104,31 @@ extension Sslpod {
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
-        self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomains(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
+        self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(_ input: DescribeDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.client.execute(action: "DescribeDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomains(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
-        self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, searchType: searchType, tag: tag, grade: grade, brand: brand, code: code, hash: hash, item: item, status: status, domain: domain), logger: logger, on: eventLoop)
+    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
+        self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, searchType: searchType, tag: tag, grade: grade, brand: brand, code: code, hash: hash, item: item, status: status, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索域名
     ///
     /// 通过searchType搜索已经添加的域名
     @inlinable
-    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, searchType: searchType, tag: tag, grade: grade, brand: brand, code: code, hash: hash, item: item, status: status, domain: domain), logger: logger, on: eventLoop)
+    public func describeDomains(offset: Int64, limit: Int64, searchType: String, tag: String? = nil, grade: String? = nil, brand: String? = nil, code: String? = nil, hash: String? = nil, item: String? = nil, status: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
+        try await self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, searchType: searchType, tag: tag, grade: grade, brand: brand, code: code, hash: hash, item: item, status: status, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

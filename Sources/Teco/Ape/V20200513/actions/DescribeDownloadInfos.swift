@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Ape {
     ///
     /// 获取用户图片下载记录
     @inlinable
-    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadInfosResponse> {
-        self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadInfosResponse> {
+        self.client.execute(action: "DescribeDownloadInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取图片下载记录
     ///
     /// 获取用户图片下载记录
     @inlinable
-    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
-        try await self.client.execute(action: "DescribeDownloadInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDownloadInfos(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
+        try await self.client.execute(action: "DescribeDownloadInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取图片下载记录
     ///
     /// 获取用户图片下载记录
     @inlinable
-    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadInfosResponse> {
-        self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), logger: logger, on: eventLoop)
+    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDownloadInfosResponse> {
+        self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片下载记录
     ///
     /// 获取用户图片下载记录
     @inlinable
-    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
-        try await self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), logger: logger, on: eventLoop)
+    public func describeDownloadInfos(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDownloadInfosResponse {
+        try await self.describeDownloadInfos(DescribeDownloadInfosRequest(limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 }

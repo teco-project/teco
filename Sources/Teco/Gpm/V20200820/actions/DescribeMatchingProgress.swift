@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配进度。
     @inlinable
-    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
-        self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
+        self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配进度
@@ -63,8 +63,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配进度。
     @inlinable
-    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        try await self.client.execute(action: "DescribeMatchingProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMatchingProgress(_ input: DescribeMatchingProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
+        try await self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询匹配进度
@@ -72,8 +72,8 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配进度。
     @inlinable
-    public func describeMatchingProgress(matchTicketIds: [MTicket], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
-        self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), logger: logger, on: eventLoop)
+    public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
+        self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配进度
@@ -81,7 +81,7 @@ extension Gpm {
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 查询匹配进度。
     @inlinable
-    public func describeMatchingProgress(matchTicketIds: [MTicket], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        try await self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), logger: logger, on: eventLoop)
+    public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
+        try await self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), region: region, logger: logger, on: eventLoop)
     }
 }

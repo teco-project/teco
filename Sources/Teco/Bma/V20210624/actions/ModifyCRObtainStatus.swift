@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Bma {
 
     /// 取证申请
     @inlinable
-    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
-        self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
+        self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取证申请
     @inlinable
-    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
-        try await self.client.execute(action: "ModifyCRObtainStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
+        try await self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取证申请
     @inlinable
-    public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
-        self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), logger: logger, on: eventLoop)
+    public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
+        self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取证申请
     @inlinable
-    public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
-        try await self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), logger: logger, on: eventLoop)
+    public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
+        try await self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }
 }

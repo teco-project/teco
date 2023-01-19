@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Eb {
 
     /// 创建事件目标
     @inlinable
-    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTargetResponse> {
-        self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTarget(_ input: CreateTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTargetResponse> {
+        self.client.execute(action: "CreateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建事件目标
     @inlinable
-    public func createTarget(_ input: CreateTargetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
-        try await self.client.execute(action: "CreateTarget", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTarget(_ input: CreateTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
+        try await self.client.execute(action: "CreateTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建事件目标
     @inlinable
-    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTargetResponse> {
-        self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTargetResponse> {
+        self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建事件目标
     @inlinable
-    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
-        try await self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func createTarget(eventBusId: String, type: String, targetDescription: TargetDescription, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTargetResponse {
+        try await self.createTarget(CreateTargetRequest(eventBusId: eventBusId, type: type, targetDescription: targetDescription, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

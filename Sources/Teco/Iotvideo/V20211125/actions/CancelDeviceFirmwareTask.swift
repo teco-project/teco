@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Iotvideo {
     ///
     /// 本接口用于取消设备升级任务
     @inlinable
-    public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDeviceFirmwareTaskResponse> {
-        self.client.execute(action: "CancelDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDeviceFirmwareTaskResponse> {
+        self.client.execute(action: "CancelDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消设备升级任务
     ///
     /// 本接口用于取消设备升级任务
     @inlinable
-    public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
-        try await self.client.execute(action: "CancelDeviceFirmwareTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelDeviceFirmwareTask(_ input: CancelDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
+        try await self.client.execute(action: "CancelDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消设备升级任务
     ///
     /// 本接口用于取消设备升级任务
     @inlinable
-    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDeviceFirmwareTaskResponse> {
-        self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDeviceFirmwareTaskResponse> {
+        self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消设备升级任务
     ///
     /// 本接口用于取消设备升级任务
     @inlinable
-    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
-        try await self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func cancelDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
+        try await self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

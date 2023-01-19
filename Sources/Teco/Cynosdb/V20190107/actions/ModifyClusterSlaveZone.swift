@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cynosdb {
 
     /// 修改从可用区
     @inlinable
-    public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
-        self.client.execute(action: "ModifyClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
+        self.client.execute(action: "ModifyClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改从可用区
     @inlinable
-    public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
-        try await self.client.execute(action: "ModifyClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterSlaveZone(_ input: ModifyClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
+        try await self.client.execute(action: "ModifyClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改从可用区
     @inlinable
-    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
-        self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), logger: logger, on: eventLoop)
+    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterSlaveZoneResponse> {
+        self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改从可用区
     @inlinable
-    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
-        try await self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), logger: logger, on: eventLoop)
+    public func modifyClusterSlaveZone(clusterId: String, oldSlaveZone: String, newSlaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterSlaveZoneResponse {
+        try await self.modifyClusterSlaveZone(ModifyClusterSlaveZoneRequest(clusterId: clusterId, oldSlaveZone: oldSlaveZone, newSlaveZone: newSlaveZone), region: region, logger: logger, on: eventLoop)
     }
 }

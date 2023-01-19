@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 获取容器事件列表
     @inlinable
-    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerEventsResponse> {
-        self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerEventsResponse> {
+        self.client.execute(action: "DescribeContainerEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取容器事件列表
     @inlinable
-    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
-        try await self.client.execute(action: "DescribeContainerEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContainerEvents(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
+        try await self.client.execute(action: "DescribeContainerEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取容器事件列表
     @inlinable
-    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerEventsResponse> {
-        self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerEventsResponse> {
+        self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取容器事件列表
     @inlinable
-    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
-        try await self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), logger: logger, on: eventLoop)
+    public func describeContainerEvents(resourceType: String, resourceId: String, offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerEventsResponse {
+        try await self.describeContainerEvents(DescribeContainerEventsRequest(resourceType: resourceType, resourceId: resourceId, offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

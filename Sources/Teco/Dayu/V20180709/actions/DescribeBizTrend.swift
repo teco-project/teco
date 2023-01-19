@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,25 +98,25 @@ extension Dayu {
 
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
-        self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
+        self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(_ input: DescribeBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.client.execute(action: "DescribeBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBizTrend(_ input: DescribeBizTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
-        self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), logger: logger, on: eventLoop)
+    public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
+        self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取业务流量曲线
     @inlinable
-    public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), logger: logger, on: eventLoop)
+    public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
+        try await self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,25 +99,25 @@ extension Cpdp {
 
     /// 云企付-子商户银行卡绑定
     @inlinable
-    public func bindOpenBankExternalSubMerchantBankAccount(_ input: BindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindOpenBankExternalSubMerchantBankAccountResponse> {
-        self.client.execute(action: "BindOpenBankExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindOpenBankExternalSubMerchantBankAccount(_ input: BindOpenBankExternalSubMerchantBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindOpenBankExternalSubMerchantBankAccountResponse> {
+        self.client.execute(action: "BindOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡绑定
     @inlinable
-    public func bindOpenBankExternalSubMerchantBankAccount(_ input: BindOpenBankExternalSubMerchantBankAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
-        try await self.client.execute(action: "BindOpenBankExternalSubMerchantBankAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindOpenBankExternalSubMerchantBankAccount(_ input: BindOpenBankExternalSubMerchantBankAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
+        try await self.client.execute(action: "BindOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户银行卡绑定
     @inlinable
-    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindOpenBankExternalSubMerchantBankAccountResponse> {
-        self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindOpenBankExternalSubMerchantBankAccountResponse> {
+        self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡绑定
     @inlinable
-    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
-        try await self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), logger: logger, on: eventLoop)
+    public func bindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, externalSubMerchantBindBankAccountData: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankExternalSubMerchantBankAccountResponse {
+        try await self.bindOpenBankExternalSubMerchantBankAccount(BindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, externalSubMerchantBindBankAccountData: externalSubMerchantBindBankAccountData, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

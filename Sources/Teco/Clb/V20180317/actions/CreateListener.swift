@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,8 +119,8 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createListener(_ input: CreateListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
+        self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
@@ -128,8 +128,8 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(_ input: CreateListenerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.client.execute(action: "CreateListener", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createListener(_ input: CreateListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建负载均衡监听器
@@ -137,8 +137,8 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo), logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
+        self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
@@ -146,7 +146,7 @@ extension Clb {
     /// 在一个负载均衡实例下创建监听器。
     /// 本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable
-    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo), logger: logger, on: eventLoop)
+    public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
+        try await self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, certificate: certificate, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, sessionType: sessionType, keepaliveEnable: keepaliveEnable, endPort: endPort, deregisterTargetRst: deregisterTargetRst, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }
 }

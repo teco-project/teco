@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,8 +47,8 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(_ input: InitializeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
-        self.client.execute(action: "InitializeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func initializeDisks(_ input: InitializeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
+        self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新初始化云硬盘
@@ -59,8 +59,8 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(_ input: InitializeDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
-        try await self.client.execute(action: "InitializeDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func initializeDisks(_ input: InitializeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
+        try await self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新初始化云硬盘
@@ -71,8 +71,8 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
-        self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
+        self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新初始化云硬盘
@@ -83,7 +83,7 @@ extension Cbs {
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
     @inlinable
-    public func initializeDisks(diskIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
-        try await self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), logger: logger, on: eventLoop)
+    public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
+        try await self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
 }

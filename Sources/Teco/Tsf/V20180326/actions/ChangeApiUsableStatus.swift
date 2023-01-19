@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tsf {
 
     /// 启用或禁用API
     @inlinable
-    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeApiUsableStatusResponse> {
-        self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeApiUsableStatusResponse> {
+        self.client.execute(action: "ChangeApiUsableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用或禁用API
     @inlinable
-    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
-        try await self.client.execute(action: "ChangeApiUsableStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeApiUsableStatus(_ input: ChangeApiUsableStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
+        try await self.client.execute(action: "ChangeApiUsableStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用或禁用API
     @inlinable
-    public func changeApiUsableStatus(apiId: String, usableStatus: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeApiUsableStatusResponse> {
-        self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), logger: logger, on: eventLoop)
+    public func changeApiUsableStatus(apiId: String, usableStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeApiUsableStatusResponse> {
+        self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用或禁用API
     @inlinable
-    public func changeApiUsableStatus(apiId: String, usableStatus: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
-        try await self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), logger: logger, on: eventLoop)
+    public func changeApiUsableStatus(apiId: String, usableStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeApiUsableStatusResponse {
+        try await self.changeApiUsableStatus(ChangeApiUsableStatusRequest(apiId: apiId, usableStatus: usableStatus), region: region, logger: logger, on: eventLoop)
     }
 }

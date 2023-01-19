@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tsf {
     ///
     /// 查询任务最近一次执行状态
     @inlinable
-    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLastStatusResponse> {
-        self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLastStatusResponse> {
+        self.client.execute(action: "DescribeTaskLastStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
     @inlinable
-    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
-        try await self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
+        try await self.client.execute(action: "DescribeTaskLastStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
     @inlinable
-    public func describeTaskLastStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLastStatusResponse> {
-        self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskLastStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskLastStatusResponse> {
+        self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
     @inlinable
-    public func describeTaskLastStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
-        try await self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeTaskLastStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
+        try await self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

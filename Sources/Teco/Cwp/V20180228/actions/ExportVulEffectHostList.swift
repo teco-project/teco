@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cwp {
 
     /// 导出漏洞影响主机列表
     @inlinable
-    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulEffectHostListResponse> {
-        self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulEffectHostListResponse> {
+        self.client.execute(action: "ExportVulEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出漏洞影响主机列表
     @inlinable
-    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
-        try await self.client.execute(action: "ExportVulEffectHostList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportVulEffectHostList(_ input: ExportVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
+        try await self.client.execute(action: "ExportVulEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出漏洞影响主机列表
     @inlinable
-    public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulEffectHostListResponse> {
-        self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), logger: logger, on: eventLoop)
+    public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulEffectHostListResponse> {
+        self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出漏洞影响主机列表
     @inlinable
-    public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
-        try await self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), logger: logger, on: eventLoop)
+    public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
+        try await self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

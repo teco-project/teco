@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmlb {
     ///
     /// 解绑流量镜像监听器。
     @inlinable
-    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindTrafficMirrorListenersResponse> {
-        self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindTrafficMirrorListenersResponse> {
+        self.client.execute(action: "UnbindTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑流量镜像监听器
     ///
     /// 解绑流量镜像监听器。
     @inlinable
-    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
-        try await self.client.execute(action: "UnbindTrafficMirrorListeners", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindTrafficMirrorListeners(_ input: UnbindTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
+        try await self.client.execute(action: "UnbindTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑流量镜像监听器
     ///
     /// 解绑流量镜像监听器。
     @inlinable
-    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindTrafficMirrorListenersResponse> {
-        self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindTrafficMirrorListenersResponse> {
+        self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑流量镜像监听器
     ///
     /// 解绑流量镜像监听器。
     @inlinable
-    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
-        try await self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), logger: logger, on: eventLoop)
+    public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
+        try await self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
     }
 }

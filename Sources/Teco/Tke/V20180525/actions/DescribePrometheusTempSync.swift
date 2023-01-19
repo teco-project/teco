@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
-        self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
+        self.client.execute(action: "DescribePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
-        try await self.client.execute(action: "DescribePrometheusTempSync", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusTempSync(_ input: DescribePrometheusTempSyncRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
+        try await self.client.execute(action: "DescribePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
-        self.describePrometheusTempSync(DescribePrometheusTempSyncRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describePrometheusTempSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTempSyncResponse> {
+        self.describePrometheusTempSync(DescribePrometheusTempSyncRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取模板关联实例信息
     ///
     /// 获取模板关联实例信息，针对V2版本实例
     @inlinable
-    public func describePrometheusTempSync(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
-        try await self.describePrometheusTempSync(DescribePrometheusTempSyncRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func describePrometheusTempSync(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTempSyncResponse {
+        try await self.describePrometheusTempSync(DescribePrometheusTempSyncRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -123,31 +123,31 @@ extension Eiam {
     ///
     /// 获取一个应用的信息。
     @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationResponse> {
-        self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplication(_ input: DescribeApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationResponse> {
+        self.client.execute(action: "DescribeApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用信息
     ///
     /// 获取一个应用的信息。
     @inlinable
-    public func describeApplication(_ input: DescribeApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
-        try await self.client.execute(action: "DescribeApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplication(_ input: DescribeApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
+        try await self.client.execute(action: "DescribeApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用信息
     ///
     /// 获取一个应用的信息。
     @inlinable
-    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationResponse> {
-        self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), logger: logger, on: eventLoop)
+    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationResponse> {
+        self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用信息
     ///
     /// 获取一个应用的信息。
     @inlinable
-    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
-        try await self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), logger: logger, on: eventLoop)
+    public func describeApplication(applicationId: String? = nil, clientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationResponse {
+        try await self.describeApplication(DescribeApplicationRequest(applicationId: applicationId, clientId: clientId), region: region, logger: logger, on: eventLoop)
     }
 }

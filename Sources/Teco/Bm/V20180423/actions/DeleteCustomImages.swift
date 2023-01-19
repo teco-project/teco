@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Bm {
     /// 删除自定义镜像<br>
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
-    public func deleteCustomImages(_ input: DeleteCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
-        self.client.execute(action: "DeleteCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomImages(_ input: DeleteCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
+        self.client.execute(action: "DeleteCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义镜像
@@ -57,8 +57,8 @@ extension Bm {
     /// 删除自定义镜像<br>
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
-    public func deleteCustomImages(_ input: DeleteCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
-        try await self.client.execute(action: "DeleteCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomImages(_ input: DeleteCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
+        try await self.client.execute(action: "DeleteCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义镜像
@@ -66,8 +66,8 @@ extension Bm {
     /// 删除自定义镜像<br>
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
-    public func deleteCustomImages(imageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
-        self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), logger: logger, on: eventLoop)
+    public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomImagesResponse> {
+        self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义镜像
@@ -75,7 +75,7 @@ extension Bm {
     /// 删除自定义镜像<br>
     /// 正用于部署或重装中的镜像被删除后，镜像文件将保留一段时间，直到部署或重装结束
     @inlinable
-    public func deleteCustomImages(imageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
-        try await self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), logger: logger, on: eventLoop)
+    public func deleteCustomImages(imageIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
+        try await self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
 }

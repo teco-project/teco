@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
     @inlinable
-    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
-        self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
+        self.client.execute(action: "AcceptAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
     @inlinable
-    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
-        try await self.client.execute(action: "AcceptAttachCcnInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
+        try await self.client.execute(action: "AcceptAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
     @inlinable
-    public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
-        self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
+        self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
     @inlinable
-    public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
-        try await self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), logger: logger, on: eventLoop)
+    public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
+        try await self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

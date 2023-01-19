@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cam {
 
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
-        self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
+        self.client.execute(action: "DescribeUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
-        try await self.client.execute(action: "DescribeUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserSAMLConfig(_ input: DescribeUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
+        try await self.client.execute(action: "DescribeUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
-        self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), logger: logger, on: eventLoop)
+    public func describeUserSAMLConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
+        self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户SAML配置
     @inlinable
-    public func describeUserSAMLConfig(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
-        try await self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), logger: logger, on: eventLoop)
+    public func describeUserSAMLConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
+        try await self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

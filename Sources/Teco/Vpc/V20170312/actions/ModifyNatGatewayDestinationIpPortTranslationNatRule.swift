@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse> {
-        self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse> {
+        self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改NAT网关端口转发规则
     ///
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
-        try await self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(_ input: ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
+        try await self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改NAT网关端口转发规则
     ///
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse> {
-        self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), logger: logger, on: eventLoop)
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse> {
+        self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改NAT网关端口转发规则
     ///
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable
-    public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
-        try await self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), logger: logger, on: eventLoop)
+    public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
+        try await self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), region: region, logger: logger, on: eventLoop)
     }
 }

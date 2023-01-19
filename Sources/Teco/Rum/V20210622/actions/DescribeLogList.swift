@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Rum {
     ///
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
-    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogListResponse> {
-        self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogList(_ input: DescribeLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogListResponse> {
+        self.client.execute(action: "DescribeLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
     ///
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
-    public func describeLogList(_ input: DescribeLogListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
-        try await self.client.execute(action: "DescribeLogList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogList(_ input: DescribeLogListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
+        try await self.client.execute(action: "DescribeLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志列表
     ///
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
-    public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogListResponse> {
-        self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogListResponse> {
+        self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
     ///
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
-    public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
-        try await self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
+        try await self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

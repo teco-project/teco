@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tke {
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
-        self.client.execute(action: "DescribeClusterEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
+        self.client.execute(action: "DescribeClusterEndpointStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointStatusResponse {
-        try await self.client.execute(action: "DescribeClusterEndpointStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterEndpointStatus(_ input: DescribeClusterEndpointStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointStatusResponse {
+        try await self.client.execute(action: "DescribeClusterEndpointStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
-        self.describeClusterEndpointStatus(DescribeClusterEndpointStatusRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointStatusResponse> {
+        self.describeClusterEndpointStatus(DescribeClusterEndpointStatusRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群访问端口状态
     ///
     /// 查询集群访问端口状态(独立集群开启内网/外网访问，托管集群支持开启内网访问)
     @inlinable
-    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointStatusResponse {
-        try await self.describeClusterEndpointStatus(DescribeClusterEndpointStatusRequest(clusterId: clusterId, isExtranet: isExtranet), logger: logger, on: eventLoop)
+    public func describeClusterEndpointStatus(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointStatusResponse {
+        try await self.describeClusterEndpointStatus(DescribeClusterEndpointStatusRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Antiddos {
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable
-    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
-        self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
+        self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable
-    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
-        try await self.client.execute(action: "DisassociateDDoSEipAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
+        try await self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable
-    public func disassociateDDoSEipAddress(instanceId: String, eip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
-        self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), logger: logger, on: eventLoop)
+    public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
+        self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable
-    public func disassociateDDoSEipAddress(instanceId: String, eip: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
-        try await self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), logger: logger, on: eventLoop)
+    public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
+        try await self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
     }
 }

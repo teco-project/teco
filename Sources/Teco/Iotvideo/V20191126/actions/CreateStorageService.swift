@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -129,25 +129,25 @@ extension Iotvideo {
 
     /// 购买云存服务
     @inlinable
-    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageServiceResponse> {
-        self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createStorageService(_ input: CreateStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageServiceResponse> {
+        self.client.execute(action: "CreateStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购买云存服务
     @inlinable
-    public func createStorageService(_ input: CreateStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
-        try await self.client.execute(action: "CreateStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createStorageService(_ input: CreateStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
+        try await self.client.execute(action: "CreateStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 购买云存服务
     @inlinable
-    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageServiceResponse> {
-        self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), logger: logger, on: eventLoop)
+    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageServiceResponse> {
+        self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买云存服务
     @inlinable
-    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
-        try await self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), logger: logger, on: eventLoop)
+    public func createStorageService(pkgId: String, tid: String, orderCount: Int64, storageRegion: String, chnNum: Int64? = nil, accessId: String? = nil, enableTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageServiceResponse {
+        try await self.createStorageService(CreateStorageServiceRequest(pkgId: pkgId, tid: tid, orderCount: orderCount, storageRegion: storageRegion, chnNum: chnNum, accessId: accessId, enableTime: enableTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Live {
 
     /// 删除水印规则
     @inlinable
-    public func deleteLiveWatermarkRule(_ input: DeleteLiveWatermarkRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkRuleResponse> {
-        self.client.execute(action: "DeleteLiveWatermarkRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLiveWatermarkRule(_ input: DeleteLiveWatermarkRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkRuleResponse> {
+        self.client.execute(action: "DeleteLiveWatermarkRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除水印规则
     @inlinable
-    public func deleteLiveWatermarkRule(_ input: DeleteLiveWatermarkRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkRuleResponse {
-        try await self.client.execute(action: "DeleteLiveWatermarkRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLiveWatermarkRule(_ input: DeleteLiveWatermarkRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkRuleResponse {
+        try await self.client.execute(action: "DeleteLiveWatermarkRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除水印规则
     @inlinable
-    public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkRuleResponse> {
-        self.deleteLiveWatermarkRule(DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkRuleResponse> {
+        self.deleteLiveWatermarkRule(DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除水印规则
     @inlinable
-    public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkRuleResponse {
-        try await self.deleteLiveWatermarkRule(DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func deleteLiveWatermarkRule(domainName: String, appName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkRuleResponse {
+        try await self.deleteLiveWatermarkRule(DeleteLiveWatermarkRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcss {
 
     /// 修改木马自动隔离样本开关
     @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
-        self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
+        self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离样本开关
     @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
-        try await self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
+        try await self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改木马自动隔离样本开关
     @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
-        self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
+        self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离样本开关
     @inlinable
-    public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
-        try await self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), logger: logger, on: eventLoop)
+    public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
+        try await self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

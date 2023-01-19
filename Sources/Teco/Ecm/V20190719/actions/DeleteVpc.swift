@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ecm {
     ///
     /// 删除私有网络
     @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
+        self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除VPC
     ///
     /// 删除私有网络
     @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除VPC
     ///
     /// 删除私有网络
     @inlinable
-    public func deleteVpc(vpcId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
+        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除VPC
     ///
     /// 删除私有网络
     @inlinable
-    public func deleteVpc(vpcId: String, ecmRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), logger: logger, on: eventLoop)
+    public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 }

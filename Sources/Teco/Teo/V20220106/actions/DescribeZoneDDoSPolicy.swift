@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Teo {
 
     /// 查询所有DDoS防护分区
     @inlinable
-    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneDDoSPolicyResponse> {
-        self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneDDoSPolicyResponse> {
+        self.client.execute(action: "DescribeZoneDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有DDoS防护分区
     @inlinable
-    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
-        try await self.client.execute(action: "DescribeZoneDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneDDoSPolicy(_ input: DescribeZoneDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
+        try await self.client.execute(action: "DescribeZoneDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所有DDoS防护分区
     @inlinable
-    public func describeZoneDDoSPolicy(zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneDDoSPolicyResponse> {
-        self.describeZoneDDoSPolicy(DescribeZoneDDoSPolicyRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeZoneDDoSPolicy(zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneDDoSPolicyResponse> {
+        self.describeZoneDDoSPolicy(DescribeZoneDDoSPolicyRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所有DDoS防护分区
     @inlinable
-    public func describeZoneDDoSPolicy(zoneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
-        try await self.describeZoneDDoSPolicy(DescribeZoneDDoSPolicyRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeZoneDDoSPolicy(zoneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneDDoSPolicyResponse {
+        try await self.describeZoneDDoSPolicy(DescribeZoneDDoSPolicyRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

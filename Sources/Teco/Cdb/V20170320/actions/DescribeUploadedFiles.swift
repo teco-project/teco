@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
-    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadedFilesResponse> {
-        self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadedFilesResponse> {
+        self.client.execute(action: "DescribeUploadedFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询导入SQL文件列表 （已废弃）
     ///
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
-    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
-        try await self.client.execute(action: "DescribeUploadedFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUploadedFiles(_ input: DescribeUploadedFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
+        try await self.client.execute(action: "DescribeUploadedFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询导入SQL文件列表 （已废弃）
     ///
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
-    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadedFilesResponse> {
-        self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadedFilesResponse> {
+        self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导入SQL文件列表 （已废弃）
     ///
     /// 本接口(DescribeUploadedFiles)用于查询用户导入的SQL文件列表，全地域公共参数Region均为ap-shanghai。
     @inlinable
-    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
-        try await self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeUploadedFiles(path: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadedFilesResponse {
+        try await self.describeUploadedFiles(DescribeUploadedFilesRequest(path: path, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

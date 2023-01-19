@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Tcss {
 
     /// 获取历史搜索记录
     @inlinable
-    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchLogsResponse> {
-        self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchLogsResponse> {
+        self.client.execute(action: "DescribeSearchLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取历史搜索记录
     @inlinable
-    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
-        try await self.client.execute(action: "DescribeSearchLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSearchLogs(_ input: DescribeSearchLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
+        try await self.client.execute(action: "DescribeSearchLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取历史搜索记录
     @inlinable
-    public func describeSearchLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchLogsResponse> {
-        self.describeSearchLogs(DescribeSearchLogsRequest(), logger: logger, on: eventLoop)
+    public func describeSearchLogs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchLogsResponse> {
+        self.describeSearchLogs(DescribeSearchLogsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取历史搜索记录
     @inlinable
-    public func describeSearchLogs(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
-        try await self.describeSearchLogs(DescribeSearchLogsRequest(), logger: logger, on: eventLoop)
+    public func describeSearchLogs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
+        try await self.describeSearchLogs(DescribeSearchLogsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

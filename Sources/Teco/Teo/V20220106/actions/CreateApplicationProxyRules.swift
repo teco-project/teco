@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Teo {
 
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
-        self.client.execute(action: "CreateApplicationProxyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
+        self.client.execute(action: "CreateApplicationProxyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
-        try await self.client.execute(action: "CreateApplicationProxyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApplicationProxyRules(_ input: CreateApplicationProxyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
+        try await self.client.execute(action: "CreateApplicationProxyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
-        self.createApplicationProxyRules(CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule), logger: logger, on: eventLoop)
+    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRulesResponse> {
+        self.createApplicationProxyRules(CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建应用代理规则
     @inlinable
-    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
-        try await self.createApplicationProxyRules(CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule), logger: logger, on: eventLoop)
+    public func createApplicationProxyRules(zoneId: String, proxyId: String, rule: [ApplicationProxyRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRulesResponse {
+        try await self.createApplicationProxyRules(CreateApplicationProxyRulesRequest(zoneId: zoneId, proxyId: proxyId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 }

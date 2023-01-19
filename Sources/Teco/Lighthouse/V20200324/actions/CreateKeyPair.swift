@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Lighthouse {
     ///
     /// 本接口（CreateKeyPair）用于创建一个密钥对。
     @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createKeyPair(_ input: CreateKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
+        self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
     ///
     /// 本接口（CreateKeyPair）用于创建一个密钥对。
     @inlinable
-    public func createKeyPair(_ input: CreateKeyPairRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        try await self.client.execute(action: "CreateKeyPair", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createKeyPair(_ input: CreateKeyPairRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
+        try await self.client.execute(action: "CreateKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建密钥对
     ///
     /// 本接口（CreateKeyPair）用于创建一个密钥对。
     @inlinable
-    public func createKeyPair(keyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
-        self.createKeyPair(CreateKeyPairRequest(keyName: keyName), logger: logger, on: eventLoop)
+    public func createKeyPair(keyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyPairResponse> {
+        self.createKeyPair(CreateKeyPairRequest(keyName: keyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥对
     ///
     /// 本接口（CreateKeyPair）用于创建一个密钥对。
     @inlinable
-    public func createKeyPair(keyName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
-        try await self.createKeyPair(CreateKeyPairRequest(keyName: keyName), logger: logger, on: eventLoop)
+    public func createKeyPair(keyName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyPairResponse {
+        try await self.createKeyPair(CreateKeyPairRequest(keyName: keyName), region: region, logger: logger, on: eventLoop)
     }
 }

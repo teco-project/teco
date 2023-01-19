@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wedata {
 
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
-        self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
+        self.client.execute(action: "ModifyMonitorStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
-        try await self.client.execute(action: "ModifyMonitorStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMonitorStatus(_ input: ModifyMonitorStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
+        try await self.client.execute(action: "ModifyMonitorStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
-        self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), logger: logger, on: eventLoop)
+    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
+        self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新监控状态
     @inlinable
-    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
-        try await self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), logger: logger, on: eventLoop)
+    public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
+        try await self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
     }
 }

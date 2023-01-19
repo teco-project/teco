@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Cwp {
 
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
-        self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
+        self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
-        try await self.client.execute(action: "ExportReverseShellEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportReverseShellEvents(_ input: ExportReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
+        try await self.client.execute(action: "ExportReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
-        self.exportReverseShellEvents(ExportReverseShellEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportReverseShellEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportReverseShellEventsResponse> {
+        self.exportReverseShellEvents(ExportReverseShellEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出反弹Shell事件
     @inlinable
-    public func exportReverseShellEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
-        try await self.exportReverseShellEvents(ExportReverseShellEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportReverseShellEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportReverseShellEventsResponse {
+        try await self.exportReverseShellEvents(ExportReverseShellEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

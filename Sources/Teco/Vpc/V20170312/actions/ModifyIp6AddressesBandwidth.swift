@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Vpc {
     ///
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
-    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6AddressesBandwidthResponse> {
-        self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6AddressesBandwidthResponse> {
+        self.client.execute(action: "ModifyIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改IPV6访问internet的带宽
     ///
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
-    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
-        try await self.client.execute(action: "ModifyIp6AddressesBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyIp6AddressesBandwidth(_ input: ModifyIp6AddressesBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
+        try await self.client.execute(action: "ModifyIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改IPV6访问internet的带宽
     ///
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
-    public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6AddressesBandwidthResponse> {
-        self.modifyIp6AddressesBandwidth(ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), logger: logger, on: eventLoop)
+    public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIp6AddressesBandwidthResponse> {
+        self.modifyIp6AddressesBandwidth(ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改IPV6访问internet的带宽
     ///
     /// 该接口用于修改IPV6地址访问internet的带宽
     @inlinable
-    public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
-        try await self.modifyIp6AddressesBandwidth(ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), logger: logger, on: eventLoop)
+    public func modifyIp6AddressesBandwidth(internetMaxBandwidthOut: Int64, ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIp6AddressesBandwidthResponse {
+        try await self.modifyIp6AddressesBandwidth(ModifyIp6AddressesBandwidthRequest(internetMaxBandwidthOut: internetMaxBandwidthOut, ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
     }
 }

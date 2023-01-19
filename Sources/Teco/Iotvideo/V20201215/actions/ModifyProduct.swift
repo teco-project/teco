@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProduct(_ input: ModifyProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
+        self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(_ input: ModifyProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.client.execute(action: "ModifyProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProduct(_ input: ModifyProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), logger: logger, on: eventLoop)
+    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
+        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改产品信息
     @inlinable
-    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), logger: logger, on: eventLoop)
+    public func modifyProduct(productId: String, productName: String? = nil, productDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
+        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription), region: region, logger: logger, on: eventLoop)
     }
 }

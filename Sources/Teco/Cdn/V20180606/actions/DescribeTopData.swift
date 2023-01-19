@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,8 +106,8 @@ extension Cdn {
     /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
-    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopDataResponse> {
-        self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopData(_ input: DescribeTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopDataResponse> {
+        self.client.execute(action: "DescribeTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// TOP 新版数据查询（beta版）
@@ -122,8 +122,8 @@ extension Cdn {
     /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
-    public func describeTopData(_ input: DescribeTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
-        try await self.client.execute(action: "DescribeTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopData(_ input: DescribeTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
+        try await self.client.execute(action: "DescribeTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// TOP 新版数据查询（beta版）
@@ -138,8 +138,8 @@ extension Cdn {
     /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
-    public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopDataResponse> {
-        self.describeTopData(DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), logger: logger, on: eventLoop)
+    public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopDataResponse> {
+        self.describeTopData(DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// TOP 新版数据查询（beta版）
@@ -154,7 +154,7 @@ extension Cdn {
     /// + 仅支持 90 天内数据查询，且从2021年09月20日开始有数据
     /// + 本接口为beta版，尚未正式全量发布
     @inlinable
-    public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
-        try await self.describeTopData(DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), logger: logger, on: eventLoop)
+    public func describeTopData(startTime: String, endTime: String, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, area: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopDataResponse {
+        try await self.describeTopData(DescribeTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, area: area, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

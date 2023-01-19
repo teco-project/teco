@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cloudstudio {
 
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
-        self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
+        self.client.execute(action: "DescribeWorkspaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
-        try await self.client.execute(action: "DescribeWorkspaceStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWorkspaceStatus(_ input: DescribeWorkspaceStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
+        try await self.client.execute(action: "DescribeWorkspaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
-        self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
+        self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取工作空间元信息
     @inlinable
-    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
-        try await self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), logger: logger, on: eventLoop)
+    public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
+        try await self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
     }
 }

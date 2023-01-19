@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Mps {
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
-        self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
+        self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
-        try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSnapshotByTimeOffsetTemplates(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
+        try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
-        self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
+        self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
-        try await self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), logger: logger, on: eventLoop)
+    public func describeSnapshotByTimeOffsetTemplates(definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
+        try await self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

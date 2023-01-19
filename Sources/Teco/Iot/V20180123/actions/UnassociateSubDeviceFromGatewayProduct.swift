@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iot {
 
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
-        self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
+        self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unassociateSubDeviceFromGatewayProduct(_ input: UnassociateSubDeviceFromGatewayProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
+        try await self.client.execute(action: "UnassociateSubDeviceFromGatewayProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
-        self.unassociateSubDeviceFromGatewayProduct(UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), logger: logger, on: eventLoop)
+    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassociateSubDeviceFromGatewayProductResponse> {
+        self.unassociateSubDeviceFromGatewayProduct(UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消子设备产品与网关设备产品的关联
     @inlinable
-    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
-        try await self.unassociateSubDeviceFromGatewayProduct(UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), logger: logger, on: eventLoop)
+    public func unassociateSubDeviceFromGatewayProduct(subDeviceProductId: String, gatewayProductId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassociateSubDeviceFromGatewayProductResponse {
+        try await self.unassociateSubDeviceFromGatewayProduct(UnassociateSubDeviceFromGatewayProductRequest(subDeviceProductId: subDeviceProductId, gatewayProductId: gatewayProductId), region: region, logger: logger, on: eventLoop)
     }
 }

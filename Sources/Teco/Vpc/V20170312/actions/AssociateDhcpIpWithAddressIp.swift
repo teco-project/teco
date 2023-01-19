@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,8 +50,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func associateDhcpIpWithAddressIp(_ input: AssociateDhcpIpWithAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDhcpIpWithAddressIpResponse> {
-        self.client.execute(action: "AssociateDhcpIpWithAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateDhcpIpWithAddressIp(_ input: AssociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDhcpIpWithAddressIpResponse> {
+        self.client.execute(action: "AssociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp绑定EIP
@@ -60,8 +60,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func associateDhcpIpWithAddressIp(_ input: AssociateDhcpIpWithAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
-        try await self.client.execute(action: "AssociateDhcpIpWithAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateDhcpIpWithAddressIp(_ input: AssociateDhcpIpWithAddressIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
+        try await self.client.execute(action: "AssociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DhcpIp绑定EIP
@@ -70,8 +70,8 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDhcpIpWithAddressIpResponse> {
-        self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), logger: logger, on: eventLoop)
+    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDhcpIpWithAddressIpResponse> {
+        self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp绑定EIP
@@ -80,7 +80,7 @@ extension Vpc {
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
     @inlinable
-    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
-        try await self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), logger: logger, on: eventLoop)
+    public func associateDhcpIpWithAddressIp(dhcpIpId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDhcpIpWithAddressIpResponse {
+        try await self.associateDhcpIpWithAddressIp(AssociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
     }
 }

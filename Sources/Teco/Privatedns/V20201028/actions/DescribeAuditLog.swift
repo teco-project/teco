@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Privatedns {
 
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
-        self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAuditLog(_ input: DescribeAuditLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
+        self.client.execute(action: "DescribeAuditLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(_ input: DescribeAuditLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
-        try await self.client.execute(action: "DescribeAuditLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAuditLog(_ input: DescribeAuditLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
+        try await self.client.execute(action: "DescribeAuditLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
-        self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
+        self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取操作日志列表
     @inlinable
-    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
-        try await self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
+        try await self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

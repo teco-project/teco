@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Vpc {
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable
-    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
-        self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
+        self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置路由表名称和路由策略
@@ -63,8 +63,8 @@ extension Vpc {
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable
-    public func resetRoutes(_ input: ResetRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
-        try await self.client.execute(action: "ResetRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
+        try await self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置路由表名称和路由策略
@@ -72,8 +72,8 @@ extension Vpc {
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable
-    public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
-        self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), logger: logger, on: eventLoop)
+    public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
+        self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置路由表名称和路由策略
@@ -81,7 +81,7 @@ extension Vpc {
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
     @inlinable
-    public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
-        try await self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), logger: logger, on: eventLoop)
+    public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
+        try await self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

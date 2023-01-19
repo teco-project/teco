@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
-        self.client.execute(action: "PutMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func putMonitorData(_ input: PutMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
+        self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自定义监控上报数据
@@ -76,8 +76,8 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(_ input: PutMonitorDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
-        try await self.client.execute(action: "PutMonitorData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func putMonitorData(_ input: PutMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
+        try await self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 自定义监控上报数据
@@ -89,8 +89,8 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
-        self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), logger: logger, on: eventLoop)
+    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
+        self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 自定义监控上报数据
@@ -102,7 +102,7 @@ extension Monitor {
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable
-    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
-        try await self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), logger: logger, on: eventLoop)
+    public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
+        try await self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cls {
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
-        self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMachineGroup(_ input: CreateMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
+        self.client.execute(action: "CreateMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(_ input: CreateMachineGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
-        try await self.client.execute(action: "CreateMachineGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMachineGroup(_ input: CreateMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
+        try await self.client.execute(action: "CreateMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
-        self.createMachineGroup(CreateMachineGroupRequest(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), logger: logger, on: eventLoop)
+    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMachineGroupResponse> {
+        self.createMachineGroup(CreateMachineGroupRequest(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机器组
     @inlinable
-    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
-        try await self.createMachineGroup(CreateMachineGroupRequest(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), logger: logger, on: eventLoop)
+    public func createMachineGroup(groupName: String, machineGroupType: MachineGroupTypeInfo, tags: [Tag]? = nil, autoUpdate: Bool? = nil, updateStartTime: String? = nil, updateEndTime: String? = nil, serviceLogging: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMachineGroupResponse {
+        try await self.createMachineGroup(CreateMachineGroupRequest(groupName: groupName, machineGroupType: machineGroupType, tags: tags, autoUpdate: autoUpdate, updateStartTime: updateStartTime, updateEndTime: updateEndTime, serviceLogging: serviceLogging), region: region, logger: logger, on: eventLoop)
     }
 }

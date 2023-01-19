@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
-        self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
+        self.client.execute(action: "DeleteEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
-        try await self.client.execute(action: "DeleteEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
+        try await self.client.execute(action: "DeleteEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
-        self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
+        self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeGroup
     @inlinable
-    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
-        try await self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
+        try await self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Kms {
 
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
-        self.client.execute(action: "EnableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
+        self.client.execute(action: "EnableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
-        try await self.client.execute(action: "EnableWhiteBoxKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableWhiteBoxKey(_ input: EnableWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
+        try await self.client.execute(action: "EnableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
-        self.enableWhiteBoxKey(EnableWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func enableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWhiteBoxKeyResponse> {
+        self.enableWhiteBoxKey(EnableWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用白盒密钥
     @inlinable
-    public func enableWhiteBoxKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
-        try await self.enableWhiteBoxKey(EnableWhiteBoxKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func enableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWhiteBoxKeyResponse {
+        try await self.enableWhiteBoxKey(EnableWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Yinsuda {
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
-        self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
+        self.client.execute(action: "DescribeKTVPlaylistDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
-        try await self.client.execute(action: "DescribeKTVPlaylistDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVPlaylistDetail(_ input: DescribeKTVPlaylistDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
+        try await self.client.execute(action: "DescribeKTVPlaylistDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
-        self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), logger: logger, on: eventLoop)
+    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistDetailResponse> {
+        self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取歌单详情
     ///
     /// 根据歌单 Id 获取歌单详情。
     @inlinable
-    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
-        try await self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), logger: logger, on: eventLoop)
+    public func describeKTVPlaylistDetail(appName: String, userId: String, playlistId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistDetailResponse {
+        try await self.describeKTVPlaylistDetail(DescribeKTVPlaylistDetailRequest(appName: appName, userId: userId, playlistId: playlistId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
-        self.client.execute(action: "DeleteEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
+        self.client.execute(action: "DeleteEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
-        try await self.client.execute(action: "DeleteEdgeUnitDeployGridItem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEdgeUnitDeployGridItem(_ input: DeleteEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
+        try await self.client.execute(action: "DeleteEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
-        self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
+        self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新部署边缘单元指定Grid下应用
     @inlinable
-    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
-        try await self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
+        try await self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

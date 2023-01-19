@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
-    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeWindowResponse> {
-        self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeWindowResponse> {
+        self.client.execute(action: "DescribeTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询维护时间窗口
     ///
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
-    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
-        try await self.client.execute(action: "DescribeTimeWindow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTimeWindow(_ input: DescribeTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
+        try await self.client.execute(action: "DescribeTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询维护时间窗口
     ///
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
-    public func describeTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeWindowResponse> {
-        self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeWindowResponse> {
+        self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询维护时间窗口
     ///
     /// 本接口(DescribeTimeWindow)用于查询云数据库实例的维护时间窗口。
     @inlinable
-    public func describeTimeWindow(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
-        try await self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeTimeWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeWindowResponse {
+        try await self.describeTimeWindow(DescribeTimeWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

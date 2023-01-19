@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Tcss {
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
-        self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
+        self.client.execute(action: "DescribeImageSimpleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
-        try await self.client.execute(action: "DescribeImageSimpleList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageSimpleList(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
+        try await self.client.execute(action: "DescribeImageSimpleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
-        self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
+        self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询全部镜像列表
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
-        try await self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), logger: logger, on: eventLoop)
+    public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
+        try await self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
     }
 }

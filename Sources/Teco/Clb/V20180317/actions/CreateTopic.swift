@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Clb {
     ///
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTopic(_ input: CreateTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建主题
     ///
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
-    public func createTopic(_ input: CreateTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.client.execute(action: "CreateTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTopic(_ input: CreateTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建主题
     ///
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
-    public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), logger: logger, on: eventLoop)
+    public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
+        self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建主题
     ///
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
-    public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), logger: logger, on: eventLoop)
+    public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
+        try await self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), region: region, logger: logger, on: eventLoop)
     }
 }

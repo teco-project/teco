@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Iotvideo {
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
-        self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
+        self.client.execute(action: "DescribeCloudStorageTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
-        try await self.client.execute(action: "DescribeCloudStorageTime", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageTime(_ input: DescribeCloudStorageTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
+        try await self.client.execute(action: "DescribeCloudStorageTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
-        self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), logger: logger, on: eventLoop)
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageTimeResponse> {
+        self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取某一天云存时间轴
     @inlinable
-    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
-        try await self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), logger: logger, on: eventLoop)
+    public func describeCloudStorageTime(productId: String, deviceName: String, date: String, startTime: UInt64? = nil, endTime: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageTimeResponse {
+        try await self.describeCloudStorageTime(DescribeCloudStorageTimeRequest(productId: productId, deviceName: deviceName, date: date, startTime: startTime, endTime: endTime, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

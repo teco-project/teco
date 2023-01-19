@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Redis {
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
-    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxySlowLogResponse> {
-        self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxySlowLogResponse> {
+        self.client.execute(action: "DescribeProxySlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询代理慢查询
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
-    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
-        try await self.client.execute(action: "DescribeProxySlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxySlowLog(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
+        try await self.client.execute(action: "DescribeProxySlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询代理慢查询
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
-    public func describeProxySlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxySlowLogResponse> {
-        self.describeProxySlowLog(DescribeProxySlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeProxySlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxySlowLogResponse> {
+        self.describeProxySlowLog(DescribeProxySlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询代理慢查询
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
-    public func describeProxySlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
-        try await self.describeProxySlowLog(DescribeProxySlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeProxySlowLog(instanceId: String, beginTime: String, endTime: String, minQueryTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxySlowLogResponse {
+        try await self.describeProxySlowLog(DescribeProxySlowLogRequest(instanceId: instanceId, beginTime: beginTime, endTime: endTime, minQueryTime: minQueryTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

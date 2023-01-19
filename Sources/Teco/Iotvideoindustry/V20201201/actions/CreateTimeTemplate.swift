@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
     @inlinable
-    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTimeTemplateResponse> {
-        self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTimeTemplateResponse> {
+        self.client.execute(action: "CreateTimeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建时间模板
     ///
     /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
     @inlinable
-    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
-        try await self.client.execute(action: "CreateTimeTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTimeTemplate(_ input: CreateTimeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
+        try await self.client.execute(action: "CreateTimeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建时间模板
     ///
     /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
     @inlinable
-    public func createTimeTemplate(name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTimeTemplateResponse> {
-        self.createTimeTemplate(CreateTimeTemplateRequest(name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), logger: logger, on: eventLoop)
+    public func createTimeTemplate(name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTimeTemplateResponse> {
+        self.createTimeTemplate(CreateTimeTemplateRequest(name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建时间模板
     ///
     /// 本接口(CreateTimeTemplate) 用于根据模板描述的具体录制时间片段，创建定制化的时间模板。
     @inlinable
-    public func createTimeTemplate(name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
-        try await self.createTimeTemplate(CreateTimeTemplateRequest(name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), logger: logger, on: eventLoop)
+    public func createTimeTemplate(name: String, isAllWeek: Int64, timeTemplateSpecs: [TimeTemplateSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTimeTemplateResponse {
+        try await self.createTimeTemplate(CreateTimeTemplateRequest(name: name, isAllWeek: isAllWeek, timeTemplateSpecs: timeTemplateSpecs), region: region, logger: logger, on: eventLoop)
     }
 }

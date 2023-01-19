@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcr {
 
     /// 删除镜像加速服务
     @inlinable
-    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageAccelerateServiceResponse> {
-        self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageAccelerateServiceResponse> {
+        self.client.execute(action: "DeleteImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像加速服务
     @inlinable
-    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
-        try await self.client.execute(action: "DeleteImageAccelerateService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteImageAccelerateService(_ input: DeleteImageAccelerateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
+        try await self.client.execute(action: "DeleteImageAccelerateService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除镜像加速服务
     @inlinable
-    public func deleteImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageAccelerateServiceResponse> {
-        self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func deleteImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageAccelerateServiceResponse> {
+        self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像加速服务
     @inlinable
-    public func deleteImageAccelerateService(registryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
-        try await self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func deleteImageAccelerateService(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageAccelerateServiceResponse {
+        try await self.deleteImageAccelerateService(DeleteImageAccelerateServiceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

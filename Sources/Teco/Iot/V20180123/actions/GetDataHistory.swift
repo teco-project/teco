@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,31 +94,31 @@ extension Iot {
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
-        self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDataHistory(_ input: GetDataHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
+        self.client.execute(action: "GetDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(_ input: GetDataHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
-        try await self.client.execute(action: "GetDataHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDataHistory(_ input: GetDataHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
+        try await self.client.execute(action: "GetDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
-        self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), logger: logger, on: eventLoop)
+    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
+        self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
     ///
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
-    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
-        try await self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), logger: logger, on: eventLoop)
+    public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
+        try await self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
     }
 }

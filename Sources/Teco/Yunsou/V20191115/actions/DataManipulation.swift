@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Yunsou {
     ///
     /// 上传云搜数据的API接口。
     @inlinable
-    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DataManipulationResponse> {
-        self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func dataManipulation(_ input: DataManipulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DataManipulationResponse> {
+        self.client.execute(action: "DataManipulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云搜数据上传
     ///
     /// 上传云搜数据的API接口。
     @inlinable
-    public func dataManipulation(_ input: DataManipulationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
-        try await self.client.execute(action: "DataManipulation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func dataManipulation(_ input: DataManipulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
+        try await self.client.execute(action: "DataManipulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云搜数据上传
     ///
     /// 上传云搜数据的API接口。
     @inlinable
-    public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DataManipulationResponse> {
-        self.dataManipulation(DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DataManipulationResponse> {
+        self.dataManipulation(DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云搜数据上传
     ///
     /// 上传云搜数据的API接口。
     @inlinable
-    public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
-        try await self.dataManipulation(DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func dataManipulation(opType: String, encoding: String, contents: String, resourceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DataManipulationResponse {
+        try await self.dataManipulation(DataManipulationRequest(opType: opType, encoding: encoding, contents: contents, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

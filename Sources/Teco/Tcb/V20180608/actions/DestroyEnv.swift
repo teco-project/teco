@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tcb {
 
     /// 销毁环境
     @inlinable
-    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvResponse> {
-        self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyEnv(_ input: DestroyEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvResponse> {
+        self.client.execute(action: "DestroyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁环境
     @inlinable
-    public func destroyEnv(_ input: DestroyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
-        try await self.client.execute(action: "DestroyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyEnv(_ input: DestroyEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
+        try await self.client.execute(action: "DestroyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁环境
     @inlinable
-    public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvResponse> {
-        self.destroyEnv(DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck), logger: logger, on: eventLoop)
+    public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvResponse> {
+        self.destroyEnv(DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁环境
     @inlinable
-    public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
-        try await self.destroyEnv(DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck), logger: logger, on: eventLoop)
+    public func destroyEnv(envId: String, isForce: Bool? = nil, bypassCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvResponse {
+        try await self.destroyEnv(DestroyEnvRequest(envId: envId, isForce: isForce, bypassCheck: bypassCheck), region: region, logger: logger, on: eventLoop)
     }
 }

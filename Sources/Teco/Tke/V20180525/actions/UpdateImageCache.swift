@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Tke {
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
-        self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateImageCache(_ input: UpdateImageCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
+        self.client.execute(action: "UpdateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(_ input: UpdateImageCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
-        try await self.client.execute(action: "UpdateImageCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateImageCache(_ input: UpdateImageCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
+        try await self.client.execute(action: "UpdateImageCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
-        self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageCacheResponse> {
+        self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像缓存
     ///
     /// 更新镜像缓存接口
     @inlinable
-    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
-        try await self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func updateImageCache(imageCacheId: String, imageCacheName: String? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, images: [String]? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageCacheResponse {
+        try await self.updateImageCache(UpdateImageCacheRequest(imageCacheId: imageCacheId, imageCacheName: imageCacheName, imageRegistryCredentials: imageRegistryCredentials, images: images, imageCacheSize: imageCacheSize, retentionDays: retentionDays, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

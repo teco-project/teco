@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Dcdb {
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
-        self.client.execute(action: "DestroyDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
+        self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
-        try await self.client.execute(action: "DestroyDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyDCDBInstance(_ input: DestroyDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
+        try await self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
-        self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
+        self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁已隔离的包年包月实例
     ///
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
-    public func destroyDCDBInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
-        try await self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
+        try await self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

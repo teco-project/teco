@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Teo {
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
-        self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDnssec(_ input: DescribeDnssecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
+        self.client.execute(action: "DescribeDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(_ input: DescribeDnssecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
-        try await self.client.execute(action: "DescribeDnssec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDnssec(_ input: DescribeDnssecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
+        try await self.client.execute(action: "DescribeDnssec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
-        self.describeDnssec(DescribeDnssecRequest(id: id), logger: logger, on: eventLoop)
+    public func describeDnssec(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDnssecResponse> {
+        self.describeDnssec(DescribeDnssecRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 DNSSEC 信息
     ///
     /// 用于查询 DNSSEC 相关信息
     @inlinable
-    public func describeDnssec(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
-        try await self.describeDnssec(DescribeDnssecRequest(id: id), logger: logger, on: eventLoop)
+    public func describeDnssec(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDnssecResponse {
+        try await self.describeDnssec(DescribeDnssecRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

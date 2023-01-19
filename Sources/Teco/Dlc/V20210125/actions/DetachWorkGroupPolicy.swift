@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dlc {
 
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
-        self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
+        self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
-        try await self.client.execute(action: "DetachWorkGroupPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
+        try await self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
-        self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
+        self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑工作组鉴权策略
     @inlinable
-    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
-        try await self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), logger: logger, on: eventLoop)
+    public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
+        try await self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cam {
     ///
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
-    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRoleResponse> {
-        self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRole(_ input: GetRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRoleResponse> {
+        self.client.execute(action: "GetRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色详情
     ///
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
-    public func getRole(_ input: GetRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
-        try await self.client.execute(action: "GetRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRole(_ input: GetRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
+        try await self.client.execute(action: "GetRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取角色详情
     ///
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
-    public func getRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRoleResponse> {
-        self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func getRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRoleResponse> {
+        self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色详情
     ///
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
-    public func getRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
-        try await self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func getRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
+        try await self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

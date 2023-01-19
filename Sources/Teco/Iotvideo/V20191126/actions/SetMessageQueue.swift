@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Iotvideo {
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
     @inlinable
-    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
-        self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setMessageQueue(_ input: SetMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
+        self.client.execute(action: "SetMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
     @inlinable
-    public func setMessageQueue(_ input: SetMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
-        try await self.client.execute(action: "SetMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setMessageQueue(_ input: SetMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
+        try await self.client.execute(action: "SetMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
     @inlinable
-    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
-        self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), logger: logger, on: eventLoop)
+    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
+        self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
     @inlinable
-    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
-        try await self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), logger: logger, on: eventLoop)
+    public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
+        try await self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), region: region, logger: logger, on: eventLoop)
     }
 }

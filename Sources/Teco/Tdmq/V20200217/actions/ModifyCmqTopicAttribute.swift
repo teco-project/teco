@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tdmq {
 
     /// 修改cmq主题属性
     @inlinable
-    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
-        self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
+        self.client.execute(action: "ModifyCmqTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq主题属性
     @inlinable
-    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
-        try await self.client.execute(action: "ModifyCmqTopicAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
+        try await self.client.execute(action: "ModifyCmqTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改cmq主题属性
     @inlinable
-    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
-        self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
+        self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq主题属性
     @inlinable
-    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
-        try await self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), logger: logger, on: eventLoop)
+    public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
+        try await self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 }

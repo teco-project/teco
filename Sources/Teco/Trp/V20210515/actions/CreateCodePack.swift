@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Trp {
 
     /// 生成普通码包
     @inlinable
-    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodePackResponse> {
-        self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCodePack(_ input: CreateCodePackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodePackResponse> {
+        self.client.execute(action: "CreateCodePack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成普通码包
     @inlinable
-    public func createCodePack(_ input: CreateCodePackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
-        try await self.client.execute(action: "CreateCodePack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCodePack(_ input: CreateCodePackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
+        try await self.client.execute(action: "CreateCodePack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成普通码包
     @inlinable
-    public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodePackResponse> {
-        self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId), logger: logger, on: eventLoop)
+    public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodePackResponse> {
+        self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成普通码包
     @inlinable
-    public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
-        try await self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId), logger: logger, on: eventLoop)
+    public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
+        try await self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

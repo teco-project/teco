@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Faceid {
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
-        self.client.execute(action: "BankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bankCardVerification(_ input: BankCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
+        self.client.execute(action: "BankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(_ input: BankCardVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
-        try await self.client.execute(action: "BankCardVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bankCardVerification(_ input: BankCardVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
+        try await self.client.execute(action: "BankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
-        self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), logger: logger, on: eventLoop)
+    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardVerificationResponse> {
+        self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 银行卡三要素核验
     ///
     /// 本接口用于银行卡号、姓名、开户证件号信息的真实性和一致性。
     @inlinable
-    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
-        try await self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), logger: logger, on: eventLoop)
+    public func bankCardVerification(idCard: String, name: String, bankCard: String, certType: Int64? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardVerificationResponse {
+        try await self.bankCardVerification(BankCardVerificationRequest(idCard: idCard, name: name, bankCard: bankCard, certType: certType, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

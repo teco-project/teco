@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -140,25 +140,25 @@ extension Acp {
 
     /// 创建应用合规隐私诊断任务
     @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
-        self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
+        self.client.execute(action: "CreateAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用合规隐私诊断任务
     @inlinable
-    public func createAppScanTask(_ input: CreateAppScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.client.execute(action: "CreateAppScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAppScanTask(_ input: CreateAppScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.client.execute(action: "CreateAppScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建应用合规隐私诊断任务
     @inlinable
-    public func createAppScanTask(taskType: Int64, source: Int64, platform: Int64, appPackage: String? = nil, appName: String? = nil, appVersion: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, contactName: String? = nil, telNumber: String? = nil, email: String? = nil, corpName: String? = nil, salesPerson: String? = nil, remark: String? = nil, isAgreePrivacy: Int64? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
-        self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, platform: platform, appPackage: appPackage, appName: appName, appVersion: appVersion, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, contactName: contactName, telNumber: telNumber, email: email, corpName: corpName, salesPerson: salesPerson, remark: remark, isAgreePrivacy: isAgreePrivacy, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    public func createAppScanTask(taskType: Int64, source: Int64, platform: Int64, appPackage: String? = nil, appName: String? = nil, appVersion: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, contactName: String? = nil, telNumber: String? = nil, email: String? = nil, corpName: String? = nil, salesPerson: String? = nil, remark: String? = nil, isAgreePrivacy: Int64? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskResponse> {
+        self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, platform: platform, appPackage: appPackage, appName: appName, appVersion: appVersion, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, contactName: contactName, telNumber: telNumber, email: email, corpName: corpName, salesPerson: salesPerson, remark: remark, isAgreePrivacy: isAgreePrivacy, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建应用合规隐私诊断任务
     @inlinable
-    public func createAppScanTask(taskType: Int64, source: Int64, platform: Int64, appPackage: String? = nil, appName: String? = nil, appVersion: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, contactName: String? = nil, telNumber: String? = nil, email: String? = nil, corpName: String? = nil, salesPerson: String? = nil, remark: String? = nil, isAgreePrivacy: Int64? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
-        try await self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, platform: platform, appPackage: appPackage, appName: appName, appVersion: appVersion, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, contactName: contactName, telNumber: telNumber, email: email, corpName: corpName, salesPerson: salesPerson, remark: remark, isAgreePrivacy: isAgreePrivacy, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    public func createAppScanTask(taskType: Int64, source: Int64, platform: Int64, appPackage: String? = nil, appName: String? = nil, appVersion: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, contactName: String? = nil, telNumber: String? = nil, email: String? = nil, corpName: String? = nil, salesPerson: String? = nil, remark: String? = nil, isAgreePrivacy: Int64? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskResponse {
+        try await self.createAppScanTask(CreateAppScanTaskRequest(taskType: taskType, source: source, platform: platform, appPackage: appPackage, appName: appName, appVersion: appVersion, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, contactName: contactName, telNumber: telNumber, email: email, corpName: corpName, salesPerson: salesPerson, remark: remark, isAgreePrivacy: isAgreePrivacy, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 }

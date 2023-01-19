@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cdn {
     ///
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageConfigResponse> {
-        self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageConfig(_ input: DescribeImageConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageConfigResponse> {
+        self.client.execute(action: "DescribeImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取图片优化的配置
     ///
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func describeImageConfig(_ input: DescribeImageConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
-        try await self.client.execute(action: "DescribeImageConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageConfig(_ input: DescribeImageConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
+        try await self.client.execute(action: "DescribeImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取图片优化的配置
     ///
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func describeImageConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageConfigResponse> {
-        self.describeImageConfig(DescribeImageConfigRequest(domain: domain), logger: logger, on: eventLoop)
+    public func describeImageConfig(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageConfigResponse> {
+        self.describeImageConfig(DescribeImageConfigRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取图片优化的配置
     ///
     /// DescribeImageConfig 用于获取域名图片优化的当前配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable
-    public func describeImageConfig(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
-        try await self.describeImageConfig(DescribeImageConfigRequest(domain: domain), logger: logger, on: eventLoop)
+    public func describeImageConfig(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageConfigResponse {
+        try await self.describeImageConfig(DescribeImageConfigRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

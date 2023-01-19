@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dasb {
 
     /// 新建用户组
     @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
-        self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUserGroup(_ input: CreateUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
+        self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建用户组
     @inlinable
-    public func createUserGroup(_ input: CreateUserGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        try await self.client.execute(action: "CreateUserGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUserGroup(_ input: CreateUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
+        try await self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建用户组
     @inlinable
-    public func createUserGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
-        self.createUserGroup(CreateUserGroupRequest(name: name, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func createUserGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
+        self.createUserGroup(CreateUserGroupRequest(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建用户组
     @inlinable
-    public func createUserGroup(name: String, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        try await self.createUserGroup(CreateUserGroupRequest(name: name, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func createUserGroup(name: String, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
+        try await self.createUserGroup(CreateUserGroupRequest(name: name, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

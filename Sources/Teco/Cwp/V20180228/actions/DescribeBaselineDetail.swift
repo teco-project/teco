@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cwp {
     ///
     /// 根据基线id查询基线详情接口
     @inlinable
-    public func describeBaselineDetail(_ input: DescribeBaselineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineDetailResponse> {
-        self.client.execute(action: "DescribeBaselineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineDetail(_ input: DescribeBaselineDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineDetailResponse> {
+        self.client.execute(action: "DescribeBaselineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线详情
     ///
     /// 根据基线id查询基线详情接口
     @inlinable
-    public func describeBaselineDetail(_ input: DescribeBaselineDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineDetailResponse {
-        try await self.client.execute(action: "DescribeBaselineDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineDetail(_ input: DescribeBaselineDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineDetailResponse {
+        try await self.client.execute(action: "DescribeBaselineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询基线详情
     ///
     /// 根据基线id查询基线详情接口
     @inlinable
-    public func describeBaselineDetail(baselineId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineDetailResponse> {
-        self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), logger: logger, on: eventLoop)
+    public func describeBaselineDetail(baselineId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineDetailResponse> {
+        self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线详情
     ///
     /// 根据基线id查询基线详情接口
     @inlinable
-    public func describeBaselineDetail(baselineId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineDetailResponse {
-        try await self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), logger: logger, on: eventLoop)
+    public func describeBaselineDetail(baselineId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineDetailResponse {
+        try await self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), region: region, logger: logger, on: eventLoop)
     }
 }

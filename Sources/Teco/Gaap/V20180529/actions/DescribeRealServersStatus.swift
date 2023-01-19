@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
-        self.client.execute(action: "DescribeRealServersStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
+        self.client.execute(action: "DescribeRealServersStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
-        try await self.client.execute(action: "DescribeRealServersStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRealServersStatus(_ input: DescribeRealServersStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
+        try await self.client.execute(action: "DescribeRealServersStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
-        self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    public func describeRealServersStatus(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersStatusResponse> {
+        self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询源站绑定状态
     ///
     /// 本接口（DescribeRealServersStatus）用于查询源站是否已被规则或者监听器绑定
     @inlinable
-    public func describeRealServersStatus(realServerIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
-        try await self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), logger: logger, on: eventLoop)
+    public func describeRealServersStatus(realServerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersStatusResponse {
+        try await self.describeRealServersStatus(DescribeRealServersStatusRequest(realServerIds: realServerIds), region: region, logger: logger, on: eventLoop)
     }
 }

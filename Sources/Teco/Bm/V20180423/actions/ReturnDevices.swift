@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bm {
     ///
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
-    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReturnDevicesResponse> {
-        self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func returnDevices(_ input: ReturnDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReturnDevicesResponse> {
+        self.client.execute(action: "ReturnDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退回物理机
     ///
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
-    public func returnDevices(_ input: ReturnDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
-        try await self.client.execute(action: "ReturnDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func returnDevices(_ input: ReturnDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
+        try await self.client.execute(action: "ReturnDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退回物理机
     ///
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
-    public func returnDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReturnDevicesResponse> {
-        self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func returnDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReturnDevicesResponse> {
+        self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退回物理机
     ///
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
-    public func returnDevices(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
-        try await self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func returnDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
+        try await self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

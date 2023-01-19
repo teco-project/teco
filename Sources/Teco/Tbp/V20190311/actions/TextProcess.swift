@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Tbp {
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
-    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextProcessResponse> {
-        self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textProcess(_ input: TextProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextProcessResponse> {
+        self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本处理
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
-    public func textProcess(_ input: TextProcessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
-        try await self.client.execute(action: "TextProcess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textProcess(_ input: TextProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
+        try await self.client.execute(action: "TextProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文本处理
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
-    public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextProcessResponse> {
-        self.textProcess(TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), logger: logger, on: eventLoop)
+    public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextProcessResponse> {
+        self.textProcess(TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文本处理
     ///
     /// 接收调用侧的文本输入，返回应答文本。已废弃，推荐使用最新版TextProcess接口。
     @inlinable
-    public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
-        try await self.textProcess(TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), logger: logger, on: eventLoop)
+    public func textProcess(botId: String, terminalId: String, inputText: String, botEnv: String? = nil, sessionAttributes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextProcessResponse {
+        try await self.textProcess(TextProcessRequest(botId: botId, terminalId: terminalId, inputText: inputText, botEnv: botEnv, sessionAttributes: sessionAttributes), region: region, logger: logger, on: eventLoop)
     }
 }

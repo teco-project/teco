@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Cii {
     ///
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
-    public func describeStructureDifference(_ input: DescribeStructureDifferenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureDifferenceResponse> {
-        self.client.execute(action: "DescribeStructureDifference", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStructureDifference(_ input: DescribeStructureDifferenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureDifferenceResponse> {
+        self.client.execute(action: "DescribeStructureDifference", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 结构化复核差异查询
     ///
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
-    public func describeStructureDifference(_ input: DescribeStructureDifferenceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureDifferenceResponse {
-        try await self.client.execute(action: "DescribeStructureDifference", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStructureDifference(_ input: DescribeStructureDifferenceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureDifferenceResponse {
+        try await self.client.execute(action: "DescribeStructureDifference", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 结构化复核差异查询
     ///
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
-    public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureDifferenceResponse> {
-        self.describeStructureDifference(DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), logger: logger, on: eventLoop)
+    public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructureDifferenceResponse> {
+        self.describeStructureDifference(DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结构化复核差异查询
     ///
     /// 结构化复核差异查询接口，对比结构化复核前后数据差异，返回差异的部分。
     @inlinable
-    public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureDifferenceResponse {
-        try await self.describeStructureDifference(DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), logger: logger, on: eventLoop)
+    public func describeStructureDifference(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructureDifferenceResponse {
+        try await self.describeStructureDifference(DescribeStructureDifferenceRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

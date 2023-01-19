@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcb {
 
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
-        self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
+        self.client.execute(action: "DeleteWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
-        try await self.client.execute(action: "DeleteWxGatewayRoute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWxGatewayRoute(_ input: DeleteWxGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
+        try await self.client.execute(action: "DeleteWxGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
-        self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), logger: logger, on: eventLoop)
+    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWxGatewayRouteResponse> {
+        self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除安全网关路由
     @inlinable
-    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
-        try await self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), logger: logger, on: eventLoop)
+    public func deleteWxGatewayRoute(envId: String, gatewayRouteName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWxGatewayRouteResponse {
+        try await self.deleteWxGatewayRoute(DeleteWxGatewayRouteRequest(envId: envId, gatewayRouteName: gatewayRouteName), region: region, logger: logger, on: eventLoop)
     }
 }

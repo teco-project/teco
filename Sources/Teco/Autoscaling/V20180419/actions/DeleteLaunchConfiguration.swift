@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension As {
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable
-    public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
-        self.client.execute(action: "DeleteLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
+        self.client.execute(action: "DeleteLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除启动配置
@@ -53,8 +53,8 @@ extension As {
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable
-    public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
-        try await self.client.execute(action: "DeleteLaunchConfiguration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
+        try await self.client.execute(action: "DeleteLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除启动配置
@@ -62,8 +62,8 @@ extension As {
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable
-    public func deleteLaunchConfiguration(launchConfigurationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
-        self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), logger: logger, on: eventLoop)
+    public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
+        self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除启动配置
@@ -71,7 +71,7 @@ extension As {
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable
-    public func deleteLaunchConfiguration(launchConfigurationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
-        try await self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), logger: logger, on: eventLoop)
+    public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
+        try await self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), region: region, logger: logger, on: eventLoop)
     }
 }

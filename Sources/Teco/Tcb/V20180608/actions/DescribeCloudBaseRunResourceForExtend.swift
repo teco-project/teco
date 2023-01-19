@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tcb {
     ///
     /// 查看容器托管的集群状态扩展使用
     @inlinable
-    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceForExtendResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceForExtendResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看容器托管的资源状态扩展使用
     ///
     /// 查看容器托管的集群状态扩展使用
     @inlinable
-    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunResourceForExtend(_ input: DescribeCloudBaseRunResourceForExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunResourceForExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看容器托管的资源状态扩展使用
     ///
     /// 查看容器托管的集群状态扩展使用
     @inlinable
-    public func describeCloudBaseRunResourceForExtend(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceForExtendResponse> {
-        self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResourceForExtend(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceForExtendResponse> {
+        self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看容器托管的资源状态扩展使用
     ///
     /// 查看容器托管的集群状态扩展使用
     @inlinable
-    public func describeCloudBaseRunResourceForExtend(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
-        try await self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunResourceForExtend(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceForExtendResponse {
+        try await self.describeCloudBaseRunResourceForExtend(DescribeCloudBaseRunResourceForExtendRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

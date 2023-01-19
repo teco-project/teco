@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -168,31 +168,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
-    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceResponse> {
-        self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeService(_ input: DescribeServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceResponse> {
+        self.client.execute(action: "DescribeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务详情
     ///
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
-    public func describeService(_ input: DescribeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
-        try await self.client.execute(action: "DescribeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeService(_ input: DescribeServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
+        try await self.client.execute(action: "DescribeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询服务详情
     ///
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
-    public func describeService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceResponse> {
-        self.describeService(DescribeServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceResponse> {
+        self.describeService(DescribeServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务详情
     ///
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
-    public func describeService(serviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
-        try await self.describeService(DescribeServiceRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func describeService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
+        try await self.describeService(DescribeServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bmvpc {
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
-        self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
+        self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
-        try await self.client.execute(action: "DeleteVpnConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpnConnection(_ input: DeleteVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
+        try await self.client.execute(action: "DeleteVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
-        self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    public func deleteVpnConnection(vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnConnectionResponse> {
+        self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除VPN通道
     ///
     /// 本接口(DeleteVpnConnection)用于删除VPN通道。
     @inlinable
-    public func deleteVpnConnection(vpnConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
-        try await self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId), logger: logger, on: eventLoop)
+    public func deleteVpnConnection(vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnConnectionResponse {
+        try await self.deleteVpnConnection(DeleteVpnConnectionRequest(vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

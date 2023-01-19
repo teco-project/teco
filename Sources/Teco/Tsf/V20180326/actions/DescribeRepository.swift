@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 查询仓库信息
     @inlinable
-    public func describeRepository(_ input: DescribeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryResponse> {
-        self.client.execute(action: "DescribeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRepository(_ input: DescribeRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryResponse> {
+        self.client.execute(action: "DescribeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询仓库信息
     @inlinable
-    public func describeRepository(_ input: DescribeRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
-        try await self.client.execute(action: "DescribeRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRepository(_ input: DescribeRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
+        try await self.client.execute(action: "DescribeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询仓库信息
     @inlinable
-    public func describeRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryResponse> {
-        self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func describeRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryResponse> {
+        self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询仓库信息
     @inlinable
-    public func describeRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
-        try await self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func describeRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryResponse {
+        try await self.describeRepository(DescribeRepositoryRequest(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

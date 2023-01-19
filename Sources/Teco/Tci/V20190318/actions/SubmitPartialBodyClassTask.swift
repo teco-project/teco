@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitPartialBodyClassTaskResponse> {
-        self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitPartialBodyClassTaskResponse> {
+        self.client.execute(action: "SubmitPartialBodyClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交在线小班课授课任务
@@ -106,8 +106,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
-        try await self.client.execute(action: "SubmitPartialBodyClassTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitPartialBodyClassTask(_ input: SubmitPartialBodyClassTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
+        try await self.client.execute(action: "SubmitPartialBodyClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交在线小班课授课任务
@@ -120,8 +120,8 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitPartialBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitPartialBodyClassTaskResponse> {
-        self.submitPartialBodyClassTask(SubmitPartialBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func submitPartialBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitPartialBodyClassTaskResponse> {
+        self.submitPartialBodyClassTask(SubmitPartialBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交在线小班课授课任务
@@ -134,7 +134,7 @@ extension Tci {
     ///
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
-    public func submitPartialBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
-        try await self.submitPartialBodyClassTask(SubmitPartialBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), logger: logger, on: eventLoop)
+    public func submitPartialBodyClassTask(fileContent: String, fileType: String, lang: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, vocabLibNameList: [String]? = nil, voiceEncodeType: Int64? = nil, voiceFileType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitPartialBodyClassTaskResponse {
+        try await self.submitPartialBodyClassTask(SubmitPartialBodyClassTaskRequest(fileContent: fileContent, fileType: fileType, lang: lang, librarySet: librarySet, maxVideoDuration: maxVideoDuration, vocabLibNameList: vocabLibNameList, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType), region: region, logger: logger, on: eventLoop)
     }
 }

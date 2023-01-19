@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Privatedns {
 
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
-        self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
+        self.client.execute(action: "ModifyPrivateZoneVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
-        try await self.client.execute(action: "ModifyPrivateZoneVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrivateZoneVpc(_ input: ModifyPrivateZoneVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
+        try await self.client.execute(action: "ModifyPrivateZoneVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
-        self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), logger: logger, on: eventLoop)
+    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneVpcResponse> {
+        self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域关联的VPC
     @inlinable
-    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
-        try await self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), logger: logger, on: eventLoop)
+    public func modifyPrivateZoneVpc(zoneId: String, vpcSet: [VpcInfo]? = nil, accountVpcSet: [AccountVpcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneVpcResponse {
+        try await self.modifyPrivateZoneVpc(ModifyPrivateZoneVpcRequest(zoneId: zoneId, vpcSet: vpcSet, accountVpcSet: accountVpcSet), region: region, logger: logger, on: eventLoop)
     }
 }

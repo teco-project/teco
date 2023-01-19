@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,8 +96,8 @@ extension Vod {
     ///     2. 查询时间跨度不超过90天；
     ///     3. 分钟粒度查询跨度不超过7天；
     @inlinable
-    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDetailsResponse> {
-        self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDetailsResponse> {
+        self.client.execute(action: "DescribeStorageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询存储空间数据详情
@@ -107,8 +107,8 @@ extension Vod {
     ///     2. 查询时间跨度不超过90天；
     ///     3. 分钟粒度查询跨度不超过7天；
     @inlinable
-    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
-        try await self.client.execute(action: "DescribeStorageDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStorageDetails(_ input: DescribeStorageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
+        try await self.client.execute(action: "DescribeStorageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询存储空间数据详情
@@ -118,8 +118,8 @@ extension Vod {
     ///     2. 查询时间跨度不超过90天；
     ///     3. 分钟粒度查询跨度不超过7天；
     @inlinable
-    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDetailsResponse> {
-        self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), logger: logger, on: eventLoop)
+    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDetailsResponse> {
+        self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询存储空间数据详情
@@ -129,7 +129,7 @@ extension Vod {
     ///     2. 查询时间跨度不超过90天；
     ///     3. 分钟粒度查询跨度不超过7天；
     @inlinable
-    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
-        try await self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), logger: logger, on: eventLoop)
+    public func describeStorageDetails(startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, storageType: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDetailsResponse {
+        try await self.describeStorageDetails(DescribeStorageDetailsRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval, storageType: storageType, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

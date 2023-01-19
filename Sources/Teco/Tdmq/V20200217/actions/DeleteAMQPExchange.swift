@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tdmq {
 
     /// 删除Amqp交换机
     @inlinable
-    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
-        self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
+        self.client.execute(action: "DeleteAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp交换机
     @inlinable
-    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
-        try await self.client.execute(action: "DeleteAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAMQPExchange(_ input: DeleteAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
+        try await self.client.execute(action: "DeleteAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Amqp交换机
     @inlinable
-    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
-        self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), logger: logger, on: eventLoop)
+    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPExchangeResponse> {
+        self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp交换机
     @inlinable
-    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
-        try await self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), logger: logger, on: eventLoop)
+    public func deleteAMQPExchange(clusterId: String, vHostId: String, exchange: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPExchangeResponse {
+        try await self.deleteAMQPExchange(DeleteAMQPExchangeRequest(clusterId: clusterId, vHostId: vHostId, exchange: exchange), region: region, logger: logger, on: eventLoop)
     }
 }

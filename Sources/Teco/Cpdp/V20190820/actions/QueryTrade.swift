@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cpdp {
     ///
     /// 跨境-贸易材料明细查询。
     @inlinable
-    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTradeResponse> {
-        self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryTrade(_ input: QueryTradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTradeResponse> {
+        self.client.execute(action: "QueryTrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-贸易材料明细查询
     ///
     /// 跨境-贸易材料明细查询。
     @inlinable
-    public func queryTrade(_ input: QueryTradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
-        try await self.client.execute(action: "QueryTrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryTrade(_ input: QueryTradeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
+        try await self.client.execute(action: "QueryTrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-贸易材料明细查询
     ///
     /// 跨境-贸易材料明细查询。
     @inlinable
-    public func queryTrade(tradeFileId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTradeResponse> {
-        self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), logger: logger, on: eventLoop)
+    public func queryTrade(tradeFileId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTradeResponse> {
+        self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-贸易材料明细查询
     ///
     /// 跨境-贸易材料明细查询。
     @inlinable
-    public func queryTrade(tradeFileId: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
-        try await self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), logger: logger, on: eventLoop)
+    public func queryTrade(tradeFileId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTradeResponse {
+        try await self.queryTrade(QueryTradeRequest(tradeFileId: tradeFileId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

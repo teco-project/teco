@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Live {
     ///
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
-    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
-        self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
+        self.client.execute(action: "DescribeAllStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个时间点所有流的下行播放数据
     ///
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
-    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
-        try await self.client.execute(action: "DescribeAllStreamPlayInfoList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAllStreamPlayInfoList(_ input: DescribeAllStreamPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
+        try await self.client.execute(action: "DescribeAllStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询某个时间点所有流的下行播放数据
     ///
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
-    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
-        self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
+        self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询某个时间点所有流的下行播放数据
     ///
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
-    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
-        try await self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), logger: logger, on: eventLoop)
+    public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
+        try await self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
     }
 }

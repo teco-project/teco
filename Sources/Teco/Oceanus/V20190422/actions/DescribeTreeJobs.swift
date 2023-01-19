@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Oceanus {
     ///
     /// 生成树状作业显示结构
     @inlinable
-    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
-        self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
+        self.client.execute(action: "DescribeTreeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
     @inlinable
-    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
-        try await self.client.execute(action: "DescribeTreeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTreeJobs(_ input: DescribeTreeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
+        try await self.client.execute(action: "DescribeTreeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
     @inlinable
-    public func describeTreeJobs(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
-        self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func describeTreeJobs(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
+        self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
     @inlinable
-    public func describeTreeJobs(workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
-        try await self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func describeTreeJobs(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
+        try await self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

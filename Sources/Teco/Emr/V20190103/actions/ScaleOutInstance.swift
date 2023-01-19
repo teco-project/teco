@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -203,31 +203,31 @@ extension Emr {
     ///
     /// 扩容节点
     @inlinable
-    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstanceResponse> {
-        self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstanceResponse> {
+        self.client.execute(action: "ScaleOutInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例扩容
     ///
     /// 扩容节点
     @inlinable
-    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
-        try await self.client.execute(action: "ScaleOutInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scaleOutInstance(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
+        try await self.client.execute(action: "ScaleOutInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例扩容
     ///
     /// 扩容节点
     @inlinable
-    public func scaleOutInstance(timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, taskCount: UInt64? = nil, coreCount: UInt64? = nil, unNecessaryNodeList: [UInt64]? = nil, routerCount: UInt64? = nil, softDeployInfo: [UInt64]? = nil, serviceNodeInfo: [UInt64]? = nil, disasterRecoverGroupIds: [String]? = nil, tags: [Tag]? = nil, hardwareResourceType: String? = nil, podSpec: PodSpec? = nil, clickHouseClusterName: String? = nil, clickHouseClusterType: String? = nil, yarnNodeLabel: String? = nil, podParameter: PodParameter? = nil, masterCount: UInt64? = nil, startServiceAfterScaleOut: String? = nil, zoneId: Int64? = nil, subnetId: String? = nil, scaleOutServiceConfAssign: String? = nil, autoRenew: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstanceResponse> {
-        self.scaleOutInstance(ScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, instanceId: instanceId, payMode: payMode, clientToken: clientToken, preExecutedFileSettings: preExecutedFileSettings, taskCount: taskCount, coreCount: coreCount, unNecessaryNodeList: unNecessaryNodeList, routerCount: routerCount, softDeployInfo: softDeployInfo, serviceNodeInfo: serviceNodeInfo, disasterRecoverGroupIds: disasterRecoverGroupIds, tags: tags, hardwareResourceType: hardwareResourceType, podSpec: podSpec, clickHouseClusterName: clickHouseClusterName, clickHouseClusterType: clickHouseClusterType, yarnNodeLabel: yarnNodeLabel, podParameter: podParameter, masterCount: masterCount, startServiceAfterScaleOut: startServiceAfterScaleOut, zoneId: zoneId, subnetId: subnetId, scaleOutServiceConfAssign: scaleOutServiceConfAssign, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    public func scaleOutInstance(timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, taskCount: UInt64? = nil, coreCount: UInt64? = nil, unNecessaryNodeList: [UInt64]? = nil, routerCount: UInt64? = nil, softDeployInfo: [UInt64]? = nil, serviceNodeInfo: [UInt64]? = nil, disasterRecoverGroupIds: [String]? = nil, tags: [Tag]? = nil, hardwareResourceType: String? = nil, podSpec: PodSpec? = nil, clickHouseClusterName: String? = nil, clickHouseClusterType: String? = nil, yarnNodeLabel: String? = nil, podParameter: PodParameter? = nil, masterCount: UInt64? = nil, startServiceAfterScaleOut: String? = nil, zoneId: Int64? = nil, subnetId: String? = nil, scaleOutServiceConfAssign: String? = nil, autoRenew: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstanceResponse> {
+        self.scaleOutInstance(ScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, instanceId: instanceId, payMode: payMode, clientToken: clientToken, preExecutedFileSettings: preExecutedFileSettings, taskCount: taskCount, coreCount: coreCount, unNecessaryNodeList: unNecessaryNodeList, routerCount: routerCount, softDeployInfo: softDeployInfo, serviceNodeInfo: serviceNodeInfo, disasterRecoverGroupIds: disasterRecoverGroupIds, tags: tags, hardwareResourceType: hardwareResourceType, podSpec: podSpec, clickHouseClusterName: clickHouseClusterName, clickHouseClusterType: clickHouseClusterType, yarnNodeLabel: yarnNodeLabel, podParameter: podParameter, masterCount: masterCount, startServiceAfterScaleOut: startServiceAfterScaleOut, zoneId: zoneId, subnetId: subnetId, scaleOutServiceConfAssign: scaleOutServiceConfAssign, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例扩容
     ///
     /// 扩容节点
     @inlinable
-    public func scaleOutInstance(timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, taskCount: UInt64? = nil, coreCount: UInt64? = nil, unNecessaryNodeList: [UInt64]? = nil, routerCount: UInt64? = nil, softDeployInfo: [UInt64]? = nil, serviceNodeInfo: [UInt64]? = nil, disasterRecoverGroupIds: [String]? = nil, tags: [Tag]? = nil, hardwareResourceType: String? = nil, podSpec: PodSpec? = nil, clickHouseClusterName: String? = nil, clickHouseClusterType: String? = nil, yarnNodeLabel: String? = nil, podParameter: PodParameter? = nil, masterCount: UInt64? = nil, startServiceAfterScaleOut: String? = nil, zoneId: Int64? = nil, subnetId: String? = nil, scaleOutServiceConfAssign: String? = nil, autoRenew: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
-        try await self.scaleOutInstance(ScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, instanceId: instanceId, payMode: payMode, clientToken: clientToken, preExecutedFileSettings: preExecutedFileSettings, taskCount: taskCount, coreCount: coreCount, unNecessaryNodeList: unNecessaryNodeList, routerCount: routerCount, softDeployInfo: softDeployInfo, serviceNodeInfo: serviceNodeInfo, disasterRecoverGroupIds: disasterRecoverGroupIds, tags: tags, hardwareResourceType: hardwareResourceType, podSpec: podSpec, clickHouseClusterName: clickHouseClusterName, clickHouseClusterType: clickHouseClusterType, yarnNodeLabel: yarnNodeLabel, podParameter: podParameter, masterCount: masterCount, startServiceAfterScaleOut: startServiceAfterScaleOut, zoneId: zoneId, subnetId: subnetId, scaleOutServiceConfAssign: scaleOutServiceConfAssign, autoRenew: autoRenew), logger: logger, on: eventLoop)
+    public func scaleOutInstance(timeUnit: String, timeSpan: UInt64, instanceId: String, payMode: UInt64, clientToken: String? = nil, preExecutedFileSettings: [PreExecuteFileSettings]? = nil, taskCount: UInt64? = nil, coreCount: UInt64? = nil, unNecessaryNodeList: [UInt64]? = nil, routerCount: UInt64? = nil, softDeployInfo: [UInt64]? = nil, serviceNodeInfo: [UInt64]? = nil, disasterRecoverGroupIds: [String]? = nil, tags: [Tag]? = nil, hardwareResourceType: String? = nil, podSpec: PodSpec? = nil, clickHouseClusterName: String? = nil, clickHouseClusterType: String? = nil, yarnNodeLabel: String? = nil, podParameter: PodParameter? = nil, masterCount: UInt64? = nil, startServiceAfterScaleOut: String? = nil, zoneId: Int64? = nil, subnetId: String? = nil, scaleOutServiceConfAssign: String? = nil, autoRenew: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstanceResponse {
+        try await self.scaleOutInstance(ScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, instanceId: instanceId, payMode: payMode, clientToken: clientToken, preExecutedFileSettings: preExecutedFileSettings, taskCount: taskCount, coreCount: coreCount, unNecessaryNodeList: unNecessaryNodeList, routerCount: routerCount, softDeployInfo: softDeployInfo, serviceNodeInfo: serviceNodeInfo, disasterRecoverGroupIds: disasterRecoverGroupIds, tags: tags, hardwareResourceType: hardwareResourceType, podSpec: podSpec, clickHouseClusterName: clickHouseClusterName, clickHouseClusterType: clickHouseClusterType, yarnNodeLabel: yarnNodeLabel, podParameter: podParameter, masterCount: masterCount, startServiceAfterScaleOut: startServiceAfterScaleOut, zoneId: zoneId, subnetId: subnetId, scaleOutServiceConfAssign: scaleOutServiceConfAssign, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Iotvideo {
     ///
     /// 本接口用于编辑固件信息
     @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
-        self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editFirmware(_ input: EditFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
+        self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑固件信息
     ///
     /// 本接口用于编辑固件信息
     @inlinable
-    public func editFirmware(_ input: EditFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        try await self.client.execute(action: "EditFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editFirmware(_ input: EditFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
+        try await self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑固件信息
     ///
     /// 本接口用于编辑固件信息
     @inlinable
-    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
-        self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), logger: logger, on: eventLoop)
+    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
+        self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑固件信息
     ///
     /// 本接口用于编辑固件信息
     @inlinable
-    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        try await self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), logger: logger, on: eventLoop)
+    public func editFirmware(productID: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
+        try await self.editFirmware(EditFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
     }
 }

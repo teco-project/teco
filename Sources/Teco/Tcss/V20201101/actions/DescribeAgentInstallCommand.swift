@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tcss {
 
     /// 查询agent安装命令
     @inlinable
-    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentInstallCommandResponse> {
-        self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentInstallCommandResponse> {
+        self.client.execute(action: "DescribeAgentInstallCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询agent安装命令
     @inlinable
-    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
-        try await self.client.execute(action: "DescribeAgentInstallCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAgentInstallCommand(_ input: DescribeAgentInstallCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
+        try await self.client.execute(action: "DescribeAgentInstallCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询agent安装命令
     @inlinable
-    public func describeAgentInstallCommand(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, tagIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentInstallCommandResponse> {
-        self.describeAgentInstallCommand(DescribeAgentInstallCommandRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, tagIds: tagIds), logger: logger, on: eventLoop)
+    public func describeAgentInstallCommand(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentInstallCommandResponse> {
+        self.describeAgentInstallCommand(DescribeAgentInstallCommandRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询agent安装命令
     @inlinable
-    public func describeAgentInstallCommand(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, tagIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
-        try await self.describeAgentInstallCommand(DescribeAgentInstallCommandRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, tagIds: tagIds), logger: logger, on: eventLoop)
+    public func describeAgentInstallCommand(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentInstallCommandResponse {
+        try await self.describeAgentInstallCommand(DescribeAgentInstallCommandRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
     }
 }

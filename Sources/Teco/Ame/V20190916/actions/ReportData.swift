@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ame {
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
     @inlinable
-    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
-        self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reportData(_ input: ReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
+        self.client.execute(action: "ReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
     @inlinable
-    public func reportData(_ input: ReportDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
-        try await self.client.execute(action: "ReportData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reportData(_ input: ReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
+        try await self.client.execute(action: "ReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
     @inlinable
-    public func reportData(reportData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
-        self.reportData(ReportDataRequest(reportData: reportData), logger: logger, on: eventLoop)
+    public func reportData(reportData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
+        self.reportData(ReportDataRequest(reportData: reportData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
     @inlinable
-    public func reportData(reportData: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
-        try await self.reportData(ReportDataRequest(reportData: reportData), logger: logger, on: eventLoop)
+    public func reportData(reportData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
+        try await self.reportData(ReportDataRequest(reportData: reportData), region: region, logger: logger, on: eventLoop)
     }
 }

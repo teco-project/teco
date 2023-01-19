@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Billing {
 
     /// 获取COS产品用量明细
     @inlinable
-    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageCosDetailByDateResponse> {
-        self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageCosDetailByDateResponse> {
+        self.client.execute(action: "DescribeDosageCosDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取COS产品用量明细
     @inlinable
-    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
-        try await self.client.execute(action: "DescribeDosageCosDetailByDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDosageCosDetailByDate(_ input: DescribeDosageCosDetailByDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
+        try await self.client.execute(action: "DescribeDosageCosDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取COS产品用量明细
     @inlinable
-    public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageCosDetailByDateResponse> {
-        self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), logger: logger, on: eventLoop)
+    public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageCosDetailByDateResponse> {
+        self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取COS产品用量明细
     @inlinable
-    public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
-        try await self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), logger: logger, on: eventLoop)
+    public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
+        try await self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), region: region, logger: logger, on: eventLoop)
     }
 }

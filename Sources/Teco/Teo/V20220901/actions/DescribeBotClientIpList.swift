@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Teo {
     ///
     /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
     @inlinable
-    public func describeBotClientIpList(_ input: DescribeBotClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotClientIpListResponse> {
-        self.client.execute(action: "DescribeBotClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBotClientIpList(_ input: DescribeBotClientIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotClientIpListResponse> {
+        self.client.execute(action: "DescribeBotClientIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot攻击客户端Ip信息
     ///
     /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
     @inlinable
-    public func describeBotClientIpList(_ input: DescribeBotClientIpListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
-        try await self.client.execute(action: "DescribeBotClientIpList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBotClientIpList(_ input: DescribeBotClientIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
+        try await self.client.execute(action: "DescribeBotClientIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Bot攻击客户端Ip信息
     ///
     /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
     @inlinable
-    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotClientIpListResponse> {
-        self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotClientIpListResponse> {
+        self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot攻击客户端Ip信息
     ///
     /// 本接口（DescribeBotClientIpList）用于查询Bot攻击客户端Ip信息列表。
     @inlinable
-    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
-        try await self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeBotClientIpList(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotClientIpListResponse {
+        try await self.describeBotClientIpList(DescribeBotClientIpListRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,31 +116,31 @@ extension Ocr {
     ///
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
-    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PassportOCRResponse> {
-        self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func passportOCR(_ input: PassportOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PassportOCRResponse> {
+        self.client.execute(action: "PassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 护照识别（中国大陆地区护照）
     ///
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
-    public func passportOCR(_ input: PassportOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
-        try await self.client.execute(action: "PassportOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func passportOCR(_ input: PassportOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
+        try await self.client.execute(action: "PassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 护照识别（中国大陆地区护照）
     ///
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
-    public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PassportOCRResponse> {
-        self.passportOCR(PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), logger: logger, on: eventLoop)
+    public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PassportOCRResponse> {
+        self.passportOCR(PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 护照识别（中国大陆地区护照）
     ///
     /// 本接口支持中国大陆地区护照个人资料页多个字段的检测与识别。已支持字段包括英文姓名、中文姓名、国家码、护照号、出生地、出生日期、国籍英文、性别英文、有效期、签发地点英文、签发日期、持证人签名、护照机读码（MRZ码）等。
     @inlinable
-    public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
-        try await self.passportOCR(PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), logger: logger, on: eventLoop)
+    public func passportOCR(imageBase64: String? = nil, imageUrl: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PassportOCRResponse {
+        try await self.passportOCR(PassportOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

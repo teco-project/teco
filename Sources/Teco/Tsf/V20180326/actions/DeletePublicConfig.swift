@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 删除公共配置项
     @inlinable
-    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublicConfigResponse> {
-        self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePublicConfig(_ input: DeletePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublicConfigResponse> {
+        self.client.execute(action: "DeletePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除公共配置项
     @inlinable
-    public func deletePublicConfig(_ input: DeletePublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
-        try await self.client.execute(action: "DeletePublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePublicConfig(_ input: DeletePublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
+        try await self.client.execute(action: "DeletePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除公共配置项
     @inlinable
-    public func deletePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublicConfigResponse> {
-        self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deletePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublicConfigResponse> {
+        self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除公共配置项
     @inlinable
-    public func deletePublicConfig(configId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
-        try await self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), logger: logger, on: eventLoop)
+    public func deletePublicConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublicConfigResponse {
+        try await self.deletePublicConfig(DeletePublicConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 }

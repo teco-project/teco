@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -115,25 +115,25 @@ extension Tsf {
 
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
-        self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchBusinessLog(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
+        self.client.execute(action: "SearchBusinessLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(_ input: SearchBusinessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
-        try await self.client.execute(action: "SearchBusinessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchBusinessLog(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
+        try await self.client.execute(action: "SearchBusinessLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
-        self.searchBusinessLog(SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
+    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchBusinessLogResponse> {
+        self.searchBusinessLog(SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
-        try await self.searchBusinessLog(SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), logger: logger, on: eventLoop)
+    public func searchBusinessLog(configId: String, instanceIds: [String]? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, orderType: String? = nil, searchWords: [String]? = nil, groupIds: [String]? = nil, searchWordType: String? = nil, batchType: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchBusinessLogResponse {
+        try await self.searchBusinessLog(SearchBusinessLogRequest(configId: configId, instanceIds: instanceIds, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderBy: orderBy, orderType: orderType, searchWords: searchWords, groupIds: groupIds, searchWordType: searchWordType, batchType: batchType, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
     }
 }

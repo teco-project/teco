@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,31 +99,31 @@ extension Tiw {
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
-        self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
+        self.client.execute(action: "DescribeWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
-        try await self.client.execute(action: "DescribeWhiteboardPush", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWhiteboardPush(_ input: DescribeWhiteboardPushRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
+        try await self.client.execute(action: "DescribeWhiteboardPush", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
-        self.describeWhiteboardPush(DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteboardPushResponse> {
+        self.describeWhiteboardPush(DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询白板推流任务
     ///
     /// 查询推流任务状态与结果
     @inlinable
-    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
-        try await self.describeWhiteboardPush(DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeWhiteboardPush(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteboardPushResponse {
+        try await self.describeWhiteboardPush(DescribeWhiteboardPushRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

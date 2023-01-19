@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Cwp {
 
     /// 导出篡改事件列表
     @inlinable
-    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportWebPageEventListResponse> {
-        self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportWebPageEventListResponse> {
+        self.client.execute(action: "ExportWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出篡改事件列表
     @inlinable
-    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
-        try await self.client.execute(action: "ExportWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportWebPageEventList(_ input: ExportWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
+        try await self.client.execute(action: "ExportWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出篡改事件列表
     @inlinable
-    public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportWebPageEventListResponse> {
-        self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportWebPageEventListResponse> {
+        self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出篡改事件列表
     @inlinable
-    public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
-        try await self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
+        try await self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

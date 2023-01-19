@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ccc {
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
-        self.client.execute(action: "DescribeStaffStatusMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
+        self.client.execute(action: "DescribeStaffStatusMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
-        try await self.client.execute(action: "DescribeStaffStatusMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStaffStatusMetrics(_ input: DescribeStaffStatusMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
+        try await self.client.execute(action: "DescribeStaffStatusMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
-        self.describeStaffStatusMetrics(DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStaffStatusMetricsResponse> {
+        self.describeStaffStatusMetrics(DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取坐席实时状态统计指标
     @inlinable
-    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
-        try await self.describeStaffStatusMetrics(DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList), logger: logger, on: eventLoop)
+    public func describeStaffStatusMetrics(sdkAppId: Int64, staffList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStaffStatusMetricsResponse {
+        try await self.describeStaffStatusMetrics(DescribeStaffStatusMetricsRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
     }
 }

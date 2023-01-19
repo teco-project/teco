@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Organization {
 
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
-        self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
+        self.client.execute(action: "DescribeOrganizationMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
-        try await self.client.execute(action: "DescribeOrganizationMembers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrganizationMembers(_ input: DescribeOrganizationMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
+        try await self.client.execute(action: "DescribeOrganizationMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
-        self.describeOrganizationMembers(DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), logger: logger, on: eventLoop)
+    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationMembersResponse> {
+        self.describeOrganizationMembers(DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织成员列表
     @inlinable
-    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
-        try await self.describeOrganizationMembers(DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), logger: logger, on: eventLoop)
+    public func describeOrganizationMembers(offset: UInt64, limit: UInt64, lang: String? = nil, searchKey: String? = nil, authName: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationMembersResponse {
+        try await self.describeOrganizationMembers(DescribeOrganizationMembersRequest(offset: offset, limit: limit, lang: lang, searchKey: searchKey, authName: authName, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cat {
 
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
-        self.client.execute(action: "UpdateProbeTaskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
+        self.client.execute(action: "UpdateProbeTaskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
-        try await self.client.execute(action: "UpdateProbeTaskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProbeTaskAttributes(_ input: UpdateProbeTaskAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
+        try await self.client.execute(action: "UpdateProbeTaskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
-        self.updateProbeTaskAttributes(UpdateProbeTaskAttributesRequest(taskId: taskId, name: name), logger: logger, on: eventLoop)
+    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskAttributesResponse> {
+        self.updateProbeTaskAttributes(UpdateProbeTaskAttributesRequest(taskId: taskId, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新探测任务属性
     @inlinable
-    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
-        try await self.updateProbeTaskAttributes(UpdateProbeTaskAttributesRequest(taskId: taskId, name: name), logger: logger, on: eventLoop)
+    public func updateProbeTaskAttributes(taskId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskAttributesResponse {
+        try await self.updateProbeTaskAttributes(UpdateProbeTaskAttributesRequest(taskId: taskId, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

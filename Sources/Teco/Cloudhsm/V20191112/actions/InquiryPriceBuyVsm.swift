@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Cloudhsm {
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
-        self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
+        self.client.execute(action: "InquiryPriceBuyVsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 询价
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
-        try await self.client.execute(action: "InquiryPriceBuyVsm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceBuyVsm(_ input: InquiryPriceBuyVsmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
+        try await self.client.execute(action: "InquiryPriceBuyVsm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 询价
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
-        self.inquiryPriceBuyVsm(InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), logger: logger, on: eventLoop)
+    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceBuyVsmResponse> {
+        self.inquiryPriceBuyVsm(InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 询价
     ///
     /// 购买询价接口
     @inlinable
-    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
-        try await self.inquiryPriceBuyVsm(InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), logger: logger, on: eventLoop)
+    public func inquiryPriceBuyVsm(goodsNum: Int64, payMode: Int64, timeSpan: String, timeUnit: String, currency: String? = nil, type: String? = nil, hsmType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceBuyVsmResponse {
+        try await self.inquiryPriceBuyVsm(InquiryPriceBuyVsmRequest(goodsNum: goodsNum, payMode: payMode, timeSpan: timeSpan, timeUnit: timeUnit, currency: currency, type: type, hsmType: hsmType), region: region, logger: logger, on: eventLoop)
     }
 }

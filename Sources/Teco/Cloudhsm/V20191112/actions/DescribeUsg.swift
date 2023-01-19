@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cloudhsm {
     ///
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
-    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgResponse> {
-        self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsg(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgResponse> {
+        self.client.execute(action: "DescribeUsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户安全组列表
     ///
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
-    public func describeUsg(_ input: DescribeUsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
-        try await self.client.execute(action: "DescribeUsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsg(_ input: DescribeUsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
+        try await self.client.execute(action: "DescribeUsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户安全组列表
     ///
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
-    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgResponse> {
-        self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgResponse> {
+        self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户安全组列表
     ///
     /// 根据用户的AppId获取用户安全组列表
     @inlinable
-    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
-        try await self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), logger: logger, on: eventLoop)
+    public func describeUsg(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgResponse {
+        try await self.describeUsg(DescribeUsgRequest(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
     }
 }

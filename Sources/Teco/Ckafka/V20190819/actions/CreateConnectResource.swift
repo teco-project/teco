@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Ckafka {
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
-        self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createConnectResource(_ input: CreateConnectResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
+        self.client.execute(action: "CreateConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(_ input: CreateConnectResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
-        try await self.client.execute(action: "CreateConnectResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createConnectResource(_ input: CreateConnectResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
+        try await self.client.execute(action: "CreateConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
-        self.createConnectResource(CreateConnectResourceRequest(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), logger: logger, on: eventLoop)
+    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConnectResourceResponse> {
+        self.createConnectResource(CreateConnectResourceRequest(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Datahub连接源
     @inlinable
-    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
-        try await self.createConnectResource(CreateConnectResourceRequest(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), logger: logger, on: eventLoop)
+    public func createConnectResource(resourceName: String, type: String, description: String? = nil, dtsConnectParam: DtsConnectParam? = nil, mongoDBConnectParam: MongoDBConnectParam? = nil, esConnectParam: EsConnectParam? = nil, clickHouseConnectParam: ClickHouseConnectParam? = nil, mySQLConnectParam: MySQLConnectParam? = nil, postgreSQLConnectParam: PostgreSQLConnectParam? = nil, mariaDBConnectParam: MariaDBConnectParam? = nil, sqlServerConnectParam: SQLServerConnectParam? = nil, dorisConnectParam: DorisConnectParam? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConnectResourceResponse {
+        try await self.createConnectResource(CreateConnectResourceRequest(resourceName: resourceName, type: type, description: description, dtsConnectParam: dtsConnectParam, mongoDBConnectParam: mongoDBConnectParam, esConnectParam: esConnectParam, clickHouseConnectParam: clickHouseConnectParam, mySQLConnectParam: mySQLConnectParam, postgreSQLConnectParam: postgreSQLConnectParam, mariaDBConnectParam: mariaDBConnectParam, sqlServerConnectParam: sqlServerConnectParam, dorisConnectParam: dorisConnectParam), region: region, logger: logger, on: eventLoop)
     }
 }

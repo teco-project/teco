@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
-        self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
+        self.client.execute(action: "DescribeDBInstanceInter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
-        try await self.client.execute(action: "DescribeDBInstanceInter", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBInstanceInter(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
+        try await self.client.execute(action: "DescribeDBInstanceInter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
-        self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
+        self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
-    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
-        try await self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), logger: logger, on: eventLoop)
+    public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
+        try await self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

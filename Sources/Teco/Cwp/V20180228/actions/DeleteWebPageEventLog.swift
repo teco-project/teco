@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -35,31 +35,31 @@ extension Cwp {
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
-        self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
+        self.client.execute(action: "DeleteWebPageEventLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
-        try await self.client.execute(action: "DeleteWebPageEventLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
+        try await self.client.execute(action: "DeleteWebPageEventLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
-        self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), logger: logger, on: eventLoop)
+    public func deleteWebPageEventLog(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
+        self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
     @inlinable
-    public func deleteWebPageEventLog(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
-        try await self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), logger: logger, on: eventLoop)
+    public func deleteWebPageEventLog(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
+        try await self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

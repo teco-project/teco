@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dayu {
     ///
     /// 添加L4转发规则
     @inlinable
-    public func createNewL4Rules(_ input: CreateNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL4RulesResponse> {
-        self.client.execute(action: "CreateNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNewL4Rules(_ input: CreateNewL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL4RulesResponse> {
+        self.client.execute(action: "CreateNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加四层转发规则
     ///
     /// 添加L4转发规则
     @inlinable
-    public func createNewL4Rules(_ input: CreateNewL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
-        try await self.client.execute(action: "CreateNewL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNewL4Rules(_ input: CreateNewL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
+        try await self.client.execute(action: "CreateNewL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加四层转发规则
     ///
     /// 添加L4转发规则
     @inlinable
-    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL4RulesResponse> {
-        self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNewL4RulesResponse> {
+        self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加四层转发规则
     ///
     /// 添加L4转发规则
     @inlinable
-    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
-        try await self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), logger: logger, on: eventLoop)
+    public func createNewL4Rules(business: String, idList: [String], vipList: [String], rules: [L4RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNewL4RulesResponse {
+        try await self.createNewL4Rules(CreateNewL4RulesRequest(business: business, idList: idList, vipList: vipList, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

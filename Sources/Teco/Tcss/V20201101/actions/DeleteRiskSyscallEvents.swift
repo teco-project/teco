@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 删除运行时高危系统调用事件
     @inlinable
-    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
-        self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
+        self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用事件
     @inlinable
-    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
-        try await self.client.execute(action: "DeleteRiskSyscallEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
+        try await self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除运行时高危系统调用事件
     @inlinable
-    public func deleteRiskSyscallEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
-        self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), logger: logger, on: eventLoop)
+    public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
+        self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用事件
     @inlinable
-    public func deleteRiskSyscallEvents(eventIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
-        try await self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), logger: logger, on: eventLoop)
+    public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
+        try await self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

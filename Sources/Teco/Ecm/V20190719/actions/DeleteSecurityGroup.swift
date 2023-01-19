@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,8 +45,8 @@ extension Ecm {
     /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable
-    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
-        self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
+        self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全组
@@ -55,8 +55,8 @@ extension Ecm {
     /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable
-    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
-        try await self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
+        try await self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除安全组
@@ -65,8 +65,8 @@ extension Ecm {
     /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable
-    public func deleteSecurityGroup(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
-        self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
+        self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除安全组
@@ -75,7 +75,7 @@ extension Ecm {
     /// 安全组实例ID如果在其他安全组的规则中被引用，则无法直接删除。这种情况下，需要先进行规则修改，再删除安全组。
     /// 删除的安全组无法再找回，请谨慎调用。
     @inlinable
-    public func deleteSecurityGroup(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
-        try await self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
+    public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
+        try await self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

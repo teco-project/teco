@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
-    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcQuotaResponse> {
-        self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcQuotaResponse> {
+        self.client.execute(action: "DescribeVpcQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石私有网络的配额
     ///
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
-    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
-        try await self.client.execute(action: "DescribeVpcQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcQuota(_ input: DescribeVpcQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
+        try await self.client.execute(action: "DescribeVpcQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑石私有网络的配额
     ///
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
-    public func describeVpcQuota(typeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcQuotaResponse> {
-        self.describeVpcQuota(DescribeVpcQuotaRequest(typeIds: typeIds), logger: logger, on: eventLoop)
+    public func describeVpcQuota(typeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcQuotaResponse> {
+        self.describeVpcQuota(DescribeVpcQuotaRequest(typeIds: typeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石私有网络的配额
     ///
     /// 本接口（DescribeVpcQuota）用于查询用户VPC相关配额限制。
     @inlinable
-    public func describeVpcQuota(typeIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
-        try await self.describeVpcQuota(DescribeVpcQuotaRequest(typeIds: typeIds), logger: logger, on: eventLoop)
+    public func describeVpcQuota(typeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcQuotaResponse {
+        try await self.describeVpcQuota(DescribeVpcQuotaRequest(typeIds: typeIds), region: region, logger: logger, on: eventLoop)
     }
 }

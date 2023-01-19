@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Cii {
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
-        self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReportClassify(_ input: DescribeReportClassifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
+        self.client.execute(action: "DescribeReportClassify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(_ input: DescribeReportClassifyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
-        try await self.client.execute(action: "DescribeReportClassify", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReportClassify(_ input: DescribeReportClassifyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
+        try await self.client.execute(action: "DescribeReportClassify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(serviceType: String, fileList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
-        self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), logger: logger, on: eventLoop)
+    public func describeReportClassify(serviceType: String, fileList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
+        self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 报告自动分类
     ///
     /// 辅助用户对批量报告自动分类
     @inlinable
-    public func describeReportClassify(serviceType: String, fileList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
-        try await self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), logger: logger, on: eventLoop)
+    public func describeReportClassify(serviceType: String, fileList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
+        try await self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), region: region, logger: logger, on: eventLoop)
     }
 }

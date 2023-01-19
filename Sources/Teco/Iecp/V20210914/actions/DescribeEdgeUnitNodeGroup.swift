@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Iecp {
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
-        self.client.execute(action: "DescribeEdgeUnitNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
+        self.client.execute(action: "DescribeEdgeUnitNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitNodeGroup(_ input: DescribeEdgeUnitNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
-        self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
+        self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元NodeGroup列表
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
-        try await self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), logger: logger, on: eventLoop)
+    public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
+        try await self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

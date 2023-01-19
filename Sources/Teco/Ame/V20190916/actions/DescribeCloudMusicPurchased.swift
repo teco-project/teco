@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ame {
     ///
     /// 获取授权项目下已购云音乐列表
     @inlinable
-    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicPurchasedResponse> {
-        self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicPurchasedResponse> {
+        self.client.execute(action: "DescribeCloudMusicPurchased", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目已购云音乐列表
     ///
     /// 获取授权项目下已购云音乐列表
     @inlinable
-    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
-        try await self.client.execute(action: "DescribeCloudMusicPurchased", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudMusicPurchased(_ input: DescribeCloudMusicPurchasedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
+        try await self.client.execute(action: "DescribeCloudMusicPurchased", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取授权项目已购云音乐列表
     ///
     /// 获取授权项目下已购云音乐列表
     @inlinable
-    public func describeCloudMusicPurchased(authInfoId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicPurchasedResponse> {
-        self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), logger: logger, on: eventLoop)
+    public func describeCloudMusicPurchased(authInfoId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicPurchasedResponse> {
+        self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目已购云音乐列表
     ///
     /// 获取授权项目下已购云音乐列表
     @inlinable
-    public func describeCloudMusicPurchased(authInfoId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
-        try await self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), logger: logger, on: eventLoop)
+    public func describeCloudMusicPurchased(authInfoId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicPurchasedResponse {
+        try await self.describeCloudMusicPurchased(DescribeCloudMusicPurchasedRequest(authInfoId: authInfoId), region: region, logger: logger, on: eventLoop)
     }
 }

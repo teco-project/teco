@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Cwp {
     ///
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
-    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServersAndRiskAndFirstInfoResponse> {
-        self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServersAndRiskAndFirstInfoResponse> {
+        self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获文件查杀概览信息
     ///
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
-    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
-        try await self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeServersAndRiskAndFirstInfo(_ input: DescribeServersAndRiskAndFirstInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
+        try await self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获文件查杀概览信息
     ///
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
-    public func describeServersAndRiskAndFirstInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServersAndRiskAndFirstInfoResponse> {
-        self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), logger: logger, on: eventLoop)
+    public func describeServersAndRiskAndFirstInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServersAndRiskAndFirstInfoResponse> {
+        self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获文件查杀概览信息
     ///
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
-    public func describeServersAndRiskAndFirstInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
-        try await self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), logger: logger, on: eventLoop)
+    public func describeServersAndRiskAndFirstInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
+        try await self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

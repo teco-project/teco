@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Bma {
     ///
     /// 版权保护-新建取证接口
     @inlinable
-    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRObtainResponse> {
-        self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRObtain(_ input: CreateCRObtainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRObtainResponse> {
+        self.client.execute(action: "CreateCRObtain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建取证
     ///
     /// 版权保护-新建取证接口
     @inlinable
-    public func createCRObtain(_ input: CreateCRObtainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
-        try await self.client.execute(action: "CreateCRObtain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRObtain(_ input: CreateCRObtainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
+        try await self.client.execute(action: "CreateCRObtain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建取证
     ///
     /// 版权保护-新建取证接口
     @inlinable
-    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRObtainResponse> {
-        self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), logger: logger, on: eventLoop)
+    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRObtainResponse> {
+        self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建取证
     ///
     /// 版权保护-新建取证接口
     @inlinable
-    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
-        try await self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), logger: logger, on: eventLoop)
+    public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
+        try await self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), region: region, logger: logger, on: eventLoop)
     }
 }

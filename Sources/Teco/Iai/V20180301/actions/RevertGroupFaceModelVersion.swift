@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
     @inlinable
-    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
+        self.client.execute(action: "RevertGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员库版本回滚
@@ -53,8 +53,8 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
     @inlinable
-    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        try await self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
+        try await self.client.execute(action: "RevertGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人员库版本回滚
@@ -62,8 +62,8 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
     @inlinable
-    public func revertGroupFaceModelVersion(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
-        self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevertGroupFaceModelVersionResponse> {
+        self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人员库版本回滚
@@ -71,7 +71,7 @@ extension Iai {
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
     /// 回滚操作会在10s内生效，回滚操作中，您对人员库的操作可能会失效。
     @inlinable
-    public func revertGroupFaceModelVersion(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
-        try await self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func revertGroupFaceModelVersion(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
+        try await self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

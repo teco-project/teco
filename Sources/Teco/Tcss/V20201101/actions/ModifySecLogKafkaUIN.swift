@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
-        self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
+        self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
-        try await self.client.execute(action: "ModifySecLogKafkaUIN", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
+        try await self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(dstUIN: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
-        self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), logger: logger, on: eventLoop)
+    public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
+        self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志kafkaUIN
     @inlinable
-    public func modifySecLogKafkaUIN(dstUIN: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
-        try await self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), logger: logger, on: eventLoop)
+    public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
+        try await self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }
 }

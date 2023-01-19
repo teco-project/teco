@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,8 +72,8 @@ extension As {
     /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
     @inlinable
-    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifecycleHooksResponse> {
-        self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifecycleHooksResponse> {
+        self.client.execute(action: "DescribeLifecycleHooks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询生命周期挂钩
@@ -82,8 +82,8 @@ extension As {
     /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
     @inlinable
-    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
-        try await self.client.execute(action: "DescribeLifecycleHooks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLifecycleHooks(_ input: DescribeLifecycleHooksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
+        try await self.client.execute(action: "DescribeLifecycleHooks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询生命周期挂钩
@@ -92,8 +92,8 @@ extension As {
     /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
     @inlinable
-    public func describeLifecycleHooks(lifecycleHookIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifecycleHooksResponse> {
-        self.describeLifecycleHooks(DescribeLifecycleHooksRequest(lifecycleHookIds: lifecycleHookIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeLifecycleHooks(lifecycleHookIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifecycleHooksResponse> {
+        self.describeLifecycleHooks(DescribeLifecycleHooksRequest(lifecycleHookIds: lifecycleHookIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询生命周期挂钩
@@ -102,7 +102,7 @@ extension As {
     /// * 可以根据伸缩组ID、生命周期挂钩ID或者生命周期挂钩名称等信息来查询生命周期挂钩的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的生命周期挂钩。
     @inlinable
-    public func describeLifecycleHooks(lifecycleHookIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
-        try await self.describeLifecycleHooks(DescribeLifecycleHooksRequest(lifecycleHookIds: lifecycleHookIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeLifecycleHooks(lifecycleHookIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifecycleHooksResponse {
+        try await self.describeLifecycleHooks(DescribeLifecycleHooksRequest(lifecycleHookIds: lifecycleHookIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

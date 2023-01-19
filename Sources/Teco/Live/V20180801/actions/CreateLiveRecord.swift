@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -122,8 +122,8 @@ extension Live {
     ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
-    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordResponse> {
-        self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveRecord(_ input: CreateLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordResponse> {
+        self.client.execute(action: "CreateLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务(已废弃,请使用新接口)
@@ -143,8 +143,8 @@ extension Live {
     ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
-    public func createLiveRecord(_ input: CreateLiveRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
-        try await self.client.execute(action: "CreateLiveRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveRecord(_ input: CreateLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
+        try await self.client.execute(action: "CreateLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建录制任务(已废弃,请使用新接口)
@@ -164,8 +164,8 @@ extension Live {
     ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
-    public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordResponse> {
-        self.createLiveRecord(CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), logger: logger, on: eventLoop)
+    public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveRecordResponse> {
+        self.createLiveRecord(CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建录制任务(已废弃,请使用新接口)
@@ -185,7 +185,7 @@ extension Live {
     ///   3. 为避免恶意或非主观的频繁 API 请求，对定时录制模式最大创建任务数做了限制：其中，当天可以创建的最大任务数不超过4000（不含已删除的任务）；当前时刻并发运行的任务数不超过400。有超出此限制的需要提工单申请。
     ///   4. 此调用方式暂时不支持海外推流录制。
     @inlinable
-    public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
-        try await self.createLiveRecord(CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), logger: logger, on: eventLoop)
+    public func createLiveRecord(streamName: String, appName: String? = nil, domainName: String? = nil, startTime: String? = nil, endTime: String? = nil, recordType: String? = nil, fileFormat: String? = nil, highlight: Int64? = nil, mixStream: Int64? = nil, streamParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveRecordResponse {
+        try await self.createLiveRecord(CreateLiveRecordRequest(streamName: streamName, appName: appName, domainName: domainName, startTime: startTime, endTime: endTime, recordType: recordType, fileFormat: fileFormat, highlight: highlight, mixStream: mixStream, streamParam: streamParam), region: region, logger: logger, on: eventLoop)
     }
 }

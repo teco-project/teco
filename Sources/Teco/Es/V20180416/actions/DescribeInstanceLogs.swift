@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Es {
     ///
     /// 查询用户该地域下符合条件的ES集群的日志
     @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
-        self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
+        self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询ES集群日志
     ///
     /// 查询用户该地域下符合条件的ES集群的日志
     @inlinable
-    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.client.execute(action: "DescribeInstanceLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceLogs(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询ES集群日志
     ///
     /// 查询用户该地域下符合条件的ES集群的日志
     @inlinable
-    public func describeInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
-        self.describeInstanceLogs(DescribeInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
+        self.describeInstanceLogs(DescribeInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询ES集群日志
     ///
     /// 查询用户该地域下符合条件的ES集群的日志
     @inlinable
-    public func describeInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.describeInstanceLogs(DescribeInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), logger: logger, on: eventLoop)
+    public func describeInstanceLogs(instanceId: String, logType: UInt64? = nil, searchKey: String? = nil, startTime: String? = nil, endTime: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderByType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
+        try await self.describeInstanceLogs(DescribeInstanceLogsRequest(instanceId: instanceId, logType: logType, searchKey: searchKey, startTime: startTime, endTime: endTime, offset: offset, limit: limit, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
     }
 }

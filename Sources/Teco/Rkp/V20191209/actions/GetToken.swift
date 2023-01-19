@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Rkp {
     ///
     /// 获取token接口。
     @inlinable
-    public func getToken(_ input: GetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTokenResponse> {
-        self.client.execute(action: "GetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getToken(_ input: GetTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTokenResponse> {
+        self.client.execute(action: "GetToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取token
     ///
     /// 获取token接口。
     @inlinable
-    public func getToken(_ input: GetTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTokenResponse {
-        try await self.client.execute(action: "GetToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getToken(_ input: GetTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTokenResponse {
+        try await self.client.execute(action: "GetToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取token
     ///
     /// 获取token接口。
     @inlinable
-    public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTokenResponse> {
-        self.getToken(GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), logger: logger, on: eventLoop)
+    public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTokenResponse> {
+        self.getToken(GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取token
     ///
     /// 获取token接口。
     @inlinable
-    public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTokenResponse {
-        try await self.getToken(GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), logger: logger, on: eventLoop)
+    public func getToken(businessId: Int64, scene: Int64, businessUserId: String? = nil, appClientIp: String? = nil, expireTime: Int64? = nil, oldToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTokenResponse {
+        try await self.getToken(GetTokenRequest(businessId: businessId, scene: scene, businessUserId: businessUserId, appClientIp: appClientIp, expireTime: expireTime, oldToken: oldToken), region: region, logger: logger, on: eventLoop)
     }
 }

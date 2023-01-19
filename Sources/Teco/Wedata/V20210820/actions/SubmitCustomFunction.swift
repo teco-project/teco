@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Wedata {
 
     /// 提交自定义函数
     @inlinable
-    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCustomFunctionResponse> {
-        self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCustomFunctionResponse> {
+        self.client.execute(action: "SubmitCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交自定义函数
     @inlinable
-    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
-        try await self.client.execute(action: "SubmitCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitCustomFunction(_ input: SubmitCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
+        try await self.client.execute(action: "SubmitCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交自定义函数
     @inlinable
-    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCustomFunctionResponse> {
-        self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), logger: logger, on: eventLoop)
+    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCustomFunctionResponse> {
+        self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交自定义函数
     @inlinable
-    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
-        try await self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), logger: logger, on: eventLoop)
+    public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
+        try await self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

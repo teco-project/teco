@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Iotexplorer {
     ///
     /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息
     @inlinable
-    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicPolicyResponse> {
-        self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicPolicyResponse> {
+        self.client.execute(action: "DescribeTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看Topic详情
     ///
     /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息
     @inlinable
-    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
-        try await self.client.execute(action: "DescribeTopicPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopicPolicy(_ input: DescribeTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
+        try await self.client.execute(action: "DescribeTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看Topic详情
     ///
     /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息
     @inlinable
-    public func describeTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicPolicyResponse> {
-        self.describeTopicPolicy(DescribeTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func describeTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicPolicyResponse> {
+        self.describeTopicPolicy(DescribeTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看Topic详情
     ///
     /// 本接口（DescribeTopicPolicy）用于查看Topic详细信息
     @inlinable
-    public func describeTopicPolicy(productId: String, topicName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
-        try await self.describeTopicPolicy(DescribeTopicPolicyRequest(productId: productId, topicName: topicName), logger: logger, on: eventLoop)
+    public func describeTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicPolicyResponse {
+        try await self.describeTopicPolicy(DescribeTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

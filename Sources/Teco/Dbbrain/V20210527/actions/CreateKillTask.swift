@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Dbbrain {
     ///
     /// 创建中断会话的任务。
     @inlinable
-    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKillTaskResponse> {
-        self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createKillTask(_ input: CreateKillTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKillTaskResponse> {
+        self.client.execute(action: "CreateKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建中断会话的任务
     ///
     /// 创建中断会话的任务。
     @inlinable
-    public func createKillTask(_ input: CreateKillTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
-        try await self.client.execute(action: "CreateKillTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createKillTask(_ input: CreateKillTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
+        try await self.client.execute(action: "CreateKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建中断会话的任务
     ///
     /// 创建中断会话的任务。
     @inlinable
-    public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKillTaskResponse> {
-        self.createKillTask(CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), logger: logger, on: eventLoop)
+    public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKillTaskResponse> {
+        self.createKillTask(CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建中断会话的任务
     ///
     /// 创建中断会话的任务。
     @inlinable
-    public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
-        try await self.createKillTask(CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), logger: logger, on: eventLoop)
+    public func createKillTask(instanceId: String, duration: Int64, host: String? = nil, db: String? = nil, command: String? = nil, info: String? = nil, user: String? = nil, time: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKillTaskResponse {
+        try await self.createKillTask(CreateKillTaskRequest(instanceId: instanceId, duration: duration, host: host, db: db, command: command, info: info, user: user, time: time, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

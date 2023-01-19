@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cme {
     ///
     ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
-    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
-        self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listMedia(_ input: ListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
+        self.client.execute(action: "ListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 浏览媒体
     ///
     ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
-    public func listMedia(_ input: ListMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
-        try await self.client.execute(action: "ListMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listMedia(_ input: ListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
+        try await self.client.execute(action: "ListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 浏览媒体
     ///
     ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
-    public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
-        self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
+        self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 浏览媒体
     ///
     ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
-    public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
-        try await self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), logger: logger, on: eventLoop)
+    public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
+        try await self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cynosdb {
 
     /// 查询实例维护时间窗
     @inlinable
-    public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintainPeriodResponse> {
-        self.client.execute(action: "DescribeMaintainPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintainPeriodResponse> {
+        self.client.execute(action: "DescribeMaintainPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例维护时间窗
     @inlinable
-    public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
-        try await self.client.execute(action: "DescribeMaintainPeriod", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMaintainPeriod(_ input: DescribeMaintainPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
+        try await self.client.execute(action: "DescribeMaintainPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例维护时间窗
     @inlinable
-    public func describeMaintainPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintainPeriodResponse> {
-        self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMaintainPeriod(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintainPeriodResponse> {
+        self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例维护时间窗
     @inlinable
-    public func describeMaintainPeriod(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
-        try await self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeMaintainPeriod(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintainPeriodResponse {
+        try await self.describeMaintainPeriod(DescribeMaintainPeriodRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

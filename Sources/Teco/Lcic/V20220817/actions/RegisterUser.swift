@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Lcic {
 
     /// 注册用户
     @inlinable
-    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterUserResponse> {
-        self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerUser(_ input: RegisterUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterUserResponse> {
+        self.client.execute(action: "RegisterUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册用户
     @inlinable
-    public func registerUser(_ input: RegisterUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
-        try await self.client.execute(action: "RegisterUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerUser(_ input: RegisterUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
+        try await self.client.execute(action: "RegisterUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册用户
     @inlinable
-    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterUserResponse> {
-        self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), logger: logger, on: eventLoop)
+    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterUserResponse> {
+        self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册用户
     @inlinable
-    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
-        try await self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), logger: logger, on: eventLoop)
+    public func registerUser(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterUserResponse {
+        try await self.registerUser(RegisterUserRequest(sdkAppId: sdkAppId, name: name, originId: originId, avatar: avatar), region: region, logger: logger, on: eventLoop)
     }
 }

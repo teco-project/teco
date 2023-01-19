@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Wedata {
 
     /// 批量重跑集成任务实例
     @inlinable
-    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRerunIntegrationTaskInstancesResponse> {
-        self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRerunIntegrationTaskInstancesResponse> {
+        self.client.execute(action: "BatchRerunIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量重跑集成任务实例
     @inlinable
-    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
-        try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchRerunIntegrationTaskInstances(_ input: BatchRerunIntegrationTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
+        try await self.client.execute(action: "BatchRerunIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量重跑集成任务实例
     @inlinable
-    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRerunIntegrationTaskInstancesResponse> {
-        self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRerunIntegrationTaskInstancesResponse> {
+        self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量重跑集成任务实例
     @inlinable
-    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
-        try await self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), logger: logger, on: eventLoop)
+    public func batchRerunIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRerunIntegrationTaskInstancesResponse {
+        try await self.batchRerunIntegrationTaskInstances(BatchRerunIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

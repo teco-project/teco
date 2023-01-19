@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iotvideo {
 
     /// 获取Category详情
     @inlinable
-    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCategoryResponse> {
-        self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCategory(_ input: DescribeCategoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCategoryResponse> {
+        self.client.execute(action: "DescribeCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Category详情
     @inlinable
-    public func describeCategory(_ input: DescribeCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
-        try await self.client.execute(action: "DescribeCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCategory(_ input: DescribeCategoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
+        try await self.client.execute(action: "DescribeCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Category详情
     @inlinable
-    public func describeCategory(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCategoryResponse> {
-        self.describeCategory(DescribeCategoryRequest(id: id), logger: logger, on: eventLoop)
+    public func describeCategory(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCategoryResponse> {
+        self.describeCategory(DescribeCategoryRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Category详情
     @inlinable
-    public func describeCategory(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
-        try await self.describeCategory(DescribeCategoryRequest(id: id), logger: logger, on: eventLoop)
+    public func describeCategory(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCategoryResponse {
+        try await self.describeCategory(DescribeCategoryRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

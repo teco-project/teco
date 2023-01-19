@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,25 +43,25 @@ extension Wedata {
 
     /// 查询函数分类
     @inlinable
-    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFunctionKindsResponse> {
-        self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFunctionKindsResponse> {
+        self.client.execute(action: "DescribeFunctionKinds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询函数分类
     @inlinable
-    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
-        try await self.client.execute(action: "DescribeFunctionKinds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFunctionKinds(_ input: DescribeFunctionKindsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
+        try await self.client.execute(action: "DescribeFunctionKinds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询函数分类
     @inlinable
-    public func describeFunctionKinds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFunctionKindsResponse> {
-        self.describeFunctionKinds(DescribeFunctionKindsRequest(), logger: logger, on: eventLoop)
+    public func describeFunctionKinds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFunctionKindsResponse> {
+        self.describeFunctionKinds(DescribeFunctionKindsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询函数分类
     @inlinable
-    public func describeFunctionKinds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
-        try await self.describeFunctionKinds(DescribeFunctionKindsRequest(), logger: logger, on: eventLoop)
+    public func describeFunctionKinds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFunctionKindsResponse {
+        try await self.describeFunctionKinds(DescribeFunctionKindsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
     @inlinable
-    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
-        self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
+        self.client.execute(action: "ModifyFlowLogAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
     @inlinable
-    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
-        try await self.client.execute(action: "ModifyFlowLogAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
+        try await self.client.execute(action: "ModifyFlowLogAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
     @inlinable
-    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
-        self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), logger: logger, on: eventLoop)
+    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
+        self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
     @inlinable
-    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
-        try await self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), logger: logger, on: eventLoop)
+    public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
+        try await self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), region: region, logger: logger, on: eventLoop)
     }
 }

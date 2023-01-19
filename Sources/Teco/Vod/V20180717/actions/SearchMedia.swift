@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -265,8 +265,8 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
-        self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchMedia(_ input: SearchMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
+        self.client.execute(action: "SearchMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体信息
@@ -304,8 +304,8 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(_ input: SearchMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
-        try await self.client.execute(action: "SearchMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchMedia(_ input: SearchMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
+        try await self.client.execute(action: "SearchMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索媒体信息
@@ -343,8 +343,8 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
-        self.searchMedia(SearchMediaRequest(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), logger: logger, on: eventLoop)
+    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchMediaResponse> {
+        self.searchMedia(SearchMediaRequest(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索媒体信息
@@ -382,7 +382,7 @@ extension Vod {
     /// - <b><a href="#p_offset">Offset</a> 和 <a href="#p_limit">Limit</a> 两个参数影响单次分页查询结果数。特别注意：当这2个值都缺省时，本接口最多只返回10条查询结果。</b>
     /// - <b>最大支持返回5000条搜索结果，超出部分不再支持查询。如果搜索结果量太大，建议使用更精细的筛选条件来减少搜索结果。</b>
     @inlinable
-    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
-        try await self.searchMedia(SearchMediaRequest(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), logger: logger, on: eventLoop)
+    public func searchMedia(subAppId: UInt64? = nil, fileIds: [String]? = nil, names: [String]? = nil, namePrefixes: [String]? = nil, descriptions: [String]? = nil, classIds: [Int64]? = nil, tags: [String]? = nil, categories: [String]? = nil, sourceTypes: [String]? = nil, streamIds: [String]? = nil, createTime: TimeRange? = nil, expireTime: TimeRange? = nil, sort: SortBy? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [String]? = nil, storageRegions: [String]? = nil, storageClasses: [String]? = nil, trtcSdkAppIds: [UInt64]? = nil, trtcRoomIds: [String]? = nil, text: String? = nil, sourceType: String? = nil, streamId: String? = nil, startTime: String? = nil, endTime: String? = nil, vids: [String]? = nil, vid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchMediaResponse {
+        try await self.searchMedia(SearchMediaRequest(subAppId: subAppId, fileIds: fileIds, names: names, namePrefixes: namePrefixes, descriptions: descriptions, classIds: classIds, tags: tags, categories: categories, sourceTypes: sourceTypes, streamIds: streamIds, createTime: createTime, expireTime: expireTime, sort: sort, offset: offset, limit: limit, filters: filters, storageRegions: storageRegions, storageClasses: storageClasses, trtcSdkAppIds: trtcSdkAppIds, trtcRoomIds: trtcRoomIds, text: text, sourceType: sourceType, streamId: streamId, startTime: startTime, endTime: endTime, vids: vids, vid: vid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,25 +107,25 @@ extension Ecm {
 
     /// 创建模块
     @inlinable
-    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModuleResponse> {
-        self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createModule(_ input: CreateModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModuleResponse> {
+        self.client.execute(action: "CreateModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建模块
     @inlinable
-    public func createModule(_ input: CreateModuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
-        try await self.client.execute(action: "CreateModule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createModule(_ input: CreateModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
+        try await self.client.execute(action: "CreateModule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建模块
     @inlinable
-    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModuleResponse> {
-        self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModuleResponse> {
+        self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建模块
     @inlinable
-    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
-        try await self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    public func createModule(moduleName: String, defaultBandWidth: Int64, defaultImageId: String, instanceType: String, defaultSystemDiskSize: Int64, defaultDataDiskSize: Int64, closeIpDirect: Bool? = nil, tagSpecification: [TagSpecification]? = nil, securityGroups: [String]? = nil, defaultBandWidthIn: Int64? = nil, disableWanIp: Bool? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModuleResponse {
+        try await self.createModule(CreateModuleRequest(moduleName: moduleName, defaultBandWidth: defaultBandWidth, defaultImageId: defaultImageId, instanceType: instanceType, defaultSystemDiskSize: defaultSystemDiskSize, defaultDataDiskSize: defaultDataDiskSize, closeIpDirect: closeIpDirect, tagSpecification: tagSpecification, securityGroups: securityGroups, defaultBandWidthIn: defaultBandWidthIn, disableWanIp: disableWanIp, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 }

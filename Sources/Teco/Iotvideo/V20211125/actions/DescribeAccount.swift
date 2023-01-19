@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Iotvideo {
 
     /// 获取消费版账号信息
     @inlinable
-    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountResponse> {
-        self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccount(_ input: DescribeAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountResponse> {
+        self.client.execute(action: "DescribeAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消费版账号信息
     @inlinable
-    public func describeAccount(_ input: DescribeAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
-        try await self.client.execute(action: "DescribeAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccount(_ input: DescribeAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
+        try await self.client.execute(action: "DescribeAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取消费版账号信息
     @inlinable
-    public func describeAccount(accountType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountResponse> {
-        self.describeAccount(DescribeAccountRequest(accountType: accountType), logger: logger, on: eventLoop)
+    public func describeAccount(accountType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountResponse> {
+        self.describeAccount(DescribeAccountRequest(accountType: accountType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取消费版账号信息
     @inlinable
-    public func describeAccount(accountType: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
-        try await self.describeAccount(DescribeAccountRequest(accountType: accountType), logger: logger, on: eventLoop)
+    public func describeAccount(accountType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountResponse {
+        try await self.describeAccount(DescribeAccountRequest(accountType: accountType), region: region, logger: logger, on: eventLoop)
     }
 }

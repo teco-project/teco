@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcm {
 
     /// 创建网格
     @inlinable
-    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMeshResponse> {
-        self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMesh(_ input: CreateMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMeshResponse> {
+        self.client.execute(action: "CreateMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建网格
     @inlinable
-    public func createMesh(_ input: CreateMeshRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
-        try await self.client.execute(action: "CreateMesh", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMesh(_ input: CreateMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
+        try await self.client.execute(action: "CreateMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建网格
     @inlinable
-    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMeshResponse> {
-        self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), logger: logger, on: eventLoop)
+    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMeshResponse> {
+        self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网格
     @inlinable
-    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
-        try await self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), logger: logger, on: eventLoop)
+    public func createMesh(displayName: String, meshVersion: String, type: String, config: MeshConfig, clusterList: [Cluster]? = nil, tagList: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMeshResponse {
+        try await self.createMesh(CreateMeshRequest(displayName: displayName, meshVersion: meshVersion, type: type, config: config, clusterList: clusterList, tagList: tagList), region: region, logger: logger, on: eventLoop)
     }
 }

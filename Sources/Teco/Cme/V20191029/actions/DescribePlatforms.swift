@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Cme {
     /// <li>支持获取指定的平台列表信息。</li>
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
-    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
-        self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePlatforms(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
+        self.client.execute(action: "DescribePlatforms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取平台列表
@@ -78,8 +78,8 @@ extension Cme {
     /// <li>支持获取指定的平台列表信息。</li>
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
-    public func describePlatforms(_ input: DescribePlatformsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
-        try await self.client.execute(action: "DescribePlatforms", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePlatforms(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
+        try await self.client.execute(action: "DescribePlatforms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取平台列表
@@ -88,8 +88,8 @@ extension Cme {
     /// <li>支持获取指定的平台列表信息。</li>
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
-    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
-        self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
+        self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取平台列表
@@ -98,7 +98,7 @@ extension Cme {
     /// <li>支持获取指定的平台列表信息。</li>
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
-    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
-        try await self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
+        try await self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

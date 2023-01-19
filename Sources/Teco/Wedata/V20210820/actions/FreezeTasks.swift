@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量冻结任务
     @inlinable
-    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
-        self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func freezeTasks(_ input: FreezeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
+        self.client.execute(action: "FreezeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量冻结任务【Beta版本】
@@ -62,8 +62,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量冻结任务
     @inlinable
-    public func freezeTasks(_ input: FreezeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
-        try await self.client.execute(action: "FreezeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func freezeTasks(_ input: FreezeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
+        try await self.client.execute(action: "FreezeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量冻结任务【Beta版本】
@@ -71,8 +71,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量冻结任务
     @inlinable
-    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
-        self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), logger: logger, on: eventLoop)
+    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeTasksResponse> {
+        self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量冻结任务【Beta版本】
@@ -80,7 +80,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 批量冻结任务
     @inlinable
-    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
-        try await self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), logger: logger, on: eventLoop)
+    public func freezeTasks(tasks: [SimpleTaskInfo], operateIsInform: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeTasksResponse {
+        try await self.freezeTasks(FreezeTasksRequest(tasks: tasks, operateIsInform: operateIsInform), region: region, logger: logger, on: eventLoop)
     }
 }

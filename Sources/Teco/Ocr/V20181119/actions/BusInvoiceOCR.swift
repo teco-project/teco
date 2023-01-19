@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Ocr {
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
     @inlinable
-    public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
-        self.client.execute(action: "BusInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
+        self.client.execute(action: "BusInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
     @inlinable
-    public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
-        try await self.client.execute(action: "BusInvoiceOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func busInvoiceOCR(_ input: BusInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
+        try await self.client.execute(action: "BusInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
     @inlinable
-    public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
-        self.busInvoiceOCR(BusInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BusInvoiceOCRResponse> {
+        self.busInvoiceOCR(BusInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 汽车票识别
     ///
     /// 本接口支持识别公路汽车客票的发票代码、发票号码、日期、姓名、票价等字段。
     @inlinable
-    public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
-        try await self.busInvoiceOCR(BusInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), logger: logger, on: eventLoop)
+    public func busInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BusInvoiceOCRResponse {
+        try await self.busInvoiceOCR(BusInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

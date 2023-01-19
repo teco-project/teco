@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
-        self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteProtectDir(_ input: DeleteProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
+        self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(_ input: DeleteProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
-        try await self.client.execute(action: "DeleteProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteProtectDir(_ input: DeleteProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
+        try await self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
-        self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
+        self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除防护网站
     @inlinable
-    public func deleteProtectDir(ids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
-        try await self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
+        try await self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Cdb {
     ///
     /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateParamTemplateResponse> {
-        self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateParamTemplateResponse> {
+        self.client.execute(action: "CreateParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建参数模板
     ///
     /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func createParamTemplate(_ input: CreateParamTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
-        try await self.client.execute(action: "CreateParamTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createParamTemplate(_ input: CreateParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
+        try await self.client.execute(action: "CreateParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建参数模板
     ///
     /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func createParamTemplate(name: String, description: String? = nil, engineVersion: String? = nil, templateId: Int64? = nil, paramList: [Parameter]? = nil, templateType: String? = nil, engineType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateParamTemplateResponse> {
-        self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, engineVersion: engineVersion, templateId: templateId, paramList: paramList, templateType: templateType, engineType: engineType), logger: logger, on: eventLoop)
+    public func createParamTemplate(name: String, description: String? = nil, engineVersion: String? = nil, templateId: Int64? = nil, paramList: [Parameter]? = nil, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateParamTemplateResponse> {
+        self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, engineVersion: engineVersion, templateId: templateId, paramList: paramList, templateType: templateType, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建参数模板
     ///
     /// 该接口（CreateParamTemplate）用于创建参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable
-    public func createParamTemplate(name: String, description: String? = nil, engineVersion: String? = nil, templateId: Int64? = nil, paramList: [Parameter]? = nil, templateType: String? = nil, engineType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
-        try await self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, engineVersion: engineVersion, templateId: templateId, paramList: paramList, templateType: templateType, engineType: engineType), logger: logger, on: eventLoop)
+    public func createParamTemplate(name: String, description: String? = nil, engineVersion: String? = nil, templateId: Int64? = nil, paramList: [Parameter]? = nil, templateType: String? = nil, engineType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateParamTemplateResponse {
+        try await self.createParamTemplate(CreateParamTemplateRequest(name: name, description: description, engineVersion: engineVersion, templateId: templateId, paramList: paramList, templateType: templateType, engineType: engineType), region: region, logger: logger, on: eventLoop)
     }
 }

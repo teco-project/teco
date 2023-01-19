@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Cpdp {
 
     /// 灵云V2-查询冻结订单列表
     @inlinable
-    public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexFreezeOrderListResponse> {
-        self.client.execute(action: "QueryFlexFreezeOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexFreezeOrderListResponse> {
+        self.client.execute(action: "QueryFlexFreezeOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询冻结订单列表
     @inlinable
-    public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexFreezeOrderListResponse {
-        try await self.client.execute(action: "QueryFlexFreezeOrderList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexFreezeOrderList(_ input: QueryFlexFreezeOrderListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexFreezeOrderListResponse {
+        try await self.client.execute(action: "QueryFlexFreezeOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-查询冻结订单列表
     @inlinable
-    public func queryFlexFreezeOrderList(payeeId: String, operationType: String, startTime: String, endTime: String, pageNumber: Paging, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexFreezeOrderListResponse> {
-        self.queryFlexFreezeOrderList(QueryFlexFreezeOrderListRequest(payeeId: payeeId, operationType: operationType, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexFreezeOrderList(payeeId: String, operationType: String, startTime: String, endTime: String, pageNumber: Paging, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexFreezeOrderListResponse> {
+        self.queryFlexFreezeOrderList(QueryFlexFreezeOrderListRequest(payeeId: payeeId, operationType: operationType, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询冻结订单列表
     @inlinable
-    public func queryFlexFreezeOrderList(payeeId: String, operationType: String, startTime: String, endTime: String, pageNumber: Paging, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexFreezeOrderListResponse {
-        try await self.queryFlexFreezeOrderList(QueryFlexFreezeOrderListRequest(payeeId: payeeId, operationType: operationType, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), logger: logger, on: eventLoop)
+    public func queryFlexFreezeOrderList(payeeId: String, operationType: String, startTime: String, endTime: String, pageNumber: Paging, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexFreezeOrderListResponse {
+        try await self.queryFlexFreezeOrderList(QueryFlexFreezeOrderListRequest(payeeId: payeeId, operationType: operationType, startTime: startTime, endTime: endTime, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

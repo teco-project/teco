@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 删除k8sapi异常事件规则
     @inlinable
-    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteK8sApiAbnormalRuleResponse> {
-        self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteK8sApiAbnormalRuleResponse> {
+        self.client.execute(action: "DeleteK8sApiAbnormalRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除k8sapi异常事件规则
     @inlinable
-    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
-        try await self.client.execute(action: "DeleteK8sApiAbnormalRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteK8sApiAbnormalRule(_ input: DeleteK8sApiAbnormalRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
+        try await self.client.execute(action: "DeleteK8sApiAbnormalRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除k8sapi异常事件规则
     @inlinable
-    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteK8sApiAbnormalRuleResponse> {
-        self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), logger: logger, on: eventLoop)
+    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteK8sApiAbnormalRuleResponse> {
+        self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除k8sapi异常事件规则
     @inlinable
-    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
-        try await self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), logger: logger, on: eventLoop)
+    public func deleteK8sApiAbnormalRule(ruleIDSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteK8sApiAbnormalRuleResponse {
+        try await self.deleteK8sApiAbnormalRule(DeleteK8sApiAbnormalRuleRequest(ruleIDSet: ruleIDSet), region: region, logger: logger, on: eventLoop)
     }
 }

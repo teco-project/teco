@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension Nlp {
     /// https://ai.tencent.com/ailab/zh/news/detial?id=22
     /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
     @inlinable
-    public func wordEmbedding(_ input: WordEmbeddingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WordEmbeddingResponse> {
-        self.client.execute(action: "WordEmbedding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func wordEmbedding(_ input: WordEmbeddingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WordEmbeddingResponse> {
+        self.client.execute(action: "WordEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 词向量
@@ -67,8 +67,8 @@ extension Nlp {
     /// https://ai.tencent.com/ailab/zh/news/detial?id=22
     /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
     @inlinable
-    public func wordEmbedding(_ input: WordEmbeddingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
-        try await self.client.execute(action: "WordEmbedding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func wordEmbedding(_ input: WordEmbeddingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
+        try await self.client.execute(action: "WordEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 词向量
@@ -79,8 +79,8 @@ extension Nlp {
     /// https://ai.tencent.com/ailab/zh/news/detial?id=22
     /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
     @inlinable
-    public func wordEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WordEmbeddingResponse> {
-        self.wordEmbedding(WordEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    public func wordEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WordEmbeddingResponse> {
+        self.wordEmbedding(WordEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
     }
 
     /// 词向量
@@ -91,7 +91,7 @@ extension Nlp {
     /// https://ai.tencent.com/ailab/zh/news/detial?id=22
     /// https://ai.tencent.com/ailab/nlp/zh/embedding.html
     @inlinable
-    public func wordEmbedding(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
-        try await self.wordEmbedding(WordEmbeddingRequest(text: text), logger: logger, on: eventLoop)
+    public func wordEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordEmbeddingResponse {
+        try await self.wordEmbedding(WordEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
     }
 }

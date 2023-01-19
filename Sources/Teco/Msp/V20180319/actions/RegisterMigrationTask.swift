@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,25 +109,25 @@ extension Msp {
 
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
-        self.client.execute(action: "RegisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
+        self.client.execute(action: "RegisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
-        try await self.client.execute(action: "RegisterMigrationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerMigrationTask(_ input: RegisterMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
+        try await self.client.execute(action: "RegisterMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
-        self.registerMigrationTask(RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), logger: logger, on: eventLoop)
+    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterMigrationTaskResponse> {
+        self.registerMigrationTask(RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册迁移任务
     @inlinable
-    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
-        try await self.registerMigrationTask(RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), logger: logger, on: eventLoop)
+    public func registerMigrationTask(taskType: String, taskName: String, serviceSupplier: String, createTime: Date, updateTime: Date, migrateClass: String, srcInfo: SrcInfo? = nil, dstInfo: DstInfo? = nil, srcAccessType: String? = nil, srcDatabaseType: String? = nil, dstAccessType: String? = nil, dstDatabaseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterMigrationTaskResponse {
+        try await self.registerMigrationTask(RegisterMigrationTaskRequest(taskType: taskType, taskName: taskName, serviceSupplier: serviceSupplier, createTime: createTime, updateTime: updateTime, migrateClass: migrateClass, srcInfo: srcInfo, dstInfo: dstInfo, srcAccessType: srcAccessType, srcDatabaseType: srcDatabaseType, dstAccessType: dstAccessType, dstDatabaseType: dstDatabaseType), region: region, logger: logger, on: eventLoop)
     }
 }

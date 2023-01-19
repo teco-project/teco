@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cam {
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
-        self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func untagRole(_ input: UntagRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
+        self.client.execute(action: "UntagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(_ input: UntagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
-        try await self.client.execute(action: "UntagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func untagRole(_ input: UntagRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
+        try await self.client.execute(action: "UntagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
-        self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UntagRoleResponse> {
+        self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 角色解绑标签
     ///
     /// 角色解绑标签。
     @inlinable
-    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
-        try await self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    public func untagRole(tagKeys: [String], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UntagRoleResponse {
+        try await self.untagRole(UntagRoleRequest(tagKeys: tagKeys, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cdc {
 
     /// 创建专用集群订单
     @inlinable
-    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterOrderResponse> {
-        self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterOrderResponse> {
+        self.client.execute(action: "CreateDedicatedClusterOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专用集群订单
     @inlinable
-    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
-        try await self.client.execute(action: "CreateDedicatedClusterOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDedicatedClusterOrder(_ input: CreateDedicatedClusterOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
+        try await self.client.execute(action: "CreateDedicatedClusterOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建专用集群订单
     @inlinable
-    public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterOrderResponse> {
-        self.createDedicatedClusterOrder(CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), logger: logger, on: eventLoop)
+    public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDedicatedClusterOrderResponse> {
+        self.createDedicatedClusterOrder(CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专用集群订单
     @inlinable
-    public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
-        try await self.createDedicatedClusterOrder(CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), logger: logger, on: eventLoop)
+    public func createDedicatedClusterOrder(dedicatedClusterId: String, dedicatedClusterTypes: [DedicatedClusterTypeInfo]? = nil, cosInfo: CosInfo? = nil, cbsInfo: CbsInfo? = nil, purchaseSource: String? = nil, dedicatedClusterOrderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDedicatedClusterOrderResponse {
+        try await self.createDedicatedClusterOrder(CreateDedicatedClusterOrderRequest(dedicatedClusterId: dedicatedClusterId, dedicatedClusterTypes: dedicatedClusterTypes, cosInfo: cosInfo, cbsInfo: cbsInfo, purchaseSource: purchaseSource, dedicatedClusterOrderId: dedicatedClusterOrderId), region: region, logger: logger, on: eventLoop)
     }
 }

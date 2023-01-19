@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Cwp {
     ///
     /// 专家服务-可用订单详情
     @inlinable
-    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableExpertServiceDetailResponse> {
-        self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableExpertServiceDetailResponse> {
+        self.client.execute(action: "DescribeAvailableExpertServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 可用订单详情
     ///
     /// 专家服务-可用订单详情
     @inlinable
-    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
-        try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableExpertServiceDetail(_ input: DescribeAvailableExpertServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
+        try await self.client.execute(action: "DescribeAvailableExpertServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 可用订单详情
     ///
     /// 专家服务-可用订单详情
     @inlinable
-    public func describeAvailableExpertServiceDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableExpertServiceDetailResponse> {
-        self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), logger: logger, on: eventLoop)
+    public func describeAvailableExpertServiceDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableExpertServiceDetailResponse> {
+        self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 可用订单详情
     ///
     /// 专家服务-可用订单详情
     @inlinable
-    public func describeAvailableExpertServiceDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
-        try await self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), logger: logger, on: eventLoop)
+    public func describeAvailableExpertServiceDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableExpertServiceDetailResponse {
+        try await self.describeAvailableExpertServiceDetail(DescribeAvailableExpertServiceDetailRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

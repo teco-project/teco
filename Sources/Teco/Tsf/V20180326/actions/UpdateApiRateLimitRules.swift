@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tsf {
 
     /// 批量更新API限流规则
     @inlinable
-    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRulesResponse> {
-        self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRulesResponse> {
+        self.client.execute(action: "UpdateApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量更新API限流规则
     @inlinable
-    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
-        try await self.client.execute(action: "UpdateApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateApiRateLimitRules(_ input: UpdateApiRateLimitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
+        try await self.client.execute(action: "UpdateApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量更新API限流规则
     @inlinable
-    public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRulesResponse> {
-        self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), logger: logger, on: eventLoop)
+    public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRulesResponse> {
+        self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量更新API限流规则
     @inlinable
-    public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
-        try await self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), logger: logger, on: eventLoop)
+    public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
+        try await self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
     }
 }

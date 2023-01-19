@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
-        self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
+        self.client.execute(action: "DescribeRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
-        try await self.client.execute(action: "DescribeRefreshTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRefreshTask(_ input: DescribeRefreshTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
+        try await self.client.execute(action: "DescribeRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
-        self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
+        self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询刷新任务
     @inlinable
-    public func describeRefreshTask(taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
-        try await self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
+        try await self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

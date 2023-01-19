@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,25 +106,25 @@ extension Teo {
 
     /// 获取源站组详细信息
     @inlinable
-    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupDetailResponse> {
-        self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupDetailResponse> {
+        self.client.execute(action: "DescribeOriginGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组详细信息
     @inlinable
-    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
-        try await self.client.execute(action: "DescribeOriginGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOriginGroupDetail(_ input: DescribeOriginGroupDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
+        try await self.client.execute(action: "DescribeOriginGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取源站组详细信息
     @inlinable
-    public func describeOriginGroupDetail(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupDetailResponse> {
-        self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeOriginGroupDetail(originId: String, zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupDetailResponse> {
+        self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组详细信息
     @inlinable
-    public func describeOriginGroupDetail(originId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
-        try await self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeOriginGroupDetail(originId: String, zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupDetailResponse {
+        try await self.describeOriginGroupDetail(DescribeOriginGroupDetailRequest(originId: originId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Ocr {
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
     @inlinable
-    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
-        self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sealOCR(_ input: SealOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
+        self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
     @inlinable
-    public func sealOCR(_ input: SealOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
-        try await self.client.execute(action: "SealOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sealOCR(_ input: SealOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
+        try await self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
     @inlinable
-    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
-        self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
+        self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
     @inlinable
-    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
-        try await self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
+        try await self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ccc {
     ///
     /// 用于无限频率地呼叫坐席手机
     @inlinable
-    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCarrierPrivilegeNumberApplicantResponse> {
-        self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCarrierPrivilegeNumberApplicantResponse> {
+        self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请运营商白名单号码
     ///
     /// 用于无限频率地呼叫坐席手机
     @inlinable
-    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
-        try await self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCarrierPrivilegeNumberApplicant(_ input: CreateCarrierPrivilegeNumberApplicantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
+        try await self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请运营商白名单号码
     ///
     /// 用于无限频率地呼叫坐席手机
     @inlinable
-    public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCarrierPrivilegeNumberApplicantResponse> {
-        self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), logger: logger, on: eventLoop)
+    public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCarrierPrivilegeNumberApplicantResponse> {
+        self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请运营商白名单号码
     ///
     /// 用于无限频率地呼叫坐席手机
     @inlinable
-    public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
-        try await self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), logger: logger, on: eventLoop)
+    public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
+        try await self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

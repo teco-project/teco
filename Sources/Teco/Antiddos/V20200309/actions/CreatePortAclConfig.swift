@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Antiddos {
 
     /// 添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigResponse> {
-        self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigResponse> {
+        self.client.execute(action: "CreatePortAclConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
-        try await self.client.execute(action: "CreatePortAclConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPortAclConfig(_ input: CreatePortAclConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
+        try await self.client.execute(action: "CreatePortAclConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigResponse> {
-        self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), logger: logger, on: eventLoop)
+    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePortAclConfigResponse> {
+        self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的端口acl策略
     @inlinable
-    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
-        try await self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), logger: logger, on: eventLoop)
+    public func createPortAclConfig(instanceId: String, aclConfig: AclConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePortAclConfigResponse {
+        try await self.createPortAclConfig(CreatePortAclConfigRequest(instanceId: instanceId, aclConfig: aclConfig), region: region, logger: logger, on: eventLoop)
     }
 }

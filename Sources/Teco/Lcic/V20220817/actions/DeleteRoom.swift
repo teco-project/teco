@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Lcic {
 
     /// 删除房间
     @inlinable
-    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
-        self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRoom(_ input: DeleteRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
+        self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除房间
     @inlinable
-    public func deleteRoom(_ input: DeleteRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
-        try await self.client.execute(action: "DeleteRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRoom(_ input: DeleteRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
+        try await self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除房间
     @inlinable
-    public func deleteRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
-        self.deleteRoom(DeleteRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
+        self.deleteRoom(DeleteRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除房间
     @inlinable
-    public func deleteRoom(roomId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
-        try await self.deleteRoom(DeleteRoomRequest(roomId: roomId), logger: logger, on: eventLoop)
+    public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
+        try await self.deleteRoom(DeleteRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

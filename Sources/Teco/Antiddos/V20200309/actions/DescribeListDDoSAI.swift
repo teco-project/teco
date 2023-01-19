@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Antiddos {
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
-    public func describeListDDoSAI(_ input: DescribeListDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSAIResponse> {
-        self.client.execute(action: "DescribeListDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListDDoSAI(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSAIResponse> {
+        self.client.execute(action: "DescribeListDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
-    public func describeListDDoSAI(_ input: DescribeListDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
-        try await self.client.execute(action: "DescribeListDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListDDoSAI(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
+        try await self.client.execute(action: "DescribeListDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
-    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSAIResponse> {
-        self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSAIResponse> {
+        self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
-    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
-        try await self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
+        try await self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 }

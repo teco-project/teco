@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iotvideoindustry {
 
     /// 创建直播频道
     @inlinable
-    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveChannelResponse> {
-        self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveChannel(_ input: CreateLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveChannelResponse> {
+        self.client.execute(action: "CreateLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建直播频道
     @inlinable
-    public func createLiveChannel(_ input: CreateLiveChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
-        try await self.client.execute(action: "CreateLiveChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveChannel(_ input: CreateLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
+        try await self.client.execute(action: "CreateLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建直播频道
     @inlinable
-    public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveChannelResponse> {
-        self.createLiveChannel(CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType), logger: logger, on: eventLoop)
+    public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveChannelResponse> {
+        self.createLiveChannel(CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建直播频道
     @inlinable
-    public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
-        try await self.createLiveChannel(CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType), logger: logger, on: eventLoop)
+    public func createLiveChannel(liveChannelName: String, liveChannelType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveChannelResponse {
+        try await self.createLiveChannel(CreateLiveChannelRequest(liveChannelName: liveChannelName, liveChannelType: liveChannelType), region: region, logger: logger, on: eventLoop)
     }
 }

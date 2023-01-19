@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Teo {
 
     /// 规则id查询门神规则详情
     @inlinable
-    public func describeSecurityPolicyManagedRulesId(_ input: DescribeSecurityPolicyManagedRulesIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesIdResponse> {
-        self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityPolicyManagedRulesId(_ input: DescribeSecurityPolicyManagedRulesIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesIdResponse> {
+        self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则id查询门神规则详情
     @inlinable
-    public func describeSecurityPolicyManagedRulesId(_ input: DescribeSecurityPolicyManagedRulesIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
-        try await self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityPolicyManagedRulesId(_ input: DescribeSecurityPolicyManagedRulesIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
+        try await self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 规则id查询门神规则详情
     @inlinable
-    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesIdResponse> {
-        self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesIdResponse> {
+        self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 规则id查询门神规则详情
     @inlinable
-    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
-        try await self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
+        try await self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

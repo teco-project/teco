@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Teo {
     ///
     /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
     @inlinable
-    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesSettingResponse> {
-        self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesSettingResponse> {
+        self.client.execute(action: "DescribeRulesSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则引擎的设置参数
     ///
     /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
     @inlinable
-    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
-        try await self.client.execute(action: "DescribeRulesSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRulesSetting(_ input: DescribeRulesSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
+        try await self.client.execute(action: "DescribeRulesSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询规则引擎的设置参数
     ///
     /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
     @inlinable
-    public func describeRulesSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesSettingResponse> {
-        self.describeRulesSetting(DescribeRulesSettingRequest(), logger: logger, on: eventLoop)
+    public func describeRulesSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesSettingResponse> {
+        self.describeRulesSetting(DescribeRulesSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则引擎的设置参数
     ///
     /// 返回规则引擎可应用匹配请求的设置列表及其详细建议配置信息
     @inlinable
-    public func describeRulesSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
-        try await self.describeRulesSetting(DescribeRulesSettingRequest(), logger: logger, on: eventLoop)
+    public func describeRulesSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesSettingResponse {
+        try await self.describeRulesSetting(DescribeRulesSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

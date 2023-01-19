@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     ///  隔离退还数据迁移服务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。对于计费任务，在任务隔离后可进行解除隔离(RecoverMigrationJob)操作或直接进行下线销毁(DestroyMigrateJob)操作。对于不计费任务，调用此接口会直接销毁任务，无法进行恢复操作。
     @inlinable
-    public func isolateMigrateJob(_ input: IsolateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateMigrateJobResponse> {
-        self.client.execute(action: "IsolateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateMigrateJob(_ input: IsolateMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateMigrateJobResponse> {
+        self.client.execute(action: "IsolateMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离数据迁移任务
     ///
     ///  隔离退还数据迁移服务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。对于计费任务，在任务隔离后可进行解除隔离(RecoverMigrationJob)操作或直接进行下线销毁(DestroyMigrateJob)操作。对于不计费任务，调用此接口会直接销毁任务，无法进行恢复操作。
     @inlinable
-    public func isolateMigrateJob(_ input: IsolateMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateMigrateJobResponse {
-        try await self.client.execute(action: "IsolateMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateMigrateJob(_ input: IsolateMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateMigrateJobResponse {
+        try await self.client.execute(action: "IsolateMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离数据迁移任务
     ///
     ///  隔离退还数据迁移服务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。对于计费任务，在任务隔离后可进行解除隔离(RecoverMigrationJob)操作或直接进行下线销毁(DestroyMigrateJob)操作。对于不计费任务，调用此接口会直接销毁任务，无法进行恢复操作。
     @inlinable
-    public func isolateMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateMigrateJobResponse> {
-        self.isolateMigrateJob(IsolateMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func isolateMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateMigrateJobResponse> {
+        self.isolateMigrateJob(IsolateMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离数据迁移任务
     ///
     ///  隔离退还数据迁移服务。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。对于计费任务，在任务隔离后可进行解除隔离(RecoverMigrationJob)操作或直接进行下线销毁(DestroyMigrateJob)操作。对于不计费任务，调用此接口会直接销毁任务，无法进行恢复操作。
     @inlinable
-    public func isolateMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateMigrateJobResponse {
-        try await self.isolateMigrateJob(IsolateMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func isolateMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateMigrateJobResponse {
+        try await self.isolateMigrateJob(IsolateMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

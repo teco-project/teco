@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cloudhsm {
 
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
-        self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsgRule(_ input: DescribeUsgRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
+        self.client.execute(action: "DescribeUsgRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(_ input: DescribeUsgRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
-        try await self.client.execute(action: "DescribeUsgRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsgRule(_ input: DescribeUsgRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
+        try await self.client.execute(action: "DescribeUsgRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(sgIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
-        self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), logger: logger, on: eventLoop)
+    public func describeUsgRule(sgIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
+        self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取安全组详情
     @inlinable
-    public func describeUsgRule(sgIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
-        try await self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), logger: logger, on: eventLoop)
+    public func describeUsgRule(sgIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
+        try await self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), region: region, logger: logger, on: eventLoop)
     }
 }

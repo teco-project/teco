@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Iot {
     ///
     /// 获取用户的绑定设备列表
     @inlinable
-    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDevicesResponse> {
-        self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appGetDevices(_ input: AppGetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDevicesResponse> {
+        self.client.execute(action: "AppGetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备列表
     ///
     /// 获取用户的绑定设备列表
     @inlinable
-    public func appGetDevices(_ input: AppGetDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
-        try await self.client.execute(action: "AppGetDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appGetDevices(_ input: AppGetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
+        try await self.client.execute(action: "AppGetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取绑定设备列表
     ///
     /// 获取用户的绑定设备列表
     @inlinable
-    public func appGetDevices(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDevicesResponse> {
-        self.appGetDevices(AppGetDevicesRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    public func appGetDevices(accessToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDevicesResponse> {
+        self.appGetDevices(AppGetDevicesRequest(accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备列表
     ///
     /// 获取用户的绑定设备列表
     @inlinable
-    public func appGetDevices(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
-        try await self.appGetDevices(AppGetDevicesRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    public func appGetDevices(accessToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDevicesResponse {
+        try await self.appGetDevices(AppGetDevicesRequest(accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 }

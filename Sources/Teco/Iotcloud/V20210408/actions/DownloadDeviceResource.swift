@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iotcloud {
     ///
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
-    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDeviceResourceResponse> {
-        self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDeviceResourceResponse> {
+        self.client.execute(action: "DownloadDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载设备资源
     ///
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
-    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
-        try await self.client.execute(action: "DownloadDeviceResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadDeviceResource(_ input: DownloadDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
+        try await self.client.execute(action: "DownloadDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载设备资源
     ///
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
-    public func downloadDeviceResource(productID: String, name: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDeviceResourceResponse> {
-        self.downloadDeviceResource(DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func downloadDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadDeviceResourceResponse> {
+        self.downloadDeviceResource(DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载设备资源
     ///
     /// 本接口（DownloadDeviceResource）用于下载设备资源
     @inlinable
-    public func downloadDeviceResource(productID: String, name: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
-        try await self.downloadDeviceResource(DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func downloadDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadDeviceResourceResponse {
+        try await self.downloadDeviceResource(DownloadDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

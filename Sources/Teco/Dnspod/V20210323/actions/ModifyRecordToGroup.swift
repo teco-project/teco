@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Dnspod {
 
     /// 将记录添加到分组
     @inlinable
-    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
-        self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
+        self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将记录添加到分组
     @inlinable
-    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
-        try await self.client.execute(action: "ModifyRecordToGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
+        try await self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将记录添加到分组
     @inlinable
-    public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
-        self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
+        self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将记录添加到分组
     @inlinable
-    public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
-        try await self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), logger: logger, on: eventLoop)
+    public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
+        try await self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

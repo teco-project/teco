@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Ame {
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
-    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicTagsResponse> {
-        self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicTagsResponse> {
+        self.client.execute(action: "DescribeKTVMusicTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
-    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
-        try await self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
+        try await self.client.execute(action: "DescribeKTVMusicTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
-    public func describeKTVMusicTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicTagsResponse> {
-        self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), logger: logger, on: eventLoop)
+    public func describeKTVMusicTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicTagsResponse> {
+        self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
-    public func describeKTVMusicTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
-        try await self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), logger: logger, on: eventLoop)
+    public func describeKTVMusicTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
+        try await self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

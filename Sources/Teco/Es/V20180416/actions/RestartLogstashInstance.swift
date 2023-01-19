@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Es {
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
-        self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
+        self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
-        try await self.client.execute(action: "RestartLogstashInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
+        try await self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
-        self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
+        self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
     @inlinable
-    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
-        try await self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), logger: logger, on: eventLoop)
+    public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
+        try await self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

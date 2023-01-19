@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Redis {
 
     /// 复制组实例更换角色
     @inlinable
-    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeInstanceRoleResponse> {
-        self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeInstanceRoleResponse> {
+        self.client.execute(action: "ChangeInstanceRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例更换角色
     @inlinable
-    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
-        try await self.client.execute(action: "ChangeInstanceRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func changeInstanceRole(_ input: ChangeInstanceRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
+        try await self.client.execute(action: "ChangeInstanceRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制组实例更换角色
     @inlinable
-    public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeInstanceRoleResponse> {
-        self.changeInstanceRole(ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), logger: logger, on: eventLoop)
+    public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeInstanceRoleResponse> {
+        self.changeInstanceRole(ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例更换角色
     @inlinable
-    public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
-        try await self.changeInstanceRole(ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), logger: logger, on: eventLoop)
+    public func changeInstanceRole(groupId: String, instanceId: String, instanceRole: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeInstanceRoleResponse {
+        try await self.changeInstanceRole(ChangeInstanceRoleRequest(groupId: groupId, instanceId: instanceId, instanceRole: instanceRole), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,8 +79,8 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
-        self.client.execute(action: "ModifyDeviceAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
+        self.client.execute(action: "ModifyDeviceAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备物模型行为
@@ -92,8 +92,8 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
-        try await self.client.execute(action: "ModifyDeviceAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDeviceAction(_ input: ModifyDeviceActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
+        try await self.client.execute(action: "ModifyDeviceAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备物模型行为
@@ -105,8 +105,8 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
-        self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), logger: logger, on: eventLoop)
+    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
+        self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备物模型行为
@@ -118,7 +118,7 @@ extension Iotvideo {
     ///   2.若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
-    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
-        try await self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), logger: logger, on: eventLoop)
+    public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
+        try await self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
     }
 }

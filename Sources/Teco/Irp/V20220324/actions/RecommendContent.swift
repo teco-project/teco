@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Irp {
 
     /// 获取推荐结果
     @inlinable
-    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecommendContentResponse> {
-        self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recommendContent(_ input: RecommendContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecommendContentResponse> {
+        self.client.execute(action: "RecommendContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取推荐结果
     @inlinable
-    public func recommendContent(_ input: RecommendContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
-        try await self.client.execute(action: "RecommendContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recommendContent(_ input: RecommendContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
+        try await self.client.execute(action: "RecommendContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取推荐结果
     @inlinable
-    public func recommendContent(bid: String, sceneId: String, userIdList: [UserIdInfo]? = nil, recTraceId: String? = nil, itemCnt: Int64? = nil, poolId: String? = nil, currentItemId: String? = nil, responseTimeout: Int64? = nil, itemTypeRatio: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecommendContentResponse> {
-        self.recommendContent(RecommendContentRequest(bid: bid, sceneId: sceneId, userIdList: userIdList, recTraceId: recTraceId, itemCnt: itemCnt, poolId: poolId, currentItemId: currentItemId, responseTimeout: responseTimeout, itemTypeRatio: itemTypeRatio), logger: logger, on: eventLoop)
+    public func recommendContent(bid: String, sceneId: String, userIdList: [UserIdInfo]? = nil, recTraceId: String? = nil, itemCnt: Int64? = nil, poolId: String? = nil, currentItemId: String? = nil, responseTimeout: Int64? = nil, itemTypeRatio: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecommendContentResponse> {
+        self.recommendContent(RecommendContentRequest(bid: bid, sceneId: sceneId, userIdList: userIdList, recTraceId: recTraceId, itemCnt: itemCnt, poolId: poolId, currentItemId: currentItemId, responseTimeout: responseTimeout, itemTypeRatio: itemTypeRatio), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取推荐结果
     @inlinable
-    public func recommendContent(bid: String, sceneId: String, userIdList: [UserIdInfo]? = nil, recTraceId: String? = nil, itemCnt: Int64? = nil, poolId: String? = nil, currentItemId: String? = nil, responseTimeout: Int64? = nil, itemTypeRatio: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
-        try await self.recommendContent(RecommendContentRequest(bid: bid, sceneId: sceneId, userIdList: userIdList, recTraceId: recTraceId, itemCnt: itemCnt, poolId: poolId, currentItemId: currentItemId, responseTimeout: responseTimeout, itemTypeRatio: itemTypeRatio), logger: logger, on: eventLoop)
+    public func recommendContent(bid: String, sceneId: String, userIdList: [UserIdInfo]? = nil, recTraceId: String? = nil, itemCnt: Int64? = nil, poolId: String? = nil, currentItemId: String? = nil, responseTimeout: Int64? = nil, itemTypeRatio: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecommendContentResponse {
+        try await self.recommendContent(RecommendContentRequest(bid: bid, sceneId: sceneId, userIdList: userIdList, recTraceId: recTraceId, itemCnt: itemCnt, poolId: poolId, currentItemId: currentItemId, responseTimeout: responseTimeout, itemTypeRatio: itemTypeRatio), region: region, logger: logger, on: eventLoop)
     }
 }

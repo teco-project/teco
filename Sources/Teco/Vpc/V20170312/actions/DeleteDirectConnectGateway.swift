@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,8 +46,8 @@ extension Vpc {
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable
-    public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
-        self.client.execute(action: "DeleteDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
+        self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除专线网关
@@ -57,8 +57,8 @@ extension Vpc {
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable
-    public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
-        try await self.client.execute(action: "DeleteDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
+        try await self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除专线网关
@@ -68,8 +68,8 @@ extension Vpc {
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable
-    public func deleteDirectConnectGateway(directConnectGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
-        self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), logger: logger, on: eventLoop)
+    public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
+        self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除专线网关
@@ -79,7 +79,7 @@ extension Vpc {
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
     @inlinable
-    public func deleteDirectConnectGateway(directConnectGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
-        try await self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), logger: logger, on: eventLoop)
+    public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
+        try await self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

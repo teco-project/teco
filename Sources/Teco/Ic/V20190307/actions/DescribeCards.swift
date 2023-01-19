@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ic {
     ///
     /// 查询卡片列表信息
     @inlinable
-    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardsResponse> {
-        self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCards(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardsResponse> {
+        self.client.execute(action: "DescribeCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询卡片列表
     ///
     /// 查询卡片列表信息
     @inlinable
-    public func describeCards(_ input: DescribeCardsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
-        try await self.client.execute(action: "DescribeCards", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCards(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
+        try await self.client.execute(action: "DescribeCards", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询卡片列表
     ///
     /// 查询卡片列表信息
     @inlinable
-    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardsResponse> {
-        self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardsResponse> {
+        self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询卡片列表
     ///
     /// 查询卡片列表信息
     @inlinable
-    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
-        try await self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCards(sdkappid: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardsResponse {
+        try await self.describeCards(DescribeCardsRequest(sdkappid: sdkappid, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

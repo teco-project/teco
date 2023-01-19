@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cynosdb {
 
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
-        self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
+        self.client.execute(action: "ModifyClusterStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
-        try await self.client.execute(action: "ModifyClusterStorage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClusterStorage(_ input: ModifyClusterStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
+        try await self.client.execute(action: "ModifyClusterStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
-        self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), logger: logger, on: eventLoop)
+    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
+        self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级预付费存储
     @inlinable
-    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
-        try await self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), logger: logger, on: eventLoop)
+    public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
+        try await self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
     }
 }

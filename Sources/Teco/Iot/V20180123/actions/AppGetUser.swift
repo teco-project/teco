@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Iot {
 
     /// 获取用户信息
     @inlinable
-    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
-        self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appGetUser(_ input: AppGetUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
+        self.client.execute(action: "AppGetUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户信息
     @inlinable
-    public func appGetUser(_ input: AppGetUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
-        try await self.client.execute(action: "AppGetUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appGetUser(_ input: AppGetUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
+        try await self.client.execute(action: "AppGetUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户信息
     @inlinable
-    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
-        self.appGetUser(AppGetUserRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    public func appGetUser(accessToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetUserResponse> {
+        self.appGetUser(AppGetUserRequest(accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户信息
     @inlinable
-    public func appGetUser(accessToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
-        try await self.appGetUser(AppGetUserRequest(accessToken: accessToken), logger: logger, on: eventLoop)
+    public func appGetUser(accessToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetUserResponse {
+        try await self.appGetUser(AppGetUserRequest(accessToken: accessToken), region: region, logger: logger, on: eventLoop)
     }
 }

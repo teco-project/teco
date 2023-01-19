@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tione {
 
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
-        self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
+        self.client.execute(action: "DeleteBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
-        try await self.client.execute(action: "DeleteBatchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBatchTask(_ input: DeleteBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
+        try await self.client.execute(action: "DeleteBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
-        self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    public func deleteBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
+        self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除跑批任务
     @inlinable
-    public func deleteBatchTask(batchTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
-        try await self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), logger: logger, on: eventLoop)
+    public func deleteBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
+        try await self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Iotcloud {
     ///
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
-    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceShadowResponse> {
-        self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceShadowResponse> {
+        self.client.execute(action: "UpdateDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备影子
     ///
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
-    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
-        try await self.client.execute(action: "UpdateDeviceShadow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDeviceShadow(_ input: UpdateDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
+        try await self.client.execute(action: "UpdateDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备影子
     ///
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
-    public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceShadowResponse> {
-        self.updateDeviceShadow(UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion), logger: logger, on: eventLoop)
+    public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceShadowResponse> {
+        self.updateDeviceShadow(UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备影子
     ///
     /// 本接口（UpdateDeviceShadow）用于更新虚拟设备信息。
     @inlinable
-    public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
-        try await self.updateDeviceShadow(UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion), logger: logger, on: eventLoop)
+    public func updateDeviceShadow(productId: String, deviceName: String, state: String, shadowVersion: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceShadowResponse {
+        try await self.updateDeviceShadow(UpdateDeviceShadowRequest(productId: productId, deviceName: deviceName, state: state, shadowVersion: shadowVersion), region: region, logger: logger, on: eventLoop)
     }
 }

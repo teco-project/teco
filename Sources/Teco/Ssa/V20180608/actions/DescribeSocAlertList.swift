@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Ssa {
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
-        self.client.execute(action: "DescribeSocAlertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
+        self.client.execute(action: "DescribeSocAlertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警列表
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
-        try await self.client.execute(action: "DescribeSocAlertList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSocAlertList(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
+        try await self.client.execute(action: "DescribeSocAlertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 告警列表
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
-        self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), logger: logger, on: eventLoop)
+    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertListResponse> {
+        self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警列表
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
-        try await self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), logger: logger, on: eventLoop)
+    public func describeSocAlertList(pageSize: Int64, pageIndex: Int64, scenes: Int64, filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, exportFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertListResponse {
+        try await self.describeSocAlertList(DescribeSocAlertListRequest(pageSize: pageSize, pageIndex: pageIndex, scenes: scenes, filter: filter, sorter: sorter, exportFlag: exportFlag), region: region, logger: logger, on: eventLoop)
     }
 }

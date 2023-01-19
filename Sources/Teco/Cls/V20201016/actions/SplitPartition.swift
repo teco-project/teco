@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cls {
     ///
     /// 本接口用于分裂主题分区
     @inlinable
-    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitPartitionResponse> {
-        self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func splitPartition(_ input: SplitPartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitPartitionResponse> {
+        self.client.execute(action: "SplitPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分裂主题分区
     ///
     /// 本接口用于分裂主题分区
     @inlinable
-    public func splitPartition(_ input: SplitPartitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
-        try await self.client.execute(action: "SplitPartition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func splitPartition(_ input: SplitPartitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
+        try await self.client.execute(action: "SplitPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分裂主题分区
     ///
     /// 本接口用于分裂主题分区
     @inlinable
-    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitPartitionResponse> {
-        self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), logger: logger, on: eventLoop)
+    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SplitPartitionResponse> {
+        self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分裂主题分区
     ///
     /// 本接口用于分裂主题分区
     @inlinable
-    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
-        try await self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), logger: logger, on: eventLoop)
+    public func splitPartition(topicId: String, partitionId: Int64, splitKey: String? = nil, number: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SplitPartitionResponse {
+        try await self.splitPartition(SplitPartitionRequest(topicId: topicId, partitionId: partitionId, splitKey: splitKey, number: number), region: region, logger: logger, on: eventLoop)
     }
 }

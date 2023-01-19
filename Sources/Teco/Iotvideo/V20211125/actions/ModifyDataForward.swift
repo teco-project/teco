@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(_ input: ModifyDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
-        self.client.execute(action: "ModifyDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDataForward(_ input: ModifyDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
+        self.client.execute(action: "ModifyDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(_ input: ModifyDataForwardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
-        try await self.client.execute(action: "ModifyDataForward", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDataForward(_ input: ModifyDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
+        try await self.client.execute(action: "ModifyDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
-        self.modifyDataForward(ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), logger: logger, on: eventLoop)
+    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataForwardResponse> {
+        self.modifyDataForward(ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据转发
     @inlinable
-    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
-        try await self.modifyDataForward(ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), logger: logger, on: eventLoop)
+    public func modifyDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataForwardResponse {
+        try await self.modifyDataForward(ModifyDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 }

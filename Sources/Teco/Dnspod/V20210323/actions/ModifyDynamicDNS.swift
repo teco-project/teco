@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Dnspod {
 
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
-        self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
+        self.client.execute(action: "ModifyDynamicDNS", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
-        try await self.client.execute(action: "ModifyDynamicDNS", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDynamicDNS(_ input: ModifyDynamicDNSRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
+        try await self.client.execute(action: "ModifyDynamicDNS", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
-        self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDynamicDNSResponse> {
+        self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新动态 DNS 记录
     @inlinable
-    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
-        try await self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), logger: logger, on: eventLoop)
+    public func modifyDynamicDNS(domain: String, recordId: UInt64, recordLine: String, value: String, domainId: UInt64? = nil, subDomain: String? = nil, recordLineId: String? = nil, ttl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDynamicDNSResponse {
+        try await self.modifyDynamicDNS(ModifyDynamicDNSRequest(domain: domain, recordId: recordId, recordLine: recordLine, value: value, domainId: domainId, subDomain: subDomain, recordLineId: recordLineId, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 }

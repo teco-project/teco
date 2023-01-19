@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Ckafka {
     ///
     /// 创建主题ip白名单
     @inlinable
-    public func createTopicIpWhiteList(_ input: CreateTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicIpWhiteListResponse> {
-        self.client.execute(action: "CreateTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTopicIpWhiteList(_ input: CreateTopicIpWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicIpWhiteListResponse> {
+        self.client.execute(action: "CreateTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建主题IP白名单
     ///
     /// 创建主题ip白名单
     @inlinable
-    public func createTopicIpWhiteList(_ input: CreateTopicIpWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
-        try await self.client.execute(action: "CreateTopicIpWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTopicIpWhiteList(_ input: CreateTopicIpWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
+        try await self.client.execute(action: "CreateTopicIpWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建主题IP白名单
     ///
     /// 创建主题ip白名单
     @inlinable
-    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicIpWhiteListResponse> {
-        self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicIpWhiteListResponse> {
+        self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建主题IP白名单
     ///
     /// 创建主题ip白名单
     @inlinable
-    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
-        try await self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), logger: logger, on: eventLoop)
+    public func createTopicIpWhiteList(instanceId: String, topicName: String, ipWhiteList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicIpWhiteListResponse {
+        try await self.createTopicIpWhiteList(CreateTopicIpWhiteListRequest(instanceId: instanceId, topicName: topicName, ipWhiteList: ipWhiteList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Ssa {
 
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
-        self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeComplianceList(_ input: DescribeComplianceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
+        self.client.execute(action: "DescribeComplianceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(_ input: DescribeComplianceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
-        try await self.client.execute(action: "DescribeComplianceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeComplianceList(_ input: DescribeComplianceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
+        try await self.client.execute(action: "DescribeComplianceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
-        self.describeComplianceList(DescribeComplianceListRequest(filter: filter), logger: logger, on: eventLoop)
+    public func describeComplianceList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceListResponse> {
+        self.describeComplianceList(DescribeComplianceListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合规管理总览页检查项列表
     @inlinable
-    public func describeComplianceList(filter: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
-        try await self.describeComplianceList(DescribeComplianceListRequest(filter: filter), logger: logger, on: eventLoop)
+    public func describeComplianceList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceListResponse {
+        try await self.describeComplianceList(DescribeComplianceListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
     }
 }

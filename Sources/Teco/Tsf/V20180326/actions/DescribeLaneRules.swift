@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
-        self.client.execute(action: "DescribeLaneRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLaneRules(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
+        self.client.execute(action: "DescribeLaneRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(_ input: DescribeLaneRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
-        try await self.client.execute(action: "DescribeLaneRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLaneRules(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
+        try await self.client.execute(action: "DescribeLaneRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
-        self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaneRulesResponse> {
+        self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
-        try await self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeLaneRules(limit: Int64, offset: Int64, searchWord: String? = nil, ruleId: String? = nil, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaneRulesResponse {
+        try await self.describeLaneRules(DescribeLaneRulesRequest(limit: limit, offset: offset, searchWord: searchWord, ruleId: ruleId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Asw {
 
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
-        self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExecution(_ input: DescribeExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
+        self.client.execute(action: "DescribeExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(_ input: DescribeExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
-        try await self.client.execute(action: "DescribeExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExecution(_ input: DescribeExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
+        try await self.client.execute(action: "DescribeExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(executionResourceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
-        self.describeExecution(DescribeExecutionRequest(executionResourceName: executionResourceName), logger: logger, on: eventLoop)
+    public func describeExecution(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionResponse> {
+        self.describeExecution(DescribeExecutionRequest(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询执行详细信息
     @inlinable
-    public func describeExecution(executionResourceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
-        try await self.describeExecution(DescribeExecutionRequest(executionResourceName: executionResourceName), logger: logger, on: eventLoop)
+    public func describeExecution(executionResourceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionResponse {
+        try await self.describeExecution(DescribeExecutionRequest(executionResourceName: executionResourceName), region: region, logger: logger, on: eventLoop)
     }
 }

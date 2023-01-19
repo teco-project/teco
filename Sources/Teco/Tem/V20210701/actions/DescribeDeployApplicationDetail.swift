@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tem {
 
     /// 获取分批发布详情
     @inlinable
-    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployApplicationDetailResponse> {
-        self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployApplicationDetailResponse> {
+        self.client.execute(action: "DescribeDeployApplicationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分批发布详情
     @inlinable
-    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
-        try await self.client.execute(action: "DescribeDeployApplicationDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeployApplicationDetail(_ input: DescribeDeployApplicationDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
+        try await self.client.execute(action: "DescribeDeployApplicationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取分批发布详情
     @inlinable
-    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployApplicationDetailResponse> {
-        self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), logger: logger, on: eventLoop)
+    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployApplicationDetailResponse> {
+        self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分批发布详情
     @inlinable
-    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
-        try await self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), logger: logger, on: eventLoop)
+    public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
+        try await self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

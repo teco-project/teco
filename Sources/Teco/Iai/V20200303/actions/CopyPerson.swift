@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension Iai {
     /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
-    public func copyPerson(_ input: CopyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
-        self.client.execute(action: "CopyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyPerson(_ input: CopyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
+        self.client.execute(action: "CopyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制人员
@@ -68,8 +68,8 @@ extension Iai {
     /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
-    public func copyPerson(_ input: CopyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
-        try await self.client.execute(action: "CopyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyPerson(_ input: CopyPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
+        try await self.client.execute(action: "CopyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制人员
@@ -78,8 +78,8 @@ extension Iai {
     /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
-    public func copyPerson(personId: String, groupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
-        self.copyPerson(CopyPersonRequest(personId: personId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyPersonResponse> {
+        self.copyPerson(CopyPersonRequest(personId: personId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制人员
@@ -88,7 +88,7 @@ extension Iai {
     /// >
     /// - 注：若该人员创建时算法模型版本为2.0，复制到非2.0算法模型版本的Group中时，复制操作将会失败。
     @inlinable
-    public func copyPerson(personId: String, groupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
-        try await self.copyPerson(CopyPersonRequest(personId: personId, groupIds: groupIds), logger: logger, on: eventLoop)
+    public func copyPerson(personId: String, groupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyPersonResponse {
+        try await self.copyPerson(CopyPersonRequest(personId: personId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
     }
 }

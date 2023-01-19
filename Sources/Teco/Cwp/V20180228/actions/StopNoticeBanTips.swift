@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Cwp {
 
     /// 不再提醒爆破阻断提示弹窗
     @inlinable
-    public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
-        self.client.execute(action: "StopNoticeBanTips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
+        self.client.execute(action: "StopNoticeBanTips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 不再提醒爆破阻断提示弹窗
     @inlinable
-    public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
-        try await self.client.execute(action: "StopNoticeBanTips", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
+        try await self.client.execute(action: "StopNoticeBanTips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 不再提醒爆破阻断提示弹窗
     @inlinable
-    public func stopNoticeBanTips(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
-        self.stopNoticeBanTips(StopNoticeBanTipsRequest(), logger: logger, on: eventLoop)
+    public func stopNoticeBanTips(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
+        self.stopNoticeBanTips(StopNoticeBanTipsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 不再提醒爆破阻断提示弹窗
     @inlinable
-    public func stopNoticeBanTips(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
-        try await self.stopNoticeBanTips(StopNoticeBanTipsRequest(), logger: logger, on: eventLoop)
+    public func stopNoticeBanTips(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
+        try await self.stopNoticeBanTips(StopNoticeBanTipsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

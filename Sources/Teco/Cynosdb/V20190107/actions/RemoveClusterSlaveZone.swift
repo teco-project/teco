@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cynosdb {
 
     /// 删除从可用区
     @inlinable
-    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
-        self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
+        self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除从可用区
     @inlinable
-    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
-        try await self.client.execute(action: "RemoveClusterSlaveZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeClusterSlaveZone(_ input: RemoveClusterSlaveZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
+        try await self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除从可用区
     @inlinable
-    public func removeClusterSlaveZone(clusterId: String, slaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
-        self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), logger: logger, on: eventLoop)
+    public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
+        self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除从可用区
     @inlinable
-    public func removeClusterSlaveZone(clusterId: String, slaveZone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
-        try await self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), logger: logger, on: eventLoop)
+    public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
+        try await self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
     }
 }

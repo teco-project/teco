@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tdmq {
     ///
     /// 清空订阅者消息标签
     @inlinable
-    public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
-        self.client.execute(action: "ClearCmqSubscriptionFilterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
+        self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
     @inlinable
-    public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
-        try await self.client.execute(action: "ClearCmqSubscriptionFilterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
+        try await self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
     @inlinable
-    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
-        self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
+        self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
     @inlinable
-    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
-        try await self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), logger: logger, on: eventLoop)
+    public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
+        try await self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 }

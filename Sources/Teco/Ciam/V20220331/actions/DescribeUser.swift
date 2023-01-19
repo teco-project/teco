@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Ciam {
     ///
     /// 多条件查询用户信息
     @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
-        self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUser(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
+        self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户信息
     ///
     /// 多条件查询用户信息
     @inlinable
-    public func describeUser(_ input: DescribeUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.client.execute(action: "DescribeUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUser(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户信息
     ///
     /// 多条件查询用户信息
     @inlinable
-    public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
-        self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), logger: logger, on: eventLoop)
+    public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
+        self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户信息
     ///
     /// 多条件查询用户信息
     @inlinable
-    public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), logger: logger, on: eventLoop)
+    public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
+        try await self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Monitor {
 
     /// 更新 Prometheus 抓取任务
     @inlinable
-    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusScrapeJobResponse> {
-        self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusScrapeJobResponse> {
+        self.client.execute(action: "UpdatePrometheusScrapeJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Prometheus 抓取任务
     @inlinable
-    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
-        try await self.client.execute(action: "UpdatePrometheusScrapeJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updatePrometheusScrapeJob(_ input: UpdatePrometheusScrapeJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
+        try await self.client.execute(action: "UpdatePrometheusScrapeJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新 Prometheus 抓取任务
     @inlinable
-    public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusScrapeJobResponse> {
-        self.updatePrometheusScrapeJob(UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), logger: logger, on: eventLoop)
+    public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusScrapeJobResponse> {
+        self.updatePrometheusScrapeJob(UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 Prometheus 抓取任务
     @inlinable
-    public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
-        try await self.updatePrometheusScrapeJob(UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), logger: logger, on: eventLoop)
+    public func updatePrometheusScrapeJob(instanceId: String, agentId: String, jobId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusScrapeJobResponse {
+        try await self.updatePrometheusScrapeJob(UpdatePrometheusScrapeJobRequest(instanceId: instanceId, agentId: agentId, jobId: jobId, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

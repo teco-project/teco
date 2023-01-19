@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Wedata {
 
     /// 查询集成节点
     @inlinable
-    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationNodeResponse> {
-        self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationNodeResponse> {
+        self.client.execute(action: "DescribeIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集成节点
     @inlinable
-    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
-        try await self.client.execute(action: "DescribeIntegrationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIntegrationNode(_ input: DescribeIntegrationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
+        try await self.client.execute(action: "DescribeIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集成节点
     @inlinable
-    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationNodeResponse> {
-        self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationNodeResponse> {
+        self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集成节点
     @inlinable
-    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
-        try await self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), logger: logger, on: eventLoop)
+    public func describeIntegrationNode(id: String, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationNodeResponse {
+        try await self.describeIntegrationNode(DescribeIntegrationNodeRequest(id: id, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

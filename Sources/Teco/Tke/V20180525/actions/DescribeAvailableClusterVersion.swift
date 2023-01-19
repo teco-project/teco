@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tke {
 
     /// 获取集群可以升级的所有版本
     @inlinable
-    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableClusterVersionResponse> {
-        self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableClusterVersionResponse> {
+        self.client.execute(action: "DescribeAvailableClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群可以升级的所有版本
     @inlinable
-    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
-        try await self.client.execute(action: "DescribeAvailableClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAvailableClusterVersion(_ input: DescribeAvailableClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
+        try await self.client.execute(action: "DescribeAvailableClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群可以升级的所有版本
     @inlinable
-    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableClusterVersionResponse> {
-        self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableClusterVersionResponse> {
+        self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群可以升级的所有版本
     @inlinable
-    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
-        try await self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeAvailableClusterVersion(clusterId: String? = nil, clusterIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableClusterVersionResponse {
+        try await self.describeAvailableClusterVersion(DescribeAvailableClusterVersionRequest(clusterId: clusterId, clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

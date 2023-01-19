@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Ame {
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStationsResponse> {
-        self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStations(_ input: DescribeStationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStationsResponse> {
+        self.client.execute(action: "DescribeStations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容（Station）列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeStations(_ input: DescribeStationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
-        try await self.client.execute(action: "DescribeStations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStations(_ input: DescribeStationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
+        try await self.client.execute(action: "DescribeStations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取分类内容（Station）列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeStations(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStationsResponse> {
-        self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeStations(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStationsResponse> {
+        self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容（Station）列表
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeStations(limit: UInt64, offset: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
-        try await self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeStations(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStationsResponse {
+        try await self.describeStations(DescribeStationsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Gaap {
 
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
-        self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
+        self.client.execute(action: "DescribeGlobalDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
-        try await self.client.execute(action: "DescribeGlobalDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGlobalDomains(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
+        try await self.client.execute(action: "DescribeGlobalDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
-        self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
+        self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
-        try await self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
+        try await self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 }

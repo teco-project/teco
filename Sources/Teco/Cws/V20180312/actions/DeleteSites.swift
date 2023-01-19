@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cws {
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
-        self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSites(_ input: DeleteSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
+        self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(_ input: DeleteSitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
-        try await self.client.execute(action: "DeleteSites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSites(_ input: DeleteSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
+        try await self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(siteIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
-        self.deleteSites(DeleteSitesRequest(siteIds: siteIds), logger: logger, on: eventLoop)
+    public func deleteSites(siteIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
+        self.deleteSites(DeleteSitesRequest(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除站点
     ///
     /// 本接口 (DeleteSites) 用于删除站点。
     @inlinable
-    public func deleteSites(siteIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
-        try await self.deleteSites(DeleteSitesRequest(siteIds: siteIds), logger: logger, on: eventLoop)
+    public func deleteSites(siteIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
+        try await self.deleteSites(DeleteSitesRequest(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
     }
 }

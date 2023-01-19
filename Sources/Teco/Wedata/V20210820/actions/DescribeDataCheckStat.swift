@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Wedata {
     ///
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
-    public func describeDataCheckStat(_ input: DescribeDataCheckStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataCheckStatResponse> {
-        self.client.execute(action: "DescribeDataCheckStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataCheckStat(_ input: DescribeDataCheckStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataCheckStatResponse> {
+        self.client.execute(action: "DescribeDataCheckStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量数据监测情况接口
     ///
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
-    public func describeDataCheckStat(_ input: DescribeDataCheckStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
-        try await self.client.execute(action: "DescribeDataCheckStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataCheckStat(_ input: DescribeDataCheckStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
+        try await self.client.execute(action: "DescribeDataCheckStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据质量数据监测情况接口
     ///
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
-    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataCheckStatResponse> {
-        self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataCheckStatResponse> {
+        self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据质量数据监测情况接口
     ///
     /// 数据质量的概览页面数据监测情况接口
     @inlinable
-    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
-        try await self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeDataCheckStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataCheckStatResponse {
+        try await self.describeDataCheckStat(DescribeDataCheckStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

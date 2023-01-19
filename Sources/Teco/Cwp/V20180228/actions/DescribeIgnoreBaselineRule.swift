@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cwp {
     ///
     /// 查询已经忽略的检测项信息
     @inlinable
-    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreBaselineRuleResponse> {
-        self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreBaselineRuleResponse> {
+        self.client.execute(action: "DescribeIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询忽略检测项信息
     ///
     /// 查询已经忽略的检测项信息
     @inlinable
-    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
-        try await self.client.execute(action: "DescribeIgnoreBaselineRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIgnoreBaselineRule(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
+        try await self.client.execute(action: "DescribeIgnoreBaselineRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询忽略检测项信息
     ///
     /// 查询已经忽略的检测项信息
     @inlinable
-    public func describeIgnoreBaselineRule(limit: UInt64, offset: UInt64, ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreBaselineRuleResponse> {
-        self.describeIgnoreBaselineRule(DescribeIgnoreBaselineRuleRequest(limit: limit, offset: offset, ruleName: ruleName), logger: logger, on: eventLoop)
+    public func describeIgnoreBaselineRule(limit: UInt64, offset: UInt64, ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreBaselineRuleResponse> {
+        self.describeIgnoreBaselineRule(DescribeIgnoreBaselineRuleRequest(limit: limit, offset: offset, ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询忽略检测项信息
     ///
     /// 查询已经忽略的检测项信息
     @inlinable
-    public func describeIgnoreBaselineRule(limit: UInt64, offset: UInt64, ruleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
-        try await self.describeIgnoreBaselineRule(DescribeIgnoreBaselineRuleRequest(limit: limit, offset: offset, ruleName: ruleName), logger: logger, on: eventLoop)
+    public func describeIgnoreBaselineRule(limit: UInt64, offset: UInt64, ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreBaselineRuleResponse {
+        try await self.describeIgnoreBaselineRule(DescribeIgnoreBaselineRuleRequest(limit: limit, offset: offset, ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 }

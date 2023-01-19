@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Apigateway {
     /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
     /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
     @inlinable
-    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSecretIdsResponse> {
-        self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindSecretIds(_ input: BindSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSecretIdsResponse> {
+        self.client.execute(action: "BindSecretIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用计划绑定密钥
@@ -63,8 +63,8 @@ extension Apigateway {
     /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
     /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
     @inlinable
-    public func bindSecretIds(_ input: BindSecretIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
-        try await self.client.execute(action: "BindSecretIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindSecretIds(_ input: BindSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
+        try await self.client.execute(action: "BindSecretIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用计划绑定密钥
@@ -72,8 +72,8 @@ extension Apigateway {
     /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
     /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
     @inlinable
-    public func bindSecretIds(usagePlanId: String, accessKeyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSecretIdsResponse> {
-        self.bindSecretIds(BindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), logger: logger, on: eventLoop)
+    public func bindSecretIds(usagePlanId: String, accessKeyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindSecretIdsResponse> {
+        self.bindSecretIds(BindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用计划绑定密钥
@@ -81,7 +81,7 @@ extension Apigateway {
     /// 本接口（BindSecretIds）用于为使用计划绑定密钥。
     /// 将密钥绑定到某个使用计划，并将此使用计划绑定到某个服务发布的环境上，调用者方可使用此密钥调用这个服务中的 API，可使用本接口为使用计划绑定密钥。
     @inlinable
-    public func bindSecretIds(usagePlanId: String, accessKeyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
-        try await self.bindSecretIds(BindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), logger: logger, on: eventLoop)
+    public func bindSecretIds(usagePlanId: String, accessKeyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindSecretIdsResponse {
+        try await self.bindSecretIds(BindSecretIdsRequest(usagePlanId: usagePlanId, accessKeyIds: accessKeyIds), region: region, logger: logger, on: eventLoop)
     }
 }

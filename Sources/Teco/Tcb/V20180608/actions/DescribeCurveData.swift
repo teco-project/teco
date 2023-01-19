@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,31 +106,31 @@ extension Tcb {
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
-    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCurveDataResponse> {
-        self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCurveData(_ input: DescribeCurveDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCurveDataResponse> {
+        self.client.execute(action: "DescribeCurveData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询环境的监控曲线数据
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
-    public func describeCurveData(_ input: DescribeCurveDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
-        try await self.client.execute(action: "DescribeCurveData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCurveData(_ input: DescribeCurveDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
+        try await self.client.execute(action: "DescribeCurveData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询环境的监控曲线数据
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
-    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCurveDataResponse> {
-        self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), logger: logger, on: eventLoop)
+    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCurveDataResponse> {
+        self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境的监控曲线数据
     ///
     /// 根据用户传入的指标, 拉取一段时间内的监控数据。
     @inlinable
-    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
-        try await self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), logger: logger, on: eventLoop)
+    public func describeCurveData(envId: String, metricName: String, startTime: String, endTime: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCurveDataResponse {
+        try await self.describeCurveData(DescribeCurveDataRequest(envId: envId, metricName: metricName, startTime: startTime, endTime: endTime, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
     }
 }

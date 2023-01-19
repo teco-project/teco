@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
-        self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
+        self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// BTOE存证电子凭证查询
     ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(_ input: GetDepositCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        try await self.client.execute(action: "GetDepositCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
+        try await self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// BTOE存证电子凭证查询
     ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
-        self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
+        self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// BTOE存证电子凭证查询
     ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
-    public func getDepositCert(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        try await self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
+        try await self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 }

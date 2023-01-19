@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Eb {
 
     /// 检验规则
     @inlinable
-    public func checkRule(_ input: CheckRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
-        self.client.execute(action: "CheckRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkRule(_ input: CheckRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
+        self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
     @inlinable
-    public func checkRule(_ input: CheckRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
-        try await self.client.execute(action: "CheckRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkRule(_ input: CheckRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
+        try await self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检验规则
     @inlinable
-    public func checkRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
-        self.checkRule(CheckRuleRequest(), logger: logger, on: eventLoop)
+    public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
+        self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
     @inlinable
-    public func checkRule(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
-        try await self.checkRule(CheckRuleRequest(), logger: logger, on: eventLoop)
+    public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
+        try await self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

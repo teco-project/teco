@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Monitor {
 
     /// 创建通知模板
     @inlinable
-    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
-        self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
+        self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通知模板
     @inlinable
-    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        try await self.client.execute(action: "CreateAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAlarmNotice(_ input: CreateAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
+        try await self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建通知模板
     @inlinable
-    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
-        self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), logger: logger, on: eventLoop)
+    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
+        self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通知模板
     @inlinable
-    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        try await self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), logger: logger, on: eventLoop)
+    public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
+        try await self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Cynosdb {
 
     /// 升级实例
     @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
-        self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
+        self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例
     @inlinable
-    public func upgradeInstance(_ input: UpgradeInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.client.execute(action: "UpgradeInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeInstance(_ input: UpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级实例
     @inlinable
-    public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
-        self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), logger: logger, on: eventLoop)
+    public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
+        self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例
     @inlinable
-    public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), logger: logger, on: eventLoop)
+    public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
+        try await self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), region: region, logger: logger, on: eventLoop)
     }
 }

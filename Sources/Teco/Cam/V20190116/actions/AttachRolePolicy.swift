@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cam {
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
-        self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func attachRolePolicy(_ input: AttachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
+        self.client.execute(action: "AttachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(_ input: AttachRolePolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
-        try await self.client.execute(action: "AttachRolePolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func attachRolePolicy(_ input: AttachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
+        try await self.client.execute(action: "AttachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
-        self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), logger: logger, on: eventLoop)
+    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
+        self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
     @inlinable
-    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
-        try await self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), logger: logger, on: eventLoop)
+    public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
+        try await self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }
 }

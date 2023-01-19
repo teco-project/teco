@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tke {
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable
-    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusConfigResponse> {
-        self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusConfigResponse> {
+        self.client.execute(action: "DeletePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable
-    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
-        try await self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
+        try await self.client.execute(action: "DeletePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable
-    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusConfigResponse> {
-        self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusConfigResponse> {
+        self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
     @inlinable
-    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
-        try await self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
+    public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
+        try await self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
 }

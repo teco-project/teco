@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Dts {
     ///
     /// 配置一个同步任务
     @inlinable
-    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
-        self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func configureSyncJob(_ input: ConfigureSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
+        self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置同步任务
     ///
     /// 配置一个同步任务
     @inlinable
-    public func configureSyncJob(_ input: ConfigureSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
-        try await self.client.execute(action: "ConfigureSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func configureSyncJob(_ input: ConfigureSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
+        try await self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置同步任务
     ///
     /// 配置一个同步任务
     @inlinable
-    public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
-        self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), logger: logger, on: eventLoop)
+    public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
+        self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置同步任务
     ///
     /// 配置一个同步任务
     @inlinable
-    public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
-        try await self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), logger: logger, on: eventLoop)
+    public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
+        try await self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), region: region, logger: logger, on: eventLoop)
     }
 }

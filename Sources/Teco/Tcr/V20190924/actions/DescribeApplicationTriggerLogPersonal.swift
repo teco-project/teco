@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Tcr {
     ///
     /// 用于查询应用更新触发器触发日志
     @inlinable
-    public func describeApplicationTriggerLogPersonal(_ input: DescribeApplicationTriggerLogPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerLogPersonalResponse> {
-        self.client.execute(action: "DescribeApplicationTriggerLogPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationTriggerLogPersonal(_ input: DescribeApplicationTriggerLogPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerLogPersonalResponse> {
+        self.client.execute(action: "DescribeApplicationTriggerLogPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器触发日志
     ///
     /// 用于查询应用更新触发器触发日志
     @inlinable
-    public func describeApplicationTriggerLogPersonal(_ input: DescribeApplicationTriggerLogPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerLogPersonalResponse {
-        try await self.client.execute(action: "DescribeApplicationTriggerLogPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationTriggerLogPersonal(_ input: DescribeApplicationTriggerLogPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerLogPersonalResponse {
+        try await self.client.execute(action: "DescribeApplicationTriggerLogPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用更新触发器触发日志
     ///
     /// 用于查询应用更新触发器触发日志
     @inlinable
-    public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerLogPersonalResponse> {
-        self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerLogPersonalResponse> {
+        self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器触发日志
     ///
     /// 用于查询应用更新触发器触发日志
     @inlinable
-    public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerLogPersonalResponse {
-        try await self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerLogPersonalResponse {
+        try await self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 }

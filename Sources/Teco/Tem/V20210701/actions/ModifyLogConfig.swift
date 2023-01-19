@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tem {
 
     /// 编辑日志收集配置
     @inlinable
-    public func modifyLogConfig(_ input: ModifyLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogConfigResponse> {
-        self.client.execute(action: "ModifyLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLogConfig(_ input: ModifyLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogConfigResponse> {
+        self.client.execute(action: "ModifyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑日志收集配置
     @inlinable
-    public func modifyLogConfig(_ input: ModifyLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
-        try await self.client.execute(action: "ModifyLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLogConfig(_ input: ModifyLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
+        try await self.client.execute(action: "ModifyLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑日志收集配置
     @inlinable
-    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogConfigResponse> {
-        self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogConfigResponse> {
+        self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑日志收集配置
     @inlinable
-    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
-        try await self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func modifyLogConfig(environmentId: String, name: String, data: LogConfig? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogConfigResponse {
+        try await self.modifyLogConfig(ModifyLogConfigRequest(environmentId: environmentId, name: name, data: data, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cdn {
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(_ input: DescribePushQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
-        self.client.execute(action: "DescribePushQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePushQuota(_ input: DescribePushQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
+        self.client.execute(action: "DescribePushQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(_ input: DescribePushQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushQuotaResponse {
-        try await self.client.execute(action: "DescribePushQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePushQuota(_ input: DescribePushQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushQuotaResponse {
+        try await self.client.execute(action: "DescribePushQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
-        self.describePushQuota(DescribePushQuotaRequest(), logger: logger, on: eventLoop)
+    public func describePushQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushQuotaResponse> {
+        self.describePushQuota(DescribePushQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询预热用量配额
     ///
     /// DescribePushQuota  用于查询预热配额和每日可用量。
     @inlinable
-    public func describePushQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushQuotaResponse {
-        try await self.describePushQuota(DescribePushQuotaRequest(), logger: logger, on: eventLoop)
+    public func describePushQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushQuotaResponse {
+        try await self.describePushQuota(DescribePushQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

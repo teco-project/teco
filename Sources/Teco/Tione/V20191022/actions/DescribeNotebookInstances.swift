@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Tione {
 
     /// 查询Notebook实例列表
     @inlinable
-    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstancesResponse> {
-        self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstancesResponse> {
+        self.client.execute(action: "DescribeNotebookInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例列表
     @inlinable
-    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
-        try await self.client.execute(action: "DescribeNotebookInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNotebookInstances(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
+        try await self.client.execute(action: "DescribeNotebookInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Notebook实例列表
     @inlinable
-    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstancesResponse> {
-        self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstancesResponse> {
+        self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例列表
     @inlinable
-    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
-        try await self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), logger: logger, on: eventLoop)
+    public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
+        try await self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
     }
 }

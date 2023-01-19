@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Dc {
 
     /// 删除专用通道
     @inlinable
-    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectTunnelResponse> {
-        self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectTunnelResponse> {
+        self.client.execute(action: "DeleteDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除专用通道
     @inlinable
-    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
-        try await self.client.execute(action: "DeleteDirectConnectTunnel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDirectConnectTunnel(_ input: DeleteDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
+        try await self.client.execute(action: "DeleteDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除专用通道
     @inlinable
-    public func deleteDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectTunnelResponse> {
-        self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func deleteDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectTunnelResponse> {
+        self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除专用通道
     @inlinable
-    public func deleteDirectConnectTunnel(directConnectTunnelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
-        try await self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), logger: logger, on: eventLoop)
+    public func deleteDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
+        try await self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Captcha {
 
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
-    public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataSumResponse> {
-        self.client.execute(action: "DescribeCaptchaMiniDataSum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataSumResponse> {
+        self.client.execute(action: "DescribeCaptchaMiniDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
-    public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {
-        try await self.client.execute(action: "DescribeCaptchaMiniDataSum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCaptchaMiniDataSum(_ input: DescribeCaptchaMiniDataSumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {
+        try await self.client.execute(action: "DescribeCaptchaMiniDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
-    public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataSumResponse> {
-        self.describeCaptchaMiniDataSum(DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataSumResponse> {
+        self.describeCaptchaMiniDataSum(DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件查询请求数据概况
     @inlinable
-    public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {
-        try await self.describeCaptchaMiniDataSum(DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    public func describeCaptchaMiniDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataSumResponse {
+        try await self.describeCaptchaMiniDataSum(DescribeCaptchaMiniDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Bda {
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
-        self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
+        self.client.execute(action: "ModifyPersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改人员信息
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
-        try await self.client.execute(action: "ModifyPersonInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
+        try await self.client.execute(action: "ModifyPersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改人员信息
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(personId: String, personName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
-        self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), logger: logger, on: eventLoop)
+    public func modifyPersonInfo(personId: String, personName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
+        self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改人员信息
     ///
     /// 修改人员信息。
     @inlinable
-    public func modifyPersonInfo(personId: String, personName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
-        try await self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), logger: logger, on: eventLoop)
+    public func modifyPersonInfo(personId: String, personName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
+        try await self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), region: region, logger: logger, on: eventLoop)
     }
 }

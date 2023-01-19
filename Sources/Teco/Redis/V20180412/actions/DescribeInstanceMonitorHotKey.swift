@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 查询实例热Key
     @inlinable
-    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorHotKeyResponse> {
-        self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorHotKeyResponse> {
+        self.client.execute(action: "DescribeInstanceMonitorHotKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例热Key
     @inlinable
-    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorHotKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceMonitorHotKey(_ input: DescribeInstanceMonitorHotKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorHotKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例热Key
     @inlinable
-    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorHotKeyResponse> {
-        self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorHotKeyResponse> {
+        self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例热Key
     @inlinable
-    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
-        try await self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorHotKey(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorHotKeyResponse {
+        try await self.describeInstanceMonitorHotKey(DescribeInstanceMonitorHotKeyRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
     }
 }

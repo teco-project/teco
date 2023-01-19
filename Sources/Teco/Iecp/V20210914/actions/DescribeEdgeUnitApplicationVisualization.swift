@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Iecp {
 
     /// 获取单元可视化配置信息
     @inlinable
-    public func describeEdgeUnitApplicationVisualization(_ input: DescribeEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationVisualizationResponse> {
-        self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationVisualization(_ input: DescribeEdgeUnitApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationVisualizationResponse> {
+        self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单元可视化配置信息
     @inlinable
-    public func describeEdgeUnitApplicationVisualization(_ input: DescribeEdgeUnitApplicationVisualizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitApplicationVisualization(_ input: DescribeEdgeUnitApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单元可视化配置信息
     @inlinable
-    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationVisualizationResponse> {
-        self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationVisualizationResponse> {
+        self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单元可视化配置信息
     @inlinable
-    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
-        try await self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationVisualization(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationVisualizationResponse {
+        try await self.describeEdgeUnitApplicationVisualization(DescribeEdgeUnitApplicationVisualizationRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

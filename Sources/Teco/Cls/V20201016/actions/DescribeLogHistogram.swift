@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Cls {
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
-        self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
+        self.client.execute(action: "DescribeLogHistogram", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志数量直方图
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        try await self.client.execute(action: "DescribeLogHistogram", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogHistogram(_ input: DescribeLogHistogramRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.client.execute(action: "DescribeLogHistogram", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志数量直方图
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
-        self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), logger: logger, on: eventLoop)
+    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
+        self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志数量直方图
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        try await self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), logger: logger, on: eventLoop)
+    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

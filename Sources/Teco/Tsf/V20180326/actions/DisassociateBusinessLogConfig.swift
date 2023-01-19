@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tsf {
 
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
-        self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
+        self.client.execute(action: "DisassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
-        try await self.client.execute(action: "DisassociateBusinessLogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateBusinessLogConfig(_ input: DisassociateBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
+        try await self.client.execute(action: "DisassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
-        self.disassociateBusinessLogConfig(DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId), logger: logger, on: eventLoop)
+    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateBusinessLogConfigResponse> {
+        self.disassociateBusinessLogConfig(DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消关联业务日志配置项和应用
     @inlinable
-    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
-        try await self.disassociateBusinessLogConfig(DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId), logger: logger, on: eventLoop)
+    public func disassociateBusinessLogConfig(configIdList: [String], groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateBusinessLogConfigResponse {
+        try await self.disassociateBusinessLogConfig(DisassociateBusinessLogConfigRequest(configIdList: configIdList, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

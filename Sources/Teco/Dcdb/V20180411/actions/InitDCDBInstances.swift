@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Dcdb {
     ///
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDCDBInstances(_ input: InitDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDCDBInstancesResponse> {
-        self.client.execute(action: "InitDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func initDCDBInstances(_ input: InitDCDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDCDBInstancesResponse> {
+        self.client.execute(action: "InitDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
     ///
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDCDBInstances(_ input: InitDCDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDCDBInstancesResponse {
-        try await self.client.execute(action: "InitDCDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func initDCDBInstances(_ input: InitDCDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDCDBInstancesResponse {
+        try await self.client.execute(action: "InitDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 初始化实例
     ///
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDCDBInstancesResponse> {
-        self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), logger: logger, on: eventLoop)
+    public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDCDBInstancesResponse> {
+        self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
     ///
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
-    public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDCDBInstancesResponse {
-        try await self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), logger: logger, on: eventLoop)
+    public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDCDBInstancesResponse {
+        try await self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
     }
 }

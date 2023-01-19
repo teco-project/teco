@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Zj {
     ///
     /// 获取模板信息
     @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
+        self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信模板查询接口
     ///
     /// 获取模板信息
     @inlinable
-    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.client.execute(action: "DescribeSmsTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmsTemplateList(_ input: DescribeSmsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 短信模板查询接口
     ///
     /// 获取模板信息
     @inlinable
-    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
+        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 
     /// 短信模板查询接口
     ///
     /// 获取模板信息
     @inlinable
-    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), logger: logger, on: eventLoop)
+    public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
+        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
     }
 }

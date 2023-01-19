@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Wav {
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
-        self.client.execute(action: "QueryExternalContactDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
+        self.client.execute(action: "QueryExternalContactDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
-        try await self.client.execute(action: "QueryExternalContactDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryExternalContactDetail(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
+        try await self.client.execute(action: "QueryExternalContactDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
-        self.queryExternalContactDetail(QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExternalContactDetailResponse> {
+        self.queryExternalContactDetail(QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
-        try await self.queryExternalContactDetail(QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryExternalContactDetail(externalUserId: String, cursor: String? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExternalContactDetailResponse {
+        try await self.queryExternalContactDetail(QueryExternalContactDetailRequest(externalUserId: externalUserId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

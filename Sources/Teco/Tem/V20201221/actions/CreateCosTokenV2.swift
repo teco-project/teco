@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tem {
     ///
     /// 生成Cos临时秘钥
     @inlinable
-    public func createCosTokenV2(_ input: CreateCosTokenV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosTokenV2Response> {
-        self.client.execute(action: "CreateCosTokenV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCosTokenV2(_ input: CreateCosTokenV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosTokenV2Response> {
+        self.client.execute(action: "CreateCosTokenV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成Cos临时秘钥V2
     ///
     /// 生成Cos临时秘钥
     @inlinable
-    public func createCosTokenV2(_ input: CreateCosTokenV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
-        try await self.client.execute(action: "CreateCosTokenV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCosTokenV2(_ input: CreateCosTokenV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
+        try await self.client.execute(action: "CreateCosTokenV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成Cos临时秘钥V2
     ///
     /// 生成Cos临时秘钥
     @inlinable
-    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosTokenV2Response> {
-        self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosTokenV2Response> {
+        self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成Cos临时秘钥V2
     ///
     /// 生成Cos临时秘钥
     @inlinable
-    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
-        try await self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), logger: logger, on: eventLoop)
+    public func createCosTokenV2(serviceId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenV2Response {
+        try await self.createCosTokenV2(CreateCosTokenV2Request(serviceId: serviceId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), region: region, logger: logger, on: eventLoop)
     }
 }

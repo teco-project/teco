@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Tsf {
     ///
     /// 镜像仓库列表
     @inlinable
-    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRepositoryResponse> {
-        self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRepositoryResponse> {
+        self.client.execute(action: "DescribeImageRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库列表
     ///
     /// 镜像仓库列表
     @inlinable
-    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
-        try await self.client.execute(action: "DescribeImageRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageRepository(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
+        try await self.client.execute(action: "DescribeImageRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库列表
     ///
     /// 镜像仓库列表
     @inlinable
-    public func describeImageRepository(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, repoType: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRepositoryResponse> {
-        self.describeImageRepository(DescribeImageRepositoryRequest(searchWord: searchWord, offset: offset, limit: limit, repoType: repoType, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    public func describeImageRepository(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, repoType: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageRepositoryResponse> {
+        self.describeImageRepository(DescribeImageRepositoryRequest(searchWord: searchWord, offset: offset, limit: limit, repoType: repoType, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库列表
     ///
     /// 镜像仓库列表
     @inlinable
-    public func describeImageRepository(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, repoType: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
-        try await self.describeImageRepository(DescribeImageRepositoryRequest(searchWord: searchWord, offset: offset, limit: limit, repoType: repoType, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    public func describeImageRepository(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, repoType: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageRepositoryResponse {
+        try await self.describeImageRepository(DescribeImageRepositoryRequest(searchWord: searchWord, offset: offset, limit: limit, repoType: repoType, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
-        self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
+        self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDirectConnectGatewayCcnRoutes(_ input: CreateDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
-        self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), logger: logger, on: eventLoop)
+    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
+        self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关云联网路由
     ///
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable
-    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
-        try await self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), logger: logger, on: eventLoop)
+    public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
+        try await self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
     }
 }

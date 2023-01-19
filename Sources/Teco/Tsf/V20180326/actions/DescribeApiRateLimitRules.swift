@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 查询API限流规则
     @inlinable
-    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiRateLimitRulesResponse> {
-        self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiRateLimitRulesResponse> {
+        self.client.execute(action: "DescribeApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询API限流规则
     @inlinable
-    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
-        try await self.client.execute(action: "DescribeApiRateLimitRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiRateLimitRules(_ input: DescribeApiRateLimitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
+        try await self.client.execute(action: "DescribeApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询API限流规则
     @inlinable
-    public func describeApiRateLimitRules(apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiRateLimitRulesResponse> {
-        self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), logger: logger, on: eventLoop)
+    public func describeApiRateLimitRules(apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiRateLimitRulesResponse> {
+        self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询API限流规则
     @inlinable
-    public func describeApiRateLimitRules(apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
-        try await self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), logger: logger, on: eventLoop)
+    public func describeApiRateLimitRules(apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
+        try await self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

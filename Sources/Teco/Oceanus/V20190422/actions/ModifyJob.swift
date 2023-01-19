@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension Oceanus {
     /// 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable
-    public func modifyJob(_ input: ModifyJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyJobResponse> {
-        self.client.execute(action: "ModifyJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyJob(_ input: ModifyJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyJobResponse> {
+        self.client.execute(action: "ModifyJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新作业
@@ -87,8 +87,8 @@ extension Oceanus {
     /// 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable
-    public func modifyJob(_ input: ModifyJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
-        try await self.client.execute(action: "ModifyJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyJob(_ input: ModifyJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
+        try await self.client.execute(action: "ModifyJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新作业
@@ -103,8 +103,8 @@ extension Oceanus {
     /// 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable
-    public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyJobResponse> {
-        self.modifyJob(ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyJobResponse> {
+        self.modifyJob(ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新作业
@@ -119,7 +119,7 @@ extension Oceanus {
     /// 假设作业运行状态，则先停止作业，再启动作业，中间状态丢失
     /// 假设作业暂停状态，则将作业更改为停止状态，中间状态丢失
     @inlinable
-    public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
-        try await self.modifyJob(ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func modifyJob(jobId: String, name: String? = nil, remark: String? = nil, targetFolderId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyJobResponse {
+        try await self.modifyJob(ModifyJobRequest(jobId: jobId, name: name, remark: remark, targetFolderId: targetFolderId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

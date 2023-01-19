@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,8 +65,8 @@ extension Tem {
     ///   - 删除服务相关资源
     ///   - 删除服务
     @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationResponse> {
-        self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApplication(_ input: DeleteApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationResponse> {
+        self.client.execute(action: "DeleteApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务删除
@@ -76,8 +76,8 @@ extension Tem {
     ///   - 删除服务相关资源
     ///   - 删除服务
     @inlinable
-    public func deleteApplication(_ input: DeleteApplicationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
-        try await self.client.execute(action: "DeleteApplication", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApplication(_ input: DeleteApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.client.execute(action: "DeleteApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务删除
@@ -87,8 +87,8 @@ extension Tem {
     ///   - 删除服务相关资源
     ///   - 删除服务
     @inlinable
-    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationResponse> {
-        self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), logger: logger, on: eventLoop)
+    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationResponse> {
+        self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务删除
@@ -98,7 +98,7 @@ extension Tem {
     ///   - 删除服务相关资源
     ///   - 删除服务
     @inlinable
-    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
-        try await self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), logger: logger, on: eventLoop)
+    public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
+        try await self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), region: region, logger: logger, on: eventLoop)
     }
 }

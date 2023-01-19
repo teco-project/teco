@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
-    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
-        self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
+        self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例规格
     ///
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
-    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
-        try await self.client.execute(action: "DescribeInstanceSpecs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceSpecs(_ input: DescribeInstanceSpecsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
+        try await self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例规格
     ///
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
-    public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
-        self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), logger: logger, on: eventLoop)
+    public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
+        self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例规格
     ///
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
-    public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
-        try await self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), logger: logger, on: eventLoop)
+    public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
+        try await self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,8 +79,8 @@ extension Live {
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
-    public func describeScreenshotTask(_ input: DescribeScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenshotTaskResponse> {
-        self.client.execute(action: "DescribeScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScreenshotTask(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenshotTaskResponse> {
+        self.client.execute(action: "DescribeScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询截图任务列表
@@ -90,8 +90,8 @@ extension Live {
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
-    public func describeScreenshotTask(_ input: DescribeScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenshotTaskResponse {
-        try await self.client.execute(action: "DescribeScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScreenshotTask(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenshotTaskResponse {
+        try await self.client.execute(action: "DescribeScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询截图任务列表
@@ -101,8 +101,8 @@ extension Live {
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
-    public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenshotTaskResponse> {
-        self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenshotTaskResponse> {
+        self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询截图任务列表
@@ -112,7 +112,7 @@ extension Live {
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
-    public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenshotTaskResponse {
-        try await self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), logger: logger, on: eventLoop)
+    public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenshotTaskResponse {
+        try await self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,8 +67,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
-        self.client.execute(action: "DescribeTrtcUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
+        self.client.execute(action: "DescribeTrtcUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC音视频用量
@@ -80,8 +80,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcUsageResponse {
-        try await self.client.execute(action: "DescribeTrtcUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrtcUsage(_ input: DescribeTrtcUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcUsageResponse {
+        try await self.client.execute(action: "DescribeTrtcUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询TRTC音视频用量
@@ -93,8 +93,8 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
-        self.describeTrtcUsage(DescribeTrtcUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcUsageResponse> {
+        self.describeTrtcUsage(DescribeTrtcUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC音视频用量
@@ -106,7 +106,7 @@ extension Trtc {
     /// - 该接口只用于历史用量数据统计或核对数据使用，关键业务逻辑不能使用。
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
-    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcUsageResponse {
-        try await self.describeTrtcUsage(DescribeTrtcUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeTrtcUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcUsageResponse {
+        try await self.describeTrtcUsage(DescribeTrtcUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

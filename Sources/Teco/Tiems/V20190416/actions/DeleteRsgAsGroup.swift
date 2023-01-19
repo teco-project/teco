@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
-        self.client.execute(action: "DeleteRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
+        self.client.execute(action: "DeleteRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资源组的伸缩组
@@ -53,8 +53,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRsgAsGroupResponse {
-        try await self.client.execute(action: "DeleteRsgAsGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRsgAsGroup(_ input: DeleteRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRsgAsGroupResponse {
+        try await self.client.execute(action: "DeleteRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资源组的伸缩组
@@ -62,8 +62,8 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
-        self.deleteRsgAsGroup(DeleteRsgAsGroupRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRsgAsGroupResponse> {
+        self.deleteRsgAsGroup(DeleteRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源组的伸缩组
@@ -71,7 +71,7 @@ extension Tiems {
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 伸缩
     @inlinable
-    public func deleteRsgAsGroup(id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRsgAsGroupResponse {
-        try await self.deleteRsgAsGroup(DeleteRsgAsGroupRequest(id: id), logger: logger, on: eventLoop)
+    public func deleteRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRsgAsGroupResponse {
+        try await self.deleteRsgAsGroup(DeleteRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

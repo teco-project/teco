@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Ess {
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
-        self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
+        self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
-        try await self.client.execute(action: "DescribeFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowEvidenceReport(_ input: DescribeFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
+        try await self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询出证报告
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
-        self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), logger: logger, on: eventLoop)
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
+        self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
-        try await self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), logger: logger, on: eventLoop)
+    public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
+        try await self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
     }
 }

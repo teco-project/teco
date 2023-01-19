@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -133,31 +133,31 @@ extension Cat {
     ///
     /// 查询拨测任务列表
     @inlinable
-    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeTasksResponse> {
-        self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeTasksResponse> {
+        self.client.execute(action: "DescribeProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询拨测任务列表
     ///
     /// 查询拨测任务列表
     @inlinable
-    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
-        try await self.client.execute(action: "DescribeProbeTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProbeTasks(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
+        try await self.client.execute(action: "DescribeProbeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询拨测任务列表
     ///
     /// 查询拨测任务列表
     @inlinable
-    public func describeProbeTasks(taskIDs: [String]? = nil, taskName: String? = nil, targetAddress: String? = nil, taskStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, payMode: Int64? = nil, orderState: Int64? = nil, taskType: [Int64]? = nil, taskCategory: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [KeyValuePair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeTasksResponse> {
-        self.describeProbeTasks(DescribeProbeTasksRequest(taskIDs: taskIDs, taskName: taskName, targetAddress: targetAddress, taskStatus: taskStatus, offset: offset, limit: limit, payMode: payMode, orderState: orderState, taskType: taskType, taskCategory: taskCategory, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeProbeTasks(taskIDs: [String]? = nil, taskName: String? = nil, targetAddress: String? = nil, taskStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, payMode: Int64? = nil, orderState: Int64? = nil, taskType: [Int64]? = nil, taskCategory: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [KeyValuePair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProbeTasksResponse> {
+        self.describeProbeTasks(DescribeProbeTasksRequest(taskIDs: taskIDs, taskName: taskName, targetAddress: targetAddress, taskStatus: taskStatus, offset: offset, limit: limit, payMode: payMode, orderState: orderState, taskType: taskType, taskCategory: taskCategory, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 分页查询拨测任务列表
     ///
     /// 查询拨测任务列表
     @inlinable
-    public func describeProbeTasks(taskIDs: [String]? = nil, taskName: String? = nil, targetAddress: String? = nil, taskStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, payMode: Int64? = nil, orderState: Int64? = nil, taskType: [Int64]? = nil, taskCategory: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [KeyValuePair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
-        try await self.describeProbeTasks(DescribeProbeTasksRequest(taskIDs: taskIDs, taskName: taskName, targetAddress: targetAddress, taskStatus: taskStatus, offset: offset, limit: limit, payMode: payMode, orderState: orderState, taskType: taskType, taskCategory: taskCategory, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), logger: logger, on: eventLoop)
+    public func describeProbeTasks(taskIDs: [String]? = nil, taskName: String? = nil, targetAddress: String? = nil, taskStatus: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, payMode: Int64? = nil, orderState: Int64? = nil, taskType: [Int64]? = nil, taskCategory: [Int64]? = nil, orderBy: String? = nil, ascend: Bool? = nil, tagFilters: [KeyValuePair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProbeTasksResponse {
+        try await self.describeProbeTasks(DescribeProbeTasksRequest(taskIDs: taskIDs, taskName: taskName, targetAddress: targetAddress, taskStatus: taskStatus, offset: offset, limit: limit, payMode: payMode, orderState: orderState, taskType: taskType, taskCategory: taskCategory, orderBy: orderBy, ascend: ascend, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcss {
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
-        self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAsset(_ input: ModifyAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
+        self.client.execute(action: "ModifyAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(_ input: ModifyAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
-        try await self.client.execute(action: "ModifyAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAsset(_ input: ModifyAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
+        try await self.client.execute(action: "ModifyAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
-        self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), logger: logger, on: eventLoop)
+    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetResponse> {
+        self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 主机资产刷新
     ///
     /// 容器安全主机资产刷新
     @inlinable
-    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
-        try await self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), logger: logger, on: eventLoop)
+    public func modifyAsset(all: Bool? = nil, hosts: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetResponse {
+        try await self.modifyAsset(ModifyAssetRequest(all: all, hosts: hosts), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -109,31 +109,31 @@ extension Faceid {
     ///
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
-    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessRecognitionResponse> {
-        self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func livenessRecognition(_ input: LivenessRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessRecognitionResponse> {
+        self.client.execute(action: "LivenessRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸核身
     ///
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
-    public func livenessRecognition(_ input: LivenessRecognitionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
-        try await self.client.execute(action: "LivenessRecognition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func livenessRecognition(_ input: LivenessRecognitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
+        try await self.client.execute(action: "LivenessRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 活体人脸核身
     ///
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
-    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessRecognitionResponse> {
-        self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessRecognitionResponse> {
+        self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸核身
     ///
     /// 传入视频和身份信息，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与权威库的证件照是否属于同一个人。
     @inlinable
-    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
-        try await self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), logger: logger, on: eventLoop)
+    public func livenessRecognition(idCard: String, name: String, livenessType: String, videoBase64: String? = nil, videoUrl: String? = nil, validateData: String? = nil, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessRecognitionResponse {
+        try await self.livenessRecognition(LivenessRecognitionRequest(idCard: idCard, name: name, livenessType: livenessType, videoBase64: videoBase64, videoUrl: videoUrl, validateData: validateData, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

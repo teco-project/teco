@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Wedata {
 
     /// 创建离线任务
     @inlinable
-    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineTaskResponse> {
-        self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createOfflineTask(_ input: CreateOfflineTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineTaskResponse> {
+        self.client.execute(action: "CreateOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建离线任务
     @inlinable
-    public func createOfflineTask(_ input: CreateOfflineTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
-        try await self.client.execute(action: "CreateOfflineTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createOfflineTask(_ input: CreateOfflineTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
+        try await self.client.execute(action: "CreateOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建离线任务
     @inlinable
-    public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineTaskResponse> {
-        self.createOfflineTask(CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), logger: logger, on: eventLoop)
+    public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineTaskResponse> {
+        self.createOfflineTask(CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建离线任务
     @inlinable
-    public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
-        try await self.createOfflineTask(CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), logger: logger, on: eventLoop)
+    public func createOfflineTask(projectId: String, cycleStep: Int64, delayTime: Int64, endTime: String, notes: String, startTime: String, taskName: String, typeId: Int64, taskAction: String, taskMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineTaskResponse {
+        try await self.createOfflineTask(CreateOfflineTaskRequest(projectId: projectId, cycleStep: cycleStep, delayTime: delayTime, endTime: endTime, notes: notes, startTime: startTime, taskName: taskName, typeId: typeId, taskAction: taskAction, taskMode: taskMode), region: region, logger: logger, on: eventLoop)
     }
 }

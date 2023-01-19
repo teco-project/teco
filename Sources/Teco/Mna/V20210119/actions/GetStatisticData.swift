@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Mna {
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(_ input: GetStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
-        self.client.execute(action: "GetStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getStatisticData(_ input: GetStatisticDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
+        self.client.execute(action: "GetStatisticData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(_ input: GetStatisticDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
-        try await self.client.execute(action: "GetStatisticData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getStatisticData(_ input: GetStatisticDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
+        try await self.client.execute(action: "GetStatisticData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
-        self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), logger: logger, on: eventLoop)
+    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
+        self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载用量统计数据
     ///
     /// 在用量统计页面下载流量数据
     @inlinable
-    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
-        try await self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), logger: logger, on: eventLoop)
+    public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
+        try await self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
     }
 }

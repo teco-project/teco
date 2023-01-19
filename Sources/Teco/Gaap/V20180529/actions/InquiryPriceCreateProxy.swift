@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -130,31 +130,31 @@ extension Gaap {
     ///
     /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
     @inlinable
-    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateProxyResponse> {
-        self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateProxyResponse> {
+        self.client.execute(action: "InquiryPriceCreateProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建加速通道询价
     ///
     /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
     @inlinable
-    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
-        try await self.client.execute(action: "InquiryPriceCreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceCreateProxy(_ input: InquiryPriceCreateProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
+        try await self.client.execute(action: "InquiryPriceCreateProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建加速通道询价
     ///
     /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
     @inlinable
-    public func inquiryPriceCreateProxy(accessRegion: String, bandwidth: Int64, destRegion: String? = nil, concurrency: Int64? = nil, realServerRegion: String? = nil, concurrent: Int64? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateProxyResponse> {
-        self.inquiryPriceCreateProxy(InquiryPriceCreateProxyRequest(accessRegion: accessRegion, bandwidth: bandwidth, destRegion: destRegion, concurrency: concurrency, realServerRegion: realServerRegion, concurrent: concurrent, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    public func inquiryPriceCreateProxy(accessRegion: String, bandwidth: Int64, destRegion: String? = nil, concurrency: Int64? = nil, realServerRegion: String? = nil, concurrent: Int64? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateProxyResponse> {
+        self.inquiryPriceCreateProxy(InquiryPriceCreateProxyRequest(accessRegion: accessRegion, bandwidth: bandwidth, destRegion: destRegion, concurrency: concurrency, realServerRegion: realServerRegion, concurrent: concurrent, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建加速通道询价
     ///
     /// 本接口（InquiryPriceCreateProxy）用于创建加速通道询价。
     @inlinable
-    public func inquiryPriceCreateProxy(accessRegion: String, bandwidth: Int64, destRegion: String? = nil, concurrency: Int64? = nil, realServerRegion: String? = nil, concurrent: Int64? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
-        try await self.inquiryPriceCreateProxy(InquiryPriceCreateProxyRequest(accessRegion: accessRegion, bandwidth: bandwidth, destRegion: destRegion, concurrency: concurrency, realServerRegion: realServerRegion, concurrent: concurrent, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    public func inquiryPriceCreateProxy(accessRegion: String, bandwidth: Int64, destRegion: String? = nil, concurrency: Int64? = nil, realServerRegion: String? = nil, concurrent: Int64? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateProxyResponse {
+        try await self.inquiryPriceCreateProxy(InquiryPriceCreateProxyRequest(accessRegion: accessRegion, bandwidth: bandwidth, destRegion: destRegion, concurrency: concurrency, realServerRegion: realServerRegion, concurrent: concurrent, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 }

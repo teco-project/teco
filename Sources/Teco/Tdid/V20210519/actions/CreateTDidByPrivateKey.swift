@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tdid {
 
     /// 新建DID根据私钥生成Tdid
     @inlinable
-    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
+        self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建DID根据私钥生成Tdid
     @inlinable
-    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.client.execute(action: "CreateTDidByPrivateKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTDidByPrivateKey(_ input: CreateTDidByPrivateKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
+        try await self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建DID根据私钥生成Tdid
     @inlinable
-    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), logger: logger, on: eventLoop)
+    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
+        self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建DID根据私钥生成Tdid
     @inlinable
-    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), logger: logger, on: eventLoop)
+    public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
+        try await self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 }

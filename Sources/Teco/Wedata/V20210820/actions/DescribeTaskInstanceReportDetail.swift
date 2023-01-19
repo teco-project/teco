@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Wedata {
 
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
-        self.client.execute(action: "DescribeTaskInstanceReportDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
+        self.client.execute(action: "DescribeTaskInstanceReportDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {
-        try await self.client.execute(action: "DescribeTaskInstanceReportDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskInstanceReportDetail(_ input: DescribeTaskInstanceReportDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {
+        try await self.client.execute(action: "DescribeTaskInstanceReportDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
-        self.describeTaskInstanceReportDetail(DescribeTaskInstanceReportDetailRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), logger: logger, on: eventLoop)
+    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInstanceReportDetailResponse> {
+        self.describeTaskInstanceReportDetail(DescribeTaskInstanceReportDetailRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 离线任务实例统计明细
     @inlinable
-    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {
-        try await self.describeTaskInstanceReportDetail(DescribeTaskInstanceReportDetailRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), logger: logger, on: eventLoop)
+    public func describeTaskInstanceReportDetail(projectId: String, taskId: String, curRunDate: String? = nil, issueDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInstanceReportDetailResponse {
+        try await self.describeTaskInstanceReportDetail(DescribeTaskInstanceReportDetailRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate, issueDate: issueDate), region: region, logger: logger, on: eventLoop)
     }
 }

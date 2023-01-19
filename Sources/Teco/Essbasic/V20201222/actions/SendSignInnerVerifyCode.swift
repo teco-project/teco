@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Essbasic {
     ///
     /// 此接口用于发送签署验证码
     @inlinable
-    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSignInnerVerifyCodeResponse> {
-        self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSignInnerVerifyCodeResponse> {
+        self.client.execute(action: "SendSignInnerVerifyCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送签署验证码
     ///
     /// 此接口用于发送签署验证码
     @inlinable
-    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
-        try await self.client.execute(action: "SendSignInnerVerifyCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendSignInnerVerifyCode(_ input: SendSignInnerVerifyCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
+        try await self.client.execute(action: "SendSignInnerVerifyCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送签署验证码
     ///
     /// 此接口用于发送签署验证码
     @inlinable
-    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSignInnerVerifyCodeResponse> {
-        self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), logger: logger, on: eventLoop)
+    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSignInnerVerifyCodeResponse> {
+        self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送签署验证码
     ///
     /// 此接口用于发送签署验证码
     @inlinable
-    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
-        try await self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), logger: logger, on: eventLoop)
+    public func sendSignInnerVerifyCode(caller: Caller, mobile: String, verifyType: String, userId: String? = nil, verifyTemplateId: String? = nil, verifySign: String? = nil, flowId: String? = nil, checkThreeElementResult: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSignInnerVerifyCodeResponse {
+        try await self.sendSignInnerVerifyCode(SendSignInnerVerifyCodeRequest(caller: caller, mobile: mobile, verifyType: verifyType, userId: userId, verifyTemplateId: verifyTemplateId, verifySign: verifySign, flowId: flowId, checkThreeElementResult: checkThreeElementResult), region: region, logger: logger, on: eventLoop)
     }
 }

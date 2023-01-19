@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cfs {
     ///
     /// 解除文件系统绑定的快照策略
     @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
-        self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
+        self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑快照策略
     ///
     /// 解除文件系统绑定的快照策略
     @inlinable
-    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindAutoSnapshotPolicy(_ input: UnbindAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑快照策略
     ///
     /// 解除文件系统绑定的快照策略
     @inlinable
-    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
-        self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
+        self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑快照策略
     ///
     /// 解除文件系统绑定的快照策略
     @inlinable
-    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), logger: logger, on: eventLoop)
+    public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
+        try await self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
     }
 }

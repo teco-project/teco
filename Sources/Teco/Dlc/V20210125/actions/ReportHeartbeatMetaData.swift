@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Dlc {
 
     /// 上报元数据心跳
     @inlinable
-    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportHeartbeatMetaDataResponse> {
-        self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportHeartbeatMetaDataResponse> {
+        self.client.execute(action: "ReportHeartbeatMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报元数据心跳
     @inlinable
-    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
-        try await self.client.execute(action: "ReportHeartbeatMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reportHeartbeatMetaData(_ input: ReportHeartbeatMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
+        try await self.client.execute(action: "ReportHeartbeatMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报元数据心跳
     @inlinable
-    public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportHeartbeatMetaDataResponse> {
-        self.reportHeartbeatMetaData(ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), logger: logger, on: eventLoop)
+    public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportHeartbeatMetaDataResponse> {
+        self.reportHeartbeatMetaData(ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报元数据心跳
     @inlinable
-    public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
-        try await self.reportHeartbeatMetaData(ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), logger: logger, on: eventLoop)
+    public func reportHeartbeatMetaData(datasourceConnectionName: String? = nil, lockId: Int64? = nil, txnId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportHeartbeatMetaDataResponse {
+        try await self.reportHeartbeatMetaData(ReportHeartbeatMetaDataRequest(datasourceConnectionName: datasourceConnectionName, lockId: lockId, txnId: txnId), region: region, logger: logger, on: eventLoop)
     }
 }

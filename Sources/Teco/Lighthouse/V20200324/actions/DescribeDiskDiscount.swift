@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Lighthouse {
     ///
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
-    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskDiscountResponse> {
-        self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskDiscountResponse> {
+        self.client.execute(action: "DescribeDiskDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘折扣信息
     ///
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
-    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
-        try await self.client.execute(action: "DescribeDiskDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiskDiscount(_ input: DescribeDiskDiscountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
+        try await self.client.execute(action: "DescribeDiskDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云硬盘折扣信息
     ///
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
-    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskDiscountResponse> {
-        self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskDiscountResponse> {
+        self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘折扣信息
     ///
     /// 本接口(DescribeDiskDiscount)用于查询云硬盘折扣信息。
     @inlinable
-    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
-        try await self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    public func describeDiskDiscount(diskType: String, diskSize: Int64, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskDiscountResponse {
+        try await self.describeDiskDiscount(DescribeDiskDiscountRequest(diskType: diskType, diskSize: diskSize, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

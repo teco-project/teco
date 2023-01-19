@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tke {
     ///
     /// 删除一个云原生Prometheus配置模板
     @inlinable
-    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
-        self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
+        self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
     @inlinable
-    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
-        try await self.client.execute(action: "DeletePrometheusTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
+        try await self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
     @inlinable
-    public func deletePrometheusTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
-        self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
+        self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
     @inlinable
-    public func deletePrometheusTemplate(templateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
-        try await self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
+    public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
+        try await self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

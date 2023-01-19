@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Postgres {
     ///
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
+        self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取数据库列表
     ///
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
-    public func describeDatabases(_ input: DescribeDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.client.execute(action: "DescribeDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatabases(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取数据库列表
     ///
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
-    public func describeDatabases(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
+        self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取数据库列表
     ///
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
-    public func describeDatabases(dbInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), logger: logger, on: eventLoop)
+    public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
+        try await self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

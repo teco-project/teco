@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Tione {
 
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
-        self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
+        self.client.execute(action: "DescribeTrainingModelVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
-        try await self.client.execute(action: "DescribeTrainingModelVersions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrainingModelVersions(_ input: DescribeTrainingModelVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
+        try await self.client.execute(action: "DescribeTrainingModelVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
-        self.describeTrainingModelVersions(DescribeTrainingModelVersionsRequest(trainingModelId: trainingModelId, filters: filters), logger: logger, on: eventLoop)
+    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionsResponse> {
+        self.describeTrainingModelVersions(DescribeTrainingModelVersionsRequest(trainingModelId: trainingModelId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 模型版本列表
     @inlinable
-    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
-        try await self.describeTrainingModelVersions(DescribeTrainingModelVersionsRequest(trainingModelId: trainingModelId, filters: filters), logger: logger, on: eventLoop)
+    public func describeTrainingModelVersions(trainingModelId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionsResponse {
+        try await self.describeTrainingModelVersions(DescribeTrainingModelVersionsRequest(trainingModelId: trainingModelId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -139,25 +139,25 @@ extension Teo {
 
     /// 获取应用代理详细信息
     @inlinable
-    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyDetailResponse> {
-        self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyDetailResponse> {
+        self.client.execute(action: "DescribeApplicationProxyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用代理详细信息
     @inlinable
-    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
-        try await self.client.execute(action: "DescribeApplicationProxyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationProxyDetail(_ input: DescribeApplicationProxyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
+        try await self.client.execute(action: "DescribeApplicationProxyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用代理详细信息
     @inlinable
-    public func describeApplicationProxyDetail(zoneId: String, proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyDetailResponse> {
-        self.describeApplicationProxyDetail(DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId), logger: logger, on: eventLoop)
+    public func describeApplicationProxyDetail(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationProxyDetailResponse> {
+        self.describeApplicationProxyDetail(DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用代理详细信息
     @inlinable
-    public func describeApplicationProxyDetail(zoneId: String, proxyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
-        try await self.describeApplicationProxyDetail(DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId), logger: logger, on: eventLoop)
+    public func describeApplicationProxyDetail(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationProxyDetailResponse {
+        try await self.describeApplicationProxyDetail(DescribeApplicationProxyDetailRequest(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
-    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupListResponse> {
-        self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupListResponse> {
+        self.client.execute(action: "DescribeProxyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取通道组列表
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
-    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
-        try await self.client.execute(action: "DescribeProxyGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxyGroupList(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
+        try await self.client.execute(action: "DescribeProxyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取通道组列表
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
-    public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupListResponse> {
-        self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupListResponse> {
+        self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取通道组列表
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
-    public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
-        try await self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), logger: logger, on: eventLoop)
+    public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
+        try await self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
     }
 }

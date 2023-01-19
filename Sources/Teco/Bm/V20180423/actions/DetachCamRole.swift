@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Bm {
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
-        self.client.execute(action: "DetachCamRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func detachCamRole(_ input: DetachCamRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
+        self.client.execute(action: "DetachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(_ input: DetachCamRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
-        try await self.client.execute(action: "DetachCamRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func detachCamRole(_ input: DetachCamRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
+        try await self.client.execute(action: "DetachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
-        self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func detachCamRole(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
+        self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务器解绑CAM角色
     ///
     /// 服务器绑定CAM角色
     @inlinable
-    public func detachCamRole(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
-        try await self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func detachCamRole(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
+        try await self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

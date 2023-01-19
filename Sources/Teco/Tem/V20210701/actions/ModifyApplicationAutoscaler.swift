@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tem {
 
     /// 修改弹性伸缩策略组合
     @inlinable
-    public func modifyApplicationAutoscaler(_ input: ModifyApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationAutoscalerResponse> {
-        self.client.execute(action: "ModifyApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationAutoscaler(_ input: ModifyApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationAutoscalerResponse> {
+        self.client.execute(action: "ModifyApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性伸缩策略组合
     @inlinable
-    public func modifyApplicationAutoscaler(_ input: ModifyApplicationAutoscalerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
-        try await self.client.execute(action: "ModifyApplicationAutoscaler", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationAutoscaler(_ input: ModifyApplicationAutoscalerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
+        try await self.client.execute(action: "ModifyApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性伸缩策略组合
     @inlinable
-    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationAutoscalerResponse> {
-        self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationAutoscalerResponse> {
+        self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性伸缩策略组合
     @inlinable
-    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
-        try await self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), logger: logger, on: eventLoop)
+    public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
+        try await self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
     }
 }

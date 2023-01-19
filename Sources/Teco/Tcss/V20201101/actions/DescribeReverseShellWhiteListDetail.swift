@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcss {
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
-        self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
+        self.client.execute(action: "DescribeReverseShellWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
-        try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReverseShellWhiteListDetail(_ input: DescribeReverseShellWhiteListDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
+        try await self.client.execute(action: "DescribeReverseShellWhiteListDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
-        self.describeReverseShellWhiteListDetail(DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    public func describeReverseShellWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellWhiteListDetailResponse> {
+        self.describeReverseShellWhiteListDetail(DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell白名单详细信息
     ///
     /// 查询运行时反弹shell白名单详细信息
     @inlinable
-    public func describeReverseShellWhiteListDetail(whiteListId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
-        try await self.describeReverseShellWhiteListDetail(DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId), logger: logger, on: eventLoop)
+    public func describeReverseShellWhiteListDetail(whiteListId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellWhiteListDetailResponse {
+        try await self.describeReverseShellWhiteListDetail(DescribeReverseShellWhiteListDetailRequest(whiteListId: whiteListId), region: region, logger: logger, on: eventLoop)
     }
 }

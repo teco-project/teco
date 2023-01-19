@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tiw {
 
     /// 查询实时录制回调地址
     @inlinable
-    public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordCallbackResponse> {
-        self.client.execute(action: "DescribeOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordCallbackResponse> {
+        self.client.execute(action: "DescribeOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实时录制回调地址
     @inlinable
-    public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {
-        try await self.client.execute(action: "DescribeOnlineRecordCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOnlineRecordCallback(_ input: DescribeOnlineRecordCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {
+        try await self.client.execute(action: "DescribeOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实时录制回调地址
     @inlinable
-    public func describeOnlineRecordCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordCallbackResponse> {
-        self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeOnlineRecordCallback(sdkAppId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordCallbackResponse> {
+        self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时录制回调地址
     @inlinable
-    public func describeOnlineRecordCallback(sdkAppId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {
-        try await self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), logger: logger, on: eventLoop)
+    public func describeOnlineRecordCallback(sdkAppId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {
+        try await self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
 }

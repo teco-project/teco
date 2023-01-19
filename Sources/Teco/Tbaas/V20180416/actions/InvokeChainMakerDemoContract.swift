@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tbaas {
 
     /// 调用长安链体验网络合约执行交易
     @inlinable
-    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeChainMakerDemoContractResponse> {
-        self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeChainMakerDemoContractResponse> {
+        self.client.execute(action: "InvokeChainMakerDemoContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调用长安链体验网络合约执行交易
     @inlinable
-    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
-        try await self.client.execute(action: "InvokeChainMakerDemoContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func invokeChainMakerDemoContract(_ input: InvokeChainMakerDemoContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
+        try await self.client.execute(action: "InvokeChainMakerDemoContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调用长安链体验网络合约执行交易
     @inlinable
-    public func invokeChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeChainMakerDemoContractResponse> {
-        self.invokeChainMakerDemoContract(InvokeChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    public func invokeChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeChainMakerDemoContractResponse> {
+        self.invokeChainMakerDemoContract(InvokeChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调用长安链体验网络合约执行交易
     @inlinable
-    public func invokeChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
-        try await self.invokeChainMakerDemoContract(InvokeChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), logger: logger, on: eventLoop)
+    public func invokeChainMakerDemoContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, asyncFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeChainMakerDemoContractResponse {
+        try await self.invokeChainMakerDemoContract(InvokeChainMakerDemoContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam, asyncFlag: asyncFlag), region: region, logger: logger, on: eventLoop)
     }
 }

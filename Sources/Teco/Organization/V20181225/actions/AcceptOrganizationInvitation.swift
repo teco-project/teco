@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Organization {
 
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
-        self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
+        self.client.execute(action: "AcceptOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
-        try await self.client.execute(action: "AcceptOrganizationInvitation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
+        try await self.client.execute(action: "AcceptOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
-        self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    public func acceptOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
+        self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 接受加入企业组织邀请
     @inlinable
-    public func acceptOrganizationInvitation(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
-        try await self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), logger: logger, on: eventLoop)
+    public func acceptOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
+        try await self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Dayu {
 
     /// 添加或删除CC的IP黑白名单
     @inlinable
-    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCIpAllowDenyResponse> {
-        self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCIpAllowDenyResponse> {
+        self.client.execute(action: "ModifyCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的IP黑白名单
     @inlinable
-    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
-        try await self.client.execute(action: "ModifyCCIpAllowDeny", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCCIpAllowDeny(_ input: ModifyCCIpAllowDenyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
+        try await self.client.execute(action: "ModifyCCIpAllowDeny", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加或删除CC的IP黑白名单
     @inlinable
-    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCIpAllowDenyResponse> {
-        self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCIpAllowDenyResponse> {
+        self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的IP黑白名单
     @inlinable
-    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
-        try await self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func modifyCCIpAllowDeny(business: String, id: String, method: String, type: String, ipList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCIpAllowDenyResponse {
+        try await self.modifyCCIpAllowDeny(ModifyCCIpAllowDenyRequest(business: business, id: id, method: method, type: type, ipList: ipList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

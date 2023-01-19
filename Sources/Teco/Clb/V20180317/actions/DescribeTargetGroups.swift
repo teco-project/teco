@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Clb {
 
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
-        self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
+        self.client.execute(action: "DescribeTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
-        try await self.client.execute(action: "DescribeTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTargetGroups(_ input: DescribeTargetGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
+        try await self.client.execute(action: "DescribeTargetGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
-        self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupsResponse> {
+        self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询目标组信息
     @inlinable
-    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
-        try await self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeTargetGroups(targetGroupIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupsResponse {
+        try await self.describeTargetGroups(DescribeTargetGroupsRequest(targetGroupIds: targetGroupIds, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Essbasic {
     /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable
-    public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
-        self.client.execute(action: "ChannelCreateFlowSignReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
+        self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交企业签署流程审批结果
@@ -79,8 +79,8 @@ extension Essbasic {
     /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable
-    public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
-        try await self.client.execute(action: "ChannelCreateFlowSignReview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateFlowSignReview(_ input: ChannelCreateFlowSignReviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
+        try await self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交企业签署流程审批结果
@@ -89,8 +89,8 @@ extension Essbasic {
     /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable
-    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
-        self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), logger: logger, on: eventLoop)
+    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
+        self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交企业签署流程审批结果
@@ -99,7 +99,7 @@ extension Essbasic {
     /// 在通过接口(CreateFlowsByTemplates 或者ChannelCreateFlowByFiles)创建签署流程时，若指定了参数 NeedSignReview 为true,则可以调用此接口提交企业内部签署审批结果。
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable
-    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
-        try await self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), logger: logger, on: eventLoop)
+    public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
+        try await self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
     }
 }

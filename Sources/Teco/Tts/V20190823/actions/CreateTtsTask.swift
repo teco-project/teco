@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,8 +110,8 @@ extension Tts {
     /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
     /// <p></p>
     @inlinable
-    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
-        self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTtsTask(_ input: CreateTtsTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
+        self.client.execute(action: "CreateTtsTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 长文本语音合成请求
@@ -131,8 +131,8 @@ extension Tts {
     /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
     /// <p></p>
     @inlinable
-    public func createTtsTask(_ input: CreateTtsTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
-        try await self.client.execute(action: "CreateTtsTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTtsTask(_ input: CreateTtsTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
+        try await self.client.execute(action: "CreateTtsTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 长文本语音合成请求
@@ -152,8 +152,8 @@ extension Tts {
     /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
     /// <p></p>
     @inlinable
-    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
-        self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), logger: logger, on: eventLoop)
+    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
+        self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 长文本语音合成请求
@@ -173,7 +173,7 @@ extension Tts {
     /// <li>每个 speak 闭合标签内部，使用 break 标签数目最大为 10 个。如需要使用更多，可拆解到多个 speak 标签中；</li>
     /// <p></p>
     @inlinable
-    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
-        try await self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), logger: logger, on: eventLoop)
+    public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
+        try await self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
     }
 }

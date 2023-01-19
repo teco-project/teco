@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -150,31 +150,31 @@ extension Postgres {
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
-        self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
+        self.client.execute(action: "CreateReadOnlyDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建只读实例
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
-        try await self.client.execute(action: "CreateReadOnlyDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReadOnlyDBInstance(_ input: CreateReadOnlyDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
+        try await self.client.execute(action: "CreateReadOnlyDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建只读实例
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
-        self.createReadOnlyDBInstance(CreateReadOnlyDBInstanceRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstanceResponse> {
+        self.createReadOnlyDBInstance(CreateReadOnlyDBInstanceRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建只读实例
     ///
     /// 本接口(CreateReadOnlyDBInstance)用于创建只读实例
     @inlinable
-    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
-        try await self.createReadOnlyDBInstance(CreateReadOnlyDBInstanceRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstance(specCode: String, storage: UInt64, instanceCount: UInt64, period: UInt64, masterDBInstanceId: String, zone: String, projectId: UInt64? = nil, dbVersion: String? = nil, instanceChargeType: String? = nil, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, vpcId: String? = nil, subnetId: String? = nil, activityId: Int64? = nil, name: String? = nil, needSupportIpv6: UInt64? = nil, readOnlyGroupId: String? = nil, tagList: Tag? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstanceResponse {
+        try await self.createReadOnlyDBInstance(CreateReadOnlyDBInstanceRequest(specCode: specCode, storage: storage, instanceCount: instanceCount, period: period, masterDBInstanceId: masterDBInstanceId, zone: zone, projectId: projectId, dbVersion: dbVersion, instanceChargeType: instanceChargeType, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag, vpcId: vpcId, subnetId: subnetId, activityId: activityId, name: name, needSupportIpv6: needSupportIpv6, readOnlyGroupId: readOnlyGroupId, tagList: tagList, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

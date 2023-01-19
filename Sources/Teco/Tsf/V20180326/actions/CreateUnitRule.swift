@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tsf {
 
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
-        self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUnitRule(_ input: CreateUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
+        self.client.execute(action: "CreateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(_ input: CreateUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
-        try await self.client.execute(action: "CreateUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUnitRule(_ input: CreateUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
+        try await self.client.execute(action: "CreateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
-        self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
+        self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建单元化规则
     @inlinable
-    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
-        try await self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), logger: logger, on: eventLoop)
+    public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
+        try await self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
     }
 }

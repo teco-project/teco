@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Cvm {
     /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
     /// * 目前支持调整配置操作限制次数查询。
     @inlinable
-    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesOperationLimitResponse> {
-        self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesOperationLimitResponse> {
+        self.client.execute(action: "DescribeInstancesOperationLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例操作限制
@@ -63,8 +63,8 @@ extension Cvm {
     /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
     /// * 目前支持调整配置操作限制次数查询。
     @inlinable
-    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
-        try await self.client.execute(action: "DescribeInstancesOperationLimit", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesOperationLimit(_ input: DescribeInstancesOperationLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
+        try await self.client.execute(action: "DescribeInstancesOperationLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例操作限制
@@ -72,8 +72,8 @@ extension Cvm {
     /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
     /// * 目前支持调整配置操作限制次数查询。
     @inlinable
-    public func describeInstancesOperationLimit(instanceIds: [String], operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesOperationLimitResponse> {
-        self.describeInstancesOperationLimit(DescribeInstancesOperationLimitRequest(instanceIds: instanceIds, operation: operation), logger: logger, on: eventLoop)
+    public func describeInstancesOperationLimit(instanceIds: [String], operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesOperationLimitResponse> {
+        self.describeInstancesOperationLimit(DescribeInstancesOperationLimitRequest(instanceIds: instanceIds, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例操作限制
@@ -81,7 +81,7 @@ extension Cvm {
     /// 本接口（DescribeInstancesOperationLimit）用于查询实例操作限制。
     /// * 目前支持调整配置操作限制次数查询。
     @inlinable
-    public func describeInstancesOperationLimit(instanceIds: [String], operation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
-        try await self.describeInstancesOperationLimit(DescribeInstancesOperationLimitRequest(instanceIds: instanceIds, operation: operation), logger: logger, on: eventLoop)
+    public func describeInstancesOperationLimit(instanceIds: [String], operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesOperationLimitResponse {
+        try await self.describeInstancesOperationLimit(DescribeInstancesOperationLimitRequest(instanceIds: instanceIds, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 }

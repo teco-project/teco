@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Yunjing {
     ///
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable
-    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProVersionRenewFlagResponse> {
-        self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProVersionRenewFlagResponse> {
+        self.client.execute(action: "ModifyProVersionRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改专业版续费标识
     ///
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable
-    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
-        try await self.client.execute(action: "ModifyProVersionRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProVersionRenewFlag(_ input: ModifyProVersionRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
+        try await self.client.execute(action: "ModifyProVersionRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改专业版续费标识
     ///
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable
-    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProVersionRenewFlagResponse> {
-        self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), logger: logger, on: eventLoop)
+    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProVersionRenewFlagResponse> {
+        self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改专业版续费标识
     ///
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable
-    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
-        try await self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), logger: logger, on: eventLoop)
+    public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
+        try await self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

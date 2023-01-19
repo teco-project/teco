@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(_ input: StartMigrationCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
-        self.client.execute(action: "StartMigrationCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startMigrationCheck(_ input: StartMigrationCheckRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
+        self.client.execute(action: "StartMigrationCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(_ input: StartMigrationCheckRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
-        try await self.client.execute(action: "StartMigrationCheck", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startMigrationCheck(_ input: StartMigrationCheckRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
+        try await self.client.execute(action: "StartMigrationCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
-        self.startMigrationCheck(StartMigrationCheckRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func startMigrationCheck(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMigrationCheckResponse> {
+        self.startMigrationCheck(StartMigrationCheckRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动迁移校验
     ///
     /// 本接口（StartMigrationCheck）的作用是启动一个迁移前的校验任务，适用于迁移源的类型为TencentDB for SQLServer 的迁移方式
     @inlinable
-    public func startMigrationCheck(migrateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
-        try await self.startMigrationCheck(StartMigrationCheckRequest(migrateId: migrateId), logger: logger, on: eventLoop)
+    public func startMigrationCheck(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMigrationCheckResponse {
+        try await self.startMigrationCheck(StartMigrationCheckRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
 }

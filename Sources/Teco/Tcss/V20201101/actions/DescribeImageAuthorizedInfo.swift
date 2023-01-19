@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Tcss {
     ///
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
-    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAuthorizedInfoResponse> {
-        self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAuthorizedInfoResponse> {
+        self.client.execute(action: "DescribeImageAuthorizedInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像授权信息
     ///
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
-    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
-        try await self.client.execute(action: "DescribeImageAuthorizedInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageAuthorizedInfo(_ input: DescribeImageAuthorizedInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
+        try await self.client.execute(action: "DescribeImageAuthorizedInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询镜像授权信息
     ///
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
-    public func describeImageAuthorizedInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAuthorizedInfoResponse> {
-        self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), logger: logger, on: eventLoop)
+    public func describeImageAuthorizedInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAuthorizedInfoResponse> {
+        self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像授权信息
     ///
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
-    public func describeImageAuthorizedInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
-        try await self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), logger: logger, on: eventLoop)
+    public func describeImageAuthorizedInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
+        try await self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

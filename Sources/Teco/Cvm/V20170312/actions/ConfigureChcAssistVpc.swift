@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cvm {
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable
-    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
-        self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
+        self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable
-    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
-        try await self.client.execute(action: "ConfigureChcAssistVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
+        try await self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable
-    public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
-        self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), logger: logger, on: eventLoop)
+    public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
+        self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
     @inlinable
-    public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
-        try await self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), logger: logger, on: eventLoop)
+    public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
+        try await self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

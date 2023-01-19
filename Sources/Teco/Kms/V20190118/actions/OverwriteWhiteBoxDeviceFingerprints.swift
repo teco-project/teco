@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Kms {
 
     /// 覆盖指定密钥的设备指纹信息
     @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OverwriteWhiteBoxDeviceFingerprintsResponse> {
-        self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OverwriteWhiteBoxDeviceFingerprintsResponse> {
+        self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 覆盖指定密钥的设备指纹信息
     @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
-        try await self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func overwriteWhiteBoxDeviceFingerprints(_ input: OverwriteWhiteBoxDeviceFingerprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
+        try await self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 覆盖指定密钥的设备指纹信息
     @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OverwriteWhiteBoxDeviceFingerprintsResponse> {
-        self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), logger: logger, on: eventLoop)
+    public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OverwriteWhiteBoxDeviceFingerprintsResponse> {
+        self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), region: region, logger: logger, on: eventLoop)
     }
 
     /// 覆盖指定密钥的设备指纹信息
     @inlinable
-    public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
-        try await self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), logger: logger, on: eventLoop)
+    public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
+        try await self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tke {
 
     /// 创建集群访问端口
     @inlinable
-    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointResponse> {
-        self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointResponse> {
+        self.client.execute(action: "CreateClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群访问端口
     @inlinable
-    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
-        try await self.client.execute(action: "CreateClusterEndpoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createClusterEndpoint(_ input: CreateClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
+        try await self.client.execute(action: "CreateClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集群访问端口
     @inlinable
-    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointResponse> {
-        self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), logger: logger, on: eventLoop)
+    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointResponse> {
+        self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群访问端口
     @inlinable
-    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
-        try await self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), logger: logger, on: eventLoop)
+    public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
+        try await self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), region: region, logger: logger, on: eventLoop)
     }
 }

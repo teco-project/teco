@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,8 +71,8 @@ extension Vpc {
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
     @inlinable
-    public func describeIp6Translators(_ input: DescribeIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorsResponse> {
-        self.client.execute(action: "DescribeIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIp6Translators(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorsResponse> {
+        self.client.execute(action: "DescribeIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6转换实例及其绑定规则信息
@@ -80,8 +80,8 @@ extension Vpc {
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
     @inlinable
-    public func describeIp6Translators(_ input: DescribeIp6TranslatorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
-        try await self.client.execute(action: "DescribeIp6Translators", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIp6Translators(_ input: DescribeIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
+        try await self.client.execute(action: "DescribeIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询IPV6转换实例及其绑定规则信息
@@ -89,8 +89,8 @@ extension Vpc {
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
     @inlinable
-    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorsResponse> {
-        self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIp6TranslatorsResponse> {
+        self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IPV6转换实例及其绑定规则信息
@@ -98,7 +98,7 @@ extension Vpc {
     /// 1. 该接口用于查询账户下的IPV6转换实例及其绑定的转换规则信息
     /// 2. 支持过滤查询
     @inlinable
-    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
-        try await self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeIp6Translators(ip6TranslatorIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIp6TranslatorsResponse {
+        try await self.describeIp6Translators(DescribeIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 撤回已发布的公共配置
     @inlinable
-    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationPublicConfigResponse> {
-        self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationPublicConfigResponse> {
+        self.client.execute(action: "RevocationPublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤回已发布的公共配置
     @inlinable
-    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
-        try await self.client.execute(action: "RevocationPublicConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revocationPublicConfig(_ input: RevocationPublicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
+        try await self.client.execute(action: "RevocationPublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤回已发布的公共配置
     @inlinable
-    public func revocationPublicConfig(configReleaseId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationPublicConfigResponse> {
-        self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), logger: logger, on: eventLoop)
+    public func revocationPublicConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevocationPublicConfigResponse> {
+        self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤回已发布的公共配置
     @inlinable
-    public func revocationPublicConfig(configReleaseId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
-        try await self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), logger: logger, on: eventLoop)
+    public func revocationPublicConfig(configReleaseId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevocationPublicConfigResponse {
+        try await self.revocationPublicConfig(RevocationPublicConfigRequest(configReleaseId: configReleaseId), region: region, logger: logger, on: eventLoop)
     }
 }

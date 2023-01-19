@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Iotvideo {
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
-        self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeDevice(_ input: UpgradeDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
+        self.client.execute(action: "UpgradeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备固件升级
@@ -70,8 +70,8 @@ extension Iotvideo {
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(_ input: UpgradeDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
-        try await self.client.execute(action: "UpgradeDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeDevice(_ input: UpgradeDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
+        try await self.client.execute(action: "UpgradeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设备固件升级
@@ -80,8 +80,8 @@ extension Iotvideo {
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
-        self.upgradeDevice(UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), logger: logger, on: eventLoop)
+    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDeviceResponse> {
+        self.upgradeDevice(UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备固件升级
@@ -90,7 +90,7 @@ extension Iotvideo {
     /// 该接口向指定的设备下发固件更新指令,可将固件升级到任意版本(可实现固件降级)。
     /// 警告:使能UpgradeNow参数存在一定的风险性！建议仅在debug场景下使用!
     @inlinable
-    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
-        try await self.upgradeDevice(UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), logger: logger, on: eventLoop)
+    public func upgradeDevice(tid: String, otaVersion: String, upgradeNow: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDeviceResponse {
+        try await self.upgradeDevice(UpgradeDeviceRequest(tid: tid, otaVersion: otaVersion, upgradeNow: upgradeNow), region: region, logger: logger, on: eventLoop)
     }
 }

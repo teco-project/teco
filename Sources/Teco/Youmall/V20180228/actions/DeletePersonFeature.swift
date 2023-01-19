@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Youmall {
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable
-    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
-        self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
+        self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable
-    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
-        try await self.client.execute(action: "DeletePersonFeature", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePersonFeature(_ input: DeletePersonFeatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
+        try await self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable
-    public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
-        self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), logger: logger, on: eventLoop)
+    public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
+        self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
     @inlinable
-    public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
-        try await self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), logger: logger, on: eventLoop)
+    public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
+        try await self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

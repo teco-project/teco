@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cynosdb {
 
     /// 批量回收账号权限
     @inlinable
-    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeAccountPrivilegesResponse> {
-        self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeAccountPrivilegesResponse> {
+        self.client.execute(action: "RevokeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量回收账号权限
     @inlinable
-    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
-        try await self.client.execute(action: "RevokeAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revokeAccountPrivileges(_ input: RevokeAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
+        try await self.client.execute(action: "RevokeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量回收账号权限
     @inlinable
-    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeAccountPrivilegesResponse> {
-        self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeAccountPrivilegesResponse> {
+        self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量回收账号权限
     @inlinable
-    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
-        try await self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), logger: logger, on: eventLoop)
+    public func revokeAccountPrivileges(clusterId: String, account: InputAccount, dbTablePrivileges: [String], dbTables: [DbTable], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeAccountPrivilegesResponse {
+        try await self.revokeAccountPrivileges(RevokeAccountPrivilegesRequest(clusterId: clusterId, account: account, dbTablePrivileges: dbTablePrivileges, dbTables: dbTables), region: region, logger: logger, on: eventLoop)
     }
 }

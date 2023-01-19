@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cwp {
 
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
-        self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
+        self.client.execute(action: "DescribeAssetHostTotalCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
-        try await self.client.execute(action: "DescribeAssetHostTotalCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetHostTotalCount(_ input: DescribeAssetHostTotalCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
+        try await self.client.execute(action: "DescribeAssetHostTotalCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(uuid: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
-        self.describeAssetHostTotalCount(DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func describeAssetHostTotalCount(uuid: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostTotalCountResponse> {
+        self.describeAssetHostTotalCount(DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主机所有资源数量
     @inlinable
-    public func describeAssetHostTotalCount(uuid: String, quuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
-        try await self.describeAssetHostTotalCount(DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid), logger: logger, on: eventLoop)
+    public func describeAssetHostTotalCount(uuid: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostTotalCountResponse {
+        try await self.describeAssetHostTotalCount(DescribeAssetHostTotalCountRequest(uuid: uuid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
 }

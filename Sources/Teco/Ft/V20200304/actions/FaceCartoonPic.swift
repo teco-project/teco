@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Ft {
     ///
     /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
     @inlinable
-    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceCartoonPicResponse> {
-        self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func faceCartoonPic(_ input: FaceCartoonPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceCartoonPicResponse> {
+        self.client.execute(action: "FaceCartoonPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人像动漫化
     ///
     /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
     @inlinable
-    public func faceCartoonPic(_ input: FaceCartoonPicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
-        try await self.client.execute(action: "FaceCartoonPic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func faceCartoonPic(_ input: FaceCartoonPicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
+        try await self.client.execute(action: "FaceCartoonPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 人像动漫化
     ///
     /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
     @inlinable
-    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceCartoonPicResponse> {
-        self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), logger: logger, on: eventLoop)
+    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceCartoonPicResponse> {
+        self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人像动漫化
     ///
     /// 输入一张人脸照片，生成个性化的二次元动漫形象，可用于打造个性头像、趣味活动、特效类应用等场景，提升社交娱乐的体验。
     @inlinable
-    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
-        try await self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), logger: logger, on: eventLoop)
+    public func faceCartoonPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, disableGlobalEffect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceCartoonPicResponse {
+        try await self.faceCartoonPic(FaceCartoonPicRequest(image: image, url: url, rspImgType: rspImgType, disableGlobalEffect: disableGlobalEffect), region: region, logger: logger, on: eventLoop)
     }
 }

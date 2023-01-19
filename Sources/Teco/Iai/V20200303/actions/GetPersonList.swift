@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Iai {
     ///
     /// 获取指定人员库中的人员列表。
     @inlinable
-    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListResponse> {
-        self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPersonList(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListResponse> {
+        self.client.execute(action: "GetPersonList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表
     ///
     /// 获取指定人员库中的人员列表。
     @inlinable
-    public func getPersonList(_ input: GetPersonListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
-        try await self.client.execute(action: "GetPersonList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPersonList(_ input: GetPersonListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
+        try await self.client.execute(action: "GetPersonList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人员列表
     ///
     /// 获取指定人员库中的人员列表。
     @inlinable
-    public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListResponse> {
-        self.getPersonList(GetPersonListRequest(groupId: groupId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListResponse> {
+        self.getPersonList(GetPersonListRequest(groupId: groupId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表
     ///
     /// 获取指定人员库中的人员列表。
     @inlinable
-    public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
-        try await self.getPersonList(GetPersonListRequest(groupId: groupId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getPersonList(groupId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListResponse {
+        try await self.getPersonList(GetPersonListRequest(groupId: groupId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

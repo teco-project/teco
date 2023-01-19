@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Gaap {
 
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
-        self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
+        self.client.execute(action: "DeleteSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
-        try await self.client.execute(action: "DeleteSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSecurityRules(_ input: DeleteSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
+        try await self.client.execute(action: "DeleteSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(policyId: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
-        self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func deleteSecurityRules(policyId: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
+        self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除安全策略规则
     @inlinable
-    public func deleteSecurityRules(policyId: String, ruleIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
-        try await self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func deleteSecurityRules(policyId: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
+        try await self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

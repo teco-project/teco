@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -129,8 +129,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建数据源
     @inlinable
-    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
-        self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDataSource(_ input: CreateDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
+        self.client.execute(action: "CreateDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-创建数据源【Beta版本】
@@ -138,8 +138,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建数据源
     @inlinable
-    public func createDataSource(_ input: CreateDataSourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
-        try await self.client.execute(action: "CreateDataSource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDataSource(_ input: CreateDataSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
+        try await self.client.execute(action: "CreateDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据源管理-创建数据源【Beta版本】
@@ -147,8 +147,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建数据源
     @inlinable
-    public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
-        self.createDataSource(CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), logger: logger, on: eventLoop)
+    public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataSourceResponse> {
+        self.createDataSource(CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-创建数据源【Beta版本】
@@ -156,7 +156,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 创建数据源
     @inlinable
-    public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
-        try await self.createDataSource(CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), logger: logger, on: eventLoop)
+    public func createDataSource(name: String, category: String, type: String, ownerProjectId: String, ownerProjectName: String, ownerProjectIdent: String, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataSourceResponse {
+        try await self.createDataSource(CreateDataSourceRequest(name: name, category: category, type: type, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
     }
 }

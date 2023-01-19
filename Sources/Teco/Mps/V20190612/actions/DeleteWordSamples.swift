@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mps {
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
-        self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
+        self.client.execute(action: "DeleteWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
-        try await self.client.execute(action: "DeleteWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteWordSamples(_ input: DeleteWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
+        try await self.client.execute(action: "DeleteWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(keywords: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
-        self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords), logger: logger, on: eventLoop)
+    public func deleteWordSamples(keywords: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordSamplesResponse> {
+        self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除关键词样本
     ///
     /// 该接口用于批量删除关键词样本。
     @inlinable
-    public func deleteWordSamples(keywords: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
-        try await self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords), logger: logger, on: eventLoop)
+    public func deleteWordSamples(keywords: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordSamplesResponse {
+        try await self.deleteWordSamples(DeleteWordSamplesRequest(keywords: keywords), region: region, logger: logger, on: eventLoop)
     }
 }

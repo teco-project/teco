@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,31 +97,31 @@ extension Cpdp {
     ///
     /// 云支付订单退款接口
     @inlinable
-    public func refundTlinxOrder(_ input: RefundTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundTlinxOrderResponse> {
-        self.client.execute(action: "RefundTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refundTlinxOrder(_ input: RefundTlinxOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundTlinxOrderResponse> {
+        self.client.execute(action: "RefundTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-订单退款接口
     ///
     /// 云支付订单退款接口
     @inlinable
-    public func refundTlinxOrder(_ input: RefundTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
-        try await self.client.execute(action: "RefundTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refundTlinxOrder(_ input: RefundTlinxOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
+        try await self.client.execute(action: "RefundTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-订单退款接口
     ///
     /// 云支付订单退款接口
     @inlinable
-    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundTlinxOrderResponse> {
-        self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundTlinxOrderResponse> {
+        self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-订单退款接口
     ///
     /// 云支付订单退款接口
     @inlinable
-    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
-        try await self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), logger: logger, on: eventLoop)
+    public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
+        try await self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

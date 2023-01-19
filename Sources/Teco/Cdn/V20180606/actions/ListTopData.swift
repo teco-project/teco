@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -148,8 +148,8 @@ extension Cdn {
     /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
     /// 注意：仅支持 90 天内数据查询
     @inlinable
-    public func listTopData(_ input: ListTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDataResponse> {
-        self.client.execute(action: "ListTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTopData(_ input: ListTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDataResponse> {
+        self.client.execute(action: "ListTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// TOP 数据查询
@@ -162,8 +162,8 @@ extension Cdn {
     /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
     /// 注意：仅支持 90 天内数据查询
     @inlinable
-    public func listTopData(_ input: ListTopDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
-        try await self.client.execute(action: "ListTopData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTopData(_ input: ListTopDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
+        try await self.client.execute(action: "ListTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// TOP 数据查询
@@ -176,8 +176,8 @@ extension Cdn {
     /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
     /// 注意：仅支持 90 天内数据查询
     @inlinable
-    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDataResponse> {
-        self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), logger: logger, on: eventLoop)
+    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDataResponse> {
+        self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// TOP 数据查询
@@ -190,7 +190,7 @@ extension Cdn {
     /// + 依据总回源流量、回源峰值带宽、总回源请求数、平均回源失败率、2XX/3XX/4XX/5XX 回源状态码对域名排序，从大至小返回域名列表
     /// 注意：仅支持 90 天内数据查询
     @inlinable
-    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
-        try await self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), logger: logger, on: eventLoop)
+    public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
+        try await self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

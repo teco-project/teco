@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -136,31 +136,31 @@ extension Cpdp {
     ///
     /// 通过此接口进行解约
     @inlinable
-    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateContractResponse> {
-        self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateContract(_ input: TerminateContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateContractResponse> {
+        self.client.execute(action: "TerminateContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除签约关系接口
     ///
     /// 通过此接口进行解约
     @inlinable
-    public func terminateContract(_ input: TerminateContractRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
-        try await self.client.execute(action: "TerminateContract", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateContract(_ input: TerminateContractRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
+        try await self.client.execute(action: "TerminateContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除签约关系接口
     ///
     /// 通过此接口进行解约
     @inlinable
-    public func terminateContract(midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, terminationReason: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, contractMethod: String? = nil, migrateMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateContractResponse> {
-        self.terminateContract(TerminateContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, terminateMode: terminateMode, midasSecretId: midasSecretId, midasSignature: midasSignature, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, terminationReason: terminationReason, midasEnvironment: midasEnvironment, userType: userType, contractMethod: contractMethod, migrateMode: migrateMode), logger: logger, on: eventLoop)
+    public func terminateContract(midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, terminationReason: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, contractMethod: String? = nil, migrateMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateContractResponse> {
+        self.terminateContract(TerminateContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, terminateMode: terminateMode, midasSecretId: midasSecretId, midasSignature: midasSignature, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, terminationReason: terminationReason, midasEnvironment: midasEnvironment, userType: userType, contractMethod: contractMethod, migrateMode: migrateMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除签约关系接口
     ///
     /// 通过此接口进行解约
     @inlinable
-    public func terminateContract(midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, terminationReason: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, contractMethod: String? = nil, migrateMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
-        try await self.terminateContract(TerminateContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, terminateMode: terminateMode, midasSecretId: midasSecretId, midasSignature: midasSignature, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, terminationReason: terminationReason, midasEnvironment: midasEnvironment, userType: userType, contractMethod: contractMethod, migrateMode: migrateMode), logger: logger, on: eventLoop)
+    public func terminateContract(midasAppId: String, userId: String, channel: String, terminateMode: String, midasSecretId: String, midasSignature: String, subAppId: String? = nil, outContractCode: String? = nil, contractSceneId: String? = nil, channelContractCode: String? = nil, externalContractData: String? = nil, terminationReason: String? = nil, midasEnvironment: String? = nil, userType: String? = nil, contractMethod: String? = nil, migrateMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateContractResponse {
+        try await self.terminateContract(TerminateContractRequest(midasAppId: midasAppId, userId: userId, channel: channel, terminateMode: terminateMode, midasSecretId: midasSecretId, midasSignature: midasSignature, subAppId: subAppId, outContractCode: outContractCode, contractSceneId: contractSceneId, channelContractCode: channelContractCode, externalContractData: externalContractData, terminationReason: terminationReason, midasEnvironment: midasEnvironment, userType: userType, contractMethod: contractMethod, migrateMode: migrateMode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tione {
 
     /// 删除模型加速任务
     @inlinable
-    public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
-        self.client.execute(action: "DeleteModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
+        self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型加速任务
     @inlinable
-    public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
-        try await self.client.execute(action: "DeleteModelAccelerateTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
+        try await self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型加速任务
     @inlinable
-    public func deleteModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
-        self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
+        self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型加速任务
     @inlinable
-    public func deleteModelAccelerateTask(modelAccTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
-        try await self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), logger: logger, on: eventLoop)
+    public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
+        try await self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Rum {
 
     /// 创建白名单
     @inlinable
-    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
-        self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWhitelist(_ input: CreateWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
+        self.client.execute(action: "CreateWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建白名单
     @inlinable
-    public func createWhitelist(_ input: CreateWhitelistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
-        try await self.client.execute(action: "CreateWhitelist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWhitelist(_ input: CreateWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
+        try await self.client.execute(action: "CreateWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建白名单
     @inlinable
-    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
-        self.createWhitelist(CreateWhitelistRequest(instanceID: instanceID, remark: remark, whitelistUin: whitelistUin, aid: aid), logger: logger, on: eventLoop)
+    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhitelistResponse> {
+        self.createWhitelist(CreateWhitelistRequest(instanceID: instanceID, remark: remark, whitelistUin: whitelistUin, aid: aid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建白名单
     @inlinable
-    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
-        try await self.createWhitelist(CreateWhitelistRequest(instanceID: instanceID, remark: remark, whitelistUin: whitelistUin, aid: aid), logger: logger, on: eventLoop)
+    public func createWhitelist(instanceID: String, remark: String, whitelistUin: String, aid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhitelistResponse {
+        try await self.createWhitelist(CreateWhitelistRequest(instanceID: instanceID, remark: remark, whitelistUin: whitelistUin, aid: aid), region: region, logger: logger, on: eventLoop)
     }
 }

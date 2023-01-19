@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,31 +64,31 @@ extension Tke {
     ///
     /// 获取与云监控融合实例列表
     @inlinable
-    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
-        self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
+        self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例列表
     ///
     /// 获取与云监控融合实例列表
     @inlinable
-    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
-        try await self.client.execute(action: "DescribePrometheusInstancesOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusInstancesOverview(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
+        try await self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取2.0实例列表
     ///
     /// 获取与云监控融合实例列表
     @inlinable
-    public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
-        self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
+        self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例列表
     ///
     /// 获取与云监控融合实例列表
     @inlinable
-    public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
-        try await self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
+        try await self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Vod {
     /// * 时间粒度为小时，结束时间和起始时间的跨度最大为7天。
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
-    public func describeMediaPlayStatDetails(_ input: DescribeMediaPlayStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaPlayStatDetailsResponse> {
-        self.client.execute(action: "DescribeMediaPlayStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaPlayStatDetails(_ input: DescribeMediaPlayStatDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaPlayStatDetailsResponse> {
+        self.client.execute(action: "DescribeMediaPlayStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体文件按指定时间粒度统计的播放数据
@@ -84,8 +84,8 @@ extension Vod {
     /// * 时间粒度为小时，结束时间和起始时间的跨度最大为7天。
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
-    public func describeMediaPlayStatDetails(_ input: DescribeMediaPlayStatDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaPlayStatDetailsResponse {
-        try await self.client.execute(action: "DescribeMediaPlayStatDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaPlayStatDetails(_ input: DescribeMediaPlayStatDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaPlayStatDetailsResponse {
+        try await self.client.execute(action: "DescribeMediaPlayStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询媒体文件按指定时间粒度统计的播放数据
@@ -95,8 +95,8 @@ extension Vod {
     /// * 时间粒度为小时，结束时间和起始时间的跨度最大为7天。
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
-    public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaPlayStatDetailsResponse> {
-        self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), logger: logger, on: eventLoop)
+    public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaPlayStatDetailsResponse> {
+        self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体文件按指定时间粒度统计的播放数据
@@ -106,7 +106,7 @@ extension Vod {
     /// * 时间粒度为小时，结束时间和起始时间的跨度最大为7天。
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
-    public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaPlayStatDetailsResponse {
-        try await self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), logger: logger, on: eventLoop)
+    public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaPlayStatDetailsResponse {
+        try await self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

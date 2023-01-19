@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tke {
     ///
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable
-    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallEdgeLogAgentResponse> {
-        self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallEdgeLogAgentResponse> {
+        self.client.execute(action: "UninstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卸载边缘日志采集组件
     ///
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable
-    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
-        try await self.client.execute(action: "UninstallEdgeLogAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uninstallEdgeLogAgent(_ input: UninstallEdgeLogAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
+        try await self.client.execute(action: "UninstallEdgeLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 卸载边缘日志采集组件
     ///
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable
-    public func uninstallEdgeLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallEdgeLogAgentResponse> {
-        self.uninstallEdgeLogAgent(UninstallEdgeLogAgentRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func uninstallEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallEdgeLogAgentResponse> {
+        self.uninstallEdgeLogAgent(UninstallEdgeLogAgentRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载边缘日志采集组件
     ///
     /// 从tke@edge集群边缘节点上卸载日志采集组件
     @inlinable
-    public func uninstallEdgeLogAgent(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
-        try await self.uninstallEdgeLogAgent(UninstallEdgeLogAgentRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func uninstallEdgeLogAgent(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallEdgeLogAgentResponse {
+        try await self.uninstallEdgeLogAgent(UninstallEdgeLogAgentRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

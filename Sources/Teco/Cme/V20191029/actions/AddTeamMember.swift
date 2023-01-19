@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cme {
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable
-    public func addTeamMember(_ input: AddTeamMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
-        self.client.execute(action: "AddTeamMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addTeamMember(_ input: AddTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
+        self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable
-    public func addTeamMember(_ input: AddTeamMemberRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
-        try await self.client.execute(action: "AddTeamMember", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addTeamMember(_ input: AddTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
+        try await self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable
-    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
-        self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), logger: logger, on: eventLoop)
+    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
+        self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
     @inlinable
-    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
-        try await self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), logger: logger, on: eventLoop)
+    public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
+        try await self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

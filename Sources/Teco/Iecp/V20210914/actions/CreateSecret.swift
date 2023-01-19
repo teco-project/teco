@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iecp {
 
     /// 创建Secret
     @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
-        self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecret(_ input: CreateSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
+        self.client.execute(action: "CreateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Secret
     @inlinable
-    public func createSecret(_ input: CreateSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        try await self.client.execute(action: "CreateSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecret(_ input: CreateSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.client.execute(action: "CreateSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Secret
     @inlinable
-    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
-        self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), logger: logger, on: eventLoop)
+    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecretResponse> {
+        self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Secret
     @inlinable
-    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
-        try await self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), logger: logger, on: eventLoop)
+    public func createSecret(edgeUnitID: UInt64, secretName: String, secretNamespace: String? = nil, secretType: String? = nil, dockerConfigJson: String? = nil, cloudData: [KeyValueObj]? = nil, dockerConfig: DockerConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecretResponse {
+        try await self.createSecret(CreateSecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, secretNamespace: secretNamespace, secretType: secretType, dockerConfigJson: dockerConfigJson, cloudData: cloudData, dockerConfig: dockerConfig), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdmq {
 
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
-        self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
+        self.client.execute(action: "DescribeCmqTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
-        try await self.client.execute(action: "DescribeCmqTopicDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCmqTopicDetail(_ input: DescribeCmqTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
+        try await self.client.execute(action: "DescribeCmqTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
-        self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), logger: logger, on: eventLoop)
+    public func describeCmqTopicDetail(topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqTopicDetailResponse> {
+        self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq主题详情
     @inlinable
-    public func describeCmqTopicDetail(topicName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
-        try await self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), logger: logger, on: eventLoop)
+    public func describeCmqTopicDetail(topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqTopicDetailResponse {
+        try await self.describeCmqTopicDetail(DescribeCmqTopicDetailRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

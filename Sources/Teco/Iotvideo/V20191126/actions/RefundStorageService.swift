@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Iotvideo {
     /// 2. 已开始的订单自动失效
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
-    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundStorageServiceResponse> {
-        self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refundStorageService(_ input: RefundStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundStorageServiceResponse> {
+        self.client.execute(action: "RefundStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退订已购买的云存服务
@@ -104,8 +104,8 @@ extension Iotvideo {
     /// 2. 已开始的订单自动失效
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
-    public func refundStorageService(_ input: RefundStorageServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
-        try await self.client.execute(action: "RefundStorageService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refundStorageService(_ input: RefundStorageServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
+        try await self.client.execute(action: "RefundStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退订已购买的云存服务
@@ -116,8 +116,8 @@ extension Iotvideo {
     /// 2. 已开始的订单自动失效
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
-    public func refundStorageService(serviceId: String, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundStorageServiceResponse> {
-        self.refundStorageService(RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId), logger: logger, on: eventLoop)
+    public func refundStorageService(serviceId: String, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundStorageServiceResponse> {
+        self.refundStorageService(RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退订已购买的云存服务
@@ -128,7 +128,7 @@ extension Iotvideo {
     /// 2. 已开始的订单自动失效
     /// 3. 购买云存接口,优先从已付费订单池中分配订单
     @inlinable
-    public func refundStorageService(serviceId: String, orderId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
-        try await self.refundStorageService(RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId), logger: logger, on: eventLoop)
+    public func refundStorageService(serviceId: String, orderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundStorageServiceResponse {
+        try await self.refundStorageService(RefundStorageServiceRequest(serviceId: serviceId, orderId: orderId), region: region, logger: logger, on: eventLoop)
     }
 }

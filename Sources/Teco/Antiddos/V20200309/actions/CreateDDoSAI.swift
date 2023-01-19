@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Antiddos {
 
     /// 设置DDoS防护的AI防护开关
     @inlinable
-    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSAIResponse> {
-        self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDDoSAI(_ input: CreateDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSAIResponse> {
+        self.client.execute(action: "CreateDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的AI防护开关
     @inlinable
-    public func createDDoSAI(_ input: CreateDDoSAIRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
-        try await self.client.execute(action: "CreateDDoSAI", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDDoSAI(_ input: CreateDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
+        try await self.client.execute(action: "CreateDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置DDoS防护的AI防护开关
     @inlinable
-    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSAIResponse> {
-        self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSAIResponse> {
+        self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的AI防护开关
     @inlinable
-    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
-        try await self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), logger: logger, on: eventLoop)
+    public func createDDoSAI(instanceIdList: [String], dDoSAI: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSAIResponse {
+        try await self.createDDoSAI(CreateDDoSAIRequest(instanceIdList: instanceIdList, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
     }
 }

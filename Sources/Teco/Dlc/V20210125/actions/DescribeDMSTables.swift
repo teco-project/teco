@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -111,25 +111,25 @@ extension Dlc {
 
     /// DMS元数据获取表列表
     @inlinable
-    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSTablesResponse> {
-        self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDMSTables(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSTablesResponse> {
+        self.client.execute(action: "DescribeDMSTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据获取表列表
     @inlinable
-    public func describeDMSTables(_ input: DescribeDMSTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
-        try await self.client.execute(action: "DescribeDMSTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDMSTables(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
+        try await self.client.execute(action: "DescribeDMSTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据获取表列表
     @inlinable
-    public func describeDMSTables(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sort: String? = nil, asc: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSTablesResponse> {
-        self.describeDMSTables(DescribeDMSTablesRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset, sort: sort, asc: asc), logger: logger, on: eventLoop)
+    public func describeDMSTables(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSTablesResponse> {
+        self.describeDMSTables(DescribeDMSTablesRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据获取表列表
     @inlinable
-    public func describeDMSTables(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sort: String? = nil, asc: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
-        try await self.describeDMSTables(DescribeDMSTablesRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset, sort: sort, asc: asc), logger: logger, on: eventLoop)
+    public func describeDMSTables(dbName: String? = nil, schemaName: String? = nil, name: String? = nil, catalog: String? = nil, keyword: String? = nil, pattern: String? = nil, type: String? = nil, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, sort: String? = nil, asc: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSTablesResponse {
+        try await self.describeDMSTables(DescribeDMSTablesRequest(dbName: dbName, schemaName: schemaName, name: name, catalog: catalog, keyword: keyword, pattern: pattern, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset, sort: sort, asc: asc), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Cpdp {
 
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
-        self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
+        self.client.execute(action: "CreateRedInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
-        try await self.client.execute(action: "CreateRedInvoiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRedInvoiceV2(_ input: CreateRedInvoiceV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
+        try await self.client.execute(action: "CreateRedInvoiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
-        self.createRedInvoiceV2(CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), logger: logger, on: eventLoop)
+    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRedInvoiceV2Response> {
+        self.createRedInvoiceV2(CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-发票红冲V2
     @inlinable
-    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
-        try await self.createRedInvoiceV2(CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), logger: logger, on: eventLoop)
+    public func createRedInvoiceV2(invoicePlatformId: Int64, orderId: String, profile: String? = nil, invoiceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRedInvoiceV2Response {
+        try await self.createRedInvoiceV2(CreateRedInvoiceV2Request(invoicePlatformId: invoicePlatformId, orderId: orderId, profile: profile, invoiceChannel: invoiceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

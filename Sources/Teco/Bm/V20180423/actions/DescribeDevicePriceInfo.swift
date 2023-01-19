@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bm {
     ///
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
-    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePriceInfoResponse> {
-        self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePriceInfoResponse> {
+        self.client.execute(action: "DescribeDevicePriceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器价格信息
     ///
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
-    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
-        try await self.client.execute(action: "DescribeDevicePriceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevicePriceInfo(_ input: DescribeDevicePriceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
+        try await self.client.execute(action: "DescribeDevicePriceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询服务器价格信息
     ///
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
-    public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePriceInfoResponse> {
-        self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePriceInfoResponse> {
+        self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器价格信息
     ///
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
-    public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
-        try await self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
+        try await self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 }

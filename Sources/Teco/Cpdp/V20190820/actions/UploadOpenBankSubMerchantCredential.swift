@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,25 +106,25 @@ extension Cpdp {
 
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
-        self.client.execute(action: "UploadOpenBankSubMerchantCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
+        self.client.execute(action: "UploadOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
-        try await self.client.execute(action: "UploadOpenBankSubMerchantCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadOpenBankSubMerchantCredential(_ input: UploadOpenBankSubMerchantCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
+        try await self.client.execute(action: "UploadOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
-        self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), logger: logger, on: eventLoop)
+    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOpenBankSubMerchantCredentialResponse> {
+        self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户资质文件上传
     @inlinable
-    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
-        try await self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), logger: logger, on: eventLoop)
+    public func uploadOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, outApplyId: String, credentialType: String, fileType: String, paymentMethod: String? = nil, credentialContent: String? = nil, credentialUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOpenBankSubMerchantCredentialResponse {
+        try await self.uploadOpenBankSubMerchantCredential(UploadOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, outApplyId: outApplyId, credentialType: credentialType, fileType: fileType, paymentMethod: paymentMethod, credentialContent: credentialContent, credentialUrl: credentialUrl, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

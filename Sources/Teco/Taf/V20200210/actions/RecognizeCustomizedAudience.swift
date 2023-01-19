@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Taf {
 
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
-        self.client.execute(action: "RecognizeCustomizedAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
+        self.client.execute(action: "RecognizeCustomizedAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {
-        try await self.client.execute(action: "RecognizeCustomizedAudience", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeCustomizedAudience(_ input: RecognizeCustomizedAudienceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {
+        try await self.client.execute(action: "RecognizeCustomizedAudience", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
-        self.recognizeCustomizedAudience(RecognizeCustomizedAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeCustomizedAudienceResponse> {
+        self.recognizeCustomizedAudience(RecognizeCustomizedAudienceRequest(bspData: bspData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 流量反欺诈-流量验准定制版
     @inlinable
-    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {
-        try await self.recognizeCustomizedAudience(RecognizeCustomizedAudienceRequest(bspData: bspData), logger: logger, on: eventLoop)
+    public func recognizeCustomizedAudience(bspData: InputRecognizeTargetAudience, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeCustomizedAudienceResponse {
+        try await self.recognizeCustomizedAudience(RecognizeCustomizedAudienceRequest(bspData: bspData), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Teo {
 
     /// 修改应用代理的状态
     @inlinable
-    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyStatusResponse> {
-        self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyStatusResponse> {
+        self.client.execute(action: "ModifyApplicationProxyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理的状态
     @inlinable
-    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
-        try await self.client.execute(action: "ModifyApplicationProxyStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationProxyStatus(_ input: ModifyApplicationProxyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
+        try await self.client.execute(action: "ModifyApplicationProxyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用代理的状态
     @inlinable
-    public func modifyApplicationProxyStatus(zoneId: String, proxyId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyStatusResponse> {
-        self.modifyApplicationProxyStatus(ModifyApplicationProxyStatusRequest(zoneId: zoneId, proxyId: proxyId, status: status), logger: logger, on: eventLoop)
+    public func modifyApplicationProxyStatus(zoneId: String, proxyId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyStatusResponse> {
+        self.modifyApplicationProxyStatus(ModifyApplicationProxyStatusRequest(zoneId: zoneId, proxyId: proxyId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理的状态
     @inlinable
-    public func modifyApplicationProxyStatus(zoneId: String, proxyId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
-        try await self.modifyApplicationProxyStatus(ModifyApplicationProxyStatusRequest(zoneId: zoneId, proxyId: proxyId, status: status), logger: logger, on: eventLoop)
+    public func modifyApplicationProxyStatus(zoneId: String, proxyId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyStatusResponse {
+        try await self.modifyApplicationProxyStatus(ModifyApplicationProxyStatusRequest(zoneId: zoneId, proxyId: proxyId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

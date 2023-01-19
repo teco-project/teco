@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Nlp {
     ///
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable
-    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDictResponse> {
-        self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDict(_ input: DeleteDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDictResponse> {
+        self.client.execute(action: "DeleteDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义词库
     ///
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable
-    public func deleteDict(_ input: DeleteDictRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
-        try await self.client.execute(action: "DeleteDict", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDict(_ input: DeleteDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
+        try await self.client.execute(action: "DeleteDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义词库
     ///
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable
-    public func deleteDict(dictId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDictResponse> {
-        self.deleteDict(DeleteDictRequest(dictId: dictId), logger: logger, on: eventLoop)
+    public func deleteDict(dictId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDictResponse> {
+        self.deleteDict(DeleteDictRequest(dictId: dictId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义词库
     ///
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable
-    public func deleteDict(dictId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
-        try await self.deleteDict(DeleteDictRequest(dictId: dictId), logger: logger, on: eventLoop)
+    public func deleteDict(dictId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
+        try await self.deleteDict(DeleteDictRequest(dictId: dictId), region: region, logger: logger, on: eventLoop)
     }
 }

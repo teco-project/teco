@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,8 +56,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusResponse> {
-        self.client.execute(action: "PullSmsSendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusResponse> {
+        self.client.execute(action: "PullSmsSendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取短信下发状态
@@ -68,8 +68,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusResponse {
-        try await self.client.execute(action: "PullSmsSendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusResponse {
+        try await self.client.execute(action: "PullSmsSendStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取短信下发状态
@@ -80,8 +80,8 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusResponse> {
-        self.pullSmsSendStatus(PullSmsSendStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
+    public func pullSmsSendStatus(limit: UInt64, smsSdkAppid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PullSmsSendStatusResponse> {
+        self.pullSmsSendStatus(PullSmsSendStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取短信下发状态
@@ -92,7 +92,7 @@ extension Sms {
     /// >- 注：由于云 **API3.0 安全性**有所提升，所以**接口鉴权**较为复杂，建议使用 [SDK](https://cloud.tencent.com/document/product/382/43193) 来使用云短信服务。
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
-    public func pullSmsSendStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusResponse {
-        try await self.pullSmsSendStatus(PullSmsSendStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
+    public func pullSmsSendStatus(limit: UInt64, smsSdkAppid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusResponse {
+        try await self.pullSmsSendStatus(PullSmsSendStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), region: region, logger: logger, on: eventLoop)
     }
 }

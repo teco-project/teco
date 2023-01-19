@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Tcss {
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
-        self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserCluster(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
+        self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(_ input: DescribeUserClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
-        try await self.client.execute(action: "DescribeUserCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserCluster(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
+        try await self.client.execute(action: "DescribeUserCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
-        self.describeUserCluster(DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserClusterResponse> {
+        self.describeUserCluster(DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户集群资产查询
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
-        try await self.describeUserCluster(DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeUserCluster(offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserClusterResponse {
+        try await self.describeUserCluster(DescribeUserClusterRequest(offset: offset, limit: limit, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Gaap {
     ///
     /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
     @inlinable
-    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirstLinkSessionResponse> {
-        self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirstLinkSessionResponse> {
+        self.client.execute(action: "DeleteFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除接入段加速会话
     ///
     /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
     @inlinable
-    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
-        try await self.client.execute(action: "DeleteFirstLinkSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteFirstLinkSession(_ input: DeleteFirstLinkSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
+        try await self.client.execute(action: "DeleteFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除接入段加速会话
     ///
     /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
     @inlinable
-    public func deleteFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirstLinkSessionResponse> {
-        self.deleteFirstLinkSession(DeleteFirstLinkSessionRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func deleteFirstLinkSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirstLinkSessionResponse> {
+        self.deleteFirstLinkSession(DeleteFirstLinkSessionRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除接入段加速会话
     ///
     /// 本接口（DeleteFirstLinkSession）用于删除接入段加速会话，删除加速会话后会停止加速。
     @inlinable
-    public func deleteFirstLinkSession(sessionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
-        try await self.deleteFirstLinkSession(DeleteFirstLinkSessionRequest(sessionId: sessionId), logger: logger, on: eventLoop)
+    public func deleteFirstLinkSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirstLinkSessionResponse {
+        try await self.deleteFirstLinkSession(DeleteFirstLinkSessionRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

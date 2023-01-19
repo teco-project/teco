@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcb {
 
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
-        self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
+        self.client.execute(action: "DescribeExtraPkgBillingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
-        try await self.client.execute(action: "DescribeExtraPkgBillingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExtraPkgBillingInfo(_ input: DescribeExtraPkgBillingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
+        try await self.client.execute(action: "DescribeExtraPkgBillingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
-        self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeExtraPkgBillingInfo(envId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtraPkgBillingInfoResponse> {
+        self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取增值包计费相关信息
     @inlinable
-    public func describeExtraPkgBillingInfo(envId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
-        try await self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeExtraPkgBillingInfo(envId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtraPkgBillingInfoResponse {
+        try await self.describeExtraPkgBillingInfo(DescribeExtraPkgBillingInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

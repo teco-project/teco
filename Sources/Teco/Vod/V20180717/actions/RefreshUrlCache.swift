@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认刷新配额为每天100000个 URL。
     @inlinable
-    public func refreshUrlCache(_ input: RefreshUrlCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshUrlCacheResponse> {
-        self.client.execute(action: "RefreshUrlCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refreshUrlCache(_ input: RefreshUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshUrlCacheResponse> {
+        self.client.execute(action: "RefreshUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新URL
@@ -62,8 +62,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认刷新配额为每天100000个 URL。
     @inlinable
-    public func refreshUrlCache(_ input: RefreshUrlCacheRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshUrlCacheResponse {
-        try await self.client.execute(action: "RefreshUrlCache", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refreshUrlCache(_ input: RefreshUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshUrlCacheResponse {
+        try await self.client.execute(action: "RefreshUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 刷新URL
@@ -73,8 +73,8 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认刷新配额为每天100000个 URL。
     @inlinable
-    public func refreshUrlCache(urls: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshUrlCacheResponse> {
-        self.refreshUrlCache(RefreshUrlCacheRequest(urls: urls, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func refreshUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshUrlCacheResponse> {
+        self.refreshUrlCache(RefreshUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 刷新URL
@@ -84,7 +84,7 @@ extension Vod {
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认刷新配额为每天100000个 URL。
     @inlinable
-    public func refreshUrlCache(urls: [String], subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshUrlCacheResponse {
-        try await self.refreshUrlCache(RefreshUrlCacheRequest(urls: urls, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func refreshUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshUrlCacheResponse {
+        try await self.refreshUrlCache(RefreshUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

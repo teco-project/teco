@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Iotcloud {
 
     /// 查询固件信息
     @inlinable
-    public func describeFirmware(_ input: DescribeFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareResponse> {
-        self.client.execute(action: "DescribeFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFirmware(_ input: DescribeFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareResponse> {
+        self.client.execute(action: "DescribeFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件信息
     @inlinable
-    public func describeFirmware(_ input: DescribeFirmwareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
-        try await self.client.execute(action: "DescribeFirmware", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFirmware(_ input: DescribeFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
+        try await self.client.execute(action: "DescribeFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询固件信息
     @inlinable
-    public func describeFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareResponse> {
-        self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    public func describeFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareResponse> {
+        self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件信息
     @inlinable
-    public func describeFirmware(productID: String, firmwareVersion: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
-        try await self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), logger: logger, on: eventLoop)
+    public func describeFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
+        try await self.describeFirmware(DescribeFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
 }

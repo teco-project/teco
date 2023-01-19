@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Teo {
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
-        self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
+        self.client.execute(action: "DescribeAddableEntityList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
-        try await self.client.execute(action: "DescribeAddableEntityList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAddableEntityList(_ input: DescribeAddableEntityListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
+        try await self.client.execute(action: "DescribeAddableEntityList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(zoneId: String, entityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
-        self.describeAddableEntityList(DescribeAddableEntityListRequest(zoneId: zoneId, entityType: entityType), logger: logger, on: eventLoop)
+    public func describeAddableEntityList(zoneId: String, entityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddableEntityListResponse> {
+        self.describeAddableEntityList(DescribeAddableEntityListRequest(zoneId: zoneId, entityType: entityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询剩余可添加的日志推送实体列表
     ///
     /// 本接口（DescribeAddableEntityList）用于查询剩余可添加的日志推送实体列表。
     @inlinable
-    public func describeAddableEntityList(zoneId: String, entityType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
-        try await self.describeAddableEntityList(DescribeAddableEntityListRequest(zoneId: zoneId, entityType: entityType), logger: logger, on: eventLoop)
+    public func describeAddableEntityList(zoneId: String, entityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddableEntityListResponse {
+        try await self.describeAddableEntityList(DescribeAddableEntityListRequest(zoneId: zoneId, entityType: entityType), region: region, logger: logger, on: eventLoop)
     }
 }

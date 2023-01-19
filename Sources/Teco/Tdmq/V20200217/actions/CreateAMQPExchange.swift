@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tdmq {
 
     /// 创建AMQP Exchange
     @inlinable
-    public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
-        self.client.execute(action: "CreateAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
+        self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP Exchange
     @inlinable
-    public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
-        try await self.client.execute(action: "CreateAMQPExchange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAMQPExchange(_ input: CreateAMQPExchangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
+        try await self.client.execute(action: "CreateAMQPExchange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建AMQP Exchange
     @inlinable
-    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
-        self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), logger: logger, on: eventLoop)
+    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPExchangeResponse> {
+        self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP Exchange
     @inlinable
-    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
-        try await self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), logger: logger, on: eventLoop)
+    public func createAMQPExchange(exchange: String, vHosts: [String], type: String, clusterId: String, remark: String? = nil, alternateExchange: String? = nil, delayedType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPExchangeResponse {
+        try await self.createAMQPExchange(CreateAMQPExchangeRequest(exchange: exchange, vHosts: vHosts, type: type, clusterId: clusterId, remark: remark, alternateExchange: alternateExchange, delayedType: delayedType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -170,31 +170,31 @@ extension Ecm {
     ///
     /// 创建ECM实例。
     @inlinable
-    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunInstancesResponse> {
-        self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runInstances(_ input: RunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunInstancesResponse> {
+        self.client.execute(action: "RunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     ///
     /// 创建ECM实例。
     @inlinable
-    public func runInstances(_ input: RunInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
-        try await self.client.execute(action: "RunInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runInstances(_ input: RunInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
+        try await self.client.execute(action: "RunInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例
     ///
     /// 创建ECM实例。
     @inlinable
-    public func runInstances(zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, moduleId: String? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, clientToken: String? = nil, enhancedService: EnhancedService? = nil, tagSpecification: [TagSpecification]? = nil, userData: String? = nil, instanceType: String? = nil, dataDiskSize: Int64? = nil, securityGroupIds: [String]? = nil, systemDiskSize: UInt64? = nil, internetMaxBandwidthIn: Int64? = nil, instanceChargeType: Int64? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunInstancesResponse> {
-        self.runInstances(RunInstancesRequest(zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, moduleId: moduleId, imageId: imageId, instanceName: instanceName, hostName: hostName, clientToken: clientToken, enhancedService: enhancedService, tagSpecification: tagSpecification, userData: userData, instanceType: instanceType, dataDiskSize: dataDiskSize, securityGroupIds: securityGroupIds, systemDiskSize: systemDiskSize, internetMaxBandwidthIn: internetMaxBandwidthIn, instanceChargeType: instanceChargeType, keyIds: keyIds, keepImageLogin: keepImageLogin, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    public func runInstances(zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, moduleId: String? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, clientToken: String? = nil, enhancedService: EnhancedService? = nil, tagSpecification: [TagSpecification]? = nil, userData: String? = nil, instanceType: String? = nil, dataDiskSize: Int64? = nil, securityGroupIds: [String]? = nil, systemDiskSize: UInt64? = nil, internetMaxBandwidthIn: Int64? = nil, instanceChargeType: Int64? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunInstancesResponse> {
+        self.runInstances(RunInstancesRequest(zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, moduleId: moduleId, imageId: imageId, instanceName: instanceName, hostName: hostName, clientToken: clientToken, enhancedService: enhancedService, tagSpecification: tagSpecification, userData: userData, instanceType: instanceType, dataDiskSize: dataDiskSize, securityGroupIds: securityGroupIds, systemDiskSize: systemDiskSize, internetMaxBandwidthIn: internetMaxBandwidthIn, instanceChargeType: instanceChargeType, keyIds: keyIds, keepImageLogin: keepImageLogin, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     ///
     /// 创建ECM实例。
     @inlinable
-    public func runInstances(zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, moduleId: String? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, clientToken: String? = nil, enhancedService: EnhancedService? = nil, tagSpecification: [TagSpecification]? = nil, userData: String? = nil, instanceType: String? = nil, dataDiskSize: Int64? = nil, securityGroupIds: [String]? = nil, systemDiskSize: UInt64? = nil, internetMaxBandwidthIn: Int64? = nil, instanceChargeType: Int64? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
-        try await self.runInstances(RunInstancesRequest(zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, moduleId: moduleId, imageId: imageId, instanceName: instanceName, hostName: hostName, clientToken: clientToken, enhancedService: enhancedService, tagSpecification: tagSpecification, userData: userData, instanceType: instanceType, dataDiskSize: dataDiskSize, securityGroupIds: securityGroupIds, systemDiskSize: systemDiskSize, internetMaxBandwidthIn: internetMaxBandwidthIn, instanceChargeType: instanceChargeType, keyIds: keyIds, keepImageLogin: keepImageLogin, systemDisk: systemDisk, dataDisks: dataDisks), logger: logger, on: eventLoop)
+    public func runInstances(zoneInstanceCountISPSet: [ZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, moduleId: String? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, clientToken: String? = nil, enhancedService: EnhancedService? = nil, tagSpecification: [TagSpecification]? = nil, userData: String? = nil, instanceType: String? = nil, dataDiskSize: Int64? = nil, securityGroupIds: [String]? = nil, systemDiskSize: UInt64? = nil, internetMaxBandwidthIn: Int64? = nil, instanceChargeType: Int64? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunInstancesResponse {
+        try await self.runInstances(RunInstancesRequest(zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, moduleId: moduleId, imageId: imageId, instanceName: instanceName, hostName: hostName, clientToken: clientToken, enhancedService: enhancedService, tagSpecification: tagSpecification, userData: userData, instanceType: instanceType, dataDiskSize: dataDiskSize, securityGroupIds: securityGroupIds, systemDiskSize: systemDiskSize, internetMaxBandwidthIn: internetMaxBandwidthIn, instanceChargeType: instanceChargeType, keyIds: keyIds, keepImageLogin: keepImageLogin, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
 }

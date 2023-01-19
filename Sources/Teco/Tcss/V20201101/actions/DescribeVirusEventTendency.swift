@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
-        self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
+        self.client.execute(action: "DescribeVirusEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
-        try await self.client.execute(action: "DescribeVirusEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVirusEventTendency(_ input: DescribeVirusEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
+        try await self.client.execute(action: "DescribeVirusEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
-        self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    public func describeVirusEventTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusEventTendencyResponse> {
+        self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询木马事件趋势
     @inlinable
-    public func describeVirusEventTendency(tendencyPeriod: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
-        try await self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), logger: logger, on: eventLoop)
+    public func describeVirusEventTendency(tendencyPeriod: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusEventTendencyResponse {
+        try await self.describeVirusEventTendency(DescribeVirusEventTendencyRequest(tendencyPeriod: tendencyPeriod), region: region, logger: logger, on: eventLoop)
     }
 }

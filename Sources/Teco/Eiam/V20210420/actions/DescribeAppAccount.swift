@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Eiam {
 
     /// 查询应用账号列表
     @inlinable
-    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppAccountResponse> {
-        self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAppAccount(_ input: DescribeAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppAccountResponse> {
+        self.client.execute(action: "DescribeAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用账号列表
     @inlinable
-    public func describeAppAccount(_ input: DescribeAppAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
-        try await self.client.execute(action: "DescribeAppAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAppAccount(_ input: DescribeAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
+        try await self.client.execute(action: "DescribeAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用账号列表
     @inlinable
-    public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppAccountResponse> {
-        self.describeAppAccount(DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppAccountResponse> {
+        self.describeAppAccount(DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用账号列表
     @inlinable
-    public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
-        try await self.describeAppAccount(DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeAppAccount(applicationId: String, searchCondition: AppAccountSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppAccountResponse {
+        try await self.describeAppAccount(DescribeAppAccountRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

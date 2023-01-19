@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cwp {
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable
-    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
-        self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScanTask(_ input: DeleteScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
+        self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable
-    public func deleteScanTask(_ input: DeleteScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
-        try await self.client.execute(action: "DeleteScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScanTask(_ input: DeleteScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
+        try await self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable
-    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
-        self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), logger: logger, on: eventLoop)
+    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
+        self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
     @inlinable
-    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
-        try await self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), logger: logger, on: eventLoop)
+    public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
+        try await self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }
 }

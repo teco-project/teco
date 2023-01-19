@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Cpdp {
 
     /// 智慧零售-查询管理端商户
     @inlinable
-    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantInfoForManagementResponse> {
-        self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantInfoForManagementResponse> {
+        self.client.execute(action: "QueryMerchantInfoForManagement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询管理端商户
     @inlinable
-    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
-        try await self.client.execute(action: "QueryMerchantInfoForManagement", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMerchantInfoForManagement(_ input: QueryMerchantInfoForManagementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
+        try await self.client.execute(action: "QueryMerchantInfoForManagement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智慧零售-查询管理端商户
     @inlinable
-    public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantInfoForManagementResponse> {
-        self.queryMerchantInfoForManagement(QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantInfoForManagementResponse> {
+        self.queryMerchantInfoForManagement(QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询管理端商户
     @inlinable
-    public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
-        try await self.queryMerchantInfoForManagement(QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), logger: logger, on: eventLoop)
+    public func queryMerchantInfoForManagement(invoicePlatformId: Int64, offset: Int64, limit: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantInfoForManagementResponse {
+        try await self.queryMerchantInfoForManagement(QueryMerchantInfoForManagementRequest(invoicePlatformId: invoicePlatformId, offset: offset, limit: limit, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

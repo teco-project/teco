@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iecp {
 
     /// 开关消息路由
     @inlinable
-    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRouteOnOffResponse> {
-        self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setRouteOnOff(_ input: SetRouteOnOffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRouteOnOffResponse> {
+        self.client.execute(action: "SetRouteOnOff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开关消息路由
     @inlinable
-    public func setRouteOnOff(_ input: SetRouteOnOffRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
-        try await self.client.execute(action: "SetRouteOnOff", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setRouteOnOff(_ input: SetRouteOnOffRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
+        try await self.client.execute(action: "SetRouteOnOff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开关消息路由
     @inlinable
-    public func setRouteOnOff(routeID: Int64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRouteOnOffResponse> {
-        self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), logger: logger, on: eventLoop)
+    public func setRouteOnOff(routeID: Int64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRouteOnOffResponse> {
+        self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开关消息路由
     @inlinable
-    public func setRouteOnOff(routeID: Int64, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
-        try await self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), logger: logger, on: eventLoop)
+    public func setRouteOnOff(routeID: Int64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRouteOnOffResponse {
+        try await self.setRouteOnOff(SetRouteOnOffRequest(routeID: routeID, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

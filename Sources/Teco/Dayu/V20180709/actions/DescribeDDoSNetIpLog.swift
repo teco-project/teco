@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,25 +93,25 @@ extension Dayu {
 
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
-    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetIpLogResponse> {
-        self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetIpLogResponse> {
+        self.client.execute(action: "DescribeDDoSNetIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
-    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
-        try await self.client.execute(action: "DescribeDDoSNetIpLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSNetIpLog(_ input: DescribeDDoSNetIpLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
+        try await self.client.execute(action: "DescribeDDoSNetIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
-    public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetIpLogResponse> {
-        self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetIpLogResponse> {
+        self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
-    public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
-        try await self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
+        try await self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Mrs {
     ///
     /// 图片分类
     @inlinable
-    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToClassResponse> {
-        self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func imageToClass(_ input: ImageToClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToClassResponse> {
+        self.client.execute(action: "ImageToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片分类接口
     ///
     /// 图片分类
     @inlinable
-    public func imageToClass(_ input: ImageToClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
-        try await self.client.execute(action: "ImageToClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func imageToClass(_ input: ImageToClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
+        try await self.client.execute(action: "ImageToClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 图片分类接口
     ///
     /// 图片分类
     @inlinable
-    public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToClassResponse> {
-        self.imageToClass(ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), logger: logger, on: eventLoop)
+    public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageToClassResponse> {
+        self.imageToClass(ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 图片分类接口
     ///
     /// 图片分类
     @inlinable
-    public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
-        try await self.imageToClass(ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), logger: logger, on: eventLoop)
+    public func imageToClass(imageInfoList: [ImageInfo], handleParam: HandleParam, type: UInt64, userType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageToClassResponse {
+        try await self.imageToClass(ImageToClassRequest(imageInfoList: imageInfoList, handleParam: handleParam, type: type, userType: userType), region: region, logger: logger, on: eventLoop)
     }
 }

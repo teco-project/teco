@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Mmps {
     ///
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
-    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanReportListResponse> {
-        self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanReportListResponse> {
+        self.client.execute(action: "DescribeFlySecMiniAppScanReportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定小程序版本的安全得分
     ///
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
-    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
-        try await self.client.execute(action: "DescribeFlySecMiniAppScanReportList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlySecMiniAppScanReportList(_ input: DescribeFlySecMiniAppScanReportListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
+        try await self.client.execute(action: "DescribeFlySecMiniAppScanReportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指定小程序版本的安全得分
     ///
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
-    public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanReportListResponse> {
-        self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanReportListResponse> {
+        self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指定小程序版本的安全得分
     ///
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
-    public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
-        try await self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), logger: logger, on: eventLoop)
+    public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
+        try await self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), region: region, logger: logger, on: eventLoop)
     }
 }

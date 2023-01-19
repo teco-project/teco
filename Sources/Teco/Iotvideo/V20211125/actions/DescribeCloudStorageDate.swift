@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iotvideo {
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
-        self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
+        self.client.execute(action: "DescribeCloudStorageDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
-        try await self.client.execute(action: "DescribeCloudStorageDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageDate(_ input: DescribeCloudStorageDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
+        try await self.client.execute(action: "DescribeCloudStorageDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
-        self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
+        self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取具有云存的日期
     @inlinable
-    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
-        try await self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
+        try await self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

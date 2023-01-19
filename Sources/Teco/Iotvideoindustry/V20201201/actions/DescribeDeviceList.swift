@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
     @inlinable
-    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceListResponse> {
-        self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDeviceList(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceListResponse> {
+        self.client.execute(action: "DescribeDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表
     ///
     /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
     @inlinable
-    public func describeDeviceList(_ input: DescribeDeviceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
-        try await self.client.execute(action: "DescribeDeviceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDeviceList(_ input: DescribeDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
+        try await self.client.execute(action: "DescribeDeviceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备列表
     ///
     /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
     @inlinable
-    public func describeDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceListResponse> {
-        self.describeDeviceList(DescribeDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    public func describeDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceListResponse> {
+        self.describeDeviceList(DescribeDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表
     ///
     /// 本接口(DescribeDevicesList) 用于获取设备列表，支持模糊搜索
     @inlinable
-    public func describeDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceTypes: [Int64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
-        try await self.describeDeviceList(DescribeDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceTypes: deviceTypes), logger: logger, on: eventLoop)
+    public func describeDeviceList(offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceListResponse {
+        try await self.describeDeviceList(DescribeDeviceListRequest(offset: offset, limit: limit, nickName: nickName, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Gaap {
 
     /// 查询域名解析列表
     @inlinable
-    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainDnsResponse> {
-        self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainDnsResponse> {
+        self.client.execute(action: "DescribeGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名解析列表
     @inlinable
-    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
-        try await self.client.execute(action: "DescribeGlobalDomainDns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGlobalDomainDns(_ input: DescribeGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
+        try await self.client.execute(action: "DescribeGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询域名解析列表
     @inlinable
-    public func describeGlobalDomainDns(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainDnsResponse> {
-        self.describeGlobalDomainDns(DescribeGlobalDomainDnsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func describeGlobalDomainDns(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainDnsResponse> {
+        self.describeGlobalDomainDns(DescribeGlobalDomainDnsRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名解析列表
     @inlinable
-    public func describeGlobalDomainDns(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
-        try await self.describeGlobalDomainDns(DescribeGlobalDomainDnsRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func describeGlobalDomainDns(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainDnsResponse {
+        try await self.describeGlobalDomainDns(DescribeGlobalDomainDnsRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

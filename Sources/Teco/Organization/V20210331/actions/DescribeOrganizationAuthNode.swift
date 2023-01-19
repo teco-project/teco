@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Organization {
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
-        self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
+        self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
-        try await self.client.execute(action: "DescribeOrganizationAuthNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrganizationAuthNode(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
+        try await self.client.execute(action: "DescribeOrganizationAuthNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
-        self.describeOrganizationAuthNode(DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrganizationAuthNodeResponse> {
+        self.describeOrganizationAuthNode(DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
-    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
-        try await self.describeOrganizationAuthNode(DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeOrganizationAuthNode(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrganizationAuthNodeResponse {
+        try await self.describeOrganizationAuthNode(DescribeOrganizationAuthNodeRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

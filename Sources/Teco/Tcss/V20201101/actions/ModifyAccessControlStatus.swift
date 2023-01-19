@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tcss {
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
-        self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
+        self.client.execute(action: "ModifyAccessControlStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
-        try await self.client.execute(action: "ModifyAccessControlStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
+        try await self.client.execute(action: "ModifyAccessControlStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
-        self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
+        self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
     @inlinable
-    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
-        try await self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), logger: logger, on: eventLoop)
+    public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
+        try await self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

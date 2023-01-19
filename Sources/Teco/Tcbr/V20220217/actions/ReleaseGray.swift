@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcbr {
 
     /// 灰度发布
     @inlinable
-    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseGrayResponse> {
-        self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseGray(_ input: ReleaseGrayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseGrayResponse> {
+        self.client.execute(action: "ReleaseGray", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灰度发布
     @inlinable
-    public func releaseGray(_ input: ReleaseGrayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
-        try await self.client.execute(action: "ReleaseGray", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseGray(_ input: ReleaseGrayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
+        try await self.client.execute(action: "ReleaseGray", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灰度发布
     @inlinable
-    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseGrayResponse> {
-        self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), logger: logger, on: eventLoop)
+    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseGrayResponse> {
+        self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灰度发布
     @inlinable
-    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
-        try await self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), logger: logger, on: eventLoop)
+    public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
+        try await self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), region: region, logger: logger, on: eventLoop)
     }
 }

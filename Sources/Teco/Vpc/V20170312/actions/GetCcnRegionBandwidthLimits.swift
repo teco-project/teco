@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Vpc {
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     @inlinable
-    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCcnRegionBandwidthLimitsResponse> {
-        self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCcnRegionBandwidthLimitsResponse> {
+        self.client.execute(action: "GetCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网相关地域带宽信息
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     @inlinable
-    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
-        try await self.client.execute(action: "GetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCcnRegionBandwidthLimits(_ input: GetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
+        try await self.client.execute(action: "GetCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云联网相关地域带宽信息
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     @inlinable
-    public func getCcnRegionBandwidthLimits(ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCcnRegionBandwidthLimitsResponse> {
-        self.getCcnRegionBandwidthLimits(GetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, filters: filters, sortedBy: sortedBy, offset: offset, limit: limit, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func getCcnRegionBandwidthLimits(ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCcnRegionBandwidthLimitsResponse> {
+        self.getCcnRegionBandwidthLimits(GetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, filters: filters, sortedBy: sortedBy, offset: offset, limit: limit, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网相关地域带宽信息
     ///
     /// 本接口（GetCcnRegionBandwidthLimits）用于查询云联网相关地域带宽信息，其中预付费模式的云联网仅支持地域间限速，后付费模式的云联网支持地域间限速和地域出口限速。
     @inlinable
-    public func getCcnRegionBandwidthLimits(ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
-        try await self.getCcnRegionBandwidthLimits(GetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, filters: filters, sortedBy: sortedBy, offset: offset, limit: limit, orderBy: orderBy), logger: logger, on: eventLoop)
+    public func getCcnRegionBandwidthLimits(ccnId: String, filters: [Filter]? = nil, sortedBy: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCcnRegionBandwidthLimitsResponse {
+        try await self.getCcnRegionBandwidthLimits(GetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, filters: filters, sortedBy: sortedBy, offset: offset, limit: limit, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Cme {
     ///
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
-    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaToProjectResponse> {
-        self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importMediaToProject(_ input: ImportMediaToProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaToProjectResponse> {
+        self.client.execute(action: "ImportMediaToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 在项目中导入媒体
     ///
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
-    public func importMediaToProject(_ input: ImportMediaToProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
-        try await self.client.execute(action: "ImportMediaToProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importMediaToProject(_ input: ImportMediaToProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
+        try await self.client.execute(action: "ImportMediaToProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 在项目中导入媒体
     ///
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
-    public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaToProjectResponse> {
-        self.importMediaToProject(ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), logger: logger, on: eventLoop)
+    public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaToProjectResponse> {
+        self.importMediaToProject(ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 在项目中导入媒体
     ///
     /// 将云点播中的媒资或者用户自有媒资文件添加到项目中与项目关联，供后续视频编辑使用。目前仅视频编辑项目和智能视频拆条项目有效。
     @inlinable
-    public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
-        try await self.importMediaToProject(ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), logger: logger, on: eventLoop)
+    public func importMediaToProject(platform: String, projectId: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, name: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaToProjectResponse {
+        try await self.importMediaToProject(ImportMediaToProjectRequest(platform: platform, projectId: projectId, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, name: name, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

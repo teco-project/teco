@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
-        self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRunLog(_ input: DescribeRunLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
+        self.client.execute(action: "DescribeRunLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(_ input: DescribeRunLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
-        try await self.client.execute(action: "DescribeRunLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRunLog(_ input: DescribeRunLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
+        try await self.client.execute(action: "DescribeRunLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
-        self.describeRunLog(DescribeRunLogRequest(tid: tid), logger: logger, on: eventLoop)
+    public func describeRunLog(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
+        self.describeRunLog(DescribeRunLogRequest(tid: tid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备运行日志
     ///
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
-    public func describeRunLog(tid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
-        try await self.describeRunLog(DescribeRunLogRequest(tid: tid), logger: logger, on: eventLoop)
+    public func describeRunLog(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
+        try await self.describeRunLog(DescribeRunLogRequest(tid: tid), region: region, logger: logger, on: eventLoop)
     }
 }

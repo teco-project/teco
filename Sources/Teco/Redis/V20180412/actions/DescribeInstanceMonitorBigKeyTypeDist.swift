@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Redis {
 
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
-        self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
+        self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
-        try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceMonitorBigKeyTypeDist(_ input: DescribeInstanceMonitorBigKeyTypeDistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
+        try await self.client.execute(action: "DescribeInstanceMonitorBigKeyTypeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
-        self.describeInstanceMonitorBigKeyTypeDist(DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyTypeDistResponse> {
+        self.describeInstanceMonitorBigKeyTypeDist(DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key类型分布
     @inlinable
-    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
-        try await self.describeInstanceMonitorBigKeyTypeDist(DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date), logger: logger, on: eventLoop)
+    public func describeInstanceMonitorBigKeyTypeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyTypeDistResponse {
+        try await self.describeInstanceMonitorBigKeyTypeDist(DescribeInstanceMonitorBigKeyTypeDistRequest(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Domain {
     ///
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
-    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferProhibitionBatchResponse> {
-        self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferProhibitionBatchResponse> {
+        self.client.execute(action: "TransferProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止转移锁
     ///
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
-    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
-        try await self.client.execute(action: "TransferProhibitionBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func transferProhibitionBatch(_ input: TransferProhibitionBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
+        try await self.client.execute(action: "TransferProhibitionBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量禁止转移锁
     ///
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
-    public func transferProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferProhibitionBatchResponse> {
-        self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    public func transferProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferProhibitionBatchResponse> {
+        self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量禁止转移锁
     ///
     /// 本接口 ( TransferProhibitionBatch ) 用于批量禁止域名转移 。
     @inlinable
-    public func transferProhibitionBatch(domains: [String], status: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
-        try await self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), logger: logger, on: eventLoop)
+    public func transferProhibitionBatch(domains: [String], status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferProhibitionBatchResponse {
+        try await self.transferProhibitionBatch(TransferProhibitionBatchRequest(domains: domains, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iotexplorer {
 
     /// 获取设备位置列表
     @inlinable
-    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionListResponse> {
-        self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionListResponse> {
+        self.client.execute(action: "DescribeDevicePositionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备位置列表
     @inlinable
-    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
-        try await self.client.execute(action: "DescribeDevicePositionList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDevicePositionList(_ input: DescribeDevicePositionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
+        try await self.client.execute(action: "DescribeDevicePositionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备位置列表
     @inlinable
-    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionListResponse> {
-        self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionListResponse> {
+        self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备位置列表
     @inlinable
-    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
-        try await self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
+        try await self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

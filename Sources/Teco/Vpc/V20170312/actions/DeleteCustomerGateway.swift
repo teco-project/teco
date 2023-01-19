@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable
-    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomerGatewayResponse> {
-        self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomerGatewayResponse> {
+        self.client.execute(action: "DeleteCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable
-    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
-        try await self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
+        try await self.client.execute(action: "DeleteCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable
-    public func deleteCustomerGateway(customerGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomerGatewayResponse> {
-        self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), logger: logger, on: eventLoop)
+    public func deleteCustomerGateway(customerGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomerGatewayResponse> {
+        self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable
-    public func deleteCustomerGateway(customerGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
-        try await self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), logger: logger, on: eventLoop)
+    public func deleteCustomerGateway(customerGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
+        try await self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
     }
 }

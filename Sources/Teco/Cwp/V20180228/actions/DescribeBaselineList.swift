@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Cwp {
     ///
     /// 查询基线列表信息
     @inlinable
-    public func describeBaselineList(_ input: DescribeBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineListResponse> {
-        self.client.execute(action: "DescribeBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaselineList(_ input: DescribeBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineListResponse> {
+        self.client.execute(action: "DescribeBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线列表
     ///
     /// 查询基线列表信息
     @inlinable
-    public func describeBaselineList(_ input: DescribeBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
-        try await self.client.execute(action: "DescribeBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaselineList(_ input: DescribeBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
+        try await self.client.execute(action: "DescribeBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询基线列表
     ///
     /// 查询基线列表信息
     @inlinable
-    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineListResponse> {
-        self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineListResponse> {
+        self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询基线列表
     ///
     /// 查询基线列表信息
     @inlinable
-    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
-        try await self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeBaselineList(limit: UInt64, offset: UInt64, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineListResponse {
+        try await self.describeBaselineList(DescribeBaselineListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

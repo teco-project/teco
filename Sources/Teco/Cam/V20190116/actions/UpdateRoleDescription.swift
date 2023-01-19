@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cam {
     ///
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable
-    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleDescriptionResponse> {
-        self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleDescriptionResponse> {
+        self.client.execute(action: "UpdateRoleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改角色描述信息
     ///
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable
-    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
-        try await self.client.execute(action: "UpdateRoleDescription", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateRoleDescription(_ input: UpdateRoleDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
+        try await self.client.execute(action: "UpdateRoleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改角色描述信息
     ///
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable
-    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleDescriptionResponse> {
-        self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleDescriptionResponse> {
+        self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改角色描述信息
     ///
     /// 本接口（UpdateRoleDescription）用于修改角色的描述信息。
     @inlinable
-    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
-        try await self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func updateRoleDescription(description: String, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleDescriptionResponse {
+        try await self.updateRoleDescription(UpdateRoleDescriptionRequest(description: description, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

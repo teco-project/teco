@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -124,25 +124,25 @@ extension Bma {
 
     /// 新建协查处置
     @inlinable
-    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRBlockResponse> {
-        self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRBlock(_ input: CreateCRBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRBlockResponse> {
+        self.client.execute(action: "CreateCRBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建协查处置
     @inlinable
-    public func createCRBlock(_ input: CreateCRBlockRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
-        try await self.client.execute(action: "CreateCRBlock", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRBlock(_ input: CreateCRBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
+        try await self.client.execute(action: "CreateCRBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建协查处置
     @inlinable
-    public func createCRBlock(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, blockUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, tortPic: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRBlockResponse> {
-        self.createCRBlock(CreateCRBlockRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, blockUrl: blockUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, tortPic: tortPic, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), logger: logger, on: eventLoop)
+    public func createCRBlock(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, blockUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, tortPic: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRBlockResponse> {
+        self.createCRBlock(CreateCRBlockRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, blockUrl: blockUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, tortPic: tortPic, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建协查处置
     @inlinable
-    public func createCRBlock(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, blockUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, tortPic: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
-        try await self.createCRBlock(CreateCRBlockRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, blockUrl: blockUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, tortPic: tortPic, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), logger: logger, on: eventLoop)
+    public func createCRBlock(workId: Int64, tortUrl: String, tortTitle: String? = nil, tortPlat: String? = nil, blockUrl: String? = nil, fileUrl: String? = nil, validStartDate: String? = nil, validEndDate: String? = nil, tortPic: String? = nil, commFileUrl: String? = nil, commValidStartDate: String? = nil, commValidEndDate: String? = nil, isProducer: String? = nil, evidenceFileUrl: String? = nil, evidenceValidStartDate: String? = nil, evidenceValidEndDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRBlockResponse {
+        try await self.createCRBlock(CreateCRBlockRequest(workId: workId, tortUrl: tortUrl, tortTitle: tortTitle, tortPlat: tortPlat, blockUrl: blockUrl, fileUrl: fileUrl, validStartDate: validStartDate, validEndDate: validEndDate, tortPic: tortPic, commFileUrl: commFileUrl, commValidStartDate: commValidStartDate, commValidEndDate: commValidEndDate, isProducer: isProducer, evidenceFileUrl: evidenceFileUrl, evidenceValidStartDate: evidenceValidStartDate, evidenceValidEndDate: evidenceValidEndDate), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 校验同步任务，检查必要参数和周边配置。
     @inlinable
-    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
-        self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
+        self.client.execute(action: "CreateCheckSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
     @inlinable
-    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
-        try await self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
+        try await self.client.execute(action: "CreateCheckSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
     @inlinable
-    public func createCheckSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
-        self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func createCheckSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
+        self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
     @inlinable
-    public func createCheckSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
-        try await self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func createCheckSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
+        try await self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

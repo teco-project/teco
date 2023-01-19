@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,8 +41,8 @@ extension Asr {
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
-    public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
-        self.client.execute(action: "DescribeAsyncRecognitionTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
+        self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务列表
@@ -50,8 +50,8 @@ extension Asr {
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
-    public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
-        try await self.client.execute(action: "DescribeAsyncRecognitionTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAsyncRecognitionTasks(_ input: DescribeAsyncRecognitionTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
+        try await self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 语音流异步识别任务列表
@@ -59,8 +59,8 @@ extension Asr {
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
-    public func describeAsyncRecognitionTasks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
-        self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), logger: logger, on: eventLoop)
+    public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
+        self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务列表
@@ -68,7 +68,7 @@ extension Asr {
     /// 本接口用于查询当前在运行的语音流异步识别任务列表。
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
-    public func describeAsyncRecognitionTasks(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
-        try await self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), logger: logger, on: eventLoop)
+    public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
+        try await self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

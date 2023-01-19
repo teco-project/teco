@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
-        self.client.execute(action: "ModifyCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCallback(_ input: ModifyCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
+        self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑回调地址
@@ -106,8 +106,8 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(_ input: ModifyCallbackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
-        try await self.client.execute(action: "ModifyCallback", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCallback(_ input: ModifyCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
+        try await self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑回调地址
@@ -139,8 +139,8 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
-        self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), logger: logger, on: eventLoop)
+    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
+        self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑回调地址
@@ -172,7 +172,7 @@ extension Ivld {
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable
-    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
-        try await self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), logger: logger, on: eventLoop)
+    public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
+        try await self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Live {
 
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
-        self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
+        self.client.execute(action: "DescribeLiveTranscodeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
-        try await self.client.execute(action: "DescribeLiveTranscodeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLiveTranscodeRules(_ input: DescribeLiveTranscodeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
+        try await self.client.execute(action: "DescribeLiveTranscodeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
-        self.describeLiveTranscodeRules(DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeRulesResponse> {
+        self.describeLiveTranscodeRules(DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取转码规则列表
     @inlinable
-    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
-        try await self.describeLiveTranscodeRules(DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames), logger: logger, on: eventLoop)
+    public func describeLiveTranscodeRules(templateIds: [Int64]? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeRulesResponse {
+        try await self.describeLiveTranscodeRules(DescribeLiveTranscodeRulesRequest(templateIds: templateIds, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
     }
 }

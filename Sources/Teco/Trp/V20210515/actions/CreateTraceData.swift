@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,25 +95,25 @@ extension Trp {
 
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
-        self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTraceData(_ input: CreateTraceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
+        self.client.execute(action: "CreateTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(_ input: CreateTraceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
-        try await self.client.execute(action: "CreateTraceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTraceData(_ input: CreateTraceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
+        try await self.client.execute(action: "CreateTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
-        self.createTraceData(CreateTraceDataRequest(corpId: corpId, batchId: batchId, taskId: taskId, phase: phase, phaseName: phaseName, chainStatus: chainStatus, type: type, traceId: traceId, traceItems: traceItems, status: status, phaseData: phaseData), logger: logger, on: eventLoop)
+    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceDataResponse> {
+        self.createTraceData(CreateTraceDataRequest(corpId: corpId, batchId: batchId, taskId: taskId, phase: phase, phaseName: phaseName, chainStatus: chainStatus, type: type, traceId: traceId, traceItems: traceItems, status: status, phaseData: phaseData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增溯源信息
     @inlinable
-    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
-        try await self.createTraceData(CreateTraceDataRequest(corpId: corpId, batchId: batchId, taskId: taskId, phase: phase, phaseName: phaseName, chainStatus: chainStatus, type: type, traceId: traceId, traceItems: traceItems, status: status, phaseData: phaseData), logger: logger, on: eventLoop)
+    public func createTraceData(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, phase: UInt64? = nil, phaseName: String? = nil, chainStatus: UInt64? = nil, type: UInt64? = nil, traceId: String? = nil, traceItems: [TraceItem]? = nil, status: UInt64? = nil, phaseData: PhaseData? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceDataResponse {
+        try await self.createTraceData(CreateTraceDataRequest(corpId: corpId, batchId: batchId, taskId: taskId, phase: phase, phaseName: phaseName, chainStatus: chainStatus, type: type, traceId: traceId, traceItems: traceItems, status: status, phaseData: phaseData), region: region, logger: logger, on: eventLoop)
     }
 }

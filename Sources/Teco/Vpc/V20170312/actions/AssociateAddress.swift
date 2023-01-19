@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,8 +73,8 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
-        self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateAddress(_ input: AssociateAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
+        self.client.execute(action: "AssociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性公网IP
@@ -87,8 +87,8 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(_ input: AssociateAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
-        try await self.client.execute(action: "AssociateAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateAddress(_ input: AssociateAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
+        try await self.client.execute(action: "AssociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定弹性公网IP
@@ -101,8 +101,8 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
-        self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
+        self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性公网IP
@@ -115,7 +115,7 @@ extension Vpc {
     /// * EIP 如果欠费或被封堵，则不能被绑定。
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
-    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
-        try await self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), logger: logger, on: eventLoop)
+    public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
+        try await self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
     }
 }

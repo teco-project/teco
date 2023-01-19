@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Vod {
     ///
     /// 修改片头片尾模板。
     @inlinable
-    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHeadTailTemplateResponse> {
-        self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHeadTailTemplateResponse> {
+        self.client.execute(action: "ModifyHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改片头片尾模板
     ///
     /// 修改片头片尾模板。
     @inlinable
-    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
-        try await self.client.execute(action: "ModifyHeadTailTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyHeadTailTemplate(_ input: ModifyHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
+        try await self.client.execute(action: "ModifyHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改片头片尾模板
     ///
     /// 修改片头片尾模板。
     @inlinable
-    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHeadTailTemplateResponse> {
-        self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHeadTailTemplateResponse> {
+        self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改片头片尾模板
     ///
     /// 修改片头片尾模板。
     @inlinable
-    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
-        try await self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), logger: logger, on: eventLoop)
+    public func modifyHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, headCandidateSet: [String]? = nil, tailCandidateSet: [String]? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHeadTailTemplateResponse {
+        try await self.modifyHeadTailTemplate(ModifyHeadTailTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, headCandidateSet: headCandidateSet, tailCandidateSet: tailCandidateSet, fillType: fillType), region: region, logger: logger, on: eventLoop)
     }
 }

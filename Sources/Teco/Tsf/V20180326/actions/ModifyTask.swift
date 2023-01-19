@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -126,25 +126,25 @@ extension Tsf {
 
     /// 修改任务
     @inlinable
-    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
-        self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTask(_ input: ModifyTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
+        self.client.execute(action: "ModifyTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务
     @inlinable
-    public func modifyTask(_ input: ModifyTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
-        try await self.client.execute(action: "ModifyTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTask(_ input: ModifyTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
+        try await self.client.execute(action: "ModifyTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改任务
     @inlinable
-    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
-        self.modifyTask(ModifyTaskRequest(taskId: taskId, taskName: taskName, taskType: taskType, taskContent: taskContent, executeType: executeType, taskRule: taskRule, timeOut: timeOut, groupId: groupId, shardCount: shardCount, shardArguments: shardArguments, advanceSettings: advanceSettings, successOperator: successOperator, successRatio: successRatio, retryCount: retryCount, retryInterval: retryInterval, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskResponse> {
+        self.modifyTask(ModifyTaskRequest(taskId: taskId, taskName: taskName, taskType: taskType, taskContent: taskContent, executeType: executeType, taskRule: taskRule, timeOut: timeOut, groupId: groupId, shardCount: shardCount, shardArguments: shardArguments, advanceSettings: advanceSettings, successOperator: successOperator, successRatio: successRatio, retryCount: retryCount, retryInterval: retryInterval, taskArgument: taskArgument, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务
     @inlinable
-    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
-        try await self.modifyTask(ModifyTaskRequest(taskId: taskId, taskName: taskName, taskType: taskType, taskContent: taskContent, executeType: executeType, taskRule: taskRule, timeOut: timeOut, groupId: groupId, shardCount: shardCount, shardArguments: shardArguments, advanceSettings: advanceSettings, successOperator: successOperator, successRatio: successRatio, retryCount: retryCount, retryInterval: retryInterval, taskArgument: taskArgument, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func modifyTask(taskId: String, taskName: String? = nil, taskType: String? = nil, taskContent: String? = nil, executeType: String? = nil, taskRule: TaskRule? = nil, timeOut: UInt64? = nil, groupId: String? = nil, shardCount: Int64? = nil, shardArguments: [ShardArgument]? = nil, advanceSettings: AdvanceSettings? = nil, successOperator: String? = nil, successRatio: Int64? = nil, retryCount: UInt64? = nil, retryInterval: UInt64? = nil, taskArgument: String? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskResponse {
+        try await self.modifyTask(ModifyTaskRequest(taskId: taskId, taskName: taskName, taskType: taskType, taskContent: taskContent, executeType: executeType, taskRule: taskRule, timeOut: timeOut, groupId: groupId, shardCount: shardCount, shardArguments: shardArguments, advanceSettings: advanceSettings, successOperator: successOperator, successRatio: successRatio, retryCount: retryCount, retryInterval: retryInterval, taskArgument: taskArgument, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

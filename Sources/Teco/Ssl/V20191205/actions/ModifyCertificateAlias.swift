@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Ssl {
     ///
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
-    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAliasResponse> {
-        self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAliasResponse> {
+        self.client.execute(action: "ModifyCertificateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改证书备注
     ///
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
-    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
-        try await self.client.execute(action: "ModifyCertificateAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCertificateAlias(_ input: ModifyCertificateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
+        try await self.client.execute(action: "ModifyCertificateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改证书备注
     ///
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
-    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAliasResponse> {
-        self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), logger: logger, on: eventLoop)
+    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAliasResponse> {
+        self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改证书备注
     ///
     /// 用户传入证书id和备注来修改证书备注。
     @inlinable
-    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
-        try await self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), logger: logger, on: eventLoop)
+    public func modifyCertificateAlias(certificateId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAliasResponse {
+        try await self.modifyCertificateAlias(ModifyCertificateAliasRequest(certificateId: certificateId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

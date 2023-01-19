@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Cme {
     ///
     ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
     @inlinable
-    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLinkResponse> {
-        self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLink(_ input: CreateLinkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLinkResponse> {
+        self.client.execute(action: "CreateLink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建链接
     ///
     ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
     @inlinable
-    public func createLink(_ input: CreateLinkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
-        try await self.client.execute(action: "CreateLink", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLink(_ input: CreateLinkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
+        try await self.client.execute(action: "CreateLink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建链接
     ///
     ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
     @inlinable
-    public func createLink(platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLinkResponse> {
-        self.createLink(CreateLinkRequest(platform: platform, type: type, name: name, owner: owner, destinationId: destinationId, destinationOwner: destinationOwner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func createLink(platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLinkResponse> {
+        self.createLink(CreateLinkRequest(platform: platform, type: type, name: name, owner: owner, destinationId: destinationId, destinationOwner: destinationOwner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建链接
     ///
     ///  创建媒体链接或分类路径链接，将源资源信息链接到目标。
     @inlinable
-    public func createLink(platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
-        try await self.createLink(CreateLinkRequest(platform: platform, type: type, name: name, owner: owner, destinationId: destinationId, destinationOwner: destinationOwner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func createLink(platform: String, type: String, name: String, owner: Entity, destinationId: String, destinationOwner: Entity, classPath: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLinkResponse {
+        try await self.createLink(CreateLinkRequest(platform: platform, type: type, name: name, owner: owner, destinationId: destinationId, destinationOwner: destinationOwner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Monitor {
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
     @inlinable
-    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
-        self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
+        self.client.execute(action: "DestroyPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
     @inlinable
-    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
-        try await self.client.execute(action: "DestroyPrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
+        try await self.client.execute(action: "DestroyPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
     @inlinable
-    public func destroyPrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
-        self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyPrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
+        self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
     @inlinable
-    public func destroyPrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
-        try await self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func destroyPrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
+        try await self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

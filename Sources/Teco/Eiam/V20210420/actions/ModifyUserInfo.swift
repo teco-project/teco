@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Eiam {
     ///
     /// 通过用户名或用户 id 冻结用户
     @inlinable
-    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserInfoResponse> {
-        self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUserInfo(_ input: ModifyUserInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserInfoResponse> {
+        self.client.execute(action: "ModifyUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户
     ///
     /// 通过用户名或用户 id 冻结用户
     @inlinable
-    public func modifyUserInfo(_ input: ModifyUserInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
-        try await self.client.execute(action: "ModifyUserInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUserInfo(_ input: ModifyUserInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
+        try await self.client.execute(action: "ModifyUserInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户
     ///
     /// 通过用户名或用户 id 冻结用户
     @inlinable
-    public func modifyUserInfo(userName: String? = nil, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, userId: String? = nil, phone: String? = nil, expirationTime: String? = nil, password: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, orgNodeId: String? = nil, secondaryOrgNodeIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserInfoResponse> {
-        self.modifyUserInfo(ModifyUserInfoRequest(userName: userName, displayName: displayName, description: description, userGroupIds: userGroupIds, userId: userId, phone: phone, expirationTime: expirationTime, password: password, email: email, pwdNeedReset: pwdNeedReset, orgNodeId: orgNodeId, secondaryOrgNodeIdList: secondaryOrgNodeIdList), logger: logger, on: eventLoop)
+    public func modifyUserInfo(userName: String? = nil, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, userId: String? = nil, phone: String? = nil, expirationTime: String? = nil, password: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, orgNodeId: String? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserInfoResponse> {
+        self.modifyUserInfo(ModifyUserInfoRequest(userName: userName, displayName: displayName, description: description, userGroupIds: userGroupIds, userId: userId, phone: phone, expirationTime: expirationTime, password: password, email: email, pwdNeedReset: pwdNeedReset, orgNodeId: orgNodeId, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户
     ///
     /// 通过用户名或用户 id 冻结用户
     @inlinable
-    public func modifyUserInfo(userName: String? = nil, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, userId: String? = nil, phone: String? = nil, expirationTime: String? = nil, password: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, orgNodeId: String? = nil, secondaryOrgNodeIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
-        try await self.modifyUserInfo(ModifyUserInfoRequest(userName: userName, displayName: displayName, description: description, userGroupIds: userGroupIds, userId: userId, phone: phone, expirationTime: expirationTime, password: password, email: email, pwdNeedReset: pwdNeedReset, orgNodeId: orgNodeId, secondaryOrgNodeIdList: secondaryOrgNodeIdList), logger: logger, on: eventLoop)
+    public func modifyUserInfo(userName: String? = nil, displayName: String? = nil, description: String? = nil, userGroupIds: [String]? = nil, userId: String? = nil, phone: String? = nil, expirationTime: String? = nil, password: String? = nil, email: String? = nil, pwdNeedReset: Bool? = nil, orgNodeId: String? = nil, secondaryOrgNodeIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserInfoResponse {
+        try await self.modifyUserInfo(ModifyUserInfoRequest(userName: userName, displayName: displayName, description: description, userGroupIds: userGroupIds, userId: userId, phone: phone, expirationTime: expirationTime, password: password, email: email, pwdNeedReset: pwdNeedReset, orgNodeId: orgNodeId, secondaryOrgNodeIdList: secondaryOrgNodeIdList), region: region, logger: logger, on: eventLoop)
     }
 }

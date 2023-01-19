@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tke {
 
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
-        self.client.execute(action: "DeleteEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
+        self.client.execute(action: "DeleteEdgeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
-        try await self.client.execute(action: "DeleteEdgeClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEdgeClusterInstances(_ input: DeleteEdgeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
+        try await self.client.execute(action: "DeleteEdgeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
-        self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeClusterInstancesResponse> {
+        self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘计算实例
     @inlinable
-    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
-        try await self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func deleteEdgeClusterInstances(clusterId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeClusterInstancesResponse {
+        try await self.deleteEdgeClusterInstances(DeleteEdgeClusterInstancesRequest(clusterId: clusterId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

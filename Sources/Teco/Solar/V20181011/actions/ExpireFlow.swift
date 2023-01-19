@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Solar {
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
-        self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func expireFlow(_ input: ExpireFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
+        self.client.execute(action: "ExpireFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(_ input: ExpireFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
-        try await self.client.execute(action: "ExpireFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func expireFlow(_ input: ExpireFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
+        try await self.client.execute(action: "ExpireFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
-        self.expireFlow(ExpireFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func expireFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
+        self.expireFlow(ExpireFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
     @inlinable
-    public func expireFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
-        try await self.expireFlow(ExpireFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func expireFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
+        try await self.expireFlow(ExpireFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcss {
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
-        self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCheckComponent(_ input: CreateCheckComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
+        self.client.execute(action: "CreateCheckComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(_ input: CreateCheckComponentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
-        try await self.client.execute(action: "CreateCheckComponent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCheckComponent(_ input: CreateCheckComponentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
+        try await self.client.execute(action: "CreateCheckComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
-        self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), logger: logger, on: eventLoop)
+    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckComponentResponse> {
+        self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安装检查组件
     ///
     /// 安装检查组件，创建防护容器
     @inlinable
-    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
-        try await self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), logger: logger, on: eventLoop)
+    public func createCheckComponent(clusterInfoList: [ClusterCreateComponentItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckComponentResponse {
+        try await self.createCheckComponent(CreateCheckComponentRequest(clusterInfoList: clusterInfoList), region: region, logger: logger, on: eventLoop)
     }
 }

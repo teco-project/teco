@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tcss {
 
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
-        self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
+        self.client.execute(action: "CreateAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
-        try await self.client.execute(action: "CreateAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAssetImageScanSetting(_ input: CreateAssetImageScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
+        try await self.client.execute(action: "CreateAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
-        self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), logger: logger, on: eventLoop)
+    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
+        self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加容器安全镜像扫描设置
     @inlinable
-    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
-        try await self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), logger: logger, on: eventLoop)
+    public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
+        try await self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Dbbrain {
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
-        self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
+        self.client.execute(action: "DescribeNoPrimaryKeyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
-        try await self.client.execute(action: "DescribeNoPrimaryKeyTables", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNoPrimaryKeyTables(_ input: DescribeNoPrimaryKeyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
+        try await self.client.execute(action: "DescribeNoPrimaryKeyTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
-        self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), logger: logger, on: eventLoop)
+    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoPrimaryKeyTablesResponse> {
+        self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
     @inlinable
-    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
-        try await self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), logger: logger, on: eventLoop)
+    public func describeNoPrimaryKeyTables(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoPrimaryKeyTablesResponse {
+        try await self.describeNoPrimaryKeyTables(DescribeNoPrimaryKeyTablesRequest(instanceId: instanceId, date: date, limit: limit, offset: offset, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

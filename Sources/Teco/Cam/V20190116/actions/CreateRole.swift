@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Cam {
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
-        self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRole(_ input: CreateRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
+        self.client.execute(action: "CreateRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(_ input: CreateRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
-        try await self.client.execute(action: "CreateRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRole(_ input: CreateRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
+        try await self.client.execute(action: "CreateRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
-        self.createRole(CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), logger: logger, on: eventLoop)
+    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoleResponse> {
+        self.createRole(CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建角色
     ///
     /// 本接口（CreateRole）用于创建角色。
     @inlinable
-    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
-        try await self.createRole(CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), logger: logger, on: eventLoop)
+    public func createRole(roleName: String, policyDocument: String, description: String? = nil, consoleLogin: UInt64? = nil, sessionDuration: UInt64? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoleResponse {
+        try await self.createRole(CreateRoleRequest(roleName: roleName, policyDocument: policyDocument, description: description, consoleLogin: consoleLogin, sessionDuration: sessionDuration, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

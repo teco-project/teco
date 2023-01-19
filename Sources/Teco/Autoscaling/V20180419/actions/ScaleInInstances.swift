@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,8 +58,8 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
-        self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func scaleInInstances(_ input: ScaleInInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
+        self.client.execute(action: "ScaleInInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定数量缩容实例
@@ -72,8 +72,8 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(_ input: ScaleInInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
-        try await self.client.execute(action: "ScaleInInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func scaleInInstances(_ input: ScaleInInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
+        try await self.client.execute(action: "ScaleInInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 指定数量缩容实例
@@ -86,8 +86,8 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
-        self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), logger: logger, on: eventLoop)
+    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
+        self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 指定数量缩容实例
@@ -100,7 +100,7 @@ extension As {
     /// * 接口会减少期望实例数，新的期望实例数需要大于等于最小实例数
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
-    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
-        try await self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), logger: logger, on: eventLoop)
+    public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
+        try await self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), region: region, logger: logger, on: eventLoop)
     }
 }

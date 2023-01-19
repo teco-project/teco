@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -123,25 +123,25 @@ extension Cfw {
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
-        self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
+        self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
-        try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnterpriseSecurityGroupRule(_ input: DescribeEnterpriseSecurityGroupRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
+        try await self.client.execute(action: "DescribeEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
-        self.describeEnterpriseSecurityGroupRule(DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), logger: logger, on: eventLoop)
+    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnterpriseSecurityGroupRuleResponse> {
+        self.describeEnterpriseSecurityGroupRule(DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询新企业安全组规则
     @inlinable
-    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
-        try await self.describeEnterpriseSecurityGroupRule(DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), logger: logger, on: eventLoop)
+    public func describeEnterpriseSecurityGroupRule(pageNo: String, pageSize: String, sourceContent: String? = nil, destContent: String? = nil, description: String? = nil, ruleAction: String? = nil, enable: String? = nil, port: String? = nil, protocol: String? = nil, serviceTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnterpriseSecurityGroupRuleResponse {
+        try await self.describeEnterpriseSecurityGroupRule(DescribeEnterpriseSecurityGroupRuleRequest(pageNo: pageNo, pageSize: pageSize, sourceContent: sourceContent, destContent: destContent, description: description, ruleAction: ruleAction, enable: enable, port: port, protocol: `protocol`, serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

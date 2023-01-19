@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Tci {
     ///
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConversationTaskResponse> {
-        self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConversationTask(_ input: DescribeConversationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConversationTaskResponse> {
+        self.client.execute(action: "DescribeConversationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频对话任务分析结果查询
     ///
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeConversationTask(_ input: DescribeConversationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
-        try await self.client.execute(action: "DescribeConversationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConversationTask(_ input: DescribeConversationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
+        try await self.client.execute(action: "DescribeConversationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 音频对话任务分析结果查询
     ///
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConversationTaskResponse> {
-        self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConversationTaskResponse> {
+        self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音频对话任务分析结果查询
     ///
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
-    public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
-        try await self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
+        try await self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

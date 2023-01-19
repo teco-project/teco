@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Bmvpc {
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
-        self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
+        self.client.execute(action: "DescribeNatGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
-        try await self.client.execute(action: "DescribeNatGateways", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNatGateways(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
+        try await self.client.execute(action: "DescribeNatGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
-        self.describeNatGateways(DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewaysResponse> {
+        self.describeNatGateways(DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取NAT网关列表
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
-        try await self.describeNatGateways(DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeNatGateways(natId: String? = nil, natName: String? = nil, searchKey: String? = nil, vpcId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, zone: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewaysResponse {
+        try await self.describeNatGateways(DescribeNatGatewaysRequest(natId: natId, natName: natName, searchKey: searchKey, vpcId: vpcId, offset: offset, limit: limit, zone: zone, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

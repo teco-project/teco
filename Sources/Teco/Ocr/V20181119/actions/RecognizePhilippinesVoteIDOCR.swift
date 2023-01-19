@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,25 +94,25 @@ extension Ocr {
 
     /// 菲律宾VoteID识别
     @inlinable
-    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
-        self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
+        self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾VoteID识别
     @inlinable
-    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
-        try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizePhilippinesVoteIDOCR(_ input: RecognizePhilippinesVoteIDOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
+        try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 菲律宾VoteID识别
     @inlinable
-    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
-        self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
+        self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾VoteID识别
     @inlinable
-    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
-        try await self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
+        try await self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

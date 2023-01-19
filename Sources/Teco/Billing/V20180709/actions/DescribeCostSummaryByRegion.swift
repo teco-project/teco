@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,25 +83,25 @@ extension Billing {
 
     /// 获取按地域汇总消耗详情
     @inlinable
-    public func describeCostSummaryByRegion(_ input: DescribeCostSummaryByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByRegionResponse> {
-        self.client.execute(action: "DescribeCostSummaryByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCostSummaryByRegion(_ input: DescribeCostSummaryByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByRegionResponse> {
+        self.client.execute(action: "DescribeCostSummaryByRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按地域汇总消耗详情
     @inlinable
-    public func describeCostSummaryByRegion(_ input: DescribeCostSummaryByRegionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByRegionResponse {
-        try await self.client.execute(action: "DescribeCostSummaryByRegion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCostSummaryByRegion(_ input: DescribeCostSummaryByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByRegionResponse {
+        try await self.client.execute(action: "DescribeCostSummaryByRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按地域汇总消耗详情
     @inlinable
-    public func describeCostSummaryByRegion(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByRegionResponse> {
-        self.describeCostSummaryByRegion(DescribeCostSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByRegion(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCostSummaryByRegionResponse> {
+        self.describeCostSummaryByRegion(DescribeCostSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按地域汇总消耗详情
     @inlinable
-    public func describeCostSummaryByRegion(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByRegionResponse {
-        try await self.describeCostSummaryByRegion(DescribeCostSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), logger: logger, on: eventLoop)
+    public func describeCostSummaryByRegion(beginTime: String, endTime: String, limit: UInt64, offset: UInt64, payerUin: String? = nil, needRecordNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCostSummaryByRegionResponse {
+        try await self.describeCostSummaryByRegion(DescribeCostSummaryByRegionRequest(beginTime: beginTime, endTime: endTime, limit: limit, offset: offset, payerUin: payerUin, needRecordNum: needRecordNum), region: region, logger: logger, on: eventLoop)
     }
 }

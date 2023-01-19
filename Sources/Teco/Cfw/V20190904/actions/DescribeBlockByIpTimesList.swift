@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Cfw {
     ///
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
-    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockByIpTimesListResponse> {
-        self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockByIpTimesListResponse> {
+        self.client.execute(action: "DescribeBlockByIpTimesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警中心阻断IP折线图
     ///
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
-    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
-        try await self.client.execute(action: "DescribeBlockByIpTimesList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBlockByIpTimesList(_ input: DescribeBlockByIpTimesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
+        try await self.client.execute(action: "DescribeBlockByIpTimesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 告警中心阻断IP折线图
     ///
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
-    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockByIpTimesListResponse> {
-        self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), logger: logger, on: eventLoop)
+    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlockByIpTimesListResponse> {
+        self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 告警中心阻断IP折线图
     ///
     /// DescribeBlockByIpTimesList 告警中心阻断IP折线图
     @inlinable
-    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
-        try await self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), logger: logger, on: eventLoop)
+    public func describeBlockByIpTimesList(startTime: String, endTime: String, ip: String, zone: String? = nil, direction: String? = nil, source: String? = nil, edgeId: String? = nil, logSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlockByIpTimesListResponse {
+        try await self.describeBlockByIpTimesList(DescribeBlockByIpTimesListRequest(startTime: startTime, endTime: endTime, ip: ip, zone: zone, direction: direction, source: source, edgeId: edgeId, logSource: logSource), region: region, logger: logger, on: eventLoop)
     }
 }

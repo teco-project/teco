@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -123,25 +123,25 @@ extension Tbaas {
 
     /// 获取交易详情
     @inlinable
-    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransactionDetailForUserResponse> {
-        self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransactionDetailForUserResponse> {
+        self.client.execute(action: "GetTransactionDetailForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取交易详情
     @inlinable
-    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
-        try await self.client.execute(action: "GetTransactionDetailForUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getTransactionDetailForUser(_ input: GetTransactionDetailForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
+        try await self.client.execute(action: "GetTransactionDetailForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取交易详情
     @inlinable
-    public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransactionDetailForUserResponse> {
-        self.getTransactionDetailForUser(GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), logger: logger, on: eventLoop)
+    public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTransactionDetailForUserResponse> {
+        self.getTransactionDetailForUser(GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取交易详情
     @inlinable
-    public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
-        try await self.getTransactionDetailForUser(GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), logger: logger, on: eventLoop)
+    public func getTransactionDetailForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, blockId: UInt64, transactionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTransactionDetailForUserResponse {
+        try await self.getTransactionDetailForUser(GetTransactionDetailForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, blockId: blockId, transactionId: transactionId), region: region, logger: logger, on: eventLoop)
     }
 }

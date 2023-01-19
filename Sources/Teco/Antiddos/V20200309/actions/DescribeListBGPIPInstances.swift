@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,25 +125,25 @@ extension Antiddos {
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(_ input: DescribeListBGPIPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
-        self.client.execute(action: "DescribeListBGPIPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListBGPIPInstances(_ input: DescribeListBGPIPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
+        self.client.execute(action: "DescribeListBGPIPInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(_ input: DescribeListBGPIPInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
-        try await self.client.execute(action: "DescribeListBGPIPInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListBGPIPInstances(_ input: DescribeListBGPIPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
+        try await self.client.execute(action: "DescribeListBGPIPInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
-        self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), logger: logger, on: eventLoop)
+    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
+        self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
-        try await self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), logger: logger, on: eventLoop)
+    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
+        try await self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), region: region, logger: logger, on: eventLoop)
     }
 }

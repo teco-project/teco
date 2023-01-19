@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Cme {
     ///
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable
-    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantResourceAuthorizationResponse> {
-        self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantResourceAuthorizationResponse> {
+        self.client.execute(action: "GrantResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起媒资授权
     ///
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable
-    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
-        try await self.client.execute(action: "GrantResourceAuthorization", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func grantResourceAuthorization(_ input: GrantResourceAuthorizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
+        try await self.client.execute(action: "GrantResourceAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起媒资授权
     ///
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable
-    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantResourceAuthorizationResponse> {
-        self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
+    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantResourceAuthorizationResponse> {
+        self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起媒资授权
     ///
     /// 资源归属者对个人或团队授予目标资源的相应权限。
     @inlinable
-    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
-        try await self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), logger: logger, on: eventLoop)
+    public func grantResourceAuthorization(platform: String, owner: Entity, resources: [Resource], authorizees: [Entity], permissions: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantResourceAuthorizationResponse {
+        try await self.grantResourceAuthorization(GrantResourceAuthorizationRequest(platform: platform, owner: owner, resources: resources, authorizees: authorizees, permissions: permissions, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

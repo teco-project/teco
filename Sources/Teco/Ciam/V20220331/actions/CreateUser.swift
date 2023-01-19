@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -116,25 +116,25 @@ extension Ciam {
 
     /// 创建用户
     @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
+        self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户
     @inlinable
-    public func createUser(_ input: CreateUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.client.execute(action: "CreateUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建用户
     @inlinable
-    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
+        self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户
     @inlinable
-    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), logger: logger, on: eventLoop)
+    public func createUser(userStoreId: String, phoneNumber: String, email: String, password: String, userName: String, nickname: String? = nil, address: String? = nil, userGroup: [String]? = nil, birthdate: Int64? = nil, customizationAttributes: [MemberMap]? = nil, indexedAttribute1: String? = nil, indexedAttribute2: String? = nil, indexedAttribute3: String? = nil, indexedAttribute4: String? = nil, indexedAttribute5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
+        try await self.createUser(CreateUserRequest(userStoreId: userStoreId, phoneNumber: phoneNumber, email: email, password: password, userName: userName, nickname: nickname, address: address, userGroup: userGroup, birthdate: birthdate, customizationAttributes: customizationAttributes, indexedAttribute1: indexedAttribute1, indexedAttribute2: indexedAttribute2, indexedAttribute3: indexedAttribute3, indexedAttribute4: indexedAttribute4, indexedAttribute5: indexedAttribute5), region: region, logger: logger, on: eventLoop)
     }
 }

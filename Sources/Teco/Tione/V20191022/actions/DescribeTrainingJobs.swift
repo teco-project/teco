@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Tione {
 
     /// 查询训练任务列表
     @inlinable
-    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobsResponse> {
-        self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobsResponse> {
+        self.client.execute(action: "DescribeTrainingJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询训练任务列表
     @inlinable
-    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
-        try await self.client.execute(action: "DescribeTrainingJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrainingJobs(_ input: DescribeTrainingJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
+        try await self.client.execute(action: "DescribeTrainingJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询训练任务列表
     @inlinable
-    public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobsResponse> {
-        self.describeTrainingJobs(DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), logger: logger, on: eventLoop)
+    public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingJobsResponse> {
+        self.describeTrainingJobs(DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询训练任务列表
     @inlinable
-    public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
-        try await self.describeTrainingJobs(DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), logger: logger, on: eventLoop)
+    public func describeTrainingJobs(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingJobsResponse {
+        try await self.describeTrainingJobs(DescribeTrainingJobsRequest(offset: offset, limit: limit, creationTimeAfter: creationTimeAfter, creationTimeBefore: creationTimeBefore, nameContains: nameContains, statusEquals: statusEquals, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

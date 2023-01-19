@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcb {
 
     /// 更新环境信息
     @inlinable
-    public func modifyEnv(_ input: ModifyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvResponse> {
-        self.client.execute(action: "ModifyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEnv(_ input: ModifyEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvResponse> {
+        self.client.execute(action: "ModifyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新环境信息
     @inlinable
-    public func modifyEnv(_ input: ModifyEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvResponse {
-        try await self.client.execute(action: "ModifyEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEnv(_ input: ModifyEnvRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvResponse {
+        try await self.client.execute(action: "ModifyEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新环境信息
     @inlinable
-    public func modifyEnv(envId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvResponse> {
-        self.modifyEnv(ModifyEnvRequest(envId: envId, alias: alias), logger: logger, on: eventLoop)
+    public func modifyEnv(envId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvResponse> {
+        self.modifyEnv(ModifyEnvRequest(envId: envId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新环境信息
     @inlinable
-    public func modifyEnv(envId: String, alias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvResponse {
-        try await self.modifyEnv(ModifyEnvRequest(envId: envId, alias: alias), logger: logger, on: eventLoop)
+    public func modifyEnv(envId: String, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvResponse {
+        try await self.modifyEnv(ModifyEnvRequest(envId: envId, alias: alias), region: region, logger: logger, on: eventLoop)
     }
 }

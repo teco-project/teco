@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,25 +92,25 @@ extension Cpdp {
 
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
-        self.client.execute(action: "FreezeFlexBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
+        self.client.execute(action: "FreezeFlexBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
-        try await self.client.execute(action: "FreezeFlexBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func freezeFlexBalance(_ input: FreezeFlexBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
+        try await self.client.execute(action: "FreezeFlexBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
-        self.freezeFlexBalance(FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FreezeFlexBalanceResponse> {
+        self.freezeFlexBalance(FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-冻结余额
     @inlinable
-    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
-        try await self.freezeFlexBalance(FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), logger: logger, on: eventLoop)
+    public func freezeFlexBalance(payeeId: String, amountBeforeTax: String, incomeType: String, outOrderId: String, operationType: String, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FreezeFlexBalanceResponse {
+        try await self.freezeFlexBalance(FreezeFlexBalanceRequest(payeeId: payeeId, amountBeforeTax: amountBeforeTax, incomeType: incomeType, outOrderId: outOrderId, operationType: operationType, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

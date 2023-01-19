@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Bmvpc {
     /// 2) 每台托管机器最多可以加入20个子网。
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
-    public func createHostedInterface(_ input: CreateHostedInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostedInterfaceResponse> {
-        self.client.execute(action: "CreateHostedInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createHostedInterface(_ input: CreateHostedInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostedInterfaceResponse> {
+        self.client.execute(action: "CreateHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器加入子网
@@ -75,8 +75,8 @@ extension Bmvpc {
     /// 2) 每台托管机器最多可以加入20个子网。
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
-    public func createHostedInterface(_ input: CreateHostedInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
-        try await self.client.execute(action: "CreateHostedInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createHostedInterface(_ input: CreateHostedInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
+        try await self.client.execute(action: "CreateHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 黑石托管机器加入子网
@@ -86,8 +86,8 @@ extension Bmvpc {
     /// 2) 每台托管机器最多可以加入20个子网。
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
-    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostedInterfaceResponse> {
-        self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostedInterfaceResponse> {
+        self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器加入子网
@@ -97,7 +97,7 @@ extension Bmvpc {
     /// 2) 每台托管机器最多可以加入20个子网。
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
-    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
-        try await self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), logger: logger, on: eventLoop)
+    public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
+        try await self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

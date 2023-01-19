@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Cwp {
 
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
-        self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
+        self.client.execute(action: "DescribeAttackVulTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
-        try await self.client.execute(action: "DescribeAttackVulTypeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAttackVulTypeList(_ input: DescribeAttackVulTypeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
+        try await self.client.execute(action: "DescribeAttackVulTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
-        self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), logger: logger, on: eventLoop)
+    public func describeAttackVulTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
+        self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取网络攻击威胁类型列表
     @inlinable
-    public func describeAttackVulTypeList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
-        try await self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), logger: logger, on: eventLoop)
+    public func describeAttackVulTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
+        try await self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Wedata {
     ///
     /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
     @inlinable
-    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourcePathResponse> {
-        self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResourcePath(_ input: CreateResourcePathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourcePathResponse> {
+        self.client.execute(action: "CreateResourcePath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源管理创建文件路径
     ///
     /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
     @inlinable
-    public func createResourcePath(_ input: CreateResourcePathRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
-        try await self.client.execute(action: "CreateResourcePath", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResourcePath(_ input: CreateResourcePathRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
+        try await self.client.execute(action: "CreateResourcePath", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资源管理创建文件路径
     ///
     /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
     @inlinable
-    public func createResourcePath(name: String, filePath: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourcePathResponse> {
-        self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), logger: logger, on: eventLoop)
+    public func createResourcePath(name: String, filePath: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourcePathResponse> {
+        self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资源管理创建文件路径
     ///
     /// 文件路径的根目录为 /datastudio/resource，如果要在根目录下创建 aaa 文件夹，FilePath的值应该为 /datastudio/resource，如果根目录下已经创建了 aaa 文件夹，要在 aaa 下创建  bbb 文件夹，FilePath的值应该为 /datastudio/resource/aaa
     @inlinable
-    public func createResourcePath(name: String, filePath: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
-        try await self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), logger: logger, on: eventLoop)
+    public func createResourcePath(name: String, filePath: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourcePathResponse {
+        try await self.createResourcePath(CreateResourcePathRequest(name: name, filePath: filePath, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

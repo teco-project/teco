@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Vpc {
     ///
     /// 本接口(CheckNetDetectState)用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
-        self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
+        self.client.execute(action: "CheckNetDetectState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证网络探测
     ///
     /// 本接口(CheckNetDetectState)用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
-        try await self.client.execute(action: "CheckNetDetectState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkNetDetectState(_ input: CheckNetDetectStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
+        try await self.client.execute(action: "CheckNetDetectState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证网络探测
     ///
     /// 本接口(CheckNetDetectState)用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
-        self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), logger: logger, on: eventLoop)
+    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckNetDetectStateResponse> {
+        self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证网络探测
     ///
     /// 本接口(CheckNetDetectState)用于验证网络探测。
     @inlinable
-    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
-        try await self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), logger: logger, on: eventLoop)
+    public func checkNetDetectState(detectDestinationIp: [String], nextHopType: String, nextHopDestination: String, netDetectId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, netDetectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckNetDetectStateResponse {
+        try await self.checkNetDetectState(CheckNetDetectStateRequest(detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectId: netDetectId, vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName), region: region, logger: logger, on: eventLoop)
     }
 }

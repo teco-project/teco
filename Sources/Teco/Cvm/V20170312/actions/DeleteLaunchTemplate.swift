@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cvm {
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable
-    public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
-        self.client.execute(action: "DeleteLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
+        self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable
-    public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
-        try await self.client.execute(action: "DeleteLaunchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
+        try await self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable
-    public func deleteLaunchTemplate(launchTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
-        self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), logger: logger, on: eventLoop)
+    public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
+        self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
     @inlinable
-    public func deleteLaunchTemplate(launchTemplateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
-        try await self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), logger: logger, on: eventLoop)
+    public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
+        try await self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

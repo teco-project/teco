@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Wav {
 
     /// 查询小程序码列表接口
     @inlinable
-    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMiniAppCodeListResponse> {
-        self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMiniAppCodeListResponse> {
+        self.client.execute(action: "QueryMiniAppCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询小程序码列表接口
     @inlinable
-    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
-        try await self.client.execute(action: "QueryMiniAppCodeList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMiniAppCodeList(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
+        try await self.client.execute(action: "QueryMiniAppCodeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询小程序码列表接口
     @inlinable
-    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMiniAppCodeListResponse> {
-        self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMiniAppCodeListResponse> {
+        self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询小程序码列表接口
     @inlinable
-    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
-        try await self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), logger: logger, on: eventLoop)
+    public func queryMiniAppCodeList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMiniAppCodeListResponse {
+        try await self.queryMiniAppCodeList(QueryMiniAppCodeListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iecp {
 
     /// 创建边缘单元NodeGroup
     @inlinable
-    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
-        self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
+        self.client.execute(action: "CreateEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeGroup
     @inlinable
-    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
-        try await self.client.execute(action: "CreateEdgeNodeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
+        try await self.client.execute(action: "CreateEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建边缘单元NodeGroup
     @inlinable
-    public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
-        self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), logger: logger, on: eventLoop)
+    public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
+        self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeGroup
     @inlinable
-    public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
-        try await self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), logger: logger, on: eventLoop)
+    public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
+        try await self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }
 }

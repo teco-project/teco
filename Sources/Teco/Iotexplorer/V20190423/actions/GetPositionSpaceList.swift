@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotexplorer {
 
     /// 获取位置空间列表
     @inlinable
-    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPositionSpaceListResponse> {
-        self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPositionSpaceListResponse> {
+        self.client.execute(action: "GetPositionSpaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取位置空间列表
     @inlinable
-    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
-        try await self.client.execute(action: "GetPositionSpaceList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPositionSpaceList(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
+        try await self.client.execute(action: "GetPositionSpaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取位置空间列表
     @inlinable
-    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPositionSpaceListResponse> {
-        self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPositionSpaceListResponse> {
+        self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取位置空间列表
     @inlinable
-    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
-        try await self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
+        try await self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

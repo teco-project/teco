@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Monitor {
 
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
-        self.client.execute(action: "DeletePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
+        self.client.execute(action: "DeletePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
-        try await self.client.execute(action: "DeletePrometheusScrapeJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
+        try await self.client.execute(action: "DeletePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
-        self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), logger: logger, on: eventLoop)
+    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
+        self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Prometheus 抓取任务
     @inlinable
-    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
-        try await self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), logger: logger, on: eventLoop)
+    public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
+        try await self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
     }
 }

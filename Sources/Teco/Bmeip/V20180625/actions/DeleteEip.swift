@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bmeip {
 
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
-        self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteEip(_ input: DeleteEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
+        self.client.execute(action: "DeleteEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(_ input: DeleteEipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
-        try await self.client.execute(action: "DeleteEip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteEip(_ input: DeleteEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
+        try await self.client.execute(action: "DeleteEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
-        self.deleteEip(DeleteEipRequest(eipIds: eipIds), logger: logger, on: eventLoop)
+    public func deleteEip(eipIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipResponse> {
+        self.deleteEip(DeleteEipRequest(eipIds: eipIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 释放黑石弹性公网IP
     @inlinable
-    public func deleteEip(eipIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
-        try await self.deleteEip(DeleteEipRequest(eipIds: eipIds), logger: logger, on: eventLoop)
+    public func deleteEip(eipIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipResponse {
+        try await self.deleteEip(DeleteEipRequest(eipIds: eipIds), region: region, logger: logger, on: eventLoop)
     }
 }

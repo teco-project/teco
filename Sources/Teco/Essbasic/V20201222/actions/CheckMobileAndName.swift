@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Essbasic {
     ///
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
-    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileAndNameResponse> {
-        self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileAndNameResponse> {
+        self.client.execute(action: "CheckMobileAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
-    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
-        try await self.client.execute(action: "CheckMobileAndName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkMobileAndName(_ input: CheckMobileAndNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
+        try await self.client.execute(action: "CheckMobileAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号二要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
-    public func checkMobileAndName(caller: Caller, mobile: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileAndNameResponse> {
-        self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), logger: logger, on: eventLoop)
+    public func checkMobileAndName(caller: Caller, mobile: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileAndNameResponse> {
+        self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
     ///
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
-    public func checkMobileAndName(caller: Caller, mobile: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
-        try await self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), logger: logger, on: eventLoop)
+    public func checkMobileAndName(caller: Caller, mobile: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
+        try await self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

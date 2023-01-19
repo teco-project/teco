@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,31 +127,31 @@ extension Tsf {
     ///
     /// 服务统计页面：接口和服务维度
     @inlinable
-    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticsResponse> {
-        self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStatistics(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticsResponse> {
+        self.client.execute(action: "DescribeStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务统计
     ///
     /// 服务统计页面：接口和服务维度
     @inlinable
-    public func describeStatistics(_ input: DescribeStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
-        try await self.client.execute(action: "DescribeStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStatistics(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
+        try await self.client.execute(action: "DescribeStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务统计
     ///
     /// 服务统计页面：接口和服务维度
     @inlinable
-    public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticsResponse> {
-        self.describeStatistics(DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), logger: logger, on: eventLoop)
+    public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticsResponse> {
+        self.describeStatistics(DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务统计
     ///
     /// 服务统计页面：接口和服务维度
     @inlinable
-    public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
-        try await self.describeStatistics(DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), logger: logger, on: eventLoop)
+    public func describeStatistics(type: String, timeStep: UInt64, offset: UInt64, limit: UInt64, namespaceId: String? = nil, orderBy: String? = nil, orderType: UInt64? = nil, endTime: Date? = nil, startTime: Date? = nil, serviceName: String? = nil, searchWord: String? = nil, metricDimensionValues: [MetricDimensionValue]? = nil, bucketKey: String? = nil, dbName: String? = nil, namespaceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticsResponse {
+        try await self.describeStatistics(DescribeStatisticsRequest(type: type, timeStep: timeStep, offset: offset, limit: limit, namespaceId: namespaceId, orderBy: orderBy, orderType: orderType, endTime: endTime, startTime: startTime, serviceName: serviceName, searchWord: searchWord, metricDimensionValues: metricDimensionValues, bucketKey: bucketKey, dbName: dbName, namespaceIdList: namespaceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

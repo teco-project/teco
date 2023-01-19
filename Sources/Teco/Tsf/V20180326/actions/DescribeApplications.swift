@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tsf {
 
     /// 获取应用列表
     @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
-        self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplications(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
+        self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表
     @inlinable
-    public func describeApplications(_ input: DescribeApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.client.execute(action: "DescribeApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplications(_ input: DescribeApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用列表
     @inlinable
-    public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
-        self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), logger: logger, on: eventLoop)
+    public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
+        self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表
     @inlinable
-    public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), logger: logger, on: eventLoop)
+    public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
+        try await self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
     }
 }

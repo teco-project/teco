@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Tds {
 
     /// 查询设备标识及风险
     @inlinable
-    public func describeFraudPremium(_ input: DescribeFraudPremiumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudPremiumResponse> {
-        self.client.execute(action: "DescribeFraudPremium", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFraudPremium(_ input: DescribeFraudPremiumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudPremiumResponse> {
+        self.client.execute(action: "DescribeFraudPremium", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识及风险
     @inlinable
-    public func describeFraudPremium(_ input: DescribeFraudPremiumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudPremiumResponse {
-        try await self.client.execute(action: "DescribeFraudPremium", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFraudPremium(_ input: DescribeFraudPremiumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudPremiumResponse {
+        try await self.client.execute(action: "DescribeFraudPremium", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备标识及风险
     @inlinable
-    public func describeFraudPremium(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudPremiumResponse> {
-        self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeFraudPremium(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudPremiumResponse> {
+        self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识及风险
     @inlinable
-    public func describeFraudPremium(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudPremiumResponse {
-        try await self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeFraudPremium(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudPremiumResponse {
+        try await self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 }

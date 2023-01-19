@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
-        self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
+        self.client.execute(action: "DeleteLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
-        try await self.client.execute(action: "DeleteLoginWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLoginWhiteList(_ input: DeleteLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
+        try await self.client.execute(action: "DeleteLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
-        self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteLoginWhiteList(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
+        self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除异地登录白名单规则
     ///
     /// 本接口用于删除异地登录白名单规则。
     @inlinable
-    public func deleteLoginWhiteList(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
-        try await self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteLoginWhiteList(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
+        try await self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

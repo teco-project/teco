@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
-        self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
+        self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 电子签渠道版-根据签署流程id创建批量撤销url
@@ -83,8 +83,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
-        try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateBatchCancelFlowUrl(_ input: ChannelCreateBatchCancelFlowUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
+        try await self.client.execute(action: "ChannelCreateBatchCancelFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 电子签渠道版-根据签署流程id创建批量撤销url
@@ -96,8 +96,8 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
-        self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBatchCancelFlowUrlResponse> {
+        self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 电子签渠道版-根据签署流程id创建批量撤销url
@@ -109,7 +109,7 @@ extension Essbasic {
     /// 注意:
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable
-    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
-        try await self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateBatchCancelFlowUrl(agent: Agent, flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBatchCancelFlowUrlResponse {
+        try await self.channelCreateBatchCancelFlowUrl(ChannelCreateBatchCancelFlowUrlRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

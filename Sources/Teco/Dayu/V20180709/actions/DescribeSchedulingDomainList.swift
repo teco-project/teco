@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Dayu {
 
     /// 获取调度域名列表
     @inlinable
-    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulingDomainListResponse> {
-        self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulingDomainListResponse> {
+        self.client.execute(action: "DescribeSchedulingDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取调度域名列表
     @inlinable
-    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
-        try await self.client.execute(action: "DescribeSchedulingDomainList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSchedulingDomainList(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
+        try await self.client.execute(action: "DescribeSchedulingDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取调度域名列表
     @inlinable
-    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulingDomainListResponse> {
-        self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), logger: logger, on: eventLoop)
+    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSchedulingDomainListResponse> {
+        self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取调度域名列表
     @inlinable
-    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
-        try await self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), logger: logger, on: eventLoop)
+    public func describeSchedulingDomainList(limit: UInt64, offset: UInt64, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSchedulingDomainListResponse {
+        try await self.describeSchedulingDomainList(DescribeSchedulingDomainListRequest(limit: limit, offset: offset, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

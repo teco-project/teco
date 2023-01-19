@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Mps {
     ///
     /// 重新设置一个已经存在且处于禁用状态的工作流。
     @inlinable
-    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWorkflowResponse> {
-        self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetWorkflow(_ input: ResetWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWorkflowResponse> {
+        self.client.execute(action: "ResetWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重设工作流
     ///
     /// 重新设置一个已经存在且处于禁用状态的工作流。
     @inlinable
-    public func resetWorkflow(_ input: ResetWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
-        try await self.client.execute(action: "ResetWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetWorkflow(_ input: ResetWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
+        try await self.client.execute(action: "ResetWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重设工作流
     ///
     /// 重新设置一个已经存在且处于禁用状态的工作流。
     @inlinable
-    public func resetWorkflow(workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskPriority: Int64? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWorkflowResponse> {
-        self.resetWorkflow(ResetWorkflowRequest(workflowId: workflowId, workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskPriority: taskPriority, taskNotifyConfig: taskNotifyConfig), logger: logger, on: eventLoop)
+    public func resetWorkflow(workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskPriority: Int64? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWorkflowResponse> {
+        self.resetWorkflow(ResetWorkflowRequest(workflowId: workflowId, workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskPriority: taskPriority, taskNotifyConfig: taskNotifyConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重设工作流
     ///
     /// 重新设置一个已经存在且处于禁用状态的工作流。
     @inlinable
-    public func resetWorkflow(workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskPriority: Int64? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
-        try await self.resetWorkflow(ResetWorkflowRequest(workflowId: workflowId, workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskPriority: taskPriority, taskNotifyConfig: taskNotifyConfig), logger: logger, on: eventLoop)
+    public func resetWorkflow(workflowId: Int64, workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskPriority: Int64? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWorkflowResponse {
+        try await self.resetWorkflow(ResetWorkflowRequest(workflowId: workflowId, workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskPriority: taskPriority, taskNotifyConfig: taskNotifyConfig), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Ecm {
 
     /// 展示模块详细信息
     @inlinable
-    public func describeModuleDetail(_ input: DescribeModuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleDetailResponse> {
-        self.client.execute(action: "DescribeModuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModuleDetail(_ input: DescribeModuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleDetailResponse> {
+        self.client.execute(action: "DescribeModuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示模块详细信息
     @inlinable
-    public func describeModuleDetail(_ input: DescribeModuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleDetailResponse {
-        try await self.client.execute(action: "DescribeModuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModuleDetail(_ input: DescribeModuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleDetailResponse {
+        try await self.client.execute(action: "DescribeModuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 展示模块详细信息
     @inlinable
-    public func describeModuleDetail(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleDetailResponse> {
-        self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    public func describeModuleDetail(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleDetailResponse> {
+        self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 展示模块详细信息
     @inlinable
-    public func describeModuleDetail(moduleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleDetailResponse {
-        try await self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), logger: logger, on: eventLoop)
+    public func describeModuleDetail(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleDetailResponse {
+        try await self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
 }

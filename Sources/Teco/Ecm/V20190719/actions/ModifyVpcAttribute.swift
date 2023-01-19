@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Ecm {
     ///
     /// 修改私有网络（VPC）的相关属性
     @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
-        self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
+        self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
     @inlinable
-    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.client.execute(action: "ModifyVpcAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
     @inlinable
-    public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
-        self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), logger: logger, on: eventLoop)
+    public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
+        self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
     @inlinable
-    public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
-        try await self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), logger: logger, on: eventLoop)
+    public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
+        try await self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

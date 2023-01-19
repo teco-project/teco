@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,25 +96,25 @@ extension Wedata {
 
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
-        self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
+        self.client.execute(action: "SaveCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
-        try await self.client.execute(action: "SaveCustomFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func saveCustomFunction(_ input: SaveCustomFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
+        try await self.client.execute(action: "SaveCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
-        self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), logger: logger, on: eventLoop)
+    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
+        self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存用户自定义函数
     @inlinable
-    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
-        try await self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), logger: logger, on: eventLoop)
+    public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
+        try await self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), region: region, logger: logger, on: eventLoop)
     }
 }

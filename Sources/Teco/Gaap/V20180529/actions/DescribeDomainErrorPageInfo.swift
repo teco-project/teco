@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Gaap {
 
     /// 查询目前定制域名的错误响应
     @inlinable
-    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainErrorPageInfoResponse> {
-        self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainErrorPageInfoResponse> {
+        self.client.execute(action: "DescribeDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询目前定制域名的错误响应
     @inlinable
-    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
-        try await self.client.execute(action: "DescribeDomainErrorPageInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainErrorPageInfo(_ input: DescribeDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
+        try await self.client.execute(action: "DescribeDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询目前定制域名的错误响应
     @inlinable
-    public func describeDomainErrorPageInfo(listenerId: String, domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainErrorPageInfoResponse> {
-        self.describeDomainErrorPageInfo(DescribeDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain), logger: logger, on: eventLoop)
+    public func describeDomainErrorPageInfo(listenerId: String, domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainErrorPageInfoResponse> {
+        self.describeDomainErrorPageInfo(DescribeDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询目前定制域名的错误响应
     @inlinable
-    public func describeDomainErrorPageInfo(listenerId: String, domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
-        try await self.describeDomainErrorPageInfo(DescribeDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain), logger: logger, on: eventLoop)
+    public func describeDomainErrorPageInfo(listenerId: String, domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainErrorPageInfoResponse {
+        try await self.describeDomainErrorPageInfo(DescribeDomainErrorPageInfoRequest(listenerId: listenerId, domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

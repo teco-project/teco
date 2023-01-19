@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNotificationResponse> {
-        self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func parseNotification(_ input: ParseNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNotificationResponse> {
+        self.client.execute(action: "ParseNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解析事件通知
@@ -83,8 +83,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseNotification(_ input: ParseNotificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
-        try await self.client.execute(action: "ParseNotification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func parseNotification(_ input: ParseNotificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
+        try await self.client.execute(action: "ParseNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解析事件通知
@@ -92,8 +92,8 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseNotification(content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNotificationResponse> {
-        self.parseNotification(ParseNotificationRequest(content: content), logger: logger, on: eventLoop)
+    public func parseNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseNotificationResponse> {
+        self.parseNotification(ParseNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解析事件通知
@@ -101,7 +101,7 @@ extension Mps {
     /// 从 CMQ 获取到消息后，从消息的 msgBody 字段中解析出 MPS 事件通知的内容。
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
-    public func parseNotification(content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
-        try await self.parseNotification(ParseNotificationRequest(content: content), logger: logger, on: eventLoop)
+    public func parseNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseNotificationResponse {
+        try await self.parseNotification(ParseNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
     }
 }

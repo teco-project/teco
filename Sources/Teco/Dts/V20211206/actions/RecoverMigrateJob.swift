@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverMigrateJobResponse> {
-        self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverMigrateJobResponse> {
+        self.client.execute(action: "RecoverMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除隔离数据迁移任务
     ///
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
-        try await self.client.execute(action: "RecoverMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recoverMigrateJob(_ input: RecoverMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
+        try await self.client.execute(action: "RecoverMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除隔离数据迁移任务
     ///
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func recoverMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverMigrateJobResponse> {
-        self.recoverMigrateJob(RecoverMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func recoverMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverMigrateJobResponse> {
+        self.recoverMigrateJob(RecoverMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除隔离数据迁移任务
     ///
     /// 解除隔离数据迁移任务，用户手动发起隔离后的手动解隔离，只有任务状态为已隔离(手动操作)状态下才能触发此操作。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable
-    public func recoverMigrateJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
-        try await self.recoverMigrateJob(RecoverMigrateJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func recoverMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverMigrateJobResponse {
+        try await self.recoverMigrateJob(RecoverMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

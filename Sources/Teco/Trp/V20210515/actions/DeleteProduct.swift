@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Trp {
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
-        self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteProduct(_ input: DeleteProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
+        self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(_ input: DeleteProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        try await self.client.execute(action: "DeleteProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteProduct(_ input: DeleteProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
+        try await self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
-        self.deleteProduct(DeleteProductRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    public func deleteProduct(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
+        self.deleteProduct(DeleteProductRequest(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除商品
     ///
     /// 删除商品，如果商品被使用，则不可删除
     @inlinable
-    public func deleteProduct(productId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        try await self.deleteProduct(DeleteProductRequest(productId: productId, corpId: corpId), logger: logger, on: eventLoop)
+    public func deleteProduct(productId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
+        try await self.deleteProduct(DeleteProductRequest(productId: productId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

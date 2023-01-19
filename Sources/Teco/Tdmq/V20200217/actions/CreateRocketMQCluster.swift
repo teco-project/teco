@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tdmq {
     ///
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
-    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQClusterResponse> {
-        self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQClusterResponse> {
+        self.client.execute(action: "CreateRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ集群
     ///
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
-    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
-        try await self.client.execute(action: "CreateRocketMQCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createRocketMQCluster(_ input: CreateRocketMQClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
+        try await self.client.execute(action: "CreateRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建RocketMQ集群
     ///
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
-    public func createRocketMQCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQClusterResponse> {
-        self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), logger: logger, on: eventLoop)
+    public func createRocketMQCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQClusterResponse> {
+        self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ集群
     ///
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
-    public func createRocketMQCluster(name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
-        try await self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), logger: logger, on: eventLoop)
+    public func createRocketMQCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
+        try await self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

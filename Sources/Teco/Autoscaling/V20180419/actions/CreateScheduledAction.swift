@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension As {
     ///
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
-    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledActionResponse> {
-        self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScheduledAction(_ input: CreateScheduledActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledActionResponse> {
+        self.client.execute(action: "CreateScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
     ///
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
-    public func createScheduledAction(_ input: CreateScheduledActionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
-        try await self.client.execute(action: "CreateScheduledAction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScheduledAction(_ input: CreateScheduledActionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
+        try await self.client.execute(action: "CreateScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建定时任务
     ///
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
-    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledActionResponse> {
-        self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledActionResponse> {
+        self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
     ///
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
-    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
-        try await self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), logger: logger, on: eventLoop)
+    public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
+        try await self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
     }
 }

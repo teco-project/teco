@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iecp {
 
     /// 检查单元应用的Yaml配置
     @inlinable
-    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationYamlErrorResponse> {
-        self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationYamlErrorResponse> {
+        self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查单元应用的Yaml配置
     @inlinable
-    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitApplicationYamlError(_ input: DescribeEdgeUnitApplicationYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查单元应用的Yaml配置
     @inlinable
-    public func describeEdgeUnitApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationYamlErrorResponse> {
-        self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationYamlErrorResponse> {
+        self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查单元应用的Yaml配置
     @inlinable
-    public func describeEdgeUnitApplicationYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
-        try await self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
+        try await self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

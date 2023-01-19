@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
-        self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
+        self.client.execute(action: "DeleteServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
-        try await self.client.execute(action: "DeleteServiceTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteServiceTemplateGroup(_ input: DeleteServiceTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
+        try await self.client.execute(action: "DeleteServiceTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
-        self.deleteServiceTemplateGroup(DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId), logger: logger, on: eventLoop)
+    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateGroupResponse> {
+        self.deleteServiceTemplateGroup(DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板集合
     ///
     /// 本接口（DeleteServiceTemplateGroup）用于删除协议端口模板集合
     @inlinable
-    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
-        try await self.deleteServiceTemplateGroup(DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId), logger: logger, on: eventLoop)
+    public func deleteServiceTemplateGroup(serviceTemplateGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateGroupResponse {
+        try await self.deleteServiceTemplateGroup(DeleteServiceTemplateGroupRequest(serviceTemplateGroupId: serviceTemplateGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

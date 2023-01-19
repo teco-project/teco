@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Sts {
 
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
-        self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFederationToken(_ input: GetFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
+        self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(_ input: GetFederationTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
-        try await self.client.execute(action: "GetFederationToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFederationToken(_ input: GetFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
+        try await self.client.execute(action: "GetFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
-        self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFederationTokenResponse> {
+        self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取联合身份临时访问凭证
     @inlinable
-    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
-        try await self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), logger: logger, on: eventLoop)
+    public func getFederationToken(name: String, policy: String, durationSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFederationTokenResponse {
+        try await self.getFederationToken(GetFederationTokenRequest(name: name, policy: policy, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
     }
 }

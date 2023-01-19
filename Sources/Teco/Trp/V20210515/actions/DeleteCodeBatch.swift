@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Trp {
 
     /// 删除批次
     @inlinable
-    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCodeBatchResponse> {
-        self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCodeBatchResponse> {
+        self.client.execute(action: "DeleteCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除批次
     @inlinable
-    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
-        try await self.client.execute(action: "DeleteCodeBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCodeBatch(_ input: DeleteCodeBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
+        try await self.client.execute(action: "DeleteCodeBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除批次
     @inlinable
-    public func deleteCodeBatch(corpId: UInt64? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCodeBatchResponse> {
-        self.deleteCodeBatch(DeleteCodeBatchRequest(corpId: corpId, batchId: batchId), logger: logger, on: eventLoop)
+    public func deleteCodeBatch(corpId: UInt64? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCodeBatchResponse> {
+        self.deleteCodeBatch(DeleteCodeBatchRequest(corpId: corpId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除批次
     @inlinable
-    public func deleteCodeBatch(corpId: UInt64? = nil, batchId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
-        try await self.deleteCodeBatch(DeleteCodeBatchRequest(corpId: corpId, batchId: batchId), logger: logger, on: eventLoop)
+    public func deleteCodeBatch(corpId: UInt64? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeBatchResponse {
+        try await self.deleteCodeBatch(DeleteCodeBatchRequest(corpId: corpId, batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

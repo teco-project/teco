@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Iotcloud {
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
-        self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindDevices(_ input: BindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
+        self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(_ input: BindDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
-        try await self.client.execute(action: "BindDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindDevices(_ input: BindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
+        try await self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
-        self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), logger: logger, on: eventLoop)
+    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
+        self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
     @inlinable
-    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
-        try await self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), logger: logger, on: eventLoop)
+    public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
+        try await self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
 }

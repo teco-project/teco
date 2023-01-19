@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Monitor {
     ///
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
-    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductListResponse> {
-        self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductList(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductListResponse> {
+        self.client.execute(action: "DescribeProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云监控产品列表
     ///
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
-    public func describeProductList(_ input: DescribeProductListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
-        try await self.client.execute(action: "DescribeProductList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductList(_ input: DescribeProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
+        try await self.client.execute(action: "DescribeProductList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云监控产品列表
     ///
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
-    public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductListResponse> {
-        self.describeProductList(DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductListResponse> {
+        self.describeProductList(DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云监控产品列表
     ///
     /// 查询云监控产品列表，支持云服务器CVM、云数据库、云消息队列、负载均衡、容器服务、专线等云产品。
     @inlinable
-    public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
-        try await self.describeProductList(DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeProductList(module: String, order: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductListResponse {
+        try await self.describeProductList(DescribeProductListRequest(module: module, order: order, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tcb {
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
-        self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
+        self.client.execute(action: "DestroyStaticStore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
-        try await self.client.execute(action: "DestroyStaticStore", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyStaticStore(_ input: DestroyStaticStoreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
+        try await self.client.execute(action: "DestroyStaticStore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
-        self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), logger: logger, on: eventLoop)
+    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStaticStoreResponse> {
+        self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁静态资源
     ///
     /// 销毁静态托管资源，该接口创建异步销毁任务，资源最终状态可从DestroyStaticStore接口查看
     @inlinable
-    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
-        try await self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), logger: logger, on: eventLoop)
+    public func destroyStaticStore(envId: String, cdnDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStaticStoreResponse {
+        try await self.destroyStaticStore(DestroyStaticStoreRequest(envId: envId, cdnDomain: cdnDomain), region: region, logger: logger, on: eventLoop)
     }
 }

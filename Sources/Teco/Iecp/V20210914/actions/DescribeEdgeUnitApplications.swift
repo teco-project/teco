@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Iecp {
 
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
-        self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
+        self.client.execute(action: "DescribeEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
-        try await self.client.execute(action: "DescribeEdgeUnitApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeUnitApplications(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
+        try await self.client.execute(action: "DescribeEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
-        self.describeEdgeUnitApplications(DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationsResponse> {
+        self.describeEdgeUnitApplications(DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
-        try await self.describeEdgeUnitApplications(DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), logger: logger, on: eventLoop)
+    public func describeEdgeUnitApplications(edgeUnitId: UInt64, offset: UInt64, limit: UInt64, namePattern: String? = nil, sort: [FieldSort]? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationsResponse {
+        try await self.describeEdgeUnitApplications(DescribeEdgeUnitApplicationsRequest(edgeUnitId: edgeUnitId, offset: offset, limit: limit, namePattern: namePattern, sort: sort, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

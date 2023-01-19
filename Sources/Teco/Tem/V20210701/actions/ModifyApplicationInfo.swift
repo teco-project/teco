@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
-        self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
+        self.client.execute(action: "ModifyApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
-        try await self.client.execute(action: "ModifyApplicationInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyApplicationInfo(_ input: ModifyApplicationInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
+        try await self.client.execute(action: "ModifyApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
-        self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), logger: logger, on: eventLoop)
+    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
+        self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用基本信息
     @inlinable
-    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
-        try await self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), logger: logger, on: eventLoop)
+    public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
+        try await self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), region: region, logger: logger, on: eventLoop)
     }
 }

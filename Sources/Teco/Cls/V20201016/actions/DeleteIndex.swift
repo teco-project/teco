@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cls {
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
     @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
-        self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
+        self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
     @inlinable
-    public func deleteIndex(_ input: DeleteIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        try await self.client.execute(action: "DeleteIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
     @inlinable
-    public func deleteIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
-        self.deleteIndex(DeleteIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
+        self.deleteIndex(DeleteIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
     @inlinable
-    public func deleteIndex(topicId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
-        try await self.deleteIndex(DeleteIndexRequest(topicId: topicId), logger: logger, on: eventLoop)
+    public func deleteIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
+        try await self.deleteIndex(DeleteIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
 }

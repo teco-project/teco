@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Ssa {
 
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
-        self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
+        self.client.execute(action: "DescribeAssetsMappingList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
-        try await self.client.execute(action: "DescribeAssetsMappingList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetsMappingList(_ input: DescribeAssetsMappingListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
+        try await self.client.execute(action: "DescribeAssetsMappingList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
-        self.describeAssetsMappingList(DescribeAssetsMappingListRequest(params: params), logger: logger, on: eventLoop)
+    public func describeAssetsMappingList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsMappingListResponse> {
+        self.describeAssetsMappingList(DescribeAssetsMappingListRequest(params: params), region: region, logger: logger, on: eventLoop)
     }
 
     /// 资产测绘-测绘列表
     @inlinable
-    public func describeAssetsMappingList(params: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
-        try await self.describeAssetsMappingList(DescribeAssetsMappingListRequest(params: params), logger: logger, on: eventLoop)
+    public func describeAssetsMappingList(params: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsMappingListResponse {
+        try await self.describeAssetsMappingList(DescribeAssetsMappingListRequest(params: params), region: region, logger: logger, on: eventLoop)
     }
 }

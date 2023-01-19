@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cpdp {
 
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
-        self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
+        self.client.execute(action: "QueryBatchPaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
-        try await self.client.execute(action: "QueryBatchPaymentResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBatchPaymentResult(_ input: QueryBatchPaymentResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
+        try await self.client.execute(action: "QueryBatchPaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
-        self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func queryBatchPaymentResult(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
+        self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-批量转账结果查询
     @inlinable
-    public func queryBatchPaymentResult(batchId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
-        try await self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), logger: logger, on: eventLoop)
+    public func queryBatchPaymentResult(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
+        try await self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tia {
 
     /// 安装agent
     @inlinable
-    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
-        self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func installAgent(_ input: InstallAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
+        self.client.execute(action: "InstallAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安装agent
     @inlinable
-    public func installAgent(_ input: InstallAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
-        try await self.client.execute(action: "InstallAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func installAgent(_ input: InstallAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
+        try await self.client.execute(action: "InstallAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安装agent
     @inlinable
-    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
-        self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), logger: logger, on: eventLoop)
+    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallAgentResponse> {
+        self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安装agent
     @inlinable
-    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
-        try await self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), logger: logger, on: eventLoop)
+    public func installAgent(cluster: String, tiaVersion: String? = nil, update: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallAgentResponse {
+        try await self.installAgent(InstallAgentRequest(cluster: cluster, tiaVersion: tiaVersion, update: update), region: region, logger: logger, on: eventLoop)
     }
 }

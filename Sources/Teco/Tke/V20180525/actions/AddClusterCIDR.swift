@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tke {
     ///
     /// 给GR集群增加可用的ClusterCIDR
     @inlinable
-    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
-        self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addClusterCIDR(_ input: AddClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
+        self.client.execute(action: "AddClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
     @inlinable
-    public func addClusterCIDR(_ input: AddClusterCIDRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
-        try await self.client.execute(action: "AddClusterCIDR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addClusterCIDR(_ input: AddClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
+        try await self.client.execute(action: "AddClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
     @inlinable
-    public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
-        self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), logger: logger, on: eventLoop)
+    public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
+        self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), region: region, logger: logger, on: eventLoop)
     }
 
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
     @inlinable
-    public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
-        try await self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), logger: logger, on: eventLoop)
+    public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
+        try await self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), region: region, logger: logger, on: eventLoop)
     }
 }

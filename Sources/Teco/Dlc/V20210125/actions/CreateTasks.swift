@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Dlc {
     ///
     /// 本接口（CreateTasks），用于批量创建任务
     @inlinable
-    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
-        self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTasks(_ input: CreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
+        self.client.execute(action: "CreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建任务
     ///
     /// 本接口（CreateTasks），用于批量创建任务
     @inlinable
-    public func createTasks(_ input: CreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
-        try await self.client.execute(action: "CreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTasks(_ input: CreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
+        try await self.client.execute(action: "CreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量创建任务
     ///
     /// 本接口（CreateTasks），用于批量创建任务
     @inlinable
-    public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
-        self.createTasks(CreateTasksRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), logger: logger, on: eventLoop)
+    public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTasksResponse> {
+        self.createTasks(CreateTasksRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量创建任务
     ///
     /// 本接口（CreateTasks），用于批量创建任务
     @inlinable
-    public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
-        try await self.createTasks(CreateTasksRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), logger: logger, on: eventLoop)
+    public func createTasks(databaseName: String, tasks: TasksInfo, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTasksResponse {
+        try await self.createTasks(CreateTasksRequest(databaseName: databaseName, tasks: tasks, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
     }
 }

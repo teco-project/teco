@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,25 +58,25 @@ extension Tsf {
 
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
-        self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
+        self.client.execute(action: "UpdateHealthCheckSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
-        try await self.client.execute(action: "UpdateHealthCheckSettings", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateHealthCheckSettings(_ input: UpdateHealthCheckSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
+        try await self.client.execute(action: "UpdateHealthCheckSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
-        self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), logger: logger, on: eventLoop)
+    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateHealthCheckSettingsResponse> {
+        self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新健康检查配置
     @inlinable
-    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
-        try await self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), logger: logger, on: eventLoop)
+    public func updateHealthCheckSettings(groupId: String, enableHealthCheck: Bool? = nil, healthCheckSettings: HealthCheckSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateHealthCheckSettingsResponse {
+        try await self.updateHealthCheckSettings(UpdateHealthCheckSettingsRequest(groupId: groupId, enableHealthCheck: enableHealthCheck, healthCheckSettings: healthCheckSettings), region: region, logger: logger, on: eventLoop)
     }
 }

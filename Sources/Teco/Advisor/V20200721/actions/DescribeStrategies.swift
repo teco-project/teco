@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -40,31 +40,31 @@ extension Advisor {
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
-        self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStrategies(_ input: DescribeStrategiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
+        self.client.execute(action: "DescribeStrategies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(_ input: DescribeStrategiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
-        try await self.client.execute(action: "DescribeStrategies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStrategies(_ input: DescribeStrategiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
+        try await self.client.execute(action: "DescribeStrategies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
-        self.describeStrategies(DescribeStrategiesRequest(), logger: logger, on: eventLoop)
+    public func describeStrategies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStrategiesResponse> {
+        self.describeStrategies(DescribeStrategiesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询评估项信息
     ///
     /// 用于查询评估项的信息
     @inlinable
-    public func describeStrategies(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
-        try await self.describeStrategies(DescribeStrategiesRequest(), logger: logger, on: eventLoop)
+    public func describeStrategies(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStrategiesResponse {
+        try await self.describeStrategies(DescribeStrategiesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

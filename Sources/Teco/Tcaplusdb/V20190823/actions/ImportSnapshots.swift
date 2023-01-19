@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Tcaplusdb {
     ///
     /// 将快照数据导入到新表或当前表
     @inlinable
-    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportSnapshotsResponse> {
-        self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importSnapshots(_ input: ImportSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportSnapshotsResponse> {
+        self.client.execute(action: "ImportSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入快照数据
     ///
     /// 将快照数据导入到新表或当前表
     @inlinable
-    public func importSnapshots(_ input: ImportSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
-        try await self.client.execute(action: "ImportSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importSnapshots(_ input: ImportSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
+        try await self.client.execute(action: "ImportSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入快照数据
     ///
     /// 将快照数据导入到新表或当前表
     @inlinable
-    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportSnapshotsResponse> {
-        self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), logger: logger, on: eventLoop)
+    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportSnapshotsResponse> {
+        self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入快照数据
     ///
     /// 将快照数据导入到新表或当前表
     @inlinable
-    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
-        try await self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), logger: logger, on: eventLoop)
+    public func importSnapshots(clusterId: String, snapshots: SnapshotInfo, importSpecialKey: String, importOriginTable: String, keyFile: KeyFile? = nil, newTableGroupId: String? = nil, newTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportSnapshotsResponse {
+        try await self.importSnapshots(ImportSnapshotsRequest(clusterId: clusterId, snapshots: snapshots, importSpecialKey: importSpecialKey, importOriginTable: importOriginTable, keyFile: keyFile, newTableGroupId: newTableGroupId, newTableName: newTableName), region: region, logger: logger, on: eventLoop)
     }
 }

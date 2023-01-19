@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 查询生效的单元化规则
     @inlinable
-    public func describeEnabledUnitRule(_ input: DescribeEnabledUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnabledUnitRuleResponse> {
-        self.client.execute(action: "DescribeEnabledUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnabledUnitRule(_ input: DescribeEnabledUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnabledUnitRuleResponse> {
+        self.client.execute(action: "DescribeEnabledUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询生效的单元化规则
     @inlinable
-    public func describeEnabledUnitRule(_ input: DescribeEnabledUnitRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnabledUnitRuleResponse {
-        try await self.client.execute(action: "DescribeEnabledUnitRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnabledUnitRule(_ input: DescribeEnabledUnitRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnabledUnitRuleResponse {
+        try await self.client.execute(action: "DescribeEnabledUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询生效的单元化规则
     @inlinable
-    public func describeEnabledUnitRule(gatewayInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnabledUnitRuleResponse> {
-        self.describeEnabledUnitRule(DescribeEnabledUnitRuleRequest(gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeEnabledUnitRule(gatewayInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnabledUnitRuleResponse> {
+        self.describeEnabledUnitRule(DescribeEnabledUnitRuleRequest(gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询生效的单元化规则
     @inlinable
-    public func describeEnabledUnitRule(gatewayInstanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnabledUnitRuleResponse {
-        try await self.describeEnabledUnitRule(DescribeEnabledUnitRuleRequest(gatewayInstanceId: gatewayInstanceId), logger: logger, on: eventLoop)
+    public func describeEnabledUnitRule(gatewayInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnabledUnitRuleResponse {
+        try await self.describeEnabledUnitRule(DescribeEnabledUnitRuleRequest(gatewayInstanceId: gatewayInstanceId), region: region, logger: logger, on: eventLoop)
     }
 }

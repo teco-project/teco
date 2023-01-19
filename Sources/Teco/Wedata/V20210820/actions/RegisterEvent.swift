@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -94,8 +94,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件
     @inlinable
-    public func registerEvent(_ input: RegisterEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
-        self.client.execute(action: "RegisterEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func registerEvent(_ input: RegisterEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
+        self.client.execute(action: "RegisterEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册事件【Beta版本】
@@ -103,8 +103,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件
     @inlinable
-    public func registerEvent(_ input: RegisterEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
-        try await self.client.execute(action: "RegisterEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func registerEvent(_ input: RegisterEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
+        try await self.client.execute(action: "RegisterEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册事件【Beta版本】
@@ -112,8 +112,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件
     @inlinable
-    public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
-        self.registerEvent(RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), logger: logger, on: eventLoop)
+    public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterEventResponse> {
+        self.registerEvent(RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册事件【Beta版本】
@@ -121,7 +121,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 注册事件
     @inlinable
-    public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
-        try await self.registerEvent(RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), logger: logger, on: eventLoop)
+    public func registerEvent(projectId: String, name: String, eventSubType: String, eventBroadcastType: String, timeUnit: String, owner: String, eventType: String? = nil, dimensionFormat: String? = nil, timeToLive: Int64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterEventResponse {
+        try await self.registerEvent(RegisterEventRequest(projectId: projectId, name: name, eventSubType: eventSubType, eventBroadcastType: eventBroadcastType, timeUnit: timeUnit, owner: owner, eventType: eventType, dimensionFormat: dimensionFormat, timeToLive: timeToLive, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

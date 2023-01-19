@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Lighthouse {
     ///
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
-    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateInstancesResponse> {
-        self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateInstancesResponse> {
+        self.client.execute(action: "InquirePriceCreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
-    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
-        try await self.client.execute(action: "InquirePriceCreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreateInstances(_ input: InquirePriceCreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
+        try await self.client.execute(action: "InquirePriceCreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
-    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateInstancesResponse> {
-        self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateInstancesResponse> {
+        self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例询价
     ///
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
-    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
-        try await self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), logger: logger, on: eventLoop)
+    public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
+        try await self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
     }
 }

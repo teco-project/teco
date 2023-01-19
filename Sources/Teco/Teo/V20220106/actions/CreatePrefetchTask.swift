@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Teo {
 
     /// 创建预热任务
     @inlinable
-    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
-        self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
+        self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建预热任务
     @inlinable
-    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
-        try await self.client.execute(action: "CreatePrefetchTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrefetchTask(_ input: CreatePrefetchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
+        try await self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建预热任务
     @inlinable
-    public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
-        self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), logger: logger, on: eventLoop)
+    public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
+        self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建预热任务
     @inlinable
-    public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
-        try await self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), logger: logger, on: eventLoop)
+    public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
+        try await self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
     }
 }

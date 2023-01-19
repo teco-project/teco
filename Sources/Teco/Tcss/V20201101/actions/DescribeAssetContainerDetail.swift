@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -159,31 +159,31 @@ extension Tcss {
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
-        self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
+        self.client.execute(action: "DescribeAssetContainerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器信息
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
-        try await self.client.execute(action: "DescribeAssetContainerDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetContainerDetail(_ input: DescribeAssetContainerDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
+        try await self.client.execute(action: "DescribeAssetContainerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器信息
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
-        self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), logger: logger, on: eventLoop)
+    public func describeAssetContainerDetail(containerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetContainerDetailResponse> {
+        self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器信息
     ///
     /// 查询容器详细信息
     @inlinable
-    public func describeAssetContainerDetail(containerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
-        try await self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), logger: logger, on: eventLoop)
+    public func describeAssetContainerDetail(containerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetContainerDetailResponse {
+        try await self.describeAssetContainerDetail(DescribeAssetContainerDetailRequest(containerId: containerId), region: region, logger: logger, on: eventLoop)
     }
 }

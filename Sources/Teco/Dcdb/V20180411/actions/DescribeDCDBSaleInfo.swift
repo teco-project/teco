@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Dcdb {
     ///
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBSaleInfoResponse> {
-        self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBSaleInfoResponse> {
+        self.client.execute(action: "DescribeDCDBSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
-        try await self.client.execute(action: "DescribeDCDBSaleInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDCDBSaleInfo(_ input: DescribeDCDBSaleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
+        try await self.client.execute(action: "DescribeDCDBSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询分布式数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeDCDBSaleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBSaleInfoResponse> {
-        self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), logger: logger, on: eventLoop)
+    public func describeDCDBSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBSaleInfoResponse> {
+        self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖地域和可用区信息
     ///
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
-    public func describeDCDBSaleInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
-        try await self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), logger: logger, on: eventLoop)
+    public func describeDCDBSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
+        try await self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

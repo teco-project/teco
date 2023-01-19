@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
     @inlinable
-    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupReferencesResponse> {
-        self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupReferencesResponse> {
+        self.client.execute(action: "DescribeSecurityGroupReferences", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组被引用信息
     ///
     /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
     @inlinable
-    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupReferences", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupReferences(_ input: DescribeSecurityGroupReferencesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupReferences", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全组被引用信息
     ///
     /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
     @inlinable
-    public func describeSecurityGroupReferences(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupReferencesResponse> {
-        self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func describeSecurityGroupReferences(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupReferencesResponse> {
+        self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组被引用信息
     ///
     /// 本接口（DescribeSecurityGroupReferences）用于查询安全组被引用信息。
     @inlinable
-    public func describeSecurityGroupReferences(securityGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
-        try await self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func describeSecurityGroupReferences(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupReferencesResponse {
+        try await self.describeSecurityGroupReferences(DescribeSecurityGroupReferencesRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

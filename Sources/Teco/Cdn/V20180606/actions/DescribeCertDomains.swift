@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Cdn {
     ///
     /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
     @inlinable
-    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDomainsResponse> {
-        self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCertDomains(_ input: DescribeCertDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDomainsResponse> {
+        self.client.execute(action: "DescribeCertDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SSL证书中的可用域名
     ///
     /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
     @inlinable
-    public func describeCertDomains(_ input: DescribeCertDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
-        try await self.client.execute(action: "DescribeCertDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCertDomains(_ input: DescribeCertDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
+        try await self.client.execute(action: "DescribeCertDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取SSL证书中的可用域名
     ///
     /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
     @inlinable
-    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDomainsResponse> {
-        self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), logger: logger, on: eventLoop)
+    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDomainsResponse> {
+        self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取SSL证书中的可用域名
     ///
     /// DescribeCertDomains 用于校验SSL证书并提取证书中包含的域名。
     @inlinable
-    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
-        try await self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), logger: logger, on: eventLoop)
+    public func describeCertDomains(cert: String? = nil, certId: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDomainsResponse {
+        try await self.describeCertDomains(DescribeCertDomainsRequest(cert: cert, certId: certId, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

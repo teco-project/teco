@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Monitor {
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
-        self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
+        self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
-        try await self.client.execute(action: "CreateGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGrafanaInstance(_ input: CreateGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
+        try await self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
-        self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
+        self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
     @inlinable
-    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
-        try await self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), logger: logger, on: eventLoop)
+    public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
+        try await self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
 }

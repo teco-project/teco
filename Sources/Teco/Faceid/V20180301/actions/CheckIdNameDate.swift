@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Faceid {
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
-        self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkIdNameDate(_ input: CheckIdNameDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
+        self.client.execute(action: "CheckIdNameDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(_ input: CheckIdNameDateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
-        try await self.client.execute(action: "CheckIdNameDate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkIdNameDate(_ input: CheckIdNameDateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
+        try await self.client.execute(action: "CheckIdNameDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
-        self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), logger: logger, on: eventLoop)
+    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
+        self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份信息及有效期核验
     ///
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
-    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
-        try await self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), logger: logger, on: eventLoop)
+    public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
+        try await self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

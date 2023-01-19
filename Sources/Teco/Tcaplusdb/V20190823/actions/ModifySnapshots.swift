@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Tcaplusdb {
     ///
     /// 修改表格快照的过期时间
     @inlinable
-    public func modifySnapshots(_ input: ModifySnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsResponse> {
-        self.client.execute(action: "ModifySnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySnapshots(_ input: ModifySnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsResponse> {
+        self.client.execute(action: "ModifySnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表格快照
     ///
     /// 修改表格快照的过期时间
     @inlinable
-    public func modifySnapshots(_ input: ModifySnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
-        try await self.client.execute(action: "ModifySnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySnapshots(_ input: ModifySnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
+        try await self.client.execute(action: "ModifySnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改表格快照
     ///
     /// 修改表格快照的过期时间
     @inlinable
-    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsResponse> {
-        self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsResponse> {
+        self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改表格快照
     ///
     /// 修改表格快照的过期时间
     @inlinable
-    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
-        try await self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), logger: logger, on: eventLoop)
+    public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
+        try await self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

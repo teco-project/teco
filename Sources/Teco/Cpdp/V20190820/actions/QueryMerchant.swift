@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Cpdp {
 
     /// 云鉴-商户信息查询接口
     @inlinable
-    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantResponse> {
-        self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMerchant(_ input: QueryMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantResponse> {
+        self.client.execute(action: "QueryMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户信息查询接口
     @inlinable
-    public func queryMerchant(_ input: QueryMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
-        try await self.client.execute(action: "QueryMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMerchant(_ input: QueryMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
+        try await self.client.execute(action: "QueryMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-商户信息查询接口
     @inlinable
-    public func queryMerchant(merchantAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantResponse> {
-        self.queryMerchant(QueryMerchantRequest(merchantAppId: merchantAppId), logger: logger, on: eventLoop)
+    public func queryMerchant(merchantAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMerchantResponse> {
+        self.queryMerchant(QueryMerchantRequest(merchantAppId: merchantAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户信息查询接口
     @inlinable
-    public func queryMerchant(merchantAppId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
-        try await self.queryMerchant(QueryMerchantRequest(merchantAppId: merchantAppId), logger: logger, on: eventLoop)
+    public func queryMerchant(merchantAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMerchantResponse {
+        try await self.queryMerchant(QueryMerchantRequest(merchantAppId: merchantAppId), region: region, logger: logger, on: eventLoop)
     }
 }

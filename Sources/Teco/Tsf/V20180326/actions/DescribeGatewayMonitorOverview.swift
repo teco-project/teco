@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 查询网关监控概览
     @inlinable
-    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayMonitorOverviewResponse> {
-        self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayMonitorOverviewResponse> {
+        self.client.execute(action: "DescribeGatewayMonitorOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关监控概览
     @inlinable
-    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
-        try await self.client.execute(action: "DescribeGatewayMonitorOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGatewayMonitorOverview(_ input: DescribeGatewayMonitorOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
+        try await self.client.execute(action: "DescribeGatewayMonitorOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询网关监控概览
     @inlinable
-    public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayMonitorOverviewResponse> {
-        self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), logger: logger, on: eventLoop)
+    public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayMonitorOverviewResponse> {
+        self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询网关监控概览
     @inlinable
-    public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
-        try await self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), logger: logger, on: eventLoop)
+    public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
+        try await self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

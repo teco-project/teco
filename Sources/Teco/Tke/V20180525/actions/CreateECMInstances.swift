@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Tke {
 
     /// 创建边缘计算ECM机器
     @inlinable
-    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateECMInstancesResponse> {
-        self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createECMInstances(_ input: CreateECMInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateECMInstancesResponse> {
+        self.client.execute(action: "CreateECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘计算ECM机器
     @inlinable
-    public func createECMInstances(_ input: CreateECMInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
-        try await self.client.execute(action: "CreateECMInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createECMInstances(_ input: CreateECMInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
+        try await self.client.execute(action: "CreateECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建边缘计算ECM机器
     @inlinable
-    public func createECMInstances(clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, enhancedService: ECMEnhancedService? = nil, userData: String? = nil, external: String? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateECMInstancesResponse> {
-        self.createECMInstances(CreateECMInstancesRequest(clusterID: clusterID, moduleId: moduleId, zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, imageId: imageId, instanceName: instanceName, hostName: hostName, enhancedService: enhancedService, userData: userData, external: external, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func createECMInstances(clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, enhancedService: ECMEnhancedService? = nil, userData: String? = nil, external: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateECMInstancesResponse> {
+        self.createECMInstances(CreateECMInstancesRequest(clusterID: clusterID, moduleId: moduleId, zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, imageId: imageId, instanceName: instanceName, hostName: hostName, enhancedService: enhancedService, userData: userData, external: external, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘计算ECM机器
     @inlinable
-    public func createECMInstances(clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, enhancedService: ECMEnhancedService? = nil, userData: String? = nil, external: String? = nil, securityGroupIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
-        try await self.createECMInstances(CreateECMInstancesRequest(clusterID: clusterID, moduleId: moduleId, zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, imageId: imageId, instanceName: instanceName, hostName: hostName, enhancedService: enhancedService, userData: userData, external: external, securityGroupIds: securityGroupIds), logger: logger, on: eventLoop)
+    public func createECMInstances(clusterID: String, moduleId: String, zoneInstanceCountISPSet: [ECMZoneInstanceCountISP], password: String? = nil, internetMaxBandwidthOut: Int64? = nil, imageId: String? = nil, instanceName: String? = nil, hostName: String? = nil, enhancedService: ECMEnhancedService? = nil, userData: String? = nil, external: String? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateECMInstancesResponse {
+        try await self.createECMInstances(CreateECMInstancesRequest(clusterID: clusterID, moduleId: moduleId, zoneInstanceCountISPSet: zoneInstanceCountISPSet, password: password, internetMaxBandwidthOut: internetMaxBandwidthOut, imageId: imageId, instanceName: instanceName, hostName: hostName, enhancedService: enhancedService, userData: userData, external: external, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

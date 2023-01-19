@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tke {
     ///
     /// 获取事件、审计和日志的状态接口
     @inlinable
-    public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
-        self.client.execute(action: "DescribeEdgeLogSwitches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
+        self.client.execute(action: "DescribeEdgeLogSwitches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群日志开关列表
     ///
     /// 获取事件、审计和日志的状态接口
     @inlinable
-    public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
-        try await self.client.execute(action: "DescribeEdgeLogSwitches", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeLogSwitches(_ input: DescribeEdgeLogSwitchesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
+        try await self.client.execute(action: "DescribeEdgeLogSwitches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘集群日志开关列表
     ///
     /// 获取事件、审计和日志的状态接口
     @inlinable
-    public func describeEdgeLogSwitches(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
-        self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeEdgeLogSwitches(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeLogSwitchesResponse> {
+        self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘集群日志开关列表
     ///
     /// 获取事件、审计和日志的状态接口
     @inlinable
-    public func describeEdgeLogSwitches(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
-        try await self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeEdgeLogSwitches(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeLogSwitchesResponse {
+        try await self.describeEdgeLogSwitches(DescribeEdgeLogSwitchesRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

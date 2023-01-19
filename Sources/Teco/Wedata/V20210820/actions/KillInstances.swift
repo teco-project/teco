@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量终止操作
     @inlinable
-    public func killInstances(_ input: KillInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
-        self.client.execute(action: "KillInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func killInstances(_ input: KillInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
+        self.client.execute(action: "KillInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例批量终止操作【Beta版本】
@@ -62,8 +62,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量终止操作
     @inlinable
-    public func killInstances(_ input: KillInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {
-        try await self.client.execute(action: "KillInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func killInstances(_ input: KillInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {
+        try await self.client.execute(action: "KillInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例批量终止操作【Beta版本】
@@ -71,8 +71,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量终止操作
     @inlinable
-    public func killInstances(projectId: String, instances: [InstanceInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
-        self.killInstances(KillInstancesRequest(projectId: projectId, instances: instances), logger: logger, on: eventLoop)
+    public func killInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillInstancesResponse> {
+        self.killInstances(KillInstancesRequest(projectId: projectId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例批量终止操作【Beta版本】
@@ -80,7 +80,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 实例批量终止操作
     @inlinable
-    public func killInstances(projectId: String, instances: [InstanceInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {
-        try await self.killInstances(KillInstancesRequest(projectId: projectId, instances: instances), logger: logger, on: eventLoop)
+    public func killInstances(projectId: String, instances: [InstanceInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillInstancesResponse {
+        try await self.killInstances(KillInstancesRequest(projectId: projectId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

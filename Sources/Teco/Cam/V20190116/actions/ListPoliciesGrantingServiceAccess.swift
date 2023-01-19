@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cam {
 
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
-        self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
+        self.client.execute(action: "ListPoliciesGrantingServiceAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
-        try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listPoliciesGrantingServiceAccess(_ input: ListPoliciesGrantingServiceAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
+        try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
-        self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), logger: logger, on: eventLoop)
+    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
+        self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取所有已授权服务
     @inlinable
-    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
-        try await self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), logger: logger, on: eventLoop)
+    public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
+        try await self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
     }
 }

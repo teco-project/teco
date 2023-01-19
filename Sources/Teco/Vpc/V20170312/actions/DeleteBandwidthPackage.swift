@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Vpc {
     ///
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable
-    public func deleteBandwidthPackage(_ input: DeleteBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBandwidthPackageResponse> {
-        self.client.execute(action: "DeleteBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteBandwidthPackage(_ input: DeleteBandwidthPackageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBandwidthPackageResponse> {
+        self.client.execute(action: "DeleteBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除共享带宽包
     ///
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable
-    public func deleteBandwidthPackage(_ input: DeleteBandwidthPackageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
-        try await self.client.execute(action: "DeleteBandwidthPackage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteBandwidthPackage(_ input: DeleteBandwidthPackageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
+        try await self.client.execute(action: "DeleteBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除共享带宽包
     ///
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable
-    public func deleteBandwidthPackage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBandwidthPackageResponse> {
-        self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    public func deleteBandwidthPackage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBandwidthPackageResponse> {
+        self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除共享带宽包
     ///
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable
-    public func deleteBandwidthPackage(bandwidthPackageId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
-        try await self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), logger: logger, on: eventLoop)
+    public func deleteBandwidthPackage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
+        try await self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
     }
 }

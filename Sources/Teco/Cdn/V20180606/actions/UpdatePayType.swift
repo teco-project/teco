@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cdn {
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
-        self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updatePayType(_ input: UpdatePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
+        self.client.execute(action: "UpdatePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(_ input: UpdatePayTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
-        try await self.client.execute(action: "UpdatePayType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updatePayType(_ input: UpdatePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
+        try await self.client.execute(action: "UpdatePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
-        self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), logger: logger, on: eventLoop)
+    public func updatePayType(area: String, payType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
+        self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
     @inlinable
-    public func updatePayType(area: String, payType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
-        try await self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), logger: logger, on: eventLoop)
+    public func updatePayType(area: String, payType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
+        try await self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), region: region, logger: logger, on: eventLoop)
     }
 }

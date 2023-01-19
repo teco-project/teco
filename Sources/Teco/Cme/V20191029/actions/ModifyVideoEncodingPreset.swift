@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Cme {
     ///
     /// 修改视频编码配置信息。
     @inlinable
-    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
-        self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
+        self.client.execute(action: "ModifyVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
     @inlinable
-    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
-        try await self.client.execute(action: "ModifyVideoEncodingPreset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
+        try await self.client.execute(action: "ModifyVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
     @inlinable
-    public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
-        self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), logger: logger, on: eventLoop)
+    public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
+        self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
     @inlinable
-    public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
-        try await self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), logger: logger, on: eventLoop)
+    public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
+        try await self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }
 }

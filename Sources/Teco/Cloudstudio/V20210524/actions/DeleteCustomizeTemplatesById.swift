@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cloudstudio {
 
     /// 删除自定义模板
     @inlinable
-    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
-        self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
+        self.client.execute(action: "DeleteCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义模板
     @inlinable
-    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
-        try await self.client.execute(action: "DeleteCustomizeTemplatesById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
+        try await self.client.execute(action: "DeleteCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义模板
     @inlinable
-    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
-        self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), logger: logger, on: eventLoop)
+    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
+        self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义模板
     @inlinable
-    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
-        try await self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), logger: logger, on: eventLoop)
+    public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
+        try await self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

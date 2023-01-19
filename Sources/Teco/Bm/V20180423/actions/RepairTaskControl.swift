@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,8 +80,8 @@ extension Bm {
     /// <br>
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
-    public func repairTaskControl(_ input: RepairTaskControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RepairTaskControlResponse> {
-        self.client.execute(action: "RepairTaskControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func repairTaskControl(_ input: RepairTaskControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RepairTaskControlResponse> {
+        self.client.execute(action: "RepairTaskControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务管理
@@ -110,8 +110,8 @@ extension Bm {
     /// <br>
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
-    public func repairTaskControl(_ input: RepairTaskControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
-        try await self.client.execute(action: "RepairTaskControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func repairTaskControl(_ input: RepairTaskControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
+        try await self.client.execute(action: "RepairTaskControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 维修任务管理
@@ -140,8 +140,8 @@ extension Bm {
     /// <br>
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
-    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RepairTaskControlResponse> {
-        self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), logger: logger, on: eventLoop)
+    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RepairTaskControlResponse> {
+        self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 维修任务管理
@@ -170,7 +170,7 @@ extension Bm {
     /// <br>
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
-    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
-        try await self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), logger: logger, on: eventLoop)
+    public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
+        try await self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Sslpod {
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
-        self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
+        self.client.execute(action: "DescribeNoticeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通知额度信息
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
-        try await self.client.execute(action: "DescribeNoticeInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNoticeInfo(_ input: DescribeNoticeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
+        try await self.client.execute(action: "DescribeNoticeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通知额度信息
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
-        self.describeNoticeInfo(DescribeNoticeInfoRequest(), logger: logger, on: eventLoop)
+    public func describeNoticeInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNoticeInfoResponse> {
+        self.describeNoticeInfo(DescribeNoticeInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通知额度信息
     ///
     /// 获取通知额度信息
     @inlinable
-    public func describeNoticeInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
-        try await self.describeNoticeInfo(DescribeNoticeInfoRequest(), logger: logger, on: eventLoop)
+    public func describeNoticeInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNoticeInfoResponse {
+        try await self.describeNoticeInfo(DescribeNoticeInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

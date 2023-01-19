@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Ses {
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
-        self.client.execute(action: "ListBlackEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
+        self.client.execute(action: "ListBlackEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
-        try await self.client.execute(action: "ListBlackEmailAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listBlackEmailAddress(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
+        try await self.client.execute(action: "ListBlackEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
-        self.listBlackEmailAddress(ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), logger: logger, on: eventLoop)
+    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListBlackEmailAddressResponse> {
+        self.listBlackEmailAddress(ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑名单邮箱地址
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
-        try await self.listBlackEmailAddress(ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), logger: logger, on: eventLoop)
+    public func listBlackEmailAddress(startDate: Date, endDate: Date, limit: UInt64, offset: UInt64, emailAddress: String? = nil, taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListBlackEmailAddressResponse {
+        try await self.listBlackEmailAddress(ListBlackEmailAddressRequest(startDate: startDate, endDate: endDate, limit: limit, offset: offset, emailAddress: emailAddress, taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
 }

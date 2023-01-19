@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Cfw {
     /// 批量删除封禁IP、放通IP/域名
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
-    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIgnoreListResponse> {
-        self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIgnoreListResponse> {
+        self.client.execute(action: "ModifyBlockIgnoreList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 封禁列表和放通列表批量操作接口
@@ -85,8 +85,8 @@ extension Cfw {
     /// 批量删除封禁IP、放通IP/域名
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
-    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
-        try await self.client.execute(action: "ModifyBlockIgnoreList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBlockIgnoreList(_ input: ModifyBlockIgnoreListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
+        try await self.client.execute(action: "ModifyBlockIgnoreList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 封禁列表和放通列表批量操作接口
@@ -96,8 +96,8 @@ extension Cfw {
     /// 批量删除封禁IP、放通IP/域名
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
-    public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIgnoreListResponse> {
-        self.modifyBlockIgnoreList(ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIgnoreListResponse> {
+        self.modifyBlockIgnoreList(ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 封禁列表和放通列表批量操作接口
@@ -107,7 +107,7 @@ extension Cfw {
     /// 批量删除封禁IP、放通IP/域名
     /// 批量修改封禁IP、放通IP/域名生效事件
     @inlinable
-    public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
-        try await self.modifyBlockIgnoreList(ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func modifyBlockIgnoreList(ruleType: Int64, ioc: [IocListData], iocAction: String, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIgnoreListResponse {
+        try await self.modifyBlockIgnoreList(ModifyBlockIgnoreListRequest(ruleType: ruleType, ioc: ioc, iocAction: iocAction, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

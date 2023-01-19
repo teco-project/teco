@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Redis {
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
-        self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
+        self.client.execute(action: "ReleaseWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭外网接口
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
-        try await self.client.execute(action: "ReleaseWanAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func releaseWanAddress(_ input: ReleaseWanAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
+        try await self.client.execute(action: "ReleaseWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭外网接口
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
-        self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func releaseWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseWanAddressResponse> {
+        self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭外网接口
     ///
     /// 关闭外网
     @inlinable
-    public func releaseWanAddress(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
-        try await self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func releaseWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseWanAddressResponse {
+        try await self.releaseWanAddress(ReleaseWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

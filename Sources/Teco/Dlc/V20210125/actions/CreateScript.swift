@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Dlc {
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
     @inlinable
-    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
-        self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScript(_ input: CreateScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
+        self.client.execute(action: "CreateScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
     @inlinable
-    public func createScript(_ input: CreateScriptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
-        try await self.client.execute(action: "CreateScript", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScript(_ input: CreateScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
+        try await self.client.execute(action: "CreateScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
     @inlinable
-    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
-        self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), logger: logger, on: eventLoop)
+    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
+        self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
     @inlinable
-    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
-        try await self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), logger: logger, on: eventLoop)
+    public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
+        try await self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), region: region, logger: logger, on: eventLoop)
     }
 }

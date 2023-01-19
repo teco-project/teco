@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Teo {
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
-        self.client.execute(action: "DescribeLogTopicTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
+        self.client.execute(action: "DescribeLogTopicTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTaskDetailResponse {
-        try await self.client.execute(action: "DescribeLogTopicTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogTopicTaskDetail(_ input: DescribeLogTopicTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTaskDetailResponse {
+        try await self.client.execute(action: "DescribeLogTopicTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
-        self.describeLogTopicTaskDetail(DescribeLogTopicTaskDetailRequest(topicId: topicId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTaskDetailResponse> {
+        self.describeLogTopicTaskDetail(DescribeLogTopicTaskDetailRequest(topicId: topicId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取推送任务详细信息
     ///
     /// 本接口（DescribeLogTopicTaskDetail）用于获取日志推送任务详细信息。
     @inlinable
-    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTaskDetailResponse {
-        try await self.describeLogTopicTaskDetail(DescribeLogTopicTaskDetailRequest(topicId: topicId, zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeLogTopicTaskDetail(topicId: String, zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTaskDetailResponse {
+        try await self.describeLogTopicTaskDetail(DescribeLogTopicTaskDetailRequest(topicId: topicId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

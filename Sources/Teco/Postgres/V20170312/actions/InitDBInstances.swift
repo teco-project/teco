@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Postgres {
     ///
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
-    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
+        self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
     ///
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
-    public func initDBInstances(_ input: InitDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        try await self.client.execute(action: "InitDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func initDBInstances(_ input: InitDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
+        try await self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 初始化实例
     ///
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
-    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), logger: logger, on: eventLoop)
+    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
+        self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
     ///
     /// 本接口 (InitDBInstances) 用于初始化云数据库PostgreSQL实例。
     @inlinable
-    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        try await self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), logger: logger, on: eventLoop)
+    public func initDBInstances(dbInstanceIdSet: [String], adminName: String, adminPassword: String, charset: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
+        try await self.initDBInstances(InitDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, adminName: adminName, adminPassword: adminPassword, charset: charset), region: region, logger: logger, on: eventLoop)
     }
 }

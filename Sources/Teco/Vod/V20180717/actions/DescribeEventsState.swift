@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Vod {
     ///
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
-    public func describeEventsState(_ input: DescribeEventsStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventsStateResponse> {
-        self.client.execute(action: "DescribeEventsState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEventsState(_ input: DescribeEventsStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventsStateResponse> {
+        self.client.execute(action: "DescribeEventsState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件通知状态
     ///
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
-    public func describeEventsState(_ input: DescribeEventsStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsStateResponse {
-        try await self.client.execute(action: "DescribeEventsState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEventsState(_ input: DescribeEventsStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsStateResponse {
+        try await self.client.execute(action: "DescribeEventsState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件通知状态
     ///
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
-    public func describeEventsState(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventsStateResponse> {
-        self.describeEventsState(DescribeEventsStateRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeEventsState(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEventsStateResponse> {
+        self.describeEventsState(DescribeEventsStateRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件通知状态
     ///
     /// * 该接口用于业务服务器获取 [可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83) 事件通知的状态。
     @inlinable
-    public func describeEventsState(subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsStateResponse {
-        try await self.describeEventsState(DescribeEventsStateRequest(subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeEventsState(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEventsStateResponse {
+        try await self.describeEventsState(DescribeEventsStateRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Bmvpc {
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
+        self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有网络
@@ -57,8 +57,8 @@ extension Bmvpc {
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
-    public func deleteVpc(_ input: DeleteVpcRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.client.execute(action: "DeleteVpc", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除私有网络
@@ -66,8 +66,8 @@ extension Bmvpc {
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
-    public func deleteVpc(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), logger: logger, on: eventLoop)
+    public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
+        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除私有网络
@@ -75,7 +75,7 @@ extension Bmvpc {
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
-    public func deleteVpc(vpcId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), logger: logger, on: eventLoop)
+    public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
+        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
 }

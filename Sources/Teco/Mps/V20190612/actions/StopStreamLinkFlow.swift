@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Mps {
     ///
     /// 停止媒体传输流。
     @inlinable
-    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopStreamLinkFlowResponse> {
-        self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopStreamLinkFlowResponse> {
+        self.client.execute(action: "StopStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止媒体传输流
     ///
     /// 停止媒体传输流。
     @inlinable
-    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
-        try await self.client.execute(action: "StopStreamLinkFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopStreamLinkFlow(_ input: StopStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
+        try await self.client.execute(action: "StopStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止媒体传输流
     ///
     /// 停止媒体传输流。
     @inlinable
-    public func stopStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopStreamLinkFlowResponse> {
-        self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func stopStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopStreamLinkFlowResponse> {
+        self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止媒体传输流
     ///
     /// 停止媒体传输流。
     @inlinable
-    public func stopStreamLinkFlow(flowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
-        try await self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func stopStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopStreamLinkFlowResponse {
+        try await self.stopStreamLinkFlow(StopStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

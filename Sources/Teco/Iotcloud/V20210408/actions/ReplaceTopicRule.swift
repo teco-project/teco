@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotcloud {
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
-        self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
+        self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable
-    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
-        try await self.client.execute(action: "ReplaceTopicRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
+        try await self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable
-    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
-        self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), logger: logger, on: eventLoop)
+    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
+        self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), region: region, logger: logger, on: eventLoop)
     }
 
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
     @inlinable
-    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
-        try await self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), logger: logger, on: eventLoop)
+    public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
+        try await self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Trtc {
     /// 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
-    public func describeTRTCMarketScaleMetricData(_ input: DescribeTRTCMarketScaleMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketScaleMetricDataResponse> {
-        self.client.execute(action: "DescribeTRTCMarketScaleMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTRTCMarketScaleMetricData(_ input: DescribeTRTCMarketScaleMetricDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketScaleMetricDataResponse> {
+        self.client.execute(action: "DescribeTRTCMarketScaleMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC数据大盘规模指标
@@ -96,8 +96,8 @@ extension Trtc {
     /// 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
-    public func describeTRTCMarketScaleMetricData(_ input: DescribeTRTCMarketScaleMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketScaleMetricDataResponse {
-        try await self.client.execute(action: "DescribeTRTCMarketScaleMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTRTCMarketScaleMetricData(_ input: DescribeTRTCMarketScaleMetricDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketScaleMetricDataResponse {
+        try await self.client.execute(action: "DescribeTRTCMarketScaleMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询TRTC数据大盘规模指标
@@ -111,8 +111,8 @@ extension Trtc {
     /// 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
-    public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketScaleMetricDataResponse> {
-        self.describeTRTCMarketScaleMetricData(DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), logger: logger, on: eventLoop)
+    public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCMarketScaleMetricDataResponse> {
+        self.describeTRTCMarketScaleMetricData(DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC数据大盘规模指标
@@ -126,7 +126,7 @@ extension Trtc {
     /// 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
     /// 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
     @inlinable
-    public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketScaleMetricDataResponse {
-        try await self.describeTRTCMarketScaleMetricData(DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), logger: logger, on: eventLoop)
+    public func describeTRTCMarketScaleMetricData(sdkAppId: String, startTime: Date, endTime: Date, period: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCMarketScaleMetricDataResponse {
+        try await self.describeTRTCMarketScaleMetricData(DescribeTRTCMarketScaleMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

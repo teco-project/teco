@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
-        self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
+        self.client.execute(action: "DescribeDBsNormal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
-        try await self.client.execute(action: "DescribeDBsNormal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBsNormal(_ input: DescribeDBsNormalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
+        try await self.client.execute(action: "DescribeDBsNormal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
-        self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBsNormal(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
+        self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库配置信息
     ///
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
-    public func describeDBsNormal(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
-        try await self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeDBsNormal(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
+        try await self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

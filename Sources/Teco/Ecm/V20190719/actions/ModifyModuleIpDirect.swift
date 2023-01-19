@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,31 +50,31 @@ extension Ecm {
     ///
     /// 修改模块IP直通。
     @inlinable
-    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
-        self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
+        self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
     @inlinable
-    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
-        try await self.client.execute(action: "ModifyModuleIpDirect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
+        try await self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
     @inlinable
-    public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
-        self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), logger: logger, on: eventLoop)
+    public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
+        self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
     @inlinable
-    public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
-        try await self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), logger: logger, on: eventLoop)
+    public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
+        try await self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }
 }

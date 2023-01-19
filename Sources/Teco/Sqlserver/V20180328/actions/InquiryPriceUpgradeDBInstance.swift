@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Sqlserver {
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
     @inlinable
-    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
-        self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
+        self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
     @inlinable
-    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
-        try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceUpgradeDBInstance(_ input: InquiryPriceUpgradeDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
+        try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
     @inlinable
-    public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
-        self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
+        self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询升级实例价格
     ///
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。
     @inlinable
-    public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
-        try await self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), logger: logger, on: eventLoop)
+    public func inquiryPriceUpgradeDBInstance(instanceId: String, memory: Int64, storage: Int64, cpu: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
+        try await self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(instanceId: instanceId, memory: memory, storage: storage, cpu: cpu), region: region, logger: logger, on: eventLoop)
     }
 }

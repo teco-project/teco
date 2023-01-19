@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tat {
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(_ input: DeleteInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
-        self.client.execute(action: "DeleteInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteInvoker(_ input: DeleteInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
+        self.client.execute(action: "DeleteInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(_ input: DeleteInvokerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
-        try await self.client.execute(action: "DeleteInvoker", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteInvoker(_ input: DeleteInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
+        try await self.client.execute(action: "DeleteInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
-        self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    public func deleteInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
+        self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
     @inlinable
-    public func deleteInvoker(invokerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
-        try await self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), logger: logger, on: eventLoop)
+    public func deleteInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
+        try await self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
 }

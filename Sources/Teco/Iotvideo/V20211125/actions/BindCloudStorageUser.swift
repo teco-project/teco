@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideo {
 
     /// 绑定云存用户
     @inlinable
-    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindCloudStorageUserResponse> {
-        self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindCloudStorageUserResponse> {
+        self.client.execute(action: "BindCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定云存用户
     @inlinable
-    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
-        try await self.client.execute(action: "BindCloudStorageUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindCloudStorageUser(_ input: BindCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
+        try await self.client.execute(action: "BindCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定云存用户
     @inlinable
-    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindCloudStorageUserResponse> {
-        self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindCloudStorageUserResponse> {
+        self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定云存用户
     @inlinable
-    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
-        try await self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), logger: logger, on: eventLoop)
+    public func bindCloudStorageUser(productId: String, deviceName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindCloudStorageUserResponse {
+        try await self.bindCloudStorageUser(BindCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

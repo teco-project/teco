@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tdid {
 
     /// DID列表
     @inlinable
-    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
-        self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidList(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
+        self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DID列表
     @inlinable
-    public func getDidList(_ input: GetDidListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        try await self.client.execute(action: "GetDidList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidList(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
+        try await self.client.execute(action: "GetDidList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DID列表
     @inlinable
-    public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
-        self.getDidList(GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidListResponse> {
+        self.getDidList(GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// DID列表
     @inlinable
-    public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
-        try await self.getDidList(GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func getDidList(pageSize: Int64, pageNumber: Int64, did: String? = nil, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidListResponse {
+        try await self.getDidList(GetDidListRequest(pageSize: pageSize, pageNumber: pageNumber, did: did, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

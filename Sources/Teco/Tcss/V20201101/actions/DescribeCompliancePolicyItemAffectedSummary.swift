@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcss {
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
-        self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
+        self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
-        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCompliancePolicyItemAffectedSummary(_ input: DescribeCompliancePolicyItemAffectedSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
+        try await self.client.execute(action: "DescribeCompliancePolicyItemAffectedSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
-        self.describeCompliancePolicyItemAffectedSummary(DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId), logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePolicyItemAffectedSummaryResponse> {
+        self.describeCompliancePolicyItemAffectedSummary(DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某检测项影响的信息
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第一层级：检测项层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
-        try await self.describeCompliancePolicyItemAffectedSummary(DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId), logger: logger, on: eventLoop)
+    public func describeCompliancePolicyItemAffectedSummary(customerPolicyItemId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePolicyItemAffectedSummaryResponse {
+        try await self.describeCompliancePolicyItemAffectedSummary(DescribeCompliancePolicyItemAffectedSummaryRequest(customerPolicyItemId: customerPolicyItemId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 查询订阅某主题消息分组信息
     @inlinable
-    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSubscribeGroupResponse> {
-        self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSubscribeGroupResponse> {
+        self.client.execute(action: "DescribeTopicSubscribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅某主题消息分组信息
     @inlinable
-    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
-        try await self.client.execute(action: "DescribeTopicSubscribeGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTopicSubscribeGroup(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
+        try await self.client.execute(action: "DescribeTopicSubscribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询订阅某主题消息分组信息
     @inlinable
-    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSubscribeGroupResponse> {
-        self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSubscribeGroupResponse> {
+        self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅某主题消息分组信息
     @inlinable
-    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
-        try await self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
+        try await self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

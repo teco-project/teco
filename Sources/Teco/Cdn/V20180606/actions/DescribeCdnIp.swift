@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Cdn {
     /// DescribeCdnIp 用于查询 CDN IP 归属。
     /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）
     @inlinable
-    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnIpResponse> {
-        self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCdnIp(_ input: DescribeCdnIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnIpResponse> {
+        self.client.execute(action: "DescribeCdnIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// IP 归属查询
@@ -57,8 +57,8 @@ extension Cdn {
     /// DescribeCdnIp 用于查询 CDN IP 归属。
     /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）
     @inlinable
-    public func describeCdnIp(_ input: DescribeCdnIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
-        try await self.client.execute(action: "DescribeCdnIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCdnIp(_ input: DescribeCdnIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
+        try await self.client.execute(action: "DescribeCdnIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// IP 归属查询
@@ -66,8 +66,8 @@ extension Cdn {
     /// DescribeCdnIp 用于查询 CDN IP 归属。
     /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）
     @inlinable
-    public func describeCdnIp(ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnIpResponse> {
-        self.describeCdnIp(DescribeCdnIpRequest(ips: ips), logger: logger, on: eventLoop)
+    public func describeCdnIp(ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnIpResponse> {
+        self.describeCdnIp(DescribeCdnIpRequest(ips: ips), region: region, logger: logger, on: eventLoop)
     }
 
     /// IP 归属查询
@@ -75,7 +75,7 @@ extension Cdn {
     /// DescribeCdnIp 用于查询 CDN IP 归属。
     /// （注意：此接口请求频率限制以 CDN 侧限制为准：200次/10分钟）
     @inlinable
-    public func describeCdnIp(ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
-        try await self.describeCdnIp(DescribeCdnIpRequest(ips: ips), logger: logger, on: eventLoop)
+    public func describeCdnIp(ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnIpResponse {
+        try await self.describeCdnIp(DescribeCdnIpRequest(ips: ips), region: region, logger: logger, on: eventLoop)
     }
 }

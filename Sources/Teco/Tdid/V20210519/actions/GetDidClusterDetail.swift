@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Tdid {
     ///
     /// 获取DID区块链网络详情
     @inlinable
-    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
-        self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
+        self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
     @inlinable
-    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.client.execute(action: "GetDidClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidClusterDetail(_ input: GetDidClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
+        try await self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
     @inlinable
-    public func getDidClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
-        self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
+        self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络详情
     ///
     /// 获取DID区块链网络详情
     @inlinable
-    public func getDidClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
+        try await self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

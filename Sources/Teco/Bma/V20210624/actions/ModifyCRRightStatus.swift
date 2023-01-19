@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Bma {
 
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
-        self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
+        self.client.execute(action: "ModifyCRRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
-        try await self.client.execute(action: "ModifyCRRightStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCRRightStatus(_ input: ModifyCRRightStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
+        try await self.client.execute(action: "ModifyCRRightStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
-        self.modifyCRRightStatus(ModifyCRRightStatusRequest(tortId: tortId, rightUrl: rightUrl), logger: logger, on: eventLoop)
+    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRRightStatusResponse> {
+        self.modifyCRRightStatus(ModifyCRRightStatusRequest(tortId: tortId, rightUrl: rightUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发函申请
     @inlinable
-    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
-        try await self.modifyCRRightStatus(ModifyCRRightStatusRequest(tortId: tortId, rightUrl: rightUrl), logger: logger, on: eventLoop)
+    public func modifyCRRightStatus(tortId: Int64, rightUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRRightStatusResponse {
+        try await self.modifyCRRightStatus(ModifyCRRightStatusRequest(tortId: tortId, rightUrl: rightUrl), region: region, logger: logger, on: eventLoop)
     }
 }

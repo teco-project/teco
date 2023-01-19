@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Yinsuda {
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
-        self.client.execute(action: "DescribeKTVTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVTags(_ input: DescribeKTVTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
+        self.client.execute(action: "DescribeKTVTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(_ input: DescribeKTVTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
-        try await self.client.execute(action: "DescribeKTVTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVTags(_ input: DescribeKTVTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
+        try await self.client.execute(action: "DescribeKTVTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
-        self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), logger: logger, on: eventLoop)
+    public func describeKTVTags(appName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
+        self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表
     ///
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
-    public func describeKTVTags(appName: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
-        try await self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), logger: logger, on: eventLoop)
+    public func describeKTVTags(appName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
+        try await self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

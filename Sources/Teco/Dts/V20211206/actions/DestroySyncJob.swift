@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable
-    public func destroySyncJob(_ input: DestroySyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySyncJobResponse> {
-        self.client.execute(action: "DestroySyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroySyncJob(_ input: DestroySyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySyncJobResponse> {
+        self.client.execute(action: "DestroySyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线同步任务
     ///
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable
-    public func destroySyncJob(_ input: DestroySyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySyncJobResponse {
-        try await self.client.execute(action: "DestroySyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroySyncJob(_ input: DestroySyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySyncJobResponse {
+        try await self.client.execute(action: "DestroySyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线同步任务
     ///
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable
-    public func destroySyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySyncJobResponse> {
-        self.destroySyncJob(DestroySyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func destroySyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySyncJobResponse> {
+        self.destroySyncJob(DestroySyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线同步任务
     ///
     /// 下线同步任务，任务在已隔离状态下可以通过此操作进行任务下线，即彻底删除任务。下线操作后可通过查询同步任务信息接口DescribeSyncJobs获取任务列表查看状态，此操作成功后无法看到此任务表示下线成功。
     @inlinable
-    public func destroySyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySyncJobResponse {
-        try await self.destroySyncJob(DestroySyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func destroySyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySyncJobResponse {
+        try await self.destroySyncJob(DestroySyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

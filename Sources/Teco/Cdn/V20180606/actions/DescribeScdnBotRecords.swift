@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -174,25 +174,25 @@ extension Cdn {
 
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
-        self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
+        self.client.execute(action: "DescribeScdnBotRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
-        try await self.client.execute(action: "DescribeScdnBotRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScdnBotRecords(_ input: DescribeScdnBotRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
+        try await self.client.execute(action: "DescribeScdnBotRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
-        self.describeScdnBotRecords(DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), logger: logger, on: eventLoop)
+    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotRecordsResponse> {
+        self.describeScdnBotRecords(DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询BOT会话记录列表
     @inlinable
-    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
-        try await self.describeScdnBotRecords(DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), logger: logger, on: eventLoop)
+    public func describeScdnBotRecords(botType: String, domain: String, startTime: Date, endTime: Date, offset: UInt64, limit: UInt64, area: String, sortBy: [BotSortBy]? = nil, filterName: String? = nil, filterAction: String? = nil, filterIp: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotRecordsResponse {
+        try await self.describeScdnBotRecords(DescribeScdnBotRecordsRequest(botType: botType, domain: domain, startTime: startTime, endTime: endTime, offset: offset, limit: limit, area: area, sortBy: sortBy, filterName: filterName, filterAction: filterAction, filterIp: filterIp, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Tcr {
 
     /// 获取触发器日志
     @inlinable
-    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerLogResponse> {
-        self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerLogResponse> {
+        self.client.execute(action: "DescribeWebhookTriggerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取触发器日志
     @inlinable
-    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
-        try await self.client.execute(action: "DescribeWebhookTriggerLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebhookTriggerLog(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
+        try await self.client.execute(action: "DescribeWebhookTriggerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取触发器日志
     @inlinable
-    public func describeWebhookTriggerLog(registryId: String, namespace: String, id: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerLogResponse> {
-        self.describeWebhookTriggerLog(DescribeWebhookTriggerLogRequest(registryId: registryId, namespace: namespace, id: id, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeWebhookTriggerLog(registryId: String, namespace: String, id: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerLogResponse> {
+        self.describeWebhookTriggerLog(DescribeWebhookTriggerLogRequest(registryId: registryId, namespace: namespace, id: id, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取触发器日志
     @inlinable
-    public func describeWebhookTriggerLog(registryId: String, namespace: String, id: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
-        try await self.describeWebhookTriggerLog(DescribeWebhookTriggerLogRequest(registryId: registryId, namespace: namespace, id: id, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeWebhookTriggerLog(registryId: String, namespace: String, id: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerLogResponse {
+        try await self.describeWebhookTriggerLog(DescribeWebhookTriggerLogRequest(registryId: registryId, namespace: namespace, id: id, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

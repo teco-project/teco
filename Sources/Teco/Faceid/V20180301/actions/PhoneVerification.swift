@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Faceid {
     ///
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
-        self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func phoneVerification(_ input: PhoneVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
+        self.client.execute(action: "PhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验
     ///
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerification(_ input: PhoneVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
-        try await self.client.execute(action: "PhoneVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func phoneVerification(_ input: PhoneVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
+        try await self.client.execute(action: "PhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号三要素核验
     ///
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
-        self.phoneVerification(PhoneVerificationRequest(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), logger: logger, on: eventLoop)
+    public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PhoneVerificationResponse> {
+        self.phoneVerification(PhoneVerificationRequest(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号三要素核验
     ///
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性。支持的手机号段详情请查阅<a href="https://cloud.tencent.com/document/product/1007/46063">运营商类</a>文档。
     @inlinable
-    public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
-        try await self.phoneVerification(PhoneVerificationRequest(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), logger: logger, on: eventLoop)
+    public func phoneVerification(idCard: String, name: String, phone: String, ciphertextBlob: String? = nil, encryptList: [String]? = nil, iv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PhoneVerificationResponse {
+        try await self.phoneVerification(PhoneVerificationRequest(idCard: idCard, name: name, phone: phone, ciphertextBlob: ciphertextBlob, encryptList: encryptList, iv: iv), region: region, logger: logger, on: eventLoop)
     }
 }

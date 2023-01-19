@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tsf {
 
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
-        self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
+        self.client.execute(action: "DescribeSimpleGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
-        try await self.client.execute(action: "DescribeSimpleGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSimpleGroups(_ input: DescribeSimpleGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
+        try await self.client.execute(action: "DescribeSimpleGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
-        self.describeSimpleGroups(DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType), logger: logger, on: eventLoop)
+    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleGroupsResponse> {
+        self.describeSimpleGroups(DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询简单部署组列表
     @inlinable
-    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
-        try await self.describeSimpleGroups(DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType), logger: logger, on: eventLoop)
+    public func describeSimpleGroups(groupIdList: [String]? = nil, applicationId: String? = nil, clusterId: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, groupId: String? = nil, searchWord: String? = nil, appMicroServiceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleGroupsResponse {
+        try await self.describeSimpleGroups(DescribeSimpleGroupsRequest(groupIdList: groupIdList, applicationId: applicationId, clusterId: clusterId, namespaceId: namespaceId, limit: limit, offset: offset, groupId: groupId, searchWord: searchWord, appMicroServiceType: appMicroServiceType), region: region, logger: logger, on: eventLoop)
     }
 }

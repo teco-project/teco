@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cwp {
     ///
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
-    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulCountByDatesResponse> {
-        self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulCountByDatesResponse> {
+        self.client.execute(action: "DescribeVulCountByDates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取近日指定类型的漏洞数量和主机数量
     ///
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
-    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
-        try await self.client.execute(action: "DescribeVulCountByDates", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulCountByDates(_ input: DescribeVulCountByDatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
+        try await self.client.execute(action: "DescribeVulCountByDates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取近日指定类型的漏洞数量和主机数量
     ///
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
-    public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulCountByDatesResponse> {
-        self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulCountByDatesResponse> {
+        self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取近日指定类型的漏洞数量和主机数量
     ///
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
-    public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
-        try await self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), logger: logger, on: eventLoop)
+    public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
+        try await self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Postgres {
     ///
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
-    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
-        self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
+        self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将实例转至其他项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
-    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
-        try await self.client.execute(action: "ModifyDBInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstancesProject(_ input: ModifyDBInstancesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
+        try await self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将实例转至其他项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
-    public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
-        self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
+        self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将实例转至其他项目
     ///
     /// 本接口（ModifyDBInstancesProject）用于将实例转至其他项目。
     @inlinable
-    public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
-        try await self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), logger: logger, on: eventLoop)
+    public func modifyDBInstancesProject(dbInstanceIdSet: [String], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
+        try await self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(dbInstanceIdSet: dbInstanceIdSet, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

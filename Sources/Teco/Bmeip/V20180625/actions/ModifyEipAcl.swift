@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Bmeip {
 
     /// 修改弹性公网IP ACL
     @inlinable
-    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipAclResponse> {
-        self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEipAcl(_ input: ModifyEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipAclResponse> {
+        self.client.execute(action: "ModifyEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP ACL
     @inlinable
-    public func modifyEipAcl(_ input: ModifyEipAclRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
-        try await self.client.execute(action: "ModifyEipAcl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEipAcl(_ input: ModifyEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
+        try await self.client.execute(action: "ModifyEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改弹性公网IP ACL
     @inlinable
-    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipAclResponse> {
-        self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), logger: logger, on: eventLoop)
+    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipAclResponse> {
+        self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP ACL
     @inlinable
-    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
-        try await self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), logger: logger, on: eventLoop)
+    public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
+        try await self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

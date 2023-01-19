@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Yunjing {
 
     /// 删除本地提权规则
     @inlinable
-    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
-        self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
+        self.client.execute(action: "DeletePrivilegeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权规则
     @inlinable
-    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
-        try await self.client.execute(action: "DeletePrivilegeRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
+        try await self.client.execute(action: "DeletePrivilegeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除本地提权规则
     @inlinable
-    public func deletePrivilegeRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
-        self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deletePrivilegeRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
+        self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权规则
     @inlinable
-    public func deletePrivilegeRules(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
-        try await self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deletePrivilegeRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
+        try await self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

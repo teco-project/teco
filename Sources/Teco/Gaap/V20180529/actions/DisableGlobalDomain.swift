@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Gaap {
 
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
-        self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
+        self.client.execute(action: "DisableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
-        try await self.client.execute(action: "DisableGlobalDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableGlobalDomain(_ input: DisableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
+        try await self.client.execute(action: "DisableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
-        self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func disableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGlobalDomainResponse> {
+        self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 暂停域名解析
     @inlinable
-    public func disableGlobalDomain(domainId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
-        try await self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), logger: logger, on: eventLoop)
+    public func disableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGlobalDomainResponse {
+        try await self.disableGlobalDomain(DisableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

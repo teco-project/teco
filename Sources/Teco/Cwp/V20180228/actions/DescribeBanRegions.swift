@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
-        self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBanRegions(_ input: DescribeBanRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
+        self.client.execute(action: "DescribeBanRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(_ input: DescribeBanRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
-        try await self.client.execute(action: "DescribeBanRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBanRegions(_ input: DescribeBanRegionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
+        try await self.client.execute(action: "DescribeBanRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
-        self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), logger: logger, on: eventLoop)
+    public func describeBanRegions(mode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanRegionsResponse> {
+        self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取阻断地域
     @inlinable
-    public func describeBanRegions(mode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
-        try await self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), logger: logger, on: eventLoop)
+    public func describeBanRegions(mode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanRegionsResponse {
+        try await self.describeBanRegions(DescribeBanRegionsRequest(mode: mode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcss {
 
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
-        self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
+        self.client.execute(action: "CreateVirusScanAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
-        try await self.client.execute(action: "CreateVirusScanAgain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVirusScanAgain(_ input: CreateVirusScanAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
+        try await self.client.execute(action: "CreateVirusScanAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
-        self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), logger: logger, on: eventLoop)
+    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanAgainResponse> {
+        self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀重新检测
     @inlinable
-    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
-        try await self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), logger: logger, on: eventLoop)
+    public func createVirusScanAgain(taskId: String, containerIds: [String]? = nil, timeoutAll: Bool? = nil, timeout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanAgainResponse {
+        try await self.createVirusScanAgain(CreateVirusScanAgainRequest(taskId: taskId, containerIds: containerIds, timeoutAll: timeoutAll, timeout: timeout), region: region, logger: logger, on: eventLoop)
     }
 }

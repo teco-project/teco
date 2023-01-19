@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Dayu {
     ///
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
-    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceIpSegmentResponse> {
-        self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceIpSegmentResponse> {
+        self.client.execute(action: "DescribeSourceIpSegment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取回源IP段
     ///
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
-    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
-        try await self.client.execute(action: "DescribeSourceIpSegment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSourceIpSegment(_ input: DescribeSourceIpSegmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
+        try await self.client.execute(action: "DescribeSourceIpSegment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取回源IP段
     ///
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
-    public func describeSourceIpSegment(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceIpSegmentResponse> {
-        self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeSourceIpSegment(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceIpSegmentResponse> {
+        self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取回源IP段
     ///
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
-    public func describeSourceIpSegment(business: String, id: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
-        try await self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), logger: logger, on: eventLoop)
+    public func describeSourceIpSegment(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
+        try await self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

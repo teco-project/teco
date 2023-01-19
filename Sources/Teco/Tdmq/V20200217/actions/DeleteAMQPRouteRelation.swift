@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tdmq {
 
     /// 删除Amqp路由关系
     @inlinable
-    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
-        self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
+        self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp路由关系
     @inlinable
-    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        try await self.client.execute(action: "DeleteAMQPRouteRelation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAMQPRouteRelation(_ input: DeleteAMQPRouteRelationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
+        try await self.client.execute(action: "DeleteAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Amqp路由关系
     @inlinable
-    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
-        self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), logger: logger, on: eventLoop)
+    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPRouteRelationResponse> {
+        self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp路由关系
     @inlinable
-    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
-        try await self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), logger: logger, on: eventLoop)
+    public func deleteAMQPRouteRelation(clusterId: String, vHostId: String, routeRelationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPRouteRelationResponse {
+        try await self.deleteAMQPRouteRelation(DeleteAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, routeRelationId: routeRelationId), region: region, logger: logger, on: eventLoop)
     }
 }

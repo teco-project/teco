@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Yunjing {
 
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
-        self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editBashRule(_ input: EditBashRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
+        self.client.execute(action: "EditBashRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(_ input: EditBashRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
-        try await self.client.execute(action: "EditBashRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editBashRule(_ input: EditBashRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
+        try await self.client.execute(action: "EditBashRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
-        self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditBashRuleResponse> {
+        self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或修改高危命令规则
     @inlinable
-    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
-        try await self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), logger: logger, on: eventLoop)
+    public func editBashRule(name: String, level: UInt64, rule: String, id: UInt64? = nil, uuid: String? = nil, hostip: String? = nil, isGlobal: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditBashRuleResponse {
+        try await self.editBashRule(EditBashRuleRequest(name: name, level: level, rule: rule, id: id, uuid: uuid, hostip: hostip, isGlobal: isGlobal), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Wedata {
 
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
-        self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInLongAgent(_ input: CreateInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
+        self.client.execute(action: "CreateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(_ input: CreateInLongAgentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
-        try await self.client.execute(action: "CreateInLongAgent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInLongAgent(_ input: CreateInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
+        try await self.client.execute(action: "CreateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
-        self.createInLongAgent(CreateInLongAgentRequest(agentType: agentType, agentName: agentName, executorGroupId: executorGroupId, projectId: projectId, tkeRegion: tkeRegion, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInLongAgentResponse> {
+        self.createInLongAgent(CreateInLongAgentRequest(agentType: agentType, agentName: agentName, executorGroupId: executorGroupId, projectId: projectId, tkeRegion: tkeRegion, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册采集器
     @inlinable
-    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
-        try await self.createInLongAgent(CreateInLongAgentRequest(agentType: agentType, agentName: agentName, executorGroupId: executorGroupId, projectId: projectId, tkeRegion: tkeRegion, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createInLongAgent(agentType: UInt64, agentName: String, executorGroupId: String, projectId: String, tkeRegion: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInLongAgentResponse {
+        try await self.createInLongAgent(CreateInLongAgentRequest(agentType: agentType, agentName: agentName, executorGroupId: executorGroupId, projectId: projectId, tkeRegion: tkeRegion, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

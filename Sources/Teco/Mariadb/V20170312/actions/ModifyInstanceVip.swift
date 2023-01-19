@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Mariadb {
     ///
     /// 本接口（ModifyInstanceVip）用于修改实例VIP
     @inlinable
-    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVipResponse> {
-        self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVipResponse> {
+        self.client.execute(action: "ModifyInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例VIP
     ///
     /// 本接口（ModifyInstanceVip）用于修改实例VIP
     @inlinable
-    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
-        try await self.client.execute(action: "ModifyInstanceVip", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstanceVip(_ input: ModifyInstanceVipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
+        try await self.client.execute(action: "ModifyInstanceVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例VIP
     ///
     /// 本接口（ModifyInstanceVip）用于修改实例VIP
     @inlinable
-    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVipResponse> {
-        self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), logger: logger, on: eventLoop)
+    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVipResponse> {
+        self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例VIP
     ///
     /// 本接口（ModifyInstanceVip）用于修改实例VIP
     @inlinable
-    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
-        try await self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), logger: logger, on: eventLoop)
+    public func modifyInstanceVip(instanceId: String, vip: String, ipv6Flag: UInt64? = nil, vipReleaseDelay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVipResponse {
+        try await self.modifyInstanceVip(ModifyInstanceVipRequest(instanceId: instanceId, vip: vip, ipv6Flag: ipv6Flag, vipReleaseDelay: vipReleaseDelay), region: region, logger: logger, on: eventLoop)
     }
 }

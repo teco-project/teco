@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,31 +97,31 @@ extension Tione {
     ///
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
+        self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志
     ///
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
-    public func describeLogs(_ input: DescribeLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.client.execute(action: "DescribeLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogs(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.client.execute(action: "DescribeLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志
     ///
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
-    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
-        self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), logger: logger, on: eventLoop)
+    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogsResponse> {
+        self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志
     ///
     /// 获取训练、推理、Notebook服务的日志
     @inlinable
-    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
-        try await self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), logger: logger, on: eventLoop)
+    public func describeLogs(service: String, podName: String, startTime: String? = nil, endTime: String? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, context: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogsResponse {
+        try await self.describeLogs(DescribeLogsRequest(service: service, podName: podName, startTime: startTime, endTime: endTime, limit: limit, order: order, orderField: orderField, context: context, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

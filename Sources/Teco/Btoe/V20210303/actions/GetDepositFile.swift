@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Btoe {
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
-    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
+        self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 存证文件查询
@@ -63,8 +63,8 @@ extension Btoe {
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
-    public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        try await self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
+        try await self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 存证文件查询
@@ -73,8 +73,8 @@ extension Btoe {
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
-    public func getDepositFile(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
+        self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 存证文件查询
@@ -83,7 +83,7 @@ extension Btoe {
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
-    public func getDepositFile(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        try await self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
+    public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
+        try await self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
     }
 }

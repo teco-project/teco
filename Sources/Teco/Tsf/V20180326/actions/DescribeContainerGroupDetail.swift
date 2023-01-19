@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tsf {
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
-        self.client.execute(action: "DescribeContainerGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
+        self.client.execute(action: "DescribeContainerGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
-        try await self.client.execute(action: "DescribeContainerGroupDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeContainerGroupDetail(_ input: DescribeContainerGroupDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
+        try await self.client.execute(action: "DescribeContainerGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
-        self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeContainerGroupDetail(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
+        self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询容器部署组详情
     ///
     ///  容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
-    public func describeContainerGroupDetail(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
-        try await self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeContainerGroupDetail(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
+        try await self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

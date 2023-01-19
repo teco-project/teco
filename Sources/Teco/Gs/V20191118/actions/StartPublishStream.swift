@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Gs {
 
     /// 开始云端推流
     @inlinable
-    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
-        self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func startPublishStream(_ input: StartPublishStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
+        self.client.execute(action: "StartPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开始云端推流
     @inlinable
-    public func startPublishStream(_ input: StartPublishStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
-        try await self.client.execute(action: "StartPublishStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func startPublishStream(_ input: StartPublishStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
+        try await self.client.execute(action: "StartPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开始云端推流
     @inlinable
-    public func startPublishStream(userId: String, publishUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
-        self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), logger: logger, on: eventLoop)
+    public func startPublishStream(userId: String, publishUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
+        self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开始云端推流
     @inlinable
-    public func startPublishStream(userId: String, publishUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
-        try await self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), logger: logger, on: eventLoop)
+    public func startPublishStream(userId: String, publishUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
+        try await self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), region: region, logger: logger, on: eventLoop)
     }
 }

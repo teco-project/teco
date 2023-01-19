@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -112,25 +112,25 @@ extension Tke {
 
     /// 添加已经存在的实例到集群
     @inlinable
-    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddExistedInstancesResponse> {
-        self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addExistedInstances(_ input: AddExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddExistedInstancesResponse> {
+        self.client.execute(action: "AddExistedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加已经存在的实例到集群
     @inlinable
-    public func addExistedInstances(_ input: AddExistedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
-        try await self.client.execute(action: "AddExistedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addExistedInstances(_ input: AddExistedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
+        try await self.client.execute(action: "AddExistedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加已经存在的实例到集群
     @inlinable
-    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddExistedInstancesResponse> {
-        self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), logger: logger, on: eventLoop)
+    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddExistedInstancesResponse> {
+        self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加已经存在的实例到集群
     @inlinable
-    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
-        try await self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), logger: logger, on: eventLoop)
+    public func addExistedInstances(clusterId: String, instanceIds: [String], instanceAdvancedSettings: InstanceAdvancedSettings? = nil, enhancedService: EnhancedService? = nil, loginSettings: LoginSettings? = nil, hostName: String? = nil, securityGroupIds: [String]? = nil, nodePool: NodePoolOption? = nil, skipValidateOptions: [String]? = nil, instanceAdvancedSettingsOverrides: [InstanceAdvancedSettings]? = nil, imageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddExistedInstancesResponse {
+        try await self.addExistedInstances(AddExistedInstancesRequest(clusterId: clusterId, instanceIds: instanceIds, instanceAdvancedSettings: instanceAdvancedSettings, enhancedService: enhancedService, loginSettings: loginSettings, hostName: hostName, securityGroupIds: securityGroupIds, nodePool: nodePool, skipValidateOptions: skipValidateOptions, instanceAdvancedSettingsOverrides: instanceAdvancedSettingsOverrides, imageId: imageId), region: region, logger: logger, on: eventLoop)
     }
 }

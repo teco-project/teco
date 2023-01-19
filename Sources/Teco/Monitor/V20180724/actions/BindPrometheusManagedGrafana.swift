@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 绑定 Grafana 可视化服务实例
     @inlinable
-    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPrometheusManagedGrafanaResponse> {
-        self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPrometheusManagedGrafanaResponse> {
+        self.client.execute(action: "BindPrometheusManagedGrafana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定 Grafana 可视化服务实例
     @inlinable
-    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
-        try await self.client.execute(action: "BindPrometheusManagedGrafana", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindPrometheusManagedGrafana(_ input: BindPrometheusManagedGrafanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
+        try await self.client.execute(action: "BindPrometheusManagedGrafana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定 Grafana 可视化服务实例
     @inlinable
-    public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPrometheusManagedGrafanaResponse> {
-        self.bindPrometheusManagedGrafana(BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), logger: logger, on: eventLoop)
+    public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPrometheusManagedGrafanaResponse> {
+        self.bindPrometheusManagedGrafana(BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定 Grafana 可视化服务实例
     @inlinable
-    public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
-        try await self.bindPrometheusManagedGrafana(BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), logger: logger, on: eventLoop)
+    public func bindPrometheusManagedGrafana(instanceId: String, grafanaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPrometheusManagedGrafanaResponse {
+        try await self.bindPrometheusManagedGrafana(BindPrometheusManagedGrafanaRequest(instanceId: instanceId, grafanaId: grafanaId), region: region, logger: logger, on: eventLoop)
     }
 }

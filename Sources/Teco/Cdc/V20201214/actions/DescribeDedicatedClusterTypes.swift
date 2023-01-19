@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Cdc {
 
     /// 查询专有集群配置列表
     @inlinable
-    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterTypesResponse> {
-        self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterTypesResponse> {
+        self.client.execute(action: "DescribeDedicatedClusterTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专有集群配置列表
     @inlinable
-    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
-        try await self.client.execute(action: "DescribeDedicatedClusterTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDedicatedClusterTypes(_ input: DescribeDedicatedClusterTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
+        try await self.client.execute(action: "DescribeDedicatedClusterTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询专有集群配置列表
     @inlinable
-    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterTypesResponse> {
-        self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterTypesResponse> {
+        self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询专有集群配置列表
     @inlinable
-    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
-        try await self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), logger: logger, on: eventLoop)
+    public func describeDedicatedClusterTypes(name: String? = nil, dedicatedClusterTypeIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, isCompute: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterTypesResponse {
+        try await self.describeDedicatedClusterTypes(DescribeDedicatedClusterTypesRequest(name: name, dedicatedClusterTypeIds: dedicatedClusterTypeIds, offset: offset, limit: limit, isCompute: isCompute), region: region, logger: logger, on: eventLoop)
     }
 }

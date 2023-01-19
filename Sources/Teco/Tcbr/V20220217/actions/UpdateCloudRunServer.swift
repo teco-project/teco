@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tcbr {
 
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
-        self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
+        self.client.execute(action: "UpdateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
-        try await self.client.execute(action: "UpdateCloudRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCloudRunServer(_ input: UpdateCloudRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
+        try await self.client.execute(action: "UpdateCloudRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
-        self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCloudRunServerResponse> {
+        self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新云托管服务
     @inlinable
-    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
-        try await self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), logger: logger, on: eventLoop)
+    public func updateCloudRunServer(envId: String, serverName: String, deployInfo: DeployParam, serverConfig: ServerBaseConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCloudRunServerResponse {
+        try await self.updateCloudRunServer(UpdateCloudRunServerRequest(envId: envId, serverName: serverName, deployInfo: deployInfo, serverConfig: serverConfig), region: region, logger: logger, on: eventLoop)
     }
 }

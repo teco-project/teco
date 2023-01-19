@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,8 +74,8 @@ extension Vpc {
     /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
-    public func createCcn(_ input: CreateCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcnResponse> {
-        self.client.execute(action: "CreateCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCcn(_ input: CreateCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcnResponse> {
+        self.client.execute(action: "CreateCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建CCN
@@ -84,8 +84,8 @@ extension Vpc {
     /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
-    public func createCcn(_ input: CreateCcnRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
-        try await self.client.execute(action: "CreateCcn", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCcn(_ input: CreateCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
+        try await self.client.execute(action: "CreateCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建CCN
@@ -94,8 +94,8 @@ extension Vpc {
     /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
-    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcnResponse> {
-        self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), logger: logger, on: eventLoop)
+    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcnResponse> {
+        self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建CCN
@@ -104,7 +104,7 @@ extension Vpc {
     /// * 创建云联网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     /// * 每个账号能创建的云联网实例个数是有限的，详请参考产品文档。如果需要扩充请联系在线客服。
     @inlinable
-    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
-        try await self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), logger: logger, on: eventLoop)
+    public func createCcn(ccnName: String, ccnDescription: String? = nil, qosLevel: String? = nil, instanceChargeType: String? = nil, bandwidthLimitType: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcnResponse {
+        try await self.createCcn(CreateCcnRequest(ccnName: ccnName, ccnDescription: ccnDescription, qosLevel: qosLevel, instanceChargeType: instanceChargeType, bandwidthLimitType: bandwidthLimitType, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

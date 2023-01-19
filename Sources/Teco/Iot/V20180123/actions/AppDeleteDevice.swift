@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iot {
     ///
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable
-    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppDeleteDeviceResponse> {
-        self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppDeleteDeviceResponse> {
+        self.client.execute(action: "AppDeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户解绑设备
     ///
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable
-    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
-        try await self.client.execute(action: "AppDeleteDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func appDeleteDevice(_ input: AppDeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
+        try await self.client.execute(action: "AppDeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 用户解绑设备
     ///
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable
-    public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppDeleteDeviceResponse> {
-        self.appDeleteDevice(AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppDeleteDeviceResponse> {
+        self.appDeleteDevice(AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 用户解绑设备
     ///
     /// 用户解除与设备的关联关系，解除后APP用户无法控制设备，获取设备数据
     @inlinable
-    public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
-        try await self.appDeleteDevice(AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), logger: logger, on: eventLoop)
+    public func appDeleteDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppDeleteDeviceResponse {
+        try await self.appDeleteDevice(AppDeleteDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
 }

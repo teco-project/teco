@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Tms {
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextStatResponse> {
-        self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTextStat(_ input: DescribeTextStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextStatResponse> {
+        self.client.execute(action: "DescribeTextStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeTextStat(_ input: DescribeTextStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
-        try await self.client.execute(action: "DescribeTextStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTextStat(_ input: DescribeTextStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
+        try await self.client.execute(action: "DescribeTextStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeTextStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextStatResponse> {
-        self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeTextStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTextStatResponse> {
+        self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
     ///
     /// 控制台识别统计
     @inlinable
-    public func describeTextStat(auditType: Int64, filters: [Filters], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
-        try await self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), logger: logger, on: eventLoop)
+    public func describeTextStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTextStatResponse {
+        try await self.describeTextStat(DescribeTextStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

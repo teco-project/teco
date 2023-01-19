@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tcss {
 
     /// 获取镜像扫描设置信息
     @inlinable
-    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanSettingResponse> {
-        self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanSettingResponse> {
+        self.client.execute(action: "DescribeAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取镜像扫描设置信息
     @inlinable
-    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
-        try await self.client.execute(action: "DescribeAssetImageScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageScanSetting(_ input: DescribeAssetImageScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
+        try await self.client.execute(action: "DescribeAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取镜像扫描设置信息
     @inlinable
-    public func describeAssetImageScanSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanSettingResponse> {
-        self.describeAssetImageScanSetting(DescribeAssetImageScanSettingRequest(), logger: logger, on: eventLoop)
+    public func describeAssetImageScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanSettingResponse> {
+        self.describeAssetImageScanSetting(DescribeAssetImageScanSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取镜像扫描设置信息
     @inlinable
-    public func describeAssetImageScanSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
-        try await self.describeAssetImageScanSetting(DescribeAssetImageScanSettingRequest(), logger: logger, on: eventLoop)
+    public func describeAssetImageScanSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanSettingResponse {
+        try await self.describeAssetImageScanSetting(DescribeAssetImageScanSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

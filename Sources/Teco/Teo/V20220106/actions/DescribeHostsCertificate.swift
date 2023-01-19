@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Teo {
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
-        self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
+        self.client.execute(action: "DescribeHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
-        try await self.client.execute(action: "DescribeHostsCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeHostsCertificate(_ input: DescribeHostsCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
+        try await self.client.execute(action: "DescribeHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
-        self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
+    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostsCertificateResponse> {
+        self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询域名证书列表
     ///
     /// 查询域名证书列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
-        try await self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), logger: logger, on: eventLoop)
+    public func describeHostsCertificate(zoneId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [CertFilter]? = nil, sort: CertSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostsCertificateResponse {
+        try await self.describeHostsCertificate(DescribeHostsCertificateRequest(zoneId: zoneId, offset: offset, limit: limit, filters: filters, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Essbasic {
     ///
     /// 创建出证报告，返回报告 ID
     @inlinable
-    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
-        self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
+        self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
     ///
     /// 创建出证报告，返回报告 ID
     @inlinable
-    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
-        try await self.client.execute(action: "CreateChannelFlowEvidenceReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
+        try await self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建并返回出证报告
     ///
     /// 创建出证报告，返回报告 ID
     @inlinable
-    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
-        self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
+        self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
     ///
     /// 创建出证报告，返回报告 ID
     @inlinable
-    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
-        try await self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), logger: logger, on: eventLoop)
+    public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
+        try await self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

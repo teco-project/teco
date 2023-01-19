@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Drm {
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
-        self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
+        self.client.execute(action: "DescribeFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
-        try await self.client.execute(action: "DescribeFairPlayPem", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFairPlayPem(_ input: DescribeFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
+        try await self.client.execute(action: "DescribeFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
-        self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFairPlayPemResponse> {
+        self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询所设置的FairPlay私钥
     ///
     /// 该接口用来查询设置的FairPlay私钥校验信息。可用该接口校验设置的私钥与本身的私钥是否一致。
     @inlinable
-    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
-        try await self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), logger: logger, on: eventLoop)
+    public func describeFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFairPlayPemResponse {
+        try await self.describeFairPlayPem(DescribeFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }
 }

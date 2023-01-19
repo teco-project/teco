@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Scf {
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
-        self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
+        self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(_ input: DeleteAliasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
-        try await self.client.execute(action: "DeleteAlias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
+        try await self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
-        self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
+        self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
     @inlinable
-    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
-        try await self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
+        try await self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

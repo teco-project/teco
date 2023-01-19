@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 批量绑定后端目标。
     @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterTargetsResponse> {
-        self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterTargetsResponse> {
+        self.client.execute(action: "BatchRegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定后端目标
     ///
     /// 批量绑定后端目标。
     @inlinable
-    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
-        try await self.client.execute(action: "BatchRegisterTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchRegisterTargets(_ input: BatchRegisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
+        try await self.client.execute(action: "BatchRegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量绑定后端目标
     ///
     /// 批量绑定后端目标。
     @inlinable
-    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterTargetsResponse> {
-        self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterTargetsResponse> {
+        self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定后端目标
     ///
     /// 批量绑定后端目标。
     @inlinable
-    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
-        try await self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), logger: logger, on: eventLoop)
+    public func batchRegisterTargets(loadBalancerId: String, targets: [BatchTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterTargetsResponse {
+        try await self.batchRegisterTargets(BatchRegisterTargetsRequest(loadBalancerId: loadBalancerId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Asw {
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
-        self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopExecution(_ input: StopExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
+        self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止状态机
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(_ input: StopExecutionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
-        try await self.client.execute(action: "StopExecution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopExecution(_ input: StopExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
+        try await self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止状态机
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
-        self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), logger: logger, on: eventLoop)
+    public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
+        self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止状态机
     ///
     /// 终止某个状态机
     @inlinable
-    public func stopExecution(executionQrn: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
-        try await self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), logger: logger, on: eventLoop)
+    public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
+        try await self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }
 }

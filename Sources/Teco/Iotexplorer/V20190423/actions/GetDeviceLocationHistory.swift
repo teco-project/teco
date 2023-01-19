@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Iotexplorer {
 
     /// 获取设备历史位置
     @inlinable
-    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLocationHistoryResponse> {
-        self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLocationHistoryResponse> {
+        self.client.execute(action: "GetDeviceLocationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史位置
     @inlinable
-    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
-        try await self.client.execute(action: "GetDeviceLocationHistory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDeviceLocationHistory(_ input: GetDeviceLocationHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
+        try await self.client.execute(action: "GetDeviceLocationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备历史位置
     @inlinable
-    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLocationHistoryResponse> {
-        self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), logger: logger, on: eventLoop)
+    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLocationHistoryResponse> {
+        self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史位置
     @inlinable
-    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
-        try await self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), logger: logger, on: eventLoop)
+    public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
+        try await self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), region: region, logger: logger, on: eventLoop)
     }
 }

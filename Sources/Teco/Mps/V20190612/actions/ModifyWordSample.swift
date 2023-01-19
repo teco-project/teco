@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Mps {
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
-        self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWordSample(_ input: ModifyWordSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
+        self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(_ input: ModifyWordSampleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
-        try await self.client.execute(action: "ModifyWordSample", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWordSample(_ input: ModifyWordSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
+        try await self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
-        self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
+        self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
     @inlinable
-    public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
-        try await self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), logger: logger, on: eventLoop)
+    public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
+        try await self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }
 }

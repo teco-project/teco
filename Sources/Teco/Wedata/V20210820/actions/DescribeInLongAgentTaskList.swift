@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Wedata {
 
     /// 查询采集器关联的任务列表
     @inlinable
-    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentTaskListResponse> {
-        self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentTaskListResponse> {
+        self.client.execute(action: "DescribeInLongAgentTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询采集器关联的任务列表
     @inlinable
-    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
-        try await self.client.execute(action: "DescribeInLongAgentTaskList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInLongAgentTaskList(_ input: DescribeInLongAgentTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
+        try await self.client.execute(action: "DescribeInLongAgentTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询采集器关联的任务列表
     @inlinable
-    public func describeInLongAgentTaskList(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentTaskListResponse> {
-        self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeInLongAgentTaskList(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentTaskListResponse> {
+        self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询采集器关联的任务列表
     @inlinable
-    public func describeInLongAgentTaskList(agentId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
-        try await self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeInLongAgentTaskList(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentTaskListResponse {
+        try await self.describeInLongAgentTaskList(DescribeInLongAgentTaskListRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

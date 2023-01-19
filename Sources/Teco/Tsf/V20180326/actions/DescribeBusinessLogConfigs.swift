@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 查询日志配置项列表
     @inlinable
-    public func describeBusinessLogConfigs(_ input: DescribeBusinessLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigsResponse> {
-        self.client.execute(action: "DescribeBusinessLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBusinessLogConfigs(_ input: DescribeBusinessLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigsResponse> {
+        self.client.execute(action: "DescribeBusinessLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志配置项列表
     @inlinable
-    public func describeBusinessLogConfigs(_ input: DescribeBusinessLogConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
-        try await self.client.execute(action: "DescribeBusinessLogConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBusinessLogConfigs(_ input: DescribeBusinessLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
+        try await self.client.execute(action: "DescribeBusinessLogConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询日志配置项列表
     @inlinable
-    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigsResponse> {
-        self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBusinessLogConfigsResponse> {
+        self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志配置项列表
     @inlinable
-    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
-        try await self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), logger: logger, on: eventLoop)
+    public func describeBusinessLogConfigs(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, configIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBusinessLogConfigsResponse {
+        try await self.describeBusinessLogConfigs(DescribeBusinessLogConfigsRequest(offset: offset, limit: limit, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck, configIdList: configIdList), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
-    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceDataResponse> {
-        self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceDataResponse> {
+        self.client.execute(action: "ModifyDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑设备信息
     ///
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
-    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
-        try await self.client.execute(action: "ModifyDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDeviceData(_ input: ModifyDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
+        try await self.client.execute(action: "ModifyDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑设备信息
     ///
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
-    public func modifyDeviceData(deviceId: String, nickName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceDataResponse> {
-        self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), logger: logger, on: eventLoop)
+    public func modifyDeviceData(deviceId: String, nickName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceDataResponse> {
+        self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑设备信息
     ///
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
-    public func modifyDeviceData(deviceId: String, nickName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
-        try await self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), logger: logger, on: eventLoop)
+    public func modifyDeviceData(deviceId: String, nickName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
+        try await self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), region: region, logger: logger, on: eventLoop)
     }
 }

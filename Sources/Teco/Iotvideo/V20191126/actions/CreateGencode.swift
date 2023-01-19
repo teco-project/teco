@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Iotvideo {
     ///
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
-    public func createGencode(_ input: CreateGencodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGencodeResponse> {
-        self.client.execute(action: "CreateGencode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createGencode(_ input: CreateGencodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGencodeResponse> {
+        self.client.execute(action: "CreateGencode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成设备物模型源代码
     ///
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
-    public func createGencode(_ input: CreateGencodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
-        try await self.client.execute(action: "CreateGencode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createGencode(_ input: CreateGencodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
+        try await self.client.execute(action: "CreateGencode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成设备物模型源代码
     ///
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
-    public func createGencode(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGencodeResponse> {
-        self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    public func createGencode(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGencodeResponse> {
+        self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成设备物模型源代码
     ///
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
-    public func createGencode(productId: String, revision: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
-        try await self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), logger: logger, on: eventLoop)
+    public func createGencode(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
+        try await self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
     }
 }

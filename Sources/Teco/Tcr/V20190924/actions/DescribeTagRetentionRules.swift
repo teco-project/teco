@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tcr {
 
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
-        self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
+        self.client.execute(action: "DescribeTagRetentionRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
-        try await self.client.execute(action: "DescribeTagRetentionRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagRetentionRules(_ input: DescribeTagRetentionRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
+        try await self.client.execute(action: "DescribeTagRetentionRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
-        self.describeTagRetentionRules(DescribeTagRetentionRulesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagRetentionRulesResponse> {
+        self.describeTagRetentionRules(DescribeTagRetentionRulesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
-        try await self.describeTagRetentionRules(DescribeTagRetentionRulesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeTagRetentionRules(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagRetentionRulesResponse {
+        try await self.describeTagRetentionRules(DescribeTagRetentionRulesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

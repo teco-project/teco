@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tsf {
     ///
     /// 获取应用列表其它字段，如实例数量信息等
     @inlinable
-    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAttributeResponse> {
-        self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAttributeResponse> {
+        self.client.execute(action: "DescribeApplicationAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表其它字段
     ///
     /// 获取应用列表其它字段，如实例数量信息等
     @inlinable
-    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
-        try await self.client.execute(action: "DescribeApplicationAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationAttribute(_ input: DescribeApplicationAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
+        try await self.client.execute(action: "DescribeApplicationAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取应用列表其它字段
     ///
     /// 获取应用列表其它字段，如实例数量信息等
     @inlinable
-    public func describeApplicationAttribute(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAttributeResponse> {
-        self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeApplicationAttribute(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAttributeResponse> {
+        self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表其它字段
     ///
     /// 获取应用列表其它字段，如实例数量信息等
     @inlinable
-    public func describeApplicationAttribute(applicationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
-        try await self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), logger: logger, on: eventLoop)
+    public func describeApplicationAttribute(applicationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAttributeResponse {
+        try await self.describeApplicationAttribute(DescribeApplicationAttributeRequest(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Kms {
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
-        self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableKeyRotation(_ input: DisableKeyRotationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
+        self.client.execute(action: "DisableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(_ input: DisableKeyRotationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
-        try await self.client.execute(action: "DisableKeyRotation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableKeyRotation(_ input: DisableKeyRotationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
+        try await self.client.execute(action: "DisableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
-        self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func disableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
+        self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
     @inlinable
-    public func disableKeyRotation(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
-        try await self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func disableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
+        try await self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

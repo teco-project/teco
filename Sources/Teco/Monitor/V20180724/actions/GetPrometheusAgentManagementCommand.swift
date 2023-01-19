@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Monitor {
 
     /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
-    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPrometheusAgentManagementCommandResponse> {
-        self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPrometheusAgentManagementCommandResponse> {
+        self.client.execute(action: "GetPrometheusAgentManagementCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
-    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
-        try await self.client.execute(action: "GetPrometheusAgentManagementCommand", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPrometheusAgentManagementCommand(_ input: GetPrometheusAgentManagementCommandRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
+        try await self.client.execute(action: "GetPrometheusAgentManagementCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
-    public func getPrometheusAgentManagementCommand(instanceId: String, agentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPrometheusAgentManagementCommandResponse> {
-        self.getPrometheusAgentManagementCommand(GetPrometheusAgentManagementCommandRequest(instanceId: instanceId, agentId: agentId), logger: logger, on: eventLoop)
+    public func getPrometheusAgentManagementCommand(instanceId: String, agentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPrometheusAgentManagementCommandResponse> {
+        self.getPrometheusAgentManagementCommand(GetPrometheusAgentManagementCommandRequest(instanceId: instanceId, agentId: agentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取 Prometheus Agent 管理相关的命令行
     @inlinable
-    public func getPrometheusAgentManagementCommand(instanceId: String, agentId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
-        try await self.getPrometheusAgentManagementCommand(GetPrometheusAgentManagementCommandRequest(instanceId: instanceId, agentId: agentId), logger: logger, on: eventLoop)
+    public func getPrometheusAgentManagementCommand(instanceId: String, agentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPrometheusAgentManagementCommandResponse {
+        try await self.getPrometheusAgentManagementCommand(GetPrometheusAgentManagementCommandRequest(instanceId: instanceId, agentId: agentId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Cloudaudit {
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
-        self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func lookUpEvents(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
+        self.client.execute(action: "LookUpEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(_ input: LookUpEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
-        try await self.client.execute(action: "LookUpEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func lookUpEvents(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
+        try await self.client.execute(action: "LookUpEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
-        self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), logger: logger, on: eventLoop)
+    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
+        self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索日志
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
-        try await self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), logger: logger, on: eventLoop)
+    public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
+        try await self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), region: region, logger: logger, on: eventLoop)
     }
 }

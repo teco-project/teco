@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tke {
 
     /// 创建告警规则
     @inlinable
-    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAlertRuleResponse> {
-        self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAlertRuleResponse> {
+        self.client.execute(action: "CreatePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建告警规则
     @inlinable
-    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
-        try await self.client.execute(action: "CreatePrometheusAlertRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrometheusAlertRule(_ input: CreatePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
+        try await self.client.execute(action: "CreatePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建告警规则
     @inlinable
-    public func createPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAlertRuleResponse> {
-        self.createPrometheusAlertRule(CreatePrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    public func createPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAlertRuleResponse> {
+        self.createPrometheusAlertRule(CreatePrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警规则
     @inlinable
-    public func createPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
-        try await self.createPrometheusAlertRule(CreatePrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), logger: logger, on: eventLoop)
+    public func createPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAlertRuleResponse {
+        try await self.createPrometheusAlertRule(CreatePrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -117,31 +117,31 @@ extension Dcdb {
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
-    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowLogsResponse> {
-        self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowLogsResponse> {
+        self.client.execute(action: "DescribeDBSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询慢查询日志列表
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
-    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
-        try await self.client.execute(action: "DescribeDBSlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDBSlowLogs(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
+        try await self.client.execute(action: "DescribeDBSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询慢查询日志列表
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
-    public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, shardId: String, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowLogsResponse> {
-        self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, shardId: shardId, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), logger: logger, on: eventLoop)
+    public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, shardId: String, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowLogsResponse> {
+        self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, shardId: shardId, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询慢查询日志列表
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
-    public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, shardId: String, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
-        try await self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, shardId: shardId, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), logger: logger, on: eventLoop)
+    public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, shardId: String, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
+        try await self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, shardId: shardId, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), region: region, logger: logger, on: eventLoop)
     }
 }

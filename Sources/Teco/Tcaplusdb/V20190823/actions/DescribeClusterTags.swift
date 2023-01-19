@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tcaplusdb {
 
     /// 获取集群关联的标签列表
     @inlinable
-    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterTagsResponse> {
-        self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterTags(_ input: DescribeClusterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterTagsResponse> {
+        self.client.execute(action: "DescribeClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群关联的标签列表
     @inlinable
-    public func describeClusterTags(_ input: DescribeClusterTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
-        try await self.client.execute(action: "DescribeClusterTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterTags(_ input: DescribeClusterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
+        try await self.client.execute(action: "DescribeClusterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群关联的标签列表
     @inlinable
-    public func describeClusterTags(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterTagsResponse> {
-        self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeClusterTags(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterTagsResponse> {
+        self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群关联的标签列表
     @inlinable
-    public func describeClusterTags(clusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
-        try await self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), logger: logger, on: eventLoop)
+    public func describeClusterTags(clusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterTagsResponse {
+        try await self.describeClusterTags(DescribeClusterTagsRequest(clusterIds: clusterIds), region: region, logger: logger, on: eventLoop)
     }
 }

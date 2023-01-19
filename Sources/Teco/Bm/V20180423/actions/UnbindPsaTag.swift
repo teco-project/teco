@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Bm {
 
     /// 解除标签与预授权规则的绑定
     @inlinable
-    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
-        self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unbindPsaTag(_ input: UnbindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
+        self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除标签与预授权规则的绑定
     @inlinable
-    public func unbindPsaTag(_ input: UnbindPsaTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
-        try await self.client.execute(action: "UnbindPsaTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unbindPsaTag(_ input: UnbindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
+        try await self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除标签与预授权规则的绑定
     @inlinable
-    public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
-        self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
+        self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除标签与预授权规则的绑定
     @inlinable
-    public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
-        try await self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
+        try await self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 }

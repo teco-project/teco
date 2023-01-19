@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tem {
 
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
-        self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
+        self.client.execute(action: "ModifyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
-        try await self.client.execute(action: "ModifyEnvironment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEnvironment(_ input: ModifyEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
+        try await self.client.execute(action: "ModifyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
-        self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), logger: logger, on: eventLoop)
+    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
+        self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑环境
     @inlinable
-    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
-        try await self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), logger: logger, on: eventLoop)
+    public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
+        try await self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), region: region, logger: logger, on: eventLoop)
     }
 }

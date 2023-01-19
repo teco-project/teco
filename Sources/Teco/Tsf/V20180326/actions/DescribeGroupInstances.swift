@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tsf {
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
-        self.client.execute(action: "DescribeGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
+        self.client.execute(action: "DescribeGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
-        try await self.client.execute(action: "DescribeGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupInstances(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
+        try await self.client.execute(action: "DescribeGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
-        self.describeGroupInstances(DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInstancesResponse> {
+        self.describeGroupInstances(DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
-        try await self.describeGroupInstances(DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeGroupInstances(groupId: String, searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInstancesResponse {
+        try await self.describeGroupInstances(DescribeGroupInstancesRequest(groupId: groupId, searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

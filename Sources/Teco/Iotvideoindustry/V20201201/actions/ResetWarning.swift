@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotvideoindustry {
 
     /// 重置设备告警
     @inlinable
-    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
-        self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetWarning(_ input: ResetWarningRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
+        self.client.execute(action: "ResetWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置设备告警
     @inlinable
-    public func resetWarning(_ input: ResetWarningRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
-        try await self.client.execute(action: "ResetWarning", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetWarning(_ input: ResetWarningRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
+        try await self.client.execute(action: "ResetWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置设备告警
     @inlinable
-    public func resetWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
-        self.resetWarning(ResetWarningRequest(id: id, index: index), logger: logger, on: eventLoop)
+    public func resetWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
+        self.resetWarning(ResetWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置设备告警
     @inlinable
-    public func resetWarning(id: Int64? = nil, index: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
-        try await self.resetWarning(ResetWarningRequest(id: id, index: index), logger: logger, on: eventLoop)
+    public func resetWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
+        try await self.resetWarning(ResetWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
     }
 }

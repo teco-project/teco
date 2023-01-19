@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
-    public func describeMessageQueue(_ input: DescribeMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageQueueResponse> {
-        self.client.execute(action: "DescribeMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMessageQueue(_ input: DescribeMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageQueueResponse> {
+        self.client.execute(action: "DescribeMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发消息配置
     ///
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
-    public func describeMessageQueue(_ input: DescribeMessageQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageQueueResponse {
-        try await self.client.execute(action: "DescribeMessageQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMessageQueue(_ input: DescribeMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageQueueResponse {
+        try await self.client.execute(action: "DescribeMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取产品转发消息配置
     ///
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
-    public func describeMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageQueueResponse> {
-        self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageQueueResponse> {
+        self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发消息配置
     ///
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
-    public func describeMessageQueue(productId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageQueueResponse {
-        try await self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), logger: logger, on: eventLoop)
+    public func describeMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageQueueResponse {
+        try await self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 }

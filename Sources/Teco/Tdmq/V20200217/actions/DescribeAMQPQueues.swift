@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Tdmq {
 
     /// 获取Amqp队列列表
     @inlinable
-    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPQueuesResponse> {
-        self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPQueuesResponse> {
+        self.client.execute(action: "DescribeAMQPQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp队列列表
     @inlinable
-    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
-        try await self.client.execute(action: "DescribeAMQPQueues", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAMQPQueues(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
+        try await self.client.execute(action: "DescribeAMQPQueues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Amqp队列列表
     @inlinable
-    public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPQueuesResponse> {
-        self.describeAMQPQueues(DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), logger: logger, on: eventLoop)
+    public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPQueuesResponse> {
+        self.describeAMQPQueues(DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp队列列表
     @inlinable
-    public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
-        try await self.describeAMQPQueues(DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), logger: logger, on: eventLoop)
+    public func describeAMQPQueues(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, nameKeyword: String? = nil, sortOrder: String? = nil, sortedBy: String? = nil, filterOneQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPQueuesResponse {
+        try await self.describeAMQPQueues(DescribeAMQPQueuesRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, nameKeyword: nameKeyword, sortOrder: sortOrder, sortedBy: sortedBy, filterOneQueue: filterOneQueue), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotexplorer {
 
     /// 批量删除设备
     @inlinable
-    public func deleteDevices(_ input: DeleteDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDevicesResponse> {
-        self.client.execute(action: "DeleteDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDevices(_ input: DeleteDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDevicesResponse> {
+        self.client.execute(action: "DeleteDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteDevices(_ input: DeleteDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDevicesResponse {
-        try await self.client.execute(action: "DeleteDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDevices(_ input: DeleteDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDevicesResponse {
+        try await self.client.execute(action: "DeleteDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteDevices(devicesItems: [DevicesItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDevicesResponse> {
-        self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), logger: logger, on: eventLoop)
+    public func deleteDevices(devicesItems: [DevicesItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDevicesResponse> {
+        self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteDevices(devicesItems: [DevicesItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDevicesResponse {
-        try await self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), logger: logger, on: eventLoop)
+    public func deleteDevices(devicesItems: [DevicesItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDevicesResponse {
+        try await self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), region: region, logger: logger, on: eventLoop)
     }
 }

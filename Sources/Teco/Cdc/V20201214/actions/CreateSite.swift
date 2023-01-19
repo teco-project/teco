@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -163,25 +163,25 @@ extension Cdc {
 
     /// 创建站点
     @inlinable
-    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSiteResponse> {
-        self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSite(_ input: CreateSiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSiteResponse> {
+        self.client.execute(action: "CreateSite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
     @inlinable
-    public func createSite(_ input: CreateSiteRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
-        try await self.client.execute(action: "CreateSite", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSite(_ input: CreateSiteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
+        try await self.client.execute(action: "CreateSite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建站点
     @inlinable
-    public func createSite(name: String, country: String, province: String, city: String, addressLine: String, description: String? = nil, note: String? = nil, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, postalCode: Int64? = nil, optionalAddressLine: String? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSiteResponse> {
-        self.createSite(CreateSiteRequest(name: name, country: country, province: province, city: city, addressLine: addressLine, description: description, note: note, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, postalCode: postalCode, optionalAddressLine: optionalAddressLine, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    public func createSite(name: String, country: String, province: String, city: String, addressLine: String, description: String? = nil, note: String? = nil, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, postalCode: Int64? = nil, optionalAddressLine: String? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSiteResponse> {
+        self.createSite(CreateSiteRequest(name: name, country: country, province: province, city: city, addressLine: addressLine, description: description, note: note, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, postalCode: postalCode, optionalAddressLine: optionalAddressLine, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
     @inlinable
-    public func createSite(name: String, country: String, province: String, city: String, addressLine: String, description: String? = nil, note: String? = nil, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, postalCode: Int64? = nil, optionalAddressLine: String? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
-        try await self.createSite(CreateSiteRequest(name: name, country: country, province: province, city: city, addressLine: addressLine, description: description, note: note, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, postalCode: postalCode, optionalAddressLine: optionalAddressLine, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), logger: logger, on: eventLoop)
+    public func createSite(name: String, country: String, province: String, city: String, addressLine: String, description: String? = nil, note: String? = nil, fiberType: String? = nil, opticalStandard: String? = nil, powerConnectors: String? = nil, powerFeedDrop: String? = nil, maxWeight: Int64? = nil, powerDrawKva: Int64? = nil, uplinkSpeedGbps: Int64? = nil, uplinkCount: Int64? = nil, conditionRequirement: Bool? = nil, dimensionRequirement: Bool? = nil, redundantNetworking: Bool? = nil, postalCode: Int64? = nil, optionalAddressLine: String? = nil, needHelp: Bool? = nil, redundantPower: Bool? = nil, breakerRequirement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSiteResponse {
+        try await self.createSite(CreateSiteRequest(name: name, country: country, province: province, city: city, addressLine: addressLine, description: description, note: note, fiberType: fiberType, opticalStandard: opticalStandard, powerConnectors: powerConnectors, powerFeedDrop: powerFeedDrop, maxWeight: maxWeight, powerDrawKva: powerDrawKva, uplinkSpeedGbps: uplinkSpeedGbps, uplinkCount: uplinkCount, conditionRequirement: conditionRequirement, dimensionRequirement: dimensionRequirement, redundantNetworking: redundantNetworking, postalCode: postalCode, optionalAddressLine: optionalAddressLine, needHelp: needHelp, redundantPower: redundantPower, breakerRequirement: breakerRequirement), region: region, logger: logger, on: eventLoop)
     }
 }

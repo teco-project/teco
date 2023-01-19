@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,25 +110,25 @@ extension Solar {
 
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
-        self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCustomers(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
+        self.client.execute(action: "DescribeCustomers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(_ input: DescribeCustomersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
-        try await self.client.execute(action: "DescribeCustomers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCustomers(_ input: DescribeCustomersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
+        try await self.client.execute(action: "DescribeCustomers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
-        self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomersResponse> {
+        self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户档案列表
     @inlinable
-    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
-        try await self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), logger: logger, on: eventLoop)
+    public func describeCustomers(queryType: String, groupId: String? = nil, markFlag: Int64? = nil, tagIds: String? = nil, relChannelFlag: String? = nil, needPhoneFlag: Int64? = nil, province: String? = nil, city: String? = nil, sex: String? = nil, keyWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, subProjectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomersResponse {
+        try await self.describeCustomers(DescribeCustomersRequest(queryType: queryType, groupId: groupId, markFlag: markFlag, tagIds: tagIds, relChannelFlag: relChannelFlag, needPhoneFlag: needPhoneFlag, province: province, city: city, sex: sex, keyWord: keyWord, offset: offset, limit: limit, subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Wav {
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
-        self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
+        self.client.execute(action: "QueryCrmStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
-        try await self.client.execute(action: "QueryCrmStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryCrmStatistics(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
+        try await self.client.execute(action: "QueryCrmStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
-        self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), logger: logger, on: eventLoop)
+    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCrmStatisticsResponse> {
+        self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
-        try await self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), logger: logger, on: eventLoop)
+    public func queryCrmStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, salesId: String? = nil, orgId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCrmStatisticsResponse {
+        try await self.queryCrmStatistics(QueryCrmStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit, salesId: salesId, orgId: orgId), region: region, logger: logger, on: eventLoop)
     }
 }

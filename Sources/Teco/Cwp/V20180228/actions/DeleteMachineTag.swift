@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 删除服务器关联的标签
     @inlinable
-    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
-        self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMachineTag(_ input: DeleteMachineTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
+        self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务器关联的标签
     @inlinable
-    public func deleteMachineTag(_ input: DeleteMachineTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
-        try await self.client.execute(action: "DeleteMachineTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMachineTag(_ input: DeleteMachineTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
+        try await self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除服务器关联的标签
     @inlinable
-    public func deleteMachineTag(rid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
-        self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), logger: logger, on: eventLoop)
+    public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
+        self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务器关联的标签
     @inlinable
-    public func deleteMachineTag(rid: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
-        try await self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), logger: logger, on: eventLoop)
+    public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
+        try await self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Bmlb {
     ///
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
-    public func modifyL4BackendProbePort(_ input: ModifyL4BackendProbePortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendProbePortResponse> {
-        self.client.execute(action: "ModifyL4BackendProbePort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyL4BackendProbePort(_ input: ModifyL4BackendProbePortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendProbePortResponse> {
+        self.client.execute(action: "ModifyL4BackendProbePort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡四层监听器后端探测端口
     ///
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
-    public func modifyL4BackendProbePort(_ input: ModifyL4BackendProbePortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
-        try await self.client.execute(action: "ModifyL4BackendProbePort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyL4BackendProbePort(_ input: ModifyL4BackendProbePortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
+        try await self.client.execute(action: "ModifyL4BackendProbePort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改黑石负载均衡四层监听器后端探测端口
     ///
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
-    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendProbePortResponse> {
-        self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), logger: logger, on: eventLoop)
+    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendProbePortResponse> {
+        self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡四层监听器后端探测端口
     ///
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
-    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
-        try await self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), logger: logger, on: eventLoop)
+    public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
+        try await self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), region: region, logger: logger, on: eventLoop)
     }
 }

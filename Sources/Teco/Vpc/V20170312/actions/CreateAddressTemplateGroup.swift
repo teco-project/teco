@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Vpc {
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
-        self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
+        self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
-        try await self.client.execute(action: "CreateAddressTemplateGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAddressTemplateGroup(_ input: CreateAddressTemplateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
+        try await self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
-        self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), logger: logger, on: eventLoop)
+    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
+        self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建IP地址模板集合
     ///
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
-    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
-        try await self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), logger: logger, on: eventLoop)
+    public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
+        try await self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
     }
 }

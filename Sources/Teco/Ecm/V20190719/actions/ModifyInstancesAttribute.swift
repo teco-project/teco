@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 修改实例的属性。
     @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
+        self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例属性
     ///
     /// 修改实例的属性。
     @inlinable
-    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.client.execute(action: "ModifyInstancesAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例属性
     ///
     /// 修改实例的属性。
     @inlinable
-    public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
+        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例属性
     ///
     /// 修改实例的属性。
     @inlinable
-    public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), logger: logger, on: eventLoop)
+    public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
+        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
 }

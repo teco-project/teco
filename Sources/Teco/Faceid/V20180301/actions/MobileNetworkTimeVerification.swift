@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Faceid {
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
-        self.client.execute(action: "MobileNetworkTimeVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
+        self.client.execute(action: "MobileNetworkTimeVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
-        try await self.client.execute(action: "MobileNetworkTimeVerification", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func mobileNetworkTimeVerification(_ input: MobileNetworkTimeVerificationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
+        try await self.client.execute(action: "MobileNetworkTimeVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
-        self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
+        self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号在网时长核验
     ///
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
-    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
-        try await self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
+        try await self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Sqlserver {
     ///
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
-    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCDCResponse> {
-        self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCDCResponse> {
+        self.client.execute(action: "ModifyDatabaseCDC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启&关闭数据库CDC
     ///
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
-    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
-        try await self.client.execute(action: "ModifyDatabaseCDC", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDatabaseCDC(_ input: ModifyDatabaseCDCRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
+        try await self.client.execute(action: "ModifyDatabaseCDC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启&关闭数据库CDC
     ///
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
-    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCDCResponse> {
-        self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCDCResponse> {
+        self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启&关闭数据库CDC
     ///
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
-    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
-        try await self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
+        try await self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

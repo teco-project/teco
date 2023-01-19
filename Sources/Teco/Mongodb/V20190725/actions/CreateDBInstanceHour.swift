@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -161,31 +161,31 @@ extension Mongodb {
     ///
     /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
     @inlinable
-    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
-        self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
+        self.client.execute(action: "CreateDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云数据库实例（按量计费）
     ///
     /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
     @inlinable
-    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
-        try await self.client.execute(action: "CreateDBInstanceHour", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
+        try await self.client.execute(action: "CreateDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云数据库实例（按量计费）
     ///
     /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
     @inlinable
-    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, projectId: Int64? = nil, tags: [TagInfo]? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
-        self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, nodeNum: nodeNum, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, clusterType: clusterType, vpcId: vpcId, subnetId: subnetId, password: password, projectId: projectId, tags: tags, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum), logger: logger, on: eventLoop)
+    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, projectId: Int64? = nil, tags: [TagInfo]? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
+        self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, nodeNum: nodeNum, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, clusterType: clusterType, vpcId: vpcId, subnetId: subnetId, password: password, projectId: projectId, tags: tags, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云数据库实例（按量计费）
     ///
     /// 本接口(CreateDBInstanceHour)用于创建按量计费的MongoDB云数据库实例。
     @inlinable
-    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, projectId: Int64? = nil, tags: [TagInfo]? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
-        try await self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, nodeNum: nodeNum, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, clusterType: clusterType, vpcId: vpcId, subnetId: subnetId, password: password, projectId: projectId, tags: tags, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum), logger: logger, on: eventLoop)
+    public func createDBInstanceHour(memory: UInt64, volume: UInt64, replicateSetNum: UInt64, nodeNum: UInt64, mongoVersion: String, machineCode: String, goodsNum: UInt64, zone: String, clusterType: String, vpcId: String? = nil, subnetId: String? = nil, password: String? = nil, projectId: Int64? = nil, tags: [TagInfo]? = nil, clone: Int64? = nil, father: String? = nil, securityGroup: [String]? = nil, restoreTime: String? = nil, instanceName: String? = nil, availabilityZoneList: [String]? = nil, mongosCpu: UInt64? = nil, mongosMemory: UInt64? = nil, mongosNodeNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
+        try await self.createDBInstanceHour(CreateDBInstanceHourRequest(memory: memory, volume: volume, replicateSetNum: replicateSetNum, nodeNum: nodeNum, mongoVersion: mongoVersion, machineCode: machineCode, goodsNum: goodsNum, zone: zone, clusterType: clusterType, vpcId: vpcId, subnetId: subnetId, password: password, projectId: projectId, tags: tags, clone: clone, father: father, securityGroup: securityGroup, restoreTime: restoreTime, instanceName: instanceName, availabilityZoneList: availabilityZoneList, mongosCpu: mongosCpu, mongosMemory: mongosMemory, mongosNodeNum: mongosNodeNum), region: region, logger: logger, on: eventLoop)
     }
 }

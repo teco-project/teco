@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -33,25 +33,25 @@ extension Ivld {
 
     /// 创建默认自定义人物类型
     @inlinable
-    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultCategoriesResponse> {
-        self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultCategoriesResponse> {
+        self.client.execute(action: "CreateDefaultCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建默认自定义人物类型
     @inlinable
-    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
-        try await self.client.execute(action: "CreateDefaultCategories", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDefaultCategories(_ input: CreateDefaultCategoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
+        try await self.client.execute(action: "CreateDefaultCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建默认自定义人物类型
     @inlinable
-    public func createDefaultCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultCategoriesResponse> {
-        self.createDefaultCategories(CreateDefaultCategoriesRequest(), logger: logger, on: eventLoop)
+    public func createDefaultCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultCategoriesResponse> {
+        self.createDefaultCategories(CreateDefaultCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建默认自定义人物类型
     @inlinable
-    public func createDefaultCategories(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
-        try await self.createDefaultCategories(CreateDefaultCategoriesRequest(), logger: logger, on: eventLoop)
+    public func createDefaultCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultCategoriesResponse {
+        try await self.createDefaultCategories(CreateDefaultCategoriesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

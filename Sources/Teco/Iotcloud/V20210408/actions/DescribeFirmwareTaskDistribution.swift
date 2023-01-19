@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Iotcloud {
 
     /// 查询固件升级任务状态分布
     @inlinable
-    public func describeFirmwareTaskDistribution(_ input: DescribeFirmwareTaskDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
-        self.client.execute(action: "DescribeFirmwareTaskDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFirmwareTaskDistribution(_ input: DescribeFirmwareTaskDistributionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
+        self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务状态分布
     @inlinable
-    public func describeFirmwareTaskDistribution(_ input: DescribeFirmwareTaskDistributionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
-        try await self.client.execute(action: "DescribeFirmwareTaskDistribution", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFirmwareTaskDistribution(_ input: DescribeFirmwareTaskDistributionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
+        try await self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询固件升级任务状态分布
     @inlinable
-    public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
-        self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
+        self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务状态分布
     @inlinable
-    public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
-        try await self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
+        try await self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

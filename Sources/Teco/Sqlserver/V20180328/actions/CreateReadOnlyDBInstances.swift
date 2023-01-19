@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -152,31 +152,31 @@ extension Sqlserver {
     ///
     /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
     @inlinable
-    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstancesResponse> {
-        self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstancesResponse> {
+        self.client.execute(action: "CreateReadOnlyDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建只读实例
     ///
     /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
     @inlinable
-    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
-        try await self.client.execute(action: "CreateReadOnlyDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReadOnlyDBInstances(_ input: CreateReadOnlyDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
+        try await self.client.execute(action: "CreateReadOnlyDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建只读实例
     ///
     /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
     @inlinable
-    public func createReadOnlyDBInstances(instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64? = nil, readOnlyGroupId: String? = nil, readOnlyGroupName: String? = nil, readOnlyGroupIsOfflineDelay: Int64? = nil, readOnlyGroupMaxDelayTime: Int64? = nil, readOnlyGroupMinInGroup: Int64? = nil, instanceChargeType: String? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstancesResponse> {
-        self.createReadOnlyDBInstances(CreateReadOnlyDBInstancesRequest(instanceId: instanceId, zone: zone, readOnlyGroupType: readOnlyGroupType, memory: memory, storage: storage, readOnlyGroupForcedUpgrade: readOnlyGroupForcedUpgrade, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, readOnlyGroupIsOfflineDelay: readOnlyGroupIsOfflineDelay, readOnlyGroupMaxDelayTime: readOnlyGroupMaxDelayTime, readOnlyGroupMinInGroup: readOnlyGroupMinInGroup, instanceChargeType: instanceChargeType, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, period: period, securityGroupList: securityGroupList, autoVoucher: autoVoucher, voucherIds: voucherIds, resourceTags: resourceTags, collation: collation, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstances(instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64? = nil, readOnlyGroupId: String? = nil, readOnlyGroupName: String? = nil, readOnlyGroupIsOfflineDelay: Int64? = nil, readOnlyGroupMaxDelayTime: Int64? = nil, readOnlyGroupMinInGroup: Int64? = nil, instanceChargeType: String? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyDBInstancesResponse> {
+        self.createReadOnlyDBInstances(CreateReadOnlyDBInstancesRequest(instanceId: instanceId, zone: zone, readOnlyGroupType: readOnlyGroupType, memory: memory, storage: storage, readOnlyGroupForcedUpgrade: readOnlyGroupForcedUpgrade, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, readOnlyGroupIsOfflineDelay: readOnlyGroupIsOfflineDelay, readOnlyGroupMaxDelayTime: readOnlyGroupMaxDelayTime, readOnlyGroupMinInGroup: readOnlyGroupMinInGroup, instanceChargeType: instanceChargeType, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, period: period, securityGroupList: securityGroupList, autoVoucher: autoVoucher, voucherIds: voucherIds, resourceTags: resourceTags, collation: collation, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建只读实例
     ///
     /// 本接口（CreateReadOnlyDBInstances）用于添加只读副本实例。
     @inlinable
-    public func createReadOnlyDBInstances(instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64? = nil, readOnlyGroupId: String? = nil, readOnlyGroupName: String? = nil, readOnlyGroupIsOfflineDelay: Int64? = nil, readOnlyGroupMaxDelayTime: Int64? = nil, readOnlyGroupMinInGroup: Int64? = nil, instanceChargeType: String? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
-        try await self.createReadOnlyDBInstances(CreateReadOnlyDBInstancesRequest(instanceId: instanceId, zone: zone, readOnlyGroupType: readOnlyGroupType, memory: memory, storage: storage, readOnlyGroupForcedUpgrade: readOnlyGroupForcedUpgrade, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, readOnlyGroupIsOfflineDelay: readOnlyGroupIsOfflineDelay, readOnlyGroupMaxDelayTime: readOnlyGroupMaxDelayTime, readOnlyGroupMinInGroup: readOnlyGroupMinInGroup, instanceChargeType: instanceChargeType, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, period: period, securityGroupList: securityGroupList, autoVoucher: autoVoucher, voucherIds: voucherIds, resourceTags: resourceTags, collation: collation, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func createReadOnlyDBInstances(instanceId: String, zone: String, readOnlyGroupType: Int64, memory: Int64, storage: Int64, readOnlyGroupForcedUpgrade: Int64? = nil, readOnlyGroupId: String? = nil, readOnlyGroupName: String? = nil, readOnlyGroupIsOfflineDelay: Int64? = nil, readOnlyGroupMaxDelayTime: Int64? = nil, readOnlyGroupMinInGroup: Int64? = nil, instanceChargeType: String? = nil, goodsNum: Int64? = nil, subnetId: String? = nil, vpcId: String? = nil, period: Int64? = nil, securityGroupList: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, resourceTags: [ResourceTag]? = nil, collation: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyDBInstancesResponse {
+        try await self.createReadOnlyDBInstances(CreateReadOnlyDBInstancesRequest(instanceId: instanceId, zone: zone, readOnlyGroupType: readOnlyGroupType, memory: memory, storage: storage, readOnlyGroupForcedUpgrade: readOnlyGroupForcedUpgrade, readOnlyGroupId: readOnlyGroupId, readOnlyGroupName: readOnlyGroupName, readOnlyGroupIsOfflineDelay: readOnlyGroupIsOfflineDelay, readOnlyGroupMaxDelayTime: readOnlyGroupMaxDelayTime, readOnlyGroupMinInGroup: readOnlyGroupMinInGroup, instanceChargeType: instanceChargeType, goodsNum: goodsNum, subnetId: subnetId, vpcId: vpcId, period: period, securityGroupList: securityGroupList, autoVoucher: autoVoucher, voucherIds: voucherIds, resourceTags: resourceTags, collation: collation, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

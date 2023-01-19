@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -40,31 +40,31 @@ extension Ssa {
     ///
     /// 合规详情项
     @inlinable
-    public func describeSocCspmCompliance(_ input: DescribeSocCspmComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCspmComplianceResponse> {
-        self.client.execute(action: "DescribeSocCspmCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSocCspmCompliance(_ input: DescribeSocCspmComplianceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCspmComplianceResponse> {
+        self.client.execute(action: "DescribeSocCspmCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合规详情
     ///
     /// 合规详情项
     @inlinable
-    public func describeSocCspmCompliance(_ input: DescribeSocCspmComplianceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
-        try await self.client.execute(action: "DescribeSocCspmCompliance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSocCspmCompliance(_ input: DescribeSocCspmComplianceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
+        try await self.client.execute(action: "DescribeSocCspmCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合规详情
     ///
     /// 合规详情项
     @inlinable
-    public func describeSocCspmCompliance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCspmComplianceResponse> {
-        self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), logger: logger, on: eventLoop)
+    public func describeSocCspmCompliance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCspmComplianceResponse> {
+        self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合规详情
     ///
     /// 合规详情项
     @inlinable
-    public func describeSocCspmCompliance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
-        try await self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), logger: logger, on: eventLoop)
+    public func describeSocCspmCompliance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
+        try await self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

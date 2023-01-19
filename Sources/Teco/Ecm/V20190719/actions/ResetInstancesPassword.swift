@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,31 +60,31 @@ extension Ecm {
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
-        self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
+        self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
-        try await self.client.execute(action: "ResetInstancesPassword", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
+        try await self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
-        self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), logger: logger, on: eventLoop)
+    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
+        self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
     @inlinable
-    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
-        try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), logger: logger, on: eventLoop)
+    public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
+        try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cbs {
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
-        self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
+        self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
-        try await self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDiskAssociatedAutoSnapshotPolicy(_ input: DescribeDiskAssociatedAutoSnapshotPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
+        try await self.client.execute(action: "DescribeDiskAssociatedAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
-        self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), logger: logger, on: eventLoop)
+    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskAssociatedAutoSnapshotPolicyResponse> {
+        self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘关联定期快照策略
     ///
     /// 本接口（DescribeDiskAssociatedAutoSnapshotPolicy）用于查询云盘绑定的定期快照策略。
     @inlinable
-    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
-        try await self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), logger: logger, on: eventLoop)
+    public func describeDiskAssociatedAutoSnapshotPolicy(diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskAssociatedAutoSnapshotPolicyResponse {
+        try await self.describeDiskAssociatedAutoSnapshotPolicy(DescribeDiskAssociatedAutoSnapshotPolicyRequest(diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
 }

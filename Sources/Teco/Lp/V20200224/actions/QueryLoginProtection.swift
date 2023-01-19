@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -267,31 +267,31 @@ extension Lp {
     ///
     /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
     @inlinable
-    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLoginProtectionResponse> {
-        self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLoginProtectionResponse> {
+        self.client.execute(action: "QueryLoginProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 登录保护
     ///
     /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
     @inlinable
-    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
-        try await self.client.execute(action: "QueryLoginProtection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryLoginProtection(_ input: QueryLoginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
+        try await self.client.execute(action: "QueryLoginProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 登录保护
     ///
     /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
     @inlinable
-    public func queryLoginProtection(loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, address: String? = nil, cookieHash: String? = nil, loginSource: String? = nil, loginType: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, loginSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLoginProtectionResponse> {
-        self.queryLoginProtection(QueryLoginProtectionRequest(loginIp: loginIp, uid: uid, loginTime: loginTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, registerTime: registerTime, address: address, cookieHash: cookieHash, loginSource: loginSource, loginType: loginType, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, loginSpend: loginSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), logger: logger, on: eventLoop)
+    public func queryLoginProtection(loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, address: String? = nil, cookieHash: String? = nil, loginSource: String? = nil, loginType: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, loginSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLoginProtectionResponse> {
+        self.queryLoginProtection(QueryLoginProtectionRequest(loginIp: loginIp, uid: uid, loginTime: loginTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, registerTime: registerTime, address: address, cookieHash: cookieHash, loginSource: loginSource, loginType: loginType, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, loginSpend: loginSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 登录保护
     ///
     /// 登录保护服务（LoginProtection，LP）针对网站和 APP 的用户登录场景，实时检测是否存在盗号、撞库等恶意登录行为，帮助开发者发现异常登录，降低恶意用户登录给业务带来的风险。
     @inlinable
-    public func queryLoginProtection(loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, address: String? = nil, cookieHash: String? = nil, loginSource: String? = nil, loginType: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, loginSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
-        try await self.queryLoginProtection(QueryLoginProtectionRequest(loginIp: loginIp, uid: uid, loginTime: loginTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, registerTime: registerTime, address: address, cookieHash: cookieHash, loginSource: loginSource, loginType: loginType, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, loginSpend: loginSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), logger: logger, on: eventLoop)
+    public func queryLoginProtection(loginIp: String, uid: String, loginTime: String, accountType: String, appIdU: String? = nil, associateAccount: String? = nil, nickName: String? = nil, phoneNumber: String? = nil, emailAddress: String? = nil, registerTime: String? = nil, address: String? = nil, cookieHash: String? = nil, loginSource: String? = nil, loginType: String? = nil, referer: String? = nil, jumpUrl: String? = nil, userAgent: String? = nil, xForwardedFor: String? = nil, mouseClickCount: String? = nil, keyboardClickCount: String? = nil, result: String? = nil, reason: String? = nil, loginSpend: String? = nil, macAddress: String? = nil, vendorId: String? = nil, appVersion: String? = nil, imei: String? = nil, businessId: String? = nil, wxSubType: String? = nil, randNum: String? = nil, wxToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLoginProtectionResponse {
+        try await self.queryLoginProtection(QueryLoginProtectionRequest(loginIp: loginIp, uid: uid, loginTime: loginTime, accountType: accountType, appIdU: appIdU, associateAccount: associateAccount, nickName: nickName, phoneNumber: phoneNumber, emailAddress: emailAddress, registerTime: registerTime, address: address, cookieHash: cookieHash, loginSource: loginSource, loginType: loginType, referer: referer, jumpUrl: jumpUrl, userAgent: userAgent, xForwardedFor: xForwardedFor, mouseClickCount: mouseClickCount, keyboardClickCount: keyboardClickCount, result: result, reason: reason, loginSpend: loginSpend, macAddress: macAddress, vendorId: vendorId, appVersion: appVersion, imei: imei, businessId: businessId, wxSubType: wxSubType, randNum: randNum, wxToken: wxToken), region: region, logger: logger, on: eventLoop)
     }
 }

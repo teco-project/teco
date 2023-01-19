@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Clb {
     /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
-        self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDomain(_ input: ModifyDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
+        self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改七层转发规则的域名
@@ -68,8 +68,8 @@ extension Clb {
     /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyDomain(_ input: ModifyDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        try await self.client.execute(action: "ModifyDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDomain(_ input: ModifyDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
+        try await self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改七层转发规则的域名
@@ -77,8 +77,8 @@ extension Clb {
     /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
-        self.modifyDomain(ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), logger: logger, on: eventLoop)
+    public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
+        self.modifyDomain(ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改七层转发规则的域名
@@ -86,7 +86,7 @@ extension Clb {
     /// ModifyDomain接口用来修改负载均衡七层监听器下的域名。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
-    public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        try await self.modifyDomain(ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), logger: logger, on: eventLoop)
+    public func modifyDomain(loadBalancerId: String, listenerId: String, domain: String, newDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
+        try await self.modifyDomain(ModifyDomainRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain), region: region, logger: logger, on: eventLoop)
     }
 }

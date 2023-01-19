@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Clb {
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
-        self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
+        self.client.execute(action: "DescribeClassicalLBHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
-        try await self.client.execute(action: "DescribeClassicalLBHealthStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClassicalLBHealthStatus(_ input: DescribeClassicalLBHealthStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
+        try await self.client.execute(action: "DescribeClassicalLBHealthStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
-        self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClassicalLBHealthStatusResponse> {
+        self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取传统型负载均衡后端的健康状态
     ///
     /// DescribeClassicalLBHealthStatus用于获取传统型负载均衡后端的健康状态
     @inlinable
-    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
-        try await self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), logger: logger, on: eventLoop)
+    public func describeClassicalLBHealthStatus(loadBalancerId: String, listenerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClassicalLBHealthStatusResponse {
+        try await self.describeClassicalLBHealthStatus(DescribeClassicalLBHealthStatusRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
 }

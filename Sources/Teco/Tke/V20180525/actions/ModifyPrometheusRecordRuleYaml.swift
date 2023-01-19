@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tke {
 
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable
-    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusRecordRuleYamlResponse> {
-        self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusRecordRuleYamlResponse> {
+        self.client.execute(action: "ModifyPrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable
-    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
-        try await self.client.execute(action: "ModifyPrometheusRecordRuleYaml", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPrometheusRecordRuleYaml(_ input: ModifyPrometheusRecordRuleYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
+        try await self.client.execute(action: "ModifyPrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable
-    public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusRecordRuleYamlResponse> {
-        self.modifyPrometheusRecordRuleYaml(ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content), logger: logger, on: eventLoop)
+    public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusRecordRuleYamlResponse> {
+        self.modifyPrometheusRecordRuleYaml(ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过yaml的方式修改Prometheus聚合实例
     @inlinable
-    public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
-        try await self.modifyPrometheusRecordRuleYaml(ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content), logger: logger, on: eventLoop)
+    public func modifyPrometheusRecordRuleYaml(instanceId: String, name: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusRecordRuleYamlResponse {
+        try await self.modifyPrometheusRecordRuleYaml(ModifyPrometheusRecordRuleYamlRequest(instanceId: instanceId, name: name, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

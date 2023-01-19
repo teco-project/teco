@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Ckafka {
 
     /// 修改Datahub任务
     @inlinable
-    public func modifyDatahubTask(_ input: ModifyDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatahubTaskResponse> {
-        self.client.execute(action: "ModifyDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDatahubTask(_ input: ModifyDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatahubTaskResponse> {
+        self.client.execute(action: "ModifyDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Datahub任务
     @inlinable
-    public func modifyDatahubTask(_ input: ModifyDatahubTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatahubTaskResponse {
-        try await self.client.execute(action: "ModifyDatahubTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDatahubTask(_ input: ModifyDatahubTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatahubTaskResponse {
+        try await self.client.execute(action: "ModifyDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改Datahub任务
     @inlinable
-    public func modifyDatahubTask(taskId: String, taskName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatahubTaskResponse> {
-        self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), logger: logger, on: eventLoop)
+    public func modifyDatahubTask(taskId: String, taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatahubTaskResponse> {
+        self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Datahub任务
     @inlinable
-    public func modifyDatahubTask(taskId: String, taskName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatahubTaskResponse {
-        try await self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), logger: logger, on: eventLoop)
+    public func modifyDatahubTask(taskId: String, taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatahubTaskResponse {
+        try await self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }
 }

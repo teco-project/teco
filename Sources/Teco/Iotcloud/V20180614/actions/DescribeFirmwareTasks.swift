@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iotcloud {
 
     /// 查询固件升级任务列表
     @inlinable
-    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
-        self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
+        self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表
     @inlinable
-    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
-        try await self.client.execute(action: "DescribeFirmwareTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFirmwareTasks(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
+        try await self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询固件升级任务列表
     @inlinable
-    public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
-        self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
+        self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表
     @inlinable
-    public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
-        try await self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
+        try await self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

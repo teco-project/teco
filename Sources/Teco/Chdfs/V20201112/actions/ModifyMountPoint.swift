@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Chdfs {
     ///
     /// 修改挂载点属性。
     @inlinable
-    public func modifyMountPoint(_ input: ModifyMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMountPointResponse> {
-        self.client.execute(action: "ModifyMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMountPoint(_ input: ModifyMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMountPointResponse> {
+        self.client.execute(action: "ModifyMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改挂载点属性
     ///
     /// 修改挂载点属性。
     @inlinable
-    public func modifyMountPoint(_ input: ModifyMountPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMountPointResponse {
-        try await self.client.execute(action: "ModifyMountPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMountPoint(_ input: ModifyMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMountPointResponse {
+        try await self.client.execute(action: "ModifyMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改挂载点属性
     ///
     /// 修改挂载点属性。
     @inlinable
-    public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMountPointResponse> {
-        self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMountPointResponse> {
+        self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改挂载点属性
     ///
     /// 修改挂载点属性。
     @inlinable
-    public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMountPointResponse {
-        try await self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus), logger: logger, on: eventLoop)
+    public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMountPointResponse {
+        try await self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Bmvpc {
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
     @inlinable
-    public func describeSubnetByDevice(_ input: DescribeSubnetByDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetByDeviceResponse> {
-        self.client.execute(action: "DescribeSubnetByDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSubnetByDevice(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetByDeviceResponse> {
+        self.client.execute(action: "DescribeSubnetByDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机加入的子网列表
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
     @inlinable
-    public func describeSubnetByDevice(_ input: DescribeSubnetByDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetByDeviceResponse {
-        try await self.client.execute(action: "DescribeSubnetByDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSubnetByDevice(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetByDeviceResponse {
+        try await self.client.execute(action: "DescribeSubnetByDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询物理机加入的子网列表
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
     @inlinable
-    public func describeSubnetByDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetByDeviceResponse> {
-        self.describeSubnetByDevice(DescribeSubnetByDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSubnetByDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetByDeviceResponse> {
+        self.describeSubnetByDevice(DescribeSubnetByDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询物理机加入的子网列表
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
     @inlinable
-    public func describeSubnetByDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetByDeviceResponse {
-        try await self.describeSubnetByDevice(DescribeSubnetByDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeSubnetByDevice(instanceId: String, types: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetByDeviceResponse {
+        try await self.describeSubnetByDevice(DescribeSubnetByDeviceRequest(instanceId: instanceId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

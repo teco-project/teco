@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,8 +46,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
-        self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getRecordPlans(_ input: GetRecordPlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
+        self.client.execute(action: "GetRecordPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取全部录制计划（旧）
@@ -55,8 +55,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(_ input: GetRecordPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
-        try await self.client.execute(action: "GetRecordPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getRecordPlans(_ input: GetRecordPlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
+        try await self.client.execute(action: "GetRecordPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取全部录制计划（旧）
@@ -64,8 +64,8 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
-        self.getRecordPlans(GetRecordPlansRequest(), logger: logger, on: eventLoop)
+    public func getRecordPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordPlansResponse> {
+        self.getRecordPlans(GetRecordPlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取全部录制计划（旧）
@@ -73,7 +73,7 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordPlans)用于获取用户的全部录制计划。
     /// 请使用DescribeRecordingPlans接口
     @inlinable
-    public func getRecordPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
-        try await self.getRecordPlans(GetRecordPlansRequest(), logger: logger, on: eventLoop)
+    public func getRecordPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordPlansResponse {
+        try await self.getRecordPlans(GetRecordPlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

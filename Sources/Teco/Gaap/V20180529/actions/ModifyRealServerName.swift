@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Gaap {
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
-        self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
+        self.client.execute(action: "ModifyRealServerName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
-        try await self.client.execute(action: "ModifyRealServerName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRealServerName(_ input: ModifyRealServerNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
+        try await self.client.execute(action: "ModifyRealServerName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
-        self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), logger: logger, on: eventLoop)
+    public func modifyRealServerName(realServerName: String, realServerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRealServerNameResponse> {
+        self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改源站名称
     ///
     /// 本接口（ModifyRealServerName）用于修改源站的名称
     @inlinable
-    public func modifyRealServerName(realServerName: String, realServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
-        try await self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), logger: logger, on: eventLoop)
+    public func modifyRealServerName(realServerName: String, realServerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerNameResponse {
+        try await self.modifyRealServerName(ModifyRealServerNameRequest(realServerName: realServerName, realServerId: realServerId), region: region, logger: logger, on: eventLoop)
     }
 }

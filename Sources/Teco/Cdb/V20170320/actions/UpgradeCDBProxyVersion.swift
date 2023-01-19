@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Cdb {
 
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
-        self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
+        self.client.execute(action: "UpgradeCDBProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
-        try await self.client.execute(action: "UpgradeCDBProxyVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeCDBProxyVersion(_ input: UpgradeCDBProxyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
+        try await self.client.execute(action: "UpgradeCDBProxyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
-        self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeCDBProxyVersionResponse> {
+        self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级数据库代理版本
     @inlinable
-    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
-        try await self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), logger: logger, on: eventLoop)
+    public func upgradeCDBProxyVersion(instanceId: String, proxyGroupId: String, srcProxyVersion: String, dstProxyVersion: String, upgradeTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeCDBProxyVersionResponse {
+        try await self.upgradeCDBProxyVersion(UpgradeCDBProxyVersionRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, srcProxyVersion: srcProxyVersion, dstProxyVersion: dstProxyVersion, upgradeTime: upgradeTime), region: region, logger: logger, on: eventLoop)
     }
 }

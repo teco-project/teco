@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Cme {
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
     @inlinable
-    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
-        self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteClass(_ input: DeleteClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
+        self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除分类
@@ -70,8 +70,8 @@ extension Cme {
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
     @inlinable
-    public func deleteClass(_ input: DeleteClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
-        try await self.client.execute(action: "DeleteClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteClass(_ input: DeleteClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
+        try await self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除分类
@@ -80,8 +80,8 @@ extension Cme {
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
     @inlinable
-    public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
-        self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
+        self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除分类
@@ -90,7 +90,7 @@ extension Cme {
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
     @inlinable
-    public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
-        try await self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), logger: logger, on: eventLoop)
+    public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
+        try await self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

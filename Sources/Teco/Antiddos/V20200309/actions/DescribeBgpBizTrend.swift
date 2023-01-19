@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,25 +82,25 @@ extension Antiddos {
 
     /// 获取高防包流量折线图
     @inlinable
-    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBgpBizTrendResponse> {
-        self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBgpBizTrendResponse> {
+        self.client.execute(action: "DescribeBgpBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包流量折线图
     @inlinable
-    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
-        try await self.client.execute(action: "DescribeBgpBizTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBgpBizTrend(_ input: DescribeBgpBizTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
+        try await self.client.execute(action: "DescribeBgpBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防包流量折线图
     @inlinable
-    public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBgpBizTrendResponse> {
-        self.describeBgpBizTrend(DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), logger: logger, on: eventLoop)
+    public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBgpBizTrendResponse> {
+        self.describeBgpBizTrend(DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防包流量折线图
     @inlinable
-    public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
-        try await self.describeBgpBizTrend(DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), logger: logger, on: eventLoop)
+    public func describeBgpBizTrend(business: String, startTime: String, endTime: String, metricName: String, instanceId: String, flag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBgpBizTrendResponse {
+        try await self.describeBgpBizTrend(DescribeBgpBizTrendRequest(business: business, startTime: startTime, endTime: endTime, metricName: metricName, instanceId: instanceId, flag: flag), region: region, logger: logger, on: eventLoop)
     }
 }

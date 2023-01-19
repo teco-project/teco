@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dlc {
     ///
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
-    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImportTaskResponse> {
-        self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createImportTask(_ input: CreateImportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImportTaskResponse> {
+        self.client.execute(action: "CreateImportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建导入任务
     ///
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
-    public func createImportTask(_ input: CreateImportTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
-        try await self.client.execute(action: "CreateImportTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createImportTask(_ input: CreateImportTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
+        try await self.client.execute(action: "CreateImportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建导入任务
     ///
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
-    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImportTaskResponse> {
-        self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImportTaskResponse> {
+        self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建导入任务
     ///
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
-    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
-        try await self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), logger: logger, on: eventLoop)
+    public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
+        try await self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
     }
 }

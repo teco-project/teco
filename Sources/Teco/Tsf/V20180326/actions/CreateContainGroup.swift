@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -160,25 +160,25 @@ extension Tsf {
 
     /// 创建容器部署组
     @inlinable
-    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
-        self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createContainGroup(_ input: CreateContainGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
+        self.client.execute(action: "CreateContainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建容器部署组
     @inlinable
-    public func createContainGroup(_ input: CreateContainGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
-        try await self.client.execute(action: "CreateContainGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createContainGroup(_ input: CreateContainGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
+        try await self.client.execute(action: "CreateContainGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建容器部署组
     @inlinable
-    public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
-        self.createContainGroup(CreateContainGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), logger: logger, on: eventLoop)
+    public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContainGroupResponse> {
+        self.createContainGroup(CreateContainGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建容器部署组
     @inlinable
-    public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
-        try await self.createContainGroup(CreateContainGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), logger: logger, on: eventLoop)
+    public func createContainGroup(applicationId: String, namespaceId: String, groupName: String, instanceNum: Int64, accessType: Int64, protocolPorts: [ProtocolPort], clusterId: String, cpuLimit: String? = nil, memLimit: String? = nil, groupComment: String? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, cpuRequest: String? = nil, memRequest: String? = nil, groupResourceType: String? = nil, subnetId: String? = nil, agentCpuRequest: String? = nil, agentCpuLimit: String? = nil, agentMemRequest: String? = nil, agentMemLimit: String? = nil, istioCpuRequest: String? = nil, istioCpuLimit: String? = nil, istioMemRequest: String? = nil, istioMemLimit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContainGroupResponse {
+        try await self.createContainGroup(CreateContainGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, instanceNum: instanceNum, accessType: accessType, protocolPorts: protocolPorts, clusterId: clusterId, cpuLimit: cpuLimit, memLimit: memLimit, groupComment: groupComment, updateType: updateType, updateIvl: updateIvl, cpuRequest: cpuRequest, memRequest: memRequest, groupResourceType: groupResourceType, subnetId: subnetId, agentCpuRequest: agentCpuRequest, agentCpuLimit: agentCpuLimit, agentMemRequest: agentMemRequest, agentMemLimit: agentMemLimit, istioCpuRequest: istioCpuRequest, istioCpuLimit: istioCpuLimit, istioMemRequest: istioMemRequest, istioMemLimit: istioMemLimit), region: region, logger: logger, on: eventLoop)
     }
 }

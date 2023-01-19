@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 添加检索模板
     @inlinable
-    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
-        self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
+        self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加检索模板
     @inlinable
-    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
-        try await self.client.execute(action: "CreateSearchTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSearchTemplate(_ input: CreateSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
+        try await self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加检索模板
     @inlinable
-    public func createSearchTemplate(searchTemplate: SearchTemplate, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
-        self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), logger: logger, on: eventLoop)
+    public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
+        self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加检索模板
     @inlinable
-    public func createSearchTemplate(searchTemplate: SearchTemplate, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
-        try await self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), logger: logger, on: eventLoop)
+    public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
+        try await self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }
 }

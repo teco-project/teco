@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 查询规则详情
     @inlinable
-    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
-        self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
+        self.client.execute(action: "DescribeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则详情
     @inlinable
-    public func describeRule(_ input: DescribeRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
-        try await self.client.execute(action: "DescribeRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
+        try await self.client.execute(action: "DescribeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询规则详情
     @inlinable
-    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
-        self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
+        self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询规则详情
     @inlinable
-    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
-        try await self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRule(ruleId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
+        try await self.describeRule(DescribeRuleRequest(ruleId: ruleId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

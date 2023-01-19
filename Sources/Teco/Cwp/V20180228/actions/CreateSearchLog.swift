@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 添加历史搜索记录
     @inlinable
-    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchLogResponse> {
-        self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSearchLog(_ input: CreateSearchLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchLogResponse> {
+        self.client.execute(action: "CreateSearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加历史搜索记录
     @inlinable
-    public func createSearchLog(_ input: CreateSearchLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
-        try await self.client.execute(action: "CreateSearchLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSearchLog(_ input: CreateSearchLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
+        try await self.client.execute(action: "CreateSearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加历史搜索记录
     @inlinable
-    public func createSearchLog(searchContent: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchLogResponse> {
-        self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), logger: logger, on: eventLoop)
+    public func createSearchLog(searchContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchLogResponse> {
+        self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加历史搜索记录
     @inlinable
-    public func createSearchLog(searchContent: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
-        try await self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), logger: logger, on: eventLoop)
+    public func createSearchLog(searchContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
+        try await self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), region: region, logger: logger, on: eventLoop)
     }
 }

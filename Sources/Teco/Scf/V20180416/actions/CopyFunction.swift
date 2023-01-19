@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,8 +88,8 @@ extension Scf {
     /// 3. 函数配置的日志投递到的CLS目标。
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable
-    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFunctionResponse> {
-        self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func copyFunction(_ input: CopyFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFunctionResponse> {
+        self.client.execute(action: "CopyFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制函数
@@ -101,8 +101,8 @@ extension Scf {
     /// 3. 函数配置的日志投递到的CLS目标。
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable
-    public func copyFunction(_ input: CopyFunctionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
-        try await self.client.execute(action: "CopyFunction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func copyFunction(_ input: CopyFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
+        try await self.client.execute(action: "CopyFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制函数
@@ -114,8 +114,8 @@ extension Scf {
     /// 3. 函数配置的日志投递到的CLS目标。
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable
-    public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFunctionResponse> {
-        self.copyFunction(CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), logger: logger, on: eventLoop)
+    public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyFunctionResponse> {
+        self.copyFunction(CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制函数
@@ -127,7 +127,7 @@ extension Scf {
     /// 3. 函数配置的日志投递到的CLS目标。
     /// 如有需要，您可以在复制后手动配置新函数。
     @inlinable
-    public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
-        try await self.copyFunction(CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), logger: logger, on: eventLoop)
+    public func copyFunction(functionName: String, newFunctionName: String, namespace: String? = nil, targetNamespace: String? = nil, description: String? = nil, targetRegion: String? = nil, override: Bool? = nil, copyConfiguration: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyFunctionResponse {
+        try await self.copyFunction(CopyFunctionRequest(functionName: functionName, newFunctionName: newFunctionName, namespace: namespace, targetNamespace: targetNamespace, description: description, targetRegion: targetRegion, override: override, copyConfiguration: copyConfiguration), region: region, logger: logger, on: eventLoop)
     }
 }

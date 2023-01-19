@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tdid {
 
     /// 获取DID服务详情
     @inlinable
-    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
-        self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
+        self.client.execute(action: "GetDidServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID服务详情
     @inlinable
-    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
-        try await self.client.execute(action: "GetDidServiceDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidServiceDetail(_ input: GetDidServiceDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
+        try await self.client.execute(action: "GetDidServiceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DID服务详情
     @inlinable
-    public func getDidServiceDetail(serviceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
-        self.getDidServiceDetail(GetDidServiceDetailRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func getDidServiceDetail(serviceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceDetailResponse> {
+        self.getDidServiceDetail(GetDidServiceDetailRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DID服务详情
     @inlinable
-    public func getDidServiceDetail(serviceId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
-        try await self.getDidServiceDetail(GetDidServiceDetailRequest(serviceId: serviceId), logger: logger, on: eventLoop)
+    public func getDidServiceDetail(serviceId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceDetailResponse {
+        try await self.getDidServiceDetail(GetDidServiceDetailRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
 }

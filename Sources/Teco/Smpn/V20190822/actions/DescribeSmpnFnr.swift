@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Smpn {
 
     /// 虚假号码识别
     @inlinable
-    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnFnrResponse> {
-        self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnFnrResponse> {
+        self.client.execute(action: "DescribeSmpnFnr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 虚假号码识别
     @inlinable
-    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
-        try await self.client.execute(action: "DescribeSmpnFnr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSmpnFnr(_ input: DescribeSmpnFnrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
+        try await self.client.execute(action: "DescribeSmpnFnr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 虚假号码识别
     @inlinable
-    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnFnrResponse> {
-        self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnFnrResponse> {
+        self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 虚假号码识别
     @inlinable
-    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
-        try await self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
+        try await self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

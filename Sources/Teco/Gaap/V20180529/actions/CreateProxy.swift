@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -119,31 +119,31 @@ extension Gaap {
     ///
     /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
     @inlinable
-    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyResponse> {
-        self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProxy(_ input: CreateProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyResponse> {
+        self.client.execute(action: "CreateProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通道
     ///
     /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
     @inlinable
-    public func createProxy(_ input: CreateProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
-        try await self.client.execute(action: "CreateProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProxy(_ input: CreateProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
+        try await self.client.execute(action: "CreateProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建通道
     ///
     /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
     @inlinable
-    public func createProxy(projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String? = nil, clientToken: String? = nil, groupId: String? = nil, tagSet: [TagPair]? = nil, clonedProxyId: String? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyResponse> {
-        self.createProxy(CreateProxyRequest(projectId: projectId, proxyName: proxyName, accessRegion: accessRegion, bandwidth: bandwidth, concurrent: concurrent, realServerRegion: realServerRegion, clientToken: clientToken, groupId: groupId, tagSet: tagSet, clonedProxyId: clonedProxyId, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    public func createProxy(projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String? = nil, clientToken: String? = nil, groupId: String? = nil, tagSet: [TagPair]? = nil, clonedProxyId: String? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyResponse> {
+        self.createProxy(CreateProxyRequest(projectId: projectId, proxyName: proxyName, accessRegion: accessRegion, bandwidth: bandwidth, concurrent: concurrent, realServerRegion: realServerRegion, clientToken: clientToken, groupId: groupId, tagSet: tagSet, clonedProxyId: clonedProxyId, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建通道
     ///
     /// 本接口（CreateProxy）用于创建/复制一个指定配置的加速通道。当复制通道时，需要设置新通道的基本配置参数，并设置ClonedProxyId来指定被复制的通道。
     @inlinable
-    public func createProxy(projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String? = nil, clientToken: String? = nil, groupId: String? = nil, tagSet: [TagPair]? = nil, clonedProxyId: String? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
-        try await self.createProxy(CreateProxyRequest(projectId: projectId, proxyName: proxyName, accessRegion: accessRegion, bandwidth: bandwidth, concurrent: concurrent, realServerRegion: realServerRegion, clientToken: clientToken, groupId: groupId, tagSet: tagSet, clonedProxyId: clonedProxyId, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), logger: logger, on: eventLoop)
+    public func createProxy(projectId: Int64, proxyName: String, accessRegion: String, bandwidth: UInt64, concurrent: UInt64, realServerRegion: String? = nil, clientToken: String? = nil, groupId: String? = nil, tagSet: [TagPair]? = nil, clonedProxyId: String? = nil, billingType: Int64? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyResponse {
+        try await self.createProxy(CreateProxyRequest(projectId: projectId, proxyName: proxyName, accessRegion: accessRegion, bandwidth: bandwidth, concurrent: concurrent, realServerRegion: realServerRegion, clientToken: clientToken, groupId: groupId, tagSet: tagSet, clonedProxyId: clonedProxyId, billingType: billingType, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
 }

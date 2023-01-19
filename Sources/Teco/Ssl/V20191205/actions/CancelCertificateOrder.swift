@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Ssl {
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
-        self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
+        self.client.execute(action: "CancelCertificateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消证书订单
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
-        try await self.client.execute(action: "CancelCertificateOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cancelCertificateOrder(_ input: CancelCertificateOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
+        try await self.client.execute(action: "CancelCertificateOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消证书订单
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
-        self.cancelCertificateOrder(CancelCertificateOrderRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func cancelCertificateOrder(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCertificateOrderResponse> {
+        self.cancelCertificateOrder(CancelCertificateOrderRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消证书订单
     ///
     /// 取消证书订单。
     @inlinable
-    public func cancelCertificateOrder(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
-        try await self.cancelCertificateOrder(CancelCertificateOrderRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func cancelCertificateOrder(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCertificateOrderResponse {
+        try await self.cancelCertificateOrder(CancelCertificateOrderRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

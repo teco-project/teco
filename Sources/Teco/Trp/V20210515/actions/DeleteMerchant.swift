@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Trp {
 
     /// 删除商户
     @inlinable
-    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
-        self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMerchant(_ input: DeleteMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
+        self.client.execute(action: "DeleteMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除商户
     @inlinable
-    public func deleteMerchant(_ input: DeleteMerchantRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
-        try await self.client.execute(action: "DeleteMerchant", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMerchant(_ input: DeleteMerchantRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
+        try await self.client.execute(action: "DeleteMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除商户
     @inlinable
-    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
-        self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
+        self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除商户
     @inlinable
-    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
-        try await self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), logger: logger, on: eventLoop)
+    public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
+        try await self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

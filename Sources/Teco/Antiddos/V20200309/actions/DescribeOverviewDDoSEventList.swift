@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Antiddos {
 
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
-        self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
+        self.client.execute(action: "DescribeOverviewDDoSEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
-        try await self.client.execute(action: "DescribeOverviewDDoSEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewDDoSEventList(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
+        try await self.client.execute(action: "DescribeOverviewDDoSEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
-        self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewDDoSEventListResponse> {
+        self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
-        try await self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeOverviewDDoSEventList(startTime: String, endTime: String, attackStatus: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewDDoSEventListResponse {
+        try await self.describeOverviewDDoSEventList(DescribeOverviewDDoSEventListRequest(startTime: startTime, endTime: endTime, attackStatus: attackStatus, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

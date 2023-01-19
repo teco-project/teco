@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iecp {
 
     /// 修改设备信息
     @inlinable
-    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
-        self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
+        self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
     @inlinable
-    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
-        try await self.client.execute(action: "ModifyIotDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyIotDevice(_ input: ModifyIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
+        try await self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备信息
     @inlinable
-    public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
-        self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
+        self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
     @inlinable
-    public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
-        try await self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), logger: logger, on: eventLoop)
+    public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
+        try await self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 }

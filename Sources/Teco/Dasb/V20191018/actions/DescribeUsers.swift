@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,25 +90,25 @@ extension Dasb {
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
+        self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(_ input: DescribeUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.client.execute(action: "DescribeUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.client.execute(action: "DescribeUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
-        self.describeUsers(DescribeUsersRequest(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
+        self.describeUsers(DescribeUsersRequest(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户列表
     @inlinable
-    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
-        try await self.describeUsers(DescribeUsersRequest(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), logger: logger, on: eventLoop)
+    public func describeUsers(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, userName: String? = nil, phone: String? = nil, authorizedDeviceIdSet: [UInt64]? = nil, authTypeSet: [UInt64]? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
+        try await self.describeUsers(DescribeUsersRequest(idSet: idSet, name: name, offset: offset, limit: limit, userName: userName, phone: phone, authorizedDeviceIdSet: authorizedDeviceIdSet, authTypeSet: authTypeSet, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 }

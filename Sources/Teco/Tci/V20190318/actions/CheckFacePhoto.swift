@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Tci {
     ///
     /// 检查人脸图片是否合法
     @inlinable
-    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckFacePhotoResponse> {
-        self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkFacePhoto(_ input: CheckFacePhotoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckFacePhotoResponse> {
+        self.client.execute(action: "CheckFacePhoto", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查人脸图片
     ///
     /// 检查人脸图片是否合法
     @inlinable
-    public func checkFacePhoto(_ input: CheckFacePhotoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
-        try await self.client.execute(action: "CheckFacePhoto", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkFacePhoto(_ input: CheckFacePhotoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
+        try await self.client.execute(action: "CheckFacePhoto", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查人脸图片
     ///
     /// 检查人脸图片是否合法
     @inlinable
-    public func checkFacePhoto(fileContent: String, fileType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckFacePhotoResponse> {
-        self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), logger: logger, on: eventLoop)
+    public func checkFacePhoto(fileContent: String, fileType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckFacePhotoResponse> {
+        self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查人脸图片
     ///
     /// 检查人脸图片是否合法
     @inlinable
-    public func checkFacePhoto(fileContent: String, fileType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
-        try await self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), logger: logger, on: eventLoop)
+    public func checkFacePhoto(fileContent: String, fileType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
+        try await self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), region: region, logger: logger, on: eventLoop)
     }
 }

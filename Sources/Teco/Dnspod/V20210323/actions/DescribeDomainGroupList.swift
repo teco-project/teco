@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Dnspod {
 
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
-        self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
+        self.client.execute(action: "DescribeDomainGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
-        try await self.client.execute(action: "DescribeDomainGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainGroupList(_ input: DescribeDomainGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
+        try await self.client.execute(action: "DescribeDomainGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
-        self.describeDomainGroupList(DescribeDomainGroupListRequest(), logger: logger, on: eventLoop)
+    public func describeDomainGroupList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainGroupListResponse> {
+        self.describeDomainGroupList(DescribeDomainGroupListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名分组列表
     @inlinable
-    public func describeDomainGroupList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
-        try await self.describeDomainGroupList(DescribeDomainGroupListRequest(), logger: logger, on: eventLoop)
+    public func describeDomainGroupList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainGroupListResponse {
+        try await self.describeDomainGroupList(DescribeDomainGroupListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

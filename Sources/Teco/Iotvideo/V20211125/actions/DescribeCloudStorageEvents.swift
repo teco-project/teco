@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Iotvideo {
 
     /// 拉取云存事件列表
     @inlinable
-    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageEventsResponse> {
-        self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageEventsResponse> {
+        self.client.execute(action: "DescribeCloudStorageEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件列表
     @inlinable
-    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
-        try await self.client.execute(action: "DescribeCloudStorageEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudStorageEvents(_ input: DescribeCloudStorageEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
+        try await self.client.execute(action: "DescribeCloudStorageEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取云存事件列表
     @inlinable
-    public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageEventsResponse> {
-        self.describeCloudStorageEvents(DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageEventsResponse> {
+        self.describeCloudStorageEvents(DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取云存事件列表
     @inlinable
-    public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
-        try await self.describeCloudStorageEvents(DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeCloudStorageEvents(productId: String, deviceName: String, startTime: UInt64? = nil, endTime: UInt64? = nil, context: String? = nil, size: UInt64? = nil, eventId: String? = nil, userId: String? = nil, channelId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageEventsResponse {
+        try await self.describeCloudStorageEvents(DescribeCloudStorageEventsRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, context: context, size: size, eventId: eventId, userId: userId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

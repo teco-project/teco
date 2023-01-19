@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cbs {
     ///
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
-    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotSharePermissionResponse> {
-        self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotSharePermissionResponse> {
+        self.client.execute(action: "DescribeSnapshotSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看快照分享信息
     ///
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
-    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
-        try await self.client.execute(action: "DescribeSnapshotSharePermission", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSnapshotSharePermission(_ input: DescribeSnapshotSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
+        try await self.client.execute(action: "DescribeSnapshotSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看快照分享信息
     ///
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
-    public func describeSnapshotSharePermission(snapshotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotSharePermissionResponse> {
-        self.describeSnapshotSharePermission(DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId), logger: logger, on: eventLoop)
+    public func describeSnapshotSharePermission(snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotSharePermissionResponse> {
+        self.describeSnapshotSharePermission(DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看快照分享信息
     ///
     /// 本接口（DescribeSnapshotSharePermission）用于查询快照的分享信息。
     @inlinable
-    public func describeSnapshotSharePermission(snapshotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
-        try await self.describeSnapshotSharePermission(DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId), logger: logger, on: eventLoop)
+    public func describeSnapshotSharePermission(snapshotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotSharePermissionResponse {
+        try await self.describeSnapshotSharePermission(DescribeSnapshotSharePermissionRequest(snapshotId: snapshotId), region: region, logger: logger, on: eventLoop)
     }
 }

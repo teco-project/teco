@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,8 +61,8 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable
-    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotRuleResponse> {
-        self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotRuleResponse> {
+        self.client.execute(action: "CreateLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建截图规则
@@ -71,8 +71,8 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable
-    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
-        try await self.client.execute(action: "CreateLiveSnapshotRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveSnapshotRule(_ input: CreateLiveSnapshotRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
+        try await self.client.execute(action: "CreateLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建截图规则
@@ -81,8 +81,8 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable
-    public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotRuleResponse> {
-        self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotRuleResponse> {
+        self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建截图规则
@@ -91,7 +91,7 @@ extension Live {
     /// <br>截图相关文档：[直播截图](/document/product/267/32737)。
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable
-    public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
-        try await self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), logger: logger, on: eventLoop)
+    public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
+        try await self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Cfs {
     ///
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
-    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsPGroupResponse> {
-        self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsPGroupResponse> {
+        self.client.execute(action: "CreateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
     ///
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
-    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
-        try await self.client.execute(action: "CreateCfsPGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCfsPGroup(_ input: CreateCfsPGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
+        try await self.client.execute(action: "CreateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建权限组
     ///
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
-    public func createCfsPGroup(name: String, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsPGroupResponse> {
-        self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    public func createCfsPGroup(name: String, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsPGroupResponse> {
+        self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
     ///
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
-    public func createCfsPGroup(name: String, descInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
-        try await self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), logger: logger, on: eventLoop)
+    public func createCfsPGroup(name: String, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
+        try await self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
     }
 }

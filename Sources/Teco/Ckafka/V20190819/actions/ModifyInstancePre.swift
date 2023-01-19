@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ckafka {
     ///
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
-    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePreResponse> {
-        self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstancePre(_ input: ModifyInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePreResponse> {
+        self.client.execute(action: "ModifyInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预付费实例变配接口
     ///
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
-    public func modifyInstancePre(_ input: ModifyInstancePreRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
-        try await self.client.execute(action: "ModifyInstancePre", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstancePre(_ input: ModifyInstancePreRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
+        try await self.client.execute(action: "ModifyInstancePre", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 预付费实例变配接口
     ///
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
-    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePreResponse> {
-        self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), logger: logger, on: eventLoop)
+    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePreResponse> {
+        self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 预付费实例变配接口
     ///
     /// 预付费实例变配接口，调整磁盘，带宽
     @inlinable
-    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
-        try await self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), logger: logger, on: eventLoop)
+    public func modifyInstancePre(instanceId: String, diskSize: Int64, bandWidth: Int64, partition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePreResponse {
+        try await self.modifyInstancePre(ModifyInstancePreRequest(instanceId: instanceId, diskSize: diskSize, bandWidth: bandWidth, partition: partition), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,25 +79,25 @@ extension Cpdp {
 
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
-        self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
+        self.client.execute(action: "CreateExternalAnchor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
-        try await self.client.execute(action: "CreateExternalAnchor", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createExternalAnchor(_ input: CreateExternalAnchorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
+        try await self.client.execute(action: "CreateExternalAnchor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
-        self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), logger: logger, on: eventLoop)
+    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExternalAnchorResponse> {
+        self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云-主播入驻
     @inlinable
-    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
-        try await self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), logger: logger, on: eventLoop)
+    public func createExternalAnchor(uid: String, name: String, idNo: String, idCardFront: String? = nil, idCardReverse: String? = nil, agentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExternalAnchorResponse {
+        try await self.createExternalAnchor(CreateExternalAnchorRequest(uid: uid, name: name, idNo: idNo, idCardFront: idCardFront, idCardReverse: idCardReverse, agentId: agentId), region: region, logger: logger, on: eventLoop)
     }
 }

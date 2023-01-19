@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Sqlserver {
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
-        self.client.execute(action: "DeleteIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
+        self.client.execute(action: "DeleteIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
-        try await self.client.execute(action: "DeleteIncrementalMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIncrementalMigration(_ input: DeleteIncrementalMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
+        try await self.client.execute(action: "DeleteIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
-        self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
+        self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除增量备份导入任务
     ///
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable
-    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
-        try await self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), logger: logger, on: eventLoop)
+    public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
+        try await self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
     }
 }

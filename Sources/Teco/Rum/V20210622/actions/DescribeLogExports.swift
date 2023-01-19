@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Rum {
     /// 本接口用于获取日志下载任务列表
     /// 默认接口请求频率限制：20次/秒
     @inlinable
-    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
-        self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogExports(_ input: DescribeLogExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
+        self.client.execute(action: "DescribeLogExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志下载任务列表
@@ -59,8 +59,8 @@ extension Rum {
     /// 本接口用于获取日志下载任务列表
     /// 默认接口请求频率限制：20次/秒
     @inlinable
-    public func describeLogExports(_ input: DescribeLogExportsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
-        try await self.client.execute(action: "DescribeLogExports", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogExports(_ input: DescribeLogExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
+        try await self.client.execute(action: "DescribeLogExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取日志下载任务列表
@@ -69,8 +69,8 @@ extension Rum {
     /// 本接口用于获取日志下载任务列表
     /// 默认接口请求频率限制：20次/秒
     @inlinable
-    public func describeLogExports(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
-        self.describeLogExports(DescribeLogExportsRequest(id: id), logger: logger, on: eventLoop)
+    public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
+        self.describeLogExports(DescribeLogExportsRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志下载任务列表
@@ -79,7 +79,7 @@ extension Rum {
     /// 本接口用于获取日志下载任务列表
     /// 默认接口请求频率限制：20次/秒
     @inlinable
-    public func describeLogExports(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
-        try await self.describeLogExports(DescribeLogExportsRequest(id: id), logger: logger, on: eventLoop)
+    public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
+        try await self.describeLogExports(DescribeLogExportsRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

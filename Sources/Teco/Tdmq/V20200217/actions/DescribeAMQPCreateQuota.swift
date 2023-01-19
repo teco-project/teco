@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Tdmq {
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
-    public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
-        self.client.execute(action: "DescribeAMQPCreateQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
+        self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
-    public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
-        try await self.client.execute(action: "DescribeAMQPCreateQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAMQPCreateQuota(_ input: DescribeAMQPCreateQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
+        try await self.client.execute(action: "DescribeAMQPCreateQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
-    public func describeAMQPCreateQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
-        self.describeAMQPCreateQuota(DescribeAMQPCreateQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPCreateQuotaResponse> {
+        self.describeAMQPCreateQuota(DescribeAMQPCreateQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户配额
     ///
     /// 获取用户的配额，如Queue容量，Exchange容量，Vhost容量，单Vhost Tps数,剩余可创建集群数
     @inlinable
-    public func describeAMQPCreateQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
-        try await self.describeAMQPCreateQuota(DescribeAMQPCreateQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeAMQPCreateQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPCreateQuotaResponse {
+        try await self.describeAMQPCreateQuota(DescribeAMQPCreateQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

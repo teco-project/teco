@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -130,31 +130,31 @@ extension Antiddos {
     ///
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
-        self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCTrend(_ input: DescribeCCTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
+        self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC攻击指标曲线
     ///
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeCCTrend(_ input: DescribeCCTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
-        try await self.client.execute(action: "DescribeCCTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCTrend(_ input: DescribeCCTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
+        try await self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC攻击指标曲线
     ///
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
-        self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), logger: logger, on: eventLoop)
+    public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
+        self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC攻击指标曲线
     ///
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
-    public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
-        try await self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), logger: logger, on: eventLoop)
+    public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
+        try await self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

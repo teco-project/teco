@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Teo {
 
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
-        self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
+        self.client.execute(action: "DescribeSpeedTestingMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
-        try await self.client.execute(action: "DescribeSpeedTestingMetricData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSpeedTestingMetricData(_ input: DescribeSpeedTestingMetricDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
+        try await self.client.execute(action: "DescribeSpeedTestingMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
-        self.describeSpeedTestingMetricData(DescribeSpeedTestingMetricDataRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeSpeedTestingMetricData(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSpeedTestingMetricDataResponse> {
+        self.describeSpeedTestingMetricData(DescribeSpeedTestingMetricDataRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点拨测结果
     @inlinable
-    public func describeSpeedTestingMetricData(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
-        try await self.describeSpeedTestingMetricData(DescribeSpeedTestingMetricDataRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeSpeedTestingMetricData(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSpeedTestingMetricDataResponse {
+        try await self.describeSpeedTestingMetricData(DescribeSpeedTestingMetricDataRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Teo {
 
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
-        self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
+        self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        try await self.client.execute(action: "ModifyDDoSPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSPolicy(_ input: ModifyDDoSPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.client.execute(action: "ModifyDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
-        self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), logger: logger, on: eventLoop)
+    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyResponse> {
+        self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护分区配置
     @inlinable
-    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
-        try await self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), logger: logger, on: eventLoop)
+    public func modifyDDoSPolicy(policyId: Int64, zoneId: String, ddosRule: DdosRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyResponse {
+        try await self.modifyDDoSPolicy(ModifyDDoSPolicyRequest(policyId: policyId, zoneId: zoneId, ddosRule: ddosRule), region: region, logger: logger, on: eventLoop)
     }
 }

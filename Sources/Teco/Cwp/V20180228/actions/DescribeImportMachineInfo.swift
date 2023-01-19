@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Cwp {
 
     /// 查询批量导入机器信息
     @inlinable
-    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportMachineInfoResponse> {
-        self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportMachineInfoResponse> {
+        self.client.execute(action: "DescribeImportMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询批量导入机器信息
     @inlinable
-    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
-        try await self.client.execute(action: "DescribeImportMachineInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImportMachineInfo(_ input: DescribeImportMachineInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
+        try await self.client.execute(action: "DescribeImportMachineInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询批量导入机器信息
     @inlinable
-    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportMachineInfoResponse> {
-        self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), logger: logger, on: eventLoop)
+    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImportMachineInfoResponse> {
+        self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询批量导入机器信息
     @inlinable
-    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
-        try await self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), logger: logger, on: eventLoop)
+    public func describeImportMachineInfo(machineList: [String], importType: String, isQueryProMachine: Bool? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImportMachineInfoResponse {
+        try await self.describeImportMachineInfo(DescribeImportMachineInfoRequest(machineList: machineList, importType: importType, isQueryProMachine: isQueryProMachine, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

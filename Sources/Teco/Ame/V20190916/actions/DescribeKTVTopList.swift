@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Ame {
     ///
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
-    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTopListResponse> {
-        self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTopListResponse> {
+        self.client.execute(action: "DescribeKTVTopList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌曲排行榜
     ///
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
-    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
-        try await self.client.execute(action: "DescribeKTVTopList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKTVTopList(_ input: DescribeKTVTopListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
+        try await self.client.execute(action: "DescribeKTVTopList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取直播互动曲库歌曲排行榜
     ///
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
-    public func describeKTVTopList(type: String? = nil, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTopListResponse> {
-        self.describeKTVTopList(DescribeKTVTopListRequest(type: type, period: period), logger: logger, on: eventLoop)
+    public func describeKTVTopList(type: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTopListResponse> {
+        self.describeKTVTopList(DescribeKTVTopListRequest(type: type, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库歌曲排行榜
     ///
     /// 获取直播互动曲库歌曲的周榜和月榜
     @inlinable
-    public func describeKTVTopList(type: String? = nil, period: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
-        try await self.describeKTVTopList(DescribeKTVTopListRequest(type: type, period: period), logger: logger, on: eventLoop)
+    public func describeKTVTopList(type: String? = nil, period: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTopListResponse {
+        try await self.describeKTVTopList(DescribeKTVTopListRequest(type: type, period: period), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Vpc {
     ///
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
-    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDirectConnectGatewayResponse> {
-        self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDirectConnectGatewayResponse> {
+        self.client.execute(action: "InquirePriceCreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关询价
     ///
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
-    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
-        try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreateDirectConnectGateway(_ input: InquirePriceCreateDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
+        try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建专线网关询价
     ///
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
-    public func inquirePriceCreateDirectConnectGateway(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDirectConnectGatewayResponse> {
-        self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDirectConnectGateway(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDirectConnectGatewayResponse> {
+        self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关询价
     ///
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
-    public func inquirePriceCreateDirectConnectGateway(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
-        try await self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDirectConnectGateway(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
+        try await self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

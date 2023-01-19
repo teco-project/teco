@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tke {
     ///
     /// 查询通过应用市场安装的某个应用详情
     @inlinable
-    public func describeClusterReleaseDetails(_ input: DescribeClusterReleaseDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleaseDetailsResponse> {
-        self.client.execute(action: "DescribeClusterReleaseDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterReleaseDetails(_ input: DescribeClusterReleaseDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleaseDetailsResponse> {
+        self.client.execute(action: "DescribeClusterReleaseDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用详情
     ///
     /// 查询通过应用市场安装的某个应用详情
     @inlinable
-    public func describeClusterReleaseDetails(_ input: DescribeClusterReleaseDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
-        try await self.client.execute(action: "DescribeClusterReleaseDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterReleaseDetails(_ input: DescribeClusterReleaseDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
+        try await self.client.execute(action: "DescribeClusterReleaseDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群已安装应用详情
     ///
     /// 查询通过应用市场安装的某个应用详情
     @inlinable
-    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleaseDetailsResponse> {
-        self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterReleaseDetailsResponse> {
+        self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群已安装应用详情
     ///
     /// 查询通过应用市场安装的某个应用详情
     @inlinable
-    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
-        try await self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), logger: logger, on: eventLoop)
+    public func describeClusterReleaseDetails(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterReleaseDetailsResponse {
+        try await self.describeClusterReleaseDetails(DescribeClusterReleaseDetailsRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
     }
 }

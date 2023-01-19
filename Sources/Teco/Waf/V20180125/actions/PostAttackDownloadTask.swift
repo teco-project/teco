@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Waf {
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
-        self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
+        self.client.execute(action: "PostAttackDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
-        try await self.client.execute(action: "PostAttackDownloadTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func postAttackDownloadTask(_ input: PostAttackDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
+        try await self.client.execute(action: "PostAttackDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
-        self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), logger: logger, on: eventLoop)
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PostAttackDownloadTaskResponse> {
+        self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建搜索下载攻击日志任务
     ///
     /// 创建搜索下载攻击日志任务，使用CLS新版本的搜索下载getlog接口
     @inlinable
-    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
-        try await self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), logger: logger, on: eventLoop)
+    public func postAttackDownloadTask(domain: String, startTime: Date, endTime: Date, queryString: String, taskName: String, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PostAttackDownloadTaskResponse {
+        try await self.postAttackDownloadTask(PostAttackDownloadTaskRequest(domain: domain, startTime: startTime, endTime: endTime, queryString: queryString, taskName: taskName, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

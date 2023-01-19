@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -138,31 +138,31 @@ extension Faceid {
     ///
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
-    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardInformationResponse> {
-        self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardInformationResponse> {
+        self.client.execute(action: "CheckIdCardInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份证人像照片验真
     ///
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
-    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
-        try await self.client.execute(action: "CheckIdCardInformation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkIdCardInformation(_ input: CheckIdCardInformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
+        try await self.client.execute(action: "CheckIdCardInformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 身份证人像照片验真
     ///
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
-    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardInformationResponse> {
-        self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), logger: logger, on: eventLoop)
+    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardInformationResponse> {
+        self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), region: region, logger: logger, on: eventLoop)
     }
 
     /// 身份证人像照片验真
     ///
     /// 传入身份证人像面照片，识别身份证照片上的信息，并将姓名、身份证号、身份证人像照片与权威库的证件照进行比对，是否属于同一个人，从而验证身份证信息的真实性。
     @inlinable
-    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
-        try await self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), logger: logger, on: eventLoop)
+    public func checkIdCardInformation(imageBase64: String? = nil, imageUrl: String? = nil, config: String? = nil, isEncrypt: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardInformationResponse {
+        try await self.checkIdCardInformation(CheckIdCardInformationRequest(imageBase64: imageBase64, imageUrl: imageUrl, config: config, isEncrypt: isEncrypt), region: region, logger: logger, on: eventLoop)
     }
 }

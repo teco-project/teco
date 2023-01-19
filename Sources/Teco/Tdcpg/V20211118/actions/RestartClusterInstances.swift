@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tdcpg {
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
-        self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
+        self.client.execute(action: "RestartClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
-        try await self.client.execute(action: "RestartClusterInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartClusterInstances(_ input: RestartClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
+        try await self.client.execute(action: "RestartClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
-        self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
+        self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     ///
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable
-    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
-        try await self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func restartClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
+        try await self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

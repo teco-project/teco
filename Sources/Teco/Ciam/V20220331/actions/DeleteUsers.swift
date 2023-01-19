@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Ciam {
 
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
-        self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUsers(_ input: DeleteUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
+        self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(_ input: DeleteUsersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        try await self.client.execute(action: "DeleteUsers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUsers(_ input: DeleteUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
+        try await self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(userStoreId: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
-        self.deleteUsers(DeleteUsersRequest(userStoreId: userStoreId, userIds: userIds), logger: logger, on: eventLoop)
+    public func deleteUsers(userStoreId: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
+        self.deleteUsers(DeleteUsersRequest(userStoreId: userStoreId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除用户
     @inlinable
-    public func deleteUsers(userStoreId: String, userIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
-        try await self.deleteUsers(DeleteUsersRequest(userStoreId: userStoreId, userIds: userIds), logger: logger, on: eventLoop)
+    public func deleteUsers(userStoreId: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
+        try await self.deleteUsers(DeleteUsersRequest(userStoreId: userStoreId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 }

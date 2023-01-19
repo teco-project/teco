@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Live {
     ///
     /// 接口用来查询直播增值业务--截图的张数
     @inlinable
-    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenShotSheetNumListResponse> {
-        self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenShotSheetNumListResponse> {
+        self.client.execute(action: "DescribeScreenShotSheetNumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询截图张数
     ///
     /// 接口用来查询直播增值业务--截图的张数
     @inlinable
-    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
-        try await self.client.execute(action: "DescribeScreenShotSheetNumList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeScreenShotSheetNumList(_ input: DescribeScreenShotSheetNumListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
+        try await self.client.execute(action: "DescribeScreenShotSheetNumList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询截图张数
     ///
     /// 接口用来查询直播增值业务--截图的张数
     @inlinable
-    public func describeScreenShotSheetNumList(startTime: String, endTime: String, zone: String? = nil, pushDomains: [String]? = nil, granularity: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenShotSheetNumListResponse> {
-        self.describeScreenShotSheetNumList(DescribeScreenShotSheetNumListRequest(startTime: startTime, endTime: endTime, zone: zone, pushDomains: pushDomains, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeScreenShotSheetNumList(startTime: String, endTime: String, zone: String? = nil, pushDomains: [String]? = nil, granularity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenShotSheetNumListResponse> {
+        self.describeScreenShotSheetNumList(DescribeScreenShotSheetNumListRequest(startTime: startTime, endTime: endTime, zone: zone, pushDomains: pushDomains, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询截图张数
     ///
     /// 接口用来查询直播增值业务--截图的张数
     @inlinable
-    public func describeScreenShotSheetNumList(startTime: String, endTime: String, zone: String? = nil, pushDomains: [String]? = nil, granularity: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
-        try await self.describeScreenShotSheetNumList(DescribeScreenShotSheetNumListRequest(startTime: startTime, endTime: endTime, zone: zone, pushDomains: pushDomains, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeScreenShotSheetNumList(startTime: String, endTime: String, zone: String? = nil, pushDomains: [String]? = nil, granularity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenShotSheetNumListResponse {
+        try await self.describeScreenShotSheetNumList(DescribeScreenShotSheetNumListRequest(startTime: startTime, endTime: endTime, zone: zone, pushDomains: pushDomains, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 }

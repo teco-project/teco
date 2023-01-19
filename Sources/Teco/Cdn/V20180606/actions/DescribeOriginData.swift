@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -133,8 +133,8 @@ extension Cdn {
     /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
-    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginDataResponse> {
-        self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOriginData(_ input: DescribeOriginDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginDataResponse> {
+        self.client.execute(action: "DescribeOriginData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回源数据查询
@@ -150,8 +150,8 @@ extension Cdn {
     /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
-    public func describeOriginData(_ input: DescribeOriginDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
-        try await self.client.execute(action: "DescribeOriginData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOriginData(_ input: DescribeOriginDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
+        try await self.client.execute(action: "DescribeOriginData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回源数据查询
@@ -167,8 +167,8 @@ extension Cdn {
     /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
-    public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginDataResponse> {
-        self.describeOriginData(DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginDataResponse> {
+        self.describeOriginData(DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回源数据查询
@@ -184,7 +184,7 @@ extension Cdn {
     /// + 回源状态码 4xx 汇总及各 4 开头回源状态码明细（单位为 个）
     /// + 回源状态码 5xx 汇总及各 5 开头回源状态码明细（单位为 个）
     @inlinable
-    public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
-        try await self.describeOriginData(DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), logger: logger, on: eventLoop)
+    public func describeOriginData(startTime: Date, endTime: Date, metric: String, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, detail: Bool? = nil, area: String? = nil, timeZone: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginDataResponse {
+        try await self.describeOriginData(DescribeOriginDataRequest(startTime: startTime, endTime: endTime, metric: metric, domains: domains, project: project, interval: interval, detail: detail, area: area, timeZone: timeZone), region: region, logger: logger, on: eventLoop)
     }
 }

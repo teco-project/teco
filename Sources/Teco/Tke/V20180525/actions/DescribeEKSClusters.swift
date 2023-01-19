@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Tke {
 
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
-        self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
+        self.client.execute(action: "DescribeEKSClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
-        try await self.client.execute(action: "DescribeEKSClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEKSClusters(_ input: DescribeEKSClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
+        try await self.client.execute(action: "DescribeEKSClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
-        self.describeEKSClusters(DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClustersResponse> {
+        self.describeEKSClusters(DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
-        try await self.describeEKSClusters(DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeEKSClusters(clusterIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClustersResponse {
+        try await self.describeEKSClusters(DescribeEKSClustersRequest(clusterIds: clusterIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

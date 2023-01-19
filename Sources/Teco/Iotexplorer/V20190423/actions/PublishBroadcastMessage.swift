@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Iotexplorer {
 
     /// 发布广播消息
     @inlinable
-    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
-        self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
+        self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布广播消息
     @inlinable
-    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
-        try await self.client.execute(action: "PublishBroadcastMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishBroadcastMessage(_ input: PublishBroadcastMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
+        try await self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布广播消息
     @inlinable
-    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
-        self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
+        self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布广播消息
     @inlinable
-    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
-        try await self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
+        try await self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 }

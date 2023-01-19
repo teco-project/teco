@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
     @inlinable
-    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestsResponse> {
-        self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestsResponse> {
+        self.client.execute(action: "DescribeMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取恶意请求数据
     ///
     /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
     @inlinable
-    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
-        try await self.client.execute(action: "DescribeMaliciousRequests", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMaliciousRequests(_ input: DescribeMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
+        try await self.client.execute(action: "DescribeMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取恶意请求数据
     ///
     /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
     @inlinable
-    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestsResponse> {
-        self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), logger: logger, on: eventLoop)
+    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaliciousRequestsResponse> {
+        self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取恶意请求数据
     ///
     /// 本接口 (DescribeMaliciousRequests) 用于获取恶意请求数据。
     @inlinable
-    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
-        try await self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), logger: logger, on: eventLoop)
+    public func describeMaliciousRequests(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaliciousRequestsResponse {
+        try await self.describeMaliciousRequests(DescribeMaliciousRequestsRequest(limit: limit, offset: offset, filters: filters, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

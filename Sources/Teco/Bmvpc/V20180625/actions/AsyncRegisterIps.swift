@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmvpc {
     ///
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
-    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsyncRegisterIpsResponse> {
-        self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsyncRegisterIpsResponse> {
+        self.client.execute(action: "AsyncRegisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量注册虚拟IP
     ///
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
-    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
-        try await self.client.execute(action: "AsyncRegisterIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func asyncRegisterIps(_ input: AsyncRegisterIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
+        try await self.client.execute(action: "AsyncRegisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量注册虚拟IP
     ///
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
-    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsyncRegisterIpsResponse> {
-        self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), logger: logger, on: eventLoop)
+    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsyncRegisterIpsResponse> {
+        self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量注册虚拟IP
     ///
     /// 批量注册虚拟IP，异步接口。通过接口来查询任务进度。每次请求最多注册256个IP
     @inlinable
-    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
-        try await self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), logger: logger, on: eventLoop)
+    public func asyncRegisterIps(vpcId: String, subnetId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsyncRegisterIpsResponse {
+        try await self.asyncRegisterIps(AsyncRegisterIpsRequest(vpcId: vpcId, subnetId: subnetId, ips: ips), region: region, logger: logger, on: eventLoop)
     }
 }

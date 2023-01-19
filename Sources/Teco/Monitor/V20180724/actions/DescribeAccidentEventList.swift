@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,25 +106,25 @@ extension Monitor {
 
     /// 获取平台事件列表
     @inlinable
-    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccidentEventListResponse> {
-        self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccidentEventListResponse> {
+        self.client.execute(action: "DescribeAccidentEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取平台事件列表
     @inlinable
-    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
-        try await self.client.execute(action: "DescribeAccidentEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccidentEventList(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
+        try await self.client.execute(action: "DescribeAccidentEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取平台事件列表
     @inlinable
-    public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccidentEventListResponse> {
-        self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), logger: logger, on: eventLoop)
+    public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccidentEventListResponse> {
+        self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取平台事件列表
     @inlinable
-    public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
-        try await self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), logger: logger, on: eventLoop)
+    public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
+        try await self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), region: region, logger: logger, on: eventLoop)
     }
 }

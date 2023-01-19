@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Vpc {
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
-        self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
+        self.client.execute(action: "DescribeVpcResourceDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
-        try await self.client.execute(action: "DescribeVpcResourceDashboard", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcResourceDashboard(_ input: DescribeVpcResourceDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
+        try await self.client.execute(action: "DescribeVpcResourceDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
-        self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), logger: logger, on: eventLoop)
+    public func describeVpcResourceDashboard(vpcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResourceDashboardResponse> {
+        self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看VPC资源信息
     ///
     /// 本接口(DescribeVpcResourceDashboard)用于查看VPC资源信息。
     @inlinable
-    public func describeVpcResourceDashboard(vpcIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
-        try await self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), logger: logger, on: eventLoop)
+    public func describeVpcResourceDashboard(vpcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResourceDashboardResponse {
+        try await self.describeVpcResourceDashboard(DescribeVpcResourceDashboardRequest(vpcIds: vpcIds), region: region, logger: logger, on: eventLoop)
     }
 }

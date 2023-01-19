@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Ticm {
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(_ input: VideoModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
-        self.client.execute(action: "VideoModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func videoModeration(_ input: VideoModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
+        self.client.execute(action: "VideoModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(_ input: VideoModerationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VideoModerationResponse {
-        try await self.client.execute(action: "VideoModeration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func videoModeration(_ input: VideoModerationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VideoModerationResponse {
+        try await self.client.execute(action: "VideoModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
-        self.videoModeration(VideoModerationRequest(videoUrl: videoUrl, developerId: developerId, cbUrl: cbUrl, extra: extra), logger: logger, on: eventLoop)
+    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VideoModerationResponse> {
+        self.videoModeration(VideoModerationRequest(videoUrl: videoUrl, developerId: developerId, cbUrl: cbUrl, extra: extra), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频内容识别
     ///
     /// 本接口提供多种维度的视频审核能力，支持色情和性感内容识别，政治人物和涉政敏感场景识别，以及暴恐人物、场景、旗帜标识等违禁内容的识别。
     @inlinable
-    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VideoModerationResponse {
-        try await self.videoModeration(VideoModerationRequest(videoUrl: videoUrl, developerId: developerId, cbUrl: cbUrl, extra: extra), logger: logger, on: eventLoop)
+    public func videoModeration(videoUrl: String, developerId: String? = nil, cbUrl: String? = nil, extra: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VideoModerationResponse {
+        try await self.videoModeration(VideoModerationRequest(videoUrl: videoUrl, developerId: developerId, cbUrl: cbUrl, extra: extra), region: region, logger: logger, on: eventLoop)
     }
 }

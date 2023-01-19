@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iecp {
 
     /// 获取ConfigMap列表
     @inlinable
-    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapsResponse> {
-        self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapsResponse> {
+        self.client.execute(action: "DescribeConfigMaps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap列表
     @inlinable
-    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
-        try await self.client.execute(action: "DescribeConfigMaps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigMaps(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
+        try await self.client.execute(action: "DescribeConfigMaps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取ConfigMap列表
     @inlinable
-    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapsResponse> {
-        self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), logger: logger, on: eventLoop)
+    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapsResponse> {
+        self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap列表
     @inlinable
-    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
-        try await self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), logger: logger, on: eventLoop)
+    public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
+        try await self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Apigateway {
 
     /// 查询 API 文档列表
     @inlinable
-    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocsResponse> {
-        self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocsResponse> {
+        self.client.execute(action: "DescribeAPIDocs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 文档列表
     @inlinable
-    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
-        try await self.client.execute(action: "DescribeAPIDocs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAPIDocs(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
+        try await self.client.execute(action: "DescribeAPIDocs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询 API 文档列表
     @inlinable
-    public func describeAPIDocs(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocsResponse> {
-        self.describeAPIDocs(DescribeAPIDocsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAPIDocs(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocsResponse> {
+        self.describeAPIDocs(DescribeAPIDocsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 文档列表
     @inlinable
-    public func describeAPIDocs(limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
-        try await self.describeAPIDocs(DescribeAPIDocsRequest(limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAPIDocs(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocsResponse {
+        try await self.describeAPIDocs(DescribeAPIDocsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

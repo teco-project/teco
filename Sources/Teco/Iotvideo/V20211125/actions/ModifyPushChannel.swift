@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Iotvideo {
 
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
-        self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPushChannel(_ input: ModifyPushChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
+        self.client.execute(action: "ModifyPushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(_ input: ModifyPushChannelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
-        try await self.client.execute(action: "ModifyPushChannel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPushChannel(_ input: ModifyPushChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
+        try await self.client.execute(action: "ModifyPushChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
-        self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPushChannelResponse> {
+        self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新推送通道
     @inlinable
-    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
-        try await self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), logger: logger, on: eventLoop)
+    public func modifyPushChannel(productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPushChannelResponse {
+        try await self.modifyPushChannel(ModifyPushChannelRequest(productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
     }
 }

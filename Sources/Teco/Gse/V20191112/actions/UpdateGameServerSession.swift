@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSession）用于更新游戏服务器会话。
     @inlinable
-    public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
-        self.client.execute(action: "UpdateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
+        self.client.execute(action: "UpdateGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新游戏服务器会话
@@ -77,8 +77,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSession）用于更新游戏服务器会话。
     @inlinable
-    public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
-        try await self.client.execute(action: "UpdateGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateGameServerSession(_ input: UpdateGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
+        try await self.client.execute(action: "UpdateGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新游戏服务器会话
@@ -86,8 +86,8 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSession）用于更新游戏服务器会话。
     @inlinable
-    public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
-        self.updateGameServerSession(UpdateGameServerSessionRequest(gameServerSessionId: gameServerSessionId, maximumPlayerSessionCount: maximumPlayerSessionCount, name: name, playerSessionCreationPolicy: playerSessionCreationPolicy, protectionPolicy: protectionPolicy), logger: logger, on: eventLoop)
+    public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionResponse> {
+        self.updateGameServerSession(UpdateGameServerSessionRequest(gameServerSessionId: gameServerSessionId, maximumPlayerSessionCount: maximumPlayerSessionCount, name: name, playerSessionCreationPolicy: playerSessionCreationPolicy, protectionPolicy: protectionPolicy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新游戏服务器会话
@@ -95,7 +95,7 @@ extension Gse {
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（UpdateGameServerSession）用于更新游戏服务器会话。
     @inlinable
-    public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
-        try await self.updateGameServerSession(UpdateGameServerSessionRequest(gameServerSessionId: gameServerSessionId, maximumPlayerSessionCount: maximumPlayerSessionCount, name: name, playerSessionCreationPolicy: playerSessionCreationPolicy, protectionPolicy: protectionPolicy), logger: logger, on: eventLoop)
+    public func updateGameServerSession(gameServerSessionId: String, maximumPlayerSessionCount: UInt64? = nil, name: String? = nil, playerSessionCreationPolicy: String? = nil, protectionPolicy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionResponse {
+        try await self.updateGameServerSession(UpdateGameServerSessionRequest(gameServerSessionId: gameServerSessionId, maximumPlayerSessionCount: maximumPlayerSessionCount, name: name, playerSessionCreationPolicy: playerSessionCreationPolicy, protectionPolicy: protectionPolicy), region: region, logger: logger, on: eventLoop)
     }
 }

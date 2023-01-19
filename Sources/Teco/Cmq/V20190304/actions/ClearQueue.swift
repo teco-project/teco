@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cmq {
     ///
     /// 清除queue中的所有消息
     @inlinable
-    public func clearQueue(_ input: ClearQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearQueueResponse> {
-        self.client.execute(action: "ClearQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func clearQueue(_ input: ClearQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearQueueResponse> {
+        self.client.execute(action: "ClearQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清空消息队列中的消息
     ///
     /// 清除queue中的所有消息
     @inlinable
-    public func clearQueue(_ input: ClearQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearQueueResponse {
-        try await self.client.execute(action: "ClearQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func clearQueue(_ input: ClearQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearQueueResponse {
+        try await self.client.execute(action: "ClearQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清空消息队列中的消息
     ///
     /// 清除queue中的所有消息
     @inlinable
-    public func clearQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearQueueResponse> {
-        self.clearQueue(ClearQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func clearQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearQueueResponse> {
+        self.clearQueue(ClearQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空消息队列中的消息
     ///
     /// 清除queue中的所有消息
     @inlinable
-    public func clearQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearQueueResponse {
-        try await self.clearQueue(ClearQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func clearQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearQueueResponse {
+        try await self.clearQueue(ClearQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

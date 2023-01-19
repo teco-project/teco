@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Vpc {
     ///
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
-    public func describeBandwidthPackageQuota(_ input: DescribeBandwidthPackageQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageQuotaResponse> {
-        self.client.execute(action: "DescribeBandwidthPackageQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBandwidthPackageQuota(_ input: DescribeBandwidthPackageQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageQuotaResponse> {
+        self.client.execute(action: "DescribeBandwidthPackageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询带宽包配额
     ///
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
-    public func describeBandwidthPackageQuota(_ input: DescribeBandwidthPackageQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageQuotaResponse {
-        try await self.client.execute(action: "DescribeBandwidthPackageQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBandwidthPackageQuota(_ input: DescribeBandwidthPackageQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageQuotaResponse {
+        try await self.client.execute(action: "DescribeBandwidthPackageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询带宽包配额
     ///
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
-    public func describeBandwidthPackageQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageQuotaResponse> {
-        self.describeBandwidthPackageQuota(DescribeBandwidthPackageQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeBandwidthPackageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageQuotaResponse> {
+        self.describeBandwidthPackageQuota(DescribeBandwidthPackageQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询带宽包配额
     ///
     /// 接口用于查询账户在当前地域的带宽包上限数量以及使用数量
     @inlinable
-    public func describeBandwidthPackageQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageQuotaResponse {
-        try await self.describeBandwidthPackageQuota(DescribeBandwidthPackageQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeBandwidthPackageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageQuotaResponse {
+        try await self.describeBandwidthPackageQuota(DescribeBandwidthPackageQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

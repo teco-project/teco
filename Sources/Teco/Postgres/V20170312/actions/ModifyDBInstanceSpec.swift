@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Postgres {
     ///
     /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
     @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
-        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
+        self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整实例规格（新）
     ///
     /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
     @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调整实例规格（新）
     ///
     /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
     @inlinable
-    public func modifyDBInstanceSpec(dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, activityId: UInt64? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
-        self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(dbInstanceId: dbInstanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, activityId: UInt64? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
+        self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(dbInstanceId: dbInstanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整实例规格（新）
     ///
     /// 本接口（ModifyDBInstanceSpec）用于调整实例规格，包括内存、磁盘。
     @inlinable
-    public func modifyDBInstanceSpec(dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, activityId: UInt64? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(dbInstanceId: dbInstanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(dbInstanceId: String, memory: UInt64, storage: UInt64, autoVoucher: UInt64? = nil, voucherIds: [String]? = nil, activityId: UInt64? = nil, switchTag: UInt64? = nil, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(dbInstanceId: dbInstanceId, memory: memory, storage: storage, autoVoucher: autoVoucher, voucherIds: voucherIds, activityId: activityId, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
 }

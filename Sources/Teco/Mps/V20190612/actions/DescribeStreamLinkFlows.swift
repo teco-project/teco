@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Mps {
     ///
     /// 批量查询媒体输入流的配置信息。
     @inlinable
-    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowsResponse> {
-        self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowsResponse> {
+        self.client.execute(action: "DescribeStreamLinkFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量查询媒体输入流
     ///
     /// 批量查询媒体输入流的配置信息。
     @inlinable
-    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
-        try await self.client.execute(action: "DescribeStreamLinkFlows", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStreamLinkFlows(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
+        try await self.client.execute(action: "DescribeStreamLinkFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量查询媒体输入流
     ///
     /// 批量查询媒体输入流的配置信息。
     @inlinable
-    public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowsResponse> {
-        self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowsResponse> {
+        self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量查询媒体输入流
     ///
     /// 批量查询媒体输入流的配置信息。
     @inlinable
-    public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
-        try await self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), logger: logger, on: eventLoop)
+    public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
+        try await self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
     }
 }

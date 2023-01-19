@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Tmt {
     /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
-    public func getFileTranslate(_ input: GetFileTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
-        self.client.execute(action: "GetFileTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFileTranslate(_ input: GetFileTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
+        self.client.execute(action: "GetFileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件翻译结果查询
@@ -59,8 +59,8 @@ extension Tmt {
     /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
-    public func getFileTranslate(_ input: GetFileTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
-        try await self.client.execute(action: "GetFileTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFileTranslate(_ input: GetFileTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
+        try await self.client.execute(action: "GetFileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文件翻译结果查询
@@ -69,8 +69,8 @@ extension Tmt {
     /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
-    public func getFileTranslate(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
-        self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
+        self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件翻译结果查询
@@ -79,7 +79,7 @@ extension Tmt {
     /// •当采用回调方式时，翻译完成后会将结果通过 POST 请求的形式通知到用户在请求时填写的回调 URL，具体请参见文档翻译结果回调 。
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
-    public func getFileTranslate(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
-        try await self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
+        try await self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

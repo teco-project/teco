@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cws {
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(_ input: CreateVulsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
-        self.client.execute(action: "CreateVulsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createVulsReport(_ input: CreateVulsReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
+        self.client.execute(action: "CreateVulsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(_ input: CreateVulsReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
-        try await self.client.execute(action: "CreateVulsReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createVulsReport(_ input: CreateVulsReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
+        try await self.client.execute(action: "CreateVulsReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
-        self.createVulsReport(CreateVulsReportRequest(siteId: siteId, monitorId: monitorId), logger: logger, on: eventLoop)
+    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsReportResponse> {
+        self.createVulsReport(CreateVulsReportRequest(siteId: siteId, monitorId: monitorId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成漏洞报告
     ///
     /// 本接口 (CreateVulsReport) 用于生成漏洞报告并返回下载链接。
     @inlinable
-    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
-        try await self.createVulsReport(CreateVulsReportRequest(siteId: siteId, monitorId: monitorId), logger: logger, on: eventLoop)
+    public func createVulsReport(siteId: UInt64? = nil, monitorId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsReportResponse {
+        try await self.createVulsReport(CreateVulsReportRequest(siteId: siteId, monitorId: monitorId), region: region, logger: logger, on: eventLoop)
     }
 }

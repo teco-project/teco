@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,8 +59,8 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
     /// 日调用量默认10W
     @inlinable
-    public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
-        self.client.execute(action: "DescribeFlowBriefs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
+        self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程摘要
@@ -69,8 +69,8 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
     /// 日调用量默认10W
     @inlinable
-    public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
-        try await self.client.execute(action: "DescribeFlowBriefs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowBriefs(_ input: DescribeFlowBriefsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
+        try await self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流程摘要
@@ -79,8 +79,8 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
     /// 日调用量默认10W
     @inlinable
-    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
-        self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), logger: logger, on: eventLoop)
+    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
+        self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程摘要
@@ -89,7 +89,7 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同流程的签署状态信息。可以配合回调通知使用。
     /// 日调用量默认10W
     @inlinable
-    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
-        try await self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), logger: logger, on: eventLoop)
+    public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
+        try await self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,25 +67,25 @@ extension Ams {
 
     /// 查看单个配置
     @inlinable
-    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizConfigResponse> {
-        self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBizConfig(_ input: DescribeBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizConfigResponse> {
+        self.client.execute(action: "DescribeBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看单个配置
     @inlinable
-    public func describeBizConfig(_ input: DescribeBizConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
-        try await self.client.execute(action: "DescribeBizConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBizConfig(_ input: DescribeBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
+        try await self.client.execute(action: "DescribeBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看单个配置
     @inlinable
-    public func describeBizConfig(bizType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizConfigResponse> {
-        self.describeBizConfig(DescribeBizConfigRequest(bizType: bizType), logger: logger, on: eventLoop)
+    public func describeBizConfig(bizType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizConfigResponse> {
+        self.describeBizConfig(DescribeBizConfigRequest(bizType: bizType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看单个配置
     @inlinable
-    public func describeBizConfig(bizType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
-        try await self.describeBizConfig(DescribeBizConfigRequest(bizType: bizType), logger: logger, on: eventLoop)
+    public func describeBizConfig(bizType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizConfigResponse {
+        try await self.describeBizConfig(DescribeBizConfigRequest(bizType: bizType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,8 +68,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据层级查找上/下游任务节点
     @inlinable
-    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
-        self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
+        self.client.execute(action: "DescribeDependTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
@@ -77,8 +77,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据层级查找上/下游任务节点
     @inlinable
-    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
-        try await self.client.execute(action: "DescribeDependTasksNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDependTasksNew(_ input: DescribeDependTasksNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
+        try await self.client.execute(action: "DescribeDependTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
@@ -86,8 +86,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据层级查找上/下游任务节点
     @inlinable
-    public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
-        self.describeDependTasksNew(DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), logger: logger, on: eventLoop)
+    public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDependTasksNewResponse> {
+        self.describeDependTasksNew(DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 任务运维-根据层级查找上-下游任务节点【Beta版本】
@@ -95,7 +95,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 根据层级查找上/下游任务节点
     @inlinable
-    public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
-        try await self.describeDependTasksNew(DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), logger: logger, on: eventLoop)
+    public func describeDependTasksNew(taskId: String, deep: UInt64, up: UInt64, projectId: String, workflowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDependTasksNewResponse {
+        try await self.describeDependTasksNew(DescribeDependTasksNewRequest(taskId: taskId, deep: deep, up: up, projectId: projectId, workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }
 }

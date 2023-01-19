@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Antiddos {
 
     /// 获取DDoS防护的水印防护配置列表
     @inlinable
-    public func describeListWaterPrintConfig(_ input: DescribeListWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListWaterPrintConfigResponse> {
-        self.client.execute(action: "DescribeListWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListWaterPrintConfig(_ input: DescribeListWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListWaterPrintConfigResponse> {
+        self.client.execute(action: "DescribeListWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的水印防护配置列表
     @inlinable
-    public func describeListWaterPrintConfig(_ input: DescribeListWaterPrintConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListWaterPrintConfigResponse {
-        try await self.client.execute(action: "DescribeListWaterPrintConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListWaterPrintConfig(_ input: DescribeListWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListWaterPrintConfigResponse {
+        try await self.client.execute(action: "DescribeListWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DDoS防护的水印防护配置列表
     @inlinable
-    public func describeListWaterPrintConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListWaterPrintConfigResponse> {
-        self.describeListWaterPrintConfig(DescribeListWaterPrintConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListWaterPrintConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListWaterPrintConfigResponse> {
+        self.describeListWaterPrintConfig(DescribeListWaterPrintConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的水印防护配置列表
     @inlinable
-    public func describeListWaterPrintConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListWaterPrintConfigResponse {
-        try await self.describeListWaterPrintConfig(DescribeListWaterPrintConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), logger: logger, on: eventLoop)
+    public func describeListWaterPrintConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListWaterPrintConfigResponse {
+        try await self.describeListWaterPrintConfig(DescribeListWaterPrintConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
     }
 }

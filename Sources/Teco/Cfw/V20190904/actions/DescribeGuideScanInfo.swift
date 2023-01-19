@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Cfw {
     ///
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
-    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGuideScanInfoResponse> {
-        self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGuideScanInfoResponse> {
+        self.client.execute(action: "DescribeGuideScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新手引导扫描接口信息
     ///
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
-    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
-        try await self.client.execute(action: "DescribeGuideScanInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGuideScanInfo(_ input: DescribeGuideScanInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
+        try await self.client.execute(action: "DescribeGuideScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新手引导扫描接口信息
     ///
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
-    public func describeGuideScanInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGuideScanInfoResponse> {
-        self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), logger: logger, on: eventLoop)
+    public func describeGuideScanInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGuideScanInfoResponse> {
+        self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新手引导扫描接口信息
     ///
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
-    public func describeGuideScanInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
-        try await self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), logger: logger, on: eventLoop)
+    public func describeGuideScanInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
+        try await self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

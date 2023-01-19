@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,8 +106,8 @@ extension Asr {
     /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
-        self.client.execute(action: "CreateAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
+        self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务创建
@@ -119,8 +119,8 @@ extension Asr {
     /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
-        try await self.client.execute(action: "CreateAsyncRecognitionTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAsyncRecognitionTask(_ input: CreateAsyncRecognitionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
+        try await self.client.execute(action: "CreateAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 语音流异步识别任务创建
@@ -132,8 +132,8 @@ extension Asr {
     /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
-        self.createAsyncRecognitionTask(CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), logger: logger, on: eventLoop)
+    public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsyncRecognitionTaskResponse> {
+        self.createAsyncRecognitionTask(CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务创建
@@ -145,7 +145,7 @@ extension Asr {
     /// <br>• 签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// <br>• 默认单账号限制并发数为20路，如您有提高并发限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
-        try await self.createAsyncRecognitionTask(CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), logger: logger, on: eventLoop)
+    public func createAsyncRecognitionTask(engineType: String, url: String, callbackUrl: String, signToken: String? = nil, filterDirty: Int64? = nil, filterModal: Int64? = nil, filterPunc: Int64? = nil, convertNumMode: Int64? = nil, wordInfo: Int64? = nil, hotwordId: String? = nil, audioData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsyncRecognitionTaskResponse {
+        try await self.createAsyncRecognitionTask(CreateAsyncRecognitionTaskRequest(engineType: engineType, url: url, callbackUrl: callbackUrl, signToken: signToken, filterDirty: filterDirty, filterModal: filterModal, filterPunc: filterPunc, convertNumMode: convertNumMode, wordInfo: wordInfo, hotwordId: hotwordId, audioData: audioData), region: region, logger: logger, on: eventLoop)
     }
 }

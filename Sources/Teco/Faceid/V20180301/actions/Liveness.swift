@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Faceid {
 
     /// 活体检测
     @inlinable
-    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessResponse> {
-        self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func liveness(_ input: LivenessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessResponse> {
+        self.client.execute(action: "Liveness", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活体检测
     @inlinable
-    public func liveness(_ input: LivenessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
-        try await self.client.execute(action: "Liveness", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func liveness(_ input: LivenessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
+        try await self.client.execute(action: "Liveness", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 活体检测
     @inlinable
-    public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessResponse> {
-        self.liveness(LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), logger: logger, on: eventLoop)
+    public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessResponse> {
+        self.liveness(LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), region: region, logger: logger, on: eventLoop)
     }
 
     /// 活体检测
     @inlinable
-    public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
-        try await self.liveness(LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), logger: logger, on: eventLoop)
+    public func liveness(videoBase64: String, livenessType: String, validateData: String? = nil, optional: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessResponse {
+        try await self.liveness(LivenessRequest(videoBase64: videoBase64, livenessType: livenessType, validateData: validateData, optional: optional), region: region, logger: logger, on: eventLoop)
     }
 }

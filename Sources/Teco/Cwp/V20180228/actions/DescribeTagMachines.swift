@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
-        self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTagMachines(_ input: DescribeTagMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
+        self.client.execute(action: "DescribeTagMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(_ input: DescribeTagMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
-        try await self.client.execute(action: "DescribeTagMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTagMachines(_ input: DescribeTagMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
+        try await self.client.execute(action: "DescribeTagMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
-        self.describeTagMachines(DescribeTagMachinesRequest(id: id), logger: logger, on: eventLoop)
+    public func describeTagMachines(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
+        self.describeTagMachines(DescribeTagMachinesRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取指定标签关联的服务器信息
     @inlinable
-    public func describeTagMachines(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
-        try await self.describeTagMachines(DescribeTagMachinesRequest(id: id), logger: logger, on: eventLoop)
+    public func describeTagMachines(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
+        try await self.describeTagMachines(DescribeTagMachinesRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

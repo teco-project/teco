@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,31 +56,31 @@ extension Cdn {
     ///
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
-    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnLogTasksResponse> {
-        self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnLogTasksResponse> {
+        self.client.execute(action: "ListScdnLogTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN日志下载任务列表
     ///
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
-    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
-        try await self.client.execute(action: "ListScdnLogTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listScdnLogTasks(_ input: ListScdnLogTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
+        try await self.client.execute(action: "ListScdnLogTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询SCDN日志下载任务列表
     ///
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
-    public func listScdnLogTasks(source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnLogTasksResponse> {
-        self.listScdnLogTasks(ListScdnLogTasksRequest(source: source, area: area), logger: logger, on: eventLoop)
+    public func listScdnLogTasks(source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnLogTasksResponse> {
+        self.listScdnLogTasks(ListScdnLogTasksRequest(source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询SCDN日志下载任务列表
     ///
     /// ListScdnLogTasks 用于查询SCDN日志下载任务列表,以及展示下载任务基本信息
     @inlinable
-    public func listScdnLogTasks(source: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
-        try await self.listScdnLogTasks(ListScdnLogTasksRequest(source: source, area: area), logger: logger, on: eventLoop)
+    public func listScdnLogTasks(source: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnLogTasksResponse {
+        try await self.listScdnLogTasks(ListScdnLogTasksRequest(source: source, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

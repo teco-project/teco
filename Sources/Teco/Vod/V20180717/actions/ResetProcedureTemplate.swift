@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -73,31 +73,31 @@ extension Vod {
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable
-    public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
-        self.client.execute(action: "ResetProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
+        self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable
-    public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
-        try await self.client.execute(action: "ResetProcedureTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
+        try await self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable
-    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
-        self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
+        self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable
-    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
-        try await self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
+        try await self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

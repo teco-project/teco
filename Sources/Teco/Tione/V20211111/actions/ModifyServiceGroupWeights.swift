@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 更新推理服务组流量分配
     @inlinable
-    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceGroupWeightsResponse> {
-        self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceGroupWeightsResponse> {
+        self.client.execute(action: "ModifyServiceGroupWeights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新推理服务组流量分配
     @inlinable
-    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
-        try await self.client.execute(action: "ModifyServiceGroupWeights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyServiceGroupWeights(_ input: ModifyServiceGroupWeightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
+        try await self.client.execute(action: "ModifyServiceGroupWeights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新推理服务组流量分配
     @inlinable
-    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceGroupWeightsResponse> {
-        self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), logger: logger, on: eventLoop)
+    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceGroupWeightsResponse> {
+        self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新推理服务组流量分配
     @inlinable
-    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
-        try await self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), logger: logger, on: eventLoop)
+    public func modifyServiceGroupWeights(serviceGroupId: String, weights: [WeightEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceGroupWeightsResponse {
+        try await self.modifyServiceGroupWeights(ModifyServiceGroupWeightsRequest(serviceGroupId: serviceGroupId, weights: weights), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcr {
     ///
     /// 删除镜像仓库企业版实例
     @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
-        self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
+        self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
     @inlinable
-    public func deleteInstance(_ input: DeleteInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.client.execute(action: "DeleteInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
     @inlinable
-    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
-        self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
+        self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
     @inlinable
-    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), logger: logger, on: eventLoop)
+    public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
+        try await self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
 }

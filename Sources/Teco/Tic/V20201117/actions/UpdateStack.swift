@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tic {
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
-        self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateStack(_ input: UpdateStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
+        self.client.execute(action: "UpdateStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(_ input: UpdateStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
-        try await self.client.execute(action: "UpdateStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateStack(_ input: UpdateStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
+        try await self.client.execute(action: "UpdateStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
-        self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), logger: logger, on: eventLoop)
+    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
+        self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
     @inlinable
-    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
-        try await self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), logger: logger, on: eventLoop)
+    public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
+        try await self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

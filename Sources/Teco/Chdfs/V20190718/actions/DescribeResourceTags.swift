@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,8 +48,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看资源标签列表。
     @inlinable
-    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsResponse> {
-        self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeResourceTags(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsResponse> {
+        self.client.execute(action: "DescribeResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看资源标签列表
@@ -57,8 +57,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看资源标签列表。
     @inlinable
-    public func describeResourceTags(_ input: DescribeResourceTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
-        try await self.client.execute(action: "DescribeResourceTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeResourceTags(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
+        try await self.client.execute(action: "DescribeResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看资源标签列表
@@ -66,8 +66,8 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看资源标签列表。
     @inlinable
-    public func describeResourceTags(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsResponse> {
-        self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeResourceTags(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsResponse> {
+        self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看资源标签列表
@@ -75,7 +75,7 @@ extension Chdfs {
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
     /// 通过文件系统ID查看资源标签列表。
     @inlinable
-    public func describeResourceTags(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
-        try await self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
+    public func describeResourceTags(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsResponse {
+        try await self.describeResourceTags(DescribeResourceTagsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
 }

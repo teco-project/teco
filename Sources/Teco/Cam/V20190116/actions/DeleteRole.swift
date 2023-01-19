@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable
-    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoleResponse> {
-        self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRole(_ input: DeleteRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoleResponse> {
+        self.client.execute(action: "DeleteRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
     ///
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable
-    public func deleteRole(_ input: DeleteRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
-        try await self.client.execute(action: "DeleteRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRole(_ input: DeleteRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
+        try await self.client.execute(action: "DeleteRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除角色
     ///
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable
-    public func deleteRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoleResponse> {
-        self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func deleteRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoleResponse> {
+        self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
     ///
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable
-    public func deleteRole(roleId: String? = nil, roleName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
-        try await self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), logger: logger, on: eventLoop)
+    public func deleteRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
+        try await self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
 }

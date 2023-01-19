@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
-    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDomainConfigResponse> {
-        self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDomainConfigResponse> {
+        self.client.execute(action: "DescribeGroupDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通道组域名解析配置详情（废弃）
     ///
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
-    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
-        try await self.client.execute(action: "DescribeGroupDomainConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGroupDomainConfig(_ input: DescribeGroupDomainConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
+        try await self.client.execute(action: "DescribeGroupDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取通道组域名解析配置详情（废弃）
     ///
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
-    public func describeGroupDomainConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDomainConfigResponse> {
-        self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupDomainConfig(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDomainConfigResponse> {
+        self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道组域名解析配置详情（废弃）
     ///
     /// 本接口（DescribeGroupDomainConfig）用于获取通道组域名解析配置详情。
     @inlinable
-    public func describeGroupDomainConfig(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
-        try await self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func describeGroupDomainConfig(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDomainConfigResponse {
+        try await self.describeGroupDomainConfig(DescribeGroupDomainConfigRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

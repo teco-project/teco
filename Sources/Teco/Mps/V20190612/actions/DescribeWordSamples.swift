@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Mps {
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
-    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordSamplesResponse> {
-        self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWordSamples(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordSamplesResponse> {
+        self.client.execute(action: "DescribeWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取关键词样本列表
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
-    public func describeWordSamples(_ input: DescribeWordSamplesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
-        try await self.client.execute(action: "DescribeWordSamples", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWordSamples(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
+        try await self.client.execute(action: "DescribeWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取关键词样本列表
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
-    public func describeWordSamples(keywords: [String]? = nil, usages: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordSamplesResponse> {
-        self.describeWordSamples(DescribeWordSamplesRequest(keywords: keywords, usages: usages, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeWordSamples(keywords: [String]? = nil, usages: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordSamplesResponse> {
+        self.describeWordSamples(DescribeWordSamplesRequest(keywords: keywords, usages: usages, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取关键词样本列表
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
-    public func describeWordSamples(keywords: [String]? = nil, usages: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
-        try await self.describeWordSamples(DescribeWordSamplesRequest(keywords: keywords, usages: usages, tags: tags, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeWordSamples(keywords: [String]? = nil, usages: [String]? = nil, tags: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordSamplesResponse {
+        try await self.describeWordSamples(DescribeWordSamplesRequest(keywords: keywords, usages: usages, tags: tags, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

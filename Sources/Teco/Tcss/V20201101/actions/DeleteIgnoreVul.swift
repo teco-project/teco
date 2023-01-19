@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
-        self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
+        self.client.execute(action: "DeleteIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
-        try await self.client.execute(action: "DeleteIgnoreVul", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIgnoreVul(_ input: DeleteIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
+        try await self.client.execute(action: "DeleteIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
-        self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), logger: logger, on: eventLoop)
+    public func deleteIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
+        self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消漏洞扫描忽略漏洞
     @inlinable
-    public func deleteIgnoreVul(list: [ModifyIgnoreVul], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
-        try await self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), logger: logger, on: eventLoop)
+    public func deleteIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
+        try await self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -167,25 +167,25 @@ extension Cpdp {
 
     /// 云支付-统一下单接口
     @inlinable
-    public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedTlinxOrderResponse> {
-        self.client.execute(action: "UnifiedTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedTlinxOrderResponse> {
+        self.client.execute(action: "UnifiedTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-统一下单接口
     @inlinable
-    public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedTlinxOrderResponse {
-        try await self.client.execute(action: "UnifiedTlinxOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func unifiedTlinxOrder(_ input: UnifiedTlinxOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedTlinxOrderResponse {
+        try await self.client.execute(action: "UnifiedTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-统一下单接口
     @inlinable
-    public func unifiedTlinxOrder(openId: String, openKey: String, developerNo: String, payTag: String, tradeAmount: String, notifyUrl: String, payName: String? = nil, jumpUrl: String? = nil, orderName: String? = nil, originalAmount: String? = nil, ignoreAmount: String? = nil, discountAmount: String? = nil, tradeAccount: String? = nil, tradeNo: String? = nil, authCode: String? = nil, tag: String? = nil, remark: String? = nil, tradeResult: String? = nil, royalty: String? = nil, jsapi: String? = nil, subAppId: String? = nil, subOpenId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedTlinxOrderResponse> {
-        self.unifiedTlinxOrder(UnifiedTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, payTag: payTag, tradeAmount: tradeAmount, notifyUrl: notifyUrl, payName: payName, jumpUrl: jumpUrl, orderName: orderName, originalAmount: originalAmount, ignoreAmount: ignoreAmount, discountAmount: discountAmount, tradeAccount: tradeAccount, tradeNo: tradeNo, authCode: authCode, tag: tag, remark: remark, tradeResult: tradeResult, royalty: royalty, jsapi: jsapi, subAppId: subAppId, subOpenId: subOpenId, profile: profile), logger: logger, on: eventLoop)
+    public func unifiedTlinxOrder(openId: String, openKey: String, developerNo: String, payTag: String, tradeAmount: String, notifyUrl: String, payName: String? = nil, jumpUrl: String? = nil, orderName: String? = nil, originalAmount: String? = nil, ignoreAmount: String? = nil, discountAmount: String? = nil, tradeAccount: String? = nil, tradeNo: String? = nil, authCode: String? = nil, tag: String? = nil, remark: String? = nil, tradeResult: String? = nil, royalty: String? = nil, jsapi: String? = nil, subAppId: String? = nil, subOpenId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnifiedTlinxOrderResponse> {
+        self.unifiedTlinxOrder(UnifiedTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, payTag: payTag, tradeAmount: tradeAmount, notifyUrl: notifyUrl, payName: payName, jumpUrl: jumpUrl, orderName: orderName, originalAmount: originalAmount, ignoreAmount: ignoreAmount, discountAmount: discountAmount, tradeAccount: tradeAccount, tradeNo: tradeNo, authCode: authCode, tag: tag, remark: remark, tradeResult: tradeResult, royalty: royalty, jsapi: jsapi, subAppId: subAppId, subOpenId: subOpenId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-统一下单接口
     @inlinable
-    public func unifiedTlinxOrder(openId: String, openKey: String, developerNo: String, payTag: String, tradeAmount: String, notifyUrl: String, payName: String? = nil, jumpUrl: String? = nil, orderName: String? = nil, originalAmount: String? = nil, ignoreAmount: String? = nil, discountAmount: String? = nil, tradeAccount: String? = nil, tradeNo: String? = nil, authCode: String? = nil, tag: String? = nil, remark: String? = nil, tradeResult: String? = nil, royalty: String? = nil, jsapi: String? = nil, subAppId: String? = nil, subOpenId: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedTlinxOrderResponse {
-        try await self.unifiedTlinxOrder(UnifiedTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, payTag: payTag, tradeAmount: tradeAmount, notifyUrl: notifyUrl, payName: payName, jumpUrl: jumpUrl, orderName: orderName, originalAmount: originalAmount, ignoreAmount: ignoreAmount, discountAmount: discountAmount, tradeAccount: tradeAccount, tradeNo: tradeNo, authCode: authCode, tag: tag, remark: remark, tradeResult: tradeResult, royalty: royalty, jsapi: jsapi, subAppId: subAppId, subOpenId: subOpenId, profile: profile), logger: logger, on: eventLoop)
+    public func unifiedTlinxOrder(openId: String, openKey: String, developerNo: String, payTag: String, tradeAmount: String, notifyUrl: String, payName: String? = nil, jumpUrl: String? = nil, orderName: String? = nil, originalAmount: String? = nil, ignoreAmount: String? = nil, discountAmount: String? = nil, tradeAccount: String? = nil, tradeNo: String? = nil, authCode: String? = nil, tag: String? = nil, remark: String? = nil, tradeResult: String? = nil, royalty: String? = nil, jsapi: String? = nil, subAppId: String? = nil, subOpenId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnifiedTlinxOrderResponse {
+        try await self.unifiedTlinxOrder(UnifiedTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, payTag: payTag, tradeAmount: tradeAmount, notifyUrl: notifyUrl, payName: payName, jumpUrl: jumpUrl, orderName: orderName, originalAmount: originalAmount, ignoreAmount: ignoreAmount, discountAmount: discountAmount, tradeAccount: tradeAccount, tradeNo: tradeNo, authCode: authCode, tag: tag, remark: remark, tradeResult: tradeResult, royalty: royalty, jsapi: jsapi, subAppId: subAppId, subOpenId: subOpenId, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

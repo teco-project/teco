@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Monitor {
 
     /// 列出实例已安装的插件
     @inlinable
-    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstalledPluginsResponse> {
-        self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstalledPluginsResponse> {
+        self.client.execute(action: "DescribeInstalledPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出实例已安装的插件
     @inlinable
-    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
-        try await self.client.execute(action: "DescribeInstalledPlugins", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstalledPlugins(_ input: DescribeInstalledPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
+        try await self.client.execute(action: "DescribeInstalledPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出实例已安装的插件
     @inlinable
-    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstalledPluginsResponse> {
-        self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), logger: logger, on: eventLoop)
+    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstalledPluginsResponse> {
+        self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出实例已安装的插件
     @inlinable
-    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
-        try await self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), logger: logger, on: eventLoop)
+    public func describeInstalledPlugins(instanceId: String, pluginId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstalledPluginsResponse {
+        try await self.describeInstalledPlugins(DescribeInstalledPluginsRequest(instanceId: instanceId, pluginId: pluginId), region: region, logger: logger, on: eventLoop)
     }
 }

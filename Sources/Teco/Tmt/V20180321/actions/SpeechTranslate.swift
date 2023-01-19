@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -123,8 +123,8 @@ extension Tmt {
     /// 如果采用流式传输的方式，要求每个分片时长200ms~500ms；如果采用非流式的传输方式，要求音频时长不超过8s。注意最后一个分片的IsEnd参数设置为1。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
-    public func speechTranslate(_ input: SpeechTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SpeechTranslateResponse> {
-        self.client.execute(action: "SpeechTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func speechTranslate(_ input: SpeechTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SpeechTranslateResponse> {
+        self.client.execute(action: "SpeechTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音翻译
@@ -134,8 +134,8 @@ extension Tmt {
     /// 如果采用流式传输的方式，要求每个分片时长200ms~500ms；如果采用非流式的传输方式，要求音频时长不超过8s。注意最后一个分片的IsEnd参数设置为1。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
-    public func speechTranslate(_ input: SpeechTranslateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SpeechTranslateResponse {
-        try await self.client.execute(action: "SpeechTranslate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func speechTranslate(_ input: SpeechTranslateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SpeechTranslateResponse {
+        try await self.client.execute(action: "SpeechTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 语音翻译
@@ -145,8 +145,8 @@ extension Tmt {
     /// 如果采用流式传输的方式，要求每个分片时长200ms~500ms；如果采用非流式的传输方式，要求音频时长不超过8s。注意最后一个分片的IsEnd参数设置为1。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
-    public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SpeechTranslateResponse> {
-        self.speechTranslate(SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), logger: logger, on: eventLoop)
+    public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SpeechTranslateResponse> {
+        self.speechTranslate(SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 语音翻译
@@ -156,7 +156,7 @@ extension Tmt {
     /// 如果采用流式传输的方式，要求每个分片时长200ms~500ms；如果采用非流式的传输方式，要求音频时长不超过8s。注意最后一个分片的IsEnd参数设置为1。<br />
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源部分。
     @inlinable
-    public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SpeechTranslateResponse {
-        try await self.speechTranslate(SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), logger: logger, on: eventLoop)
+    public func speechTranslate(sessionUuid: String, source: String, target: String, audioFormat: Int64, seq: Int64, isEnd: Int64, data: String, projectId: Int64? = nil, mode: String? = nil, transType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SpeechTranslateResponse {
+        try await self.speechTranslate(SpeechTranslateRequest(sessionUuid: sessionUuid, source: source, target: target, audioFormat: audioFormat, seq: seq, isEnd: isEnd, data: data, projectId: projectId, mode: mode, transType: transType), region: region, logger: logger, on: eventLoop)
     }
 }

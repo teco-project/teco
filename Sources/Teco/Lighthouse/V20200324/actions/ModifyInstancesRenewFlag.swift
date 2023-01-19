@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,8 +51,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
-        self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
+        self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标识
@@ -62,8 +62,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
-        try await self.client.execute(action: "ModifyInstancesRenewFlag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyInstancesRenewFlag(_ input: ModifyInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
+        try await self.client.execute(action: "ModifyInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例续费标识
@@ -73,8 +73,8 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
-        self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesRenewFlagResponse> {
+        self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标识
@@ -84,7 +84,7 @@ extension Lighthouse {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable
-    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
-        try await self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), logger: logger, on: eventLoop)
+    public func modifyInstancesRenewFlag(instanceIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesRenewFlagResponse {
+        try await self.modifyInstancesRenewFlag(ModifyInstancesRenewFlagRequest(instanceIds: instanceIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
 }

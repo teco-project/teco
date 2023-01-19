@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Partners {
     ///
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
-    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientBalanceNewResponse> {
-        self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientBalanceNewResponse> {
+        self.client.execute(action: "DescribeClientBalanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户余额（新）
     ///
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
-    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
-        try await self.client.execute(action: "DescribeClientBalanceNew", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClientBalanceNew(_ input: DescribeClientBalanceNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
+        try await self.client.execute(action: "DescribeClientBalanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询客户余额（新）
     ///
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
-    public func describeClientBalanceNew(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientBalanceNewResponse> {
-        self.describeClientBalanceNew(DescribeClientBalanceNewRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func describeClientBalanceNew(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientBalanceNewResponse> {
+        self.describeClientBalanceNew(DescribeClientBalanceNewRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询客户余额（新）
     ///
     /// 为合作伙伴提供查询客户余额能力。调用者必须是合作伙伴，只能查询自己名下客户余额
     @inlinable
-    public func describeClientBalanceNew(clientUin: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
-        try await self.describeClientBalanceNew(DescribeClientBalanceNewRequest(clientUin: clientUin), logger: logger, on: eventLoop)
+    public func describeClientBalanceNew(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientBalanceNewResponse {
+        try await self.describeClientBalanceNew(DescribeClientBalanceNewRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 }

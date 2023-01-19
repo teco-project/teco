@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,31 +85,31 @@ extension Cfs {
     ///
     /// 查询文件系统快照列表
     @inlinable
-    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotsResponse> {
-        self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotsResponse> {
+        self.client.execute(action: "DescribeCfsSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
     ///
     /// 查询文件系统快照列表
     @inlinable
-    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
-        try await self.client.execute(action: "DescribeCfsSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCfsSnapshots(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
+        try await self.client.execute(action: "DescribeCfsSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询快照列表
     ///
     /// 查询文件系统快照列表
     @inlinable
-    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotsResponse> {
-        self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotsResponse> {
+        self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
     ///
     /// 查询文件系统快照列表
     @inlinable
-    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
-        try await self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), logger: logger, on: eventLoop)
+    public func describeCfsSnapshots(fileSystemId: String? = nil, snapshotId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotsResponse {
+        try await self.describeCfsSnapshots(DescribeCfsSnapshotsRequest(fileSystemId: fileSystemId, snapshotId: snapshotId, offset: offset, limit: limit, filters: filters, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

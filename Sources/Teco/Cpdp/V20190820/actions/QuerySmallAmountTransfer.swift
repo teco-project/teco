@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Cpdp {
     ///
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
-    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySmallAmountTransferResponse> {
-        self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySmallAmountTransferResponse> {
+        self.client.execute(action: "QuerySmallAmountTransfer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询小额鉴权转账结果
     ///
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
-    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
-        try await self.client.execute(action: "QuerySmallAmountTransfer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func querySmallAmountTransfer(_ input: QuerySmallAmountTransferRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
+        try await self.client.execute(action: "QuerySmallAmountTransfer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-查询小额鉴权转账结果
     ///
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
-    public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySmallAmountTransferResponse> {
-        self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySmallAmountTransferResponse> {
+        self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询小额鉴权转账结果
     ///
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
-    public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
-        try await self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
+        try await self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

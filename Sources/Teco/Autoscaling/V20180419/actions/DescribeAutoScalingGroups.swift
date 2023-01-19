@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension As {
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
-        self.client.execute(action: "DescribeAutoScalingGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
+        self.client.execute(action: "DescribeAutoScalingGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组
@@ -86,8 +86,8 @@ extension As {
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
-        try await self.client.execute(action: "DescribeAutoScalingGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAutoScalingGroups(_ input: DescribeAutoScalingGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
+        try await self.client.execute(action: "DescribeAutoScalingGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询伸缩组
@@ -96,8 +96,8 @@ extension As {
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
-        self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
+        self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组
@@ -106,7 +106,7 @@ extension As {
     /// * 可以根据伸缩组ID、伸缩组名称或者启动配置ID等信息来查询伸缩组的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
-    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
-        try await self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
+        try await self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

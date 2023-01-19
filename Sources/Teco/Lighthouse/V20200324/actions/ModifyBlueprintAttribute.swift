@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Lighthouse {
     ///
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable
-    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlueprintAttributeResponse> {
-        self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlueprintAttributeResponse> {
+        self.client.execute(action: "ModifyBlueprintAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
     ///
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable
-    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
-        try await self.client.execute(action: "ModifyBlueprintAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBlueprintAttribute(_ input: ModifyBlueprintAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
+        try await self.client.execute(action: "ModifyBlueprintAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改镜像属性
     ///
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable
-    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlueprintAttributeResponse> {
-        self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), logger: logger, on: eventLoop)
+    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlueprintAttributeResponse> {
+        self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
     ///
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable
-    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
-        try await self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), logger: logger, on: eventLoop)
+    public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
+        try await self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Tke {
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
-    public func describePrometheusRecordRules(_ input: DescribePrometheusRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRulesResponse> {
-        self.client.execute(action: "DescribePrometheusRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusRecordRules(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRulesResponse> {
+        self.client.execute(action: "DescribePrometheusRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取聚合规则列表，包含关联集群内的资源
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
-    public func describePrometheusRecordRules(_ input: DescribePrometheusRecordRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRulesResponse {
-        try await self.client.execute(action: "DescribePrometheusRecordRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusRecordRules(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRulesResponse {
+        try await self.client.execute(action: "DescribePrometheusRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取聚合规则列表，包含关联集群内的资源
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
-    public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRulesResponse> {
-        self.describePrometheusRecordRules(DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRulesResponse> {
+        self.describePrometheusRecordRules(DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取聚合规则列表，包含关联集群内的资源
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
-    public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRulesResponse {
-        try await self.describePrometheusRecordRules(DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describePrometheusRecordRules(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRulesResponse {
+        try await self.describePrometheusRecordRules(DescribePrometheusRecordRulesRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

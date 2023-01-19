@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcss {
 
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
-        self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
+        self.client.execute(action: "ModifySecLogJoinState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
-        try await self.client.execute(action: "ModifySecLogJoinState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecLogJoinState(_ input: ModifySecLogJoinStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
+        try await self.client.execute(action: "ModifySecLogJoinState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(logType: String, state: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
-        self.modifySecLogJoinState(ModifySecLogJoinStateRequest(logType: logType, state: state), logger: logger, on: eventLoop)
+    public func modifySecLogJoinState(logType: String, state: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinStateResponse> {
+        self.modifySecLogJoinState(ModifySecLogJoinStateRequest(logType: logType, state: state), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入状态
     @inlinable
-    public func modifySecLogJoinState(logType: String, state: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
-        try await self.modifySecLogJoinState(ModifySecLogJoinStateRequest(logType: logType, state: state), logger: logger, on: eventLoop)
+    public func modifySecLogJoinState(logType: String, state: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinStateResponse {
+        try await self.modifySecLogJoinState(ModifySecLogJoinStateRequest(logType: logType, state: state), region: region, logger: logger, on: eventLoop)
     }
 }

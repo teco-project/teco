@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -137,31 +137,31 @@ extension Teo {
     ///
     /// 用于查询站点的所有配置信息。
     @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneSettingResponse> {
-        self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneSettingResponse> {
+        self.client.execute(action: "DescribeZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询站点配置
     ///
     /// 用于查询站点的所有配置信息。
     @inlinable
-    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
-        try await self.client.execute(action: "DescribeZoneSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeZoneSetting(_ input: DescribeZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
+        try await self.client.execute(action: "DescribeZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询站点配置
     ///
     /// 用于查询站点的所有配置信息。
     @inlinable
-    public func describeZoneSetting(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneSettingResponse> {
-        self.describeZoneSetting(DescribeZoneSettingRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeZoneSetting(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneSettingResponse> {
+        self.describeZoneSetting(DescribeZoneSettingRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询站点配置
     ///
     /// 用于查询站点的所有配置信息。
     @inlinable
-    public func describeZoneSetting(zoneId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
-        try await self.describeZoneSetting(DescribeZoneSettingRequest(zoneId: zoneId), logger: logger, on: eventLoop)
+    public func describeZoneSetting(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneSettingResponse {
+        try await self.describeZoneSetting(DescribeZoneSettingRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
 }

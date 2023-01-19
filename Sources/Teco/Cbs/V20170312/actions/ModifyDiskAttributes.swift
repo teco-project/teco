@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,8 +70,8 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable
-    public func modifyDiskAttributes(_ input: ModifyDiskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
-        self.client.execute(action: "ModifyDiskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDiskAttributes(_ input: ModifyDiskAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
+        self.client.execute(action: "ModifyDiskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘属性
@@ -80,8 +80,8 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable
-    public func modifyDiskAttributes(_ input: ModifyDiskAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
-        try await self.client.execute(action: "ModifyDiskAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDiskAttributes(_ input: ModifyDiskAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
+        try await self.client.execute(action: "ModifyDiskAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云硬盘属性
@@ -90,8 +90,8 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable
-    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
-        self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), logger: logger, on: eventLoop)
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskAttributesResponse> {
+        self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘属性
@@ -100,7 +100,7 @@ extension Cbs {
     /// * “云硬盘名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行云盘管理操作的依据。
     /// * 支持批量操作，如果传入多个云盘ID，则所有云盘修改为同一属性。如果存在不允许操作的云盘，则操作不执行，以特定错误码返回。
     @inlinable
-    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
-        try await self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), logger: logger, on: eventLoop)
+    public func modifyDiskAttributes(diskIds: [String], diskName: String? = nil, portable: Bool? = nil, projectId: UInt64? = nil, deleteWithInstance: Bool? = nil, diskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskAttributesResponse {
+        try await self.modifyDiskAttributes(ModifyDiskAttributesRequest(diskIds: diskIds, diskName: diskName, portable: portable, projectId: projectId, deleteWithInstance: deleteWithInstance, diskType: diskType), region: region, logger: logger, on: eventLoop)
     }
 }

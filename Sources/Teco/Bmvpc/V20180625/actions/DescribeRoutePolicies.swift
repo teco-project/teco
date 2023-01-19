@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
-    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoutePoliciesResponse> {
-        self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoutePoliciesResponse> {
+        self.client.execute(action: "DescribeRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石路由表条目
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
-    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
-        try await self.client.execute(action: "DescribeRoutePolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoutePolicies(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
+        try await self.client.execute(action: "DescribeRoutePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询黑石路由表条目
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
-    public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoutePoliciesResponse> {
-        self.describeRoutePolicies(DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoutePoliciesResponse> {
+        self.describeRoutePolicies(DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石路由表条目
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
-    public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
-        try await self.describeRoutePolicies(DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeRoutePolicies(routeTableId: String, routePolicyIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoutePoliciesResponse {
+        try await self.describeRoutePolicies(DescribeRoutePoliciesRequest(routeTableId: routeTableId, routePolicyIds: routePolicyIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

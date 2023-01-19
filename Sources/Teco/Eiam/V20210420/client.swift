@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,7 +50,7 @@ public struct Eiam: TCService {
     ///
     /// - Parameters:
     ///    - client: ``TCClient`` used to perform actions.
-    ///    - region: Region of the service you want to operate on.
+    ///    - region: Default region of the service you want to operate on.
     ///    - language: Preferred language for API response.
     ///    - endpoint: Custom endpoint URL for API request.
     ///    - timeout: Timeout value for HTTP requests.
@@ -64,9 +64,9 @@ public struct Eiam: TCService {
     ) {
         self.client = client
         self.config = TCServiceConfig(
-            region: region,
             service: "eiam",
-            apiVersion: "2021-04-20",
+            version: "2021-04-20",
+            region: region,
             language: language,
             endpoint: endpoint,
             errorType: TCEiamError.self,

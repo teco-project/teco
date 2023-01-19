@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ivld {
 
     /// 删除自定义人物
     @inlinable
-    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonResponse> {
-        self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonResponse> {
+        self.client.execute(action: "DeleteCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人物
     @inlinable
-    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
-        try await self.client.execute(action: "DeleteCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteCustomPerson(_ input: DeleteCustomPersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
+        try await self.client.execute(action: "DeleteCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义人物
     @inlinable
-    public func deleteCustomPerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonResponse> {
-        self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), logger: logger, on: eventLoop)
+    public func deleteCustomPerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonResponse> {
+        self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人物
     @inlinable
-    public func deleteCustomPerson(personId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
-        try await self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), logger: logger, on: eventLoop)
+    public func deleteCustomPerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
+        try await self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
     }
 }

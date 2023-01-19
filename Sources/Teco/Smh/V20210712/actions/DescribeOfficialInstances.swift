@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Smh {
     ///
     /// 查询官方云盘实例
     @inlinable
-    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialInstancesResponse> {
-        self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialInstancesResponse> {
+        self.client.execute(action: "DescribeOfficialInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例
     ///
     /// 查询官方云盘实例
     @inlinable
-    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
-        try await self.client.execute(action: "DescribeOfficialInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOfficialInstances(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
+        try await self.client.execute(action: "DescribeOfficialInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询官方实例
     ///
     /// 查询官方云盘实例
     @inlinable
-    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialInstancesResponse> {
-        self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), logger: logger, on: eventLoop)
+    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOfficialInstancesResponse> {
+        self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询官方实例
     ///
     /// 查询官方云盘实例
     @inlinable
-    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
-        try await self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), logger: logger, on: eventLoop)
+    public func describeOfficialInstances(superAdminAccount: Bool? = nil, instanceIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, orderBy: String? = nil, orderByType: String? = nil, autoRenew: UInt64? = nil, bindPhone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOfficialInstancesResponse {
+        try await self.describeOfficialInstances(DescribeOfficialInstancesRequest(superAdminAccount: superAdminAccount, instanceIds: instanceIds, pageNumber: pageNumber, pageSize: pageSize, orderBy: orderBy, orderByType: orderByType, autoRenew: autoRenew, bindPhone: bindPhone), region: region, logger: logger, on: eventLoop)
     }
 }

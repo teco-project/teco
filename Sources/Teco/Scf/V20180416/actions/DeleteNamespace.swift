@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Scf {
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(_ input: DeleteNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
-        self.client.execute(action: "DeleteNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNamespace(_ input: DeleteNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
+        self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(_ input: DeleteNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
-        try await self.client.execute(action: "DeleteNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNamespace(_ input: DeleteNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
+        try await self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
-        self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteNamespace(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
+        self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
     ///
     /// 该接口根据传入的参数删除命名空间。
     @inlinable
-    public func deleteNamespace(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
-        try await self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func deleteNamespace(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
+        try await self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

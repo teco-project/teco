@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,8 +53,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
-    public func describeChannelLiveStreamURL(_ input: DescribeChannelLiveStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelLiveStreamURLResponse> {
-        self.client.execute(action: "DescribeChannelLiveStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeChannelLiveStreamURL(_ input: DescribeChannelLiveStreamURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelLiveStreamURLResponse> {
+        self.client.execute(action: "DescribeChannelLiveStreamURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通道实时流地址
@@ -62,8 +62,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
-    public func describeChannelLiveStreamURL(_ input: DescribeChannelLiveStreamURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
-        try await self.client.execute(action: "DescribeChannelLiveStreamURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeChannelLiveStreamURL(_ input: DescribeChannelLiveStreamURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
+        try await self.client.execute(action: "DescribeChannelLiveStreamURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取设备通道实时流地址
@@ -71,8 +71,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
-    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelLiveStreamURLResponse> {
-        self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelLiveStreamURLResponse> {
+        self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取设备通道实时流地址
@@ -80,7 +80,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeChannelLiveStreamURL)用于获取设备指定通道实时流地址，地址是动态生成，如重新播放需要调用此接口重新获取最新播放地址。
     /// 正常推流，如未设置对应录制计划，且180s无人观看此流，将会被自动掐断。
     @inlinable
-    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
-        try await self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeChannelLiveStreamURL(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelLiveStreamURLResponse {
+        try await self.describeChannelLiveStreamURL(DescribeChannelLiveStreamURLRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

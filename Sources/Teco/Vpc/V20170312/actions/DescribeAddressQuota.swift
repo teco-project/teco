@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -39,31 +39,31 @@ extension Vpc {
     ///
     /// 本接口 (DescribeAddressQuota) 用于查询您账户的[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）在当前地域的配额信息。配额详情可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)。
     @inlinable
-    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
-        self.client.execute(action: "DescribeAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
+        self.client.execute(action: "DescribeAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 本接口 (DescribeAddressQuota) 用于查询您账户的[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）在当前地域的配额信息。配额详情可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)。
     @inlinable
-    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
-        try await self.client.execute(action: "DescribeAddressQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAddressQuota(_ input: DescribeAddressQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
+        try await self.client.execute(action: "DescribeAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 本接口 (DescribeAddressQuota) 用于查询您账户的[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）在当前地域的配额信息。配额详情可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)。
     @inlinable
-    public func describeAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
-        self.describeAddressQuota(DescribeAddressQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAddressQuotaResponse> {
+        self.describeAddressQuota(DescribeAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性公网IP配额
     ///
     /// 本接口 (DescribeAddressQuota) 用于查询您账户的[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）在当前地域的配额信息。配额详情可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)。
     @inlinable
-    public func describeAddressQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
-        try await self.describeAddressQuota(DescribeAddressQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAddressQuotaResponse {
+        try await self.describeAddressQuota(DescribeAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ms {
 
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
-        self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
+        self.client.execute(action: "DescribeUserBaseInfoInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
-        try await self.client.execute(action: "DescribeUserBaseInfoInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserBaseInfoInstance(_ input: DescribeUserBaseInfoInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
+        try await self.client.execute(action: "DescribeUserBaseInfoInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
-        self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), logger: logger, on: eventLoop)
+    public func describeUserBaseInfoInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
+        self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户基础信息
     @inlinable
-    public func describeUserBaseInfoInstance(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
-        try await self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), logger: logger, on: eventLoop)
+    public func describeUserBaseInfoInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
+        try await self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

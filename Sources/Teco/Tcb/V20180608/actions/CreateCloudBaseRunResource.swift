@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tcb {
     ///
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
-    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudBaseRunResourceResponse> {
-        self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudBaseRunResourceResponse> {
+        self.client.execute(action: "CreateCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通容器托管的资源
     ///
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
-    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
-        try await self.client.execute(action: "CreateCloudBaseRunResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCloudBaseRunResource(_ input: CreateCloudBaseRunResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
+        try await self.client.execute(action: "CreateCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通容器托管的资源
     ///
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
-    public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudBaseRunResourceResponse> {
-        self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudBaseRunResourceResponse> {
+        self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通容器托管的资源
     ///
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
-    public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
-        try await self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), logger: logger, on: eventLoop)
+    public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
+        try await self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
 }

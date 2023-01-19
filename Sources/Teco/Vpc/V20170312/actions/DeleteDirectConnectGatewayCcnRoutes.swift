@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
     @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayCcnRoutesResponse> {
-        self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayCcnRoutesResponse> {
+        self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除专线网关云联网路由
     ///
     /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
     @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
-        try await self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDirectConnectGatewayCcnRoutes(_ input: DeleteDirectConnectGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
+        try await self.client.execute(action: "DeleteDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除专线网关云联网路由
     ///
     /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
     @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayCcnRoutesResponse> {
-        self.deleteDirectConnectGatewayCcnRoutes(DeleteDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func deleteDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayCcnRoutesResponse> {
+        self.deleteDirectConnectGatewayCcnRoutes(DeleteDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除专线网关云联网路由
     ///
     /// 本接口（DeleteDirectConnectGatewayCcnRoutes）用于删除专线网关的云联网路由（IDC网段）
     @inlinable
-    public func deleteDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
-        try await self.deleteDirectConnectGatewayCcnRoutes(DeleteDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func deleteDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayCcnRoutesResponse {
+        try await self.deleteDirectConnectGatewayCcnRoutes(DeleteDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tia {
     ///
     /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
     @inlinable
-    public func listModels(_ input: ListModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListModelsResponse> {
-        self.client.execute(action: "ListModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listModels(_ input: ListModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListModelsResponse> {
+        self.client.execute(action: "ListModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列举Model
     ///
     /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
     @inlinable
-    public func listModels(_ input: ListModelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListModelsResponse {
-        try await self.client.execute(action: "ListModels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listModels(_ input: ListModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListModelsResponse {
+        try await self.client.execute(action: "ListModels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列举Model
     ///
     /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
     @inlinable
-    public func listModels(cluster: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, servType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListModelsResponse> {
-        self.listModels(ListModelsRequest(cluster: cluster, limit: limit, offset: offset, servType: servType), logger: logger, on: eventLoop)
+    public func listModels(cluster: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListModelsResponse> {
+        self.listModels(ListModelsRequest(cluster: cluster, limit: limit, offset: offset, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列举Model
     ///
     /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
     @inlinable
-    public func listModels(cluster: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, servType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListModelsResponse {
-        try await self.listModels(ListModelsRequest(cluster: cluster, limit: limit, offset: offset, servType: servType), logger: logger, on: eventLoop)
+    public func listModels(cluster: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, servType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListModelsResponse {
+        try await self.listModels(ListModelsRequest(cluster: cluster, limit: limit, offset: offset, servType: servType), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcss {
     ///
     /// 添加编辑运行时访问控制策略
     @inlinable
-    public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
-        self.client.execute(action: "AddEditAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
+        self.client.execute(action: "AddEditAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
     @inlinable
-    public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
-        try await self.client.execute(action: "AddEditAccessControlRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
+        try await self.client.execute(action: "AddEditAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
     @inlinable
-    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
-        self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
+        self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
     @inlinable
-    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
-        try await self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), logger: logger, on: eventLoop)
+    public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
+        try await self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

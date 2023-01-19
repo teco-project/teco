@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -40,31 +40,31 @@ extension Dlc {
     ///
     /// 查询计算结果存储位置。
     @inlinable
-    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStoreLocationResponse> {
-        self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStoreLocationResponse> {
+        self.client.execute(action: "DescribeStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询结果存储位置
     ///
     /// 查询计算结果存储位置。
     @inlinable
-    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
-        try await self.client.execute(action: "DescribeStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStoreLocation(_ input: DescribeStoreLocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
+        try await self.client.execute(action: "DescribeStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询结果存储位置
     ///
     /// 查询计算结果存储位置。
     @inlinable
-    public func describeStoreLocation(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStoreLocationResponse> {
-        self.describeStoreLocation(DescribeStoreLocationRequest(), logger: logger, on: eventLoop)
+    public func describeStoreLocation(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStoreLocationResponse> {
+        self.describeStoreLocation(DescribeStoreLocationRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询结果存储位置
     ///
     /// 查询计算结果存储位置。
     @inlinable
-    public func describeStoreLocation(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
-        try await self.describeStoreLocation(DescribeStoreLocationRequest(), logger: logger, on: eventLoop)
+    public func describeStoreLocation(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
+        try await self.describeStoreLocation(DescribeStoreLocationRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

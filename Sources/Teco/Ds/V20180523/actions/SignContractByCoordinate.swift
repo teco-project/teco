@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,31 +88,31 @@ extension Ds {
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
-        self.client.execute(action: "SignContractByCoordinate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
+        self.client.execute(action: "SignContractByCoordinate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByCoordinateResponse {
-        try await self.client.execute(action: "SignContractByCoordinate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func signContractByCoordinate(_ input: SignContractByCoordinateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByCoordinateResponse {
+        try await self.client.execute(action: "SignContractByCoordinate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
-        self.signContractByCoordinate(SignContractByCoordinateRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signLocations: signLocations, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), logger: logger, on: eventLoop)
+    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByCoordinateResponse> {
+        self.signContractByCoordinate(SignContractByCoordinateRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signLocations: signLocations, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按坐标签署合同
     ///
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口提供详细的PDF文档签名坐标进行签署。
     @inlinable
-    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByCoordinateResponse {
-        try await self.signContractByCoordinate(SignContractByCoordinateRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signLocations: signLocations, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), logger: logger, on: eventLoop)
+    public func signContractByCoordinate(module: String, operation: String, contractResId: String, accountResId: String, signLocations: [SignLocation], authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByCoordinateResponse {
+        try await self.signContractByCoordinate(SignContractByCoordinateRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signLocations: signLocations, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), region: region, logger: logger, on: eventLoop)
     }
 }

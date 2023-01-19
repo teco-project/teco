@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Bmvpc {
     ///
     /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
     @inlinable
-    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDockerSubnetWithVlanResponse> {
-        self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDockerSubnetWithVlanResponse> {
+        self.client.execute(action: "CreateDockerSubnetWithVlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石Docker子网
     ///
     /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
     @inlinable
-    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
-        try await self.client.execute(action: "CreateDockerSubnetWithVlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDockerSubnetWithVlan(_ input: CreateDockerSubnetWithVlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
+        try await self.client.execute(action: "CreateDockerSubnetWithVlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建黑石Docker子网
     ///
     /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
     @inlinable
-    public func createDockerSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDockerSubnetWithVlanResponse> {
-        self.createDockerSubnetWithVlan(CreateDockerSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), logger: logger, on: eventLoop)
+    public func createDockerSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDockerSubnetWithVlanResponse> {
+        self.createDockerSubnetWithVlan(CreateDockerSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石Docker子网
     ///
     /// 创建黑石Docker子网， 如果不指定VlanId，将会分配2000--2999范围的VlanId; 子网会关闭分布式网关
     @inlinable
-    public func createDockerSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
-        try await self.createDockerSubnetWithVlan(CreateDockerSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), logger: logger, on: eventLoop)
+    public func createDockerSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDockerSubnetWithVlanResponse {
+        try await self.createDockerSubnetWithVlan(CreateDockerSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
     }
 }

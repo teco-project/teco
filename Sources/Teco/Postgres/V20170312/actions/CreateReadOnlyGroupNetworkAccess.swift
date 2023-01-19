@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Postgres {
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
-        self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
+        self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
-        try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createReadOnlyGroupNetworkAccess(_ input: CreateReadOnlyGroupNetworkAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
+        try await self.client.execute(action: "CreateReadOnlyGroupNetworkAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
-        self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReadOnlyGroupNetworkAccessResponse> {
+        self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加RO组网络
     ///
     /// 可对RO组进行网络的添加操作。
     @inlinable
-    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
-        try await self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), logger: logger, on: eventLoop)
+    public func createReadOnlyGroupNetworkAccess(readOnlyGroupId: String, vpcId: String, subnetId: String, isAssignVip: Bool, vip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReadOnlyGroupNetworkAccessResponse {
+        try await self.createReadOnlyGroupNetworkAccess(CreateReadOnlyGroupNetworkAccessRequest(readOnlyGroupId: readOnlyGroupId, vpcId: vpcId, subnetId: subnetId, isAssignVip: isAssignVip, vip: vip), region: region, logger: logger, on: eventLoop)
     }
 }

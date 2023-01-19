@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cwp {
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
-        self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
+        self.client.execute(action: "DescribeProVersionInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
-        try await self.client.execute(action: "DescribeProVersionInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProVersionInfo(_ input: DescribeProVersionInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
+        try await self.client.execute(action: "DescribeProVersionInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
-        self.describeProVersionInfo(DescribeProVersionInfoRequest(), logger: logger, on: eventLoop)
+    public func describeProVersionInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProVersionInfoResponse> {
+        self.describeProVersionInfo(DescribeProVersionInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取专业版概览信息
     ///
     /// 用于获取专业版概览信息。
     @inlinable
-    public func describeProVersionInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
-        try await self.describeProVersionInfo(DescribeProVersionInfoRequest(), logger: logger, on: eventLoop)
+    public func describeProVersionInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProVersionInfoResponse {
+        try await self.describeProVersionInfo(DescribeProVersionInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

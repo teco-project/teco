@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cwp {
 
     /// 导出基线列表
     @inlinable
-    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBaselineListResponse> {
-        self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportBaselineList(_ input: ExportBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBaselineListResponse> {
+        self.client.execute(action: "ExportBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出基线列表
     @inlinable
-    public func exportBaselineList(_ input: ExportBaselineListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
-        try await self.client.execute(action: "ExportBaselineList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportBaselineList(_ input: ExportBaselineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
+        try await self.client.execute(action: "ExportBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出基线列表
     @inlinable
-    public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBaselineListResponse> {
-        self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBaselineListResponse> {
+        self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出基线列表
     @inlinable
-    public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
-        try await self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), logger: logger, on: eventLoop)
+    public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
+        try await self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
     }
 }

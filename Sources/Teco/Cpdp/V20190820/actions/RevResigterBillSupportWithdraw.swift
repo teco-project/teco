@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -110,31 +110,31 @@ extension Cpdp {
     ///
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
-    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevResigterBillSupportWithdrawResponse> {
-        self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevResigterBillSupportWithdrawResponse> {
+        self.client.execute(action: "RevResigterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-登记挂账撤销
     ///
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
-    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
-        try await self.client.execute(action: "RevResigterBillSupportWithdraw", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func revResigterBillSupportWithdraw(_ input: RevResigterBillSupportWithdrawRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
+        try await self.client.execute(action: "RevResigterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-登记挂账撤销
     ///
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
-    public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevResigterBillSupportWithdrawResponse> {
-        self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevResigterBillSupportWithdrawResponse> {
+        self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-登记挂账撤销
     ///
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
-    public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
-        try await self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), logger: logger, on: eventLoop)
+    public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
+        try await self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

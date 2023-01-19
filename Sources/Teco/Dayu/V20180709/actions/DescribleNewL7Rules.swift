@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,25 +83,25 @@ extension Dayu {
 
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
-        self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
+        self.client.execute(action: "DescribleNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
-        try await self.client.execute(action: "DescribleNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describleNewL7Rules(_ input: DescribleNewL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
+        try await self.client.execute(action: "DescribleNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
-        self.describleNewL7Rules(DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), logger: logger, on: eventLoop)
+    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleNewL7RulesResponse> {
+        self.describleNewL7Rules(DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取7层规则
     @inlinable
-    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
-        try await self.describleNewL7Rules(DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), logger: logger, on: eventLoop)
+    public func describleNewL7Rules(business: String, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleNewL7RulesResponse {
+        try await self.describleNewL7Rules(DescribleNewL7RulesRequest(business: business, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList, ip: ip), region: region, logger: logger, on: eventLoop)
     }
 }

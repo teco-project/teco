@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tke {
 
     /// 获取集群规模价格
     @inlinable
-    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterLevelPriceResponse> {
-        self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterLevelPriceResponse> {
+        self.client.execute(action: "GetClusterLevelPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群规模价格
     @inlinable
-    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
-        try await self.client.execute(action: "GetClusterLevelPrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getClusterLevelPrice(_ input: GetClusterLevelPriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
+        try await self.client.execute(action: "GetClusterLevelPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群规模价格
     @inlinable
-    public func getClusterLevelPrice(clusterLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterLevelPriceResponse> {
-        self.getClusterLevelPrice(GetClusterLevelPriceRequest(clusterLevel: clusterLevel), logger: logger, on: eventLoop)
+    public func getClusterLevelPrice(clusterLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterLevelPriceResponse> {
+        self.getClusterLevelPrice(GetClusterLevelPriceRequest(clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群规模价格
     @inlinable
-    public func getClusterLevelPrice(clusterLevel: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
-        try await self.getClusterLevelPrice(GetClusterLevelPriceRequest(clusterLevel: clusterLevel), logger: logger, on: eventLoop)
+    public func getClusterLevelPrice(clusterLevel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterLevelPriceResponse {
+        try await self.getClusterLevelPrice(GetClusterLevelPriceRequest(clusterLevel: clusterLevel), region: region, logger: logger, on: eventLoop)
     }
 }

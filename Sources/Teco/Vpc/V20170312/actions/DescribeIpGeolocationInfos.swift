@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
-        self.client.execute(action: "DescribeIpGeolocationInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
+        self.client.execute(action: "DescribeIpGeolocationInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询IP地理位置信息
@@ -66,8 +66,8 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationInfosResponse {
-        try await self.client.execute(action: "DescribeIpGeolocationInfos", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpGeolocationInfos(_ input: DescribeIpGeolocationInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationInfosResponse {
+        try await self.client.execute(action: "DescribeIpGeolocationInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询IP地理位置信息
@@ -75,8 +75,8 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
-        self.describeIpGeolocationInfos(DescribeIpGeolocationInfosRequest(addressIps: addressIps, fields: fields), logger: logger, on: eventLoop)
+    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationInfosResponse> {
+        self.describeIpGeolocationInfos(DescribeIpGeolocationInfosRequest(addressIps: addressIps, fields: fields), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询IP地理位置信息
@@ -84,7 +84,7 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationInfos）用于查询IP地址信息，包括地理位置信息和网络信息。
     /// 本接口仅供存量客户使用，如有疑问，请提交[工单申请](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=660&source=0&data_title=%E5%BC%B9%E6%80%A7%E5%85%AC%E7%BD%91%20EIP&level3_id=662&queue=96&scene_code=16400&step=2)。
     @inlinable
-    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationInfosResponse {
-        try await self.describeIpGeolocationInfos(DescribeIpGeolocationInfosRequest(addressIps: addressIps, fields: fields), logger: logger, on: eventLoop)
+    public func describeIpGeolocationInfos(addressIps: [String], fields: IpField? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationInfosResponse {
+        try await self.describeIpGeolocationInfos(DescribeIpGeolocationInfosRequest(addressIps: addressIps, fields: fields), region: region, logger: logger, on: eventLoop)
     }
 }

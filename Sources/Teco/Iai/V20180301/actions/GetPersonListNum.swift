@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Iai {
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
-        self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getPersonListNum(_ input: GetPersonListNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
+        self.client.execute(action: "GetPersonListNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(_ input: GetPersonListNumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
-        try await self.client.execute(action: "GetPersonListNum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getPersonListNum(_ input: GetPersonListNumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
+        try await self.client.execute(action: "GetPersonListNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
-        self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func getPersonListNum(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
+        self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表长度
     ///
     /// 获取指定人员库中人员数量。
     @inlinable
-    public func getPersonListNum(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
-        try await self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func getPersonListNum(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
+        try await self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

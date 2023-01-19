@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -174,31 +174,31 @@ extension Redis {
     ///
     /// 本接口(CreateInstances)用于创建redis实例。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Redis实例
     ///
     /// 本接口(CreateInstances)用于创建redis实例。
     @inlinable
-    public func createInstances(_ input: CreateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.client.execute(action: "CreateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstances(_ input: CreateInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.client.execute(action: "CreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Redis实例
     ///
     /// 本接口(CreateInstances)用于创建redis实例。
     @inlinable
-    public func createInstances(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, password: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, vPort: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, instanceName: String? = nil, noAuth: Bool? = nil, nodeSet: [RedisNodeInfo]? = nil, resourceTags: [ResourceTag]? = nil, zoneName: String? = nil, templateId: String? = nil, dryRun: Bool? = nil, productVersion: String? = nil, redisClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
-        self.createInstances(CreateInstancesRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, password: password, vpcId: vpcId, subnetId: subnetId, projectId: projectId, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, vPort: vPort, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, instanceName: instanceName, noAuth: noAuth, nodeSet: nodeSet, resourceTags: resourceTags, zoneName: zoneName, templateId: templateId, dryRun: dryRun, productVersion: productVersion, redisClusterId: redisClusterId), logger: logger, on: eventLoop)
+    public func createInstances(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, password: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, vPort: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, instanceName: String? = nil, noAuth: Bool? = nil, nodeSet: [RedisNodeInfo]? = nil, resourceTags: [ResourceTag]? = nil, zoneName: String? = nil, templateId: String? = nil, dryRun: Bool? = nil, productVersion: String? = nil, redisClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancesResponse> {
+        self.createInstances(CreateInstancesRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, password: password, vpcId: vpcId, subnetId: subnetId, projectId: projectId, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, vPort: vPort, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, instanceName: instanceName, noAuth: noAuth, nodeSet: nodeSet, resourceTags: resourceTags, zoneName: zoneName, templateId: templateId, dryRun: dryRun, productVersion: productVersion, redisClusterId: redisClusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Redis实例
     ///
     /// 本接口(CreateInstances)用于创建redis实例。
     @inlinable
-    public func createInstances(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, password: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, vPort: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, instanceName: String? = nil, noAuth: Bool? = nil, nodeSet: [RedisNodeInfo]? = nil, resourceTags: [ResourceTag]? = nil, zoneName: String? = nil, templateId: String? = nil, dryRun: Bool? = nil, productVersion: String? = nil, redisClusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
-        try await self.createInstances(CreateInstancesRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, password: password, vpcId: vpcId, subnetId: subnetId, projectId: projectId, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, vPort: vPort, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, instanceName: instanceName, noAuth: noAuth, nodeSet: nodeSet, resourceTags: resourceTags, zoneName: zoneName, templateId: templateId, dryRun: dryRun, productVersion: productVersion, redisClusterId: redisClusterId), logger: logger, on: eventLoop)
+    public func createInstances(typeId: UInt64, memSize: UInt64, goodsNum: UInt64, period: UInt64, billingMode: Int64, zoneId: UInt64? = nil, password: String? = nil, vpcId: String? = nil, subnetId: String? = nil, projectId: Int64? = nil, autoRenew: UInt64? = nil, securityGroupIdList: [String]? = nil, vPort: UInt64? = nil, redisShardNum: Int64? = nil, redisReplicasNum: Int64? = nil, replicasReadonly: Bool? = nil, instanceName: String? = nil, noAuth: Bool? = nil, nodeSet: [RedisNodeInfo]? = nil, resourceTags: [ResourceTag]? = nil, zoneName: String? = nil, templateId: String? = nil, dryRun: Bool? = nil, productVersion: String? = nil, redisClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancesResponse {
+        try await self.createInstances(CreateInstancesRequest(typeId: typeId, memSize: memSize, goodsNum: goodsNum, period: period, billingMode: billingMode, zoneId: zoneId, password: password, vpcId: vpcId, subnetId: subnetId, projectId: projectId, autoRenew: autoRenew, securityGroupIdList: securityGroupIdList, vPort: vPort, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum, replicasReadonly: replicasReadonly, instanceName: instanceName, noAuth: noAuth, nodeSet: nodeSet, resourceTags: resourceTags, zoneName: zoneName, templateId: templateId, dryRun: dryRun, productVersion: productVersion, redisClusterId: redisClusterId), region: region, logger: logger, on: eventLoop)
     }
 }

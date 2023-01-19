@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Kms {
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
-        self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKey(_ input: DescribeKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
+        self.client.execute(action: "DescribeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(_ input: DescribeKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
-        try await self.client.execute(action: "DescribeKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKey(_ input: DescribeKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
+        try await self.client.execute(action: "DescribeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
-        self.describeKey(DescribeKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func describeKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
+        self.describeKey(DescribeKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥属性
     ///
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
-    public func describeKey(keyId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
-        try await self.describeKey(DescribeKeyRequest(keyId: keyId), logger: logger, on: eventLoop)
+    public func describeKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
+        try await self.describeKey(DescribeKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

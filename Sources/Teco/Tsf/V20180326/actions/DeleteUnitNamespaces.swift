@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tsf {
 
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
-        self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
+        self.client.execute(action: "DeleteUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
-        try await self.client.execute(action: "DeleteUnitNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteUnitNamespaces(_ input: DeleteUnitNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
+        try await self.client.execute(action: "DeleteUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
-        self.deleteUnitNamespaces(DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), logger: logger, on: eventLoop)
+    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitNamespacesResponse> {
+        self.deleteUnitNamespaces(DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化命名空间
     @inlinable
-    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
-        try await self.deleteUnitNamespaces(DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), logger: logger, on: eventLoop)
+    public func deleteUnitNamespaces(gatewayInstanceId: String, unitNamespaceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitNamespacesResponse {
+        try await self.deleteUnitNamespaces(DeleteUnitNamespacesRequest(gatewayInstanceId: gatewayInstanceId, unitNamespaceList: unitNamespaceList), region: region, logger: logger, on: eventLoop)
     }
 }

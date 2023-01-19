@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,8 +69,8 @@ extension Trtc {
     /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
-    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnusualEventResponse> {
-        self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnusualEventResponse> {
+        self.client.execute(action: "DescribeUnusualEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询异常体验事件
@@ -78,8 +78,8 @@ extension Trtc {
     /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
-    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
-        try await self.client.execute(action: "DescribeUnusualEvent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUnusualEvent(_ input: DescribeUnusualEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
+        try await self.client.execute(action: "DescribeUnusualEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询异常体验事件
@@ -87,8 +87,8 @@ extension Trtc {
     /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
-    public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnusualEventResponse> {
-        self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), logger: logger, on: eventLoop)
+    public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnusualEventResponse> {
+        self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询异常体验事件
@@ -96,7 +96,7 @@ extension Trtc {
     /// 查询SdkAppId下任意20条异常体验事件，返回异常体验ID与可能产生异常体验的原因。可查询14天内数据，查询起止时间不超过1个小时。支持跨天查询。（同老接口DescribeAbnormalEvent）
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
-    public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
-        try await self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), logger: logger, on: eventLoop)
+    public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
+        try await self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 }

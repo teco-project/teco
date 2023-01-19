@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
     @inlinable
-    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTaskResponse> {
-        self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProductTask(_ input: DescribeProductTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTaskResponse> {
+        self.client.execute(action: "DescribeProductTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看产品任务详情
     ///
     /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
     @inlinable
-    public func describeProductTask(_ input: DescribeProductTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
-        try await self.client.execute(action: "DescribeProductTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProductTask(_ input: DescribeProductTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
+        try await self.client.execute(action: "DescribeProductTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看产品任务详情
     ///
     /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
     @inlinable
-    public func describeProductTask(productId: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTaskResponse> {
-        self.describeProductTask(DescribeProductTaskRequest(productId: productId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeProductTask(productId: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTaskResponse> {
+        self.describeProductTask(DescribeProductTaskRequest(productId: productId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看产品任务详情
     ///
     /// 本接口（DescribeProductTask）用于查看产品级别的任务信息
     @inlinable
-    public func describeProductTask(productId: String, taskId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
-        try await self.describeProductTask(DescribeProductTaskRequest(productId: productId, taskId: taskId), logger: logger, on: eventLoop)
+    public func describeProductTask(productId: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTaskResponse {
+        try await self.describeProductTask(DescribeProductTaskRequest(productId: productId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

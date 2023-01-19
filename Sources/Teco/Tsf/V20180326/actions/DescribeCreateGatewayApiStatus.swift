@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tsf {
 
     /// 查询一键导入API分组任务的状态
     @inlinable
-    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreateGatewayApiStatusResponse> {
-        self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreateGatewayApiStatusResponse> {
+        self.client.execute(action: "DescribeCreateGatewayApiStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询一键导入API分组任务的状态
     @inlinable
-    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
-        try await self.client.execute(action: "DescribeCreateGatewayApiStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCreateGatewayApiStatus(_ input: DescribeCreateGatewayApiStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
+        try await self.client.execute(action: "DescribeCreateGatewayApiStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询一键导入API分组任务的状态
     @inlinable
-    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreateGatewayApiStatusResponse> {
-        self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), logger: logger, on: eventLoop)
+    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreateGatewayApiStatusResponse> {
+        self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一键导入API分组任务的状态
     @inlinable
-    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
-        try await self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), logger: logger, on: eventLoop)
+    public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
+        try await self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 }

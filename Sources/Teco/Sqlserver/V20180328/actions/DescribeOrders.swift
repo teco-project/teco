@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrders(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
+        self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
     ///
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
-    public func describeOrders(_ input: DescribeOrdersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        try await self.client.execute(action: "DescribeOrders", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrders(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
+        try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询订单信息
     ///
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
-    public func describeOrders(dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), logger: logger, on: eventLoop)
+    public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
+        self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询订单信息
     ///
     /// 本接口（DescribeOrders）用于查询订单信息
     @inlinable
-    public func describeOrders(dealNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        try await self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), logger: logger, on: eventLoop)
+    public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
+        try await self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
 }

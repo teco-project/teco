@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Pts {
 
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
-        self.client.execute(action: "DescribeSampleMatrixQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
+        self.client.execute(action: "DescribeSampleMatrixQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
-        try await self.client.execute(action: "DescribeSampleMatrixQuery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSampleMatrixQuery(_ input: DescribeSampleMatrixQueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
+        try await self.client.execute(action: "DescribeSampleMatrixQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
-        self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), logger: logger, on: eventLoop)
+    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
+        self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询指标矩阵
     @inlinable
-    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
-        try await self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), logger: logger, on: eventLoop)
+    public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
+        try await self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), region: region, logger: logger, on: eventLoop)
     }
 }

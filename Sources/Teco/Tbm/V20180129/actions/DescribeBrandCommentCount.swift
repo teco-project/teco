@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Tbm {
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
-    public func describeBrandCommentCount(_ input: DescribeBrandCommentCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandCommentCountResponse> {
-        self.client.execute(action: "DescribeBrandCommentCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBrandCommentCount(_ input: DescribeBrandCommentCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandCommentCountResponse> {
+        self.client.execute(action: "DescribeBrandCommentCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌好差评数
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
-    public func describeBrandCommentCount(_ input: DescribeBrandCommentCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandCommentCountResponse {
-        try await self.client.execute(action: "DescribeBrandCommentCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBrandCommentCount(_ input: DescribeBrandCommentCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandCommentCountResponse {
+        try await self.client.execute(action: "DescribeBrandCommentCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取品牌好差评数
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
-    public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandCommentCountResponse> {
-        self.describeBrandCommentCount(DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandCommentCountResponse> {
+        self.describeBrandCommentCount(DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌好差评数
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌好评与差评评价条数，按天输出结果。
     @inlinable
-    public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandCommentCountResponse {
-        try await self.describeBrandCommentCount(DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeBrandCommentCount(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandCommentCountResponse {
+        try await self.describeBrandCommentCount(DescribeBrandCommentCountRequest(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

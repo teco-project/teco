@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Teo {
     ///
     /// 修改规则引擎规则。
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改规则引擎规则
     ///
     /// 修改规则引擎规则。
     @inlinable
-    public func modifyRule(_ input: ModifyRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.client.execute(action: "ModifyRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyRule(_ input: ModifyRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改规则引擎规则
     ///
     /// 修改规则引擎规则。
     @inlinable
-    public func modifyRule(zoneId: String, ruleName: String, rules: [RuleItem], ruleId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.modifyRule(ModifyRuleRequest(zoneId: zoneId, ruleName: ruleName, rules: rules, ruleId: ruleId, status: status), logger: logger, on: eventLoop)
+    public func modifyRule(zoneId: String, ruleName: String, rules: [RuleItem], ruleId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
+        self.modifyRule(ModifyRuleRequest(zoneId: zoneId, ruleName: ruleName, rules: rules, ruleId: ruleId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改规则引擎规则
     ///
     /// 修改规则引擎规则。
     @inlinable
-    public func modifyRule(zoneId: String, ruleName: String, rules: [RuleItem], ruleId: String, status: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.modifyRule(ModifyRuleRequest(zoneId: zoneId, ruleName: ruleName, rules: rules, ruleId: ruleId, status: status), logger: logger, on: eventLoop)
+    public func modifyRule(zoneId: String, ruleName: String, rules: [RuleItem], ruleId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
+        try await self.modifyRule(ModifyRuleRequest(zoneId: zoneId, ruleName: ruleName, rules: rules, ruleId: ruleId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

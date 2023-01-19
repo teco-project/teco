@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
+        self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
     ///
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable
-    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.client.execute(action: "AssociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全组批量绑定云资源
     ///
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable
-    public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
+        self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
     ///
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable
-    public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
+    public func associateSecurityGroups(securityGroupId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
+        try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
 }

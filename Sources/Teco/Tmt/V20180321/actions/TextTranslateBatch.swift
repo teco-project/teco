@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -107,31 +107,31 @@ extension Tmt {
     ///
     /// 文本翻译的批量接口
     @inlinable
-    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateBatchResponse> {
-        self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func textTranslateBatch(_ input: TextTranslateBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateBatchResponse> {
+        self.client.execute(action: "TextTranslateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量文本翻译
     ///
     /// 文本翻译的批量接口
     @inlinable
-    public func textTranslateBatch(_ input: TextTranslateBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
-        try await self.client.execute(action: "TextTranslateBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func textTranslateBatch(_ input: TextTranslateBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
+        try await self.client.execute(action: "TextTranslateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量文本翻译
     ///
     /// 文本翻译的批量接口
     @inlinable
-    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateBatchResponse> {
-        self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), logger: logger, on: eventLoop)
+    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateBatchResponse> {
+        self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量文本翻译
     ///
     /// 文本翻译的批量接口
     @inlinable
-    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
-        try await self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), logger: logger, on: eventLoop)
+    public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
+        try await self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), region: region, logger: logger, on: eventLoop)
     }
 }

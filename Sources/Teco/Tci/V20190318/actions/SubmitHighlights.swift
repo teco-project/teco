@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,31 +87,31 @@ extension Tci {
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(_ input: SubmitHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
-        self.client.execute(action: "SubmitHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitHighlights(_ input: SubmitHighlightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
+        self.client.execute(action: "SubmitHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(_ input: SubmitHighlightsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
-        try await self.client.execute(action: "SubmitHighlights", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitHighlights(_ input: SubmitHighlightsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
+        try await self.client.execute(action: "SubmitHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
-        self.submitHighlights(SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitHighlightsResponse> {
+        self.submitHighlights(SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起视频生成精彩集锦接口
     ///
     /// 发起视频生成精彩集锦接口。该接口可以通过客户传入的课程音频数据及相关策略（如微笑抽取，专注抽取等），自动生成一堂课程的精彩集锦。需要通过QueryHighlightResult接口获取生成结果。
     @inlinable
-    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
-        try await self.submitHighlights(SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), logger: logger, on: eventLoop)
+    public func submitHighlights(functions: HLFunction, fileContent: String, fileType: String, libIds: [String], frameInterval: Int64? = nil, keywordsLanguage: Int64? = nil, keywordsStrings: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitHighlightsResponse {
+        try await self.submitHighlights(SubmitHighlightsRequest(functions: functions, fileContent: fileContent, fileType: fileType, libIds: libIds, frameInterval: frameInterval, keywordsLanguage: keywordsLanguage, keywordsStrings: keywordsStrings, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
     }
 }

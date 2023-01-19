@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Antiddos {
 
     /// 获取CC清洗阈值列表
     @inlinable
-    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCThresholdListResponse> {
-        self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCThresholdListResponse> {
+        self.client.execute(action: "DescribeCCThresholdList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC清洗阈值列表
     @inlinable
-    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
-        try await self.client.execute(action: "DescribeCCThresholdList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCThresholdList(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
+        try await self.client.execute(action: "DescribeCCThresholdList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC清洗阈值列表
     @inlinable
-    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCThresholdListResponse> {
-        self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCThresholdListResponse> {
+        self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC清洗阈值列表
     @inlinable
-    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
-        try await self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeCCThresholdList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCThresholdListResponse {
+        try await self.describeCCThresholdList(DescribeCCThresholdListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,8 +83,8 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(_ input: ImportMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
-        self.client.execute(action: "ImportMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func importMedia(_ input: ImportMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
+        self.client.execute(action: "ImportMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入媒资文件
@@ -95,8 +95,8 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(_ input: ImportMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaResponse {
-        try await self.client.execute(action: "ImportMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func importMedia(_ input: ImportMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaResponse {
+        try await self.client.execute(action: "ImportMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导入媒资文件
@@ -107,8 +107,8 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
-        self.importMedia(ImportMediaRequest(url: url, md5: md5, name: name, writeBackCosPath: writeBackCosPath, label: label, callbackURL: callbackURL, mediaType: mediaType), logger: logger, on: eventLoop)
+    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMediaResponse> {
+        self.importMedia(ImportMediaRequest(url: url, md5: md5, name: name, writeBackCosPath: writeBackCosPath, label: label, callbackURL: callbackURL, mediaType: mediaType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导入媒资文件
@@ -119,7 +119,7 @@ extension Ivld {
     /// 另外，目前产品也支持使用外部URL地址，但是当传入URL为非COS地址时，需要您指定额外的WriteBackCosPath以供产品回写结果数据。
     /// 分析完成后，本产品将在您的`${Bucket}`桶内创建名为`${ObjectKey}_${task-create-time}`的目录(`task-create-time`形式为1970-01-01T08:08:08)并将分析结果将回传回该目录，也即，结构化分析结果(包括图片，JSON等数据)将会写回`https://${Bucket}-${AppId}.cos.${Region}.myqcloud.com/${ObjectKey}_${task-create-time}`目录
     @inlinable
-    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaResponse {
-        try await self.importMedia(ImportMediaRequest(url: url, md5: md5, name: name, writeBackCosPath: writeBackCosPath, label: label, callbackURL: callbackURL, mediaType: mediaType), logger: logger, on: eventLoop)
+    public func importMedia(url: String, md5: String? = nil, name: String? = nil, writeBackCosPath: String? = nil, label: String? = nil, callbackURL: String? = nil, mediaType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMediaResponse {
+        try await self.importMedia(ImportMediaRequest(url: url, md5: md5, name: name, writeBackCosPath: writeBackCosPath, label: label, callbackURL: callbackURL, mediaType: mediaType), region: region, logger: logger, on: eventLoop)
     }
 }

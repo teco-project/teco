@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Tcss {
 
     /// 运行时更新文件查杀设置
     @inlinable
-    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
-        self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
+        self.client.execute(action: "ModifyVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀设置
     @inlinable
-    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
-        try await self.client.execute(action: "ModifyVirusScanSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyVirusScanSetting(_ input: ModifyVirusScanSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
+        try await self.client.execute(action: "ModifyVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时更新文件查杀设置
     @inlinable
-    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
-        self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), logger: logger, on: eventLoop)
+    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
+        self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀设置
     @inlinable
-    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
-        try await self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), logger: logger, on: eventLoop)
+    public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
+        try await self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Ccc {
     ///
     /// 查询单状态
     @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCarrierPrivilegeNumberApplicantsResponse> {
-        self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCarrierPrivilegeNumberApplicantsResponse> {
+        self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询运营商白名单号码申请
     ///
     /// 查询单状态
     @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
-        try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCarrierPrivilegeNumberApplicants(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
+        try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询运营商白名单号码申请
     ///
     /// 查询单状态
     @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCarrierPrivilegeNumberApplicantsResponse> {
-        self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCarrierPrivilegeNumberApplicantsResponse> {
+        self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询运营商白名单号码申请
     ///
     /// 查询单状态
     @inlinable
-    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
-        try await self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), logger: logger, on: eventLoop)
+    public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
+        try await self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

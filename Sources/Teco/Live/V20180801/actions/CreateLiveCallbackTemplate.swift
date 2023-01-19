@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,8 +99,8 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
-        self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
+        self.client.execute(action: "CreateLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建回调模板
@@ -109,8 +109,8 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
-        try await self.client.execute(action: "CreateLiveCallbackTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLiveCallbackTemplate(_ input: CreateLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
+        try await self.client.execute(action: "CreateLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建回调模板
@@ -119,8 +119,8 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
-        self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), logger: logger, on: eventLoop)
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveCallbackTemplateResponse> {
+        self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建回调模板
@@ -129,7 +129,7 @@ extension Live {
     /// <br>回调协议相关文档：[事件消息通知](/document/product/267/32744)。
     /// 注意：至少填写一个回调 URL。
     @inlinable
-    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
-        try await self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), logger: logger, on: eventLoop)
+    public func createLiveCallbackTemplate(templateName: String, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, streamMixNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveCallbackTemplateResponse {
+        try await self.createLiveCallbackTemplate(CreateLiveCallbackTemplateRequest(templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, streamMixNotifyUrl: streamMixNotifyUrl), region: region, logger: logger, on: eventLoop)
     }
 }

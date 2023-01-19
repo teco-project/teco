@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tsf {
 
     /// 绑定解绑tcr仓库
     @inlinable
-    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateApplicationTcrBindingResponse> {
-        self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateApplicationTcrBindingResponse> {
+        self.client.execute(action: "OperateApplicationTcrBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定解绑tcr仓库
     @inlinable
-    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
-        try await self.client.execute(action: "OperateApplicationTcrBinding", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func operateApplicationTcrBinding(_ input: OperateApplicationTcrBindingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
+        try await self.client.execute(action: "OperateApplicationTcrBinding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定解绑tcr仓库
     @inlinable
-    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateApplicationTcrBindingResponse> {
-        self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateApplicationTcrBindingResponse> {
+        self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定解绑tcr仓库
     @inlinable
-    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
-        try await self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), logger: logger, on: eventLoop)
+    public func operateApplicationTcrBinding(command: String? = nil, applicationId: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateApplicationTcrBindingResponse {
+        try await self.operateApplicationTcrBinding(OperateApplicationTcrBindingRequest(command: command, applicationId: applicationId, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
     }
 }

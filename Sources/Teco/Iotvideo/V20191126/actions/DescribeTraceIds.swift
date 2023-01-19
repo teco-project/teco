@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -40,31 +40,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
-        self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTraceIds(_ input: DescribeTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
+        self.client.execute(action: "DescribeTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(_ input: DescribeTraceIdsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
-        try await self.client.execute(action: "DescribeTraceIds", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTraceIds(_ input: DescribeTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
+        try await self.client.execute(action: "DescribeTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
-        self.describeTraceIds(DescribeTraceIdsRequest(), logger: logger, on: eventLoop)
+    public func describeTraceIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceIdsResponse> {
+        self.describeTraceIds(DescribeTraceIdsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备日志跟踪白名单
     ///
     /// 本接口（DescribeTraceIds）用于查询设备日志跟踪白名单。
     @inlinable
-    public func describeTraceIds(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
-        try await self.describeTraceIds(DescribeTraceIdsRequest(), logger: logger, on: eventLoop)
+    public func describeTraceIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceIdsResponse {
+        try await self.describeTraceIds(DescribeTraceIdsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

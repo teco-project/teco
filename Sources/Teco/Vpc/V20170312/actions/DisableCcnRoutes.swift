@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
     @inlinable
-    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
-        self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
+        self.client.execute(action: "DisableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用云联网路由
     ///
     /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
     @inlinable
-    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
-        try await self.client.execute(action: "DisableCcnRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableCcnRoutes(_ input: DisableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
+        try await self.client.execute(action: "DisableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用云联网路由
     ///
     /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
     @inlinable
-    public func disableCcnRoutes(ccnId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
-        self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func disableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCcnRoutesResponse> {
+        self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用云联网路由
     ///
     /// 本接口（DisableCcnRoutes）用于禁用已经启用的云联网（CCN）路由
     @inlinable
-    public func disableCcnRoutes(ccnId: String, routeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
-        try await self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), logger: logger, on: eventLoop)
+    public func disableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCcnRoutesResponse {
+        try await self.disableCcnRoutes(DisableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
 }

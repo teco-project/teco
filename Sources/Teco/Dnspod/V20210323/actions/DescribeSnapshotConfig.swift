@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dnspod {
 
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
-        self.client.execute(action: "DescribeSnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
+        self.client.execute(action: "DescribeSnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {
-        try await self.client.execute(action: "DescribeSnapshotConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSnapshotConfig(_ input: DescribeSnapshotConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {
+        try await self.client.execute(action: "DescribeSnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
-        self.describeSnapshotConfig(DescribeSnapshotConfigRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotConfigResponse> {
+        self.describeSnapshotConfig(DescribeSnapshotConfigRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询解析快照配置
     @inlinable
-    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {
-        try await self.describeSnapshotConfig(DescribeSnapshotConfigRequest(domain: domain, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeSnapshotConfig(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotConfigResponse {
+        try await self.describeSnapshotConfig(DescribeSnapshotConfigRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

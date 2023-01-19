@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Live {
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
-        self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
+        self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
-        try await self.client.execute(action: "StopScreenshotTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
+        try await self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopScreenshotTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
-        self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
+        self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
     @inlinable
-    public func stopScreenshotTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
-        try await self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
+        try await self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Tcss {
     ///
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
-    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTendencyResponse> {
-        self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulTendency(_ input: DescribeVulTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTendencyResponse> {
+        self.client.execute(action: "DescribeVulTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险趋势
     ///
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
-    public func describeVulTendency(_ input: DescribeVulTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
-        try await self.client.execute(action: "DescribeVulTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulTendency(_ input: DescribeVulTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
+        try await self.client.execute(action: "DescribeVulTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞风险趋势
     ///
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
-    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTendencyResponse> {
-        self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), logger: logger, on: eventLoop)
+    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTendencyResponse> {
+        self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险趋势
     ///
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
-    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
-        try await self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), logger: logger, on: eventLoop)
+    public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
+        try await self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), region: region, logger: logger, on: eventLoop)
     }
 }

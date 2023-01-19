@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Thpc {
     ///
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
-    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterActivitiesResponse> {
-        self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterActivitiesResponse> {
+        self.client.execute(action: "DescribeClusterActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群活动历史记录
     ///
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
-    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
-        try await self.client.execute(action: "DescribeClusterActivities", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterActivities(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
+        try await self.client.execute(action: "DescribeClusterActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群活动历史记录
     ///
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
-    public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterActivitiesResponse> {
-        self.describeClusterActivities(DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterActivitiesResponse> {
+        self.describeClusterActivities(DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群活动历史记录
     ///
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
-    public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
-        try await self.describeClusterActivities(DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeClusterActivities(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterActivitiesResponse {
+        try await self.describeClusterActivities(DescribeClusterActivitiesRequest(clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

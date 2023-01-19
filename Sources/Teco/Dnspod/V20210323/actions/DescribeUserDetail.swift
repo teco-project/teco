@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Dnspod {
 
     /// 获取帐户信息
     @inlinable
-    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
-        self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserDetail(_ input: DescribeUserDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
+        self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取帐户信息
     @inlinable
-    public func describeUserDetail(_ input: DescribeUserDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
-        try await self.client.execute(action: "DescribeUserDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserDetail(_ input: DescribeUserDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
+        try await self.client.execute(action: "DescribeUserDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取帐户信息
     @inlinable
-    public func describeUserDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
-        self.describeUserDetail(DescribeUserDetailRequest(), logger: logger, on: eventLoop)
+    public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserDetailResponse> {
+        self.describeUserDetail(DescribeUserDetailRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取帐户信息
     @inlinable
-    public func describeUserDetail(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
-        try await self.describeUserDetail(DescribeUserDetailRequest(), logger: logger, on: eventLoop)
+    public func describeUserDetail(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserDetailResponse {
+        try await self.describeUserDetail(DescribeUserDetailRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

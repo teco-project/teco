@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Dbbrain {
     ///
     /// 删除安全审计日志导出任务。
     @inlinable
-    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
-        self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
+        self.client.execute(action: "DeleteSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
     @inlinable
-    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
-        try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
+        try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
     @inlinable
-    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
-        self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), logger: logger, on: eventLoop)
+    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
+        self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
     @inlinable
-    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
-        try await self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), logger: logger, on: eventLoop)
+    public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
+        try await self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

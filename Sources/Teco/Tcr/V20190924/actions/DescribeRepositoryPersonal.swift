@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcr {
 
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
-        self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
+        self.client.execute(action: "DescribeRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
-        try await self.client.execute(action: "DescribeRepositoryPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRepositoryPersonal(_ input: DescribeRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
+        try await self.client.execute(action: "DescribeRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
-        self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    public func describeRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryPersonalResponse> {
+        self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询个人版仓库信息
     @inlinable
-    public func describeRepositoryPersonal(repoName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
-        try await self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), logger: logger, on: eventLoop)
+    public func describeRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryPersonalResponse {
+        try await self.describeRepositoryPersonal(DescribeRepositoryPersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
 }

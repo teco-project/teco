@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
-    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundleDiscountResponse> {
-        self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundleDiscountResponse> {
+        self.client.execute(action: "DescribeBundleDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐折扣
     ///
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
-    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
-        try await self.client.execute(action: "DescribeBundleDiscount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBundleDiscount(_ input: DescribeBundleDiscountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
+        try await self.client.execute(action: "DescribeBundleDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询套餐折扣
     ///
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
-    public func describeBundleDiscount(bundleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundleDiscountResponse> {
-        self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), logger: logger, on: eventLoop)
+    public func describeBundleDiscount(bundleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundleDiscountResponse> {
+        self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐折扣
     ///
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
-    public func describeBundleDiscount(bundleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
-        try await self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), logger: logger, on: eventLoop)
+    public func describeBundleDiscount(bundleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
+        try await self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), region: region, logger: logger, on: eventLoop)
     }
 }

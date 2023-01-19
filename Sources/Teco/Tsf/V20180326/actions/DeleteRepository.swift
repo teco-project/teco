@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tsf {
 
     /// 删除仓库
     @inlinable
-    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
-        self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteRepository(_ input: DeleteRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
+        self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除仓库
     @inlinable
-    public func deleteRepository(_ input: DeleteRepositoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
-        try await self.client.execute(action: "DeleteRepository", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteRepository(_ input: DeleteRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
+        try await self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除仓库
     @inlinable
-    public func deleteRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
-        self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func deleteRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
+        self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除仓库
     @inlinable
-    public func deleteRepository(repositoryId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
-        try await self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), logger: logger, on: eventLoop)
+    public func deleteRepository(repositoryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
+        try await self.deleteRepository(DeleteRepositoryRequest(repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
 }

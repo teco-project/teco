@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -155,25 +155,25 @@ extension Rum {
 
     /// 获取DescribeDataSetUrlStatistics信息
     @inlinable
-    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSetUrlStatisticsResponse> {
-        self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSetUrlStatisticsResponse> {
+        self.client.execute(action: "DescribeDataSetUrlStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DescribeDataSetUrlStatistics信息
     @inlinable
-    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
-        try await self.client.execute(action: "DescribeDataSetUrlStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataSetUrlStatistics(_ input: DescribeDataSetUrlStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
+        try await self.client.execute(action: "DescribeDataSetUrlStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取DescribeDataSetUrlStatistics信息
     @inlinable
-    public func describeDataSetUrlStatistics(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, packageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSetUrlStatisticsResponse> {
-        self.describeDataSetUrlStatistics(DescribeDataSetUrlStatisticsRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env, packageType: packageType), logger: logger, on: eventLoop)
+    public func describeDataSetUrlStatistics(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSetUrlStatisticsResponse> {
+        self.describeDataSetUrlStatistics(DescribeDataSetUrlStatisticsRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取DescribeDataSetUrlStatistics信息
     @inlinable
-    public func describeDataSetUrlStatistics(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, packageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
-        try await self.describeDataSetUrlStatistics(DescribeDataSetUrlStatisticsRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env, packageType: packageType), logger: logger, on: eventLoop)
+    public func describeDataSetUrlStatistics(startTime: Int64, type: String, endTime: Int64, id: Int64, extSecond: String? = nil, engine: String? = nil, isp: String? = nil, from: String? = nil, level: String? = nil, brand: String? = nil, area: String? = nil, versionNum: String? = nil, platform: String? = nil, extThird: String? = nil, extFirst: String? = nil, netType: String? = nil, device: String? = nil, isAbroad: String? = nil, os: String? = nil, browser: String? = nil, costType: String? = nil, env: String? = nil, packageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSetUrlStatisticsResponse {
+        try await self.describeDataSetUrlStatistics(DescribeDataSetUrlStatisticsRequest(startTime: startTime, type: type, endTime: endTime, id: id, extSecond: extSecond, engine: engine, isp: isp, from: from, level: level, brand: brand, area: area, versionNum: versionNum, platform: platform, extThird: extThird, extFirst: extFirst, netType: netType, device: device, isAbroad: isAbroad, os: os, browser: browser, costType: costType, env: env, packageType: packageType), region: region, logger: logger, on: eventLoop)
     }
 }

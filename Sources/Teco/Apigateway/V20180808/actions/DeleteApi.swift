@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Apigateway {
     ///
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
-    public func deleteApi(_ input: DeleteApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiResponse> {
-        self.client.execute(action: "DeleteApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApi(_ input: DeleteApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiResponse> {
+        self.client.execute(action: "DeleteApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除API
     ///
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
-    public func deleteApi(_ input: DeleteApiRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiResponse {
-        try await self.client.execute(action: "DeleteApi", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApi(_ input: DeleteApiRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiResponse {
+        try await self.client.execute(action: "DeleteApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除API
     ///
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
-    public func deleteApi(serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiResponse> {
-        self.deleteApi(DeleteApiRequest(serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func deleteApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiResponse> {
+        self.deleteApi(DeleteApiRequest(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除API
     ///
     /// 本接口（DeleteApi）用于删除已经创建的API。
     @inlinable
-    public func deleteApi(serviceId: String, apiId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiResponse {
-        try await self.deleteApi(DeleteApiRequest(serviceId: serviceId, apiId: apiId), logger: logger, on: eventLoop)
+    public func deleteApi(serviceId: String, apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiResponse {
+        try await self.deleteApi(DeleteApiRequest(serviceId: serviceId, apiId: apiId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Eiam {
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
-        self.client.execute(action: "ListAuthorizedApplicationsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
+        self.client.execute(action: "ListAuthorizedApplicationsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
-        try await self.client.execute(action: "ListAuthorizedApplicationsToUser", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAuthorizedApplicationsToUser(_ input: ListAuthorizedApplicationsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
+        try await self.client.execute(action: "ListAuthorizedApplicationsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
-        self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserResponse> {
+        self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户被授权访问的应用列表
     ///
     /// 通过用户ID获得被授权访问的应用列表。
     @inlinable
-    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
-        try await self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), logger: logger, on: eventLoop)
+    public func listAuthorizedApplicationsToUser(userId: String, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserResponse {
+        try await self.listAuthorizedApplicationsToUser(ListAuthorizedApplicationsToUserRequest(userId: userId, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tdid {
 
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
+        self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        try await self.client.execute(action: "CreateSelectiveCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSelectiveCredential(_ input: CreateSelectiveCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
+        try await self.client.execute(action: "CreateSelectiveCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
-        self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), logger: logger, on: eventLoop)
+    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSelectiveCredentialResponse> {
+        self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建选择性批露凭证
     @inlinable
-    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
-        try await self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), logger: logger, on: eventLoop)
+    public func createSelectiveCredential(functionArg: VerifyFunctionArg, policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSelectiveCredentialResponse {
+        try await self.createSelectiveCredential(CreateSelectiveCredentialRequest(functionArg: functionArg, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 }

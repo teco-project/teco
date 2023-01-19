@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
     @inlinable
-    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralResourceQuotasResponse> {
-        self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralResourceQuotasResponse> {
+        self.client.execute(action: "DescribeGeneralResourceQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
     @inlinable
-    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
-        try await self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
+        try await self.client.execute(action: "DescribeGeneralResourceQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
     @inlinable
-    public func describeGeneralResourceQuotas(resourceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralResourceQuotasResponse> {
-        self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), logger: logger, on: eventLoop)
+    public func describeGeneralResourceQuotas(resourceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralResourceQuotasResponse> {
+        self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
     @inlinable
-    public func describeGeneralResourceQuotas(resourceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
-        try await self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), logger: logger, on: eventLoop)
+    public func describeGeneralResourceQuotas(resourceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
+        try await self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), region: region, logger: logger, on: eventLoop)
     }
 }

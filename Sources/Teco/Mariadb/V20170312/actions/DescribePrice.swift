@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Mariadb {
     ///
     /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceResponse> {
-        self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrice(_ input: DescribePriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceResponse> {
+        self.client.execute(action: "DescribePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购实例询价
     ///
     /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describePrice(_ input: DescribePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
-        try await self.client.execute(action: "DescribePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrice(_ input: DescribePriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
+        try await self.client.execute(action: "DescribePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新购实例询价
     ///
     /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceResponse> {
-        self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePriceResponse> {
+        self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新购实例询价
     ///
     /// 本接口（DescribePrice）用于在购买实例前，查询实例的价格。
     @inlinable
-    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
-        try await self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describePrice(zone: String, nodeCount: Int64, memory: Int64, storage: Int64, period: Int64? = nil, count: Int64? = nil, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePriceResponse {
+        try await self.describePrice(DescribePriceRequest(zone: zone, nodeCount: nodeCount, memory: memory, storage: storage, period: period, count: count, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

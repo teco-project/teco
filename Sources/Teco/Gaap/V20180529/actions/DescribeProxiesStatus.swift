@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
-        self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
+        self.client.execute(action: "DescribeProxiesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
-        try await self.client.execute(action: "DescribeProxiesStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProxiesStatus(_ input: DescribeProxiesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
+        try await self.client.execute(action: "DescribeProxiesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
-        self.describeProxiesStatus(DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesStatusResponse> {
+        self.describeProxiesStatus(DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询通道状态列表
     ///
     /// 本接口（DescribeProxiesStatus）用于查询通道状态列表。
     @inlinable
-    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
-        try await self.describeProxiesStatus(DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func describeProxiesStatus(instanceIds: [String]? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesStatusResponse {
+        try await self.describeProxiesStatus(DescribeProxiesStatusRequest(instanceIds: instanceIds, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

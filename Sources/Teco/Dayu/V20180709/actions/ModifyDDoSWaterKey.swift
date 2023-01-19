@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Dayu {
     ///
     /// 支持水印密钥的添加，删除，开启，关闭
     @inlinable
-    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSWaterKeyResponse> {
-        self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSWaterKeyResponse> {
+        self.client.execute(action: "ModifyDDoSWaterKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改水印密钥
     ///
     /// 支持水印密钥的添加，删除，开启，关闭
     @inlinable
-    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
-        try await self.client.execute(action: "ModifyDDoSWaterKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSWaterKey(_ input: ModifyDDoSWaterKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
+        try await self.client.execute(action: "ModifyDDoSWaterKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改水印密钥
     ///
     /// 支持水印密钥的添加，删除，开启，关闭
     @inlinable
-    public func modifyDDoSWaterKey(business: String, policyId: String, method: String, keyId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSWaterKeyResponse> {
-        self.modifyDDoSWaterKey(ModifyDDoSWaterKeyRequest(business: business, policyId: policyId, method: method, keyId: keyId), logger: logger, on: eventLoop)
+    public func modifyDDoSWaterKey(business: String, policyId: String, method: String, keyId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSWaterKeyResponse> {
+        self.modifyDDoSWaterKey(ModifyDDoSWaterKeyRequest(business: business, policyId: policyId, method: method, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改水印密钥
     ///
     /// 支持水印密钥的添加，删除，开启，关闭
     @inlinable
-    public func modifyDDoSWaterKey(business: String, policyId: String, method: String, keyId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
-        try await self.modifyDDoSWaterKey(ModifyDDoSWaterKeyRequest(business: business, policyId: policyId, method: method, keyId: keyId), logger: logger, on: eventLoop)
+    public func modifyDDoSWaterKey(business: String, policyId: String, method: String, keyId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSWaterKeyResponse {
+        try await self.modifyDDoSWaterKey(ModifyDDoSWaterKeyRequest(business: business, policyId: policyId, method: method, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 }

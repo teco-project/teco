@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Dcdb {
     ///
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
-    public func renewDCDBInstance(_ input: RenewDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDCDBInstanceResponse> {
-        self.client.execute(action: "RenewDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func renewDCDBInstance(_ input: RenewDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDCDBInstanceResponse> {
+        self.client.execute(action: "RenewDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费分布式数据库实例
     ///
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
-    public func renewDCDBInstance(_ input: RenewDCDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDCDBInstanceResponse {
-        try await self.client.execute(action: "RenewDCDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func renewDCDBInstance(_ input: RenewDCDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDCDBInstanceResponse {
+        try await self.client.execute(action: "RenewDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费分布式数据库实例
     ///
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
-    public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDCDBInstanceResponse> {
-        self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), logger: logger, on: eventLoop)
+    public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDCDBInstanceResponse> {
+        self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费分布式数据库实例
     ///
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
-    public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDCDBInstanceResponse {
-        try await self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), logger: logger, on: eventLoop)
+    public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDCDBInstanceResponse {
+        try await self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }
 }

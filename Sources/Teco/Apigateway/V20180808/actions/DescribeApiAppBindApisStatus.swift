@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
-    public func describeApiAppBindApisStatus(_ input: DescribeApiAppBindApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppBindApisStatusResponse> {
-        self.client.execute(action: "DescribeApiAppBindApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApiAppBindApisStatus(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppBindApisStatusResponse> {
+        self.client.execute(action: "DescribeApiAppBindApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用绑定的Api列表
     ///
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
-    public func describeApiAppBindApisStatus(_ input: DescribeApiAppBindApisStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppBindApisStatusResponse {
-        try await self.client.execute(action: "DescribeApiAppBindApisStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApiAppBindApisStatus(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppBindApisStatusResponse {
+        try await self.client.execute(action: "DescribeApiAppBindApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用绑定的Api列表
     ///
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
-    public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppBindApisStatusResponse> {
-        self.describeApiAppBindApisStatus(DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppBindApisStatusResponse> {
+        self.describeApiAppBindApisStatus(DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用绑定的Api列表
     ///
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
-    public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppBindApisStatusResponse {
-        try await self.describeApiAppBindApisStatus(DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeApiAppBindApisStatus(apiAppId: String, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppBindApisStatusResponse {
+        try await self.describeApiAppBindApisStatus(DescribeApiAppBindApisStatusRequest(apiAppId: apiAppId, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

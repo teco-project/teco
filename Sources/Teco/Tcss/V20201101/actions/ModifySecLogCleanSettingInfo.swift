@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tcss {
 
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
-        self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
+        self.client.execute(action: "ModifySecLogCleanSettingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
-        try await self.client.execute(action: "ModifySecLogCleanSettingInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecLogCleanSettingInfo(_ input: ModifySecLogCleanSettingInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
+        try await self.client.execute(action: "ModifySecLogCleanSettingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
-        self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), logger: logger, on: eventLoop)
+    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
+        self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志清理设置信息
     @inlinable
-    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
-        try await self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), logger: logger, on: eventLoop)
+    public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
+        try await self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), region: region, logger: logger, on: eventLoop)
     }
 }

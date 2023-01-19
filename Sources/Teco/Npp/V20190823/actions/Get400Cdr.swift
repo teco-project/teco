@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Npp {
 
     /// 直拨话单获取接口
     @inlinable
-    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Get400CdrResponse> {
-        self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func get400Cdr(_ input: Get400CdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Get400CdrResponse> {
+        self.client.execute(action: "Get400Cdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直拨话单获取接口
     @inlinable
-    public func get400Cdr(_ input: Get400CdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
-        try await self.client.execute(action: "Get400Cdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func get400Cdr(_ input: Get400CdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
+        try await self.client.execute(action: "Get400Cdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直拨话单获取接口
     @inlinable
-    public func get400Cdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Get400CdrResponse> {
-        self.get400Cdr(Get400CdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), logger: logger, on: eventLoop)
+    public func get400Cdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<Get400CdrResponse> {
+        self.get400Cdr(Get400CdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直拨话单获取接口
     @inlinable
-    public func get400Cdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
-        try await self.get400Cdr(Get400CdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), logger: logger, on: eventLoop)
+    public func get400Cdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> Get400CdrResponse {
+        try await self.get400Cdr(Get400CdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -147,31 +147,31 @@ extension Tcss {
     ///
     /// 查询主机详细信息
     @inlinable
-    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostDetailResponse> {
-        self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostDetailResponse> {
+        self.client.execute(action: "DescribeAssetHostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询主机信息
     ///
     /// 查询主机详细信息
     @inlinable
-    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
-        try await self.client.execute(action: "DescribeAssetHostDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetHostDetail(_ input: DescribeAssetHostDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
+        try await self.client.execute(action: "DescribeAssetHostDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询主机信息
     ///
     /// 查询主机详细信息
     @inlinable
-    public func describeAssetHostDetail(hostId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostDetailResponse> {
-        self.describeAssetHostDetail(DescribeAssetHostDetailRequest(hostId: hostId), logger: logger, on: eventLoop)
+    public func describeAssetHostDetail(hostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetHostDetailResponse> {
+        self.describeAssetHostDetail(DescribeAssetHostDetailRequest(hostId: hostId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询主机信息
     ///
     /// 查询主机详细信息
     @inlinable
-    public func describeAssetHostDetail(hostId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
-        try await self.describeAssetHostDetail(DescribeAssetHostDetailRequest(hostId: hostId), logger: logger, on: eventLoop)
+    public func describeAssetHostDetail(hostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetHostDetailResponse {
+        try await self.describeAssetHostDetail(DescribeAssetHostDetailRequest(hostId: hostId), region: region, logger: logger, on: eventLoop)
     }
 }

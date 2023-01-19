@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
-        self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
+        self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
-        try await self.client.execute(action: "ModifyAccountRemark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
+        try await self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
-        self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
+        self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
     @inlinable
-    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
-        try await self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), logger: logger, on: eventLoop)
+    public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
+        try await self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
 }

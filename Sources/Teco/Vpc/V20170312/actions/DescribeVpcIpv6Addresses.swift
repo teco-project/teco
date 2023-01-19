@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,8 +67,8 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(_ input: DescribeVpcIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
-        self.client.execute(action: "DescribeVpcIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpcIpv6Addresses(_ input: DescribeVpcIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
+        self.client.execute(action: "DescribeVpcIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表
@@ -76,8 +76,8 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(_ input: DescribeVpcIpv6AddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
-        try await self.client.execute(action: "DescribeVpcIpv6Addresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpcIpv6Addresses(_ input: DescribeVpcIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
+        try await self.client.execute(action: "DescribeVpcIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询VPC内IPv6列表
@@ -85,8 +85,8 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
-        self.describeVpcIpv6Addresses(DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcIpv6AddressesResponse> {
+        self.describeVpcIpv6Addresses(DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC内IPv6列表
@@ -94,7 +94,7 @@ extension Vpc {
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
     @inlinable
-    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
-        try await self.describeVpcIpv6Addresses(DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeVpcIpv6Addresses(vpcId: String, ipv6Addresses: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcIpv6AddressesResponse {
+        try await self.describeVpcIpv6Addresses(DescribeVpcIpv6AddressesRequest(vpcId: vpcId, ipv6Addresses: ipv6Addresses, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

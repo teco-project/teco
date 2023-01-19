@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Bmvpc {
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
-        self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
+        self.client.execute(action: "DescribeVpnConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
-        try await self.client.execute(action: "DescribeVpnConnections", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
+        try await self.client.execute(action: "DescribeVpnConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
-        self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit, vpnGatewayId: vpnGatewayId, vpnConnectionName: vpnConnectionName, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
+        self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit, vpnGatewayId: vpnGatewayId, vpnConnectionName: vpnConnectionName, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN通道列表
     ///
     ///  本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
-    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
-        try await self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit, vpnGatewayId: vpnGatewayId, vpnConnectionName: vpnConnectionName, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
+    public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, vpnGatewayId: String? = nil, vpnConnectionName: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
+        try await self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit, vpnGatewayId: vpnGatewayId, vpnConnectionName: vpnConnectionName, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
     }
 }

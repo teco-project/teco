@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -105,31 +105,31 @@ extension Mps {
     ///
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
-    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWatermarkTemplateResponse> {
-        self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWatermarkTemplateResponse> {
+        self.client.execute(action: "CreateWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建水印模板
     ///
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
-    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
-        try await self.client.execute(action: "CreateWatermarkTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWatermarkTemplate(_ input: CreateWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
+        try await self.client.execute(action: "CreateWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建水印模板
     ///
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
-    public func createWatermarkTemplate(type: String, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWatermarkTemplateResponse> {
-        self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    public func createWatermarkTemplate(type: String, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWatermarkTemplateResponse> {
+        self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建水印模板
     ///
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
-    public func createWatermarkTemplate(type: String, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
-        try await self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), logger: logger, on: eventLoop)
+    public func createWatermarkTemplate(type: String, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
+        try await self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
     }
 }

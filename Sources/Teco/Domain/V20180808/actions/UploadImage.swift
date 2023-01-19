@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Domain {
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
-        self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadImage(_ input: UploadImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
+        self.client.execute(action: "UploadImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(_ input: UploadImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
-        try await self.client.execute(action: "UploadImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadImage(_ input: UploadImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
+        try await self.client.execute(action: "UploadImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(imageFile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
-        self.uploadImage(UploadImageRequest(imageFile: imageFile), logger: logger, on: eventLoop)
+    public func uploadImage(imageFile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadImageResponse> {
+        self.uploadImage(UploadImageRequest(imageFile: imageFile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 证件图片上传
     ///
     /// 本接口 ( UploadImage ) 用于证件图片上传 。
     @inlinable
-    public func uploadImage(imageFile: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
-        try await self.uploadImage(UploadImageRequest(imageFile: imageFile), logger: logger, on: eventLoop)
+    public func uploadImage(imageFile: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadImageResponse {
+        try await self.uploadImage(UploadImageRequest(imageFile: imageFile), region: region, logger: logger, on: eventLoop)
     }
 }

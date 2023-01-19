@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cmq {
     ///
     /// DeleteQueue
     @inlinable
-    public func deleteQueue(_ input: DeleteQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
-        self.client.execute(action: "DeleteQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteQueue(_ input: DeleteQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
+        self.client.execute(action: "DeleteQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除队列
     ///
     /// DeleteQueue
     @inlinable
-    public func deleteQueue(_ input: DeleteQueueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
-        try await self.client.execute(action: "DeleteQueue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteQueue(_ input: DeleteQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
+        try await self.client.execute(action: "DeleteQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除队列
     ///
     /// DeleteQueue
     @inlinable
-    public func deleteQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
-        self.deleteQueue(DeleteQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func deleteQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
+        self.deleteQueue(DeleteQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除队列
     ///
     /// DeleteQueue
     @inlinable
-    public func deleteQueue(queueName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
-        try await self.deleteQueue(DeleteQueueRequest(queueName: queueName), logger: logger, on: eventLoop)
+    public func deleteQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
+        try await self.deleteQueue(DeleteQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 }

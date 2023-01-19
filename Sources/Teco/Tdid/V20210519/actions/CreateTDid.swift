@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tdid {
 
     /// 创建机构DID
     @inlinable
-    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
+        self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建机构DID
     @inlinable
-    public func createTDid(_ input: CreateTDidRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        try await self.client.execute(action: "CreateTDid", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTDid(_ input: CreateTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
+        try await self.client.execute(action: "CreateTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建机构DID
     @inlinable
-    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
-        self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), logger: logger, on: eventLoop)
+    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidResponse> {
+        self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建机构DID
     @inlinable
-    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
-        try await self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), logger: logger, on: eventLoop)
+    public func createTDid(groupId: UInt64, clusterId: String, relegation: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidResponse {
+        try await self.createTDid(CreateTDidRequest(groupId: groupId, clusterId: clusterId, relegation: relegation), region: region, logger: logger, on: eventLoop)
     }
 }

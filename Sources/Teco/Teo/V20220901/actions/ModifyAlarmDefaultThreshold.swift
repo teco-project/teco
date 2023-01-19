@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Teo {
     ///
     /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
     @inlinable
-    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmDefaultThresholdResponse> {
-        self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmDefaultThresholdResponse> {
+        self.client.execute(action: "ModifyAlarmDefaultThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警默认阈值
     ///
     /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
     @inlinable
-    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
-        try await self.client.execute(action: "ModifyAlarmDefaultThreshold", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAlarmDefaultThreshold(_ input: ModifyAlarmDefaultThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
+        try await self.client.execute(action: "ModifyAlarmDefaultThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警默认阈值
     ///
     /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
     @inlinable
-    public func modifyAlarmDefaultThreshold(serviceType: String, zoneId: String, threshold: Int64, entity: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmDefaultThresholdResponse> {
-        self.modifyAlarmDefaultThreshold(ModifyAlarmDefaultThresholdRequest(serviceType: serviceType, zoneId: zoneId, threshold: threshold, entity: entity), logger: logger, on: eventLoop)
+    public func modifyAlarmDefaultThreshold(serviceType: String, zoneId: String, threshold: Int64, entity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmDefaultThresholdResponse> {
+        self.modifyAlarmDefaultThreshold(ModifyAlarmDefaultThresholdRequest(serviceType: serviceType, zoneId: zoneId, threshold: threshold, entity: entity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警默认阈值
     ///
     /// 此接口（ModifyAlarmDefaultThreshold）用于修改告警默认阈值。
     @inlinable
-    public func modifyAlarmDefaultThreshold(serviceType: String, zoneId: String, threshold: Int64, entity: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
-        try await self.modifyAlarmDefaultThreshold(ModifyAlarmDefaultThresholdRequest(serviceType: serviceType, zoneId: zoneId, threshold: threshold, entity: entity), logger: logger, on: eventLoop)
+    public func modifyAlarmDefaultThreshold(serviceType: String, zoneId: String, threshold: Int64, entity: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmDefaultThresholdResponse {
+        try await self.modifyAlarmDefaultThreshold(ModifyAlarmDefaultThresholdRequest(serviceType: serviceType, zoneId: zoneId, threshold: threshold, entity: entity), region: region, logger: logger, on: eventLoop)
     }
 }

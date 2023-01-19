@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Scf {
     ///
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
-    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProvisionedConcurrencyConfigResponse> {
-        self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProvisionedConcurrencyConfigResponse> {
+        self.client.execute(action: "GetProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数预置并发详情
     ///
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
-    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
-        try await self.client.execute(action: "GetProvisionedConcurrencyConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getProvisionedConcurrencyConfig(_ input: GetProvisionedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
+        try await self.client.execute(action: "GetProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数预置并发详情
     ///
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
-    public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProvisionedConcurrencyConfigResponse> {
-        self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProvisionedConcurrencyConfigResponse> {
+        self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数预置并发详情
     ///
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
-    public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
-        try await self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
+        try await self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

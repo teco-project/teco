@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Redis {
 
     /// 恢复 CRS 实例
     @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
+        self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复 CRS 实例
     @inlinable
-    public func restoreInstance(_ input: RestoreInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.client.execute(action: "RestoreInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restoreInstance(_ input: RestoreInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复 CRS 实例
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
+        self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复 CRS 实例
     @inlinable
-    public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), logger: logger, on: eventLoop)
+    public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
+        try await self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

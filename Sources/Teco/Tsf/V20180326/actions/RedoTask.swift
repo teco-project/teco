@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 重新执行任务
     @inlinable
-    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
-        self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func redoTask(_ input: RedoTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
+        self.client.execute(action: "RedoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务
     @inlinable
-    public func redoTask(_ input: RedoTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
-        try await self.client.execute(action: "RedoTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func redoTask(_ input: RedoTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
+        try await self.client.execute(action: "RedoTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新执行任务
     @inlinable
-    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
-        self.redoTask(RedoTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func redoTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RedoTaskResponse> {
+        self.redoTask(RedoTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新执行任务
     @inlinable
-    public func redoTask(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
-        try await self.redoTask(RedoTaskRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func redoTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RedoTaskResponse {
+        try await self.redoTask(RedoTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

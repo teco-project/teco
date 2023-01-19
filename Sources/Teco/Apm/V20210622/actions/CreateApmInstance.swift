@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Apm {
     ///
     /// 业务购买APM实例，调用该接口创建
     @inlinable
-    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApmInstanceResponse> {
-        self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createApmInstance(_ input: CreateApmInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApmInstanceResponse> {
+        self.client.execute(action: "CreateApmInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Apm实例
     ///
     /// 业务购买APM实例，调用该接口创建
     @inlinable
-    public func createApmInstance(_ input: CreateApmInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
-        try await self.client.execute(action: "CreateApmInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createApmInstance(_ input: CreateApmInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
+        try await self.client.execute(action: "CreateApmInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建Apm实例
     ///
     /// 业务购买APM实例，调用该接口创建
     @inlinable
-    public func createApmInstance(name: String, description: String? = nil, traceDuration: Int64? = nil, tags: [ApmTag]? = nil, spanDailyCounters: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApmInstanceResponse> {
-        self.createApmInstance(CreateApmInstanceRequest(name: name, description: description, traceDuration: traceDuration, tags: tags, spanDailyCounters: spanDailyCounters), logger: logger, on: eventLoop)
+    public func createApmInstance(name: String, description: String? = nil, traceDuration: Int64? = nil, tags: [ApmTag]? = nil, spanDailyCounters: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApmInstanceResponse> {
+        self.createApmInstance(CreateApmInstanceRequest(name: name, description: description, traceDuration: traceDuration, tags: tags, spanDailyCounters: spanDailyCounters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建Apm实例
     ///
     /// 业务购买APM实例，调用该接口创建
     @inlinable
-    public func createApmInstance(name: String, description: String? = nil, traceDuration: Int64? = nil, tags: [ApmTag]? = nil, spanDailyCounters: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
-        try await self.createApmInstance(CreateApmInstanceRequest(name: name, description: description, traceDuration: traceDuration, tags: tags, spanDailyCounters: spanDailyCounters), logger: logger, on: eventLoop)
+    public func createApmInstance(name: String, description: String? = nil, traceDuration: Int64? = nil, tags: [ApmTag]? = nil, spanDailyCounters: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApmInstanceResponse {
+        try await self.createApmInstance(CreateApmInstanceRequest(name: name, description: description, traceDuration: traceDuration, tags: tags, spanDailyCounters: spanDailyCounters), region: region, logger: logger, on: eventLoop)
     }
 }

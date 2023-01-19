@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cwp {
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
-        self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
+        self.client.execute(action: "DeletePrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
-        try await self.client.execute(action: "DeletePrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
+        try await self.client.execute(action: "DeletePrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
-        self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deletePrivilegeEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
+        self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
     @inlinable
-    public func deletePrivilegeEvents(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
-        try await self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deletePrivilegeEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
+        try await self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

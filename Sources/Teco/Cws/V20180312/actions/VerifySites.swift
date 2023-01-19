@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cws {
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
-        self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifySites(_ input: VerifySitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
+        self.client.execute(action: "VerifySites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(_ input: VerifySitesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
-        try await self.client.execute(action: "VerifySites", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifySites(_ input: VerifySitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
+        try await self.client.execute(action: "VerifySites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
-        self.verifySites(VerifySitesRequest(urls: urls), logger: logger, on: eventLoop)
+    public func verifySites(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySitesResponse> {
+        self.verifySites(VerifySitesRequest(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证站点
     ///
     /// 本接口 (VerifySites) 用于验证一个或多个待验证站点。
     @inlinable
-    public func verifySites(urls: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
-        try await self.verifySites(VerifySitesRequest(urls: urls), logger: logger, on: eventLoop)
+    public func verifySites(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySitesResponse {
+        try await self.verifySites(VerifySitesRequest(urls: urls), region: region, logger: logger, on: eventLoop)
     }
 }

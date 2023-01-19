@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Chdfs {
     ///
     /// 给挂载点解绑多个权限组。
     @inlinable
-    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
-        self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
+        self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
     @inlinable
-    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
-        try await self.client.execute(action: "DisassociateAccessGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
+        try await self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
     @inlinable
-    public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
-        self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), logger: logger, on: eventLoop)
+    public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
+        self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
     @inlinable
-    public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
-        try await self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), logger: logger, on: eventLoop)
+    public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
+        try await self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

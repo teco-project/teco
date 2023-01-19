@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Iotexplorer {
     ///
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
-    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDeviceDataResponse> {
-        self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func controlDeviceData(_ input: ControlDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDeviceDataResponse> {
+        self.client.execute(action: "ControlDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备远程控制
     ///
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
-    public func controlDeviceData(_ input: ControlDeviceDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
-        try await self.client.execute(action: "ControlDeviceData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func controlDeviceData(_ input: ControlDeviceDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
+        try await self.client.execute(action: "ControlDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设备远程控制
     ///
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
-    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, deviceId: String? = nil, dataTimestamp: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDeviceDataResponse> {
-        self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, deviceId: deviceId, dataTimestamp: dataTimestamp), logger: logger, on: eventLoop)
+    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, deviceId: String? = nil, dataTimestamp: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDeviceDataResponse> {
+        self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, deviceId: deviceId, dataTimestamp: dataTimestamp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备远程控制
     ///
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
-    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, deviceId: String? = nil, dataTimestamp: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
-        try await self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, deviceId: deviceId, dataTimestamp: dataTimestamp), logger: logger, on: eventLoop)
+    public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, deviceId: String? = nil, dataTimestamp: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
+        try await self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, deviceId: deviceId, dataTimestamp: dataTimestamp), region: region, logger: logger, on: eventLoop)
     }
 }

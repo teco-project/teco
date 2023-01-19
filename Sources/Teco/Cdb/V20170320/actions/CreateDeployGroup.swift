@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cdb {
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
-        self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDeployGroup(_ input: CreateDeployGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
+        self.client.execute(action: "CreateDeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(_ input: CreateDeployGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
-        try await self.client.execute(action: "CreateDeployGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDeployGroup(_ input: CreateDeployGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
+        try await self.client.execute(action: "CreateDeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
-        self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), logger: logger, on: eventLoop)
+    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
+        self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建置放群组
     ///
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
-    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
-        try await self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), logger: logger, on: eventLoop)
+    public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
+        try await self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), region: region, logger: logger, on: eventLoop)
     }
 }

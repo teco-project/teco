@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Scf {
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
-        self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
+        self.client.execute(action: "GetAsyncEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
-        try await self.client.execute(action: "GetAsyncEventStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getAsyncEventStatus(_ input: GetAsyncEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
+        try await self.client.execute(action: "GetAsyncEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
-        self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
+    public func getAsyncEventStatus(invokeRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsyncEventStatusResponse> {
+        self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数异步事件状态
     ///
     /// 获取函数异步执行事件状态，事件状态保留 3 * 24 小时（从事件完成开始计时）。
     @inlinable
-    public func getAsyncEventStatus(invokeRequestId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
-        try await self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), logger: logger, on: eventLoop)
+    public func getAsyncEventStatus(invokeRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsyncEventStatusResponse {
+        try await self.getAsyncEventStatus(GetAsyncEventStatusRequest(invokeRequestId: invokeRequestId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,31 +78,31 @@ extension Cwp {
     ///
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
-    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportMachinesResponse> {
-        self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExportMachines(_ input: DescribeExportMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportMachinesResponse> {
+        self.client.execute(action: "DescribeExportMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出区域主机列表
     ///
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
-    public func describeExportMachines(_ input: DescribeExportMachinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
-        try await self.client.execute(action: "DescribeExportMachines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExportMachines(_ input: DescribeExportMachinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
+        try await self.client.execute(action: "DescribeExportMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出区域主机列表
     ///
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
-    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportMachinesResponse> {
-        self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), logger: logger, on: eventLoop)
+    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportMachinesResponse> {
+        self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出区域主机列表
     ///
     /// 本接口 (DescribeExportMachines) 用于导出区域主机列表。
     @inlinable
-    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
-        try await self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), logger: logger, on: eventLoop)
+    public func describeExportMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, projectIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportMachinesResponse {
+        try await self.describeExportMachines(DescribeExportMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters, projectIds: projectIds), region: region, logger: logger, on: eventLoop)
     }
 }

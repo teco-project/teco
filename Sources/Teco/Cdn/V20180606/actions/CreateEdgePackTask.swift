@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cdn {
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
-        self.client.execute(action: "CreateEdgePackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
+        self.client.execute(action: "CreateEdgePackTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
-        try await self.client.execute(action: "CreateEdgePackTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createEdgePackTask(_ input: CreateEdgePackTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
+        try await self.client.execute(action: "CreateEdgePackTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
-        self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), logger: logger, on: eventLoop)
+    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgePackTaskResponse> {
+        self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 动态打包任务提交
     ///
     /// 动态打包任务提交接口
     @inlinable
-    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
-        try await self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), logger: logger, on: eventLoop)
+    public func createEdgePackTask(cosBucket: String, cosUriFrom: String, blockID: UInt64? = nil, cosUriTo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgePackTaskResponse {
+        try await self.createEdgePackTask(CreateEdgePackTaskRequest(cosBucket: cosBucket, cosUriFrom: cosUriFrom, blockID: blockID, cosUriTo: cosUriTo), region: region, logger: logger, on: eventLoop)
     }
 }

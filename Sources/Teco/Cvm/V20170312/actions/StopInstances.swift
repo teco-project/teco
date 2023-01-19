@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,8 +65,8 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
     @inlinable
-    public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstancesResponse> {
-        self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopInstances(_ input: StopInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstancesResponse> {
+        self.client.execute(action: "StopInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭实例
@@ -78,8 +78,8 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
     @inlinable
-    public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
-        try await self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopInstances(_ input: StopInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
+        try await self.client.execute(action: "StopInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭实例
@@ -91,8 +91,8 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
     @inlinable
-    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstancesResponse> {
-        self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstancesResponse> {
+        self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭实例
@@ -104,7 +104,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。
     /// * 本接口为异步接口，关闭实例请求发送成功后会返回一个RequestId，此时操作并未立即完成。实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表关闭实例操作成功。
     @inlinable
-    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
-        try await self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    public func stopInstances(instanceIds: [String], forceStop: Bool? = nil, stopType: String? = nil, stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
+        try await self.stopInstances(StopInstancesRequest(instanceIds: instanceIds, forceStop: forceStop, stopType: stopType, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
     }
 }

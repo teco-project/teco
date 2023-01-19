@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Tione {
     ///
     /// 根据服务组id删除服务组下所有模型服务
     @inlinable
-    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
-        self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
+        self.client.execute(action: "DeleteModelServiceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
     @inlinable
-    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
-        try await self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
+        try await self.client.execute(action: "DeleteModelServiceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
     @inlinable
-    public func deleteModelServiceGroup(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
-        self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    public func deleteModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
+        self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
     @inlinable
-    public func deleteModelServiceGroup(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
-        try await self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
+    public func deleteModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
+        try await self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

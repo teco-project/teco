@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Dlc {
     ///
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
-    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseResponse> {
-        self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createDatabase(_ input: CreateDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseResponse> {
+        self.client.execute(action: "CreateDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成建库SQL语句
     ///
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
-    public func createDatabase(_ input: CreateDatabaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
-        try await self.client.execute(action: "CreateDatabase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createDatabase(_ input: CreateDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
+        try await self.client.execute(action: "CreateDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成建库SQL语句
     ///
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
-    public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseResponse> {
-        self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseResponse> {
+        self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成建库SQL语句
     ///
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
-    public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
-        try await self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), logger: logger, on: eventLoop)
+    public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
+        try await self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
     }
 }

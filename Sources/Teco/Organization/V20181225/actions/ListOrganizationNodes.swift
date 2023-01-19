@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Organization {
 
     /// 获取企业组织单元列表
     @inlinable
-    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationNodesResponse> {
-        self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationNodesResponse> {
+        self.client.execute(action: "ListOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织单元列表
     @inlinable
-    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
-        try await self.client.execute(action: "ListOrganizationNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listOrganizationNodes(_ input: ListOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
+        try await self.client.execute(action: "ListOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取企业组织单元列表
     @inlinable
-    public func listOrganizationNodes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationNodesResponse> {
-        self.listOrganizationNodes(ListOrganizationNodesRequest(), logger: logger, on: eventLoop)
+    public func listOrganizationNodes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationNodesResponse> {
+        self.listOrganizationNodes(ListOrganizationNodesRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织单元列表
     @inlinable
-    public func listOrganizationNodes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
-        try await self.listOrganizationNodes(ListOrganizationNodesRequest(), logger: logger, on: eventLoop)
+    public func listOrganizationNodes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodesResponse {
+        try await self.listOrganizationNodes(ListOrganizationNodesRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

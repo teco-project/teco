@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Essbasic {
     ///
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
-    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSealsResponse> {
-        self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSeals(_ input: DescribeSealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSealsResponse> {
+        self.client.execute(action: "DescribeSeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询电子印章
     ///
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
-    public func describeSeals(_ input: DescribeSealsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
-        try await self.client.execute(action: "DescribeSeals", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSeals(_ input: DescribeSealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
+        try await self.client.execute(action: "DescribeSeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询电子印章
     ///
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
-    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSealsResponse> {
-        self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), logger: logger, on: eventLoop)
+    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSealsResponse> {
+        self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询电子印章
     ///
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
-    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
-        try await self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), logger: logger, on: eventLoop)
+    public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
+        try await self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), region: region, logger: logger, on: eventLoop)
     }
 }

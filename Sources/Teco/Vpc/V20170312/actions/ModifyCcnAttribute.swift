@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
     @inlinable
-    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
-        self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
+        self.client.execute(action: "ModifyCcnAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
     @inlinable
-    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
-        try await self.client.execute(action: "ModifyCcnAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
+        try await self.client.execute(action: "ModifyCcnAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
     @inlinable
-    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
-        self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), logger: logger, on: eventLoop)
+    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
+        self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
     @inlinable
-    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
-        try await self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), logger: logger, on: eventLoop)
+    public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
+        try await self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), region: region, logger: logger, on: eventLoop)
     }
 }

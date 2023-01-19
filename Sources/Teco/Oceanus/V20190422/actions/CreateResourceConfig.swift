@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Oceanus {
 
     /// 创建资源配置接口
     @inlinable
-    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceConfigResponse> {
-        self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createResourceConfig(_ input: CreateResourceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceConfigResponse> {
+        self.client.execute(action: "CreateResourceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建资源配置接口
     @inlinable
-    public func createResourceConfig(_ input: CreateResourceConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
-        try await self.client.execute(action: "CreateResourceConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createResourceConfig(_ input: CreateResourceConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
+        try await self.client.execute(action: "CreateResourceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建资源配置接口
     @inlinable
-    public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceConfigResponse> {
-        self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceConfigResponse> {
+        self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建资源配置接口
     @inlinable
-    public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
-        try await self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
+        try await self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

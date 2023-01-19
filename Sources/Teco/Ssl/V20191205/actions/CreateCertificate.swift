@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ssl {
     ///
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
-    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
-        self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCertificate(_ input: CreateCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
+        self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建付费证书
     ///
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
-    public func createCertificate(_ input: CreateCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
-        try await self.client.execute(action: "CreateCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCertificate(_ input: CreateCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
+        try await self.client.execute(action: "CreateCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建付费证书
     ///
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
-    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
-        self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCertificateResponse> {
+        self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建付费证书
     ///
     /// 本接口（CreateCertificate）用于创建付费证书。
     @inlinable
-    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
-        try await self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), logger: logger, on: eventLoop)
+    public func createCertificate(productId: Int64, domainNum: Int64, timeSpan: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCertificateResponse {
+        try await self.createCertificate(CreateCertificateRequest(productId: productId, domainNum: domainNum, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Eb {
 
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
-        self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listTargets(_ input: ListTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
+        self.client.execute(action: "ListTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(_ input: ListTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
-        try await self.client.execute(action: "ListTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listTargets(_ input: ListTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
+        try await self.client.execute(action: "ListTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
-        self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
+        self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取事件目标列表
     @inlinable
-    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
-        try await self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), logger: logger, on: eventLoop)
+    public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
+        try await self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

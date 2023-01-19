@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cwp {
 
     /// 新增或编辑标签
     @inlinable
-    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
-        self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func editTags(_ input: EditTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
+        self.client.execute(action: "EditTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑标签
     @inlinable
-    public func editTags(_ input: EditTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
-        try await self.client.execute(action: "EditTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func editTags(_ input: EditTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
+        try await self.client.execute(action: "EditTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增或编辑标签
     @inlinable
-    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
-        self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), logger: logger, on: eventLoop)
+    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditTagsResponse> {
+        self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增或编辑标签
     @inlinable
-    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
-        try await self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), logger: logger, on: eventLoop)
+    public func editTags(name: String, id: UInt64? = nil, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditTagsResponse {
+        try await self.editTags(EditTagsRequest(name: name, id: id, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
 }

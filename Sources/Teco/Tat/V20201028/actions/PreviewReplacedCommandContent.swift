@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tat {
     ///
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
-    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PreviewReplacedCommandContentResponse> {
-        self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PreviewReplacedCommandContentResponse> {
+        self.client.execute(action: "PreviewReplacedCommandContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 命令预览
     ///
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
-    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
-        try await self.client.execute(action: "PreviewReplacedCommandContent", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func previewReplacedCommandContent(_ input: PreviewReplacedCommandContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
+        try await self.client.execute(action: "PreviewReplacedCommandContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 命令预览
     ///
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
-    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PreviewReplacedCommandContentResponse> {
-        self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), logger: logger, on: eventLoop)
+    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PreviewReplacedCommandContentResponse> {
+        self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 命令预览
     ///
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
-    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
-        try await self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), logger: logger, on: eventLoop)
+    public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
+        try await self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

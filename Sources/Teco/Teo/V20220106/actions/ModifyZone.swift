@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Teo {
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
-        self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyZone(_ input: ModifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
+        self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改站点
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(_ input: ModifyZoneRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
-        try await self.client.execute(action: "ModifyZone", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyZone(_ input: ModifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
+        try await self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改站点
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
-        self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), logger: logger, on: eventLoop)
+    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
+        self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改站点
     ///
     /// 用该站点信息
     @inlinable
-    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
-        try await self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), logger: logger, on: eventLoop)
+    public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
+        try await self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), region: region, logger: logger, on: eventLoop)
     }
 }

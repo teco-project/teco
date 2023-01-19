@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cws {
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
-        self.client.execute(action: "DeleteMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMonitors(_ input: DeleteMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
+        self.client.execute(action: "DeleteMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(_ input: DeleteMonitorsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
-        try await self.client.execute(action: "DeleteMonitors", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMonitors(_ input: DeleteMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
+        try await self.client.execute(action: "DeleteMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
-        self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), logger: logger, on: eventLoop)
+    public func deleteMonitors(monitorIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMonitorsResponse> {
+        self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除监控任务
     ///
     /// 本接口 (DeleteMonitors) 用于删除用户监控任务。
     @inlinable
-    public func deleteMonitors(monitorIds: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
-        try await self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), logger: logger, on: eventLoop)
+    public func deleteMonitors(monitorIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMonitorsResponse {
+        try await self.deleteMonitors(DeleteMonitorsRequest(monitorIds: monitorIds), region: region, logger: logger, on: eventLoop)
     }
 }

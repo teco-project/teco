@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,31 +86,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
-    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserTasksResponse> {
-        self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeUserTasks(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserTasksResponse> {
+        self.client.execute(action: "DescribeUserTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取用户任务列表
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
-    public func describeUserTasks(_ input: DescribeUserTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
-        try await self.client.execute(action: "DescribeUserTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeUserTasks(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
+        try await self.client.execute(action: "DescribeUserTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取用户任务列表
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
-    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserTasksResponse> {
-        self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserTasksResponse> {
+        self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取用户任务列表
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
-    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
-        try await self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeUserTasks(statuses: [Int64]? = nil, instanceIds: [String]? = nil, flowTypes: [Int64]? = nil, startTime: String? = nil, endTime: String? = nil, uTaskIds: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserTasksResponse {
+        try await self.describeUserTasks(DescribeUserTasksRequest(statuses: statuses, instanceIds: instanceIds, flowTypes: flowTypes, startTime: startTime, endTime: endTime, uTaskIds: uTaskIds, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

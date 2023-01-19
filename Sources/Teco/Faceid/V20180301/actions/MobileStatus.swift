@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Faceid {
     ///
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
-    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileStatusResponse> {
-        self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func mobileStatus(_ input: MobileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileStatusResponse> {
+        self.client.execute(action: "MobileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号状态查询
     ///
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
-    public func mobileStatus(_ input: MobileStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
-        try await self.client.execute(action: "MobileStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func mobileStatus(_ input: MobileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
+        try await self.client.execute(action: "MobileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 手机号状态查询
     ///
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
-    public func mobileStatus(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileStatusResponse> {
-        self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    public func mobileStatus(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileStatusResponse> {
+        self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 
     /// 手机号状态查询
     ///
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
-    public func mobileStatus(mobile: String, encryption: Encryption? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
-        try await self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), logger: logger, on: eventLoop)
+    public func mobileStatus(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
+        try await self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
     }
 }

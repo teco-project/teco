@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Ecm {
 
     /// 查询用户安全组配额
     @inlinable
-    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupLimitsResponse> {
-        self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupLimitsResponse> {
+        self.client.execute(action: "DescribeSecurityGroupLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户安全组配额
     @inlinable
-    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupLimits(_ input: DescribeSecurityGroupLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询用户安全组配额
     @inlinable
-    public func describeSecurityGroupLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupLimitsResponse> {
-        self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityGroupLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupLimitsResponse> {
+        self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询用户安全组配额
     @inlinable
-    public func describeSecurityGroupLimits(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
-        try await self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), logger: logger, on: eventLoop)
+    public func describeSecurityGroupLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupLimitsResponse {
+        try await self.describeSecurityGroupLimits(DescribeSecurityGroupLimitsRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

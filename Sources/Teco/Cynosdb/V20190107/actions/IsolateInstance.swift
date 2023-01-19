@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Cynosdb {
     ///
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
-    public func isolateInstance(_ input: IsolateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstanceResponse> {
-        self.client.execute(action: "IsolateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func isolateInstance(_ input: IsolateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstanceResponse> {
+        self.client.execute(action: "IsolateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
     ///
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
-    public func isolateInstance(_ input: IsolateInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
-        try await self.client.execute(action: "IsolateInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func isolateInstance(_ input: IsolateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
+        try await self.client.execute(action: "IsolateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离实例
     ///
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
-    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstanceResponse> {
-        self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), logger: logger, on: eventLoop)
+    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstanceResponse> {
+        self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
     ///
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
-    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
-        try await self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), logger: logger, on: eventLoop)
+    public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
+        try await self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), region: region, logger: logger, on: eventLoop)
     }
 }

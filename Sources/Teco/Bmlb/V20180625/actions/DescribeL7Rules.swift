@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmlb {
     ///
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
-    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesResponse> {
-        self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeL7Rules(_ input: DescribeL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesResponse> {
+        self.client.execute(action: "DescribeL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层转发规则
     ///
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
-    public func describeL7Rules(_ input: DescribeL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
-        try await self.client.execute(action: "DescribeL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeL7Rules(_ input: DescribeL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
+        try await self.client.execute(action: "DescribeL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑石负载均衡七层转发规则
     ///
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
-    public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesResponse> {
-        self.describeL7Rules(DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), logger: logger, on: eventLoop)
+    public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7RulesResponse> {
+        self.describeL7Rules(DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层转发规则
     ///
     /// 获取黑石负载均衡七层转发规则。
     @inlinable
-    public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
-        try await self.describeL7Rules(DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), logger: logger, on: eventLoop)
+    public func describeL7Rules(loadBalancerId: String, listenerId: String, domainIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7RulesResponse {
+        try await self.describeL7Rules(DescribeL7RulesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainIds: domainIds), region: region, logger: logger, on: eventLoop)
     }
 }

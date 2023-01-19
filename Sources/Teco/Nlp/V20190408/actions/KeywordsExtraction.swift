@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Nlp {
     ///
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
-    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KeywordsExtractionResponse> {
-        self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func keywordsExtraction(_ input: KeywordsExtractionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KeywordsExtractionResponse> {
+        self.client.execute(action: "KeywordsExtraction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关键词提取
     ///
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
-    public func keywordsExtraction(_ input: KeywordsExtractionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
-        try await self.client.execute(action: "KeywordsExtraction", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func keywordsExtraction(_ input: KeywordsExtractionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
+        try await self.client.execute(action: "KeywordsExtraction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关键词提取
     ///
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
-    public func keywordsExtraction(text: String, num: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KeywordsExtractionResponse> {
-        self.keywordsExtraction(KeywordsExtractionRequest(text: text, num: num), logger: logger, on: eventLoop)
+    public func keywordsExtraction(text: String, num: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KeywordsExtractionResponse> {
+        self.keywordsExtraction(KeywordsExtractionRequest(text: text, num: num), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关键词提取
     ///
     /// 基于关键词提取平台，通过对文本内容进行深度分析，提取出文本内容中的关键信息，为用户实现诸如新闻内容关键词自动提取、评论关键词提取等提供基础服务。
     @inlinable
-    public func keywordsExtraction(text: String, num: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
-        try await self.keywordsExtraction(KeywordsExtractionRequest(text: text, num: num), logger: logger, on: eventLoop)
+    public func keywordsExtraction(text: String, num: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KeywordsExtractionResponse {
+        try await self.keywordsExtraction(KeywordsExtractionRequest(text: text, num: num), region: region, logger: logger, on: eventLoop)
     }
 }

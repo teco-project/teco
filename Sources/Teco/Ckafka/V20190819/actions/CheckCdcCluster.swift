@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Ckafka {
     ///
     /// 用于查询cdc-ckafka任务状态
     @inlinable
-    public func checkCdcCluster(_ input: CheckCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCdcClusterResponse> {
-        self.client.execute(action: "CheckCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkCdcCluster(_ input: CheckCdcClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCdcClusterResponse> {
+        self.client.execute(action: "CheckCdcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询cdc任务接口
     ///
     /// 用于查询cdc-ckafka任务状态
     @inlinable
-    public func checkCdcCluster(_ input: CheckCdcClusterRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCdcClusterResponse {
-        try await self.client.execute(action: "CheckCdcCluster", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkCdcCluster(_ input: CheckCdcClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCdcClusterResponse {
+        try await self.client.execute(action: "CheckCdcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询cdc任务接口
     ///
     /// 用于查询cdc-ckafka任务状态
     @inlinable
-    public func checkCdcCluster(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCdcClusterResponse> {
-        self.checkCdcCluster(CheckCdcClusterRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func checkCdcCluster(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCdcClusterResponse> {
+        self.checkCdcCluster(CheckCdcClusterRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询cdc任务接口
     ///
     /// 用于查询cdc-ckafka任务状态
     @inlinable
-    public func checkCdcCluster(taskId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCdcClusterResponse {
-        try await self.checkCdcCluster(CheckCdcClusterRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func checkCdcCluster(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCdcClusterResponse {
+        try await self.checkCdcCluster(CheckCdcClusterRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

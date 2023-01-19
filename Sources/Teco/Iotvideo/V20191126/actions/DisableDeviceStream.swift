@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
-        self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
+        self.client.execute(action: "DisableDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
-        try await self.client.execute(action: "DisableDeviceStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableDeviceStream(_ input: DisableDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
+        try await self.client.execute(action: "DisableDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDeviceStream(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
-        self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), logger: logger, on: eventLoop)
+    public func disableDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
+        self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func disableDeviceStream(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
-        try await self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), logger: logger, on: eventLoop)
+    public func disableDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
+        try await self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 }

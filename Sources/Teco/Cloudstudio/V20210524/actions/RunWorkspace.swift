@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cloudstudio {
 
     /// 运行空间
     @inlinable
-    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
-        self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runWorkspace(_ input: RunWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
+        self.client.execute(action: "RunWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行空间
     @inlinable
-    public func runWorkspace(_ input: RunWorkspaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
-        try await self.client.execute(action: "RunWorkspace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runWorkspace(_ input: RunWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
+        try await self.client.execute(action: "RunWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行空间
     @inlinable
-    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
-        self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
+        self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行空间
     @inlinable
-    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
-        try await self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), logger: logger, on: eventLoop)
+    public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
+        try await self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 }

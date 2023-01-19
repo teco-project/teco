@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Mongodb {
 
     /// 备份实例接口
     @inlinable
-    public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
-        self.client.execute(action: "CreateBackupDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
+        self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 备份实例接口
     @inlinable
-    public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
-        try await self.client.execute(action: "CreateBackupDBInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBackupDBInstance(_ input: CreateBackupDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
+        try await self.client.execute(action: "CreateBackupDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 备份实例接口
     @inlinable
-    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
-        self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), logger: logger, on: eventLoop)
+    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDBInstanceResponse> {
+        self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 备份实例接口
     @inlinable
-    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
-        try await self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), logger: logger, on: eventLoop)
+    public func createBackupDBInstance(instanceId: String, backupMethod: Int64, backupRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDBInstanceResponse {
+        try await self.createBackupDBInstance(CreateBackupDBInstanceRequest(instanceId: instanceId, backupMethod: backupMethod, backupRemark: backupRemark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Wedata {
 
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
-        self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
+        self.client.execute(action: "DescribeKafkaTopicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
-        try await self.client.execute(action: "DescribeKafkaTopicInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
+        try await self.client.execute(action: "DescribeKafkaTopicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
-        self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), logger: logger, on: eventLoop)
+    public func describeKafkaTopicInfo(datasourceId: String, type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
+        self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取kafka的topic信息
     @inlinable
-    public func describeKafkaTopicInfo(datasourceId: String, type: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
-        try await self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), logger: logger, on: eventLoop)
+    public func describeKafkaTopicInfo(datasourceId: String, type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
+        try await self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cfw {
 
     /// 启用停用单条企业安全组规则
     @inlinable
-    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupItemRuleStatusResponse> {
-        self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupItemRuleStatusResponse> {
+        self.client.execute(action: "ModifySecurityGroupItemRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用停用单条企业安全组规则
     @inlinable
-    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
-        try await self.client.execute(action: "ModifySecurityGroupItemRuleStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityGroupItemRuleStatus(_ input: ModifySecurityGroupItemRuleStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
+        try await self.client.execute(action: "ModifySecurityGroupItemRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用停用单条企业安全组规则
     @inlinable
-    public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupItemRuleStatusResponse> {
-        self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), logger: logger, on: eventLoop)
+    public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupItemRuleStatusResponse> {
+        self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用停用单条企业安全组规则
     @inlinable
-    public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
-        try await self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), logger: logger, on: eventLoop)
+    public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
+        try await self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), region: region, logger: logger, on: eventLoop)
     }
 }

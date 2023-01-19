@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Asw {
     ///
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
-    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServicesResponse> {
-        self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowServices(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServicesResponse> {
+        self.client.execute(action: "DescribeFlowServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机列表
     ///
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
-    public func describeFlowServices(_ input: DescribeFlowServicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
-        try await self.client.execute(action: "DescribeFlowServices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowServices(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
+        try await self.client.execute(action: "DescribeFlowServices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询状态机列表
     ///
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
-    public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServicesResponse> {
-        self.describeFlowServices(DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowServicesResponse> {
+        self.describeFlowServices(DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机列表
     ///
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
-    public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
-        try await self.describeFlowServices(DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeFlowServices(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowServicesResponse {
+        try await self.describeFlowServices(DescribeFlowServicesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

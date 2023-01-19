@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Bmlb {
     ///
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
-    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7LocationsResponse> {
-        self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7LocationsResponse> {
+        self.client.execute(action: "ModifyL7Locations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径
     ///
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
-    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
-        try await self.client.execute(action: "ModifyL7Locations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyL7Locations(_ input: ModifyL7LocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
+        try await self.client.execute(action: "ModifyL7Locations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改黑石负载均衡七层转发路径
     ///
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
-    public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7LocationsResponse> {
-        self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), logger: logger, on: eventLoop)
+    public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7LocationsResponse> {
+        self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径
     ///
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
-    public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
-        try await self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), logger: logger, on: eventLoop)
+    public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
+        try await self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
 }

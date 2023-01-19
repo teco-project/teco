@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Cvm {
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
-    public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
-        self.client.execute(action: "InquiryPriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
+        self.client.execute(action: "InquiryPriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -72,8 +72,8 @@ extension Cvm {
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
-    public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
-        try await self.client.execute(action: "InquiryPriceRenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
+        try await self.client.execute(action: "InquiryPriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例询价
@@ -81,8 +81,8 @@ extension Cvm {
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
-    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
-        self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), logger: logger, on: eventLoop)
+    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
+        self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -90,7 +90,7 @@ extension Cvm {
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
-    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
-        try await self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), logger: logger, on: eventLoop)
+    public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
+        try await self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), region: region, logger: logger, on: eventLoop)
     }
 }

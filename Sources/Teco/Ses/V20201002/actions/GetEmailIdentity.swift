@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Ses {
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
-        self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getEmailIdentity(_ input: GetEmailIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
+        self.client.execute(action: "GetEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(_ input: GetEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
-        try await self.client.execute(action: "GetEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getEmailIdentity(_ input: GetEmailIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
+        try await self.client.execute(action: "GetEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
-        self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
+    public func getEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
+        self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名配置详情
     ///
     /// 获取某个发信域名的配置详情
     @inlinable
-    public func getEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
-        try await self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
+    public func getEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
+        try await self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
     }
 }

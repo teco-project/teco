@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,8 +81,8 @@ extension Vod {
     /// 8. **转场**：将多段视频或图片拼接时，可以在段落之间添加转场效果。
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
-    public func composeMedia(_ input: ComposeMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ComposeMediaResponse> {
-        self.client.execute(action: "ComposeMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func composeMedia(_ input: ComposeMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ComposeMediaResponse> {
+        self.client.execute(action: "ComposeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频合成
@@ -98,8 +98,8 @@ extension Vod {
     /// 8. **转场**：将多段视频或图片拼接时，可以在段落之间添加转场效果。
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
-    public func composeMedia(_ input: ComposeMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
-        try await self.client.execute(action: "ComposeMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func composeMedia(_ input: ComposeMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
+        try await self.client.execute(action: "ComposeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 视频合成
@@ -115,8 +115,8 @@ extension Vod {
     /// 8. **转场**：将多段视频或图片拼接时，可以在段落之间添加转场效果。
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
-    public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ComposeMediaResponse> {
-        self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), logger: logger, on: eventLoop)
+    public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ComposeMediaResponse> {
+        self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 视频合成
@@ -132,7 +132,7 @@ extension Vod {
     /// 8. **转场**：将多段视频或图片拼接时，可以在段落之间添加转场效果。
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
-    public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
-        try await self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), logger: logger, on: eventLoop)
+    public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
+        try await self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
     }
 }

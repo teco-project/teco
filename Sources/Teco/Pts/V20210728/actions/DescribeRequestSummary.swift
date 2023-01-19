@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Pts {
 
     /// 查询请求汇总信息
     @inlinable
-    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestSummaryResponse> {
-        self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestSummaryResponse> {
+        self.client.execute(action: "DescribeRequestSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询请求汇总信息
     @inlinable
-    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
-        try await self.client.execute(action: "DescribeRequestSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRequestSummary(_ input: DescribeRequestSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
+        try await self.client.execute(action: "DescribeRequestSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询请求汇总信息
     @inlinable
-    public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestSummaryResponse> {
-        self.describeRequestSummary(DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRequestSummaryResponse> {
+        self.describeRequestSummary(DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询请求汇总信息
     @inlinable
-    public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
-        try await self.describeRequestSummary(DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), logger: logger, on: eventLoop)
+    public func describeRequestSummary(jobId: String, scenarioId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRequestSummaryResponse {
+        try await self.describeRequestSummary(DescribeRequestSummaryRequest(jobId: jobId, scenarioId: scenarioId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 }

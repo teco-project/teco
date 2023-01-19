@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Ckafka {
 
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
-        self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
+        self.client.execute(action: "BatchModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
-        try await self.client.execute(action: "BatchModifyGroupOffsets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func batchModifyGroupOffsets(_ input: BatchModifyGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
+        try await self.client.execute(action: "BatchModifyGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
-        self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), logger: logger, on: eventLoop)
+    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyGroupOffsetsResponse> {
+        self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量修改消费组offset
     @inlinable
-    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
-        try await self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), logger: logger, on: eventLoop)
+    public func batchModifyGroupOffsets(groupName: String, instanceId: String, partitions: [Partitions], topicName: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyGroupOffsetsResponse {
+        try await self.batchModifyGroupOffsets(BatchModifyGroupOffsetsRequest(groupName: groupName, instanceId: instanceId, partitions: partitions, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 }

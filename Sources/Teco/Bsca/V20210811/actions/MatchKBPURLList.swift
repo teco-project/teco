@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Bsca {
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
-        self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func matchKBPURLList(_ input: MatchKBPURLListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
+        self.client.execute(action: "MatchKBPURLList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(_ input: MatchKBPURLListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
-        try await self.client.execute(action: "MatchKBPURLList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func matchKBPURLList(_ input: MatchKBPURLListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
+        try await self.client.execute(action: "MatchKBPURLList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
-        self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), logger: logger, on: eventLoop)
+    public func matchKBPURLList(sha1: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MatchKBPURLListResponse> {
+        self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), region: region, logger: logger, on: eventLoop)
     }
 
     /// 匹配知识库组件列表
     ///
     /// 本接口(MatchKBPURLList)用于在知识库中匹配与特征对应的开源组件列表。
     @inlinable
-    public func matchKBPURLList(sha1: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
-        try await self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), logger: logger, on: eventLoop)
+    public func matchKBPURLList(sha1: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MatchKBPURLListResponse {
+        try await self.matchKBPURLList(MatchKBPURLListRequest(sha1: sha1), region: region, logger: logger, on: eventLoop)
     }
 }

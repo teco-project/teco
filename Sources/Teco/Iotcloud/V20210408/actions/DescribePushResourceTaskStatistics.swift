@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotcloud {
 
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
-        self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
+        self.client.execute(action: "DescribePushResourceTaskStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
-        try await self.client.execute(action: "DescribePushResourceTaskStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePushResourceTaskStatistics(_ input: DescribePushResourceTaskStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
+        try await self.client.execute(action: "DescribePushResourceTaskStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
-        self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), logger: logger, on: eventLoop)
+    public func describePushResourceTaskStatistics(productID: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePushResourceTaskStatisticsResponse> {
+        self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询推送资源任务统计信息
     @inlinable
-    public func describePushResourceTaskStatistics(productID: String, name: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
-        try await self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), logger: logger, on: eventLoop)
+    public func describePushResourceTaskStatistics(productID: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePushResourceTaskStatisticsResponse {
+        try await self.describePushResourceTaskStatistics(DescribePushResourceTaskStatisticsRequest(productID: productID, name: name), region: region, logger: logger, on: eventLoop)
     }
 }

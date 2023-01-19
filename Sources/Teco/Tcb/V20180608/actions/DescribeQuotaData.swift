@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -93,31 +93,31 @@ extension Tcb {
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
-        self.client.execute(action: "DescribeQuotaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeQuotaData(_ input: DescribeQuotaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
+        self.client.execute(action: "DescribeQuotaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(_ input: DescribeQuotaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
-        try await self.client.execute(action: "DescribeQuotaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeQuotaData(_ input: DescribeQuotaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
+        try await self.client.execute(action: "DescribeQuotaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
-        self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), logger: logger, on: eventLoop)
+    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
+        self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境的配额使用量
     ///
     /// 查询指定指标的配额使用量
     @inlinable
-    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
-        try await self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), logger: logger, on: eventLoop)
+    public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
+        try await self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
     }
 }

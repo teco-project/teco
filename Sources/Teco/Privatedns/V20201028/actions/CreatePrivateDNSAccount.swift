@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Privatedns {
 
     /// 创建私有域解析账号
     @inlinable
-    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
-        self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
+        self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域解析账号
     @inlinable
-    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
-        try await self.client.execute(action: "CreatePrivateDNSAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
+        try await self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建私有域解析账号
     @inlinable
-    public func createPrivateDNSAccount(account: PrivateDNSAccount, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
-        self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), logger: logger, on: eventLoop)
+    public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
+        self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域解析账号
     @inlinable
-    public func createPrivateDNSAccount(account: PrivateDNSAccount, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
-        try await self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), logger: logger, on: eventLoop)
+    public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
+        try await self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }
 }

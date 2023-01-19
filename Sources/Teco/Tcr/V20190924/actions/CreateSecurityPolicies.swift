@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tcr {
 
     /// 创建实例公网访问白名单策略
     @inlinable
-    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityPoliciesResponse> {
-        self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityPoliciesResponse> {
+        self.client.execute(action: "CreateSecurityPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例公网访问白名单策略
     @inlinable
-    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
-        try await self.client.execute(action: "CreateSecurityPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityPolicies(_ input: CreateSecurityPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
+        try await self.client.execute(action: "CreateSecurityPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例公网访问白名单策略
     @inlinable
-    public func createSecurityPolicies(registryId: String, cidrBlock: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityPoliciesResponse> {
-        self.createSecurityPolicies(CreateSecurityPoliciesRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), logger: logger, on: eventLoop)
+    public func createSecurityPolicies(registryId: String, cidrBlock: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityPoliciesResponse> {
+        self.createSecurityPolicies(CreateSecurityPoliciesRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例公网访问白名单策略
     @inlinable
-    public func createSecurityPolicies(registryId: String, cidrBlock: String, description: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
-        try await self.createSecurityPolicies(CreateSecurityPoliciesRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), logger: logger, on: eventLoop)
+    public func createSecurityPolicies(registryId: String, cidrBlock: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPoliciesResponse {
+        try await self.createSecurityPolicies(CreateSecurityPoliciesRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
     }
 }

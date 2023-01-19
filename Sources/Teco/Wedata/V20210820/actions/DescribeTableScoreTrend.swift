@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Wedata {
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
-        self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
+        self.client.execute(action: "DescribeTableScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
-        try await self.client.execute(action: "DescribeTableScoreTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTableScoreTrend(_ input: DescribeTableScoreTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
+        try await self.client.execute(action: "DescribeTableScoreTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
-        self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), logger: logger, on: eventLoop)
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableScoreTrendResponse> {
+        self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询表得分趋势
     @inlinable
-    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
-        try await self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), logger: logger, on: eventLoop)
+    public func describeTableScoreTrend(projectId: String, statisticsStartDate: Int64, statisticsEndDate: Int64, tableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableScoreTrendResponse {
+        try await self.describeTableScoreTrend(DescribeTableScoreTrendRequest(projectId: projectId, statisticsStartDate: statisticsStartDate, statisticsEndDate: statisticsEndDate, tableId: tableId), region: region, logger: logger, on: eventLoop)
     }
 }

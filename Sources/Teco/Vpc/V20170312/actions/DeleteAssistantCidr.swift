@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
     @inlinable
-    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
-        self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
+        self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
     @inlinable
-    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
-        try await self.client.execute(action: "DeleteAssistantCidr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
+        try await self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
     @inlinable
-    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
-        self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
+        self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
     @inlinable
-    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
-        try await self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), logger: logger, on: eventLoop)
+    public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
+        try await self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }
 }

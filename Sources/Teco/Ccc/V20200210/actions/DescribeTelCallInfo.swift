@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Ccc {
 
     /// 按实例获取电话消耗统计
     @inlinable
-    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCallInfoResponse> {
-        self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCallInfoResponse> {
+        self.client.execute(action: "DescribeTelCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按实例获取电话消耗统计
     @inlinable
-    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
-        try await self.client.execute(action: "DescribeTelCallInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTelCallInfo(_ input: DescribeTelCallInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
+        try await self.client.execute(action: "DescribeTelCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 按实例获取电话消耗统计
     @inlinable
-    public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCallInfoResponse> {
-        self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), logger: logger, on: eventLoop)
+    public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCallInfoResponse> {
+        self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 按实例获取电话消耗统计
     @inlinable
-    public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
-        try await self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), logger: logger, on: eventLoop)
+    public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
+        try await self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), region: region, logger: logger, on: eventLoop)
     }
 }

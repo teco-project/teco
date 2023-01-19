@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Cynosdb {
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
-        self.client.execute(action: "InquirePriceCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
+        self.client.execute(action: "InquirePriceCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购集群询价
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
-        try await self.client.execute(action: "InquirePriceCreate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreate(_ input: InquirePriceCreateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
+        try await self.client.execute(action: "InquirePriceCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新购集群询价
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
-        self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateResponse> {
+        self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新购集群询价
     ///
     /// 查询新购集群价格
     @inlinable
-    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
-        try await self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), logger: logger, on: eventLoop)
+    public func inquirePriceCreate(zone: String, goodsNum: Int64, instancePayMode: String, storagePayMode: String, cpu: Int64? = nil, memory: Int64? = nil, ccu: Float? = nil, storageLimit: Int64? = nil, timeSpan: Int64? = nil, timeUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateResponse {
+        try await self.inquirePriceCreate(InquirePriceCreateRequest(zone: zone, goodsNum: goodsNum, instancePayMode: instancePayMode, storagePayMode: storagePayMode, cpu: cpu, memory: memory, ccu: ccu, storageLimit: storageLimit, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
     }
 }

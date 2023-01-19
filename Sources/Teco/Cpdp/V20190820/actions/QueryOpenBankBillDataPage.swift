@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -101,25 +101,25 @@ extension Cpdp {
 
     /// 云企付-分页查询对账单数据
     @inlinable
-    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBillDataPageResponse> {
-        self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBillDataPageResponse> {
+        self.client.execute(action: "QueryOpenBankBillDataPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-分页查询对账单数据
     @inlinable
-    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
-        try await self.client.execute(action: "QueryOpenBankBillDataPage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankBillDataPage(_ input: QueryOpenBankBillDataPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
+        try await self.client.execute(action: "QueryOpenBankBillDataPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-分页查询对账单数据
     @inlinable
-    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBillDataPageResponse> {
-        self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBillDataPageResponse> {
+        self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-分页查询对账单数据
     @inlinable
-    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
-        try await self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), logger: logger, on: eventLoop)
+    public func queryOpenBankBillDataPage(channelMerchantId: String, billDate: String, channelName: String, pageNo: UInt64, pageSize: UInt64, billType: String? = nil, paymentMethod: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBillDataPageResponse {
+        try await self.queryOpenBankBillDataPage(QueryOpenBankBillDataPageRequest(channelMerchantId: channelMerchantId, billDate: billDate, channelName: channelName, pageNo: pageNo, pageSize: pageSize, billType: billType, paymentMethod: paymentMethod, environment: environment), region: region, logger: logger, on: eventLoop)
     }
 }

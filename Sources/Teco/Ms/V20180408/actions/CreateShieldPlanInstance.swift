@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Ms {
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
-        self.client.execute(action: "CreateShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
+        self.client.execute(action: "CreateShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
-        try await self.client.execute(action: "CreateShieldPlanInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createShieldPlanInstance(_ input: CreateShieldPlanInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
+        try await self.client.execute(action: "CreateShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
-        self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), logger: logger, on: eventLoop)
+    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
+        self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增加固策略
     ///
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
-    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
-        try await self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), logger: logger, on: eventLoop)
+    public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
+        try await self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), region: region, logger: logger, on: eventLoop)
     }
 }

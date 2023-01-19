@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Tds {
 
     /// 查询设备标识
     @inlinable
-    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrustedIDResponse> {
-        self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTrustedID(_ input: DescribeTrustedIDRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrustedIDResponse> {
+        self.client.execute(action: "DescribeTrustedID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识
     @inlinable
-    public func describeTrustedID(_ input: DescribeTrustedIDRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
-        try await self.client.execute(action: "DescribeTrustedID", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTrustedID(_ input: DescribeTrustedIDRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
+        try await self.client.execute(action: "DescribeTrustedID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询设备标识
     @inlinable
-    public func describeTrustedID(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrustedIDResponse> {
-        self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeTrustedID(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrustedIDResponse> {
+        self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识
     @inlinable
-    public func describeTrustedID(deviceToken: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
-        try await self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), logger: logger, on: eventLoop)
+    public func describeTrustedID(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
+        try await self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Monitor {
 
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
-        self.client.execute(action: "ModifyGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
+        self.client.execute(action: "ModifyGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
-        try await self.client.execute(action: "ModifyGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
+        try await self.client.execute(action: "ModifyGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
-        self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    public func modifyGrafanaInstance(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
+        self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 Grafana 实例属性
     @inlinable
-    public func modifyGrafanaInstance(instanceId: String, instanceName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
-        try await self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), logger: logger, on: eventLoop)
+    public func modifyGrafanaInstance(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
+        try await self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 }

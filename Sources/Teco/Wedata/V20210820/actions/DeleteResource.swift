@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Wedata {
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
-        self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteResource(_ input: DeleteResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
+        self.client.execute(action: "DeleteResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资源
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(_ input: DeleteResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
-        try await self.client.execute(action: "DeleteResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteResource(_ input: DeleteResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
+        try await self.client.execute(action: "DeleteResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资源
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
-        self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceResponse> {
+        self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源
     ///
     /// 资源管理删除资源
     @inlinable
-    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
-        try await self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), logger: logger, on: eventLoop)
+    public func deleteResource(projectId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceResponse {
+        try await self.deleteResource(DeleteResourceRequest(projectId: projectId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
 }

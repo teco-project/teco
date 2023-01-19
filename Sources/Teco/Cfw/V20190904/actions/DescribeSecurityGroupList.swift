@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -88,25 +88,25 @@ extension Cfw {
 
     /// 查询安全组规则列表
     @inlinable
-    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupListResponse> {
-        self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupListResponse> {
+        self.client.execute(action: "DescribeSecurityGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则列表
     @inlinable
-    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
-        try await self.client.execute(action: "DescribeSecurityGroupList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecurityGroupList(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
+        try await self.client.execute(action: "DescribeSecurityGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询安全组规则列表
     @inlinable
-    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupListResponse> {
-        self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), logger: logger, on: eventLoop)
+    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupListResponse> {
+        self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则列表
     @inlinable
-    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
-        try await self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), logger: logger, on: eventLoop)
+    public func describeSecurityGroupList(direction: UInt64, area: String, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, status: String? = nil, filter: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupListResponse {
+        try await self.describeSecurityGroupList(DescribeSecurityGroupListRequest(direction: direction, area: area, searchValue: searchValue, limit: limit, offset: offset, status: status, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 }

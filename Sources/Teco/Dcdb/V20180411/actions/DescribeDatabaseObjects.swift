@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
-    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseObjectsResponse> {
-        self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseObjectsResponse> {
+        self.client.execute(action: "DescribeDatabaseObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库对象列表
     ///
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
-    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
-        try await self.client.execute(action: "DescribeDatabaseObjects", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDatabaseObjects(_ input: DescribeDatabaseObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
+        try await self.client.execute(action: "DescribeDatabaseObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据库对象列表
     ///
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
-    public func describeDatabaseObjects(instanceId: String, dbName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseObjectsResponse> {
-        self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), logger: logger, on: eventLoop)
+    public func describeDatabaseObjects(instanceId: String, dbName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseObjectsResponse> {
+        self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库对象列表
     ///
     /// 本接口（DescribeDatabaseObjects）用于查询云数据库实例的数据库中的对象列表，包含表、存储过程、视图和函数。
     @inlinable
-    public func describeDatabaseObjects(instanceId: String, dbName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
-        try await self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), logger: logger, on: eventLoop)
+    public func describeDatabaseObjects(instanceId: String, dbName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseObjectsResponse {
+        try await self.describeDatabaseObjects(DescribeDatabaseObjectsRequest(instanceId: instanceId, dbName: dbName), region: region, logger: logger, on: eventLoop)
     }
 }

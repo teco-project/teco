@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Mps {
     ///
     /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
     @inlinable
-    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMediaForZhiXueResponse> {
-        self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMediaForZhiXueResponse> {
+        self.client.execute(action: "RecognizeMediaForZhiXue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智学智能媒体识别
     ///
     /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
     @inlinable
-    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
-        try await self.client.execute(action: "RecognizeMediaForZhiXue", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func recognizeMediaForZhiXue(_ input: RecognizeMediaForZhiXueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
+        try await self.client.execute(action: "RecognizeMediaForZhiXue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智学智能媒体识别
     ///
     /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
     @inlinable
-    public func recognizeMediaForZhiXue(inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo? = nil, actionConfig: ActionConfigInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMediaForZhiXueResponse> {
-        self.recognizeMediaForZhiXue(RecognizeMediaForZhiXueRequest(inputInfo: inputInfo, expressionConfig: expressionConfig, actionConfig: actionConfig), logger: logger, on: eventLoop)
+    public func recognizeMediaForZhiXue(inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo? = nil, actionConfig: ActionConfigInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeMediaForZhiXueResponse> {
+        self.recognizeMediaForZhiXue(RecognizeMediaForZhiXueRequest(inputInfo: inputInfo, expressionConfig: expressionConfig, actionConfig: actionConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智学智能媒体识别
     ///
     /// 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
     @inlinable
-    public func recognizeMediaForZhiXue(inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo? = nil, actionConfig: ActionConfigInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
-        try await self.recognizeMediaForZhiXue(RecognizeMediaForZhiXueRequest(inputInfo: inputInfo, expressionConfig: expressionConfig, actionConfig: actionConfig), logger: logger, on: eventLoop)
+    public func recognizeMediaForZhiXue(inputInfo: MediaInputInfo, expressionConfig: ExpressionConfigInfo? = nil, actionConfig: ActionConfigInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeMediaForZhiXueResponse {
+        try await self.recognizeMediaForZhiXue(RecognizeMediaForZhiXueRequest(inputInfo: inputInfo, expressionConfig: expressionConfig, actionConfig: actionConfig), region: region, logger: logger, on: eventLoop)
     }
 }

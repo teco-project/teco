@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
-        self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
+        self.client.execute(action: "DescribeDataBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
-        try await self.client.execute(action: "DescribeDataBackupOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataBackupOverview(_ input: DescribeDataBackupOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
+        try await self.client.execute(action: "DescribeDataBackupOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
-        self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeDataBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataBackupOverviewResponse> {
+        self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询数据备份概览
     ///
     /// 本接口(DescribeDataBackupOverview)用于查询用户在当前地域总的数据备份概览。
     @inlinable
-    public func describeDataBackupOverview(product: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
-        try await self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), logger: logger, on: eventLoop)
+    public func describeDataBackupOverview(product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataBackupOverviewResponse {
+        try await self.describeDataBackupOverview(DescribeDataBackupOverviewRequest(product: product), region: region, logger: logger, on: eventLoop)
     }
 }

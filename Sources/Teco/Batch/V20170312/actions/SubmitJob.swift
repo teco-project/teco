@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Batch {
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
-        self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitJob(_ input: SubmitJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
+        self.client.execute(action: "SubmitJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交作业
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(_ input: SubmitJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
-        try await self.client.execute(action: "SubmitJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitJob(_ input: SubmitJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
+        try await self.client.execute(action: "SubmitJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交作业
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
-        self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), logger: logger, on: eventLoop)
+    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
+        self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交作业
     ///
     /// 用于提交一个作业
     @inlinable
-    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
-        try await self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), logger: logger, on: eventLoop)
+    public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
+        try await self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
     }
 }

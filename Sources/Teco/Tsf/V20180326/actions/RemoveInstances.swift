@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tsf {
     ///
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeInstances(_ input: RemoveInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
+        self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移除云主机
     ///
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeInstances(_ input: RemoveInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 移除云主机
     ///
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
-    public func removeInstances(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func removeInstances(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
+        self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移除云主机
     ///
     /// 从 TSF 集群中批量移除云主机节点
     @inlinable
-    public func removeInstances(clusterId: String, instanceIdList: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), logger: logger, on: eventLoop)
+    public func removeInstances(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.removeInstances(RemoveInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
     }
 }

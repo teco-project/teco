@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,8 +57,8 @@ extension Cvm {
     /// https://img.qcloud.com/qcloud/app/active_vnc/index.html?InstanceVncUrl=wss%3A%2F%2Fbjvnc.qcloud.com%3A26789%2Fvnc%3Fs%3DaHpjWnRVMFNhYmxKdDM5MjRHNlVTSVQwajNUSW0wb2tBbmFtREFCTmFrcy8vUUNPMG0wSHZNOUUxRm5PMmUzWmFDcWlOdDJIbUJxSTZDL0RXcHZxYnZZMmRkWWZWcEZia2lyb09XMzdKNmM9
     /// ```
     @inlinable
-    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
-        self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
+        self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例管理终端地址
@@ -75,8 +75,8 @@ extension Cvm {
     /// https://img.qcloud.com/qcloud/app/active_vnc/index.html?InstanceVncUrl=wss%3A%2F%2Fbjvnc.qcloud.com%3A26789%2Fvnc%3Fs%3DaHpjWnRVMFNhYmxKdDM5MjRHNlVTSVQwajNUSW0wb2tBbmFtREFCTmFrcy8vUUNPMG0wSHZNOUUxRm5PMmUzWmFDcWlOdDJIbUJxSTZDL0RXcHZxYnZZMmRkWWZWcEZia2lyb09XMzdKNmM9
     /// ```
     @inlinable
-    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
-        try await self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
+        try await self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例管理终端地址
@@ -93,8 +93,8 @@ extension Cvm {
     /// https://img.qcloud.com/qcloud/app/active_vnc/index.html?InstanceVncUrl=wss%3A%2F%2Fbjvnc.qcloud.com%3A26789%2Fvnc%3Fs%3DaHpjWnRVMFNhYmxKdDM5MjRHNlVTSVQwajNUSW0wb2tBbmFtREFCTmFrcy8vUUNPMG0wSHZNOUUxRm5PMmUzWmFDcWlOdDJIbUJxSTZDL0RXcHZxYnZZMmRkWWZWcEZia2lyb09XMzdKNmM9
     /// ```
     @inlinable
-    public func describeInstanceVncUrl(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
-        self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
+        self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例管理终端地址
@@ -111,7 +111,7 @@ extension Cvm {
     /// https://img.qcloud.com/qcloud/app/active_vnc/index.html?InstanceVncUrl=wss%3A%2F%2Fbjvnc.qcloud.com%3A26789%2Fvnc%3Fs%3DaHpjWnRVMFNhYmxKdDM5MjRHNlVTSVQwajNUSW0wb2tBbmFtREFCTmFrcy8vUUNPMG0wSHZNOUUxRm5PMmUzWmFDcWlOdDJIbUJxSTZDL0RXcHZxYnZZMmRkWWZWcEZia2lyb09XMzdKNmM9
     /// ```
     @inlinable
-    public func describeInstanceVncUrl(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
-        try await self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
+        try await self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

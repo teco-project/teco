@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Tcb {
     ///
     /// 查询单个服务的详情，版本以及详情
     @inlinable
-    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunServerResponse> {
-        self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunServerResponse> {
+        self.client.execute(action: "DescribeCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务的详情
     ///
     /// 查询单个服务的详情，版本以及详情
     @inlinable
-    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
-        try await self.client.execute(action: "DescribeCloudBaseRunServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloudBaseRunServer(_ input: DescribeCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
+        try await self.client.execute(action: "DescribeCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单个服务的详情
     ///
     /// 查询单个服务的详情，版本以及详情
     @inlinable
-    public func describeCloudBaseRunServer(envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunServerResponse> {
-        self.describeCloudBaseRunServer(DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunServer(envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunServerResponse> {
+        self.describeCloudBaseRunServer(DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单个服务的详情
     ///
     /// 查询单个服务的详情，版本以及详情
     @inlinable
-    public func describeCloudBaseRunServer(envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
-        try await self.describeCloudBaseRunServer(DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName), logger: logger, on: eventLoop)
+    public func describeCloudBaseRunServer(envId: String, serverName: String, offset: Int64, limit: Int64, versionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunServerResponse {
+        try await self.describeCloudBaseRunServer(DescribeCloudBaseRunServerRequest(envId: envId, serverName: serverName, offset: offset, limit: limit, versionName: versionName), region: region, logger: logger, on: eventLoop)
     }
 }

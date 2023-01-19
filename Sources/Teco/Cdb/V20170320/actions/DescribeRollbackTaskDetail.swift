@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
-    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTaskDetailResponse> {
-        self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTaskDetailResponse> {
+        self.client.execute(action: "DescribeRollbackTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询回档任务详情
     ///
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
-    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
-        try await self.client.execute(action: "DescribeRollbackTaskDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRollbackTaskDetail(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
+        try await self.client.execute(action: "DescribeRollbackTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询回档任务详情
     ///
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
-    public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTaskDetailResponse> {
-        self.describeRollbackTaskDetail(DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRollbackTaskDetailResponse> {
+        self.describeRollbackTaskDetail(DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询回档任务详情
     ///
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
     @inlinable
-    public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
-        try await self.describeRollbackTaskDetail(DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeRollbackTaskDetail(instanceId: String, asyncRequestId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRollbackTaskDetailResponse {
+        try await self.describeRollbackTaskDetail(DescribeRollbackTaskDetailRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

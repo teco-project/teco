@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,31 +97,31 @@ extension Vpc {
     ///
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
-    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
-        self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createFlowLog(_ input: CreateFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
+        self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建流日志
     ///
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
-    public func createFlowLog(_ input: CreateFlowLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
-        try await self.client.execute(action: "CreateFlowLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createFlowLog(_ input: CreateFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
+        try await self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建流日志
     ///
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
-    public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
-        self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), logger: logger, on: eventLoop)
+    public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
+        self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建流日志
     ///
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
-    public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
-        try await self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), logger: logger, on: eventLoop)
+    public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
+        try await self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
     }
 }

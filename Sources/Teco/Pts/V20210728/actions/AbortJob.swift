@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Pts {
 
     /// 停止任务
     @inlinable
-    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortJobResponse> {
-        self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func abortJob(_ input: AbortJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortJobResponse> {
+        self.client.execute(action: "AbortJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止任务
     @inlinable
-    public func abortJob(_ input: AbortJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
-        try await self.client.execute(action: "AbortJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func abortJob(_ input: AbortJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
+        try await self.client.execute(action: "AbortJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止任务
     @inlinable
-    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortJobResponse> {
-        self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), logger: logger, on: eventLoop)
+    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortJobResponse> {
+        self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止任务
     @inlinable
-    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
-        try await self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), logger: logger, on: eventLoop)
+    public func abortJob(jobId: String, projectId: String, scenarioId: String, abortReason: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortJobResponse {
+        try await self.abortJob(AbortJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, abortReason: abortReason), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Vod {
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
-        self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
+        self.client.execute(action: "ExtractTraceWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提取溯源水印
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
-        try await self.client.execute(action: "ExtractTraceWatermark", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func extractTraceWatermark(_ input: ExtractTraceWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
+        try await self.client.execute(action: "ExtractTraceWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提取溯源水印
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
-        self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
+        self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提取溯源水印
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
-        try await self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
+        try await self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
     @inlinable
-    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBUpgradePriceResponse> {
-        self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBUpgradePriceResponse> {
+        self.client.execute(action: "DescribeDCDBUpgradePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询变配分布式数据库实例价格
     ///
     /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
     @inlinable
-    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
-        try await self.client.execute(action: "DescribeDCDBUpgradePrice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDCDBUpgradePrice(_ input: DescribeDCDBUpgradePriceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
+        try await self.client.execute(action: "DescribeDCDBUpgradePrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询变配分布式数据库实例价格
     ///
     /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
     @inlinable
-    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBUpgradePriceResponse> {
-        self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBUpgradePriceResponse> {
+        self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询变配分布式数据库实例价格
     ///
     /// 本接口（DescribeDCDBUpgradePrice）用于查询变配分布式数据库实例价格。
     @inlinable
-    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
-        try await self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), logger: logger, on: eventLoop)
+    public func describeDCDBUpgradePrice(instanceId: String, upgradeType: String, addShardConfig: AddShardConfig? = nil, expandShardConfig: ExpandShardConfig? = nil, splitShardConfig: SplitShardConfig? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBUpgradePriceResponse {
+        try await self.describeDCDBUpgradePrice(DescribeDCDBUpgradePriceRequest(instanceId: instanceId, upgradeType: upgradeType, addShardConfig: addShardConfig, expandShardConfig: expandShardConfig, splitShardConfig: splitShardConfig, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
     }
 }

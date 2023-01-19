@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iotcloud {
 
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
-        self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePrivateCA(_ input: DeletePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
+        self.client.execute(action: "DeletePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(_ input: DeletePrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
-        try await self.client.execute(action: "DeletePrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePrivateCA(_ input: DeletePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
+        try await self.client.execute(action: "DeletePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
-        self.deletePrivateCA(DeletePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    public func deletePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateCAResponse> {
+        self.deletePrivateCA(DeletePrivateCARequest(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除私有CA证书
     @inlinable
-    public func deletePrivateCA(certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
-        try await self.deletePrivateCA(DeletePrivateCARequest(certName: certName), logger: logger, on: eventLoop)
+    public func deletePrivateCA(certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateCAResponse {
+        try await self.deletePrivateCA(DeletePrivateCARequest(certName: certName), region: region, logger: logger, on: eventLoop)
     }
 }

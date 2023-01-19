@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Tdid {
 
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
-        self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
+        self.client.execute(action: "GetDidRegisterTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
-        try await self.client.execute(action: "GetDidRegisterTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getDidRegisterTrend(_ input: GetDidRegisterTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
+        try await self.client.execute(action: "GetDidRegisterTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
-        self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidRegisterTrendResponse> {
+        self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// DID注册趋势
     @inlinable
-    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
-        try await self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), logger: logger, on: eventLoop)
+    public func getDidRegisterTrend(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidRegisterTrendResponse {
+        try await self.getDidRegisterTrend(GetDidRegisterTrendRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

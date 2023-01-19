@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Wedata {
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
-        self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
+        self.client.execute(action: "DeleteTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
-        try await self.client.execute(action: "DeleteTaskAlarmRegular", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTaskAlarmRegular(_ input: DeleteTaskAlarmRegularRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
+        try await self.client.execute(action: "DeleteTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
-        self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), logger: logger, on: eventLoop)
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
+        self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除任务告警规则
     @inlinable
-    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
-        try await self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), logger: logger, on: eventLoop)
+    public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
+        try await self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

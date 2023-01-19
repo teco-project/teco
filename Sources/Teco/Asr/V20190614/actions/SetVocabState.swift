@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Asr {
     ///
     /// 用户通过该接口可以设置热词表的默认状态。初始状态为0，用户可设置状态为1，即为默认状态。默认状态表示用户在请求识别时，如不设置热词表ID，则默认使用状态为1的热词表。
     @inlinable
-    public func setVocabState(_ input: SetVocabStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVocabStateResponse> {
-        self.client.execute(action: "SetVocabState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setVocabState(_ input: SetVocabStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVocabStateResponse> {
+        self.client.execute(action: "SetVocabState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置热词表状态
     ///
     /// 用户通过该接口可以设置热词表的默认状态。初始状态为0，用户可设置状态为1，即为默认状态。默认状态表示用户在请求识别时，如不设置热词表ID，则默认使用状态为1的热词表。
     @inlinable
-    public func setVocabState(_ input: SetVocabStateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVocabStateResponse {
-        try await self.client.execute(action: "SetVocabState", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setVocabState(_ input: SetVocabStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVocabStateResponse {
+        try await self.client.execute(action: "SetVocabState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置热词表状态
     ///
     /// 用户通过该接口可以设置热词表的默认状态。初始状态为0，用户可设置状态为1，即为默认状态。默认状态表示用户在请求识别时，如不设置热词表ID，则默认使用状态为1的热词表。
     @inlinable
-    public func setVocabState(vocabId: String, state: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVocabStateResponse> {
-        self.setVocabState(SetVocabStateRequest(vocabId: vocabId, state: state), logger: logger, on: eventLoop)
+    public func setVocabState(vocabId: String, state: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVocabStateResponse> {
+        self.setVocabState(SetVocabStateRequest(vocabId: vocabId, state: state), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置热词表状态
     ///
     /// 用户通过该接口可以设置热词表的默认状态。初始状态为0，用户可设置状态为1，即为默认状态。默认状态表示用户在请求识别时，如不设置热词表ID，则默认使用状态为1的热词表。
     @inlinable
-    public func setVocabState(vocabId: String, state: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVocabStateResponse {
-        try await self.setVocabState(SetVocabStateRequest(vocabId: vocabId, state: state), logger: logger, on: eventLoop)
+    public func setVocabState(vocabId: String, state: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVocabStateResponse {
+        try await self.setVocabState(SetVocabStateRequest(vocabId: vocabId, state: state), region: region, logger: logger, on: eventLoop)
     }
 }

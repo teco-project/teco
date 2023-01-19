@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cdn {
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
-        self.client.execute(action: "AddCLSTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
+        self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
-        try await self.client.execute(action: "AddCLSTopicDomains", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
+        try await self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
-        self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), logger: logger, on: eventLoop)
+    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
+        self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
     @inlinable
-    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
-        try await self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), logger: logger, on: eventLoop)
+    public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
+        try await self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

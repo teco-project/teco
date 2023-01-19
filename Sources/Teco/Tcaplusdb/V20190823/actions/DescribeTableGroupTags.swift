@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tcaplusdb {
 
     /// 获取表格组关联的标签列表
     @inlinable
-    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableGroupTagsResponse> {
-        self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableGroupTagsResponse> {
+        self.client.execute(action: "DescribeTableGroupTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取表格组关联的标签列表
     @inlinable
-    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
-        try await self.client.execute(action: "DescribeTableGroupTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTableGroupTags(_ input: DescribeTableGroupTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
+        try await self.client.execute(action: "DescribeTableGroupTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取表格组关联的标签列表
     @inlinable
-    public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableGroupTagsResponse> {
-        self.describeTableGroupTags(DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds), logger: logger, on: eventLoop)
+    public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableGroupTagsResponse> {
+        self.describeTableGroupTags(DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取表格组关联的标签列表
     @inlinable
-    public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
-        try await self.describeTableGroupTags(DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds), logger: logger, on: eventLoop)
+    public func describeTableGroupTags(clusterId: String, tableGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableGroupTagsResponse {
+        try await self.describeTableGroupTags(DescribeTableGroupTagsRequest(clusterId: clusterId, tableGroupIds: tableGroupIds), region: region, logger: logger, on: eventLoop)
     }
 }

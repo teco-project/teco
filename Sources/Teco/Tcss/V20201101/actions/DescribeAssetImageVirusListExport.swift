@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Tcss {
     ///
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
-    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListExportResponse> {
-        self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListExportResponse> {
+        self.client.execute(action: "DescribeAssetImageVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像木马列表导出
     ///
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
-    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
-        try await self.client.execute(action: "DescribeAssetImageVirusListExport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetImageVirusListExport(_ input: DescribeAssetImageVirusListExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
+        try await self.client.execute(action: "DescribeAssetImageVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像木马列表导出
     ///
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
-    public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListExportResponse> {
-        self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListExportResponse> {
+        self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像木马列表导出
     ///
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
-    public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
-        try await self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
+        try await self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

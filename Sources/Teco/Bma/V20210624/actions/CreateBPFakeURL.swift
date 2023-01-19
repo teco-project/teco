@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Bma {
 
     /// 添加仿冒链接（举报）
     @inlinable
-    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFakeURLResponse> {
-        self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFakeURLResponse> {
+        self.client.execute(action: "CreateBPFakeURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加仿冒链接（举报）
     @inlinable
-    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
-        try await self.client.execute(action: "CreateBPFakeURL", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBPFakeURL(_ input: CreateBPFakeURLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
+        try await self.client.execute(action: "CreateBPFakeURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加仿冒链接（举报）
     @inlinable
-    public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFakeURLResponse> {
-        self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), logger: logger, on: eventLoop)
+    public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFakeURLResponse> {
+        self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加仿冒链接（举报）
     @inlinable
-    public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
-        try await self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), logger: logger, on: eventLoop)
+    public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
+        try await self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), region: region, logger: logger, on: eventLoop)
     }
 }

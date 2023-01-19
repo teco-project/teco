@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,25 +77,25 @@ extension Antiddos {
 
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
-        self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
+        self.client.execute(action: "DescribeListIPAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
-        try await self.client.execute(action: "DescribeListIPAlarmConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeListIPAlarmConfig(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
+        try await self.client.execute(action: "DescribeListIPAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
-        self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), logger: logger, on: eventLoop)
+    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListIPAlarmConfigResponse> {
+        self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
-        try await self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), logger: logger, on: eventLoop)
+    public func describeListIPAlarmConfig(offset: Int64, limit: Int64, filterInstanceId: String, filterAlarmType: Int64, filterIp: String? = nil, filterCname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListIPAlarmConfigResponse {
+        try await self.describeListIPAlarmConfig(DescribeListIPAlarmConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterAlarmType: filterAlarmType, filterIp: filterIp, filterCname: filterCname), region: region, logger: logger, on: eventLoop)
     }
 }

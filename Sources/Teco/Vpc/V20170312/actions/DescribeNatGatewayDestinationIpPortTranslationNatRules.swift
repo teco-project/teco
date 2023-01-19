@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Vpc {
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse> {
-        self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse> {
+        self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询NAT网关端口转发规则
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
-        try await self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
+        try await self.client.execute(action: "DescribeNatGatewayDestinationIpPortTranslationNatRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询NAT网关端口转发规则
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse> {
-        self.describeNatGatewayDestinationIpPortTranslationNatRules(DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse> {
+        self.describeNatGatewayDestinationIpPortTranslationNatRules(DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询NAT网关端口转发规则
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRules(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
-        try await self.describeNatGatewayDestinationIpPortTranslationNatRules(DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeNatGatewayDestinationIpPortTranslationNatRules(natGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse {
+        try await self.describeNatGatewayDestinationIpPortTranslationNatRules(DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest(natGatewayIds: natGatewayIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

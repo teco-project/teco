@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,31 +75,31 @@ extension Dayu {
     ///
     /// 获取四层转发规则
     @inlinable
-    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL4RulesResponse> {
-        self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describleL4Rules(_ input: DescribleL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL4RulesResponse> {
+        self.client.execute(action: "DescribleL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取L4转发规则
     ///
     /// 获取四层转发规则
     @inlinable
-    public func describleL4Rules(_ input: DescribleL4RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
-        try await self.client.execute(action: "DescribleL4Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describleL4Rules(_ input: DescribleL4RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
+        try await self.client.execute(action: "DescribleL4Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取L4转发规则
     ///
     /// 获取四层转发规则
     @inlinable
-    public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL4RulesResponse> {
-        self.describleL4Rules(DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL4RulesResponse> {
+        self.describleL4Rules(DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取L4转发规则
     ///
     /// 获取四层转发规则
     @inlinable
-    public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
-        try await self.describleL4Rules(DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describleL4Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL4RulesResponse {
+        try await self.describleL4Rules(DescribleL4RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

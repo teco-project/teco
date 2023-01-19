@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Tdcpg {
 
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
-        self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
+        self.client.execute(action: "DescribeClusterRecoveryTimeRange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
-        try await self.client.execute(action: "DescribeClusterRecoveryTimeRange", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterRecoveryTimeRange(_ input: DescribeClusterRecoveryTimeRangeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
+        try await self.client.execute(action: "DescribeClusterRecoveryTimeRange", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
-        self.describeClusterRecoveryTimeRange(DescribeClusterRecoveryTimeRangeRequest(clusterId: clusterId, dataPoint: dataPoint), logger: logger, on: eventLoop)
+    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterRecoveryTimeRangeResponse> {
+        self.describeClusterRecoveryTimeRange(DescribeClusterRecoveryTimeRangeRequest(clusterId: clusterId, dataPoint: dataPoint), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群可回档时间范围
     @inlinable
-    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
-        try await self.describeClusterRecoveryTimeRange(DescribeClusterRecoveryTimeRangeRequest(clusterId: clusterId, dataPoint: dataPoint), logger: logger, on: eventLoop)
+    public func describeClusterRecoveryTimeRange(clusterId: String, dataPoint: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterRecoveryTimeRangeResponse {
+        try await self.describeClusterRecoveryTimeRange(DescribeClusterRecoveryTimeRangeRequest(clusterId: clusterId, dataPoint: dataPoint), region: region, logger: logger, on: eventLoop)
     }
 }

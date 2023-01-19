@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,8 +55,8 @@ extension As {
     /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeInstances(_ input: RemoveInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
+        self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从伸缩组中删除 CVM 实例
@@ -66,8 +66,8 @@ extension As {
     /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
-    public func removeInstances(_ input: RemoveInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.client.execute(action: "RemoveInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeInstances(_ input: RemoveInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从伸缩组中删除 CVM 实例
@@ -77,8 +77,8 @@ extension As {
     /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
-    public func removeInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func removeInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
+        self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从伸缩组中删除 CVM 实例
@@ -88,7 +88,7 @@ extension As {
     /// * 如果伸缩组处于`DISABLED`状态，删除操作不校验`IN_SERVICE`实例数量和最小值的关系
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
-    public func removeInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
+    public func removeInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
+        try await self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

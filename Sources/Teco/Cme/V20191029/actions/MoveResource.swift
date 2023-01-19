@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable
-    public func moveResource(_ input: MoveResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
-        self.client.execute(action: "MoveResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
+        self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移动资源
@@ -76,8 +76,8 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable
-    public func moveResource(_ input: MoveResourceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
-        try await self.client.execute(action: "MoveResource", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
+        try await self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 移动资源
@@ -89,8 +89,8 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable
-    public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
-        self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), logger: logger, on: eventLoop)
+    public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
+        self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动资源
@@ -102,7 +102,7 @@ extension Cme {
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
     @inlinable
-    public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
-        try await self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), logger: logger, on: eventLoop)
+    public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
+        try await self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

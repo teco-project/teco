@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Postgres {
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
-    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneDBInstanceSpecResponse> {
-        self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneDBInstanceSpecResponse> {
+        self.client.execute(action: "DescribeCloneDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询克隆实例购买规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
-    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
-        try await self.client.execute(action: "DescribeCloneDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloneDBInstanceSpec(_ input: DescribeCloneDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
+        try await self.client.execute(action: "DescribeCloneDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询克隆实例购买规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
-    public func describeCloneDBInstanceSpec(dbInstanceId: String, backupSetId: String? = nil, recoveryTargetTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneDBInstanceSpecResponse> {
-        self.describeCloneDBInstanceSpec(DescribeCloneDBInstanceSpecRequest(dbInstanceId: dbInstanceId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), logger: logger, on: eventLoop)
+    public func describeCloneDBInstanceSpec(dbInstanceId: String, backupSetId: String? = nil, recoveryTargetTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneDBInstanceSpecResponse> {
+        self.describeCloneDBInstanceSpec(DescribeCloneDBInstanceSpecRequest(dbInstanceId: dbInstanceId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询克隆实例购买规格
     ///
     /// 本接口（DescribeCloneDBInstanceSpec）用于查询克隆实例可选择的最小规格，包括SpecCode和磁盘。
     @inlinable
-    public func describeCloneDBInstanceSpec(dbInstanceId: String, backupSetId: String? = nil, recoveryTargetTime: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
-        try await self.describeCloneDBInstanceSpec(DescribeCloneDBInstanceSpecRequest(dbInstanceId: dbInstanceId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), logger: logger, on: eventLoop)
+    public func describeCloneDBInstanceSpec(dbInstanceId: String, backupSetId: String? = nil, recoveryTargetTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneDBInstanceSpecResponse {
+        try await self.describeCloneDBInstanceSpec(DescribeCloneDBInstanceSpecRequest(dbInstanceId: dbInstanceId, backupSetId: backupSetId, recoveryTargetTime: recoveryTargetTime), region: region, logger: logger, on: eventLoop)
     }
 }

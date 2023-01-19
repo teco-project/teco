@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ssl {
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
-        self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func downloadCertificate(_ input: DownloadCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
+        self.client.execute(action: "DownloadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(_ input: DownloadCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
-        try await self.client.execute(action: "DownloadCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func downloadCertificate(_ input: DownloadCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
+        try await self.client.execute(action: "DownloadCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
-        self.downloadCertificate(DownloadCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func downloadCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCertificateResponse> {
+        self.downloadCertificate(DownloadCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下载证书
     ///
     /// 本接口（DownloadCertificate）用于下载证书。
     @inlinable
-    public func downloadCertificate(certificateId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
-        try await self.downloadCertificate(DownloadCertificateRequest(certificateId: certificateId), logger: logger, on: eventLoop)
+    public func downloadCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCertificateResponse {
+        try await self.downloadCertificate(DownloadCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cwp {
 
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
-        self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeESAggregations(_ input: DescribeESAggregationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
+        self.client.execute(action: "DescribeESAggregations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(_ input: DescribeESAggregationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
-        try await self.client.execute(action: "DescribeESAggregations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeESAggregations(_ input: DescribeESAggregationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
+        try await self.client.execute(action: "DescribeESAggregations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
-        self.describeESAggregations(DescribeESAggregationsRequest(query: query), logger: logger, on: eventLoop)
+    public func describeESAggregations(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeESAggregationsResponse> {
+        self.describeESAggregations(DescribeESAggregationsRequest(query: query), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取ES字段聚合结果
     @inlinable
-    public func describeESAggregations(query: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
-        try await self.describeESAggregations(DescribeESAggregationsRequest(query: query), logger: logger, on: eventLoop)
+    public func describeESAggregations(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeESAggregationsResponse {
+        try await self.describeESAggregations(DescribeESAggregationsRequest(query: query), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Kms {
     ///
     /// 使用非对称密钥验签
     @inlinable
-    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyByAsymmetricKeyResponse> {
-        self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyByAsymmetricKeyResponse> {
+        self.client.execute(action: "VerifyByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证签名
     ///
     /// 使用非对称密钥验签
     @inlinable
-    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
-        try await self.client.execute(action: "VerifyByAsymmetricKey", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyByAsymmetricKey(_ input: VerifyByAsymmetricKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
+        try await self.client.execute(action: "VerifyByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证签名
     ///
     /// 使用非对称密钥验签
     @inlinable
-    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyByAsymmetricKeyResponse> {
-        self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), logger: logger, on: eventLoop)
+    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyByAsymmetricKeyResponse> {
+        self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证签名
     ///
     /// 使用非对称密钥验签
     @inlinable
-    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
-        try await self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), logger: logger, on: eventLoop)
+    public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
+        try await self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 }

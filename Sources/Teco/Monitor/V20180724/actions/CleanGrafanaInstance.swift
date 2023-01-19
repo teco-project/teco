@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Monitor {
 
     /// 强制销毁 Grafana 实例
     @inlinable
-    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanGrafanaInstanceResponse> {
-        self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanGrafanaInstanceResponse> {
+        self.client.execute(action: "CleanGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 强制销毁 Grafana 实例
     @inlinable
-    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
-        try await self.client.execute(action: "CleanGrafanaInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func cleanGrafanaInstance(_ input: CleanGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
+        try await self.client.execute(action: "CleanGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 强制销毁 Grafana 实例
     @inlinable
-    public func cleanGrafanaInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanGrafanaInstanceResponse> {
-        self.cleanGrafanaInstance(CleanGrafanaInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func cleanGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CleanGrafanaInstanceResponse> {
+        self.cleanGrafanaInstance(CleanGrafanaInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 强制销毁 Grafana 实例
     @inlinable
-    public func cleanGrafanaInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
-        try await self.cleanGrafanaInstance(CleanGrafanaInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func cleanGrafanaInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CleanGrafanaInstanceResponse {
+        try await self.cleanGrafanaInstance(CleanGrafanaInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

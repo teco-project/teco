@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cfw {
 
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
-        self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
+        self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
-        try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeEnterpriseSecurityGroupRule(_ input: RemoveEnterpriseSecurityGroupRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
+        try await self.client.execute(action: "RemoveEnterpriseSecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
-        self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), logger: logger, on: eventLoop)
+    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveEnterpriseSecurityGroupRuleResponse> {
+        self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除新企业安全组规则
     @inlinable
-    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
-        try await self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), logger: logger, on: eventLoop)
+    public func removeEnterpriseSecurityGroupRule(ruleUuid: Int64, removeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveEnterpriseSecurityGroupRuleResponse {
+        try await self.removeEnterpriseSecurityGroupRule(RemoveEnterpriseSecurityGroupRuleRequest(ruleUuid: ruleUuid, removeType: removeType), region: region, logger: logger, on: eventLoop)
     }
 }

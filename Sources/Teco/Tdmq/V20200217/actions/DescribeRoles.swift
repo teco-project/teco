@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Tdmq {
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
-        self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRoles(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
+        self.client.execute(action: "DescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(_ input: DescribeRolesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
-        try await self.client.execute(action: "DescribeRoles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRoles(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
+        try await self.client.execute(action: "DescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
-        self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
+        self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     @inlinable
-    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
-        try await self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), logger: logger, on: eventLoop)
+    public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
+        try await self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

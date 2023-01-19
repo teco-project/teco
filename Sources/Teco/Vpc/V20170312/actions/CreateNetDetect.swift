@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Vpc {
     ///
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
-    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
-        self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetDetect(_ input: CreateNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
+        self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建网络探测
     ///
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
-    public func createNetDetect(_ input: CreateNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
-        try await self.client.execute(action: "CreateNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetDetect(_ input: CreateNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
+        try await self.client.execute(action: "CreateNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建网络探测
     ///
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
-    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
-        self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetDetectResponse> {
+        self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网络探测
     ///
     /// 本接口(CreateNetDetect)用于创建网络探测。
     @inlinable
-    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
-        try await self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), logger: logger, on: eventLoop)
+    public func createNetDetect(vpcId: String, subnetId: String, netDetectName: String, detectDestinationIp: [String], nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetDetectResponse {
+        try await self.createNetDetect(CreateNetDetectRequest(vpcId: vpcId, subnetId: subnetId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
 }

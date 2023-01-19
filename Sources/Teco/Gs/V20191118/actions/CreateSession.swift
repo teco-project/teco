@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -140,25 +140,25 @@ extension Gs {
 
     /// 创建会话
     @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
-        self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSession(_ input: CreateSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
+        self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
     @inlinable
-    public func createSession(_ input: CreateSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.client.execute(action: "CreateSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSession(_ input: CreateSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建会话
     @inlinable
-    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
-        self.createSession(CreateSessionRequest(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), logger: logger, on: eventLoop)
+    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
+        self.createSession(CreateSessionRequest(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
     @inlinable
-    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.createSession(CreateSessionRequest(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), logger: logger, on: eventLoop)
+    public func createSession(clientSession: String, userId: String, gameId: String, gameRegion: String? = nil, gameParas: String? = nil, resolution: String? = nil, imageUrl: String? = nil, setNo: UInt64? = nil, bitrate: UInt64? = nil, maxBitrate: UInt64? = nil, minBitrate: UInt64? = nil, fps: UInt64? = nil, userIp: String? = nil, optimization: UInt64? = nil, hostUserId: String? = nil, role: String? = nil, gameContext: String? = nil, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
+        try await self.createSession(CreateSessionRequest(clientSession: clientSession, userId: userId, gameId: gameId, gameRegion: gameRegion, gameParas: gameParas, resolution: resolution, imageUrl: imageUrl, setNo: setNo, bitrate: bitrate, maxBitrate: maxBitrate, minBitrate: minBitrate, fps: fps, userIp: userIp, optimization: optimization, hostUserId: hostUserId, role: role, gameContext: gameContext, runMode: runMode), region: region, logger: logger, on: eventLoop)
     }
 }

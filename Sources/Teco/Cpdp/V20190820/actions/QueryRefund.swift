@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,31 +125,31 @@ extension Cpdp {
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
-        self.client.execute(action: "QueryRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryRefund(_ input: QueryRefundRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
+        self.client.execute(action: "QueryRefund", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(_ input: QueryRefundRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
-        try await self.client.execute(action: "QueryRefund", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryRefund(_ input: QueryRefundRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
+        try await self.client.execute(action: "QueryRefund", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
-        self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryRefundResponse> {
+        self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询退款接口
     ///
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
-    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
-        try await self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryRefund(userId: String, refundId: String, midasAppId: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryRefundResponse {
+        try await self.queryRefund(QueryRefundRequest(userId: userId, refundId: refundId, midasAppId: midasAppId, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Tcss {
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
-        self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
+        self.client.execute(action: "DescribeAssetProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
-        try await self.client.execute(action: "DescribeAssetProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAssetProcessList(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
+        try await self.client.execute(action: "DescribeAssetProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
-        self.describeAssetProcessList(DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetProcessListResponse> {
+        self.describeAssetProcessList(DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
-        try await self.describeAssetProcessList(DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters), logger: logger, on: eventLoop)
+    public func describeAssetProcessList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetProcessListResponse {
+        try await self.describeAssetProcessList(DescribeAssetProcessListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

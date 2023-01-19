@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tdmq {
 
     /// 运营端获节点健康状态
     @inlinable
-    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeHealthOptResponse> {
-        self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeHealthOptResponse> {
+        self.client.execute(action: "DescribeNodeHealthOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运营端获节点健康状态
     @inlinable
-    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
-        try await self.client.execute(action: "DescribeNodeHealthOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeNodeHealthOpt(_ input: DescribeNodeHealthOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
+        try await self.client.execute(action: "DescribeNodeHealthOpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运营端获节点健康状态
     @inlinable
-    public func describeNodeHealthOpt(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeHealthOptResponse> {
-        self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeNodeHealthOpt(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodeHealthOptResponse> {
+        self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运营端获节点健康状态
     @inlinable
-    public func describeNodeHealthOpt(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
-        try await self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describeNodeHealthOpt(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodeHealthOptResponse {
+        try await self.describeNodeHealthOpt(DescribeNodeHealthOptRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

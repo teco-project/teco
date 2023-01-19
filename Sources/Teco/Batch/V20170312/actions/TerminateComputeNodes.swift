@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Batch {
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
-        self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
+        self.client.execute(action: "TerminateComputeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
-        try await self.client.execute(action: "TerminateComputeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func terminateComputeNodes(_ input: TerminateComputeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
+        try await self.client.execute(action: "TerminateComputeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
-        self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), logger: logger, on: eventLoop)
+    public func terminateComputeNodes(envId: String, computeNodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodesResponse> {
+        self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量销毁计算节点
     ///
     /// 用于批量销毁计算节点，不允许重复销毁同一个节点。
     @inlinable
-    public func terminateComputeNodes(envId: String, computeNodeIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
-        try await self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), logger: logger, on: eventLoop)
+    public func terminateComputeNodes(envId: String, computeNodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodesResponse {
+        try await self.terminateComputeNodes(TerminateComputeNodesRequest(envId: envId, computeNodeIds: computeNodeIds), region: region, logger: logger, on: eventLoop)
     }
 }

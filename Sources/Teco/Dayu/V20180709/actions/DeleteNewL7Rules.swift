@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Dayu {
     ///
     /// 删除L7转发规则
     @inlinable
-    public func deleteNewL7Rules(_ input: DeleteNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL7RulesResponse> {
-        self.client.execute(action: "DeleteNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNewL7Rules(_ input: DeleteNewL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL7RulesResponse> {
+        self.client.execute(action: "DeleteNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除七层转发规则
     ///
     /// 删除L7转发规则
     @inlinable
-    public func deleteNewL7Rules(_ input: DeleteNewL7RulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL7RulesResponse {
-        try await self.client.execute(action: "DeleteNewL7Rules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNewL7Rules(_ input: DeleteNewL7RulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL7RulesResponse {
+        try await self.client.execute(action: "DeleteNewL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除七层转发规则
     ///
     /// 删除L7转发规则
     @inlinable
-    public func deleteNewL7Rules(business: String, rule: [L4DelRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL7RulesResponse> {
-        self.deleteNewL7Rules(DeleteNewL7RulesRequest(business: business, rule: rule), logger: logger, on: eventLoop)
+    public func deleteNewL7Rules(business: String, rule: [L4DelRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNewL7RulesResponse> {
+        self.deleteNewL7Rules(DeleteNewL7RulesRequest(business: business, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除七层转发规则
     ///
     /// 删除L7转发规则
     @inlinable
-    public func deleteNewL7Rules(business: String, rule: [L4DelRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL7RulesResponse {
-        try await self.deleteNewL7Rules(DeleteNewL7RulesRequest(business: business, rule: rule), logger: logger, on: eventLoop)
+    public func deleteNewL7Rules(business: String, rule: [L4DelRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNewL7RulesResponse {
+        try await self.deleteNewL7Rules(DeleteNewL7RulesRequest(business: business, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 }

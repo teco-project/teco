@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -37,25 +37,25 @@ extension Dayu {
 
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
-        self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
+        self.client.execute(action: "DescribeIpBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
-        try await self.client.execute(action: "DescribeIpBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIpBlockList(_ input: DescribeIpBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
+        try await self.client.execute(action: "DescribeIpBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
-        self.describeIpBlockList(DescribeIpBlockListRequest(), logger: logger, on: eventLoop)
+    public func describeIpBlockList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpBlockListResponse> {
+        self.describeIpBlockList(DescribeIpBlockListRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取IP封堵列表
     @inlinable
-    public func describeIpBlockList(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
-        try await self.describeIpBlockList(DescribeIpBlockListRequest(), logger: logger, on: eventLoop)
+    public func describeIpBlockList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpBlockListResponse {
+        try await self.describeIpBlockList(DescribeIpBlockListRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

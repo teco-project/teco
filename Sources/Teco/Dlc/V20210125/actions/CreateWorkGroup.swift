@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Dlc {
 
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
-        self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createWorkGroup(_ input: CreateWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
+        self.client.execute(action: "CreateWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(_ input: CreateWorkGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
-        try await self.client.execute(action: "CreateWorkGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createWorkGroup(_ input: CreateWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
+        try await self.client.execute(action: "CreateWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
-        self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), logger: logger, on: eventLoop)
+    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
+        self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建工作组
     @inlinable
-    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
-        try await self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), logger: logger, on: eventLoop)
+    public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
+        try await self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
 }

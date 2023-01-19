@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,8 +78,8 @@ extension Essbasic {
     /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
-        self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
+        self.client.execute(action: "ChannelCreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
@@ -87,8 +87,8 @@ extension Essbasic {
     /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
-        try await self.client.execute(action: "ChannelCreateReleaseFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func channelCreateReleaseFlow(_ input: ChannelCreateReleaseFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
+        try await self.client.execute(action: "ChannelCreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发起解除协议
@@ -96,8 +96,8 @@ extension Essbasic {
     /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
-        self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
+        self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
@@ -105,7 +105,7 @@ extension Essbasic {
     /// 渠道版发起解除协议，主要应用场景为：基于一份已经签署的合同，进行解除操作。
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
-    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
-        try await self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), logger: logger, on: eventLoop)
+    public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
+        try await self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

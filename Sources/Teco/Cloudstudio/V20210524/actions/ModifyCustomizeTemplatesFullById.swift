@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cloudstudio {
 
     /// 全量修改自定义模板，不忽略空
     @inlinable
-    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesFullByIdResponse> {
-        self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesFullByIdResponse> {
+        self.client.execute(action: "ModifyCustomizeTemplatesFullById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，不忽略空
     @inlinable
-    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
-        try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCustomizeTemplatesFullById(_ input: ModifyCustomizeTemplatesFullByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
+        try await self.client.execute(action: "ModifyCustomizeTemplatesFullById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 全量修改自定义模板，不忽略空
     @inlinable
-    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesFullByIdResponse> {
-        self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesFullByIdResponse> {
+        self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), region: region, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，不忽略空
     @inlinable
-    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
-        try await self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), logger: logger, on: eventLoop)
+    public func modifyCustomizeTemplatesFullById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplateParams: UserDefinedTemplateParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesFullByIdResponse {
+        try await self.modifyCustomizeTemplatesFullById(ModifyCustomizeTemplatesFullByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplateParams: userDefinedTemplateParams), region: region, logger: logger, on: eventLoop)
     }
 }

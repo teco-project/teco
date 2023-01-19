@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -97,31 +97,31 @@ extension Dbbrain {
     ///
     /// 查询关系型数据库的实时线程列表。
     @inlinable
-    public func describeMySqlProcessList(_ input: DescribeMySqlProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMySqlProcessListResponse> {
-        self.client.execute(action: "DescribeMySqlProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMySqlProcessList(_ input: DescribeMySqlProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMySqlProcessListResponse> {
+        self.client.execute(action: "DescribeMySqlProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实时线程列表
     ///
     /// 查询关系型数据库的实时线程列表。
     @inlinable
-    public func describeMySqlProcessList(_ input: DescribeMySqlProcessListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMySqlProcessListResponse {
-        try await self.client.execute(action: "DescribeMySqlProcessList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMySqlProcessList(_ input: DescribeMySqlProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMySqlProcessListResponse {
+        try await self.client.execute(action: "DescribeMySqlProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实时线程列表
     ///
     /// 查询关系型数据库的实时线程列表。
     @inlinable
-    public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMySqlProcessListResponse> {
-        self.describeMySqlProcessList(DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), logger: logger, on: eventLoop)
+    public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMySqlProcessListResponse> {
+        self.describeMySqlProcessList(DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实时线程列表
     ///
     /// 查询关系型数据库的实时线程列表。
     @inlinable
-    public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMySqlProcessListResponse {
-        try await self.describeMySqlProcessList(DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), logger: logger, on: eventLoop)
+    public func describeMySqlProcessList(instanceId: String, id: UInt64? = nil, user: String? = nil, host: String? = nil, db: String? = nil, state: String? = nil, command: String? = nil, time: UInt64? = nil, info: String? = nil, limit: UInt64? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMySqlProcessListResponse {
+        try await self.describeMySqlProcessList(DescribeMySqlProcessListRequest(instanceId: instanceId, id: id, user: user, host: host, db: db, state: state, command: command, time: time, info: info, limit: limit, product: product), region: region, logger: logger, on: eventLoop)
     }
 }

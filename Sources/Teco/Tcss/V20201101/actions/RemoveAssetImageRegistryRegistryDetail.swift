@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
-        self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
+        self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
-        try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func removeAssetImageRegistryRegistryDetail(_ input: RemoveAssetImageRegistryRegistryDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
+        try await self.client.execute(action: "RemoveAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
-        self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAssetImageRegistryRegistryDetailResponse> {
+        self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除单个镜像仓库详细信息
     @inlinable
-    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
-        try await self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), logger: logger, on: eventLoop)
+    public func removeAssetImageRegistryRegistryDetail(registryId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAssetImageRegistryRegistryDetailResponse {
+        try await self.removeAssetImageRegistryRegistryDetail(RemoveAssetImageRegistryRegistryDetailRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
     }
 }

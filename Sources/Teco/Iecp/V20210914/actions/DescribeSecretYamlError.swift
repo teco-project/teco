@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Iecp {
 
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
-        self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
+        self.client.execute(action: "DescribeSecretYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
-        try await self.client.execute(action: "DescribeSecretYamlError", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSecretYamlError(_ input: DescribeSecretYamlErrorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
+        try await self.client.execute(action: "DescribeSecretYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
-        self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeSecretYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
+        self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验Secret的Yaml语法
     @inlinable
-    public func describeSecretYamlError(yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
-        try await self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), logger: logger, on: eventLoop)
+    public func describeSecretYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
+        try await self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 }

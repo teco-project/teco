@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Gaap {
 
     /// 修改安全策略规则名
     @inlinable
-    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
-        self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
+        self.client.execute(action: "ModifySecurityRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全策略规则名
     @inlinable
-    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
-        try await self.client.execute(action: "ModifySecurityRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityRule(_ input: ModifySecurityRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
+        try await self.client.execute(action: "ModifySecurityRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全策略规则名
     @inlinable
-    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
-        self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), logger: logger, on: eventLoop)
+    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
+        self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全策略规则名
     @inlinable
-    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
-        try await self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), logger: logger, on: eventLoop)
+    public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
+        try await self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), region: region, logger: logger, on: eventLoop)
     }
 }

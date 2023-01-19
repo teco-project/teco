@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Domain {
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
-    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogsResponse> {
-        self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogsResponse> {
+        self.client.execute(action: "DescribeBatchOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志列表
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
-    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
-        try await self.client.execute(action: "DescribeBatchOperationLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBatchOperationLogs(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
+        try await self.client.execute(action: "DescribeBatchOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量操作日志列表
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
-    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogsResponse> {
-        self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBatchOperationLogsResponse> {
+        self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量操作日志列表
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
-    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
-        try await self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBatchOperationLogs(offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBatchOperationLogsResponse {
+        try await self.describeBatchOperationLogs(DescribeBatchOperationLogsRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

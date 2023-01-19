@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdn {
     ///
     /// DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
     @inlinable
-    public func disableClsLogTopic(_ input: DisableClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClsLogTopicResponse> {
-        self.client.execute(action: "DisableClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableClsLogTopic(_ input: DisableClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClsLogTopicResponse> {
+        self.client.execute(action: "DisableClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止日志主题投递
     ///
     /// DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
     @inlinable
-    public func disableClsLogTopic(_ input: DisableClsLogTopicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClsLogTopicResponse {
-        try await self.client.execute(action: "DisableClsLogTopic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableClsLogTopic(_ input: DisableClsLogTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClsLogTopicResponse {
+        try await self.client.execute(action: "DisableClsLogTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止日志主题投递
     ///
     /// DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
     @inlinable
-    public func disableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClsLogTopicResponse> {
-        self.disableClsLogTopic(DisableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func disableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClsLogTopicResponse> {
+        self.disableClsLogTopic(DisableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止日志主题投递
     ///
     /// DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
     @inlinable
-    public func disableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClsLogTopicResponse {
-        try await self.disableClsLogTopic(DisableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), logger: logger, on: eventLoop)
+    public func disableClsLogTopic(logsetId: String, topicId: String, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClsLogTopicResponse {
+        try await self.disableClsLogTopic(DisableClsLogTopicRequest(logsetId: logsetId, topicId: topicId, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 }

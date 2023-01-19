@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Live {
     ///
     /// 启用状态为停用的直播域名。
     @inlinable
-    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableLiveDomainResponse> {
-        self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableLiveDomain(_ input: EnableLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableLiveDomainResponse> {
+        self.client.execute(action: "EnableLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用域名
     ///
     /// 启用状态为停用的直播域名。
     @inlinable
-    public func enableLiveDomain(_ input: EnableLiveDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
-        try await self.client.execute(action: "EnableLiveDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableLiveDomain(_ input: EnableLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
+        try await self.client.execute(action: "EnableLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用域名
     ///
     /// 启用状态为停用的直播域名。
     @inlinable
-    public func enableLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableLiveDomainResponse> {
-        self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func enableLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableLiveDomainResponse> {
+        self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用域名
     ///
     /// 启用状态为停用的直播域名。
     @inlinable
-    public func enableLiveDomain(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
-        try await self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), logger: logger, on: eventLoop)
+    public func enableLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
+        try await self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
 }

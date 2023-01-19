@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -98,31 +98,31 @@ extension Cls {
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable
-    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
-        self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAlarm(_ input: ModifyAlarmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
+        self.client.execute(action: "ModifyAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable
-    public func modifyAlarm(_ input: ModifyAlarmRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
-        try await self.client.execute(action: "ModifyAlarm", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAlarm(_ input: ModifyAlarmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
+        try await self.client.execute(action: "ModifyAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable
-    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
-        self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), logger: logger, on: eventLoop)
+    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
+        self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
     @inlinable
-    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
-        try await self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), logger: logger, on: eventLoop)
+    public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
+        try await self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 编辑直播录制计划
     @inlinable
-    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordPlanResponse> {
-        self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordPlanResponse> {
+        self.client.execute(action: "ModifyLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑直播录制计划
     @inlinable
-    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
-        try await self.client.execute(action: "ModifyLiveRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLiveRecordPlan(_ input: ModifyLiveRecordPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
+        try await self.client.execute(action: "ModifyLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑直播录制计划
     @inlinable
-    public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordPlanResponse> {
-        self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordPlanResponse> {
+        self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑直播录制计划
     @inlinable
-    public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
-        try await self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
+        try await self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

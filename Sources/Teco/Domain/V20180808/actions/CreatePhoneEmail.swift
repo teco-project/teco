@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Domain {
     ///
     /// 此接口用于创建有效的手机、邮箱
     @inlinable
-    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
-        self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
+        self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
     @inlinable
-    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
-        try await self.client.execute(action: "CreatePhoneEmail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPhoneEmail(_ input: CreatePhoneEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
+        try await self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
     @inlinable
-    public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
-        self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), logger: logger, on: eventLoop)
+    public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
+        self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
     @inlinable
-    public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
-        try await self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), logger: logger, on: eventLoop)
+    public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
+        try await self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
-    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowStatusResponse> {
-        self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowStatusResponse> {
+        self.client.execute(action: "DescribeFlowStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程状态
     ///
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
-    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
-        try await self.client.execute(action: "DescribeFlowStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeFlowStatus(_ input: DescribeFlowStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
+        try await self.client.execute(action: "DescribeFlowStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询流程状态
     ///
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
-    public func describeFlowStatus(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowStatusResponse> {
-        self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowStatus(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowStatusResponse> {
+        self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询流程状态
     ///
     /// 本接口(DescribeFlowStatus)用于查询流程状态。
     @inlinable
-    public func describeFlowStatus(flowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
-        try await self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), logger: logger, on: eventLoop)
+    public func describeFlowStatus(flowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowStatusResponse {
+        try await self.describeFlowStatus(DescribeFlowStatusRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
 }

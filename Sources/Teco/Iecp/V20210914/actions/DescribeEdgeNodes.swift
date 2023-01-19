@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,25 +80,25 @@ extension Iecp {
 
     /// 查询边缘节点列表
     @inlinable
-    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodesResponse> {
-        self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodesResponse> {
+        self.client.execute(action: "DescribeEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘节点列表
     @inlinable
-    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
-        try await self.client.execute(action: "DescribeEdgeNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeNodes(_ input: DescribeEdgeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
+        try await self.client.execute(action: "DescribeEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询边缘节点列表
     @inlinable
-    public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodesResponse> {
-        self.describeEdgeNodes(DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), logger: logger, on: eventLoop)
+    public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodesResponse> {
+        self.describeEdgeNodes(DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘节点列表
     @inlinable
-    public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
-        try await self.describeEdgeNodes(DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), logger: logger, on: eventLoop)
+    public func describeEdgeNodes(edgeUnitId: UInt64, namePattern: String? = nil, nameMatchedList: [String]? = nil, sort: [Sort]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, nodeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodesResponse {
+        try await self.describeEdgeNodes(DescribeEdgeNodesRequest(edgeUnitId: edgeUnitId, namePattern: namePattern, nameMatchedList: nameMatchedList, sort: sort, offset: offset, limit: limit, nodeType: nodeType), region: region, logger: logger, on: eventLoop)
     }
 }

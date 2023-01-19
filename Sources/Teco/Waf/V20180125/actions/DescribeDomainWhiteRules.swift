@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Waf {
 
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
-        self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
+        self.client.execute(action: "DescribeDomainWhiteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
-        try await self.client.execute(action: "DescribeDomainWhiteRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDomainWhiteRules(_ input: DescribeDomainWhiteRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
+        try await self.client.execute(action: "DescribeDomainWhiteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
-        self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainWhiteRulesResponse> {
+        self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取域名的规则白名单
     @inlinable
-    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
-        try await self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeDomainWhiteRules(domain: String, url: String? = nil, page: UInt64? = nil, count: UInt64? = nil, sort: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainWhiteRulesResponse {
+        try await self.describeDomainWhiteRules(DescribeDomainWhiteRulesRequest(domain: domain, url: url, page: page, count: count, sort: sort, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

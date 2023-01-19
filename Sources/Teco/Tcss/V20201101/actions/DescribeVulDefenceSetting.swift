@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tcss {
 
     /// 查询漏洞防御设置信息
     @inlinable
-    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceSettingResponse> {
-        self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceSettingResponse> {
+        self.client.execute(action: "DescribeVulDefenceSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御设置信息
     @inlinable
-    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
-        try await self.client.execute(action: "DescribeVulDefenceSetting", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulDefenceSetting(_ input: DescribeVulDefenceSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
+        try await self.client.execute(action: "DescribeVulDefenceSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞防御设置信息
     @inlinable
-    public func describeVulDefenceSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceSettingResponse> {
-        self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), logger: logger, on: eventLoop)
+    public func describeVulDefenceSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceSettingResponse> {
+        self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御设置信息
     @inlinable
-    public func describeVulDefenceSetting(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
-        try await self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), logger: logger, on: eventLoop)
+    public func describeVulDefenceSetting(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceSettingResponse {
+        try await self.describeVulDefenceSetting(DescribeVulDefenceSettingRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Teo {
 
     /// 校验证书
     @inlinable
-    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateResponse> {
-        self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func checkCertificate(_ input: CheckCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateResponse> {
+        self.client.execute(action: "CheckCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验证书
     @inlinable
-    public func checkCertificate(_ input: CheckCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
-        try await self.client.execute(action: "CheckCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func checkCertificate(_ input: CheckCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
+        try await self.client.execute(action: "CheckCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 校验证书
     @inlinable
-    public func checkCertificate(certificate: String, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateResponse> {
-        self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), logger: logger, on: eventLoop)
+    public func checkCertificate(certificate: String, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateResponse> {
+        self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 校验证书
     @inlinable
-    public func checkCertificate(certificate: String, privateKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
-        try await self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), logger: logger, on: eventLoop)
+    public func checkCertificate(certificate: String, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateResponse {
+        try await self.checkCertificate(CheckCertificateRequest(certificate: certificate, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
     }
 }

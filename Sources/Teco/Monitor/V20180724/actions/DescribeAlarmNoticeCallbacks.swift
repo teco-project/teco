@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Monitor {
     ///
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
-    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeCallbacksResponse> {
-        self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeCallbacksResponse> {
+        self.client.execute(action: "DescribeAlarmNoticeCallbacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号下所有回调URL列表
     ///
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
-    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
-        try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAlarmNoticeCallbacks(_ input: DescribeAlarmNoticeCallbacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
+        try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询账号下所有回调URL列表
     ///
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
-    public func describeAlarmNoticeCallbacks(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeCallbacksResponse> {
-        self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), logger: logger, on: eventLoop)
+    public func describeAlarmNoticeCallbacks(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeCallbacksResponse> {
+        self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询账号下所有回调URL列表
     ///
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
-    public func describeAlarmNoticeCallbacks(module: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
-        try await self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), logger: logger, on: eventLoop)
+    public func describeAlarmNoticeCallbacks(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
+        try await self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), region: region, logger: logger, on: eventLoop)
     }
 }

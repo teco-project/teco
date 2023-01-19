@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Tke {
     ///
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable
-    public func updateEdgeClusterVersion(_ input: UpdateEdgeClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEdgeClusterVersionResponse> {
-        self.client.execute(action: "UpdateEdgeClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateEdgeClusterVersion(_ input: UpdateEdgeClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEdgeClusterVersionResponse> {
+        self.client.execute(action: "UpdateEdgeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级边缘集群
     ///
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable
-    public func updateEdgeClusterVersion(_ input: UpdateEdgeClusterVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
-        try await self.client.execute(action: "UpdateEdgeClusterVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateEdgeClusterVersion(_ input: UpdateEdgeClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
+        try await self.client.execute(action: "UpdateEdgeClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级边缘集群
     ///
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable
-    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEdgeClusterVersionResponse> {
-        self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEdgeClusterVersionResponse> {
+        self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级边缘集群
     ///
     /// 升级边缘集群组件到指定版本，此版本为TKEEdge专用版本。
     @inlinable
-    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
-        try await self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), logger: logger, on: eventLoop)
+    public func updateEdgeClusterVersion(clusterId: String, edgeVersion: String, registryPrefix: String? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEdgeClusterVersionResponse {
+        try await self.updateEdgeClusterVersion(UpdateEdgeClusterVersionRequest(clusterId: clusterId, edgeVersion: edgeVersion, registryPrefix: registryPrefix, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }
 }

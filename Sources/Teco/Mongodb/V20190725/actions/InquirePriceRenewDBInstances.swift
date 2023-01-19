@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mongodb {
     ///
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
-    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDBInstancesResponse> {
-        self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDBInstancesResponse> {
+        self.client.execute(action: "InquirePriceRenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
-    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
-        try await self.client.execute(action: "InquirePriceRenewDBInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceRenewDBInstances(_ input: InquirePriceRenewDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
+        try await self.client.execute(action: "InquirePriceRenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
-    public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDBInstancesResponse> {
-        self.inquirePriceRenewDBInstances(InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDBInstancesResponse> {
+        self.inquirePriceRenewDBInstances(InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewDBInstances) 用于续费包年包月实例询价。
     @inlinable
-    public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
-        try await self.inquirePriceRenewDBInstances(InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), logger: logger, on: eventLoop)
+    public func inquirePriceRenewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDBInstancesResponse {
+        try await self.inquirePriceRenewDBInstances(InquirePriceRenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcbr {
 
     /// 查询环境基础信息
     @inlinable
-    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvBaseInfoResponse> {
-        self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvBaseInfoResponse> {
+        self.client.execute(action: "DescribeEnvBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询环境基础信息
     @inlinable
-    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
-        try await self.client.execute(action: "DescribeEnvBaseInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEnvBaseInfo(_ input: DescribeEnvBaseInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
+        try await self.client.execute(action: "DescribeEnvBaseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询环境基础信息
     @inlinable
-    public func describeEnvBaseInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvBaseInfoResponse> {
-        self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeEnvBaseInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvBaseInfoResponse> {
+        self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询环境基础信息
     @inlinable
-    public func describeEnvBaseInfo(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
-        try await self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), logger: logger, on: eventLoop)
+    public func describeEnvBaseInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvBaseInfoResponse {
+        try await self.describeEnvBaseInfo(DescribeEnvBaseInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 获取爆破阻断模式
     @inlinable
-    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanModeResponse> {
-        self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBanMode(_ input: DescribeBanModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanModeResponse> {
+        self.client.execute(action: "DescribeBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取爆破阻断模式
     @inlinable
-    public func describeBanMode(_ input: DescribeBanModeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
-        try await self.client.execute(action: "DescribeBanMode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBanMode(_ input: DescribeBanModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
+        try await self.client.execute(action: "DescribeBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取爆破阻断模式
     @inlinable
-    public func describeBanMode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanModeResponse> {
-        self.describeBanMode(DescribeBanModeRequest(), logger: logger, on: eventLoop)
+    public func describeBanMode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanModeResponse> {
+        self.describeBanMode(DescribeBanModeRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取爆破阻断模式
     @inlinable
-    public func describeBanMode(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
-        try await self.describeBanMode(DescribeBanModeRequest(), logger: logger, on: eventLoop)
+    public func describeBanMode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
+        try await self.describeBanMode(DescribeBanModeRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

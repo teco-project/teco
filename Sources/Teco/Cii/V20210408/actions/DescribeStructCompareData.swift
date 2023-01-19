@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -102,31 +102,31 @@ extension Cii {
     ///
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
-    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructCompareDataResponse> {
-        self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructCompareDataResponse> {
+        self.client.execute(action: "DescribeStructCompareData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 结构化对比查询
     ///
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
-    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
-        try await self.client.execute(action: "DescribeStructCompareData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeStructCompareData(_ input: DescribeStructCompareDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
+        try await self.client.execute(action: "DescribeStructCompareData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 结构化对比查询
     ///
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
-    public func describeStructCompareData(mainTaskId: String? = nil, subTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructCompareDataResponse> {
-        self.describeStructCompareData(DescribeStructCompareDataRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), logger: logger, on: eventLoop)
+    public func describeStructCompareData(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStructCompareDataResponse> {
+        self.describeStructCompareData(DescribeStructCompareDataRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 结构化对比查询
     ///
     /// 结构化对比查询接口，对比结构化复核前后数据差异，查询识别正确率，召回率。
     @inlinable
-    public func describeStructCompareData(mainTaskId: String? = nil, subTaskId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
-        try await self.describeStructCompareData(DescribeStructCompareDataRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), logger: logger, on: eventLoop)
+    public func describeStructCompareData(mainTaskId: String? = nil, subTaskId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStructCompareDataResponse {
+        try await self.describeStructCompareData(DescribeStructCompareDataRequest(mainTaskId: mainTaskId, subTaskId: subTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

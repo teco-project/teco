@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Dayu {
 
     /// 获取CC防护的访问频率控制规则
     @inlinable
-    public func describeCCFrequencyRules(_ input: DescribeCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCFrequencyRulesResponse> {
-        self.client.execute(action: "DescribeCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCCFrequencyRules(_ input: DescribeCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCFrequencyRulesResponse> {
+        self.client.execute(action: "DescribeCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护的访问频率控制规则
     @inlinable
-    public func describeCCFrequencyRules(_ input: DescribeCCFrequencyRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
-        try await self.client.execute(action: "DescribeCCFrequencyRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCCFrequencyRules(_ input: DescribeCCFrequencyRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
+        try await self.client.execute(action: "DescribeCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取CC防护的访问频率控制规则
     @inlinable
-    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCFrequencyRulesResponse> {
-        self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCFrequencyRulesResponse> {
+        self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取CC防护的访问频率控制规则
     @inlinable
-    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
-        try await self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), logger: logger, on: eventLoop)
+    public func describeCCFrequencyRules(business: String, id: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCFrequencyRulesResponse {
+        try await self.describeCCFrequencyRules(DescribeCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

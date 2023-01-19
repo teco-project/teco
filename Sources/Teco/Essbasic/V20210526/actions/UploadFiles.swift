@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Essbasic {
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件上传
@@ -88,8 +88,8 @@ extension Essbasic {
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
-    public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadFiles(_ input: UploadFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 文件上传
@@ -100,8 +100,8 @@ extension Essbasic {
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
-    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), logger: logger, on: eventLoop)
+    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
+        self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 文件上传
@@ -112,7 +112,7 @@ extension Essbasic {
     /// HttpProfile httpProfile = new HttpProfile();
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
-    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), logger: logger, on: eventLoop)
+    public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
+        try await self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

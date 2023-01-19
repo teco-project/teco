@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Solar {
 
     /// 修改项目
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
+        self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable
-    public func modifyProject(_ input: ModifyProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.client.execute(action: "ModifyProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改项目
     @inlinable
-    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), logger: logger, on: eventLoop)
+    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
+        self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable
-    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), logger: logger, on: eventLoop)
+    public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
+        try await self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
     }
 }

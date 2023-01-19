@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -113,25 +113,25 @@ extension Dayu {
 
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
-    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetTrendResponse> {
-        self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetTrendResponse> {
+        self.client.execute(action: "DescribeDDoSNetTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
-    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
-        try await self.client.execute(action: "DescribeDDoSNetTrend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDDoSNetTrend(_ input: DescribeDDoSNetTrendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
+        try await self.client.execute(action: "DescribeDDoSNetTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
-    public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetTrendResponse> {
-        self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetTrendResponse> {
+        self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
-    public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
-        try await self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
+        try await self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

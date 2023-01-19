@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -91,31 +91,31 @@ extension Tbaas {
     ///
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
-    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockListResponse> {
-        self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBlockList(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockListResponse> {
+        self.client.execute(action: "GetBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询区块列表
     ///
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
-    public func getBlockList(_ input: GetBlockListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
-        try await self.client.execute(action: "GetBlockList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBlockList(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
+        try await self.client.execute(action: "GetBlockList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询区块列表
     ///
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
-    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockListResponse> {
-        self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBlockListResponse> {
+        self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询区块列表
     ///
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
-    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
-        try await self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func getBlockList(module: String, operation: String, channelId: UInt64, groupId: UInt64, channelName: String, groupName: String, clusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBlockListResponse {
+        try await self.getBlockList(GetBlockListRequest(module: module, operation: operation, channelId: channelId, groupId: groupId, channelName: channelName, groupName: groupName, clusterId: clusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

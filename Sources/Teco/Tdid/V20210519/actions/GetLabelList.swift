@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Tdid {
 
     /// 标签列表
     @inlinable
-    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
-        self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getLabelList(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
+        self.client.execute(action: "GetLabelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 标签列表
     @inlinable
-    public func getLabelList(_ input: GetLabelListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
-        try await self.client.execute(action: "GetLabelList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getLabelList(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
+        try await self.client.execute(action: "GetLabelList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 标签列表
     @inlinable
-    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
-        self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLabelListResponse> {
+        self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标签列表
     @inlinable
-    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
-        try await self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), logger: logger, on: eventLoop)
+    public func getLabelList(pageSize: Int64, pageNumber: Int64, clusterId: String? = nil, groupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLabelListResponse {
+        try await self.getLabelList(GetLabelListRequest(pageSize: pageSize, pageNumber: pageNumber, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

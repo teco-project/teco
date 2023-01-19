@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Cdb {
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
     @inlinable
-    public func deleteAuditRule(_ input: DeleteAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
-        self.client.execute(action: "DeleteAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAuditRule(_ input: DeleteAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
+        self.client.execute(action: "DeleteAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
     @inlinable
-    public func deleteAuditRule(_ input: DeleteAuditRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
-        try await self.client.execute(action: "DeleteAuditRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAuditRule(_ input: DeleteAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
+        try await self.client.execute(action: "DeleteAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
     @inlinable
-    public func deleteAuditRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
-        self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteAuditRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
+        self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
     @inlinable
-    public func deleteAuditRule(ruleId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
-        try await self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), logger: logger, on: eventLoop)
+    public func deleteAuditRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
+        try await self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Trp {
 
     /// 新建自定义码规则
     @inlinable
-    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomRuleResponse> {
-        self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomRule(_ input: CreateCustomRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomRuleResponse> {
+        self.client.execute(action: "CreateCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建自定义码规则
     @inlinable
-    public func createCustomRule(_ input: CreateCustomRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
-        try await self.client.execute(action: "CreateCustomRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomRule(_ input: CreateCustomRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
+        try await self.client.execute(action: "CreateCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建自定义码规则
     @inlinable
-    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomRuleResponse> {
-        self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), logger: logger, on: eventLoop)
+    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomRuleResponse> {
+        self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建自定义码规则
     @inlinable
-    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
-        try await self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), logger: logger, on: eventLoop)
+    public func createCustomRule(name: String, merchantId: String, codeLength: UInt64, codeParts: [CodePart], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomRuleResponse {
+        try await self.createCustomRule(CreateCustomRuleRequest(name: name, merchantId: merchantId, codeLength: codeLength, codeParts: codeParts, corpId: corpId), region: region, logger: logger, on: eventLoop)
     }
 }

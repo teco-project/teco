@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Cdn {
 
     /// 获取Bot攻击的Top数据列表
     @inlinable
-    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnTopBotDataResponse> {
-        self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnTopBotDataResponse> {
+        self.client.execute(action: "ListScdnTopBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Bot攻击的Top数据列表
     @inlinable
-    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
-        try await self.client.execute(action: "ListScdnTopBotData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listScdnTopBotData(_ input: ListScdnTopBotDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
+        try await self.client.execute(action: "ListScdnTopBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取Bot攻击的Top数据列表
     @inlinable
-    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnTopBotDataResponse> {
-        self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), logger: logger, on: eventLoop)
+    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListScdnTopBotDataResponse> {
+        self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取Bot攻击的Top数据列表
     @inlinable
-    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
-        try await self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), logger: logger, on: eventLoop)
+    public func listScdnTopBotData(topCount: Int64, startTime: Date, endTime: Date, area: String, metric: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListScdnTopBotDataResponse {
+        try await self.listScdnTopBotData(ListScdnTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, area: area, metric: metric, domains: domains), region: region, logger: logger, on: eventLoop)
     }
 }

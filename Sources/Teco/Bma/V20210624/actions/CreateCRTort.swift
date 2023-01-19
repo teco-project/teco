@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -84,25 +84,25 @@ extension Bma {
 
     /// 举报侵权链接
     @inlinable
-    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRTortResponse> {
-        self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCRTort(_ input: CreateCRTortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRTortResponse> {
+        self.client.execute(action: "CreateCRTort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 举报侵权链接
     @inlinable
-    public func createCRTort(_ input: CreateCRTortRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
-        try await self.client.execute(action: "CreateCRTort", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCRTort(_ input: CreateCRTortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
+        try await self.client.execute(action: "CreateCRTort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 举报侵权链接
     @inlinable
-    public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRTortResponse> {
-        self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), logger: logger, on: eventLoop)
+    public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRTortResponse> {
+        self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), region: region, logger: logger, on: eventLoop)
     }
 
     /// 举报侵权链接
     @inlinable
-    public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
-        try await self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), logger: logger, on: eventLoop)
+    public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
+        try await self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), region: region, logger: logger, on: eventLoop)
     }
 }

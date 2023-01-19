@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Tsf {
 
     /// 查询配置项列表
     @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigsResponse> {
-        self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfigs(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigsResponse> {
+        self.client.execute(action: "DescribeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配置项列表
     @inlinable
-    public func describeConfigs(_ input: DescribeConfigsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
-        try await self.client.execute(action: "DescribeConfigs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfigs(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
+        try await self.client.execute(action: "DescribeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询配置项列表
     @inlinable
-    public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigsResponse> {
-        self.describeConfigs(DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), logger: logger, on: eventLoop)
+    public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigsResponse> {
+        self.describeConfigs(DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询配置项列表
     @inlinable
-    public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
-        try await self.describeConfigs(DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), logger: logger, on: eventLoop)
+    public func describeConfigs(applicationId: String? = nil, configId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, configIdList: [String]? = nil, configName: String? = nil, configVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigsResponse {
+        try await self.describeConfigs(DescribeConfigsRequest(applicationId: applicationId, configId: configId, offset: offset, limit: limit, configIdList: configIdList, configName: configName, configVersion: configVersion), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,25 +59,25 @@ extension Tcss {
 
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
-        self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
+        self.client.execute(action: "DescribeEscapeEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
-        try await self.client.execute(action: "DescribeEscapeEventTendency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEscapeEventTendency(_ input: DescribeEscapeEventTendencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
+        try await self.client.execute(action: "DescribeEscapeEventTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
-        self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), logger: logger, on: eventLoop)
+    public func describeEscapeEventTendency(endTime: Date, startTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeEventTendencyResponse> {
+        self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询待处理逃逸事件趋势
     @inlinable
-    public func describeEscapeEventTendency(endTime: Date, startTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
-        try await self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), logger: logger, on: eventLoop)
+    public func describeEscapeEventTendency(endTime: Date, startTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeEventTendencyResponse {
+        try await self.describeEscapeEventTendency(DescribeEscapeEventTendencyRequest(endTime: endTime, startTime: startTime), region: region, logger: logger, on: eventLoop)
     }
 }

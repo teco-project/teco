@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Ssl {
 
     /// 查询管理人列表
     @inlinable
-    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagersResponse> {
-        self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeManagers(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagersResponse> {
+        self.client.execute(action: "DescribeManagers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询管理人列表
     @inlinable
-    public func describeManagers(_ input: DescribeManagersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
-        try await self.client.execute(action: "DescribeManagers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeManagers(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
+        try await self.client.execute(action: "DescribeManagers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询管理人列表
     @inlinable
-    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagersResponse> {
-        self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeManagersResponse> {
+        self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询管理人列表
     @inlinable
-    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
-        try await self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func describeManagers(companyId: Int64, offset: Int64? = nil, limit: Int64? = nil, managerName: String? = nil, managerMail: String? = nil, status: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeManagersResponse {
+        try await self.describeManagers(DescribeManagersRequest(companyId: companyId, offset: offset, limit: limit, managerName: managerName, managerMail: managerMail, status: status, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 }

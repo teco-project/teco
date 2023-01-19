@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Es {
     ///
     /// 用于重启集群节点
     @inlinable
-    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartNodesResponse> {
-        self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartNodes(_ input: RestartNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartNodesResponse> {
+        self.client.execute(action: "RestartNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启集群节点
     ///
     /// 用于重启集群节点
     @inlinable
-    public func restartNodes(_ input: RestartNodesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
-        try await self.client.execute(action: "RestartNodes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartNodes(_ input: RestartNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
+        try await self.client.execute(action: "RestartNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启集群节点
     ///
     /// 用于重启集群节点
     @inlinable
-    public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartNodesResponse> {
-        self.restartNodes(RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), logger: logger, on: eventLoop)
+    public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartNodesResponse> {
+        self.restartNodes(RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启集群节点
     ///
     /// 用于重启集群节点
     @inlinable
-    public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
-        try await self.restartNodes(RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), logger: logger, on: eventLoop)
+    public func restartNodes(instanceId: String, nodeNames: [String], forceRestart: Bool? = nil, restartMode: String? = nil, isOffline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartNodesResponse {
+        try await self.restartNodes(RestartNodesRequest(instanceId: instanceId, nodeNames: nodeNames, forceRestart: forceRestart, restartMode: restartMode, isOffline: isOffline), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,31 +66,31 @@ extension Antiddos {
     ///
     /// 读取或修改DDoS的防护等级
     @inlinable
-    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSLevelResponse> {
-        self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSLevelResponse> {
+        self.client.execute(action: "ModifyDDoSLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoSIP防护等级
     ///
     /// 读取或修改DDoS的防护等级
     @inlinable
-    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
-        try await self.client.execute(action: "ModifyDDoSLevel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDDoSLevel(_ input: ModifyDDoSLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
+        try await self.client.execute(action: "ModifyDDoSLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoSIP防护等级
     ///
     /// 读取或修改DDoS的防护等级
     @inlinable
-    public func modifyDDoSLevel(id: String, business: String, method: String, dDoSLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSLevelResponse> {
-        self.modifyDDoSLevel(ModifyDDoSLevelRequest(id: id, business: business, method: method, dDoSLevel: dDoSLevel), logger: logger, on: eventLoop)
+    public func modifyDDoSLevel(id: String, business: String, method: String, dDoSLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSLevelResponse> {
+        self.modifyDDoSLevel(ModifyDDoSLevelRequest(id: id, business: business, method: method, dDoSLevel: dDoSLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoSIP防护等级
     ///
     /// 读取或修改DDoS的防护等级
     @inlinable
-    public func modifyDDoSLevel(id: String, business: String, method: String, dDoSLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
-        try await self.modifyDDoSLevel(ModifyDDoSLevelRequest(id: id, business: business, method: method, dDoSLevel: dDoSLevel), logger: logger, on: eventLoop)
+    public func modifyDDoSLevel(id: String, business: String, method: String, dDoSLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSLevelResponse {
+        try await self.modifyDDoSLevel(ModifyDDoSLevelRequest(id: id, business: business, method: method, dDoSLevel: dDoSLevel), region: region, logger: logger, on: eventLoop)
     }
 }

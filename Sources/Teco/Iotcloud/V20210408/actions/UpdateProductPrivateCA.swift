@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Iotcloud {
 
     /// 更新产品的私有CA
     @inlinable
-    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
-        self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
+        self.client.execute(action: "UpdateProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新产品的私有CA
     @inlinable
-    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
-        try await self.client.execute(action: "UpdateProductPrivateCA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
+        try await self.client.execute(action: "UpdateProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新产品的私有CA
     @inlinable
-    public func updateProductPrivateCA(productId: String, certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
-        self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), logger: logger, on: eventLoop)
+    public func updateProductPrivateCA(productId: String, certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
+        self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新产品的私有CA
     @inlinable
-    public func updateProductPrivateCA(productId: String, certName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
-        try await self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), logger: logger, on: eventLoop)
+    public func updateProductPrivateCA(productId: String, certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
+        try await self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), region: region, logger: logger, on: eventLoop)
     }
 }

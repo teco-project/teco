@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Dayu {
     ///
     /// 批量上传7层转发规则
     @inlinable
-    public func createL7RulesUpload(_ input: CreateL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RulesUploadResponse> {
-        self.client.execute(action: "CreateL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createL7RulesUpload(_ input: CreateL7RulesUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RulesUploadResponse> {
+        self.client.execute(action: "CreateL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量上传L7转发规则
     ///
     /// 批量上传7层转发规则
     @inlinable
-    public func createL7RulesUpload(_ input: CreateL7RulesUploadRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesUploadResponse {
-        try await self.client.execute(action: "CreateL7RulesUpload", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createL7RulesUpload(_ input: CreateL7RulesUploadRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesUploadResponse {
+        try await self.client.execute(action: "CreateL7RulesUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量上传L7转发规则
     ///
     /// 批量上传7层转发规则
     @inlinable
-    public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RulesUploadResponse> {
-        self.createL7RulesUpload(CreateL7RulesUploadRequest(business: business, id: id, rules: rules), logger: logger, on: eventLoop)
+    public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateL7RulesUploadResponse> {
+        self.createL7RulesUpload(CreateL7RulesUploadRequest(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量上传L7转发规则
     ///
     /// 批量上传7层转发规则
     @inlinable
-    public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesUploadResponse {
-        try await self.createL7RulesUpload(CreateL7RulesUploadRequest(business: business, id: id, rules: rules), logger: logger, on: eventLoop)
+    public func createL7RulesUpload(business: String, id: String, rules: [L7RuleEntry], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateL7RulesUploadResponse {
+        try await self.createL7RulesUpload(CreateL7RulesUploadRequest(business: business, id: id, rules: rules), region: region, logger: logger, on: eventLoop)
     }
 }

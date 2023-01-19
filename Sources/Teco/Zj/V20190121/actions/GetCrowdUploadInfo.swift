@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Zj {
     ///
     /// 获取短信人群包cos上传需要的信息
     @inlinable
-    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdUploadInfoResponse> {
-        self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdUploadInfoResponse> {
+        self.client.execute(action: "GetCrowdUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取短信人群包cos上传信息
     ///
     /// 获取短信人群包cos上传需要的信息
     @inlinable
-    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
-        try await self.client.execute(action: "GetCrowdUploadInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getCrowdUploadInfo(_ input: GetCrowdUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
+        try await self.client.execute(action: "GetCrowdUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取短信人群包cos上传信息
     ///
     /// 获取短信人群包cos上传需要的信息
     @inlinable
-    public func getCrowdUploadInfo(license: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdUploadInfoResponse> {
-        self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), logger: logger, on: eventLoop)
+    public func getCrowdUploadInfo(license: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdUploadInfoResponse> {
+        self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取短信人群包cos上传信息
     ///
     /// 获取短信人群包cos上传需要的信息
     @inlinable
-    public func getCrowdUploadInfo(license: String, fileName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
-        try await self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), logger: logger, on: eventLoop)
+    public func getCrowdUploadInfo(license: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
+        try await self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), region: region, logger: logger, on: eventLoop)
     }
 }

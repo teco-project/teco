@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Cbs {
     /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
-    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
-        self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSnapshot(_ input: CreateSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
+        self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建快照
@@ -87,8 +87,8 @@ extension Cbs {
     /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
-    public func createSnapshot(_ input: CreateSnapshotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
-        try await self.client.execute(action: "CreateSnapshot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSnapshot(_ input: CreateSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
+        try await self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建快照
@@ -98,8 +98,8 @@ extension Cbs {
     /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
-    public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
-        self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), logger: logger, on: eventLoop)
+    public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
+        self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建快照
@@ -109,7 +109,7 @@ extension Cbs {
     /// * 可创建快照数量限制见[产品使用限制](https://cloud.tencent.com/doc/product/362/5145)。
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
-    public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
-        try await self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), logger: logger, on: eventLoop)
+    public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
+        try await self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

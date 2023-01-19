@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,25 +68,25 @@ extension Tcss {
 
     /// 创建k8s api异常事件导出任务
     @inlinable
-    public func createK8sApiAbnormalEventExportJob(_ input: CreateK8sApiAbnormalEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalEventExportJobResponse> {
-        self.client.execute(action: "CreateK8sApiAbnormalEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalEventExportJob(_ input: CreateK8sApiAbnormalEventExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalEventExportJobResponse> {
+        self.client.execute(action: "CreateK8sApiAbnormalEventExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建k8s api异常事件导出任务
     @inlinable
-    public func createK8sApiAbnormalEventExportJob(_ input: CreateK8sApiAbnormalEventExportJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalEventExportJobResponse {
-        try await self.client.execute(action: "CreateK8sApiAbnormalEventExportJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createK8sApiAbnormalEventExportJob(_ input: CreateK8sApiAbnormalEventExportJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalEventExportJobResponse {
+        try await self.client.execute(action: "CreateK8sApiAbnormalEventExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建k8s api异常事件导出任务
     @inlinable
-    public func createK8sApiAbnormalEventExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalEventExportJobResponse> {
-        self.createK8sApiAbnormalEventExportJob(CreateK8sApiAbnormalEventExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalEventExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalEventExportJobResponse> {
+        self.createK8sApiAbnormalEventExportJob(CreateK8sApiAbnormalEventExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建k8s api异常事件导出任务
     @inlinable
-    public func createK8sApiAbnormalEventExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalEventExportJobResponse {
-        try await self.createK8sApiAbnormalEventExportJob(CreateK8sApiAbnormalEventExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), logger: logger, on: eventLoop)
+    public func createK8sApiAbnormalEventExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalEventExportJobResponse {
+        try await self.createK8sApiAbnormalEventExportJob(CreateK8sApiAbnormalEventExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
     }
 }

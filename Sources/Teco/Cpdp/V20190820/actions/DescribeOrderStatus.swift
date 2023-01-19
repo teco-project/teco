@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -152,25 +152,25 @@ extension Cpdp {
 
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
-        self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
+        self.client.execute(action: "DescribeOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
-        try await self.client.execute(action: "DescribeOrderStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOrderStatus(_ input: DescribeOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
+        try await self.client.execute(action: "DescribeOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
-        self.describeOrderStatus(DescribeOrderStatusRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, queryType: queryType, transSequenceNumber: transSequenceNumber, midasSignature: midasSignature, midasAppId: midasAppId, midasSecretId: midasSecretId, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, bankSubAccountNumber: bankSubAccountNumber, transDate: transDate), logger: logger, on: eventLoop)
+    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrderStatusResponse> {
+        self.describeOrderStatus(DescribeOrderStatusRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, queryType: queryType, transSequenceNumber: transSequenceNumber, midasSignature: midasSignature, midasAppId: midasAppId, midasSecretId: midasSecretId, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, bankSubAccountNumber: bankSubAccountNumber, transDate: transDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单笔订单交易状态
     @inlinable
-    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
-        try await self.describeOrderStatus(DescribeOrderStatusRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, queryType: queryType, transSequenceNumber: transSequenceNumber, midasSignature: midasSignature, midasAppId: midasAppId, midasSecretId: midasSecretId, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, bankSubAccountNumber: bankSubAccountNumber, transDate: transDate), logger: logger, on: eventLoop)
+    public func describeOrderStatus(requestType: String, merchantCode: String, payChannel: String, payChannelSubId: Int64, orderId: String, bankAccountNumber: String, platformShortNumber: String, queryType: String, transSequenceNumber: String, midasSignature: String, midasAppId: String, midasSecretId: String, midasEnvironment: String, reservedMessage: String? = nil, bankSubAccountNumber: String? = nil, transDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrderStatusResponse {
+        try await self.describeOrderStatus(DescribeOrderStatusRequest(requestType: requestType, merchantCode: merchantCode, payChannel: payChannel, payChannelSubId: payChannelSubId, orderId: orderId, bankAccountNumber: bankAccountNumber, platformShortNumber: platformShortNumber, queryType: queryType, transSequenceNumber: transSequenceNumber, midasSignature: midasSignature, midasAppId: midasAppId, midasSecretId: midasSecretId, midasEnvironment: midasEnvironment, reservedMessage: reservedMessage, bankSubAccountNumber: bankSubAccountNumber, transDate: transDate), region: region, logger: logger, on: eventLoop)
     }
 }

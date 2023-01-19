@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Iotvideo {
     ///
     /// 获取设备的绑定签名
     @inlinable
-    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
-        self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
+        self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成单个设备绑定的签名
     ///
     /// 获取设备的绑定签名
     @inlinable
-    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
-        try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func genSingleDeviceSignatureOfPublic(_ input: GenSingleDeviceSignatureOfPublicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
+        try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成单个设备绑定的签名
     ///
     /// 获取设备的绑定签名
     @inlinable
-    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
-        self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), logger: logger, on: eventLoop)
+    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
+        self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成单个设备绑定的签名
     ///
     /// 获取设备的绑定签名
     @inlinable
-    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
-        try await self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), logger: logger, on: eventLoop)
+    public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
+        try await self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
     }
 }

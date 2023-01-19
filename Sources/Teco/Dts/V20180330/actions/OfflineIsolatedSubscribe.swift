@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Dts {
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable
-    public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
-        self.client.execute(action: "OfflineIsolatedSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
+        self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable
-    public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
-        try await self.client.execute(action: "OfflineIsolatedSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
+        try await self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable
-    public func offlineIsolatedSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
-        self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
+        self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
     @inlinable
-    public func offlineIsolatedSubscribe(subscribeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
-        try await self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), logger: logger, on: eventLoop)
+    public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
+        try await self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
 }

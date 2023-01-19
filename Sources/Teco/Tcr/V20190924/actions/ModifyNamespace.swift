@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcr {
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
+        self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(_ input: ModifyNamespaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.client.execute(action: "ModifyNamespace", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyNamespace(_ input: ModifyNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), logger: logger, on: eventLoop)
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
+        self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间信息
     ///
     /// 更新命名空间信息，当前仅支持修改命名空间访问级别
     @inlinable
-    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), logger: logger, on: eventLoop)
+    public func modifyNamespace(registryId: String, namespaceName: String, isPublic: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
+        try await self.modifyNamespace(ModifyNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic), region: region, logger: logger, on: eventLoop)
     }
 }

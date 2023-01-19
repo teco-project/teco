@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Tic {
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
-    public func applyStack(_ input: ApplyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyStackResponse> {
-        self.client.execute(action: "ApplyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func applyStack(_ input: ApplyStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyStackResponse> {
+        self.client.execute(action: "ApplyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Apply事件
@@ -64,8 +64,8 @@ extension Tic {
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
-    public func applyStack(_ input: ApplyStackRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
-        try await self.client.execute(action: "ApplyStack", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func applyStack(_ input: ApplyStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
+        try await self.client.execute(action: "ApplyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 执行Apply事件
@@ -74,8 +74,8 @@ extension Tic {
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
-    public func applyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyStackResponse> {
-        self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    public func applyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyStackResponse> {
+        self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行Apply事件
@@ -84,7 +84,7 @@ extension Tic {
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
-    public func applyStack(stackId: String, versionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
-        try await self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), logger: logger, on: eventLoop)
+    public func applyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
+        try await self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
 }

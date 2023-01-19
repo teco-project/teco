@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Wedata {
 
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
-        self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
+        self.client.execute(action: "GetIntegrationNodeColumnSchema", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
-        try await self.client.execute(action: "GetIntegrationNodeColumnSchema", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getIntegrationNodeColumnSchema(_ input: GetIntegrationNodeColumnSchemaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
+        try await self.client.execute(action: "GetIntegrationNodeColumnSchema", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
-        self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), logger: logger, on: eventLoop)
+    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetIntegrationNodeColumnSchemaResponse> {
+        self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提取数据集成节点字段Schema
     @inlinable
-    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
-        try await self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), logger: logger, on: eventLoop)
+    public func getIntegrationNodeColumnSchema(columnContent: String? = nil, datasourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetIntegrationNodeColumnSchemaResponse {
+        try await self.getIntegrationNodeColumnSchema(GetIntegrationNodeColumnSchemaRequest(columnContent: columnContent, datasourceType: datasourceType), region: region, logger: logger, on: eventLoop)
     }
 }

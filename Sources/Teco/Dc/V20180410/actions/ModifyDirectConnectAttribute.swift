@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Dc {
     ///
     /// 修改物理专线的属性。
     @inlinable
-    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectAttributeResponse> {
-        self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectAttributeResponse> {
+        self.client.execute(action: "ModifyDirectConnectAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改物理专线属性
     ///
     /// 修改物理专线的属性。
     @inlinable
-    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
-        try await self.client.execute(action: "ModifyDirectConnectAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDirectConnectAttribute(_ input: ModifyDirectConnectAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
+        try await self.client.execute(action: "ModifyDirectConnectAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改物理专线属性
     ///
     /// 修改物理专线的属性。
     @inlinable
-    public func modifyDirectConnectAttribute(directConnectId: String, directConnectName: String? = nil, circuitCode: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectAttributeResponse> {
-        self.modifyDirectConnectAttribute(ModifyDirectConnectAttributeRequest(directConnectId: directConnectId, directConnectName: directConnectName, circuitCode: circuitCode, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    public func modifyDirectConnectAttribute(directConnectId: String, directConnectName: String? = nil, circuitCode: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, bandwidth: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectAttributeResponse> {
+        self.modifyDirectConnectAttribute(ModifyDirectConnectAttributeRequest(directConnectId: directConnectId, directConnectName: directConnectName, circuitCode: circuitCode, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw, bandwidth: bandwidth), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改物理专线属性
     ///
     /// 修改物理专线的属性。
     @inlinable
-    public func modifyDirectConnectAttribute(directConnectId: String, directConnectName: String? = nil, circuitCode: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, bandwidth: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
-        try await self.modifyDirectConnectAttribute(ModifyDirectConnectAttributeRequest(directConnectId: directConnectId, directConnectName: directConnectName, circuitCode: circuitCode, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw, bandwidth: bandwidth), logger: logger, on: eventLoop)
+    public func modifyDirectConnectAttribute(directConnectId: String, directConnectName: String? = nil, circuitCode: String? = nil, vlan: Int64? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, customerName: String? = nil, customerContactMail: String? = nil, customerContactNumber: String? = nil, faultReportContactPerson: String? = nil, faultReportContactNumber: String? = nil, signLaw: Bool? = nil, bandwidth: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectAttributeResponse {
+        try await self.modifyDirectConnectAttribute(ModifyDirectConnectAttributeRequest(directConnectId: directConnectId, directConnectName: directConnectName, circuitCode: circuitCode, vlan: vlan, tencentAddress: tencentAddress, customerAddress: customerAddress, customerName: customerName, customerContactMail: customerContactMail, customerContactNumber: customerContactNumber, faultReportContactPerson: faultReportContactPerson, faultReportContactNumber: faultReportContactNumber, signLaw: signLaw, bandwidth: bandwidth), region: region, logger: logger, on: eventLoop)
     }
 }

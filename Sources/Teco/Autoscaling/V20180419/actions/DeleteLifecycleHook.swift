@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension As {
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
-        self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
+        self.client.execute(action: "DeleteLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
-        try await self.client.execute(action: "DeleteLifecycleHook", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLifecycleHook(_ input: DeleteLifecycleHookRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
+        try await self.client.execute(action: "DeleteLifecycleHook", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(lifecycleHookId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
-        self.deleteLifecycleHook(DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId), logger: logger, on: eventLoop)
+    public func deleteLifecycleHook(lifecycleHookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifecycleHookResponse> {
+        self.deleteLifecycleHook(DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除生命周期挂钩
     ///
     /// 本接口（DeleteLifecycleHook）用于删除生命周期挂钩。
     @inlinable
-    public func deleteLifecycleHook(lifecycleHookId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
-        try await self.deleteLifecycleHook(DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId), logger: logger, on: eventLoop)
+    public func deleteLifecycleHook(lifecycleHookId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifecycleHookResponse {
+        try await self.deleteLifecycleHook(DeleteLifecycleHookRequest(lifecycleHookId: lifecycleHookId), region: region, logger: logger, on: eventLoop)
     }
 }

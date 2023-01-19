@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,31 +54,31 @@ extension Ecm {
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
     @inlinable
-    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
-        self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
+        self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
     @inlinable
-    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
-        try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
+        try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
     @inlinable
-    public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
-        self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), logger: logger, on: eventLoop)
+    public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
+        self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
     @inlinable
-    public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
-        try await self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), logger: logger, on: eventLoop)
+    public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
+        try await self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), region: region, logger: logger, on: eventLoop)
     }
 }

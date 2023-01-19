@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Irp {
 
     /// 获取信息流推荐结果
     @inlinable
-    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FeedRecommendResponse> {
-        self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func feedRecommend(_ input: FeedRecommendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FeedRecommendResponse> {
+        self.client.execute(action: "FeedRecommend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取信息流推荐结果
     @inlinable
-    public func feedRecommend(_ input: FeedRecommendRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
-        try await self.client.execute(action: "FeedRecommend", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func feedRecommend(_ input: FeedRecommendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
+        try await self.client.execute(action: "FeedRecommend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取信息流推荐结果
     @inlinable
-    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FeedRecommendResponse> {
-        self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), logger: logger, on: eventLoop)
+    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FeedRecommendResponse> {
+        self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取信息流推荐结果
     @inlinable
-    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
-        try await self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), logger: logger, on: eventLoop)
+    public func feedRecommend(instanceId: String, sceneId: String, userId: String, userIdList: [UserIdInfo]? = nil, itemCnt: Int64? = nil, currentItemId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FeedRecommendResponse {
+        try await self.feedRecommend(FeedRecommendRequest(instanceId: instanceId, sceneId: sceneId, userId: userId, userIdList: userIdList, itemCnt: itemCnt, currentItemId: currentItemId), region: region, logger: logger, on: eventLoop)
     }
 }

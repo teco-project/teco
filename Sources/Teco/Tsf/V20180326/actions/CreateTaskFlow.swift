@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 创建工作流
     @inlinable
-    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFlowResponse> {
-        self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTaskFlow(_ input: CreateTaskFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFlowResponse> {
+        self.client.execute(action: "CreateTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流
     @inlinable
-    public func createTaskFlow(_ input: CreateTaskFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
-        try await self.client.execute(action: "CreateTaskFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTaskFlow(_ input: CreateTaskFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
+        try await self.client.execute(action: "CreateTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建工作流
     @inlinable
-    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFlowResponse> {
-        self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFlowResponse> {
+        self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流
     @inlinable
-    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
-        try await self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), logger: logger, on: eventLoop)
+    public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
+        try await self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
     }
 }

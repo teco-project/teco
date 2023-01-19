@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,8 +77,8 @@ extension Iotvideo {
     /// 若设备当前不在线,会直接返回错误;
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
-    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOnlineMsgResponse> {
-        self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOnlineMsgResponse> {
+        self.client.execute(action: "SendOnlineMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 向设备发送在线消息
@@ -88,8 +88,8 @@ extension Iotvideo {
     /// 若设备当前不在线,会直接返回错误;
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
-    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
-        try await self.client.execute(action: "SendOnlineMsg", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func sendOnlineMsg(_ input: SendOnlineMsgRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
+        try await self.client.execute(action: "SendOnlineMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 向设备发送在线消息
@@ -99,8 +99,8 @@ extension Iotvideo {
     /// 若设备当前不在线,会直接返回错误;
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
-    public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOnlineMsgResponse> {
-        self.sendOnlineMsg(SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), logger: logger, on: eventLoop)
+    public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOnlineMsgResponse> {
+        self.sendOnlineMsg(SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), region: region, logger: logger, on: eventLoop)
     }
 
     /// 向设备发送在线消息
@@ -110,7 +110,7 @@ extension Iotvideo {
     /// 若设备当前不在线,会直接返回错误;
     /// 若设备网络出现异常时,消息发送可能超时,超时等待最长时间为3秒.waitresp非0情况下,会导致本接口阻塞3秒。
     @inlinable
-    public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
-        try await self.sendOnlineMsg(SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), logger: logger, on: eventLoop)
+    public func sendOnlineMsg(tid: String, wakeup: Bool, waitResp: UInt64, msgTopic: String, msgContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOnlineMsgResponse {
+        try await self.sendOnlineMsg(SendOnlineMsgRequest(tid: tid, wakeup: wakeup, waitResp: waitResp, msgTopic: msgTopic, msgContent: msgContent), region: region, logger: logger, on: eventLoop)
     }
 }

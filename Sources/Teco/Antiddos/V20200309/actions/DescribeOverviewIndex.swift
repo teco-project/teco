@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -86,25 +86,25 @@ extension Antiddos {
 
     /// 拉取防护概览指标
     @inlinable
-    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewIndexResponse> {
-        self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewIndexResponse> {
+        self.client.execute(action: "DescribeOverviewIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取防护概览指标
     @inlinable
-    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
-        try await self.client.execute(action: "DescribeOverviewIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeOverviewIndex(_ input: DescribeOverviewIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
+        try await self.client.execute(action: "DescribeOverviewIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取防护概览指标
     @inlinable
-    public func describeOverviewIndex(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewIndexResponse> {
-        self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeOverviewIndex(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewIndexResponse> {
+        self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取防护概览指标
     @inlinable
-    public func describeOverviewIndex(startTime: String, endTime: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
-        try await self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeOverviewIndex(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewIndexResponse {
+        try await self.describeOverviewIndex(DescribeOverviewIndexRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

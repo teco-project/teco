@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Bmvpc {
 
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
-        self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
+        self.client.execute(action: "AcceptVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
-        try await self.client.execute(action: "AcceptVpcPeerConnection", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func acceptVpcPeerConnection(_ input: AcceptVpcPeerConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
+        try await self.client.execute(action: "AcceptVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
-        self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
+        self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 接受黑石对等连接
     @inlinable
-    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
-        try await self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), logger: logger, on: eventLoop)
+    public func acceptVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
+        try await self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
     }
 }

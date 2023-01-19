@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tcaplusdb {
     ///
     /// 查询独占集群可以申请的剩余机器
     @inlinable
-    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineResponse> {
-        self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMachine(_ input: DescribeMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineResponse> {
+        self.client.execute(action: "DescribeMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询独占集群剩余机器
     ///
     /// 查询独占集群可以申请的剩余机器
     @inlinable
-    public func describeMachine(_ input: DescribeMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
-        try await self.client.execute(action: "DescribeMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMachine(_ input: DescribeMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
+        try await self.client.execute(action: "DescribeMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询独占集群剩余机器
     ///
     /// 查询独占集群可以申请的剩余机器
     @inlinable
-    public func describeMachine(ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineResponse> {
-        self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), logger: logger, on: eventLoop)
+    public func describeMachine(ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineResponse> {
+        self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询独占集群剩余机器
     ///
     /// 查询独占集群可以申请的剩余机器
     @inlinable
-    public func describeMachine(ipv6Enable: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
-        try await self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), logger: logger, on: eventLoop)
+    public func describeMachine(ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineResponse {
+        try await self.describeMachine(DescribeMachineRequest(ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
     }
 }

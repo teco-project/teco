@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Cam {
     ///
     /// 列出指定CAM用户的访问密钥
     @inlinable
-    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccessKeysResponse> {
-        self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listAccessKeys(_ input: ListAccessKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccessKeysResponse> {
+        self.client.execute(action: "ListAccessKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出访问密钥
     ///
     /// 列出指定CAM用户的访问密钥
     @inlinable
-    public func listAccessKeys(_ input: ListAccessKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
-        try await self.client.execute(action: "ListAccessKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listAccessKeys(_ input: ListAccessKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
+        try await self.client.execute(action: "ListAccessKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出访问密钥
     ///
     /// 列出指定CAM用户的访问密钥
     @inlinable
-    public func listAccessKeys(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccessKeysResponse> {
-        self.listAccessKeys(ListAccessKeysRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    public func listAccessKeys(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAccessKeysResponse> {
+        self.listAccessKeys(ListAccessKeysRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出访问密钥
     ///
     /// 列出指定CAM用户的访问密钥
     @inlinable
-    public func listAccessKeys(targetUin: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
-        try await self.listAccessKeys(ListAccessKeysRequest(targetUin: targetUin), logger: logger, on: eventLoop)
+    public func listAccessKeys(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAccessKeysResponse {
+        try await self.listAccessKeys(ListAccessKeysRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 }

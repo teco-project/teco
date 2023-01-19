@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Tdmq {
     ///
     /// 获取集群的详细信息
     @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
-        self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
+        self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群详情
     ///
     /// 获取集群的详细信息
     @inlinable
-    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.client.execute(action: "DescribeClusterDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeClusterDetail(_ input: DescribeClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取集群详情
     ///
     /// 获取集群的详细信息
     @inlinable
-    public func describeClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
-        self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
+        self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取集群详情
     ///
     /// 获取集群的详细信息
     @inlinable
-    public func describeClusterDetail(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
+        try await self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

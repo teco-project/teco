@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vod {
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
-        self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyClass(_ input: ModifyClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
+        self.client.execute(action: "ModifyClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改分类
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(_ input: ModifyClassRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
-        try await self.client.execute(action: "ModifyClass", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyClass(_ input: ModifyClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
+        try await self.client.execute(action: "ModifyClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改分类
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
-        self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
+        self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改分类
     ///
     /// 修改媒体分类属性。
     @inlinable
-    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
-        try await self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
+        try await self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

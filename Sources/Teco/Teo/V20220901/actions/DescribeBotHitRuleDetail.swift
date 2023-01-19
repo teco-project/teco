@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -108,31 +108,31 @@ extension Teo {
     ///
     /// 本接口（DescribeBotHitRuleDetail）用于查询Bot攻击命中规则详情信息。
     @inlinable
-    public func describeBotHitRuleDetail(_ input: DescribeBotHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotHitRuleDetailResponse> {
-        self.client.execute(action: "DescribeBotHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBotHitRuleDetail(_ input: DescribeBotHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotHitRuleDetailResponse> {
+        self.client.execute(action: "DescribeBotHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot攻击命中规则详情
     ///
     /// 本接口（DescribeBotHitRuleDetail）用于查询Bot攻击命中规则详情信息。
     @inlinable
-    public func describeBotHitRuleDetail(_ input: DescribeBotHitRuleDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotHitRuleDetailResponse {
-        try await self.client.execute(action: "DescribeBotHitRuleDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBotHitRuleDetail(_ input: DescribeBotHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotHitRuleDetailResponse {
+        try await self.client.execute(action: "DescribeBotHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询Bot攻击命中规则详情
     ///
     /// 本接口（DescribeBotHitRuleDetail）用于查询Bot攻击命中规则详情信息。
     @inlinable
-    public func describeBotHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotHitRuleDetailResponse> {
-        self.describeBotHitRuleDetail(DescribeBotHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeBotHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotHitRuleDetailResponse> {
+        self.describeBotHitRuleDetail(DescribeBotHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot攻击命中规则详情
     ///
     /// 本接口（DescribeBotHitRuleDetail）用于查询Bot攻击命中规则详情信息。
     @inlinable
-    public func describeBotHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotHitRuleDetailResponse {
-        try await self.describeBotHitRuleDetail(DescribeBotHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), logger: logger, on: eventLoop)
+    public func describeBotHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotHitRuleDetailResponse {
+        try await self.describeBotHitRuleDetail(DescribeBotHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

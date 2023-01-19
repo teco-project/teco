@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Tsf {
 
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
-        self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
+        self.client.execute(action: "DescribeInvocationMetricDataPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
-        try await self.client.execute(action: "DescribeInvocationMetricDataPoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInvocationMetricDataPoint(_ input: DescribeInvocationMetricDataPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
+        try await self.client.execute(action: "DescribeInvocationMetricDataPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
-        self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
+        self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询单值指标维度
     @inlinable
-    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
-        try await self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), logger: logger, on: eventLoop)
+    public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
+        try await self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), region: region, logger: logger, on: eventLoop)
     }
 }

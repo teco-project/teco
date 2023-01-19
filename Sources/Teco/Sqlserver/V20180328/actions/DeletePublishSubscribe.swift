@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Sqlserver {
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable
-    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
-        self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
+        self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable
-    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
-        try await self.client.execute(action: "DeletePublishSubscribe", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
+        try await self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable
-    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
-        self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), logger: logger, on: eventLoop)
+    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
+        self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
     @inlinable
-    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
-        try await self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), logger: logger, on: eventLoop)
+    public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
+        try await self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }
 }

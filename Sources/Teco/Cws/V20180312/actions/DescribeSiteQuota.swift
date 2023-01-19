@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cws {
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
-        self.client.execute(action: "DescribeSiteQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
+        self.client.execute(action: "DescribeSiteQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
-        try await self.client.execute(action: "DescribeSiteQuota", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSiteQuota(_ input: DescribeSiteQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
+        try await self.client.execute(action: "DescribeSiteQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
-        self.describeSiteQuota(DescribeSiteQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeSiteQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSiteQuotaResponse> {
+        self.describeSiteQuota(DescribeSiteQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看站点购买配额
     ///
     /// 本接口 (DescribeSiteQuota) 用于查询用户购买的扫描次数总数和已使用数。
     @inlinable
-    public func describeSiteQuota(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
-        try await self.describeSiteQuota(DescribeSiteQuotaRequest(), logger: logger, on: eventLoop)
+    public func describeSiteQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSiteQuotaResponse {
+        try await self.describeSiteQuota(DescribeSiteQuotaRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

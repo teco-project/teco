@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,8 +60,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageReviewUsageDataResponse> {
-        self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageReviewUsageDataResponse> {
+        self.client.execute(action: "DescribeImageReviewUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询图片审核用量统计数据
@@ -71,8 +71,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
-        try await self.client.execute(action: "DescribeImageReviewUsageData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeImageReviewUsageData(_ input: DescribeImageReviewUsageDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
+        try await self.client.execute(action: "DescribeImageReviewUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询图片审核用量统计数据
@@ -82,8 +82,8 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageReviewUsageDataResponse> {
-        self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageReviewUsageDataResponse> {
+        self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询图片审核用量统计数据
@@ -93,7 +93,7 @@ extension Vod {
     ///    2. 查询时间跨度不超过90天。
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
-    public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
-        try await self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
+        try await self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

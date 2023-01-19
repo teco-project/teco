@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Tem {
 
     /// 创建服务
     @inlinable
-    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceV2Response> {
-        self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createServiceV2(_ input: CreateServiceV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceV2Response> {
+        self.client.execute(action: "CreateServiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建服务
     @inlinable
-    public func createServiceV2(_ input: CreateServiceV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
-        try await self.client.execute(action: "CreateServiceV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createServiceV2(_ input: CreateServiceV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
+        try await self.client.execute(action: "CreateServiceV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建服务
     @inlinable
-    public func createServiceV2(serviceName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceV2Response> {
-        self.createServiceV2(CreateServiceV2Request(serviceName: serviceName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode), logger: logger, on: eventLoop)
+    public func createServiceV2(serviceName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceV2Response> {
+        self.createServiceV2(CreateServiceV2Request(serviceName: serviceName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建服务
     @inlinable
-    public func createServiceV2(serviceName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
-        try await self.createServiceV2(CreateServiceV2Request(serviceName: serviceName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode), logger: logger, on: eventLoop)
+    public func createServiceV2(serviceName: String, description: String, useDefaultImageService: Int64? = nil, repoType: Int64? = nil, instanceId: String? = nil, repoServer: String? = nil, repoName: String? = nil, sourceChannel: Int64? = nil, subnetList: [String]? = nil, codingLanguage: String? = nil, deployMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceV2Response {
+        try await self.createServiceV2(CreateServiceV2Request(serviceName: serviceName, description: description, useDefaultImageService: useDefaultImageService, repoType: repoType, instanceId: instanceId, repoServer: repoServer, repoName: repoName, sourceChannel: sourceChannel, subnetList: subnetList, codingLanguage: codingLanguage, deployMode: deployMode), region: region, logger: logger, on: eventLoop)
     }
 }

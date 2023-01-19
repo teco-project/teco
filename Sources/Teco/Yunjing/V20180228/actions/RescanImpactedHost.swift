@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Yunjing {
     ///
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable
-    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RescanImpactedHostResponse> {
-        self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RescanImpactedHostResponse> {
+        self.client.execute(action: "RescanImpactedHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞重新检测
     ///
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable
-    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
-        try await self.client.execute(action: "RescanImpactedHost", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rescanImpactedHost(_ input: RescanImpactedHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
+        try await self.client.execute(action: "RescanImpactedHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞重新检测
     ///
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable
-    public func rescanImpactedHost(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RescanImpactedHostResponse> {
-        self.rescanImpactedHost(RescanImpactedHostRequest(id: id), logger: logger, on: eventLoop)
+    public func rescanImpactedHost(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RescanImpactedHostResponse> {
+        self.rescanImpactedHost(RescanImpactedHostRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞重新检测
     ///
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable
-    public func rescanImpactedHost(id: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
-        try await self.rescanImpactedHost(RescanImpactedHostRequest(id: id), logger: logger, on: eventLoop)
+    public func rescanImpactedHost(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
+        try await self.rescanImpactedHost(RescanImpactedHostRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 }

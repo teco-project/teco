@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Iecp {
 
     /// 批量删除设备
     @inlinable
-    public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceBatchResponse> {
-        self.client.execute(action: "DeleteIotDeviceBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceBatchResponse> {
+        self.client.execute(action: "DeleteIotDeviceBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
-        try await self.client.execute(action: "DeleteIotDeviceBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteIotDeviceBatch(_ input: DeleteIotDeviceBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
+        try await self.client.execute(action: "DeleteIotDeviceBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteIotDeviceBatch(deviceIDList: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceBatchResponse> {
-        self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), logger: logger, on: eventLoop)
+    public func deleteIotDeviceBatch(deviceIDList: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceBatchResponse> {
+        self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除设备
     @inlinable
-    public func deleteIotDeviceBatch(deviceIDList: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
-        try await self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), logger: logger, on: eventLoop)
+    public func deleteIotDeviceBatch(deviceIDList: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceBatchResponse {
+        try await self.deleteIotDeviceBatch(DeleteIotDeviceBatchRequest(deviceIDList: deviceIDList), region: region, logger: logger, on: eventLoop)
     }
 }

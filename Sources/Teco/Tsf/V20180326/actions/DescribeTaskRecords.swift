@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,31 +83,31 @@ extension Tsf {
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
-        self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
+        self.client.execute(action: "DescribeTaskRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
-        try await self.client.execute(action: "DescribeTaskRecords", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTaskRecords(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
+        try await self.client.execute(action: "DescribeTaskRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
-        self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), logger: logger, on: eventLoop)
+    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskRecordsResponse> {
+        self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
-        try await self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), logger: logger, on: eventLoop)
+    public func describeTaskRecords(offset: UInt64? = nil, limit: UInt64? = nil, searchWord: String? = nil, taskState: String? = nil, groupId: String? = nil, taskType: String? = nil, executeType: String? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskRecordsResponse {
+        try await self.describeTaskRecords(DescribeTaskRecordsRequest(offset: offset, limit: limit, searchWord: searchWord, taskState: taskState, groupId: groupId, taskType: taskType, executeType: executeType, ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

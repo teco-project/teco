@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -100,25 +100,25 @@ extension Monitor {
 
     /// 增加策略组
     @inlinable
-    public func createPolicyGroup(_ input: CreatePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyGroupResponse> {
-        self.client.execute(action: "CreatePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createPolicyGroup(_ input: CreatePolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyGroupResponse> {
+        self.client.execute(action: "CreatePolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加策略组
     @inlinable
-    public func createPolicyGroup(_ input: CreatePolicyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyGroupResponse {
-        try await self.client.execute(action: "CreatePolicyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createPolicyGroup(_ input: CreatePolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyGroupResponse {
+        try await self.client.execute(action: "CreatePolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 增加策略组
     @inlinable
-    public func createPolicyGroup(groupName: String, module: String, viewName: String? = nil, projectId: Int64? = nil, conditionTempGroupId: Int64? = nil, isShielded: Int64? = nil, remark: String? = nil, insertTime: Int64? = nil, conditions: [CreatePolicyGroupCondition]? = nil, eventConditions: [CreatePolicyGroupEventCondition]? = nil, backEndCall: Int64? = nil, isUnionRule: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyGroupResponse> {
-        self.createPolicyGroup(CreatePolicyGroupRequest(groupName: groupName, module: module, viewName: viewName, projectId: projectId, conditionTempGroupId: conditionTempGroupId, isShielded: isShielded, remark: remark, insertTime: insertTime, conditions: conditions, eventConditions: eventConditions, backEndCall: backEndCall, isUnionRule: isUnionRule), logger: logger, on: eventLoop)
+    public func createPolicyGroup(groupName: String, module: String, viewName: String? = nil, projectId: Int64? = nil, conditionTempGroupId: Int64? = nil, isShielded: Int64? = nil, remark: String? = nil, insertTime: Int64? = nil, conditions: [CreatePolicyGroupCondition]? = nil, eventConditions: [CreatePolicyGroupEventCondition]? = nil, backEndCall: Int64? = nil, isUnionRule: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePolicyGroupResponse> {
+        self.createPolicyGroup(CreatePolicyGroupRequest(groupName: groupName, module: module, viewName: viewName, projectId: projectId, conditionTempGroupId: conditionTempGroupId, isShielded: isShielded, remark: remark, insertTime: insertTime, conditions: conditions, eventConditions: eventConditions, backEndCall: backEndCall, isUnionRule: isUnionRule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 增加策略组
     @inlinable
-    public func createPolicyGroup(groupName: String, module: String, viewName: String? = nil, projectId: Int64? = nil, conditionTempGroupId: Int64? = nil, isShielded: Int64? = nil, remark: String? = nil, insertTime: Int64? = nil, conditions: [CreatePolicyGroupCondition]? = nil, eventConditions: [CreatePolicyGroupEventCondition]? = nil, backEndCall: Int64? = nil, isUnionRule: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyGroupResponse {
-        try await self.createPolicyGroup(CreatePolicyGroupRequest(groupName: groupName, module: module, viewName: viewName, projectId: projectId, conditionTempGroupId: conditionTempGroupId, isShielded: isShielded, remark: remark, insertTime: insertTime, conditions: conditions, eventConditions: eventConditions, backEndCall: backEndCall, isUnionRule: isUnionRule), logger: logger, on: eventLoop)
+    public func createPolicyGroup(groupName: String, module: String, viewName: String? = nil, projectId: Int64? = nil, conditionTempGroupId: Int64? = nil, isShielded: Int64? = nil, remark: String? = nil, insertTime: Int64? = nil, conditions: [CreatePolicyGroupCondition]? = nil, eventConditions: [CreatePolicyGroupEventCondition]? = nil, backEndCall: Int64? = nil, isUnionRule: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePolicyGroupResponse {
+        try await self.createPolicyGroup(CreatePolicyGroupRequest(groupName: groupName, module: module, viewName: viewName, projectId: projectId, conditionTempGroupId: conditionTempGroupId, isShielded: isShielded, remark: remark, insertTime: insertTime, conditions: conditions, eventConditions: eventConditions, backEndCall: backEndCall, isUnionRule: isUnionRule), region: region, logger: logger, on: eventLoop)
     }
 }

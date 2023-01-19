@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Tem {
 
     /// 生成应用程序包预签名下载链接
     @inlinable
-    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApplicationPackageDownloadUrlResponse> {
-        self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApplicationPackageDownloadUrlResponse> {
+        self.client.execute(action: "GenerateApplicationPackageDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成应用程序包预签名下载链接
     @inlinable
-    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
-        try await self.client.execute(action: "GenerateApplicationPackageDownloadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func generateApplicationPackageDownloadUrl(_ input: GenerateApplicationPackageDownloadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
+        try await self.client.execute(action: "GenerateApplicationPackageDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 生成应用程序包预签名下载链接
     @inlinable
-    public func generateApplicationPackageDownloadUrl(applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApplicationPackageDownloadUrlResponse> {
-        self.generateApplicationPackageDownloadUrl(GenerateApplicationPackageDownloadUrlRequest(applicationId: applicationId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func generateApplicationPackageDownloadUrl(applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateApplicationPackageDownloadUrlResponse> {
+        self.generateApplicationPackageDownloadUrl(GenerateApplicationPackageDownloadUrlRequest(applicationId: applicationId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 生成应用程序包预签名下载链接
     @inlinable
-    public func generateApplicationPackageDownloadUrl(applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
-        try await self.generateApplicationPackageDownloadUrl(GenerateApplicationPackageDownloadUrlRequest(applicationId: applicationId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func generateApplicationPackageDownloadUrl(applicationId: String, pkgName: String, deployVersion: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateApplicationPackageDownloadUrlResponse {
+        try await self.generateApplicationPackageDownloadUrl(GenerateApplicationPackageDownloadUrlRequest(applicationId: applicationId, pkgName: pkgName, deployVersion: deployVersion, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

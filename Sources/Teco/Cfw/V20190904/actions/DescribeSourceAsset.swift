@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cfw {
     ///
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
-    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceAssetResponse> {
-        self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceAssetResponse> {
+        self.client.execute(action: "DescribeSourceAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产组全部资产信息
     ///
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
-    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
-        try await self.client.execute(action: "DescribeSourceAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSourceAsset(_ input: DescribeSourceAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
+        try await self.client.execute(action: "DescribeSourceAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询资产组全部资产信息
     ///
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
-    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceAssetResponse> {
-        self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceAssetResponse> {
+        self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询资产组全部资产信息
     ///
     /// DescribeSourceAsset-查询资产组全部资产信息
     @inlinable
-    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
-        try await self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func describeSourceAsset(fuzzySearch: String? = nil, insType: String? = nil, chooseType: String? = nil, zone: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceAssetResponse {
+        try await self.describeSourceAsset(DescribeSourceAssetRequest(fuzzySearch: fuzzySearch, insType: insType, chooseType: chooseType, zone: zone, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

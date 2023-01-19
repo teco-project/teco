@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Dts {
 
     /// 终止一致性校验任务
     @inlinable
-    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCompareResponse> {
-        self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopCompare(_ input: StopCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCompareResponse> {
+        self.client.execute(action: "StopCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止一致性校验任务
     @inlinable
-    public func stopCompare(_ input: StopCompareRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
-        try await self.client.execute(action: "StopCompare", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopCompare(_ input: StopCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
+        try await self.client.execute(action: "StopCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 终止一致性校验任务
     @inlinable
-    public func stopCompare(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCompareResponse> {
-        self.stopCompare(StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    public func stopCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCompareResponse> {
+        self.stopCompare(StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 终止一致性校验任务
     @inlinable
-    public func stopCompare(jobId: String, compareTaskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
-        try await self.stopCompare(StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId), logger: logger, on: eventLoop)
+    public func stopCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCompareResponse {
+        try await self.stopCompare(StopCompareRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
 }

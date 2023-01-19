@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Es {
 
     /// 更新实例Jdk配置
     @inlinable
-    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJdkResponse> {
-        self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateJdk(_ input: UpdateJdkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJdkResponse> {
+        self.client.execute(action: "UpdateJdk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例Jdk配置
     @inlinable
-    public func updateJdk(_ input: UpdateJdkRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
-        try await self.client.execute(action: "UpdateJdk", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateJdk(_ input: UpdateJdkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
+        try await self.client.execute(action: "UpdateJdk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新实例Jdk配置
     @inlinable
-    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJdkResponse> {
-        self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJdkResponse> {
+        self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新实例Jdk配置
     @inlinable
-    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
-        try await self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), logger: logger, on: eventLoop)
+    public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
+        try await self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
     }
 }

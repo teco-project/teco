@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotvideo {
     ///
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceResponse> {
-        self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runDevice(_ input: RunDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceResponse> {
+        self.client.execute(action: "RunDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用设备
     ///
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDevice(_ input: RunDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
-        try await self.client.execute(action: "RunDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runDevice(_ input: RunDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
+        try await self.client.execute(action: "RunDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用设备
     ///
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDevice(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceResponse> {
-        self.runDevice(RunDeviceRequest(tids: tids), logger: logger, on: eventLoop)
+    public func runDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceResponse> {
+        self.runDevice(RunDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用设备
     ///
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable
-    public func runDevice(tids: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
-        try await self.runDevice(RunDeviceRequest(tids: tids), logger: logger, on: eventLoop)
+    public func runDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
+        try await self.runDevice(RunDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 }

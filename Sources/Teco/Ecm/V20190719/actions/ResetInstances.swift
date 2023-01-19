@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Ecm {
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
-        self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetInstances(_ input: ResetInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
+        self.client.execute(action: "ResetInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(_ input: ResetInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
-        try await self.client.execute(action: "ResetInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetInstances(_ input: ResetInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
+        try await self.client.execute(action: "ResetInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
-        self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), logger: logger, on: eventLoop)
+    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
+        self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重装实例
     ///
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable
-    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
-        try await self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), logger: logger, on: eventLoop)
+    public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
+        try await self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), region: region, logger: logger, on: eventLoop)
     }
 }

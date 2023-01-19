@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Tcm {
 
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
-        self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func linkPrometheus(_ input: LinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
+        self.client.execute(action: "LinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(_ input: LinkPrometheusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
-        try await self.client.execute(action: "LinkPrometheus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func linkPrometheus(_ input: LinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
+        try await self.client.execute(action: "LinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
-        self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), logger: logger, on: eventLoop)
+    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
+        self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联Prometheus
     @inlinable
-    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
-        try await self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), logger: logger, on: eventLoop)
+    public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
+        try await self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), region: region, logger: logger, on: eventLoop)
     }
 }

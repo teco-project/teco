@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Cwp {
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
-        self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
+        self.client.execute(action: "ExportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
-        try await self.client.execute(action: "ExportBruteAttacks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportBruteAttacks(_ input: ExportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
+        try await self.client.execute(action: "ExportBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
-        self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportBruteAttacks(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBruteAttacksResponse> {
+        self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出密码破解记录
     ///
     /// 本接口 (ExportBruteAttacks) 用于导出密码破解记录成CSV文件。
     @inlinable
-    public func exportBruteAttacks(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
-        try await self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportBruteAttacks(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBruteAttacksResponse {
+        try await self.exportBruteAttacks(ExportBruteAttacksRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

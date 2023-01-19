@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Cpdp {
 
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
-        self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadTaxList(_ input: UploadTaxListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
+        self.client.execute(action: "UploadTaxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(_ input: UploadTaxListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
-        try await self.client.execute(action: "UploadTaxList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadTaxList(_ input: UploadTaxListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
+        try await self.client.execute(action: "UploadTaxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
-        self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), logger: logger, on: eventLoop)
+    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
+        self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-上传代理商完税列表
     @inlinable
-    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
-        try await self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), logger: logger, on: eventLoop)
+    public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
+        try await self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
     }
 }

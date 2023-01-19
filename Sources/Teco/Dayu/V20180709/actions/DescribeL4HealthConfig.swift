@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Dayu {
 
     /// 导出四层健康检查配置
     @inlinable
-    public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4HealthConfigResponse> {
-        self.client.execute(action: "DescribeL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4HealthConfigResponse> {
+        self.client.execute(action: "DescribeL4HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出四层健康检查配置
     @inlinable
-    public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {
-        try await self.client.execute(action: "DescribeL4HealthConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeL4HealthConfig(_ input: DescribeL4HealthConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {
+        try await self.client.execute(action: "DescribeL4HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出四层健康检查配置
     @inlinable
-    public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4HealthConfigResponse> {
-        self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4HealthConfigResponse> {
+        self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出四层健康检查配置
     @inlinable
-    public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {
-        try await self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), logger: logger, on: eventLoop)
+    public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {
+        try await self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
     }
 }

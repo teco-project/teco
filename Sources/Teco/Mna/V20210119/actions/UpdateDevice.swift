@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Mna {
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
-        self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateDevice(_ input: UpdateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
+        self.client.execute(action: "UpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(_ input: UpdateDeviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
-        try await self.client.execute(action: "UpdateDevice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateDevice(_ input: UpdateDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
+        try await self.client.execute(action: "UpdateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
-        self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), logger: logger, on: eventLoop)
+    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceResponse> {
+        self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备
     ///
     /// 更新设备信息
     @inlinable
-    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
-        try await self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), logger: logger, on: eventLoop)
+    public func updateDevice(deviceId: String, deviceName: String? = nil, remark: String? = nil, updateNetInfo: [UpdateNetInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceResponse {
+        try await self.updateDevice(UpdateDeviceRequest(deviceId: deviceId, deviceName: deviceName, remark: remark, updateNetInfo: updateNetInfo), region: region, logger: logger, on: eventLoop)
     }
 }

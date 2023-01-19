@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Cdb {
     ///
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
-    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyRootAccountResponse> {
-        self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyRootAccount(_ input: VerifyRootAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyRootAccountResponse> {
+        self.client.execute(action: "VerifyRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证root账号权限
     ///
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
-    public func verifyRootAccount(_ input: VerifyRootAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
-        try await self.client.execute(action: "VerifyRootAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyRootAccount(_ input: VerifyRootAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
+        try await self.client.execute(action: "VerifyRootAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证root账号权限
     ///
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
-    public func verifyRootAccount(instanceId: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyRootAccountResponse> {
-        self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    public func verifyRootAccount(instanceId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyRootAccountResponse> {
+        self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证root账号权限
     ///
     /// 本接口(VerifyRootAccount)用于校验云数据库实例的 ROOT 账号是否有足够的权限进行授权操作。
     @inlinable
-    public func verifyRootAccount(instanceId: String, password: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
-        try await self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), logger: logger, on: eventLoop)
+    public func verifyRootAccount(instanceId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyRootAccountResponse {
+        try await self.verifyRootAccount(VerifyRootAccountRequest(instanceId: instanceId, password: password), region: region, logger: logger, on: eventLoop)
     }
 }

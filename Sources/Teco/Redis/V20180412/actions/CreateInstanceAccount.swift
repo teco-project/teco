@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,25 +76,25 @@ extension Redis {
 
     /// 创建实例子账号
     @inlinable
-    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceAccountResponse> {
-        self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceAccountResponse> {
+        self.client.execute(action: "CreateInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例子账号
     @inlinable
-    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
-        try await self.client.execute(action: "CreateInstanceAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createInstanceAccount(_ input: CreateInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
+        try await self.client.execute(action: "CreateInstanceAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建实例子账号
     @inlinable
-    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceAccountResponse> {
-        self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), logger: logger, on: eventLoop)
+    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceAccountResponse> {
+        self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例子账号
     @inlinable
-    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
-        try await self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), logger: logger, on: eventLoop)
+    public func createInstanceAccount(instanceId: String, accountName: String, accountPassword: String, readonlyPolicy: [String], privilege: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceAccountResponse {
+        try await self.createInstanceAccount(CreateInstanceAccountRequest(instanceId: instanceId, accountName: accountName, accountPassword: accountPassword, readonlyPolicy: readonlyPolicy, privilege: privilege, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

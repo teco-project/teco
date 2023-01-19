@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Gaap {
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
-        self.client.execute(action: "ModifyCertificateAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
+        self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
-        try await self.client.execute(action: "ModifyCertificateAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
+        try await self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
-        self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
+        self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable
-    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
-        try await self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), logger: logger, on: eventLoop)
+    public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
+        try await self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }
 }

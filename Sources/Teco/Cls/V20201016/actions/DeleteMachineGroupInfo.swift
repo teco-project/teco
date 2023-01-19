@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Cls {
     ///
     /// 用于删除机器组信息
     @inlinable
-    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
-        self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
+        self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
     @inlinable
-    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
-        try await self.client.execute(action: "DeleteMachineGroupInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
+        try await self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
     @inlinable
-    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
-        self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
+        self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
     @inlinable
-    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
-        try await self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), logger: logger, on: eventLoop)
+    public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
+        try await self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
 }

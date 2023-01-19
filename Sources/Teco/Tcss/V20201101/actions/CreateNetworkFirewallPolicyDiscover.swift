@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Tcss {
 
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
-        self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
+        self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
-        try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createNetworkFirewallPolicyDiscover(_ input: CreateNetworkFirewallPolicyDiscoverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
+        try await self.client.execute(action: "CreateNetworkFirewallPolicyDiscover", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
-        self.createNetworkFirewallPolicyDiscover(CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createNetworkFirewallPolicyDiscover(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkFirewallPolicyDiscoverResponse> {
+        self.createNetworkFirewallPolicyDiscover(CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络集群网络策略创建自动发现任务
     @inlinable
-    public func createNetworkFirewallPolicyDiscover(clusterId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
-        try await self.createNetworkFirewallPolicyDiscover(CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId), logger: logger, on: eventLoop)
+    public func createNetworkFirewallPolicyDiscover(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkFirewallPolicyDiscoverResponse {
+        try await self.createNetworkFirewallPolicyDiscover(CreateNetworkFirewallPolicyDiscoverRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 }

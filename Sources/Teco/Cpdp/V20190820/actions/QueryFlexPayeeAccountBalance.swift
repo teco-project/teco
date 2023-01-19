@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Cpdp {
 
     /// 灵云V2-收款用户账户余额查询
     @inlinable
-    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountBalanceResponse> {
-        self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountBalanceResponse> {
+        self.client.execute(action: "QueryFlexPayeeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户余额查询
     @inlinable
-    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
-        try await self.client.execute(action: "QueryFlexPayeeAccountBalance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryFlexPayeeAccountBalance(_ input: QueryFlexPayeeAccountBalanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
+        try await self.client.execute(action: "QueryFlexPayeeAccountBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 灵云V2-收款用户账户余额查询
     @inlinable
-    public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountBalanceResponse> {
-        self.queryFlexPayeeAccountBalance(QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeAccountBalanceResponse> {
+        self.queryFlexPayeeAccountBalance(QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户账户余额查询
     @inlinable
-    public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
-        try await self.queryFlexPayeeAccountBalance(QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), logger: logger, on: eventLoop)
+    public func queryFlexPayeeAccountBalance(payeeId: String, incomeType: String, environment: String? = nil, snapshotDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeAccountBalanceResponse {
+        try await self.queryFlexPayeeAccountBalance(QueryFlexPayeeAccountBalanceRequest(payeeId: payeeId, incomeType: incomeType, environment: environment, snapshotDate: snapshotDate), region: region, logger: logger, on: eventLoop)
     }
 }

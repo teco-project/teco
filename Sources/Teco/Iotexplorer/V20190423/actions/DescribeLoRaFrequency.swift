@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotexplorer {
     ///
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
-    public func describeLoRaFrequency(_ input: DescribeLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoRaFrequencyResponse> {
-        self.client.execute(action: "DescribeLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLoRaFrequency(_ input: DescribeLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoRaFrequencyResponse> {
+        self.client.execute(action: "DescribeLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取LoRa自定义频点详情
     ///
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
-    public func describeLoRaFrequency(_ input: DescribeLoRaFrequencyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
-        try await self.client.execute(action: "DescribeLoRaFrequency", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLoRaFrequency(_ input: DescribeLoRaFrequencyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
+        try await self.client.execute(action: "DescribeLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取LoRa自定义频点详情
     ///
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
-    public func describeLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoRaFrequencyResponse> {
-        self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    public func describeLoRaFrequency(freqId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoRaFrequencyResponse> {
+        self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取LoRa自定义频点详情
     ///
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
-    public func describeLoRaFrequency(freqId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
-        try await self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), logger: logger, on: eventLoop)
+    public func describeLoRaFrequency(freqId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
+        try await self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), region: region, logger: logger, on: eventLoop)
     }
 }

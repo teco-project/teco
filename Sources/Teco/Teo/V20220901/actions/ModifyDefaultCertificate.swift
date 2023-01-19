@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,25 +53,25 @@ extension Teo {
 
     /// 修改默认证书状态
     @inlinable
-    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDefaultCertificateResponse> {
-        self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDefaultCertificateResponse> {
+        self.client.execute(action: "ModifyDefaultCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改默认证书状态
     @inlinable
-    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
-        try await self.client.execute(action: "ModifyDefaultCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDefaultCertificate(_ input: ModifyDefaultCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
+        try await self.client.execute(action: "ModifyDefaultCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改默认证书状态
     @inlinable
-    public func modifyDefaultCertificate(zoneId: String, certId: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDefaultCertificateResponse> {
-        self.modifyDefaultCertificate(ModifyDefaultCertificateRequest(zoneId: zoneId, certId: certId, status: status), logger: logger, on: eventLoop)
+    public func modifyDefaultCertificate(zoneId: String, certId: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDefaultCertificateResponse> {
+        self.modifyDefaultCertificate(ModifyDefaultCertificateRequest(zoneId: zoneId, certId: certId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改默认证书状态
     @inlinable
-    public func modifyDefaultCertificate(zoneId: String, certId: String? = nil, status: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
-        try await self.modifyDefaultCertificate(ModifyDefaultCertificateRequest(zoneId: zoneId, certId: certId, status: status), logger: logger, on: eventLoop)
+    public func modifyDefaultCertificate(zoneId: String, certId: String? = nil, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDefaultCertificateResponse {
+        try await self.modifyDefaultCertificate(ModifyDefaultCertificateRequest(zoneId: zoneId, certId: certId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

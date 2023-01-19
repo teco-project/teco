@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,31 +81,31 @@ extension Gaap {
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
-        self.client.execute(action: "DescribeRealServerStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
+        self.client.execute(action: "DescribeRealServerStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServerStatisticsResponse {
-        try await self.client.execute(action: "DescribeRealServerStatistics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRealServerStatistics(_ input: DescribeRealServerStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServerStatisticsResponse {
+        try await self.client.execute(action: "DescribeRealServerStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
-        self.describeRealServerStatistics(DescribeRealServerStatisticsRequest(realServerId: realServerId, listenerId: listenerId, ruleId: ruleId, withinTime: withinTime, startTime: startTime, endTime: endTime, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServerStatisticsResponse> {
+        self.describeRealServerStatistics(DescribeRealServerStatisticsRequest(realServerId: realServerId, listenerId: listenerId, ruleId: ruleId, withinTime: withinTime, startTime: startTime, endTime: endTime, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询已绑定源站健康检查统计数据(废弃)
     ///
     /// 该接口（DescribeRealServerStatistics）用于查询源站健康检查结果的统计数据。源站状态展示位为1：正常或者0：异常。查询的源站需要在监听器或者规则上进行了绑定，查询时需指定绑定的监听器或者规则ID。该接口支持1分钟细粒度的源站状态统计数据展示。
     @inlinable
-    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServerStatisticsResponse {
-        try await self.describeRealServerStatistics(DescribeRealServerStatisticsRequest(realServerId: realServerId, listenerId: listenerId, ruleId: ruleId, withinTime: withinTime, startTime: startTime, endTime: endTime, granularity: granularity), logger: logger, on: eventLoop)
+    public func describeRealServerStatistics(realServerId: String, listenerId: String? = nil, ruleId: String? = nil, withinTime: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServerStatisticsResponse {
+        try await self.describeRealServerStatistics(DescribeRealServerStatisticsRequest(realServerId: realServerId, listenerId: listenerId, ruleId: ruleId, withinTime: withinTime, startTime: startTime, endTime: endTime, granularity: granularity), region: region, logger: logger, on: eventLoop)
     }
 }

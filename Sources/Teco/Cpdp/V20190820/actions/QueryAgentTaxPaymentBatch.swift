@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Cpdp {
 
     /// 直播平台-查询批次信息
     @inlinable
-    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAgentTaxPaymentBatchResponse> {
-        self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAgentTaxPaymentBatchResponse> {
+        self.client.execute(action: "QueryAgentTaxPaymentBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询批次信息
     @inlinable
-    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
-        try await self.client.execute(action: "QueryAgentTaxPaymentBatch", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryAgentTaxPaymentBatch(_ input: QueryAgentTaxPaymentBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
+        try await self.client.execute(action: "QueryAgentTaxPaymentBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-查询批次信息
     @inlinable
-    public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAgentTaxPaymentBatchResponse> {
-        self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), logger: logger, on: eventLoop)
+    public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAgentTaxPaymentBatchResponse> {
+        self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询批次信息
     @inlinable
-    public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
-        try await self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), logger: logger, on: eventLoop)
+    public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
+        try await self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

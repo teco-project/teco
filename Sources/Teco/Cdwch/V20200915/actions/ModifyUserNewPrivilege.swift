@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -35,31 +35,31 @@ extension Cdwch {
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
-        self.client.execute(action: "ModifyUserNewPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
+        self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
-        try await self.client.execute(action: "ModifyUserNewPrivilege", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
+        try await self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
-        self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), logger: logger, on: eventLoop)
+    public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
+        self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
     @inlinable
-    public func modifyUserNewPrivilege(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
-        try await self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), logger: logger, on: eventLoop)
+    public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
+        try await self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

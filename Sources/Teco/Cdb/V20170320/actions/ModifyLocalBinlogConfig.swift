@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdb {
     ///
     /// 该接口用于修改实例本地binlog保留策略。
     @inlinable
-    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
-        self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
+        self.client.execute(action: "ModifyLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
     @inlinable
-    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
-        try await self.client.execute(action: "ModifyLocalBinlogConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
+        try await self.client.execute(action: "ModifyLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
     @inlinable
-    public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
-        self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), logger: logger, on: eventLoop)
+    public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
+        self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
     @inlinable
-    public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
-        try await self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), logger: logger, on: eventLoop)
+    public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
+        try await self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), region: region, logger: logger, on: eventLoop)
     }
 }

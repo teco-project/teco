@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Oceanus {
 
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
-        self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
+        self.client.execute(action: "TriggerJobSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
-        try await self.client.execute(action: "TriggerJobSavepoint", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func triggerJobSavepoint(_ input: TriggerJobSavepointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
+        try await self.client.execute(action: "TriggerJobSavepoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
-        self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TriggerJobSavepointResponse> {
+        self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 触发Savepoint
     @inlinable
-    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
-        try await self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), logger: logger, on: eventLoop)
+    public func triggerJobSavepoint(jobId: String, description: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TriggerJobSavepointResponse {
+        try await self.triggerJobSavepoint(TriggerJobSavepointRequest(jobId: jobId, description: description, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 }

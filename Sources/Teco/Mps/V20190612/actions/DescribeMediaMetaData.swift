@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Mps {
     ///
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
-    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaMetaDataResponse> {
-        self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaMetaDataResponse> {
+        self.client.execute(action: "DescribeMediaMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体元信息
     ///
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
-    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
-        try await self.client.execute(action: "DescribeMediaMetaData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMediaMetaData(_ input: DescribeMediaMetaDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
+        try await self.client.execute(action: "DescribeMediaMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取媒体元信息
     ///
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
-    public func describeMediaMetaData(inputInfo: MediaInputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaMetaDataResponse> {
-        self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), logger: logger, on: eventLoop)
+    public func describeMediaMetaData(inputInfo: MediaInputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaMetaDataResponse> {
+        self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体元信息
     ///
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
-    public func describeMediaMetaData(inputInfo: MediaInputInfo, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
-        try await self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), logger: logger, on: eventLoop)
+    public func describeMediaMetaData(inputInfo: MediaInputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
+        try await self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), region: region, logger: logger, on: eventLoop)
     }
 }

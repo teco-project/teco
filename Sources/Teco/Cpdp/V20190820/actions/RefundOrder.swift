@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Cpdp {
     ///
     /// 云鉴-消费订单退款的接口
     @inlinable
-    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundOrderResponse> {
-        self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func refundOrder(_ input: RefundOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundOrderResponse> {
+        self.client.execute(action: "RefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单退款接口
     ///
     /// 云鉴-消费订单退款的接口
     @inlinable
-    public func refundOrder(_ input: RefundOrderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
-        try await self.client.execute(action: "RefundOrder", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func refundOrder(_ input: RefundOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
+        try await self.client.execute(action: "RefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-消费订单退款接口
     ///
     /// 云鉴-消费订单退款的接口
     @inlinable
-    public func refundOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundOrderResponse> {
-        self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    public func refundOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundOrderResponse> {
+        self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单退款接口
     ///
     /// 云鉴-消费订单退款的接口
     @inlinable
-    public func refundOrder(merchantAppId: String, orderNo: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
-        try await self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), logger: logger, on: eventLoop)
+    public func refundOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
+        try await self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
     }
 }

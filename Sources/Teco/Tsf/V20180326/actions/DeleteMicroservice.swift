@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,25 +47,25 @@ extension Tsf {
 
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
-        self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
+        self.client.execute(action: "DeleteMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
-        try await self.client.execute(action: "DeleteMicroservice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMicroservice(_ input: DeleteMicroserviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
+        try await self.client.execute(action: "DeleteMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(microserviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
-        self.deleteMicroservice(DeleteMicroserviceRequest(microserviceId: microserviceId), logger: logger, on: eventLoop)
+    public func deleteMicroservice(microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMicroserviceResponse> {
+        self.deleteMicroservice(DeleteMicroserviceRequest(microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除微服务
     @inlinable
-    public func deleteMicroservice(microserviceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
-        try await self.deleteMicroservice(DeleteMicroserviceRequest(microserviceId: microserviceId), logger: logger, on: eventLoop)
+    public func deleteMicroservice(microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMicroserviceResponse {
+        try await self.deleteMicroservice(DeleteMicroserviceRequest(microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,8 +63,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交任务
     @inlinable
-    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTaskResponse> {
-        self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func submitTask(_ input: SubmitTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTaskResponse> {
+        self.client.execute(action: "SubmitTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交任务【Beta版本】
@@ -72,8 +72,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交任务
     @inlinable
-    public func submitTask(_ input: SubmitTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
-        try await self.client.execute(action: "SubmitTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func submitTask(_ input: SubmitTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
+        try await self.client.execute(action: "SubmitTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 提交任务【Beta版本】
@@ -81,8 +81,8 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交任务
     @inlinable
-    public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTaskResponse> {
-        self.submitTask(SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitTaskResponse> {
+        self.submitTask(SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提交任务【Beta版本】
@@ -90,7 +90,7 @@ extension Wedata {
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 提交任务
     @inlinable
-    public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
-        try await self.submitTask(SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), logger: logger, on: eventLoop)
+    public func submitTask(projectId: String, taskId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitTaskResponse {
+        try await self.submitTask(SubmitTaskRequest(projectId: projectId, taskId: taskId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
     }
 }

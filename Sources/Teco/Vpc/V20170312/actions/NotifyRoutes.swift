@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Vpc {
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
-        self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func notifyRoutes(_ input: NotifyRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
+        self.client.execute(action: "NotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(_ input: NotifyRoutesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
-        try await self.client.execute(action: "NotifyRoutes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func notifyRoutes(_ input: NotifyRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
+        try await self.client.execute(action: "NotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
-        self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    public func notifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
+        self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发布路由至云联网
     ///
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable
-    public func notifyRoutes(routeTableId: String, routeItemIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
-        try await self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), logger: logger, on: eventLoop)
+    public func notifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
+        try await self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
 }

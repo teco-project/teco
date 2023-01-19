@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Teo {
     ///
     /// 修改Web&Bot安全配置。
     @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
-        self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
+        self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Web&Bot安全配置
     ///
     /// 修改Web&Bot安全配置。
     @inlinable
-    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.client.execute(action: "ModifySecurityPolicy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySecurityPolicy(_ input: ModifySecurityPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
+        try await self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改Web&Bot安全配置
     ///
     /// 修改Web&Bot安全配置。
     @inlinable
-    public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
-        self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
+        self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改Web&Bot安全配置
     ///
     /// 修改Web&Bot安全配置。
     @inlinable
-    public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), logger: logger, on: eventLoop)
+    public func modifySecurityPolicy(zoneId: String, securityConfig: SecurityConfig, entity: String? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
+        try await self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, securityConfig: securityConfig, entity: entity, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
 }

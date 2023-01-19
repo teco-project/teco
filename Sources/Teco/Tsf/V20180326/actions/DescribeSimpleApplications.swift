@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -81,25 +81,25 @@ extension Tsf {
 
     /// 查询简单应用列表
     @inlinable
-    public func describeSimpleApplications(_ input: DescribeSimpleApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleApplicationsResponse> {
-        self.client.execute(action: "DescribeSimpleApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSimpleApplications(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleApplicationsResponse> {
+        self.client.execute(action: "DescribeSimpleApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询简单应用列表
     @inlinable
-    public func describeSimpleApplications(_ input: DescribeSimpleApplicationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleApplicationsResponse {
-        try await self.client.execute(action: "DescribeSimpleApplications", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSimpleApplications(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleApplicationsResponse {
+        try await self.client.execute(action: "DescribeSimpleApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询简单应用列表
     @inlinable
-    public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleApplicationsResponse> {
-        self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleApplicationsResponse> {
+        self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询简单应用列表
     @inlinable
-    public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleApplicationsResponse {
-        try await self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), logger: logger, on: eventLoop)
+    public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleApplicationsResponse {
+        try await self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
     }
 }

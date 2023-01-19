@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,25 +63,25 @@ extension Iotvideo {
 
     /// 创建匿名访问Token
     @inlinable
-    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnonymousAccessTokenResponse> {
-        self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnonymousAccessTokenResponse> {
+        self.client.execute(action: "CreateAnonymousAccessToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建匿名访问Token
     @inlinable
-    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
-        try await self.client.execute(action: "CreateAnonymousAccessToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAnonymousAccessToken(_ input: CreateAnonymousAccessTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
+        try await self.client.execute(action: "CreateAnonymousAccessToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建匿名访问Token
     @inlinable
-    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnonymousAccessTokenResponse> {
-        self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), logger: logger, on: eventLoop)
+    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnonymousAccessTokenResponse> {
+        self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建匿名访问Token
     @inlinable
-    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
-        try await self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), logger: logger, on: eventLoop)
+    public func createAnonymousAccessToken(ttlMinutes: Int64, tid: String? = nil, oldAccessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnonymousAccessTokenResponse {
+        try await self.createAnonymousAccessToken(CreateAnonymousAccessTokenRequest(ttlMinutes: ttlMinutes, tid: tid, oldAccessToken: oldAccessToken), region: region, logger: logger, on: eventLoop)
     }
 }

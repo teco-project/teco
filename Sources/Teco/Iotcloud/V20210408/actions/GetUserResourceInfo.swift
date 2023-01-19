@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Iotcloud {
     ///
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
-    public func getUserResourceInfo(_ input: GetUserResourceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResourceInfoResponse> {
-        self.client.execute(action: "GetUserResourceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUserResourceInfo(_ input: GetUserResourceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResourceInfoResponse> {
+        self.client.execute(action: "GetUserResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户资源信息
     ///
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
-    public func getUserResourceInfo(_ input: GetUserResourceInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
-        try await self.client.execute(action: "GetUserResourceInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUserResourceInfo(_ input: GetUserResourceInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
+        try await self.client.execute(action: "GetUserResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户资源信息
     ///
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
-    public func getUserResourceInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResourceInfoResponse> {
-        self.getUserResourceInfo(GetUserResourceInfoRequest(), logger: logger, on: eventLoop)
+    public func getUserResourceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserResourceInfoResponse> {
+        self.getUserResourceInfo(GetUserResourceInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户资源信息
     ///
     /// 本接口（GetUserResourceInfo）用于查询用户资源使用信息。
     @inlinable
-    public func getUserResourceInfo(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
-        try await self.getUserResourceInfo(GetUserResourceInfoRequest(), logger: logger, on: eventLoop)
+    public func getUserResourceInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserResourceInfoResponse {
+        try await self.getUserResourceInfo(GetUserResourceInfoRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

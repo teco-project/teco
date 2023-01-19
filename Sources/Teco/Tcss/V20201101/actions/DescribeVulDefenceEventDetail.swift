@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 查询漏洞防御事件详情
     @inlinable
-    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventDetailResponse> {
-        self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventDetailResponse> {
+        self.client.execute(action: "DescribeVulDefenceEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御事件详情
     @inlinable
-    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
-        try await self.client.execute(action: "DescribeVulDefenceEventDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeVulDefenceEventDetail(_ input: DescribeVulDefenceEventDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
+        try await self.client.execute(action: "DescribeVulDefenceEventDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询漏洞防御事件详情
     @inlinable
-    public func describeVulDefenceEventDetail(eventID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventDetailResponse> {
-        self.describeVulDefenceEventDetail(DescribeVulDefenceEventDetailRequest(eventID: eventID), logger: logger, on: eventLoop)
+    public func describeVulDefenceEventDetail(eventID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDefenceEventDetailResponse> {
+        self.describeVulDefenceEventDetail(DescribeVulDefenceEventDetailRequest(eventID: eventID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞防御事件详情
     @inlinable
-    public func describeVulDefenceEventDetail(eventID: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
-        try await self.describeVulDefenceEventDetail(DescribeVulDefenceEventDetailRequest(eventID: eventID), logger: logger, on: eventLoop)
+    public func describeVulDefenceEventDetail(eventID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDefenceEventDetailResponse {
+        try await self.describeVulDefenceEventDetail(DescribeVulDefenceEventDetailRequest(eventID: eventID), region: region, logger: logger, on: eventLoop)
     }
 }

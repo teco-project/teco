@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,31 +71,31 @@ extension Ses {
     ///
     /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
     @inlinable
-    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSendTasksResponse> {
-        self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listSendTasks(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSendTasksResponse> {
+        self.client.execute(action: "ListSendTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询发送任务
     ///
     /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
     @inlinable
-    public func listSendTasks(_ input: ListSendTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
-        try await self.client.execute(action: "ListSendTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listSendTasks(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
+        try await self.client.execute(action: "ListSendTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询发送任务
     ///
     /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
     @inlinable
-    public func listSendTasks(offset: UInt64, limit: UInt64, status: UInt64? = nil, receiverId: UInt64? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSendTasksResponse> {
-        self.listSendTasks(ListSendTasksRequest(offset: offset, limit: limit, status: status, receiverId: receiverId, taskType: taskType), logger: logger, on: eventLoop)
+    public func listSendTasks(offset: UInt64, limit: UInt64, status: UInt64? = nil, receiverId: UInt64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSendTasksResponse> {
+        self.listSendTasks(ListSendTasksRequest(offset: offset, limit: limit, status: status, receiverId: receiverId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询发送任务
     ///
     /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
     @inlinable
-    public func listSendTasks(offset: UInt64, limit: UInt64, status: UInt64? = nil, receiverId: UInt64? = nil, taskType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
-        try await self.listSendTasks(ListSendTasksRequest(offset: offset, limit: limit, status: status, receiverId: receiverId, taskType: taskType), logger: logger, on: eventLoop)
+    public func listSendTasks(offset: UInt64, limit: UInt64, status: UInt64? = nil, receiverId: UInt64? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSendTasksResponse {
+        try await self.listSendTasks(ListSendTasksRequest(offset: offset, limit: limit, status: status, receiverId: receiverId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

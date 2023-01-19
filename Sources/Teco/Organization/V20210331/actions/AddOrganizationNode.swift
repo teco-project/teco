@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Organization {
 
     /// 添加企业组织节点
     @inlinable
-    public func addOrganizationNode(_ input: AddOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationNodeResponse> {
-        self.client.execute(action: "AddOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addOrganizationNode(_ input: AddOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationNodeResponse> {
+        self.client.execute(action: "AddOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加企业组织节点
     @inlinable
-    public func addOrganizationNode(_ input: AddOrganizationNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
-        try await self.client.execute(action: "AddOrganizationNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addOrganizationNode(_ input: AddOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
+        try await self.client.execute(action: "AddOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加企业组织节点
     @inlinable
-    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationNodeResponse> {
-        self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationNodeResponse> {
+        self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加企业组织节点
     @inlinable
-    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
-        try await self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), logger: logger, on: eventLoop)
+    public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
+        try await self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,8 +54,8 @@ extension Ivld {
     /// 当L2Category为空时，将创建一级自定义分类。
     /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
     @inlinable
-    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomCategoryResponse> {
-        self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCustomCategory(_ input: CreateCustomCategoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomCategoryResponse> {
+        self.client.execute(action: "CreateCustomCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物分类
@@ -64,8 +64,8 @@ extension Ivld {
     /// 当L2Category为空时，将创建一级自定义分类。
     /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
     @inlinable
-    public func createCustomCategory(_ input: CreateCustomCategoryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
-        try await self.client.execute(action: "CreateCustomCategory", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCustomCategory(_ input: CreateCustomCategoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
+        try await self.client.execute(action: "CreateCustomCategory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义人物分类
@@ -74,8 +74,8 @@ extension Ivld {
     /// 当L2Category为空时，将创建一级自定义分类。
     /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
     @inlinable
-    public func createCustomCategory(l1Category: String, l2Category: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomCategoryResponse> {
-        self.createCustomCategory(CreateCustomCategoryRequest(l1Category: l1Category, l2Category: l2Category), logger: logger, on: eventLoop)
+    public func createCustomCategory(l1Category: String, l2Category: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomCategoryResponse> {
+        self.createCustomCategory(CreateCustomCategoryRequest(l1Category: l1Category, l2Category: l2Category), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物分类
@@ -84,7 +84,7 @@ extension Ivld {
     /// 当L2Category为空时，将创建一级自定义分类。
     /// 当L1Category与L2Category均不为空时，将创建二级自定义分类。请注意，**只有当一级自定义分类存在时，才可创建二级自定义分类**。
     @inlinable
-    public func createCustomCategory(l1Category: String, l2Category: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
-        try await self.createCustomCategory(CreateCustomCategoryRequest(l1Category: l1Category, l2Category: l2Category), logger: logger, on: eventLoop)
+    public func createCustomCategory(l1Category: String, l2Category: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomCategoryResponse {
+        try await self.createCustomCategory(CreateCustomCategoryRequest(l1Category: l1Category, l2Category: l2Category), region: region, logger: logger, on: eventLoop)
     }
 }

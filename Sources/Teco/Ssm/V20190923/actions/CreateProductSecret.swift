@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -127,25 +127,25 @@ extension Ssm {
 
     /// 创建云产品凭据
     @inlinable
-    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductSecretResponse> {
-        self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createProductSecret(_ input: CreateProductSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductSecretResponse> {
+        self.client.execute(action: "CreateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云产品凭据
     @inlinable
-    public func createProductSecret(_ input: CreateProductSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
-        try await self.client.execute(action: "CreateProductSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createProductSecret(_ input: CreateProductSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
+        try await self.client.execute(action: "CreateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云产品凭据
     @inlinable
-    public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductSecretResponse> {
-        self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), logger: logger, on: eventLoop)
+    public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductSecretResponse> {
+        self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云产品凭据
     @inlinable
-    public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
-        try await self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), logger: logger, on: eventLoop)
+    public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
+        try await self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), region: region, logger: logger, on: eventLoop)
     }
 }

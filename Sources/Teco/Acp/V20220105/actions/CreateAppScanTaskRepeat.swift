@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -106,31 +106,31 @@ extension Acp {
     ///
     /// App应用合规隐私诊断重试任务
     @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskRepeatResponse> {
-        self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskRepeatResponse> {
+        self.client.execute(action: "CreateAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 应用合规隐私诊断重试任务
     ///
     /// App应用合规隐私诊断重试任务
     @inlinable
-    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
-        try await self.client.execute(action: "CreateAppScanTaskRepeat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAppScanTaskRepeat(_ input: CreateAppScanTaskRepeatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.client.execute(action: "CreateAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 应用合规隐私诊断重试任务
     ///
     /// App应用合规隐私诊断重试任务
     @inlinable
-    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskRepeatResponse> {
-        self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppScanTaskRepeatResponse> {
+        self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 
     /// 应用合规隐私诊断重试任务
     ///
     /// App应用合规隐私诊断重试任务
     @inlinable
-    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
-        try await self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), logger: logger, on: eventLoop)
+    public func createAppScanTaskRepeat(source: Int64, platform: Int64, taskType: Int64, orgTaskID: String, appPackage: String? = nil, fileID: String? = nil, appDownloadUrl: String? = nil, privacyTextUrl: String? = nil, appName: String? = nil, privacyTextName: String? = nil, appSha1: String? = nil, privacyTextMD5: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppScanTaskRepeatResponse {
+        try await self.createAppScanTaskRepeat(CreateAppScanTaskRepeatRequest(source: source, platform: platform, taskType: taskType, orgTaskID: orgTaskID, appPackage: appPackage, fileID: fileID, appDownloadUrl: appDownloadUrl, privacyTextUrl: privacyTextUrl, appName: appName, privacyTextName: privacyTextName, appSha1: appSha1, privacyTextMD5: privacyTextMD5), region: region, logger: logger, on: eventLoop)
     }
 }

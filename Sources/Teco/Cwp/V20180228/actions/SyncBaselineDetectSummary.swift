@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Cwp {
 
     /// 同步基线检测进度概要
     @inlinable
-    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncBaselineDetectSummaryResponse> {
-        self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncBaselineDetectSummaryResponse> {
+        self.client.execute(action: "SyncBaselineDetectSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步基线检测进度概要
     @inlinable
-    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
-        try await self.client.execute(action: "SyncBaselineDetectSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func syncBaselineDetectSummary(_ input: SyncBaselineDetectSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
+        try await self.client.execute(action: "SyncBaselineDetectSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步基线检测进度概要
     @inlinable
-    public func syncBaselineDetectSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncBaselineDetectSummaryResponse> {
-        self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), logger: logger, on: eventLoop)
+    public func syncBaselineDetectSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncBaselineDetectSummaryResponse> {
+        self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步基线检测进度概要
     @inlinable
-    public func syncBaselineDetectSummary(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
-        try await self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), logger: logger, on: eventLoop)
+    public func syncBaselineDetectSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
+        try await self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

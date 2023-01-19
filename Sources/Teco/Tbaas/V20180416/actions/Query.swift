@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Tbaas {
 
     /// 查询交易
     @inlinable
-    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResponse> {
-        self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func query(_ input: QueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResponse> {
+        self.client.execute(action: "Query", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询交易
     @inlinable
-    public func query(_ input: QueryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
-        try await self.client.execute(action: "Query", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func query(_ input: QueryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
+        try await self.client.execute(action: "Query", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询交易
     @inlinable
-    public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResponse> {
-        self.query(QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), logger: logger, on: eventLoop)
+    public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResponse> {
+        self.query(QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询交易
     @inlinable
-    public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
-        try await self.query(QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), logger: logger, on: eventLoop)
+    public func query(module: String, operation: String, clusterId: String, chaincodeName: String, channelName: String, peers: [PeerSet], funcName: String, groupName: String, args: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResponse {
+        try await self.query(QueryRequest(module: module, operation: operation, clusterId: clusterId, chaincodeName: chaincodeName, channelName: channelName, peers: peers, funcName: funcName, groupName: groupName, args: args), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Vpc {
     ///
     /// 本接口（SetCcnRegionBandwidthLimits）用于设置云联网（CCN）各地域出带宽上限，或者地域间带宽上限。
     @inlinable
-    public func setCcnRegionBandwidthLimits(_ input: SetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCcnRegionBandwidthLimitsResponse> {
-        self.client.execute(action: "SetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func setCcnRegionBandwidthLimits(_ input: SetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCcnRegionBandwidthLimitsResponse> {
+        self.client.execute(action: "SetCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置云联网各地域出带宽上限或地域间上限
     ///
     /// 本接口（SetCcnRegionBandwidthLimits）用于设置云联网（CCN）各地域出带宽上限，或者地域间带宽上限。
     @inlinable
-    public func setCcnRegionBandwidthLimits(_ input: SetCcnRegionBandwidthLimitsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCcnRegionBandwidthLimitsResponse {
-        try await self.client.execute(action: "SetCcnRegionBandwidthLimits", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func setCcnRegionBandwidthLimits(_ input: SetCcnRegionBandwidthLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCcnRegionBandwidthLimitsResponse {
+        try await self.client.execute(action: "SetCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置云联网各地域出带宽上限或地域间上限
     ///
     /// 本接口（SetCcnRegionBandwidthLimits）用于设置云联网（CCN）各地域出带宽上限，或者地域间带宽上限。
     @inlinable
-    public func setCcnRegionBandwidthLimits(ccnId: String, ccnRegionBandwidthLimits: [CcnRegionBandwidthLimit], setDefaultLimitFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCcnRegionBandwidthLimitsResponse> {
-        self.setCcnRegionBandwidthLimits(SetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, ccnRegionBandwidthLimits: ccnRegionBandwidthLimits, setDefaultLimitFlag: setDefaultLimitFlag), logger: logger, on: eventLoop)
+    public func setCcnRegionBandwidthLimits(ccnId: String, ccnRegionBandwidthLimits: [CcnRegionBandwidthLimit], setDefaultLimitFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCcnRegionBandwidthLimitsResponse> {
+        self.setCcnRegionBandwidthLimits(SetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, ccnRegionBandwidthLimits: ccnRegionBandwidthLimits, setDefaultLimitFlag: setDefaultLimitFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置云联网各地域出带宽上限或地域间上限
     ///
     /// 本接口（SetCcnRegionBandwidthLimits）用于设置云联网（CCN）各地域出带宽上限，或者地域间带宽上限。
     @inlinable
-    public func setCcnRegionBandwidthLimits(ccnId: String, ccnRegionBandwidthLimits: [CcnRegionBandwidthLimit], setDefaultLimitFlag: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCcnRegionBandwidthLimitsResponse {
-        try await self.setCcnRegionBandwidthLimits(SetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, ccnRegionBandwidthLimits: ccnRegionBandwidthLimits, setDefaultLimitFlag: setDefaultLimitFlag), logger: logger, on: eventLoop)
+    public func setCcnRegionBandwidthLimits(ccnId: String, ccnRegionBandwidthLimits: [CcnRegionBandwidthLimit], setDefaultLimitFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCcnRegionBandwidthLimitsResponse {
+        try await self.setCcnRegionBandwidthLimits(SetCcnRegionBandwidthLimitsRequest(ccnId: ccnId, ccnRegionBandwidthLimits: ccnRegionBandwidthLimits, setDefaultLimitFlag: setDefaultLimitFlag), region: region, logger: logger, on: eventLoop)
     }
 }

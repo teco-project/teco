@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tcss {
 
     /// 获取用户当前灰度配置
     @inlinable
-    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeABTestConfigResponse> {
-        self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeABTestConfigResponse> {
+        self.client.execute(action: "DescribeABTestConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户当前灰度配置
     @inlinable
-    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
-        try await self.client.execute(action: "DescribeABTestConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeABTestConfig(_ input: DescribeABTestConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
+        try await self.client.execute(action: "DescribeABTestConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户当前灰度配置
     @inlinable
-    public func describeABTestConfig(projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeABTestConfigResponse> {
-        self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), logger: logger, on: eventLoop)
+    public func describeABTestConfig(projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeABTestConfigResponse> {
+        self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户当前灰度配置
     @inlinable
-    public func describeABTestConfig(projectName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
-        try await self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), logger: logger, on: eventLoop)
+    public func describeABTestConfig(projectName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeABTestConfigResponse {
+        try await self.describeABTestConfig(DescribeABTestConfigRequest(projectName: projectName), region: region, logger: logger, on: eventLoop)
     }
 }

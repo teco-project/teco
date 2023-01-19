@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,8 +75,8 @@ extension Ocr {
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
     ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
-        self.client.execute(action: "RideHailingTransportLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
+        self.client.execute(action: "RideHailingTransportLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网约车运输证识别
@@ -84,8 +84,8 @@ extension Ocr {
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
     ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
-        try await self.client.execute(action: "RideHailingTransportLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func rideHailingTransportLicenseOCR(_ input: RideHailingTransportLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
+        try await self.client.execute(action: "RideHailingTransportLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 网约车运输证识别
@@ -93,8 +93,8 @@ extension Ocr {
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
     ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
-        self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingTransportLicenseOCRResponse> {
+        self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 网约车运输证识别
@@ -102,7 +102,7 @@ extension Ocr {
     /// 本接口支持网约车运输证关键字段的识别，包括交运管许可字号、车辆所有人、车辆号牌、起始日期、截止日期、发证日期。
     ///
     @inlinable
-    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
-        try await self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), logger: logger, on: eventLoop)
+    public func rideHailingTransportLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingTransportLicenseOCRResponse {
+        try await self.rideHailingTransportLicenseOCR(RideHailingTransportLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
     }
 }

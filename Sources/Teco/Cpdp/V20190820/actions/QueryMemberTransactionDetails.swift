@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -104,25 +104,25 @@ extension Cpdp {
 
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
-    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionDetailsResponse> {
-        self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionDetailsResponse> {
+        self.client.execute(action: "QueryMemberTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
-    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
-        try await self.client.execute(action: "QueryMemberTransactionDetails", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryMemberTransactionDetails(_ input: QueryMemberTransactionDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
+        try await self.client.execute(action: "QueryMemberTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
-    public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionDetailsResponse> {
-        self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionDetailsResponse> {
+        self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
-    public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
-        try await self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), logger: logger, on: eventLoop)
+    public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
+        try await self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Rum {
     ///
     /// 获取项目上报量
     @inlinable
-    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataReportCountResponse> {
-        self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataReportCountResponse> {
+        self.client.execute(action: "DescribeDataReportCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取上报量
     ///
     /// 获取项目上报量
     @inlinable
-    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
-        try await self.client.execute(action: "DescribeDataReportCount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDataReportCount(_ input: DescribeDataReportCountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
+        try await self.client.execute(action: "DescribeDataReportCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取上报量
     ///
     /// 获取项目上报量
     @inlinable
-    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataReportCountResponse> {
-        self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), logger: logger, on: eventLoop)
+    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataReportCountResponse> {
+        self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取上报量
     ///
     /// 获取项目上报量
     @inlinable
-    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
-        try await self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), logger: logger, on: eventLoop)
+    public func describeDataReportCount(startTime: Int64, endTime: Int64, id: Int64? = nil, reportType: String? = nil, instanceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataReportCountResponse {
+        try await self.describeDataReportCount(DescribeDataReportCountRequest(startTime: startTime, endTime: endTime, id: id, reportType: reportType, instanceID: instanceID), region: region, logger: logger, on: eventLoop)
     }
 }

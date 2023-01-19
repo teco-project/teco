@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Cls {
 
     /// 获取投递任务列表
     @inlinable
-    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShipperTasksResponse> {
-        self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShipperTasksResponse> {
+        self.client.execute(action: "DescribeShipperTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取投递任务列表
     @inlinable
-    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
-        try await self.client.execute(action: "DescribeShipperTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeShipperTasks(_ input: DescribeShipperTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
+        try await self.client.execute(action: "DescribeShipperTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取投递任务列表
     @inlinable
-    public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShipperTasksResponse> {
-        self.describeShipperTasks(DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShipperTasksResponse> {
+        self.describeShipperTasks(DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取投递任务列表
     @inlinable
-    public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
-        try await self.describeShipperTasks(DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
+    public func describeShipperTasks(shipperId: String, startTime: Int64, endTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShipperTasksResponse {
+        try await self.describeShipperTasks(DescribeShipperTasksRequest(shipperId: shipperId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
     }
 }

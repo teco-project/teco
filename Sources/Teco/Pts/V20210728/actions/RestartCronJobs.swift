@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Pts {
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
-        self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func restartCronJobs(_ input: RestartCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
+        self.client.execute(action: "RestartCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(_ input: RestartCronJobsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
-        try await self.client.execute(action: "RestartCronJobs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func restartCronJobs(_ input: RestartCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
+        try await self.client.execute(action: "RestartCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
-        self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    public func restartCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
+        self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启定时任务
     ///
     /// 重启状态为已中止的定时任务
     @inlinable
-    public func restartCronJobs(projectId: String, cronJobIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
-        try await self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), logger: logger, on: eventLoop)
+    public func restartCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
+        try await self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -77,31 +77,31 @@ extension Mongodb {
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
-        self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
+        self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.client.execute(action: "ModifyDBInstanceSpec", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceSpec(_ input: ModifyDBInstanceSpecRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.client.execute(action: "ModifyDBInstanceSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
-        self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSpecResponse> {
+        self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 调整云数据库实例配置
     ///
     /// 本接口(ModifyDBInstanceSpec)用于调整MongoDB云数据库实例配置。接口支持的售卖规格，可从查询云数据库的售卖规格（DescribeSpecInfo）获取。
     @inlinable
-    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
-        try await self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), logger: logger, on: eventLoop)
+    public func modifyDBInstanceSpec(instanceId: String, memory: UInt64, volume: UInt64, oplogSize: UInt64? = nil, nodeNum: UInt64? = nil, replicateSetNum: UInt64? = nil, inMaintenance: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSpecResponse {
+        try await self.modifyDBInstanceSpec(ModifyDBInstanceSpecRequest(instanceId: instanceId, memory: memory, volume: volume, oplogSize: oplogSize, nodeNum: nodeNum, replicateSetNum: replicateSetNum, inMaintenance: inMaintenance), region: region, logger: logger, on: eventLoop)
     }
 }

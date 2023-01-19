@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Batch {
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
-        self.client.execute(action: "CreateTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
+        self.client.execute(action: "CreateTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建任务模板
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
-        try await self.client.execute(action: "CreateTaskTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTaskTemplate(_ input: CreateTaskTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
+        try await self.client.execute(action: "CreateTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建任务模板
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
-        self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), logger: logger, on: eventLoop)
+    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskTemplateResponse> {
+        self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建任务模板
     ///
     /// 用于创建任务模板
     @inlinable
-    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
-        try await self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), logger: logger, on: eventLoop)
+    public func createTaskTemplate(taskTemplateName: String, taskTemplateInfo: Task, taskTemplateDescription: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskTemplateResponse {
+        try await self.createTaskTemplate(CreateTaskTemplateRequest(taskTemplateName: taskTemplateName, taskTemplateInfo: taskTemplateInfo, taskTemplateDescription: taskTemplateDescription, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

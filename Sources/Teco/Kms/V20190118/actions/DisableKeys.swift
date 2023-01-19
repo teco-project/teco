@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Kms {
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(_ input: DisableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
-        self.client.execute(action: "DisableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func disableKeys(_ input: DisableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
+        self.client.execute(action: "DisableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(_ input: DisableKeysRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
-        try await self.client.execute(action: "DisableKeys", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func disableKeys(_ input: DisableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
+        try await self.client.execute(action: "DisableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
-        self.disableKeys(DisableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func disableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
+        self.disableKeys(DisableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量禁用主密钥
     ///
     /// 该接口用于批量禁止CMK的使用。
     @inlinable
-    public func disableKeys(keyIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
-        try await self.disableKeys(DisableKeysRequest(keyIds: keyIds), logger: logger, on: eventLoop)
+    public func disableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
+        try await self.disableKeys(DisableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
 }

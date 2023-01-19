@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Tione {
 
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
-        self.client.execute(action: "DeleteTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
+        self.client.execute(action: "DeleteTrainingModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
-        try await self.client.execute(action: "DeleteTrainingModel", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
+        try await self.client.execute(action: "DeleteTrainingModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
-        self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), logger: logger, on: eventLoop)
+    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
+        self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型
     @inlinable
-    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
-        try await self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), logger: logger, on: eventLoop)
+    public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
+        try await self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), region: region, logger: logger, on: eventLoop)
     }
 }

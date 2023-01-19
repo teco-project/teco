@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,25 +64,25 @@ extension Iotvideo {
 
     /// 拉取账户流水
     @inlinable
-    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceTransactionsResponse> {
-        self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceTransactionsResponse> {
+        self.client.execute(action: "DescribeBalanceTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取账户流水
     @inlinable
-    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
-        try await self.client.execute(action: "DescribeBalanceTransactions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBalanceTransactions(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
+        try await self.client.execute(action: "DescribeBalanceTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拉取账户流水
     @inlinable
-    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceTransactionsResponse> {
-        self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), logger: logger, on: eventLoop)
+    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBalanceTransactionsResponse> {
+        self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拉取账户流水
     @inlinable
-    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
-        try await self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), logger: logger, on: eventLoop)
+    public func describeBalanceTransactions(accountType: UInt64, offset: UInt64, limit: UInt64, operation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBalanceTransactionsResponse {
+        try await self.describeBalanceTransactions(DescribeBalanceTransactionsRequest(accountType: accountType, offset: offset, limit: limit, operation: operation), region: region, logger: logger, on: eventLoop)
     }
 }

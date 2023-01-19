@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,25 +49,25 @@ extension Cwp {
 
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
-        self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
+        self.client.execute(action: "ExportPrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
-        try await self.client.execute(action: "ExportPrivilegeEvents", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func exportPrivilegeEvents(_ input: ExportPrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
+        try await self.client.execute(action: "ExportPrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
-        self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportPrivilegeEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
+        self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 导出本地提权事件
     @inlinable
-    public func exportPrivilegeEvents(filters: [Filters]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
-        try await self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), logger: logger, on: eventLoop)
+    public func exportPrivilegeEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
+        try await self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -47,31 +47,31 @@ extension Cdn {
     ///
     /// StopScdnDomain 用于关闭域名的安全防护配置
     @inlinable
-    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScdnDomainResponse> {
-        self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopScdnDomain(_ input: StopScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScdnDomainResponse> {
+        self.client.execute(action: "StopScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止SCDN域名安全防护
     ///
     /// StopScdnDomain 用于关闭域名的安全防护配置
     @inlinable
-    public func stopScdnDomain(_ input: StopScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
-        try await self.client.execute(action: "StopScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopScdnDomain(_ input: StopScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
+        try await self.client.execute(action: "StopScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止SCDN域名安全防护
     ///
     /// StopScdnDomain 用于关闭域名的安全防护配置
     @inlinable
-    public func stopScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScdnDomainResponse> {
-        self.stopScdnDomain(StopScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func stopScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScdnDomainResponse> {
+        self.stopScdnDomain(StopScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止SCDN域名安全防护
     ///
     /// StopScdnDomain 用于关闭域名的安全防护配置
     @inlinable
-    public func stopScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
-        try await self.stopScdnDomain(StopScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func stopScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScdnDomainResponse {
+        try await self.stopScdnDomain(StopScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

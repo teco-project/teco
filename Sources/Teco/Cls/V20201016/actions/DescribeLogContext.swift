@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -80,31 +80,31 @@ extension Cls {
     ///
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
-    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogContextResponse> {
-        self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLogContext(_ input: DescribeLogContextRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogContextResponse> {
+        self.client.execute(action: "DescribeLogContext", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上下文检索
     ///
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
-    public func describeLogContext(_ input: DescribeLogContextRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
-        try await self.client.execute(action: "DescribeLogContext", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLogContext(_ input: DescribeLogContextRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
+        try await self.client.execute(action: "DescribeLogContext", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上下文检索
     ///
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
-    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogContextResponse> {
-        self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), logger: logger, on: eventLoop)
+    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogContextResponse> {
+        self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上下文检索
     ///
     /// 本接口用于搜索日志上下文附近的内容
     @inlinable
-    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
-        try await self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), logger: logger, on: eventLoop)
+    public func describeLogContext(topicId: String, bTime: String, pkgId: String, pkgLogId: Int64, prevLogs: Int64? = nil, nextLogs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogContextResponse {
+        try await self.describeLogContext(DescribeLogContextRequest(topicId: topicId, bTime: bTime, pkgId: pkgId, pkgLogId: pkgLogId, prevLogs: prevLogs, nextLogs: nextLogs), region: region, logger: logger, on: eventLoop)
     }
 }

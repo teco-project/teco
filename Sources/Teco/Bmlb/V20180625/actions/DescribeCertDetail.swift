@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Bmlb {
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
-        self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCertDetail(_ input: DescribeCertDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
+        self.client.execute(action: "DescribeCertDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(_ input: DescribeCertDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
-        try await self.client.execute(action: "DescribeCertDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCertDetail(_ input: DescribeCertDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
+        try await self.client.execute(action: "DescribeCertDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
-        self.describeCertDetail(DescribeCertDetailRequest(certId: certId), logger: logger, on: eventLoop)
+    public func describeCertDetail(certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertDetailResponse> {
+        self.describeCertDetail(DescribeCertDetailRequest(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡证书详情
     ///
     /// 获取黑石负载均衡证书详情。
     @inlinable
-    public func describeCertDetail(certId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
-        try await self.describeCertDetail(DescribeCertDetailRequest(certId: certId), logger: logger, on: eventLoop)
+    public func describeCertDetail(certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertDetailResponse {
+        try await self.describeCertDetail(DescribeCertDetailRequest(certId: certId), region: region, logger: logger, on: eventLoop)
     }
 }

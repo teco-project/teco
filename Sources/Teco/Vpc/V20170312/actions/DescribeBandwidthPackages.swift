@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,31 +76,31 @@ extension Vpc {
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
-        self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
+        self.client.execute(action: "DescribeBandwidthPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
-        try await self.client.execute(action: "DescribeBandwidthPackages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBandwidthPackages(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
+        try await self.client.execute(action: "DescribeBandwidthPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
-        self.describeBandwidthPackages(DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackagesResponse> {
+        self.describeBandwidthPackages(DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询带宽包资源
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
-        try await self.describeBandwidthPackages(DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeBandwidthPackages(bandwidthPackageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackagesResponse {
+        try await self.describeBandwidthPackages(DescribeBandwidthPackagesRequest(bandwidthPackageIds: bandwidthPackageIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

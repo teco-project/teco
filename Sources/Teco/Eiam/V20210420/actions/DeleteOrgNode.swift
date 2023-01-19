@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Eiam {
     ///
     /// 删除一个机构节点
     @inlinable
-    public func deleteOrgNode(_ input: DeleteOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
-        self.client.execute(action: "DeleteOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteOrgNode(_ input: DeleteOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
+        self.client.execute(action: "DeleteOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除机构节点
     ///
     /// 删除一个机构节点
     @inlinable
-    public func deleteOrgNode(_ input: DeleteOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
-        try await self.client.execute(action: "DeleteOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteOrgNode(_ input: DeleteOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
+        try await self.client.execute(action: "DeleteOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除机构节点
     ///
     /// 删除一个机构节点
     @inlinable
-    public func deleteOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
-        self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    public func deleteOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
+        self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除机构节点
     ///
     /// 删除一个机构节点
     @inlinable
-    public func deleteOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
-        try await self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
+    public func deleteOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
+        try await self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }
 }

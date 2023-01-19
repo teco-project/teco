@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Ame {
     ///
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
-    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageItemsResponse> {
-        self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePackageItems(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageItemsResponse> {
+        self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包已核销歌曲列表
     ///
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
-    public func describePackageItems(_ input: DescribePackageItemsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
-        try await self.client.execute(action: "DescribePackageItems", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePackageItems(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
+        try await self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取曲库包已核销歌曲列表
     ///
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
-    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageItemsResponse> {
-        self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), logger: logger, on: eventLoop)
+    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageItemsResponse> {
+        self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包已核销歌曲列表
     ///
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
-    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
-        try await self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), logger: logger, on: eventLoop)
+    public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
+        try await self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
     }
 }

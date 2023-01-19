@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Cwp {
 
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
-        self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
+        self.client.execute(action: "DeleteAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
-        try await self.client.execute(action: "DeleteAttackLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
+        try await self.client.execute(action: "DeleteAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
-        self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
+        self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络攻击日志
     @inlinable
-    public func deleteAttackLogs(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
-        try await self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), logger: logger, on: eventLoop)
+    public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
+        try await self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 }

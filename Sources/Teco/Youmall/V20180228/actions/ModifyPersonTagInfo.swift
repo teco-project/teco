@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Youmall {
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
-        self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
+        self.client.execute(action: "ModifyPersonTagInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
-        try await self.client.execute(action: "ModifyPersonTagInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyPersonTagInfo(_ input: ModifyPersonTagInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
+        try await self.client.execute(action: "ModifyPersonTagInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
-        self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTagInfoResponse> {
+        self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 标记顾客身份类型
     ///
     /// 标记到店顾客的身份类型，例如黑名单、白名单等
     @inlinable
-    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
-        try await self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), logger: logger, on: eventLoop)
+    public func modifyPersonTagInfo(companyId: String, shopId: Int64, tags: [PersonTagInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTagInfoResponse {
+        try await self.modifyPersonTagInfo(ModifyPersonTagInfoRequest(companyId: companyId, shopId: shopId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

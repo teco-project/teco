@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,31 +49,31 @@ extension Waf {
     ///
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
-    public func describeAccessIndex(_ input: DescribeAccessIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessIndexResponse> {
-        self.client.execute(action: "DescribeAccessIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccessIndex(_ input: DescribeAccessIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessIndexResponse> {
+        self.client.execute(action: "DescribeAccessIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取访问日志索引配置信息
     ///
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
-    public func describeAccessIndex(_ input: DescribeAccessIndexRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
-        try await self.client.execute(action: "DescribeAccessIndex", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccessIndex(_ input: DescribeAccessIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
+        try await self.client.execute(action: "DescribeAccessIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取访问日志索引配置信息
     ///
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
-    public func describeAccessIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessIndexResponse> {
-        self.describeAccessIndex(DescribeAccessIndexRequest(), logger: logger, on: eventLoop)
+    public func describeAccessIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessIndexResponse> {
+        self.describeAccessIndex(DescribeAccessIndexRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取访问日志索引配置信息
     ///
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
-    public func describeAccessIndex(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
-        try await self.describeAccessIndex(DescribeAccessIndexRequest(), logger: logger, on: eventLoop)
+    public func describeAccessIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
+        try await self.describeAccessIndex(DescribeAccessIndexRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

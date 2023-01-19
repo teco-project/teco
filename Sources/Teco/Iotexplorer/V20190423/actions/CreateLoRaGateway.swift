@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Iotexplorer {
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
-        self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
+        self.client.execute(action: "CreateLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
-        try await self.client.execute(action: "CreateLoRaGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createLoRaGateway(_ input: CreateLoRaGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
+        try await self.client.execute(action: "CreateLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
-        self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), logger: logger, on: eventLoop)
+    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
+        self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建 LoRa 网关设备
     ///
     /// 创建新 LoRa 网关设备接口
     @inlinable
-    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
-        try await self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), logger: logger, on: eventLoop)
+    public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
+        try await self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
     }
 }

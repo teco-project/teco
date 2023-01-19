@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cam {
 
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
-        self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
+        self.client.execute(action: "UpdateSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
-        try await self.client.execute(action: "UpdateSAMLProvider", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
+        try await self.client.execute(action: "UpdateSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
-        self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
+        self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新SAML身份提供商信息
     @inlinable
-    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
-        try await self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
+        try await self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 }

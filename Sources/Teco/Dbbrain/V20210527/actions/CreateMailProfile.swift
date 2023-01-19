@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Dbbrain {
     ///
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable
-    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMailProfileResponse> {
-        self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createMailProfile(_ input: CreateMailProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMailProfileResponse> {
+        self.client.execute(action: "CreateMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建邮件配置
     ///
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable
-    public func createMailProfile(_ input: CreateMailProfileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
-        try await self.client.execute(action: "CreateMailProfile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createMailProfile(_ input: CreateMailProfileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
+        try await self.client.execute(action: "CreateMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建邮件配置
     ///
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable
-    public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMailProfileResponse> {
-        self.createMailProfile(CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), logger: logger, on: eventLoop)
+    public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMailProfileResponse> {
+        self.createMailProfile(CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建邮件配置
     ///
     /// 创建邮件配置。其中入参ProfileType表示所创建配置的类型，ProfileType 取值包括：dbScan_mail_configuration（数据库巡检邮件配置）、scheduler_mail_configuration（定期生成健康报告的邮件发送配置）。Region统一选择广州，和实例所属地域无关。
     @inlinable
-    public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
-        try await self.createMailProfile(CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), logger: logger, on: eventLoop)
+    public func createMailProfile(profileInfo: ProfileInfo, profileLevel: String, profileName: String, profileType: String, product: String, bindInstanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMailProfileResponse {
+        try await self.createMailProfile(CreateMailProfileRequest(profileInfo: profileInfo, profileLevel: profileLevel, profileName: profileName, profileType: profileType, product: product, bindInstanceIds: bindInstanceIds), region: region, logger: logger, on: eventLoop)
     }
 }

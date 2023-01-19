@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tcss {
     ///
     /// 添加编辑运行时高危系统调用白名单
     @inlinable
-    public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
-        self.client.execute(action: "AddEditRiskSyscallWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
+        self.client.execute(action: "AddEditRiskSyscallWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
     @inlinable
-    public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
-        try await self.client.execute(action: "AddEditRiskSyscallWhiteList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
+        try await self.client.execute(action: "AddEditRiskSyscallWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
     @inlinable
-    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
-        self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), logger: logger, on: eventLoop)
+    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
+        self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
     @inlinable
-    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
-        try await self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), logger: logger, on: eventLoop)
+    public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
+        try await self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), region: region, logger: logger, on: eventLoop)
     }
 }

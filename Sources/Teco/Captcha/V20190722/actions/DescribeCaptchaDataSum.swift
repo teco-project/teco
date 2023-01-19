@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -90,31 +90,31 @@ extension Captcha {
     ///
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
-    public func describeCaptchaDataSum(_ input: DescribeCaptchaDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataSumResponse> {
-        self.client.execute(action: "DescribeCaptchaDataSum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCaptchaDataSum(_ input: DescribeCaptchaDataSumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataSumResponse> {
+        self.client.execute(action: "DescribeCaptchaDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码查询请求数据概况
     ///
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
-    public func describeCaptchaDataSum(_ input: DescribeCaptchaDataSumRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataSumResponse {
-        try await self.client.execute(action: "DescribeCaptchaDataSum", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCaptchaDataSum(_ input: DescribeCaptchaDataSumRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataSumResponse {
+        try await self.client.execute(action: "DescribeCaptchaDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全验证码查询请求数据概况
     ///
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
-    public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataSumResponse> {
-        self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataSumResponse> {
+        self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码查询请求数据概况
     ///
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
-    public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataSumResponse {
-        try await self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), logger: logger, on: eventLoop)
+    public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataSumResponse {
+        try await self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
     }
 }

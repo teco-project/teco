@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Tsf {
 
     /// 查询公共配置发布历史
     @inlinable
-    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleaseLogsResponse> {
-        self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleaseLogsResponse> {
+        self.client.execute(action: "DescribePublicConfigReleaseLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置发布历史
     @inlinable
-    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
-        try await self.client.execute(action: "DescribePublicConfigReleaseLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePublicConfigReleaseLogs(_ input: DescribePublicConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
+        try await self.client.execute(action: "DescribePublicConfigReleaseLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询公共配置发布历史
     @inlinable
-    public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleaseLogsResponse> {
-        self.describePublicConfigReleaseLogs(DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleaseLogsResponse> {
+        self.describePublicConfigReleaseLogs(DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置发布历史
     @inlinable
-    public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
-        try await self.describePublicConfigReleaseLogs(DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describePublicConfigReleaseLogs(namespaceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleaseLogsResponse {
+        try await self.describePublicConfigReleaseLogs(DescribePublicConfigReleaseLogsRequest(namespaceId: namespaceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

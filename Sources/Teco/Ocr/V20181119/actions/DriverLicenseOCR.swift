@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -138,8 +138,8 @@ extension Ocr {
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
-        self.client.execute(action: "DriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
+        self.client.execute(action: "DriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 驾驶证识别
@@ -151,8 +151,8 @@ extension Ocr {
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
-        try await self.client.execute(action: "DriverLicenseOCR", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
+        try await self.client.execute(action: "DriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 驾驶证识别
@@ -164,8 +164,8 @@ extension Ocr {
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
-        self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
+        self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
     }
 
     /// 驾驶证识别
@@ -177,7 +177,7 @@ extension Ocr {
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
-    public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
-        try await self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), logger: logger, on: eventLoop)
+    public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
+        try await self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
     }
 }

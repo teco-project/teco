@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -66,25 +66,25 @@ extension Waf {
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
-        self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
+        self.client.execute(action: "UpsertIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
-        try await self.client.execute(action: "UpsertIpAccessControl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upsertIpAccessControl(_ input: UpsertIpAccessControlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
+        try await self.client.execute(action: "UpsertIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
-        self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), logger: logger, on: eventLoop)
+    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
+        self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
-    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
-        try await self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), logger: logger, on: eventLoop)
+    public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
+        try await self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 }

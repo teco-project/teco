@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -62,31 +62,31 @@ extension Tcr {
     ///
     /// 用于查询应用更新触发器
     @inlinable
-    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerPersonalResponse> {
-        self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerPersonalResponse> {
+        self.client.execute(action: "DescribeApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器
     ///
     /// 用于查询应用更新触发器
     @inlinable
-    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
-        try await self.client.execute(action: "DescribeApplicationTriggerPersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeApplicationTriggerPersonal(_ input: DescribeApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
+        try await self.client.execute(action: "DescribeApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询应用更新触发器
     ///
     /// 用于查询应用更新触发器
     @inlinable
-    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerPersonalResponse> {
-        self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerPersonalResponse> {
+        self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器
     ///
     /// 用于查询应用更新触发器
     @inlinable
-    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
-        try await self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeApplicationTriggerPersonal(repoName: String? = nil, triggerName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerPersonalResponse {
+        try await self.describeApplicationTriggerPersonal(DescribeApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

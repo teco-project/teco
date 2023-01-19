@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Cdn {
     ///
     /// CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
     @inlinable
-    public func createScdnFailedLogTask(_ input: CreateScdnFailedLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnFailedLogTaskResponse> {
-        self.client.execute(action: "CreateScdnFailedLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScdnFailedLogTask(_ input: CreateScdnFailedLogTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnFailedLogTaskResponse> {
+        self.client.execute(action: "CreateScdnFailedLogTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重试创建事件日志任务
     ///
     /// CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
     @inlinable
-    public func createScdnFailedLogTask(_ input: CreateScdnFailedLogTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnFailedLogTaskResponse {
-        try await self.client.execute(action: "CreateScdnFailedLogTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScdnFailedLogTask(_ input: CreateScdnFailedLogTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnFailedLogTaskResponse {
+        try await self.client.execute(action: "CreateScdnFailedLogTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重试创建事件日志任务
     ///
     /// CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
     @inlinable
-    public func createScdnFailedLogTask(taskId: String, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnFailedLogTaskResponse> {
-        self.createScdnFailedLogTask(CreateScdnFailedLogTaskRequest(taskId: taskId, area: area), logger: logger, on: eventLoop)
+    public func createScdnFailedLogTask(taskId: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScdnFailedLogTaskResponse> {
+        self.createScdnFailedLogTask(CreateScdnFailedLogTaskRequest(taskId: taskId, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重试创建事件日志任务
     ///
     /// CreateScdnFailedLogTask 用于重试创建失败的事件日志任务
     @inlinable
-    public func createScdnFailedLogTask(taskId: String, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnFailedLogTaskResponse {
-        try await self.createScdnFailedLogTask(CreateScdnFailedLogTaskRequest(taskId: taskId, area: area), logger: logger, on: eventLoop)
+    public func createScdnFailedLogTask(taskId: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScdnFailedLogTaskResponse {
+        try await self.createScdnFailedLogTask(CreateScdnFailedLogTaskRequest(taskId: taskId, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

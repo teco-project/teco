@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Tag {
     ///
     /// 本接口用于创建一对标签键和标签值
     @inlinable
-    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
-        self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createTag(_ input: CreateTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
+        self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
     @inlinable
-    public func createTag(_ input: CreateTagRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
-        try await self.client.execute(action: "CreateTag", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createTag(_ input: CreateTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
+        try await self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
     @inlinable
-    public func createTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
-        self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func createTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
+        self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
     @inlinable
-    public func createTag(tagKey: String, tagValue: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
-        try await self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), logger: logger, on: eventLoop)
+    public func createTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
+        try await self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 }

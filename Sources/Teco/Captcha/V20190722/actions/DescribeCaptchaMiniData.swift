@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,31 +72,31 @@ extension Captcha {
     ///
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
-    public func describeCaptchaMiniData(_ input: DescribeCaptchaMiniDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataResponse> {
-        self.client.execute(action: "DescribeCaptchaMiniData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCaptchaMiniData(_ input: DescribeCaptchaMiniDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataResponse> {
+        self.client.execute(action: "DescribeCaptchaMiniData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件分类查询数据接口
     ///
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
-    public func describeCaptchaMiniData(_ input: DescribeCaptchaMiniDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataResponse {
-        try await self.client.execute(action: "DescribeCaptchaMiniData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCaptchaMiniData(_ input: DescribeCaptchaMiniDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataResponse {
+        try await self.client.execute(action: "DescribeCaptchaMiniData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全验证码小程序插件分类查询数据接口
     ///
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
-    public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataResponse> {
-        self.describeCaptchaMiniData(DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type), logger: logger, on: eventLoop)
+    public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniDataResponse> {
+        self.describeCaptchaMiniData(DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码小程序插件分类查询数据接口
     ///
     /// 安全验证码小程序插件分类查询数据接口，请求量type=0、通过量type=1、验证量type=2、拦截量type=3 小时级查询（五小时左右延迟）
     @inlinable
-    public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataResponse {
-        try await self.describeCaptchaMiniData(DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type), logger: logger, on: eventLoop)
+    public func describeCaptchaMiniData(captchaAppId: Int64, start: Int64, end: Int64, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniDataResponse {
+        try await self.describeCaptchaMiniData(DescribeCaptchaMiniDataRequest(captchaAppId: captchaAppId, start: start, end: end, type: type), region: region, logger: logger, on: eventLoop)
     }
 }

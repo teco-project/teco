@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
     @inlinable
-    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesReturnableResponse> {
-        self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesReturnableResponse> {
+        self.client.execute(action: "DescribeInstancesReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例是否可退还
     ///
     /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
     @inlinable
-    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
-        try await self.client.execute(action: "DescribeInstancesReturnable", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInstancesReturnable(_ input: DescribeInstancesReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
+        try await self.client.execute(action: "DescribeInstancesReturnable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询实例是否可退还
     ///
     /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
     @inlinable
-    public func describeInstancesReturnable(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesReturnableResponse> {
-        self.describeInstancesReturnable(DescribeInstancesReturnableRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeInstancesReturnable(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesReturnableResponse> {
+        self.describeInstancesReturnable(DescribeInstancesReturnableRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询实例是否可退还
     ///
     /// 本接口（DescribeInstancesReturnable）用于查询实例是否可退还。
     @inlinable
-    public func describeInstancesReturnable(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
-        try await self.describeInstancesReturnable(DescribeInstancesReturnableRequest(instanceIds: instanceIds, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeInstancesReturnable(instanceIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesReturnableResponse {
+        try await self.describeInstancesReturnable(DescribeInstancesReturnableRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

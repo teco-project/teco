@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Gaap {
 
     /// 添加安全策略规则
     @inlinable
-    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityRulesResponse> {
-        self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSecurityRules(_ input: CreateSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityRulesResponse> {
+        self.client.execute(action: "CreateSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加安全策略规则
     @inlinable
-    public func createSecurityRules(_ input: CreateSecurityRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
-        try await self.client.execute(action: "CreateSecurityRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSecurityRules(_ input: CreateSecurityRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
+        try await self.client.execute(action: "CreateSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加安全策略规则
     @inlinable
-    public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityRulesResponse> {
-        self.createSecurityRules(CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList), logger: logger, on: eventLoop)
+    public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityRulesResponse> {
+        self.createSecurityRules(CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加安全策略规则
     @inlinable
-    public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
-        try await self.createSecurityRules(CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList), logger: logger, on: eventLoop)
+    public func createSecurityRules(policyId: String, ruleList: [SecurityPolicyRuleIn], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityRulesResponse {
+        try await self.createSecurityRules(CreateSecurityRulesRequest(policyId: policyId, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
     }
 }

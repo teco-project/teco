@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,25 +89,25 @@ extension Cr {
 
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
-        self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryBlackListData(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
+        self.client.execute(action: "QueryBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(_ input: QueryBlackListDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
-        try await self.client.execute(action: "QueryBlackListData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryBlackListData(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
+        try await self.client.execute(action: "QueryBlackListData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
-        self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), logger: logger, on: eventLoop)
+    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBlackListDataResponse> {
+        self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
-        try await self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), logger: logger, on: eventLoop)
+    public func queryBlackListData(module: String, operation: String, offset: Int64? = nil, limit: Int64? = nil, startBizDate: Date? = nil, endBizDate: Date? = nil, blackValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBlackListDataResponse {
+        try await self.queryBlackListData(QueryBlackListDataRequest(module: module, operation: operation, offset: offset, limit: limit, startBizDate: startBizDate, endBizDate: endBizDate, blackValue: blackValue), region: region, logger: logger, on: eventLoop)
     }
 }

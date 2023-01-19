@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -44,8 +44,8 @@ extension Dc {
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
-        self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
+        self.client.execute(action: "DeleteDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除物理专线
@@ -53,8 +53,8 @@ extension Dc {
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
-        try await self.client.execute(action: "DeleteDirectConnect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
+        try await self.client.execute(action: "DeleteDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除物理专线
@@ -62,8 +62,8 @@ extension Dc {
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
-        self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), logger: logger, on: eventLoop)
+    public func deleteDirectConnect(directConnectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
+        self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除物理专线
@@ -71,7 +71,7 @@ extension Dc {
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
     @inlinable
-    public func deleteDirectConnect(directConnectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
-        try await self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), logger: logger, on: eventLoop)
+    public func deleteDirectConnect(directConnectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
+        try await self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), region: region, logger: logger, on: eventLoop)
     }
 }

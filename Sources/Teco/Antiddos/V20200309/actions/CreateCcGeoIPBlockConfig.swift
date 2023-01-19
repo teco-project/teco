@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Antiddos {
 
     /// 新建cc防护的地域封禁配置
     @inlinable
-    public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
-        self.client.execute(action: "CreateCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
+        self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建cc防护的地域封禁配置
     @inlinable
-    public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
-        try await self.client.execute(action: "CreateCcGeoIPBlockConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
+        try await self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建cc防护的地域封禁配置
     @inlinable
-    public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
-        self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), logger: logger, on: eventLoop)
+    public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
+        self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建cc防护的地域封禁配置
     @inlinable
-    public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
-        try await self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), logger: logger, on: eventLoop)
+    public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
+        try await self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 }

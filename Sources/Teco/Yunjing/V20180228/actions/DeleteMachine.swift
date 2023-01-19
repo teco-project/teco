@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Yunjing {
     ///
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable
-    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
-        self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
+        self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卸载云镜客户端
     ///
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable
-    public func deleteMachine(_ input: DeleteMachineRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
-        try await self.client.execute(action: "DeleteMachine", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
+        try await self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 卸载云镜客户端
     ///
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable
-    public func deleteMachine(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
-        self.deleteMachine(DeleteMachineRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
+        self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载云镜客户端
     ///
     /// 本接口（DeleteMachine）用于卸载云镜客户端。
     @inlinable
-    public func deleteMachine(uuid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
-        try await self.deleteMachine(DeleteMachineRequest(uuid: uuid), logger: logger, on: eventLoop)
+    public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
+        try await self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 }

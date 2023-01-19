@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Ssa {
 
     /// 云安全配置管理资产组列表
     @inlinable
-    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigAssetListResponse> {
-        self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigAssetListResponse> {
+        self.client.execute(action: "DescribeCheckConfigAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置管理资产组列表
     @inlinable
-    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
-        try await self.client.execute(action: "DescribeCheckConfigAssetList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCheckConfigAssetList(_ input: DescribeCheckConfigAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
+        try await self.client.execute(action: "DescribeCheckConfigAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云安全配置管理资产组列表
     @inlinable
-    public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigAssetListResponse> {
-        self.describeCheckConfigAssetList(DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter), logger: logger, on: eventLoop)
+    public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCheckConfigAssetListResponse> {
+        self.describeCheckConfigAssetList(DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置管理资产组列表
     @inlinable
-    public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
-        try await self.describeCheckConfigAssetList(DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter), logger: logger, on: eventLoop)
+    public func describeCheckConfigAssetList(id: String, offset: Int64, limit: Int64, search: [Filter]? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCheckConfigAssetListResponse {
+        try await self.describeCheckConfigAssetList(DescribeCheckConfigAssetListRequest(id: id, offset: offset, limit: limit, search: search, filter: filter), region: region, logger: logger, on: eventLoop)
     }
 }

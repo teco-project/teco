@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Ccc {
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
-        self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
+        self.client.execute(action: "DescribeProtectedTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
-        try await self.client.execute(action: "DescribeProtectedTelCdr", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeProtectedTelCdr(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
+        try await self.client.execute(action: "DescribeProtectedTelCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
-        self.describeProtectedTelCdr(DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectedTelCdrResponse> {
+        self.describeProtectedTelCdr(DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
-        try await self.describeProtectedTelCdr(DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), logger: logger, on: eventLoop)
+    public func describeProtectedTelCdr(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppId: UInt64, pageSize: UInt64, pageNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectedTelCdrResponse {
+        try await self.describeProtectedTelCdr(DescribeProtectedTelCdrRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppId: sdkAppId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
     }
 }

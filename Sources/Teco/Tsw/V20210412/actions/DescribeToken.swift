@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsw {
 
     /// 查询token
     @inlinable
-    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
-        self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
+        self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询token
     @inlinable
-    public func describeToken(_ input: DescribeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        try await self.client.execute(action: "DescribeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
+        try await self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询token
     @inlinable
-    public func describeToken(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
-        self.describeToken(DescribeTokenRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func describeToken(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
+        self.describeToken(DescribeTokenRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询token
     @inlinable
-    public func describeToken(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        try await self.describeToken(DescribeTokenRequest(namespace: namespace), logger: logger, on: eventLoop)
+    public func describeToken(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
+        try await self.describeToken(DescribeTokenRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 }

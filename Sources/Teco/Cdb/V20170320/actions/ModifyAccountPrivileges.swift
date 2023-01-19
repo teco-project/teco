@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -83,8 +83,8 @@ extension Cdb {
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
-    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
-        self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
+        self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的权限
@@ -93,8 +93,8 @@ extension Cdb {
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
-    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
-        try await self.client.execute(action: "ModifyAccountPrivileges", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyAccountPrivileges(_ input: ModifyAccountPrivilegesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
+        try await self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改云数据库实例账号的权限
@@ -103,8 +103,8 @@ extension Cdb {
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
-    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
-        self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), logger: logger, on: eventLoop)
+    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
+        self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的权限
@@ -113,7 +113,7 @@ extension Cdb {
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
-    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
-        try await self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), logger: logger, on: eventLoop)
+    public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, modifyAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
+        try await self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, modifyAction: modifyAction), region: region, logger: logger, on: eventLoop)
     }
 }

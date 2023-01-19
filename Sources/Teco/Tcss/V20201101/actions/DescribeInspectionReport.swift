@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tcss {
 
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
-        self.client.execute(action: "DescribeInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
+        self.client.execute(action: "DescribeInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
-        try await self.client.execute(action: "DescribeInspectionReport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInspectionReport(_ input: DescribeInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
+        try await self.client.execute(action: "DescribeInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
-        self.describeInspectionReport(DescribeInspectionReportRequest(), logger: logger, on: eventLoop)
+    public func describeInspectionReport(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
+        self.describeInspectionReport(DescribeInspectionReportRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询检查报告
     @inlinable
-    public func describeInspectionReport(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
-        try await self.describeInspectionReport(DescribeInspectionReportRequest(), logger: logger, on: eventLoop)
+    public func describeInspectionReport(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
+        try await self.describeInspectionReport(DescribeInspectionReportRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

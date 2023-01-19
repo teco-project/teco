@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,31 +55,31 @@ extension Tcb {
     ///
     /// 获取环境终端用户新增与登录信息
     @inlinable
-    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUserLoginStatisticResponse> {
-        self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUserLoginStatisticResponse> {
+        self.client.execute(action: "DescribeEndUserLoginStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取终端用户新增与登录信息
     ///
     /// 获取环境终端用户新增与登录信息
     @inlinable
-    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
-        try await self.client.execute(action: "DescribeEndUserLoginStatistic", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEndUserLoginStatistic(_ input: DescribeEndUserLoginStatisticRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
+        try await self.client.execute(action: "DescribeEndUserLoginStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取终端用户新增与登录信息
     ///
     /// 获取环境终端用户新增与登录信息
     @inlinable
-    public func describeEndUserLoginStatistic(envId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUserLoginStatisticResponse> {
-        self.describeEndUserLoginStatistic(DescribeEndUserLoginStatisticRequest(envId: envId, source: source), logger: logger, on: eventLoop)
+    public func describeEndUserLoginStatistic(envId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUserLoginStatisticResponse> {
+        self.describeEndUserLoginStatistic(DescribeEndUserLoginStatisticRequest(envId: envId, source: source), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取终端用户新增与登录信息
     ///
     /// 获取环境终端用户新增与登录信息
     @inlinable
-    public func describeEndUserLoginStatistic(envId: String, source: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
-        try await self.describeEndUserLoginStatistic(DescribeEndUserLoginStatisticRequest(envId: envId, source: source), logger: logger, on: eventLoop)
+    public func describeEndUserLoginStatistic(envId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserLoginStatisticResponse {
+        try await self.describeEndUserLoginStatistic(DescribeEndUserLoginStatisticRequest(envId: envId, source: source), region: region, logger: logger, on: eventLoop)
     }
 }

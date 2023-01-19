@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Scf {
     ///
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionEventInvokeConfigResponse> {
-        self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionEventInvokeConfigResponse> {
+        self.client.execute(action: "GetFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数异步重试配置
     ///
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
-        try await self.client.execute(action: "GetFunctionEventInvokeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getFunctionEventInvokeConfig(_ input: GetFunctionEventInvokeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
+        try await self.client.execute(action: "GetFunctionEventInvokeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取函数异步重试配置
     ///
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionEventInvokeConfigResponse> {
-        self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFunctionEventInvokeConfigResponse> {
+        self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取函数异步重试配置
     ///
     /// 获取函数异步重试配置，包括重试次数和消息保留时间
     @inlinable
-    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
-        try await self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), logger: logger, on: eventLoop)
+    public func getFunctionEventInvokeConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFunctionEventInvokeConfigResponse {
+        try await self.getFunctionEventInvokeConfig(GetFunctionEventInvokeConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Ssl {
 
     /// 重新核验管理人
     @inlinable
-    public func verifyManager(_ input: VerifyManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyManagerResponse> {
-        self.client.execute(action: "VerifyManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func verifyManager(_ input: VerifyManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyManagerResponse> {
+        self.client.execute(action: "VerifyManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新核验管理人
     @inlinable
-    public func verifyManager(_ input: VerifyManagerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
-        try await self.client.execute(action: "VerifyManager", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func verifyManager(_ input: VerifyManagerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
+        try await self.client.execute(action: "VerifyManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重新核验管理人
     @inlinable
-    public func verifyManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyManagerResponse> {
-        self.verifyManager(VerifyManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    public func verifyManager(managerId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyManagerResponse> {
+        self.verifyManager(VerifyManagerRequest(managerId: managerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重新核验管理人
     @inlinable
-    public func verifyManager(managerId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
-        try await self.verifyManager(VerifyManagerRequest(managerId: managerId), logger: logger, on: eventLoop)
+    public func verifyManager(managerId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyManagerResponse {
+        try await self.verifyManager(VerifyManagerRequest(managerId: managerId), region: region, logger: logger, on: eventLoop)
     }
 }

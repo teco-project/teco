@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Bmeip {
 
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
-        self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyEipName(_ input: ModifyEipNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
+        self.client.execute(action: "ModifyEipName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(_ input: ModifyEipNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
-        try await self.client.execute(action: "ModifyEipName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyEipName(_ input: ModifyEipNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
+        try await self.client.execute(action: "ModifyEipName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
-        self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), logger: logger, on: eventLoop)
+    public func modifyEipName(eipId: String, eipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipNameResponse> {
+        self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石EIP名称
     @inlinable
-    public func modifyEipName(eipId: String, eipName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
-        try await self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), logger: logger, on: eventLoop)
+    public func modifyEipName(eipId: String, eipName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipNameResponse {
+        try await self.modifyEipName(ModifyEipNameRequest(eipId: eipId, eipName: eipName), region: region, logger: logger, on: eventLoop)
     }
 }

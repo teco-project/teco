@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
     @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeAccounts(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
+        self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库的所有账号信息
     ///
     /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
     @inlinable
-    public func describeAccounts(_ input: DescribeAccountsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.client.execute(action: "DescribeAccounts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeAccounts(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询云数据库的所有账号信息
     ///
     /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
     @inlinable
-    public func describeAccounts(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, accountRegexp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, offset: offset, limit: limit, accountRegexp: accountRegexp), logger: logger, on: eventLoop)
+    public func describeAccounts(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, accountRegexp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
+        self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, offset: offset, limit: limit, accountRegexp: accountRegexp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库的所有账号信息
     ///
     /// 本接口(DescribeAccounts)用于查询云数据库的所有账户信息。
     @inlinable
-    public func describeAccounts(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, accountRegexp: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, offset: offset, limit: limit, accountRegexp: accountRegexp), logger: logger, on: eventLoop)
+    public func describeAccounts(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, accountRegexp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
+        try await self.describeAccounts(DescribeAccountsRequest(instanceId: instanceId, offset: offset, limit: limit, accountRegexp: accountRegexp), region: region, logger: logger, on: eventLoop)
     }
 }

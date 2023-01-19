@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension Vod {
     /// * 可以查询最近一年的播放统计数据。
     /// * 结束日期和起始日期的时间跨度最大为90天。
     @inlinable
-    public func describeDailyMediaPlayStat(_ input: DescribeDailyMediaPlayStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyMediaPlayStatResponse> {
-        self.client.execute(action: "DescribeDailyMediaPlayStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeDailyMediaPlayStat(_ input: DescribeDailyMediaPlayStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyMediaPlayStatResponse> {
+        self.client.execute(action: "DescribeDailyMediaPlayStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体文件的播放统计数据
@@ -74,8 +74,8 @@ extension Vod {
     /// * 可以查询最近一年的播放统计数据。
     /// * 结束日期和起始日期的时间跨度最大为90天。
     @inlinable
-    public func describeDailyMediaPlayStat(_ input: DescribeDailyMediaPlayStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
-        try await self.client.execute(action: "DescribeDailyMediaPlayStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeDailyMediaPlayStat(_ input: DescribeDailyMediaPlayStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
+        try await self.client.execute(action: "DescribeDailyMediaPlayStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询媒体文件的播放统计数据
@@ -84,8 +84,8 @@ extension Vod {
     /// * 可以查询最近一年的播放统计数据。
     /// * 结束日期和起始日期的时间跨度最大为90天。
     @inlinable
-    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyMediaPlayStatResponse> {
-        self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDailyMediaPlayStatResponse> {
+        self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体文件的播放统计数据
@@ -94,7 +94,7 @@ extension Vod {
     /// * 可以查询最近一年的播放统计数据。
     /// * 结束日期和起始日期的时间跨度最大为90天。
     @inlinable
-    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
-        try await self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), logger: logger, on: eventLoop)
+    public func describeDailyMediaPlayStat(fileId: String, startDate: String, endDate: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDailyMediaPlayStatResponse {
+        try await self.describeDailyMediaPlayStat(DescribeDailyMediaPlayStatRequest(fileId: fileId, startDate: startDate, endDate: endDate, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -78,25 +78,25 @@ extension Tem {
 
     /// 获取服务下面运行pod列表
     @inlinable
-    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceRunPodListV2Response> {
-        self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceRunPodListV2Response> {
+        self.client.execute(action: "DescribeServiceRunPodListV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取服务下面运行pod列表
     @inlinable
-    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
-        try await self.client.execute(action: "DescribeServiceRunPodListV2", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeServiceRunPodListV2(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
+        try await self.client.execute(action: "DescribeServiceRunPodListV2", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取服务下面运行pod列表
     @inlinable
-    public func describeServiceRunPodListV2(namespaceId: String, serviceId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceRunPodListV2Response> {
-        self.describeServiceRunPodListV2(DescribeServiceRunPodListV2Request(namespaceId: namespaceId, serviceId: serviceId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeServiceRunPodListV2(namespaceId: String, serviceId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceRunPodListV2Response> {
+        self.describeServiceRunPodListV2(DescribeServiceRunPodListV2Request(namespaceId: namespaceId, serviceId: serviceId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取服务下面运行pod列表
     @inlinable
-    public func describeServiceRunPodListV2(namespaceId: String, serviceId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
-        try await self.describeServiceRunPodListV2(DescribeServiceRunPodListV2Request(namespaceId: namespaceId, serviceId: serviceId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), logger: logger, on: eventLoop)
+    public func describeServiceRunPodListV2(namespaceId: String, serviceId: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, podName: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceRunPodListV2Response {
+        try await self.describeServiceRunPodListV2(DescribeServiceRunPodListV2Request(namespaceId: namespaceId, serviceId: serviceId, limit: limit, offset: offset, status: status, podName: podName, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -46,25 +46,25 @@ extension Cam {
 
     /// 修改用户SAML配置
     @inlinable
-    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
-        self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
+        self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
     @inlinable
-    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
-        try await self.client.execute(action: "UpdateUserSAMLConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
+        try await self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户SAML配置
     @inlinable
-    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
-        self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
+        self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
     @inlinable
-    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
-        try await self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), logger: logger, on: eventLoop)
+    public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
+        try await self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 }

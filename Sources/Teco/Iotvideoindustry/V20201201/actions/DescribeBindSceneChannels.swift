@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Iotvideoindustry {
 
     /// 获取场景绑定通道列表
     @inlinable
-    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneChannelsResponse> {
-        self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneChannelsResponse> {
+        self.client.execute(action: "DescribeBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定通道列表
     @inlinable
-    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
-        try await self.client.execute(action: "DescribeBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBindSceneChannels(_ input: DescribeBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
+        try await self.client.execute(action: "DescribeBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取场景绑定通道列表
     @inlinable
-    public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneChannelsResponse> {
-        self.describeBindSceneChannels(DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset), logger: logger, on: eventLoop)
+    public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindSceneChannelsResponse> {
+        self.describeBindSceneChannels(DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取场景绑定通道列表
     @inlinable
-    public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
-        try await self.describeBindSceneChannels(DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset), logger: logger, on: eventLoop)
+    public func describeBindSceneChannels(limit: Int64, sceneId: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindSceneChannelsResponse {
+        try await self.describeBindSceneChannels(DescribeBindSceneChannelsRequest(limit: limit, sceneId: sceneId, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

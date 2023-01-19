@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Wedata {
 
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
-        self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
+        self.client.execute(action: "DescribeIntegrationVersionNodesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
-        try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeIntegrationVersionNodesInfo(_ input: DescribeIntegrationVersionNodesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
+        try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
-        self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), logger: logger, on: eventLoop)
+    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
+        self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集成任务版本节点信息
     @inlinable
-    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
-        try await self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), logger: logger, on: eventLoop)
+    public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
+        try await self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), region: region, logger: logger, on: eventLoop)
     }
 }

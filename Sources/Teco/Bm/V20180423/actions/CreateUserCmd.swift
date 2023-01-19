@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Bm {
 
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(_ input: CreateUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
-        self.client.execute(action: "CreateUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createUserCmd(_ input: CreateUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
+        self.client.execute(action: "CreateUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(_ input: CreateUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
-        try await self.client.execute(action: "CreateUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createUserCmd(_ input: CreateUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
+        try await self.client.execute(action: "CreateUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(alias: String, osType: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
-        self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    public func createUserCmd(alias: String, osType: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
+        self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义脚本
     @inlinable
-    public func createUserCmd(alias: String, osType: String, content: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
-        try await self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), logger: logger, on: eventLoop)
+    public func createUserCmd(alias: String, osType: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
+        try await self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
     }
 }

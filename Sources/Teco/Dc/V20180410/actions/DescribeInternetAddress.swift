@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -65,25 +65,25 @@ extension Dc {
 
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
-        self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
+        self.client.execute(action: "DescribeInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
-        try await self.client.execute(action: "DescribeInternetAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeInternetAddress(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
+        try await self.client.execute(action: "DescribeInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
-        self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressResponse> {
+        self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
-        try await self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), logger: logger, on: eventLoop)
+    public func describeInternetAddress(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressResponse {
+        try await self.describeInternetAddress(DescribeInternetAddressRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

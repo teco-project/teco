@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Redis {
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
-        self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
+        self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
-        try await self.client.execute(action: "UpgradeInstanceVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func upgradeInstanceVersion(_ input: UpgradeInstanceVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
+        try await self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
-        self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
+        self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本或者结构
     ///
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
-    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
-        try await self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), logger: logger, on: eventLoop)
+    public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
+        try await self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }

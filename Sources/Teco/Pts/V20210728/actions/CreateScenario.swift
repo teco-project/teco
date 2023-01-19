@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -125,25 +125,25 @@ extension Pts {
 
     /// 创建场景
     @inlinable
-    public func createScenario(_ input: CreateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
-        self.client.execute(action: "CreateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createScenario(_ input: CreateScenarioRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
+        self.client.execute(action: "CreateScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
-    public func createScenario(_ input: CreateScenarioRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
-        try await self.client.execute(action: "CreateScenario", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createScenario(_ input: CreateScenarioRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
+        try await self.client.execute(action: "CreateScenario", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建场景
     @inlinable
-    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
-        self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), logger: logger, on: eventLoop)
+    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
+        self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
-    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
-        try await self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), logger: logger, on: eventLoop)
+    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
+        try await self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), region: region, logger: logger, on: eventLoop)
     }
 }

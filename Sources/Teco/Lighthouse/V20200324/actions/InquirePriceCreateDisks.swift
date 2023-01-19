@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -67,31 +67,31 @@ extension Lighthouse {
     ///
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
-    public func inquirePriceCreateDisks(_ input: InquirePriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDisksResponse> {
-        self.client.execute(action: "InquirePriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func inquirePriceCreateDisks(_ input: InquirePriceCreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDisksResponse> {
+        self.client.execute(action: "InquirePriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购云硬盘询价
     ///
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
-    public func inquirePriceCreateDisks(_ input: InquirePriceCreateDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDisksResponse {
-        try await self.client.execute(action: "InquirePriceCreateDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func inquirePriceCreateDisks(_ input: InquirePriceCreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDisksResponse {
+        try await self.client.execute(action: "InquirePriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新购云硬盘询价
     ///
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
-    public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDisksResponse> {
-        self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDisksResponse> {
+        self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新购云硬盘询价
     ///
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
-    public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDisksResponse {
-        try await self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), logger: logger, on: eventLoop)
+    public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDisksResponse {
+        try await self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
 }

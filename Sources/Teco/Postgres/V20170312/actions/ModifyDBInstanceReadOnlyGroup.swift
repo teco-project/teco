@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Postgres {
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
-        self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
+        self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceReadOnlyGroupResponse {
-        try await self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyDBInstanceReadOnlyGroup(_ input: ModifyDBInstanceReadOnlyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceReadOnlyGroupResponse {
+        try await self.client.execute(action: "ModifyDBInstanceReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
-        self.modifyDBInstanceReadOnlyGroup(ModifyDBInstanceReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId, newReadOnlyGroupId: newReadOnlyGroupId), logger: logger, on: eventLoop)
+    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceReadOnlyGroupResponse> {
+        self.modifyDBInstanceReadOnlyGroup(ModifyDBInstanceReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId, newReadOnlyGroupId: newReadOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例所属的只读组
     ///
     /// 本接口（ModifyDBInstanceReadOnlyGroup）用于修改实例所属的只读组
     @inlinable
-    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceReadOnlyGroupResponse {
-        try await self.modifyDBInstanceReadOnlyGroup(ModifyDBInstanceReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId, newReadOnlyGroupId: newReadOnlyGroupId), logger: logger, on: eventLoop)
+    public func modifyDBInstanceReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, newReadOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceReadOnlyGroupResponse {
+        try await self.modifyDBInstanceReadOnlyGroup(ModifyDBInstanceReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId, newReadOnlyGroupId: newReadOnlyGroupId), region: region, logger: logger, on: eventLoop)
     }
 }

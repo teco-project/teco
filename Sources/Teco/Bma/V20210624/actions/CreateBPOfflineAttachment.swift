@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -56,25 +56,25 @@ extension Bma {
 
     /// 添加下线材料
     @inlinable
-    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
-        self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
+        self.client.execute(action: "CreateBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加下线材料
     @inlinable
-    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
-        try await self.client.execute(action: "CreateBPOfflineAttachment", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
+        try await self.client.execute(action: "CreateBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加下线材料
     @inlinable
-    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
-        self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), logger: logger, on: eventLoop)
+    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
+        self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加下线材料
     @inlinable
-    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
-        try await self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), logger: logger, on: eventLoop)
+    public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
+        try await self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Monitor {
 
     /// 获取基础指标属性
     @inlinable
-    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseMetricsResponse> {
-        self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseMetricsResponse> {
+        self.client.execute(action: "DescribeBaseMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础指标属性
     @inlinable
-    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
-        try await self.client.execute(action: "DescribeBaseMetrics", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBaseMetrics(_ input: DescribeBaseMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
+        try await self.client.execute(action: "DescribeBaseMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取基础指标属性
     @inlinable
-    public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseMetricsResponse> {
-        self.describeBaseMetrics(DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaseMetricsResponse> {
+        self.describeBaseMetrics(DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取基础指标属性
     @inlinable
-    public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
-        try await self.describeBaseMetrics(DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions), logger: logger, on: eventLoop)
+    public func describeBaseMetrics(namespace: String, metricName: String? = nil, dimensions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaseMetricsResponse {
+        try await self.describeBaseMetrics(DescribeBaseMetricsRequest(namespace: namespace, metricName: metricName, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
     }
 }

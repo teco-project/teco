@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,8 +92,8 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
-    public func createAsset(_ input: CreateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
-        self.client.execute(action: "CreateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
+        self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建生成包
@@ -111,8 +111,8 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
-    public func createAsset(_ input: CreateAssetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
-        try await self.client.execute(action: "CreateAsset", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
+        try await self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建生成包
@@ -130,8 +130,8 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
-    public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
-        self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), logger: logger, on: eventLoop)
+    public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
+        self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建生成包
@@ -149,7 +149,7 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
-    public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
-        try await self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), logger: logger, on: eventLoop)
+    public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
+        try await self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

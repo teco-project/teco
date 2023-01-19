@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tdid {
 
     /// 创建凭证
     @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
+        self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建凭证
     @inlinable
-    public func createCredential(_ input: CreateCredentialRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.client.execute(action: "CreateCredential", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建凭证
     @inlinable
-    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
-        self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), logger: logger, on: eventLoop)
+    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
+        self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建凭证
     @inlinable
-    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
-        try await self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), logger: logger, on: eventLoop)
+    public func createCredential(functionArg: FunctionArg, transactionArg: TransactionArg, versionCredential: String, unSigned: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
+        try await self.createCredential(CreateCredentialRequest(functionArg: functionArg, transactionArg: transactionArg, versionCredential: versionCredential, unSigned: unSigned), region: region, logger: logger, on: eventLoop)
     }
 }

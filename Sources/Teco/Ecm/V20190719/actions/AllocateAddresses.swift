@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -89,31 +89,31 @@ extension Ecm {
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
-        self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func allocateAddresses(_ input: AllocateAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
+        self.client.execute(action: "AllocateAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(_ input: AllocateAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.client.execute(action: "AllocateAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func allocateAddresses(_ input: AllocateAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.client.execute(action: "AllocateAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
-        self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
+        self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性公网IP
     ///
     /// 申请一个或多个弹性公网IP（简称 EIP）
     @inlinable
-    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
+    public func allocateAddresses(ecmRegion: String, addressCount: UInt64? = nil, internetServiceProvider: String? = nil, internetMaxBandwidthOut: UInt64? = nil, tags: [Tag]? = nil, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.allocateAddresses(AllocateAddressesRequest(ecmRegion: ecmRegion, addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetMaxBandwidthOut: internetMaxBandwidthOut, tags: tags, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Tbaas {
     ///
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
-    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransByHashResponse> {
-        self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransByHashResponse> {
+        self.client.execute(action: "GetBcosTransByHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用交易哈希查询Bcos交易信息
     ///
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
-    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
-        try await self.client.execute(action: "GetBcosTransByHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getBcosTransByHash(_ input: GetBcosTransByHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
+        try await self.client.execute(action: "GetBcosTransByHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 使用交易哈希查询Bcos交易信息
     ///
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
-    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransByHashResponse> {
-        self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), logger: logger, on: eventLoop)
+    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosTransByHashResponse> {
+        self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 使用交易哈希查询Bcos交易信息
     ///
     /// Bcos根据交易哈希查看交易详细信息
     @inlinable
-    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
-        try await self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), logger: logger, on: eventLoop)
+    public func getBcosTransByHash(clusterId: String, groupId: Int64, transHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosTransByHashResponse {
+        try await self.getBcosTransByHash(GetBcosTransByHashRequest(clusterId: clusterId, groupId: groupId, transHash: transHash), region: region, logger: logger, on: eventLoop)
     }
 }

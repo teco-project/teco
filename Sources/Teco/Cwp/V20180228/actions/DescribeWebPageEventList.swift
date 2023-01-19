@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -72,25 +72,25 @@ extension Cwp {
 
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
-        self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
+        self.client.execute(action: "DescribeWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
-        try await self.client.execute(action: "DescribeWebPageEventList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeWebPageEventList(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
+        try await self.client.execute(action: "DescribeWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
-        self.describeWebPageEventList(DescribeWebPageEventListRequest(filters: filters, offset: offset, limit: limit, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebPageEventListResponse> {
+        self.describeWebPageEventList(DescribeWebPageEventListRequest(filters: filters, offset: offset, limit: limit, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
-        try await self.describeWebPageEventList(DescribeWebPageEventListRequest(filters: filters, offset: offset, limit: limit, by: by, order: order), logger: logger, on: eventLoop)
+    public func describeWebPageEventList(filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebPageEventListResponse {
+        try await self.describeWebPageEventList(DescribeWebPageEventListRequest(filters: filters, offset: offset, limit: limit, by: by, order: order), region: region, logger: logger, on: eventLoop)
     }
 }

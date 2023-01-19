@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,31 +74,31 @@ extension Kms {
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
-        self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reEncrypt(_ input: ReEncryptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
+        self.client.execute(action: "ReEncrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(_ input: ReEncryptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
-        try await self.client.execute(action: "ReEncrypt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reEncrypt(_ input: ReEncryptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
+        try await self.client.execute(action: "ReEncrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
-        self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), logger: logger, on: eventLoop)
+    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
+        self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), region: region, logger: logger, on: eventLoop)
     }
 
     /// 密文刷新
     ///
     /// 使用指定CMK对密文重新加密。
     @inlinable
-    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
-        try await self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), logger: logger, on: eventLoop)
+    public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
+        try await self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), region: region, logger: logger, on: eventLoop)
     }
 }

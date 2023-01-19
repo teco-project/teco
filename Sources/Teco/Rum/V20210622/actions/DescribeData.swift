@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Rum {
     ///
     /// 转发monitor查询
     @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
-        self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeData(_ input: DescribeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
+        self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取QueryData
     ///
     /// 转发monitor查询
     @inlinable
-    public func describeData(_ input: DescribeDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
-        try await self.client.execute(action: "DescribeData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeData(_ input: DescribeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
+        try await self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取QueryData
     ///
     /// 转发monitor查询
     @inlinable
-    public func describeData(query: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
-        self.describeData(DescribeDataRequest(query: query, id: id), logger: logger, on: eventLoop)
+    public func describeData(query: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
+        self.describeData(DescribeDataRequest(query: query, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取QueryData
     ///
     /// 转发monitor查询
     @inlinable
-    public func describeData(query: String, id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
-        try await self.describeData(DescribeDataRequest(query: query, id: id), logger: logger, on: eventLoop)
+    public func describeData(query: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
+        try await self.describeData(DescribeDataRequest(query: query, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Tsf {
 
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
-        self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteApiGroup(_ input: DeleteApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
+        self.client.execute(action: "DeleteApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(_ input: DeleteApiGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
-        try await self.client.execute(action: "DeleteApiGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteApiGroup(_ input: DeleteApiGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
+        try await self.client.execute(action: "DeleteApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
-        self.deleteApiGroup(DeleteApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApiGroupResponse> {
+        self.deleteApiGroup(DeleteApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Api分组
     @inlinable
-    public func deleteApiGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
-        try await self.deleteApiGroup(DeleteApiGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
+    public func deleteApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApiGroupResponse {
+        try await self.deleteApiGroup(DeleteApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 }

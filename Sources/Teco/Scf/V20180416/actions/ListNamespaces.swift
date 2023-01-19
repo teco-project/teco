@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Scf {
 
     /// 列出命名空间列表
     @inlinable
-    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListNamespacesResponse> {
-        self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listNamespaces(_ input: ListNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListNamespacesResponse> {
+        self.client.execute(action: "ListNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出命名空间列表
     @inlinable
-    public func listNamespaces(_ input: ListNamespacesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
-        try await self.client.execute(action: "ListNamespaces", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listNamespaces(_ input: ListNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
+        try await self.client.execute(action: "ListNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 列出命名空间列表
     @inlinable
-    public func listNamespaces(limit: Int64? = nil, offset: Int64? = nil, orderby: String? = nil, order: String? = nil, searchKey: [SearchKey]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListNamespacesResponse> {
-        self.listNamespaces(ListNamespacesRequest(limit: limit, offset: offset, orderby: orderby, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func listNamespaces(limit: Int64? = nil, offset: Int64? = nil, orderby: String? = nil, order: String? = nil, searchKey: [SearchKey]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListNamespacesResponse> {
+        self.listNamespaces(ListNamespacesRequest(limit: limit, offset: offset, orderby: orderby, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 列出命名空间列表
     @inlinable
-    public func listNamespaces(limit: Int64? = nil, offset: Int64? = nil, orderby: String? = nil, order: String? = nil, searchKey: [SearchKey]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
-        try await self.listNamespaces(ListNamespacesRequest(limit: limit, offset: offset, orderby: orderby, order: order, searchKey: searchKey), logger: logger, on: eventLoop)
+    public func listNamespaces(limit: Int64? = nil, offset: Int64? = nil, orderby: String? = nil, order: String? = nil, searchKey: [SearchKey]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListNamespacesResponse {
+        try await self.listNamespaces(ListNamespacesRequest(limit: limit, offset: offset, orderby: orderby, order: order, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 }

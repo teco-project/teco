@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,25 +61,25 @@ extension Ecm {
 
     /// 修改子网属性
     @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
-        self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
+        self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
     @inlinable
-    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.client.execute(action: "ModifySubnetAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改子网属性
     @inlinable
-    public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
-        self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), logger: logger, on: eventLoop)
+    public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
+        self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
     @inlinable
-    public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), logger: logger, on: eventLoop)
+    public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
+        try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

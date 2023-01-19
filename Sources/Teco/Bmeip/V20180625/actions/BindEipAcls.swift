@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Bmeip {
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
     @inlinable
-    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
-        self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindEipAcls(_ input: BindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
+        self.client.execute(action: "BindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
     @inlinable
-    public func bindEipAcls(_ input: BindEipAclsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
-        try await self.client.execute(action: "BindEipAcls", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindEipAcls(_ input: BindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
+        try await self.client.execute(action: "BindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
     @inlinable
-    public func bindEipAcls(eipIdAclIdList: [EipAclMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
-        self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), logger: logger, on: eventLoop)
+    public func bindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
+        self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
     @inlinable
-    public func bindEipAcls(eipIdAclIdList: [EipAclMap], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
-        try await self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), logger: logger, on: eventLoop)
+    public func bindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
+        try await self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
 }

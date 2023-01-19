@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Cam {
 
     /// 角色绑定标签
     @inlinable
-    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagRoleResponse> {
-        self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func tagRole(_ input: TagRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagRoleResponse> {
+        self.client.execute(action: "TagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 角色绑定标签
     @inlinable
-    public func tagRole(_ input: TagRoleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
-        try await self.client.execute(action: "TagRole", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func tagRole(_ input: TagRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
+        try await self.client.execute(action: "TagRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 角色绑定标签
     @inlinable
-    public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagRoleResponse> {
-        self.tagRole(TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TagRoleResponse> {
+        self.tagRole(TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 角色绑定标签
     @inlinable
-    public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
-        try await self.tagRole(TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId), logger: logger, on: eventLoop)
+    public func tagRole(tags: [RoleTags], roleName: String? = nil, roleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TagRoleResponse {
+        try await self.tagRole(TagRoleRequest(tags: tags, roleName: roleName, roleId: roleId), region: region, logger: logger, on: eventLoop)
     }
 }

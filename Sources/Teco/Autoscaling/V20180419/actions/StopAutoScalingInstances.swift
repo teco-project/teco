@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -64,8 +64,8 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
-        self.client.execute(action: "StopAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
+        self.client.execute(action: "StopAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭伸缩组内 CVM 实例
@@ -76,8 +76,8 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
-        try await self.client.execute(action: "StopAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func stopAutoScalingInstances(_ input: StopAutoScalingInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
+        try await self.client.execute(action: "StopAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭伸缩组内 CVM 实例
@@ -88,8 +88,8 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
-        self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
+        self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭伸缩组内 CVM 实例
@@ -100,7 +100,7 @@ extension As {
     /// * 使用`STOP_CHARGING`选项关机，待关机的实例需要满足[关机不收费条件](https://cloud.tencent.com/document/product/213/19918)
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
-    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
-        try await self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), logger: logger, on: eventLoop)
+    public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
+        try await self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
     }
 }

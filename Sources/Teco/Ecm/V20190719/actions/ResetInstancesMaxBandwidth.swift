@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Ecm {
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
-        self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
+        self.client.execute(action: "ResetInstancesMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
-        try await self.client.execute(action: "ResetInstancesMaxBandwidth", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
+        try await self.client.execute(action: "ResetInstancesMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
-        self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), logger: logger, on: eventLoop)
+    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
+        self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
     @inlinable
-    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
-        try await self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), logger: logger, on: eventLoop)
+    public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
+        try await self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), region: region, logger: logger, on: eventLoop)
     }
 }

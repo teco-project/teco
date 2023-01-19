@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Tcss {
 
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
-        self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
+        self.client.execute(action: "DescribeExportJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
-        try await self.client.execute(action: "DescribeExportJobResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeExportJobResult(_ input: DescribeExportJobResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
+        try await self.client.execute(action: "DescribeExportJobResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
-        self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeExportJobResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobResultResponse> {
+        self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询导出任务的结果
     @inlinable
-    public func describeExportJobResult(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
-        try await self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), logger: logger, on: eventLoop)
+    public func describeExportJobResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobResultResponse {
+        try await self.describeExportJobResult(DescribeExportJobResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 }

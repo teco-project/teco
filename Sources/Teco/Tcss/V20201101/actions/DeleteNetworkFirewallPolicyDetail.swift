@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcss {
 
     /// 容器网络创建网络策略删除任务
     @inlinable
-    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkFirewallPolicyDetailResponse> {
-        self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkFirewallPolicyDetailResponse> {
+        self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略删除任务
     @inlinable
-    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
-        try await self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteNetworkFirewallPolicyDetail(_ input: DeleteNetworkFirewallPolicyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
+        try await self.client.execute(action: "DeleteNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 容器网络创建网络策略删除任务
     @inlinable
-    public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkFirewallPolicyDetailResponse> {
-        self.deleteNetworkFirewallPolicyDetail(DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkFirewallPolicyDetailResponse> {
+        self.deleteNetworkFirewallPolicyDetail(DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略删除任务
     @inlinable
-    public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
-        try await self.deleteNetworkFirewallPolicyDetail(DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id), logger: logger, on: eventLoop)
+    public func deleteNetworkFirewallPolicyDetail(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkFirewallPolicyDetailResponse {
+        try await self.deleteNetworkFirewallPolicyDetail(DeleteNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

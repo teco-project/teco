@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Es {
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
-        self.client.execute(action: "DeleteLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
+        self.client.execute(action: "DeleteLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
-        try await self.client.execute(action: "DeleteLogstashPipelines", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteLogstashPipelines(_ input: DeleteLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
+        try await self.client.execute(action: "DeleteLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
-        self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashPipelinesResponse> {
+        self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Logstash管道
     ///
     /// 用于批量删除Logstash管道
     @inlinable
-    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
-        try await self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), logger: logger, on: eventLoop)
+    public func deleteLogstashPipelines(instanceId: String, pipelineIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashPipelinesResponse {
+        try await self.deleteLogstashPipelines(DeleteLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }
 }

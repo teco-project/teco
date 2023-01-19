@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iecp {
 
     /// 获取节点安装信息
     @inlinable
-    public func describeEdgeAgentNodeInstaller(_ input: DescribeEdgeAgentNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAgentNodeInstallerResponse> {
-        self.client.execute(action: "DescribeEdgeAgentNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeEdgeAgentNodeInstaller(_ input: DescribeEdgeAgentNodeInstallerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAgentNodeInstallerResponse> {
+        self.client.execute(action: "DescribeEdgeAgentNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取节点安装信息
     @inlinable
-    public func describeEdgeAgentNodeInstaller(_ input: DescribeEdgeAgentNodeInstallerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
-        try await self.client.execute(action: "DescribeEdgeAgentNodeInstaller", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeEdgeAgentNodeInstaller(_ input: DescribeEdgeAgentNodeInstallerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
+        try await self.client.execute(action: "DescribeEdgeAgentNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取节点安装信息
     @inlinable
-    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAgentNodeInstallerResponse> {
-        self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAgentNodeInstallerResponse> {
+        self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取节点安装信息
     @inlinable
-    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
-        try await self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), logger: logger, on: eventLoop)
+    public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
+        try await self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }
 }

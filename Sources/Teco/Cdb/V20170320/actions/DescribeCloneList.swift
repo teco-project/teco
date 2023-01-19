@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -61,31 +61,31 @@ extension Cdb {
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
     @inlinable
-    public func describeCloneList(_ input: DescribeCloneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneListResponse> {
-        self.client.execute(action: "DescribeCloneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeCloneList(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneListResponse> {
+        self.client.execute(action: "DescribeCloneList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询克隆任务列表
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
     @inlinable
-    public func describeCloneList(_ input: DescribeCloneListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
-        try await self.client.execute(action: "DescribeCloneList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeCloneList(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
+        try await self.client.execute(action: "DescribeCloneList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询克隆任务列表
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
     @inlinable
-    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneListResponse> {
-        self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloneListResponse> {
+        self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询克隆任务列表
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
     @inlinable
-    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
-        try await self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeCloneList(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloneListResponse {
+        try await self.describeCloneList(DescribeCloneListRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

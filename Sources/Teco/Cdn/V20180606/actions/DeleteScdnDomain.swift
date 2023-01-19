@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,25 +45,25 @@ extension Cdn {
 
     /// 删除SCDN域名
     @inlinable
-    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScdnDomainResponse> {
-        self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScdnDomainResponse> {
+        self.client.execute(action: "DeleteScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除SCDN域名
     @inlinable
-    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
-        try await self.client.execute(action: "DeleteScdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func deleteScdnDomain(_ input: DeleteScdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
+        try await self.client.execute(action: "DeleteScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除SCDN域名
     @inlinable
-    public func deleteScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScdnDomainResponse> {
-        self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func deleteScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScdnDomainResponse> {
+        self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除SCDN域名
     @inlinable
-    public func deleteScdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
-        try await self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
+    public func deleteScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
+        try await self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
 }

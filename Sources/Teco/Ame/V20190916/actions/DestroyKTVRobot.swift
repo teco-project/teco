@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -43,31 +43,31 @@ extension Ame {
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
-        self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
+        self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
-        try await self.client.execute(action: "DestroyKTVRobot", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
+        try await self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(robotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
-        self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), logger: logger, on: eventLoop)
+    public func destroyKTVRobot(robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
+        self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
     @inlinable
-    public func destroyKTVRobot(robotId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
-        try await self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), logger: logger, on: eventLoop)
+    public func destroyKTVRobot(robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
+        try await self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), region: region, logger: logger, on: eventLoop)
     }
 }

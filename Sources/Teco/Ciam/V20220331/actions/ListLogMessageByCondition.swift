@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,25 +70,25 @@ extension Ciam {
 
     /// 查询日志信息
     @inlinable
-    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogMessageByConditionResponse> {
-        self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogMessageByConditionResponse> {
+        self.client.execute(action: "ListLogMessageByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志信息
     @inlinable
-    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
-        try await self.client.execute(action: "ListLogMessageByCondition", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func listLogMessageByCondition(_ input: ListLogMessageByConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
+        try await self.client.execute(action: "ListLogMessageByCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询日志信息
     @inlinable
-    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogMessageByConditionResponse> {
-        self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), logger: logger, on: eventLoop)
+    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogMessageByConditionResponse> {
+        self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询日志信息
     @inlinable
-    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
-        try await self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), logger: logger, on: eventLoop)
+    public func listLogMessageByCondition(userStoreId: String, pageable: Pageable, startTime: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogMessageByConditionResponse {
+        try await self.listLogMessageByCondition(ListLogMessageByConditionRequest(userStoreId: userStoreId, pageable: pageable, startTime: startTime, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

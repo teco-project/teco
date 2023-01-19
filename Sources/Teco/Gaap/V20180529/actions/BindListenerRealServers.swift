@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -49,8 +49,8 @@ extension Gaap {
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable
-    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindListenerRealServersResponse> {
-        self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindListenerRealServersResponse> {
+        self.client.execute(action: "BindListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 监听器绑定源站
@@ -58,8 +58,8 @@ extension Gaap {
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable
-    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
-        try await self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func bindListenerRealServers(_ input: BindListenerRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
+        try await self.client.execute(action: "BindListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 监听器绑定源站
@@ -67,8 +67,8 @@ extension Gaap {
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable
-    public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindListenerRealServersResponse> {
-        self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindListenerRealServersResponse> {
+        self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 监听器绑定源站
@@ -76,7 +76,7 @@ extension Gaap {
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable
-    public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
-        try await self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
+    public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
+        try await self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
     }
 }

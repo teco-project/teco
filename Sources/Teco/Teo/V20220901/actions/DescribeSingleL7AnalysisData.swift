@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Teo {
     ///
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
     @inlinable
-    public func describeSingleL7AnalysisData(_ input: DescribeSingleL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSingleL7AnalysisDataResponse> {
-        self.client.execute(action: "DescribeSingleL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeSingleL7AnalysisData(_ input: DescribeSingleL7AnalysisDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSingleL7AnalysisDataResponse> {
+        self.client.execute(action: "DescribeSingleL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询七层数据分析类单值数据
     ///
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
     @inlinable
-    public func describeSingleL7AnalysisData(_ input: DescribeSingleL7AnalysisDataRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
-        try await self.client.execute(action: "DescribeSingleL7AnalysisData", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeSingleL7AnalysisData(_ input: DescribeSingleL7AnalysisDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
+        try await self.client.execute(action: "DescribeSingleL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询七层数据分析类单值数据
     ///
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
     @inlinable
-    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSingleL7AnalysisDataResponse> {
-        self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSingleL7AnalysisDataResponse> {
+        self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询七层数据分析类单值数据
     ///
     /// 本接口（DescribeSingleL7AnalysisData）用于查询七层数据分析类单值流量数据列表。
     @inlinable
-    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
-        try await self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), logger: logger, on: eventLoop)
+    public func describeSingleL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSingleL7AnalysisDataResponse {
+        try await self.describeSingleL7AnalysisData(DescribeSingleL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

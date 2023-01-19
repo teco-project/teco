@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -60,25 +60,25 @@ extension Billing {
 
     /// 获取按项目汇总费用分布
     @inlinable
-    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProjectResponse> {
-        self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProjectResponse> {
+        self.client.execute(action: "DescribeBillSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按项目汇总费用分布
     @inlinable
-    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
-        try await self.client.execute(action: "DescribeBillSummaryByProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBillSummaryByProject(_ input: DescribeBillSummaryByProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
+        try await self.client.execute(action: "DescribeBillSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取按项目汇总费用分布
     @inlinable
-    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProjectResponse> {
-        self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProjectResponse> {
+        self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取按项目汇总费用分布
     @inlinable
-    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
-        try await self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), logger: logger, on: eventLoop)
+    public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
+        try await self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
     }
 }

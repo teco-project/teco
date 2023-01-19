@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -63,31 +63,31 @@ extension Bda {
     ///
     /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
     @inlinable
-    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSegmentationTaskResponse> {
-        self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSegmentationTaskResponse> {
+        self.client.execute(action: "CreateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建视频人像分割处理任务
     ///
     /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
     @inlinable
-    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
-        try await self.client.execute(action: "CreateSegmentationTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSegmentationTask(_ input: CreateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
+        try await self.client.execute(action: "CreateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建视频人像分割处理任务
     ///
     /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
     @inlinable
-    public func createSegmentationTask(videoUrl: String, backgroundImageUrl: String? = nil, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSegmentationTaskResponse> {
-        self.createSegmentationTask(CreateSegmentationTaskRequest(videoUrl: videoUrl, backgroundImageUrl: backgroundImageUrl, config: config), logger: logger, on: eventLoop)
+    public func createSegmentationTask(videoUrl: String, backgroundImageUrl: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSegmentationTaskResponse> {
+        self.createSegmentationTask(CreateSegmentationTaskRequest(videoUrl: videoUrl, backgroundImageUrl: backgroundImageUrl, config: config), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建视频人像分割处理任务
     ///
     /// 本接口为人像分割在线处理接口组中的提交任务接口，可以对提交的资源进行处理视频流/图片流识别视频作品中的人像区域，进行一键抠像、背景替换、人像虚化等后期处理。
     @inlinable
-    public func createSegmentationTask(videoUrl: String, backgroundImageUrl: String? = nil, config: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
-        try await self.createSegmentationTask(CreateSegmentationTaskRequest(videoUrl: videoUrl, backgroundImageUrl: backgroundImageUrl, config: config), logger: logger, on: eventLoop)
+    public func createSegmentationTask(videoUrl: String, backgroundImageUrl: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSegmentationTaskResponse {
+        try await self.createSegmentationTask(CreateSegmentationTaskRequest(videoUrl: videoUrl, backgroundImageUrl: backgroundImageUrl, config: config), region: region, logger: logger, on: eventLoop)
     }
 }

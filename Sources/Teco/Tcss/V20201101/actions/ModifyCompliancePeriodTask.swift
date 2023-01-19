@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcss {
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable
-    public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
-        self.client.execute(action: "ModifyCompliancePeriodTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
+        self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable
-    public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
-        try await self.client.execute(action: "ModifyCompliancePeriodTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
+        try await self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable
-    public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
-        self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), logger: logger, on: eventLoop)
+    public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
+        self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
     @inlinable
-    public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
-        try await self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), logger: logger, on: eventLoop)
+    public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
+        try await self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }
 }

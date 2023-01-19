@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
-    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevicesResponse> {
-        self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevicesResponse> {
+        self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备结果
     ///
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
-    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
-        try await self.client.execute(action: "DescribeMultiDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeMultiDevices(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
+        try await self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取创建多设备结果
     ///
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
-    public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevicesResponse> {
-        self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevicesResponse> {
+        self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备结果
     ///
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
-    public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
-        try await self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), logger: logger, on: eventLoop)
+    public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
+        try await self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 }

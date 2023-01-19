@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Ssl {
 
     /// 云资源托管
     @inlinable
-    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
-        self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func hostCertificate(_ input: HostCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
+        self.client.execute(action: "HostCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云资源托管
     @inlinable
-    public func hostCertificate(_ input: HostCertificateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
-        try await self.client.execute(action: "HostCertificate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func hostCertificate(_ input: HostCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
+        try await self.client.execute(action: "HostCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云资源托管
     @inlinable
-    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
-        self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HostCertificateResponse> {
+        self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云资源托管
     @inlinable
-    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
-        try await self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), logger: logger, on: eventLoop)
+    public func hostCertificate(certificateId: String, resourceType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HostCertificateResponse {
+        try await self.hostCertificate(HostCertificateRequest(certificateId: certificateId, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
     }
 }

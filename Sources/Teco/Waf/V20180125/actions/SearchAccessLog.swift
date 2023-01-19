@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -103,31 +103,31 @@ extension Waf {
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
-        self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func searchAccessLog(_ input: SearchAccessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
+        self.client.execute(action: "SearchAccessLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索访问日志
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(_ input: SearchAccessLogRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
-        try await self.client.execute(action: "SearchAccessLog", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func searchAccessLog(_ input: SearchAccessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
+        try await self.client.execute(action: "SearchAccessLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 搜索访问日志
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
-        self.searchAccessLog(SearchAccessLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), logger: logger, on: eventLoop)
+    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchAccessLogResponse> {
+        self.searchAccessLog(SearchAccessLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 
     /// 搜索访问日志
     ///
     /// 本接口用于搜索WAF访问日志
     @inlinable
-    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
-        try await self.searchAccessLog(SearchAccessLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), logger: logger, on: eventLoop)
+    public func searchAccessLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchAccessLogResponse {
+        try await self.searchAccessLog(SearchAccessLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort), region: region, logger: logger, on: eventLoop)
     }
 }

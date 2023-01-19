@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -48,31 +48,31 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
-        self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
+        self.client.execute(action: "DescribeModelDataRet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
-        try await self.client.execute(action: "DescribeModelDataRet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeModelDataRet(_ input: DescribeModelDataRetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
+        try await self.client.execute(action: "DescribeModelDataRet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
-        self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeModelDataRet(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModelDataRetResponse> {
+        self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取物模型操作结果
     ///
     /// 本接口（DescribeModelDataRet）用于根据TaskId获取对设备物模型操作最终响应的结果。
     @inlinable
-    public func describeModelDataRet(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
-        try await self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), logger: logger, on: eventLoop)
+    public func describeModelDataRet(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModelDataRetResponse {
+        try await self.describeModelDataRet(DescribeModelDataRetRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 }

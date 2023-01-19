@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -82,31 +82,31 @@ extension Apigateway {
     ///
     /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
     @inlinable
-    public func modifySubDomain(_ input: ModifySubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubDomainResponse> {
-        self.client.execute(action: "ModifySubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifySubDomain(_ input: ModifySubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubDomainResponse> {
+        self.client.execute(action: "ModifySubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务修改自定义域名
     ///
     /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
     @inlinable
-    public func modifySubDomain(_ input: ModifySubDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
-        try await self.client.execute(action: "ModifySubDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifySubDomain(_ input: ModifySubDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
+        try await self.client.execute(action: "ModifySubDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 服务修改自定义域名
     ///
     /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
     @inlinable
-    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubDomainResponse> {
-        self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
+    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubDomainResponse> {
+        self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 服务修改自定义域名
     ///
     /// 本接口（ModifySubDomain）用于修改服务的自定义域名设置中的路径映射，可以修改绑定自定义域名之前的路径映射规则。
     @inlinable
-    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
-        try await self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), logger: logger, on: eventLoop)
+    public func modifySubDomain(serviceId: String, subDomain: String, isDefaultMapping: Bool, certificateId: String? = nil, protocol: String? = nil, pathMappingSet: [PathMapping]? = nil, netType: String? = nil, isForcedHttps: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubDomainResponse {
+        try await self.modifySubDomain(ModifySubDomainRequest(serviceId: serviceId, subDomain: subDomain, isDefaultMapping: isDefaultMapping, certificateId: certificateId, protocol: `protocol`, pathMappingSet: pathMappingSet, netType: netType, isForcedHttps: isForcedHttps), region: region, logger: logger, on: eventLoop)
     }
 }

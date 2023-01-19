@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -121,25 +121,25 @@ extension Tbaas {
 
     /// 获取区块链网络概要
     @inlinable
-    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterSummaryResponse> {
-        self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getClusterSummary(_ input: GetClusterSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterSummaryResponse> {
+        self.client.execute(action: "GetClusterSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区块链网络概要
     @inlinable
-    public func getClusterSummary(_ input: GetClusterSummaryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
-        try await self.client.execute(action: "GetClusterSummary", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getClusterSummary(_ input: GetClusterSummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
+        try await self.client.execute(action: "GetClusterSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取区块链网络概要
     @inlinable
-    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterSummaryResponse> {
-        self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), logger: logger, on: eventLoop)
+    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetClusterSummaryResponse> {
+        self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取区块链网络概要
     @inlinable
-    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
-        try await self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), logger: logger, on: eventLoop)
+    public func getClusterSummary(module: String, operation: String, clusterId: String, groupId: UInt64, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetClusterSummaryResponse {
+        try await self.getClusterSummary(GetClusterSummaryRequest(module: module, operation: operation, clusterId: clusterId, groupId: groupId, groupName: groupName), region: region, logger: logger, on: eventLoop)
     }
 }

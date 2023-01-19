@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -85,25 +85,25 @@ extension Cpdp {
 
     /// 云支付-上传机构文件接口
     @inlinable
-    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOrgFileResponse> {
-        self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func uploadOrgFile(_ input: UploadOrgFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOrgFileResponse> {
+        self.client.execute(action: "UploadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-上传机构文件接口
     @inlinable
-    public func uploadOrgFile(_ input: UploadOrgFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
-        try await self.client.execute(action: "UploadOrgFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func uploadOrgFile(_ input: UploadOrgFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
+        try await self.client.execute(action: "UploadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云支付-上传机构文件接口
     @inlinable
-    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOrgFileResponse> {
-        self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), logger: logger, on: eventLoop)
+    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOrgFileResponse> {
+        self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云支付-上传机构文件接口
     @inlinable
-    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
-        try await self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), logger: logger, on: eventLoop)
+    public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
+        try await self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

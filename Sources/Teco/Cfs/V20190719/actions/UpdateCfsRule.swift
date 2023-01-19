@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Cfs {
     ///
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
-    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsRuleResponse> {
-        self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateCfsRule(_ input: UpdateCfsRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsRuleResponse> {
+        self.client.execute(action: "UpdateCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组规则
     ///
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
-    public func updateCfsRule(_ input: UpdateCfsRuleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
-        try await self.client.execute(action: "UpdateCfsRule", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateCfsRule(_ input: UpdateCfsRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
+        try await self.client.execute(action: "UpdateCfsRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新权限组规则
     ///
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
-    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsRuleResponse> {
-        self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), logger: logger, on: eventLoop)
+    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsRuleResponse> {
+        self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新权限组规则
     ///
     /// 本接口（UpdateCfsRule）用于更新权限规则。
     @inlinable
-    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
-        try await self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), logger: logger, on: eventLoop)
+    public func updateCfsRule(pGroupId: String, ruleId: String, authClientIp: String? = nil, rwPermission: String? = nil, userPermission: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsRuleResponse {
+        try await self.updateCfsRule(UpdateCfsRuleRequest(pGroupId: pGroupId, ruleId: ruleId, authClientIp: authClientIp, rwPermission: rwPermission, userPermission: userPermission, priority: priority), region: region, logger: logger, on: eventLoop)
     }
 }

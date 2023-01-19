@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -59,31 +59,31 @@ extension Gaap {
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
-        self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
+        self.client.execute(action: "ModifyProxiesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
-        try await self.client.execute(action: "ModifyProxiesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
+        try await self.client.execute(action: "ModifyProxiesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
-        self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
+        self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
     @inlinable
-    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
-        try await self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), logger: logger, on: eventLoop)
+    public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
+        try await self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
 }

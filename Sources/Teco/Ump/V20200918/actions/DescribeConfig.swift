@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,8 +87,8 @@ extension Ump {
     /// mac不为空返回指定相机配置
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeConfig(_ input: DescribeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
+        self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取摄像头配置信息
@@ -97,8 +97,8 @@ extension Ump {
     /// mac不为空返回指定相机配置
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
-    public func describeConfig(_ input: DescribeConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.client.execute(action: "DescribeConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeConfig(_ input: DescribeConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取摄像头配置信息
@@ -107,8 +107,8 @@ extension Ump {
     /// mac不为空返回指定相机配置
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
-    public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
+        self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取摄像头配置信息
@@ -117,7 +117,7 @@ extension Ump {
     /// mac不为空返回指定相机配置
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
-    public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), logger: logger, on: eventLoop)
+    public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
+        try await self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }
 }

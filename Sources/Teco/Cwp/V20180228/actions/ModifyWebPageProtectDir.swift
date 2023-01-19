@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Cwp {
     ///
     /// 创建/修改网站防护目录
     @inlinable
-    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectDirResponse> {
-        self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectDirResponse> {
+        self.client.execute(action: "ModifyWebPageProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建网站防护目录
     ///
     /// 创建/修改网站防护目录
     @inlinable
-    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
-        try await self.client.execute(action: "ModifyWebPageProtectDir", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyWebPageProtectDir(_ input: ModifyWebPageProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
+        try await self.client.execute(action: "ModifyWebPageProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建网站防护目录
     ///
     /// 创建/修改网站防护目录
     @inlinable
-    public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectDirResponse> {
-        self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), logger: logger, on: eventLoop)
+    public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectDirResponse> {
+        self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建网站防护目录
     ///
     /// 创建/修改网站防护目录
     @inlinable
-    public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
-        try await self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), logger: logger, on: eventLoop)
+    public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
+        try await self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), region: region, logger: logger, on: eventLoop)
     }
 }

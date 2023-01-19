@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -54,25 +54,25 @@ extension Tcr {
 
     /// 查询创建从实例任务状态
     @inlinable
-    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceCreateTasksResponse> {
-        self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceCreateTasksResponse> {
+        self.client.execute(action: "DescribeReplicationInstanceCreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询创建从实例任务状态
     @inlinable
-    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
-        try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeReplicationInstanceCreateTasks(_ input: DescribeReplicationInstanceCreateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
+        try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询创建从实例任务状态
     @inlinable
-    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceCreateTasksResponse> {
-        self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceCreateTasksResponse> {
+        self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询创建从实例任务状态
     @inlinable
-    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
-        try await self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), logger: logger, on: eventLoop)
+    public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
+        try await self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
     }
 }

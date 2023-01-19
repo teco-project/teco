@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,25 +69,25 @@ extension Bm {
 
     /// 运行自定义脚本
     @inlinable
-    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunUserCmdResponse> {
-        self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func runUserCmd(_ input: RunUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunUserCmdResponse> {
+        self.client.execute(action: "RunUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行自定义脚本
     @inlinable
-    public func runUserCmd(_ input: RunUserCmdRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
-        try await self.client.execute(action: "RunUserCmd", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func runUserCmd(_ input: RunUserCmdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
+        try await self.client.execute(action: "RunUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行自定义脚本
     @inlinable
-    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunUserCmdResponse> {
-        self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), logger: logger, on: eventLoop)
+    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunUserCmdResponse> {
+        self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行自定义脚本
     @inlinable
-    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
-        try await self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), logger: logger, on: eventLoop)
+    public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
+        try await self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -55,25 +55,25 @@ extension Cpdp {
 
     /// 跨境-查询汇率
     @inlinable
-    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExchangeRateResponse> {
-        self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryExchangeRate(_ input: QueryExchangeRateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExchangeRateResponse> {
+        self.client.execute(action: "QueryExchangeRate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-查询汇率
     @inlinable
-    public func queryExchangeRate(_ input: QueryExchangeRateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
-        try await self.client.execute(action: "QueryExchangeRate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryExchangeRate(_ input: QueryExchangeRateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
+        try await self.client.execute(action: "QueryExchangeRate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 跨境-查询汇率
     @inlinable
-    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExchangeRateResponse> {
-        self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), logger: logger, on: eventLoop)
+    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExchangeRateResponse> {
+        self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 跨境-查询汇率
     @inlinable
-    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
-        try await self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), logger: logger, on: eventLoop)
+    public func queryExchangeRate(sourceCurrency: String, targetCurrency: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExchangeRateResponse {
+        try await self.queryExchangeRate(QueryExchangeRateRequest(sourceCurrency: sourceCurrency, targetCurrency: targetCurrency, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

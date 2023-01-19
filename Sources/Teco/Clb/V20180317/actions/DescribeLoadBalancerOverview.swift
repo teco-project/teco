@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,31 +51,31 @@ extension Clb {
     ///
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
-    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerOverviewResponse> {
-        self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerOverviewResponse> {
+        self.client.execute(action: "DescribeLoadBalancerOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡状态统计数据
     ///
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
-    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
-        try await self.client.execute(action: "DescribeLoadBalancerOverview", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeLoadBalancerOverview(_ input: DescribeLoadBalancerOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
+        try await self.client.execute(action: "DescribeLoadBalancerOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询负载均衡状态统计数据
     ///
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
-    public func describeLoadBalancerOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerOverviewResponse> {
-        self.describeLoadBalancerOverview(DescribeLoadBalancerOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeLoadBalancerOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerOverviewResponse> {
+        self.describeLoadBalancerOverview(DescribeLoadBalancerOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡状态统计数据
     ///
     /// 查询运行中、隔离中、即将到期和负载均衡总数。
     @inlinable
-    public func describeLoadBalancerOverview(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
-        try await self.describeLoadBalancerOverview(DescribeLoadBalancerOverviewRequest(), logger: logger, on: eventLoop)
+    public func describeLoadBalancerOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerOverviewResponse {
+        try await self.describeLoadBalancerOverview(DescribeLoadBalancerOverviewRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

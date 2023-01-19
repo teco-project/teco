@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -70,31 +70,31 @@ extension Tbm {
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
-        self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
+        self.client.execute(action: "DescribeBrandExposure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
-        try await self.client.execute(action: "DescribeBrandExposure", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeBrandExposure(_ input: DescribeBrandExposureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
+        try await self.client.execute(action: "DescribeBrandExposure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
-        self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandExposureResponse> {
+        self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌总热度
     ///
     /// 监测品牌关键词命中文章标题或全文的文章篇数，按天输出数据。
     @inlinable
-    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
-        try await self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeBrandExposure(brandId: String, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandExposureResponse {
+        try await self.describeBrandExposure(DescribeBrandExposureRequest(brandId: brandId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -45,31 +45,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
-    public func describeRecordingPlans(_ input: DescribeRecordingPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlansResponse> {
-        self.client.execute(action: "DescribeRecordingPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordingPlans(_ input: DescribeRecordingPlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlansResponse> {
+        self.client.execute(action: "DescribeRecordingPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取全部录制计划
     ///
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
-    public func describeRecordingPlans(_ input: DescribeRecordingPlansRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
-        try await self.client.execute(action: "DescribeRecordingPlans", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordingPlans(_ input: DescribeRecordingPlansRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
+        try await self.client.execute(action: "DescribeRecordingPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取全部录制计划
     ///
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
-    public func describeRecordingPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlansResponse> {
-        self.describeRecordingPlans(DescribeRecordingPlansRequest(), logger: logger, on: eventLoop)
+    public func describeRecordingPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlansResponse> {
+        self.describeRecordingPlans(DescribeRecordingPlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取全部录制计划
     ///
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
-    public func describeRecordingPlans(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
-        try await self.describeRecordingPlans(DescribeRecordingPlansRequest(), logger: logger, on: eventLoop)
+    public func describeRecordingPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
+        try await self.describeRecordingPlans(DescribeRecordingPlansRequest(), region: region, logger: logger, on: eventLoop)
     }
 }

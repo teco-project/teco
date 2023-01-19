@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -92,31 +92,31 @@ extension Ssm {
     ///
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
-    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSHKeyPairSecretResponse> {
-        self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSHKeyPairSecretResponse> {
+        self.client.execute(action: "CreateSSHKeyPairSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建SSH密钥对凭据
     ///
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
-    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
-        try await self.client.execute(action: "CreateSSHKeyPairSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createSSHKeyPairSecret(_ input: CreateSSHKeyPairSecretRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
+        try await self.client.execute(action: "CreateSSHKeyPairSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建SSH密钥对凭据
     ///
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
-    public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSHKeyPairSecretResponse> {
-        self.createSSHKeyPairSecret(CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), logger: logger, on: eventLoop)
+    public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSHKeyPairSecretResponse> {
+        self.createSSHKeyPairSecret(CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建SSH密钥对凭据
     ///
     /// 创建用于托管SSH密钥对的凭据
     @inlinable
-    public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
-        try await self.createSSHKeyPairSecret(CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), logger: logger, on: eventLoop)
+    public func createSSHKeyPairSecret(secretName: String, projectId: Int64, description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, sshKeyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSHKeyPairSecretResponse {
+        try await self.createSSHKeyPairSecret(CreateSSHKeyPairSecretRequest(secretName: secretName, projectId: projectId, description: description, kmsKeyId: kmsKeyId, tags: tags, sshKeyName: sshKeyName), region: region, logger: logger, on: eventLoop)
     }
 }

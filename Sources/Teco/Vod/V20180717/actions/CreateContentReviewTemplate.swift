@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -96,31 +96,31 @@ extension Vod {
     ///
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
-    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
-        self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
+        self.client.execute(action: "CreateContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建音视频内容审核模板
     ///
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
-    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
-        try await self.client.execute(action: "CreateContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func createContentReviewTemplate(_ input: CreateContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
+        try await self.client.execute(action: "CreateContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建音视频内容审核模板
     ///
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
-    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
-        self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateContentReviewTemplateResponse> {
+        self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建音视频内容审核模板
     ///
     /// 创建用户自定义音视频内容审核模板，数量上限：50。
     @inlinable
-    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
-        try await self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), logger: logger, on: eventLoop)
+    public func createContentReviewTemplate(reviewWallSwitch: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, pornConfigure: PornConfigureInfo? = nil, terrorismConfigure: TerrorismConfigureInfo? = nil, politicalConfigure: PoliticalConfigureInfo? = nil, prohibitedConfigure: ProhibitedConfigureInfo? = nil, userDefineConfigure: UserDefineConfigureInfo? = nil, screenshotInterval: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateContentReviewTemplateResponse {
+        try await self.createContentReviewTemplate(CreateContentReviewTemplateRequest(reviewWallSwitch: reviewWallSwitch, subAppId: subAppId, name: name, comment: comment, pornConfigure: pornConfigure, terrorismConfigure: terrorismConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
-        self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
+        self.client.execute(action: "ControlChannelPTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
-        try await self.client.execute(action: "ControlChannelPTZ", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func controlChannelPTZ(_ input: ControlChannelPTZRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
+        try await self.client.execute(action: "ControlChannelPTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
-        self.controlChannelPTZ(ControlChannelPTZRequest(deviceId: deviceId, channelId: channelId, command: command), logger: logger, on: eventLoop)
+    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlChannelPTZResponse> {
+        self.controlChannelPTZ(ControlChannelPTZRequest(deviceId: deviceId, channelId: channelId, command: command), region: region, logger: logger, on: eventLoop)
     }
 
     /// 远程PTZ控制设备通道
     ///
     /// 本接口(ControlChannelPTZ) 用于对支持GB28181 PTZ信令的设备进行指定通道的远程控制。
     @inlinable
-    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
-        try await self.controlChannelPTZ(ControlChannelPTZRequest(deviceId: deviceId, channelId: channelId, command: command), logger: logger, on: eventLoop)
+    public func controlChannelPTZ(deviceId: String, channelId: String, command: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlChannelPTZResponse {
+        try await self.controlChannelPTZ(ControlChannelPTZRequest(deviceId: deviceId, channelId: channelId, command: command), region: region, logger: logger, on: eventLoop)
     }
 }

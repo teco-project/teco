@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -74,25 +74,25 @@ extension Cfg {
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
-        self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeTemplateList(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
+        self.client.execute(action: "DescribeTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(_ input: DescribeTemplateListRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
-        try await self.client.execute(action: "DescribeTemplateList", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeTemplateList(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
+        try await self.client.execute(action: "DescribeTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
-        self.describeTemplateList(DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), logger: logger, on: eventLoop)
+    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateListResponse> {
+        self.describeTemplateList(DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询经验库列表
     @inlinable
-    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
-        try await self.describeTemplateList(DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), logger: logger, on: eventLoop)
+    public func describeTemplateList(limit: Int64, offset: Int64, title: String? = nil, tag: [String]? = nil, isUsed: Int64? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateListResponse {
+        try await self.describeTemplateList(DescribeTemplateListRequest(limit: limit, offset: offset, title: title, tag: tag, isUsed: isUsed, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 }

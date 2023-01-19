@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -41,25 +41,25 @@ extension Tdid {
 
     /// 启用合约
     @inlinable
-    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
-        self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func enableHash(_ input: EnableHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
+        self.client.execute(action: "EnableHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用合约
     @inlinable
-    public func enableHash(_ input: EnableHashRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
-        try await self.client.execute(action: "EnableHash", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func enableHash(_ input: EnableHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
+        try await self.client.execute(action: "EnableHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用合约
     @inlinable
-    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
-        self.enableHash(EnableHashRequest(hash: hash), logger: logger, on: eventLoop)
+    public func enableHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableHashResponse> {
+        self.enableHash(EnableHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用合约
     @inlinable
-    public func enableHash(hash: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
-        try await self.enableHash(EnableHashRequest(hash: hash), logger: logger, on: eventLoop)
+    public func enableHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableHashResponse {
+        try await self.enableHash(EnableHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 }

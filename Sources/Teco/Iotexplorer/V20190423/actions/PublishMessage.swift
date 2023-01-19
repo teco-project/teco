@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -68,31 +68,31 @@ extension Iotexplorer {
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable
-    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
-        self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
+        self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable
-    public func publishMessage(_ input: PublishMessageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
-        try await self.client.execute(action: "PublishMessage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
+        try await self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable
-    public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
-        self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
+        self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
     @inlinable
-    public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
-        try await self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), logger: logger, on: eventLoop)
+    public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
+        try await self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
 }

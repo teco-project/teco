@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,8 +79,8 @@ extension Vod {
     /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
-        self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
+        self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音视频审核
@@ -88,8 +88,8 @@ extension Vod {
     /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        try await self.client.execute(action: "ReviewAudioVideo", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func reviewAudioVideo(_ input: ReviewAudioVideoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
+        try await self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 音视频审核
@@ -97,8 +97,8 @@ extension Vod {
     /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
-        self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
+        self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音视频审核
@@ -106,7 +106,7 @@ extension Vod {
     /// 对点播中的音视频媒体发起审核任务，智能检测视频画面、画面中的文字、语音中的文字、声音出现的违规内容。
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        try await self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), logger: logger, on: eventLoop)
+    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
+        try await self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

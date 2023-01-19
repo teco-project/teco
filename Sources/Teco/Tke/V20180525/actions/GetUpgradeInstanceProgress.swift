@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -79,31 +79,31 @@ extension Tke {
     ///
     /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
-        self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
+        self.client.execute(action: "GetUpgradeInstanceProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获得节点升级当前的进度
     ///
     /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
-        try await self.client.execute(action: "GetUpgradeInstanceProgress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getUpgradeInstanceProgress(_ input: GetUpgradeInstanceProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
+        try await self.client.execute(action: "GetUpgradeInstanceProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获得节点升级当前的进度
     ///
     /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
-        self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeInstanceProgressResponse> {
+        self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获得节点升级当前的进度
     ///
     /// 获得节点升级当前的进度
     @inlinable
-    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
-        try await self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), logger: logger, on: eventLoop)
+    public func getUpgradeInstanceProgress(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeInstanceProgressResponse {
+        try await self.getUpgradeInstanceProgress(GetUpgradeInstanceProgressRequest(clusterId: clusterId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
 }

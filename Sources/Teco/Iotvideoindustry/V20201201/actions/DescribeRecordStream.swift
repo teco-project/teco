@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -76,8 +76,8 @@ extension Iotvideoindustry {
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
-    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStreamResponse> {
-        self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordStream(_ input: DescribeRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStreamResponse> {
+        self.client.execute(action: "DescribeRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通道本地回放流地址（旧）
@@ -88,8 +88,8 @@ extension Iotvideoindustry {
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
-    public func describeRecordStream(_ input: DescribeRecordStreamRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
-        try await self.client.execute(action: "DescribeRecordStream", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordStream(_ input: DescribeRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
+        try await self.client.execute(action: "DescribeRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取通道本地回放流地址（旧）
@@ -100,8 +100,8 @@ extension Iotvideoindustry {
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
-    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStreamResponse> {
-        self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordStreamResponse> {
+        self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取通道本地回放流地址（旧）
@@ -112,7 +112,7 @@ extension Iotvideoindustry {
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
     @inlinable
-    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
-        try await self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), logger: logger, on: eventLoop)
+    public func describeRecordStream(deviceId: String, expireTime: Int64, recordId: String? = nil, startTime: Int64? = nil, endTime: Int64? = nil, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordStreamResponse {
+        try await self.describeRecordStream(DescribeRecordStreamRequest(deviceId: deviceId, expireTime: expireTime, recordId: recordId, startTime: startTime, endTime: endTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
 }

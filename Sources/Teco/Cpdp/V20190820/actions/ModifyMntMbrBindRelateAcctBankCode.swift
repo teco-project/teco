@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -95,31 +95,31 @@ extension Cpdp {
     ///
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMntMbrBindRelateAcctBankCodeResponse> {
-        self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMntMbrBindRelateAcctBankCodeResponse> {
+        self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-维护会员绑定提现账户联行号
     ///
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
-        try await self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyMntMbrBindRelateAcctBankCode(_ input: ModifyMntMbrBindRelateAcctBankCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
+        try await self.client.execute(action: "ModifyMntMbrBindRelateAcctBankCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云鉴-维护会员绑定提现账户联行号
     ///
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMntMbrBindRelateAcctBankCodeResponse> {
-        self.modifyMntMbrBindRelateAcctBankCode(ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMntMbrBindRelateAcctBankCodeResponse> {
+        self.modifyMntMbrBindRelateAcctBankCode(ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-维护会员绑定提现账户联行号
     ///
     /// 维护会员绑定提现账户联行号。此接口可以支持市场修改会员的提现账户的开户行信息，具体包括开户行行名、开户行的银行联行号（大小额联行号）和超级网银行号。
     @inlinable
-    public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
-        try await self.modifyMntMbrBindRelateAcctBankCode(ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), logger: logger, on: eventLoop)
+    public func modifyMntMbrBindRelateAcctBankCode(mrchCode: String, subAcctNo: String, memberBindAcctNo: String, acctOpenBranchName: String, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMntMbrBindRelateAcctBankCodeResponse {
+        try await self.modifyMntMbrBindRelateAcctBankCode(ModifyMntMbrBindRelateAcctBankCodeRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberBindAcctNo: memberBindAcctNo, acctOpenBranchName: acctOpenBranchName, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 }

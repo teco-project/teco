@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -50,25 +50,25 @@ extension Dayu {
 
     /// 获取策略场景
     @inlinable
-    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyCaseResponse> {
-        self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePolicyCase(_ input: DescribePolicyCaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyCaseResponse> {
+        self.client.execute(action: "DescribePolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取策略场景
     @inlinable
-    public func describePolicyCase(_ input: DescribePolicyCaseRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
-        try await self.client.execute(action: "DescribePolicyCase", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePolicyCase(_ input: DescribePolicyCaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
+        try await self.client.execute(action: "DescribePolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取策略场景
     @inlinable
-    public func describePolicyCase(business: String, sceneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyCaseResponse> {
-        self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), logger: logger, on: eventLoop)
+    public func describePolicyCase(business: String, sceneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyCaseResponse> {
+        self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取策略场景
     @inlinable
-    public func describePolicyCase(business: String, sceneId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
-        try await self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), logger: logger, on: eventLoop)
+    public func describePolicyCase(business: String, sceneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
+        try await self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
     }
 }

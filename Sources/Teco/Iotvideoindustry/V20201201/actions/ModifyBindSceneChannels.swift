@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -51,25 +51,25 @@ extension Iotvideoindustry {
 
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
-        self.client.execute(action: "ModifyBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
+        self.client.execute(action: "ModifyBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
-        try await self.client.execute(action: "ModifyBindSceneChannels", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyBindSceneChannels(_ input: ModifyBindSceneChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
+        try await self.client.execute(action: "ModifyBindSceneChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
-        self.modifyBindSceneChannels(ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels), logger: logger, on: eventLoop)
+    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneChannelsResponse> {
+        self.modifyBindSceneChannels(ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 
     /// 场景绑定解绑通道接口
     @inlinable
-    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
-        try await self.modifyBindSceneChannels(ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels), logger: logger, on: eventLoop)
+    public func modifyBindSceneChannels(sceneId: Int64, type: Int64, channels: [ChannelItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneChannelsResponse {
+        try await self.modifyBindSceneChannels(ModifyBindSceneChannelsRequest(sceneId: sceneId, type: type, channels: channels), region: region, logger: logger, on: eventLoop)
     }
 }

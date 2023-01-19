@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -69,31 +69,31 @@ extension Kms {
     ///
     /// 获取导入主密钥（CMK）材料的参数，返回的Token作为执行ImportKeyMaterial的参数之一，返回的PublicKey用于对自主导入密钥材料进行加密。返回的Token和PublicKey 24小时后失效，失效后如需重新导入，需要再次调用该接口获取新的Token和PublicKey。
     @inlinable
-    public func getParametersForImport(_ input: GetParametersForImportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetParametersForImportResponse> {
-        self.client.execute(action: "GetParametersForImport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func getParametersForImport(_ input: GetParametersForImportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetParametersForImportResponse> {
+        self.client.execute(action: "GetParametersForImport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取导入主密钥（CMK）材料的参数
     ///
     /// 获取导入主密钥（CMK）材料的参数，返回的Token作为执行ImportKeyMaterial的参数之一，返回的PublicKey用于对自主导入密钥材料进行加密。返回的Token和PublicKey 24小时后失效，失效后如需重新导入，需要再次调用该接口获取新的Token和PublicKey。
     @inlinable
-    public func getParametersForImport(_ input: GetParametersForImportRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetParametersForImportResponse {
-        try await self.client.execute(action: "GetParametersForImport", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func getParametersForImport(_ input: GetParametersForImportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetParametersForImportResponse {
+        try await self.client.execute(action: "GetParametersForImport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取导入主密钥（CMK）材料的参数
     ///
     /// 获取导入主密钥（CMK）材料的参数，返回的Token作为执行ImportKeyMaterial的参数之一，返回的PublicKey用于对自主导入密钥材料进行加密。返回的Token和PublicKey 24小时后失效，失效后如需重新导入，需要再次调用该接口获取新的Token和PublicKey。
     @inlinable
-    public func getParametersForImport(keyId: String, wrappingAlgorithm: String, wrappingKeySpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetParametersForImportResponse> {
-        self.getParametersForImport(GetParametersForImportRequest(keyId: keyId, wrappingAlgorithm: wrappingAlgorithm, wrappingKeySpec: wrappingKeySpec), logger: logger, on: eventLoop)
+    public func getParametersForImport(keyId: String, wrappingAlgorithm: String, wrappingKeySpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetParametersForImportResponse> {
+        self.getParametersForImport(GetParametersForImportRequest(keyId: keyId, wrappingAlgorithm: wrappingAlgorithm, wrappingKeySpec: wrappingKeySpec), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取导入主密钥（CMK）材料的参数
     ///
     /// 获取导入主密钥（CMK）材料的参数，返回的Token作为执行ImportKeyMaterial的参数之一，返回的PublicKey用于对自主导入密钥材料进行加密。返回的Token和PublicKey 24小时后失效，失效后如需重新导入，需要再次调用该接口获取新的Token和PublicKey。
     @inlinable
-    public func getParametersForImport(keyId: String, wrappingAlgorithm: String, wrappingKeySpec: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetParametersForImportResponse {
-        try await self.getParametersForImport(GetParametersForImportRequest(keyId: keyId, wrappingAlgorithm: wrappingAlgorithm, wrappingKeySpec: wrappingKeySpec), logger: logger, on: eventLoop)
+    public func getParametersForImport(keyId: String, wrappingAlgorithm: String, wrappingKeySpec: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetParametersForImportResponse {
+        try await self.getParametersForImport(GetParametersForImportRequest(keyId: keyId, wrappingAlgorithm: wrappingAlgorithm, wrappingKeySpec: wrappingKeySpec), region: region, logger: logger, on: eventLoop)
     }
 }

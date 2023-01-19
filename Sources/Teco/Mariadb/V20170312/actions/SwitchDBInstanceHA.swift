@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -52,31 +52,31 @@ extension Mariadb {
     ///
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
-    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstanceHAResponse> {
-        self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstanceHAResponse> {
+        self.client.execute(action: "SwitchDBInstanceHA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例主备切换
     ///
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
-    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
-        try await self.client.execute(action: "SwitchDBInstanceHA", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func switchDBInstanceHA(_ input: SwitchDBInstanceHARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
+        try await self.client.execute(action: "SwitchDBInstanceHA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例主备切换
     ///
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
-    public func switchDBInstanceHA(instanceId: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstanceHAResponse> {
-        self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), logger: logger, on: eventLoop)
+    public func switchDBInstanceHA(instanceId: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstanceHAResponse> {
+        self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例主备切换
     ///
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
-    public func switchDBInstanceHA(instanceId: String, zone: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
-        try await self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), logger: logger, on: eventLoop)
+    public func switchDBInstanceHA(instanceId: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
+        try await self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 }

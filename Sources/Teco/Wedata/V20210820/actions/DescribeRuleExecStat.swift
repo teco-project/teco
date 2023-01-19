@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -57,31 +57,31 @@ extension Wedata {
     ///
     /// 数据质量概览页面规则运行情况接口
     @inlinable
-    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecStatResponse> {
-        self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecStatResponse> {
+        self.client.execute(action: "DescribeRuleExecStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量规则运行情况接口
     ///
     /// 数据质量概览页面规则运行情况接口
     @inlinable
-    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
-        try await self.client.execute(action: "DescribeRuleExecStat", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRuleExecStat(_ input: DescribeRuleExecStatRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
+        try await self.client.execute(action: "DescribeRuleExecStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 数据质量规则运行情况接口
     ///
     /// 数据质量概览页面规则运行情况接口
     @inlinable
-    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecStatResponse> {
-        self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecStatResponse> {
+        self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 数据质量规则运行情况接口
     ///
     /// 数据质量概览页面规则运行情况接口
     @inlinable
-    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
-        try await self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), logger: logger, on: eventLoop)
+    public func describeRuleExecStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecStatResponse {
+        try await self.describeRuleExecStat(DescribeRuleExecStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 }

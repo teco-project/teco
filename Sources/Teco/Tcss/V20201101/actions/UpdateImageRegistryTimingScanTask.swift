@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -71,25 +71,25 @@ extension Tcss {
 
     /// 镜像仓库更新定时任务
     @inlinable
-    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
-        self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
+        self.client.execute(action: "UpdateImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库更新定时任务
     @inlinable
-    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
-        try await self.client.execute(action: "UpdateImageRegistryTimingScanTask", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func updateImageRegistryTimingScanTask(_ input: UpdateImageRegistryTimingScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
+        try await self.client.execute(action: "UpdateImageRegistryTimingScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库更新定时任务
     @inlinable
-    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
-        self.updateImageRegistryTimingScanTask(UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), logger: logger, on: eventLoop)
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageRegistryTimingScanTaskResponse> {
+        self.updateImageRegistryTimingScanTask(UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库更新定时任务
     @inlinable
-    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
-        try await self.updateImageRegistryTimingScanTask(UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), logger: logger, on: eventLoop)
+    public func updateImageRegistryTimingScanTask(scanPeriod: UInt64, enable: Bool, scanTime: String, scanType: [String]? = nil, images: [ImageInfo]? = nil, all: Bool? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageRegistryTimingScanTaskResponse {
+        try await self.updateImageRegistryTimingScanTask(UpdateImageRegistryTimingScanTaskRequest(scanPeriod: scanPeriod, enable: enable, scanTime: scanTime, scanType: scanType, images: images, all: all, id: id), region: region, logger: logger, on: eventLoop)
     }
 }

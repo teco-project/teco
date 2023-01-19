@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -58,31 +58,31 @@ extension Ckafka {
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
-        self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func authorizeToken(_ input: AuthorizeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
+        self.client.execute(action: "AuthorizeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例授权token
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(_ input: AuthorizeTokenRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
-        try await self.client.execute(action: "AuthorizeToken", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func authorizeToken(_ input: AuthorizeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
+        try await self.client.execute(action: "AuthorizeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 实例授权token
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
-        self.authorizeToken(AuthorizeTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    public func authorizeToken(instanceId: String, user: String, tokens: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthorizeTokenResponse> {
+        self.authorizeToken(AuthorizeTokenRequest(instanceId: instanceId, user: user, tokens: tokens), region: region, logger: logger, on: eventLoop)
     }
 
     /// 实例授权token
     ///
     /// 给实例授权token
     @inlinable
-    public func authorizeToken(instanceId: String, user: String, tokens: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
-        try await self.authorizeToken(AuthorizeTokenRequest(instanceId: instanceId, user: user, tokens: tokens), logger: logger, on: eventLoop)
+    public func authorizeToken(instanceId: String, user: String, tokens: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthorizeTokenResponse {
+        try await self.authorizeToken(AuthorizeTokenRequest(instanceId: instanceId, user: user, tokens: tokens), region: region, logger: logger, on: eventLoop)
     }
 }

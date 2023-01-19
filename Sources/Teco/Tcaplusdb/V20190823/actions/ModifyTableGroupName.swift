@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -53,31 +53,31 @@ extension Tcaplusdb {
     ///
     /// 修改TcaplusDB表格组名称
     @inlinable
-    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
-        self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
+        self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
     @inlinable
-    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
-        try await self.client.execute(action: "ModifyTableGroupName", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
+        try await self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
     @inlinable
-    public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
-        self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), logger: logger, on: eventLoop)
+    public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
+        self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
     @inlinable
-    public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
-        try await self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), logger: logger, on: eventLoop)
+    public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
+        try await self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
     }
 }

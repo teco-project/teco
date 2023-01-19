@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -87,25 +87,25 @@ extension Cpdp {
 
     /// 云企付-查询对账单下载地址
     @inlinable
-    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDownLoadUrlResponse> {
-        self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDownLoadUrlResponse> {
+        self.client.execute(action: "QueryOpenBankDownLoadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询对账单下载地址
     @inlinable
-    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
-        try await self.client.execute(action: "QueryOpenBankDownLoadUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func queryOpenBankDownLoadUrl(_ input: QueryOpenBankDownLoadUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
+        try await self.client.execute(action: "QueryOpenBankDownLoadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 云企付-查询对账单下载地址
     @inlinable
-    public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDownLoadUrlResponse> {
-        self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), logger: logger, on: eventLoop)
+    public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDownLoadUrlResponse> {
+        self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), region: region, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询对账单下载地址
     @inlinable
-    public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
-        try await self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), logger: logger, on: eventLoop)
+    public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
+        try await self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), region: region, logger: logger, on: eventLoop)
     }
 }

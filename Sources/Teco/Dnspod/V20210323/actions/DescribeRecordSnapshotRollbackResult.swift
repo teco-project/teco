@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -99,25 +99,25 @@ extension Dnspod {
 
     /// 查询解析记录重新回滚的结果
     @inlinable
-    public func describeRecordSnapshotRollbackResult(_ input: DescribeRecordSnapshotRollbackResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordSnapshotRollbackResultResponse> {
-        self.client.execute(action: "DescribeRecordSnapshotRollbackResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describeRecordSnapshotRollbackResult(_ input: DescribeRecordSnapshotRollbackResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordSnapshotRollbackResultResponse> {
+        self.client.execute(action: "DescribeRecordSnapshotRollbackResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询解析记录重新回滚的结果
     @inlinable
-    public func describeRecordSnapshotRollbackResult(_ input: DescribeRecordSnapshotRollbackResultRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordSnapshotRollbackResultResponse {
-        try await self.client.execute(action: "DescribeRecordSnapshotRollbackResult", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describeRecordSnapshotRollbackResult(_ input: DescribeRecordSnapshotRollbackResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordSnapshotRollbackResultResponse {
+        try await self.client.execute(action: "DescribeRecordSnapshotRollbackResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询解析记录重新回滚的结果
     @inlinable
-    public func describeRecordSnapshotRollbackResult(domain: String, jobId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordSnapshotRollbackResultResponse> {
-        self.describeRecordSnapshotRollbackResult(DescribeRecordSnapshotRollbackResultRequest(domain: domain, jobId: jobId, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeRecordSnapshotRollbackResult(domain: String, jobId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordSnapshotRollbackResultResponse> {
+        self.describeRecordSnapshotRollbackResult(DescribeRecordSnapshotRollbackResultRequest(domain: domain, jobId: jobId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询解析记录重新回滚的结果
     @inlinable
-    public func describeRecordSnapshotRollbackResult(domain: String, jobId: UInt64, domainId: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordSnapshotRollbackResultResponse {
-        try await self.describeRecordSnapshotRollbackResult(DescribeRecordSnapshotRollbackResultRequest(domain: domain, jobId: jobId, domainId: domainId), logger: logger, on: eventLoop)
+    public func describeRecordSnapshotRollbackResult(domain: String, jobId: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordSnapshotRollbackResultResponse {
+        try await self.describeRecordSnapshotRollbackResult(DescribeRecordSnapshotRollbackResultRequest(domain: domain, jobId: jobId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 }

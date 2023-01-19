@@ -2,7 +2,7 @@
 //
 // This source file is part of the Teco open source project.
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -75,25 +75,25 @@ extension Tke {
 
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
-        self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
+        self.client.execute(action: "DescribePrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
-        try await self.client.execute(action: "DescribePrometheusInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+    public func describePrometheusInstance(_ input: DescribePrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
+        try await self.client.execute(action: "DescribePrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
-        self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describePrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
+        self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取实例详细信息
     @inlinable
-    public func describePrometheusInstance(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
-        try await self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), logger: logger, on: eventLoop)
+    public func describePrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
+        try await self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 }
